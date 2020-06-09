@@ -86,7 +86,7 @@ The Output gives the solution of the model:
 </h2>
 
 
-The default data comes from the Pilot's Operation Handbook(POH) for a Cessna 182. More details about the limitation: the various cost and speed when going up and down at different altitude, see this : <a herf="https://srv-file18.gofile.io/download/GQH3IJ/Aircraft%20limitations.md">Aircraft limitaion</a>.
+The default data comes from the Pilot's Operation Handbook(POH) for a Cessna 182. More details about the limitation: the various cost and speed when going up and down at different altitude, see this :  <a href="https://srv-file18.gofile.io/download/GQH3IJ/Aircraft%20limitations.md" target="_blank">Aircraft Limitation</a>
 
 
 <h2>Minimum Cost Network Mathematical Formulation:</h2>
@@ -110,7 +110,7 @@ X<sub>ij</sub> &gt;= 0 &forall; (I,J) &isin; A
 <h2>
      GAMS file link
 </h2>
-<a herf="https://srv-file14.gofile.io/download/2mL5VO/thunder.miroapp">Download the model file</a>
+<a href="https://srv-file14.gofile.io/download/2mL5VO/thunder.miroapp" target="_blank">Download the model file</a>
 
 
 
