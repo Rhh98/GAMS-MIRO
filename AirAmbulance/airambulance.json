@@ -1,0 +1,80 @@
+{
+  "overwriteSheetOrder": {
+    "input": ["x", "y", "d", "s", "_widgets"]
+  },
+  "overwriteAliases": {
+    "x": {
+      "newAlias": "x-coordinates"
+    },
+    "y": {
+      "newAlias": "y-coordinates"
+    },
+    "d": {
+      "newAlias": "projected demand"
+    },
+    "s": {
+      "newAlias": "units currently assigned"
+    },
+    "assign": {
+      "newAlias": "helicoptpers assignment"
+    },
+    "numofheli": {
+      "newAlias": "number of helicopters in L"
+    }
+  },
+  "pivottable": {
+    "bgColor": "transparent"
+  },
+  "theme": "browser",
+  "defCompMode": "split",
+  "roundingDecimals": 2,
+  "activateModules": {
+    "logFile": true,
+    "lstFile": true,
+    "loadLocal": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "autoGenInputGraphs": true,
+  "aggregateWidgets": true,
+  "storeLogFilesDuration": 7,
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "saveTraceFile": true,
+  "dataRendering": {
+    "assign": {
+      "outType": "assign",
+      "packages": "igraph"
+    },
+    "numofheli": {
+      "outType": "heli"
+    }
+  },
+  "defaultScenName": "default",
+  "inputGroups": [
+    {
+      "name": "locations",
+      "members": ["x", "y"]
+    }
+  ],
+  "readme": {
+    "tabTitle": "readme",
+    "filename": "readme.md"
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "highlightCol": true,
+    "highlightRow": true,
+    "columnSorting": true,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true,
+      "allowReadOnly": false
+    },
+    "height": 700,
+    "colWidths": 150
+  }
+}
