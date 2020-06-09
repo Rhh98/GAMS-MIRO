@@ -110,7 +110,7 @@ X<sub>ij</sub> &gt;= 0 &forall; (I,J) &isin; A
 <h2>
      GAMS file link
 </h2>
-<a href="https://srv-file14.gofile.io/download/2mL5VO/thunder.miroapp">Download the model file</a>
+<a herf="https://srv-file14.gofile.io/download/2mL5VO/thunder.miroapp">Download the model file</a>
 
 
 
