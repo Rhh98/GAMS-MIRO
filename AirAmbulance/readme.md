@@ -36,11 +36,11 @@ To understand how to use this model to solve the problem, several inputs are req
 <h3>
     Output Data
 </h3>
-
 <ul>
-    <li>helicopter assignment: A digraph shows the reassignment of helicopters among all the sites. The helicopters will be assigned from the head of arcs to the tail of the arcs. The number of assigned helicopter in this arc is the weight shown on the arc. One can also see the data table by clicking the "switch view" button on the top right corner. </li>
-    <li> number of helicopters in L: A datatable and a barplot is displayed to show the distribution of the helicopters among all the sites. There are two numbers for each site, one is for the previous number of helicopters before the reassignment, the other is for the current number of the helicopters after the reassignment.</li>
+    <li>helicopter reassignment: A digraph shows the reassignment of helicopters among all the sites. The helicopters will be reassigned from the head of arcs to the tail of the arcs. The number of reassigned helicopter in this arc is the weight shown on the arc. One can also see the data table by clicking the "switch view" button on the top right corner. </li>
+    <li> number of helicopters in L: A datatable and a barplot is displayed to show the distribution of the helicopters among all the sites. There are three numbers for each site, the first one is for the previous number of helicopters before the reassignment, the second one is for the demand of helicopters in that site, the third one is for the current number of the helicopters after the reassignment.</li>
 </ul>
+
 
 
 
@@ -84,9 +84,20 @@ Minimize ∑<sub>(i,j)∈L×L</sub>dist<sub>ij</sub>∗c∗z<sub>ij</sub>
 
 **Constraints**
 
-Flow balance constraint for each location i in set L
+There are two cases when building the model:
 
-∑<sub>j∈L</sub> z<sub>ji</sub>+s<sub>i</sub>=d<sub>i</sub>+∑<sub>j∈L</sub>z<sub>ij</sub>,∀i∈L
+<ul> 
+    <li>Case1:the total demand number of helicopters is larger than the total number of current assigned helicopters:
+    <br>When this is the case, the flow balance constrain will be:
+    <br>∑<sub>j∈L</sub> z<sub>ji</sub>+s<sub>i</sub>>=d<sub>i</sub>+∑<sub>j∈L</sub>z<sub>ij</sub>,∀i∈L </li>
+    <li>Case2:the total demand number of helicopters is smaller than or wequal to the total number of current assigned helicopters.
+    <br>When this is the case, the flow balance constrain will be:
+    <br>∑<sub>j∈L</sub> z<sub>ji</sub>+s<sub>i</sub><=d<sub>i</sub>+∑<sub>j∈L</sub>z<sub>ij</sub>,∀i∈L </li></li>
+    </ul>
+
+
+
+
 
 
 
@@ -94,4 +105,4 @@ Flow balance constraint for each location i in set L
     GAMS Model
 </h2>
 
-The GAMS model can be downloaded <a href="https://srv-file14.gofile.io/download/bCFL0v/AirAmbulance.gms">here</a>.
+The GAMS model can be downloaded <a href="https://srv-file14.gofile.io/download/bCFL0v/AirAmbulance.gms" target="_blank">here</a>.

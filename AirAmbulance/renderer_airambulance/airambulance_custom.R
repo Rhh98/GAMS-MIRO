@@ -25,7 +25,7 @@ renderAssign <- function(input, output, session, data, options = NULL, path = NU
      Ver<-data.frame(node,x,y)
      edges<-data.frame(from,to)
       network<-graph_from_data_frame(d=edges,vertices=Ver,)
-       plot(network,edge.label=weight,main = 'Helicopter Assignment')
+       plot(network,edge.label=weight,main = 'Helicopter Reassignment')
       #plot(c(1,2,3,4,5,6),c(length(from),length(to),length(weight),length(x),length(y),length(Ver)))
      }
   )
@@ -43,26 +43,22 @@ heliOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here
-    sidebarLayout(
-      sidebarPanel(
-        dataTableOutput(ns('dataT'))
-      ),
-      mainPanel(
-        plotOutput(ns('plot'),height=height)
-      )
+    fluidRow(
+      column(5,dataTableOutput(ns('dataT'))),
+      column(7,plotOutput(ns('plot'),height=height))
     )
   ) 
 }
 
 renderHeli <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
-  output$dataT<-DT::renderDataTable(datatable(data,colnames=c('location','previous number of helicopters','new number of helicopters')))
+  output$dataT<-DT::renderDataTable(datatable(data,colnames=c('location','previous number of helicopters','demand of helicopters','new number of helicopters')))
   output$plot<-renderPlot(
     {
-      bar<-barplot(rbind(data$old,data$new),main='Number of helicopters in each location',
-                   names.arg = data$l,legend=c('old number','new number'),xlab='location',
-                   ylab='number of helicopters',col = c('blue','red'),beside=TRUE) 
-      text(bar,10,rbind(data$old,data$new),cex=1.2,font = 2,col='white')
+      bar<-barplot(rbind(data$old,data$demand,data$new),main='Number of helicopters in each location',
+                   names.arg = data$l,legend=c('old number','demand','new number'),xlab='location',
+                   ylab='number of helicopters',col = c('blue','green','red'),beside=TRUE) 
+      # text(bar,20,rbind(data$old,data$new),cex=1.2,font = 2,col='white')
     }
   )
 }

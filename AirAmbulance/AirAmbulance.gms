@@ -45,15 +45,20 @@ Positive Variable
 
 Equations
    objective 
-   balance(L)  ;
+   balance1(L)
+   balance2(L);
 
 objective.. sum((L,nL), dist(L,nL)*c*z(L,nL)) =e= obj;
 
-balance(L) .. sum(nL, z(nL,L)) + s(L) =e= d(L) + sum(nL, z(L,nL)) ;
+balance1(L) .. sum(nL, z(nL,L)) + s(L) =g= d(L) + sum(nL, z(L,nL)) ;
 
-Model AirAmbulance /all/ ;
-Solve AirAmbulance using lp minimizing obj;
-set HeliHeader /old,new/
+balance2(L).. sum(nL, z(nL,L)) + s(L) =l= d(L) + sum(nL, z(L,nL)) ;
+
+Model AirAmbulance1 /objective,balance1/ ;
+Model AirAmbulance2 /objective,balance2/ ;
+if (sum(L,s(L)) > sum(L,d(L)),  Solve AirAmbulance1 using lp minimizing obj;
+else solve  AirAmbulance2 using lp minimizing obj);
+set HeliHeader /old,new,demand/
 assignHeader/x,y,value/;
 $onExternalOutput
 table assign(L,nL,assignHeader) helicoptpers assignment;
@@ -64,3 +69,4 @@ assign(L,nL,'x')=x(nL);
 assign(L,nL,'y')=y(nL);
 numofHeli(L,'old')=s(L);
 numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
+numofHeli(L,'demand')=d(L);

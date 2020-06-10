@@ -1,0 +1,112 @@
+--- Job AirAmbulance.gms Start 06/09/20 19:46:17 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\AirAmbulance.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCGenerateJSON conf_AirAmbulance/AirAmbulance_io.json
+    IDCGenerateGDX data_AirAmbulance/default.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- AirAmbulance.gms(72) 3 Mb
+--- Starting execution: elapsed 0:00:00.015
+--- AirAmbulance.gms(59) 4 Mb
+--- Generating LP model AirAmbulance2
+--- AirAmbulance.gms(60) 4 Mb
+---   6 rows  21 columns  61 non-zeroes
+--- Executing CPLEX: elapsed 0:00:00.062
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 1 columns.
+Reduced LP has 5 rows, 20 columns, and 40 nonzeros.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Iteration      Dual Objective            In Variable           Out Variable
+     1            2236.067977                 z(5.4)      balance2(5) slack
+     2            4836.067977                 z(3.2)      balance2(3) slack
+     3            6798.618349                 z(5.2)      balance2(4) slack
+     4            7161.869060                 z(5.1)      balance2(2) slack
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.02 ticks)
+
+Optimal solution found.
+Objective :        7161.869060
+
+--- Restarting execution
+--- AirAmbulance.gms(60) 2 Mb
+--- Reading solution for model AirAmbulance2
+--- Executing after solve: elapsed 0:00:00.337
+--- AirAmbulance.gms(72) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\data_AirAmbulance/default.gdx
+*** Status: Normal completion
+--- Job AirAmbulance.gms Stop 06/09/20 19:46:17 elapsed 0:00:00.363
+
+TRACE [2020-06-09 19:46:29] Logging facility initialised.
+DEBUG [2020-06-09 19:46:29] Database connection established.
+DEBUG [2020-06-09 19:46:29] Access Control initialised.
+INFO [2020-06-09 19:46:30] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-09 19:46:32] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-09 19:46:32] Db: 51 rows in table: '_sys_metadata_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-06-09 19:46:32] Db: Metadata (table: '_sys_metadata_airambulance') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-09 19:46:32] Db: Metadata (table: '_sys_metadata_airambulance') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-09 19:46:32] Db: Data was added to table: 'airambulance_assign' (Db.exportScenDataset).
+DEBUG [2020-06-09 19:46:32] Db: Data was added to table: 'airambulance_numofheli' (Db.exportScenDataset).
+DEBUG [2020-06-09 19:46:32] Db: Data was added to table: 'airambulance_x' (Db.exportScenDataset).
+DEBUG [2020-06-09 19:46:32] Db: Data was added to table: 'airambulance_y' (Db.exportScenDataset).
+DEBUG [2020-06-09 19:46:33] Db: Data was added to table: 'airambulance_d' (Db.exportScenDataset).
+DEBUG [2020-06-09 19:46:33] Db: Data was added to table: 'airambulance_s' (Db.exportScenDataset).
+DEBUG [2020-06-09 19:46:33] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
+DEBUG [2020-06-09 19:46:33] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-06-09 19:46:33] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-09 19:46:34] Scenario: '1' unlocked.
+DEBUG [2020-06-09 19:46:34] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
+INFO [2020-06-09 19:46:45] Session started (model: 'airambulance', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/AirAmbulance').
+DEBUG [2020-06-09 19:46:45] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/AirAmbulance'.
+DEBUG [2020-06-09 19:46:45] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-09 19:46:49] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-09 19:46:49] Db: Data was imported from table: 'airambulance_assign' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Db: Data was imported from table: 'airambulance_numofheli' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Db: Data was imported from table: 'airambulance_x' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Db: Data was imported from table: 'airambulance_y' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Db: Data was imported from table: 'airambulance_d' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Db: Data was imported from table: 'airambulance_s' (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Db: A table named: '_sys_scripts_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-09 19:46:49] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-09 19:46:50] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-09 19:46:50] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
+DEBUG [2020-06-09 19:46:51] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-09 19:46:51] Dataset: x loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-09 19:46:51] Dataset: y loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-09 19:46:51] Dataset: d loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-09 19:46:51] Dataset: s loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-09 19:46:52] Scenario: '1' was loaded into UI
+DEBUG [2020-06-09 19:46:54] Sidebar menu item: 'outputData' selected.
+INFO [2020-06-09 19:47:12] Session ended (model: 'airambulance', user: 'hasee').

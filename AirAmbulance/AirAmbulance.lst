@@ -1,0 +1,243 @@
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/09/20 19:55:11 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  set L ;
+   2   
+   3   
+   5  Parameters
+   6     x(L<) x-coordinates
+   7     / 1 36
+   8       2 23
+   9       3 23
+  10       4 10
+  11       5 5   /
+  12   
+  13     y(L) y-coordinates
+  14     / 1 20
+  15       2 30
+  16       3 56
+  17       4 15
+  18       5 5  /
+  19   
+  20     d(L) projected demand
+  21     / 1 7
+  22       2 3
+  23       3 2
+  24       4 4
+  25       5 2 /
+  26   
+  27     s(L) units currently assigned
+  28     /  1 6
+  29        2 2
+  30        3 3
+  31        4 3
+  32        5 4 /;
+  34  alias(L,nL);
+  35  Parameter dist(L,nL) distance;
+  36  dist(L,nL) = sqrt( (x(nL) - x(L))*(x(nL) - x(L)) + (y(nL) - y(L))*(y(nL) - y(L)));
+  37   
+  38  Scalar c cost per kilometer /100/;
+  39   
+  40  Variable
+  41    obj;
+  42   
+  43  Positive Variable
+  44    z(L,nL);
+  45   
+  46  Equations
+  47     objective
+  48     balance1(L)
+  49     balance2(L);
+  50   
+  51  objective.. sum((L,nL), dist(L,nL)*c*z(L,nL)) =e= obj;
+  52   
+  53  balance1(L) .. sum(nL, z(nL,L)) + s(L) =g= d(L) + sum(nL, z(L,nL)) ;
+  54   
+  55  balance2(L).. sum(nL, z(nL,L)) + s(L) =l= d(L) + sum(nL, z(L,nL)) ;
+  56   
+  57  Model AirAmbulance1 /objective,balance1/ ;
+  58  Model AirAmbulance2 /objective,balance2/ ;
+  59  if (sum(L,s(L)) > sum(L,d(L)),  Solve AirAmbulance1 using lp minimizing obj;
+  60  else solve  AirAmbulance2 using lp minimizing obj);
+  61  set HeliHeader /old,new,demand/
+  62  assignHeader/x,y,value/;
+  64  table assign(L,nL,assignHeader) helicoptpers assignment;
+  65  table  numofHeli(L,HeliHeader) number of helicopters in L;
+  67  assign(L,nL,'value')=z.l(L,nL);
+  68  assign(L,nL,'x')=x(nL);
+  69  assign(L,nL,'y')=y(nL);
+  70  numofHeli(L,'old')=s(L);
+  71  numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
+  72  numofHeli(L,'demand')=d(L);
+
+
+COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/09/20 19:55:11 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE AirAmbulance2 Using LP From line 60
+
+
+---- objective  =E=  
+
+objective..  - obj + 1640.12194668567*z(1,2) + 3827.53184180093*z(1,3) + 2647.64045897475*z(1,4) + 3443.83507154451*z(1,5) + 1640.12194668567*z(2,1) + 2600*z(2,3) + 1984.94332412792*z(2,4) + 3080.58436014987*z(2,5) + 3827.53184180093*z(3,1) + 2600*z(3,2)
+     
+      + 4301.16263352131*z(3,4) + 5408.32691319598*z(3,5) + 2647.64045897475*z(4,1) + 1984.94332412792*z(4,2) + 4301.16263352131*z(4,3) + 1118.03398874989*z(4,5) + 3443.83507154451*z(5,1) + 3080.58436014987*z(5,2) + 5408.32691319598*z(5,3)
+     
+      + 1118.03398874989*z(5,4) =E= 0 ; (LHS = 0)
+     
+
+---- balance2  =L=  
+
+balance2(1)..  - z(1,2) - z(1,3) - z(1,4) - z(1,5) + z(2,1) + z(3,1) + z(4,1) + z(5,1) =L= 1 ; (LHS = 0)
+     
+balance2(2)..  z(1,2) - z(2,1) - z(2,3) - z(2,4) - z(2,5) + z(3,2) + z(4,2) + z(5,2) =L= 1 ; (LHS = 0)
+     
+balance2(3)..  z(1,3) + z(2,3) - z(3,1) - z(3,2) - z(3,4) - z(3,5) + z(4,3) + z(5,3) =L= -1 ; (LHS = 0, INFES = 1 ****)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/09/20 19:55:11 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE AirAmbulance2 Using LP From line 60
+
+
+---- obj  
+
+obj
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       objective
+
+
+---- z  
+
+z(1,2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     1640.1219  objective
+       -1       balance2(1)
+        1       balance2(2)
+
+z(1,3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     3827.5318  objective
+       -1       balance2(1)
+        1       balance2(3)
+
+z(1,4)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     2647.6405  objective
+       -1       balance2(1)
+        1       balance2(4)
+
+REMAINING 17 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/09/20 19:55:11 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE AirAmbulance2 Using LP From line 60
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS            6
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            61
+
+
+GENERATION TIME      =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/09/20 19:55:11 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE AirAmbulance2 Using LP From line 60
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   AirAmbulance2       OBJECTIVE  obj
+     TYPE    LP                  DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  60
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE             7161.8691
+
+ RESOURCE USAGE, LIMIT          0.016      1000.000
+ ITERATION COUNT, LIMIT         4    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.02 ticks)
+Optimal solution found.
+Objective :        7161.869060
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU objective           .              .              .            -1.0000      
+
+---- EQU balance2  
+
+         LOWER          LEVEL          UPPER         MARGINAL
+
+1        -INF            1.0000         1.0000          .          
+2        -INF            1.0000         1.0000      -363.2507      
+3        -INF           -1.0000        -1.0000     -2963.2507      
+4        -INF            1.0000         1.0000     -2325.8011      
+5        -INF           -2.0000        -2.0000     -3443.8351      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR obj               -INF         7161.8691        +INF             .          
+
+---- VAR z  
+
+           LOWER          LEVEL          UPPER         MARGINAL
+
+1.2          .              .            +INF         2003.3727      
+1.3          .              .            +INF         6790.7826      
+1.4          .              .            +INF         4973.4415      
+1.5          .              .            +INF         6887.6701      
+2.1          .              .            +INF         1276.8712      
+2.3          .              .            +INF         5200.0000      
+2.4          .              .            +INF         3947.4937      
+2.5          .              .            +INF         6161.1687      
+3.1          .              .            +INF          864.2811      
+3.2          .             1.0000        +INF             .          
+3.4          .              .            +INF         3663.7130      
+3.5          .              .            +INF         5888.9113      
+4.1          .              .            +INF          321.8394      
+4.2          .              .            +INF           22.3930      
+4.3          .              .            +INF         4938.6123      
+4.5          .              .            +INF         2236.0680      
+5.1          .             1.0000        +INF             .          
+5.2          .              .            +INF             .          
+5.3          .              .            +INF         4927.7426      
+5.4          .             1.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/09/20 19:55:11 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+      Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\AirAmbulance.gms
+Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\AirAmbulance.lst

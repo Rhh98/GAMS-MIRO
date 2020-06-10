@@ -1,0 +1,111 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"x":	{
+			"alias":	"x-coordinates",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"l"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"x-coordinates"
+				}
+			}
+		},
+		"y":	{
+			"alias":	"y-coordinates",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"l"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"y-coordinates"
+				}
+			}
+		},
+		"d":	{
+			"alias":	"projected demand",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"l"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"projected demand"
+				}
+			}
+		},
+		"s":	{
+			"alias":	"units currently assigned",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"l"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"units currently assigned"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"assign":	{
+			"alias":	"helicoptpers assignment",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"l"
+				},
+				"nl":	{
+					"type":	"string",
+					"alias":	"Aliased with L"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"x"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"y"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"value"
+				}
+			}
+		},
+		"numofheli":	{
+			"alias":	"number of helicopters in L",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"l"
+				},
+				"old":	{
+					"type":	"numeric",
+					"alias":	"old"
+				},
+				"new":	{
+					"type":	"numeric",
+					"alias":	"new"
+				},
+				"demand":	{
+					"type":	"numeric",
+					"alias":	"demand"
+				}
+			}
+		}
+	}
+}
