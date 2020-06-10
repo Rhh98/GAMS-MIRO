@@ -105,4 +105,4 @@ There are two cases when building the model:
     GAMS Model
 </h2>
 
-The GAMS model can be downloaded <a href="https://srv-file14.gofile.io/download/bCFL0v/AirAmbulance.gms" target="_blank">here</a>.
+The GAMS model can be downloaded <a href="static_airambulance/AirAmbulance.gms" target="_blank">here</a>.
