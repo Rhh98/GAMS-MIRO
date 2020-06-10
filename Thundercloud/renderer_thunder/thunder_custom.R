@@ -19,7 +19,7 @@ fflowOutput <- function(id, height = NULL, options = NULL, path = NULL){
 renderFflow <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
   if (data$status[1]==1){
-    #output$status<-renderText('The problem is solved to optimality')
+    output$status<-renderText('The problem is solved to optimality')
   datap<-cbind(c(data$xcoord[-which(is.na(data$xcoord))]),c(data$zcoord[-which(is.na(data$zcoord))]))
   datap<-datap[order(datap[,1]),]
   output$dataT<-DT::renderDataTable(datatable(datap,colnames=c('nautical miles','altitude')))
