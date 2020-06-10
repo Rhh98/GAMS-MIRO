@@ -126,15 +126,18 @@ c(N1,N) $((ord(N) = (ord(N1)+offsetdown))  AND(ord(N) ge 900) AND(ord(N)le 1099 
 c(N1,N) $((ord(N) = (ord(N1)+offsetdown))  AND(ord(N) ge 1100) AND(ord(N)le 1299 ) ) =downcost('12');
 
 *Need to insert cloud and stop arc from entering node where cloud is
-Arcs(N,N2)$((lowcloud('c1')le (zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c1')-xcoord(N)))))
-           AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c1')-xcoord(N)))) le (highcloud('c1'))))=no;
+Arcs(N,N2)$((lowcloud('c1')le (zcoord(N)+(zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c1')-xcoord(N))))
+           AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c1')-xcoord(N)))) le (highcloud('c1')))
+           AND xcoord(N) le xcoordcloud('c1') AND xcoord(N2) ge xcoordcloud('c1'))=no;
 
 
 Arcs(N,N2)$((lowcloud('c2')le (zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c2')-xcoord(N)))))
-           AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c2')-xcoord(N)))) le (highcloud('c2'))))=no;
+           AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c2')-xcoord(N)))) le (highcloud('c2')))
+           AND xcoord(N) le xcoordcloud('c2') AND xcoord(N2) ge xcoordcloud('c2'))=no;
 
 Arcs(N,N2)$((lowcloud('c3')le (zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c2')-xcoord(N)))))
-           AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c3')-xcoord(N)))) le (highcloud('c3'))))=no;
+           AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c3')-xcoord(N)))) le (highcloud('c3')))
+           AND xcoord(N) le xcoordcloud('c3') AND xcoord(N2) ge xcoordcloud('c3'))=no;
 
 display Arcs;
 display c;
@@ -168,9 +171,8 @@ solve airplane using lp minimizing TotalCost ;
 *shows what arcs airplane should travel on.
 option flow:0:0:1;
 display flow.l;
-
 set 
-    heightHeader /low,high,xcoord, zcoord,cloudx/;
+    heightHeader /low,high,xcoord, zcoord,cloudx,status/;
 $onExternalOutput
 table FlowOP(CandN,CandN, heightHeader) 'Flow';
 Scalar Cost;
@@ -178,8 +180,8 @@ $offExternalOutput
  Cost = TotalCost.L;
  FlowOP(N,Nodes, 'zcoord')$(flow.l(N,Nodes))=Groundheight + floor( (ord(N)-1)/100);
  flowOP(N,Nodes, 'xcoord')$(flow.l(N,Nodes))=mod(ord(N),100);
-
 FlowOP(clouds,clouds,'low')=lowcloud(clouds);
 FlowOp(clouds,clouds,'high')=highcloud(clouds);
 FlowOp(clouds,clouds,'cloudx')=xcoordcloud(clouds);
+FlowOP(CandN,CandN, 'status')=airplane.sumInfes+1;
 display FlowOP;

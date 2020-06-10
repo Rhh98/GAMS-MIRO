@@ -1,0 +1,187 @@
+{
+	"modelTitle":	"airplane",
+	"inputSymbols":	{
+		"cloudsinfo":	{
+			"alias":	"Information of thunderstorm",
+			"symtype":	"parameter",
+			"headers":	{
+				"clouds":	{
+					"type":	"string",
+					"alias":	"clouds"
+				},
+				"cloudinf":	{
+					"type":	"string",
+					"alias":	"cloudinf"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Information of thunderstorm"
+				}
+			}
+		},
+		"crcost":	{
+			"alias":	"cost to cruise",
+			"symtype":	"parameter",
+			"headers":	{
+				"height":	{
+					"type":	"string",
+					"alias":	"height"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"cost to cruise"
+				}
+			}
+		},
+		"climbdis":	{
+			"alias":	"nautical distance to climb 2k feet",
+			"symtype":	"parameter",
+			"headers":	{
+				"upheight":	{
+					"type":	"string",
+					"alias":	"upheight"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"nautical distance to climb 2k feet"
+				}
+			}
+		},
+		"upcost":	{
+			"alias":	"cost of going up 2k feet at 'upheight'",
+			"symtype":	"parameter",
+			"headers":	{
+				"upheight":	{
+					"type":	"string",
+					"alias":	"upheight"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"cost of going up 2k feet at 'upheight'"
+				}
+			}
+		},
+		"downcost":	{
+			"alias":	"cost of going down 2k feet at 'downheight'",
+			"symtype":	"parameter",
+			"headers":	{
+				"downheight":	{
+					"type":	"string",
+					"alias":	"downheight"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"cost of going down 2k feet at 'downheight'"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["minheight"],
+			"symtext":	["minheight"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"offsetcr":	{
+			"alias":	"cruise distance",
+			"symtype":	"parameter",
+			"headers":	{
+				"s":	{
+					"type":	"string",
+					"alias":	"singular set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"cruise distance"
+				}
+			}
+		},
+		"descenddis":	{
+			"alias":	"nautical distance to descend 2k feet",
+			"symtype":	"parameter",
+			"headers":	{
+				"s":	{
+					"type":	"string",
+					"alias":	"singular set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"nautical distance to descend 2k feet"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"flowop":	{
+			"alias":	"Flow",
+			"symtype":	"parameter",
+			"headers":	{
+				"candn":	{
+					"type":	"string",
+					"alias":	"candn"
+				},
+				"candn#1":	{
+					"type":	"string",
+					"alias":	"candn#1"
+				},
+				"low":	{
+					"type":	"numeric",
+					"alias":	"low"
+				},
+				"high":	{
+					"type":	"numeric",
+					"alias":	"high"
+				},
+				"xcoord":	{
+					"type":	"numeric",
+					"alias":	"xcoord"
+				},
+				"zcoord":	{
+					"type":	"numeric",
+					"alias":	"zcoord"
+				},
+				"cloudx":	{
+					"type":	"numeric",
+					"alias":	"cloudx"
+				},
+				"status":	{
+					"type":	"numeric",
+					"alias":	"status"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["cost"],
+			"symtext":	["cost"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	}
+}
