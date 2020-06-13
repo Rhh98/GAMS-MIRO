@@ -1,0 +1,469 @@
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  *question about the objective function..
+   2   
+   3   
+   4  $ondollar
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 2
+Case Study : Feed optimizer
+C o m p i l a t i o n
+
+
+   5  $title Case Study : Feed optimizer
+   6  $ontext
+      + Validate
+      + Tile packing
+      + Time window
+      + Sponsored stories
+      + Random testcase
+      + Stochastic value
+  13  $offtext
+  14   
+  15  $offsymxref offsymlist offuelxref offuellist offupper
+  16   
+  17  $set bH 100
+  18  $set bW 100
+  19  $set cA 750
+  20  $set tW 75
+  21  $set fD 1
+  22  $set rL 30
+  23   
+  24   
+  25  * VARIABLES
+  26  $onexternalInput
+  27  set
+  28      BIGS    All stories available /s1,s2/
+  29      C       User behavior case /c1*c3/;
+  30  $offexternalInput
+  31  set
+  32      S(BIGS) Filtered stories
+  33   
+  34  ;
+  35  $onexternalInput
+  36  parameter
+  37    height(BIGS) 'Stroy height'/s1 20,s2 20/,
+  38    width2(BIGS) 'Story width'/s1 20,s2 20/,
+  39    valc(BIGS) 'Story base score'/s1 3,s2 2/,
+  40    time(BIGS) 'Time when story is available'/s1 500, s2 300/,
+  41    sponsored(BIGS) 'Sponsored story'/s1 1,s2 2/,
+  42    cscore(BIGS,C) 'Multiplier for story score at different scenarios'/s1*s2.c1*c3 3/;
+  43  scalar
+  44       totTime   Total time/  1000 /
+  45       bHeight   Interface height/  100 /
+  46       bWidth    Interface width/  100 /
+  47       checkAt   Feed retrieved time /  750 /
+  48       window    Time window for freshness/  75 /
+  49       oneD      'Dimension of story(1/2)' /  1 /
+  50       sponsorRatio Sponsor ratio/ 0.3 /
+  51       initRatio Initial ratio/ 0.2 /
+  52  ;
+  53  $offexternalInput
+  54  parameter
+  55    data(BIGS,*),
+  56    val(BIGS),
+  57    width(BIGS)
+  58  ;
+  59   
+  60   
+  61   
+  62   
+  63  alias(S,T);
+  64  alias(BIGS,BIGT);
+  65   
+  66  positive variable
+  67       x(BIGS,C)                 x val of story S in optimal feed
+  68       y(BIGS,C)                 y val of story S in optimal feed
+  69  ;
+  70   
+  71  binary variable
+  72       left(BIGS,BIGT,C)         S is on left of T
+  73       top(BIGS,BIGT,C)          S is on top of T
+  74       z(BIGS)                   S is chosen
+  75       zc(BIGS,C)                S is chosen in case C
+  76       check(BIGS,BIGT,C)        need to check only if both are selected
+  77  ;
+  78   
+  79  free variable
+  80       value                   feed's value
+  81  ;
+  82   
+  83  * DATA
+  84   
+  85  *execseed = 1 + gmillisec(jnow);
+  86  option seed = 42 ;
+  87   
+  88   
+  89   
+  90   
+  91  option reslim = 30;
+  92  $ontext
+      height(BIGS) = round(uniform(5,30));
+      width(BIGS)  = round(uniform(5,30));
+      valc(BIGS)    = height(BIGS)*width(BIGS)*uniform(1,3);
+      time(BIGS)   = round(uniform(1,totTime));
+      sponsored(BIGS)$(uniform(1,10) ge 7) = 1 ;
+      cscore(BIGS,C) = uniform(0,2);
+       
+ 100  $offtext
+ 101   
+ 102  val(BIGS)  = valc(BIGS)*exp(1+(time(BIGS)-(checkAt-window))/totTime);
+ 103   
+ 104  data(BIGS,"height") = height(BIGS);
+ 105   
+ 106  width(BIGS)=width2(BIGS);
+ 107   
+ 108   
+ 109  data(BIGS,"value")  = val(BIGS);
+ 110  data(BIGS,"time")   = time(BIGS);
+ 111   
+ 112  display cscore;
+ 113   
+ 114   
+ 115   
+ 116  if ( oneD eq 1 ,
+ 117   width(BIGS) = bWidth;
+ 118  );
+ 119  data(BIGS,"width")  = width(BIGS);
+ 120  parameter
+ 121       bigX,
+ 122       bigY
+ 123       smallM
+ 124       littleM
+ 125  ;
+ 126   
+ 127  bigX = bWidth ;
+ 128  bigY = bHeight ;
+ 129  smallM = -1 ;
+ 130   
+ 131  * FILTER
+ 132   
+ 133  S(BIGS) = NO ;
+ 134  S(BIGT)$(data(BIGT,"height") le bHeight
+ 135           and data(BIGT,"height") gt 0
+ 136           and data(BIGT,"width") le bWidth
+ 137           and data(BIGT,"width") gt 0
+ 138           and data(BIGT,"time") le checkAt
+ 139           and data(BIGT,"time") ge (checkAt-window) ) = YES;
+ 140   
+ 141  display S;
+ 142   
+ 143  * MODEL
+ 144   
+ 145  equations
+ 146    objf,
+ 147    checkEqn(BIGS,BIGT,C),
+ 148    overlapEqn(BIGS,BIGT,C),
+ 149    horLimit(BIGS,BIGT,C),
+ 150    verLimit(BIGS,BIGT,C),
+ 151    sponsorEqn(C),
+ 152    horOrderEqn(BIGS,BIGT,C),
+ 153    verOrderEqn(BIGS,BIGT,C),
+ 154    zcEqn(BIGS,C),
+ 155    selectEqn
+ 156  ;
+ 157   
+ 158  objf..
+ 159    value =E= SUM(S, z(S)*data(S,"value")) +
+ 160              SUM(C, 1/CARD(C)*(SUM(S, zc(S,C)*data(S,"value")*cscore(S,C)))) ;
+ 161   
+ 162  zcEqn(S,C)..
+ 163    zc(S,C) =L= 1-z(S);
+ 164   
+ 165  checkEqn(S,T,C)$(not diag(S,T))..
+ 166    z(S) + z(T) + zc(S,C) + zc(T,C) =L= check(S,T,C) + 1;
+ 167   
+ 168  overlapEqn(S,T,C)..
+ 169    (left(S,T,C) + left(T,S,C)+ top(S,T,C) + top(T,S,C)) +
+ 170    smallM*check(S,T,C) =G= smallM + 1 ;
+ 171   
+ 172  horLimit(S,T,C)..
+ 173    (x(S,C) - x(T,C)) + left(S,T,C)*bigX + bigX*check(S,T,C) =L=
+ 174    bigX + bigX - data(S,"width") ;
+ 175   
+ 176   
+ 177  verLimit(S,T,C)..
+ 178    (y(T,C) - y(S,C)) + top(S,T,C)*bigY  + bigY*check(S,T,C) =L=
+ 179    bigY + bigY - data(T,"height") ;
+ 180   
+ 181  littlem = -totTime ;
+ 182   
+ 183  horOrderEqn(S,T,C)..
+ 184    time(S) + littlem*left(S,T,C) =G= time(T) + littlem ;
+ 185   
+ 186  verOrderEqn(S,T,C)..
+ 187    time(S) + littlem*top(S,T,C) =G= time(T) + littlem ;
+ 188   
+ 189  sponsorEqn(C)..
+ 190    SUM(S$(sponsored(S)), z(S)+zc(S,C))  =L= sponsorRatio*SUM(S,z(S)+zc(S,C));
+ 191   
+ 192  selectEqn..
+ 193    SUM(S, z(S)) =G= initRatio*SUM(C,1/CARD(C)*SUM(S,zc(S,C)));
+ 194   
+ 195  model feedOptimizer / all /;
+ 196  x.up(S,C)=bwidth-width(S);
+ 197  y.up(S,C)=bheight-height(S);
+ 198  * MIXED INTEGER PROGRAMMING
+ 199  solve feedOptimizer maximizing value using mip ;
+ 200   
+ 201  * POST PROCESS
+ 202  set resHeader /type,window,value,x,y,z,time,height,width,totalwidth,totalheight,totalval,AreaCover,checkat/;
+ 203  $onexternalOutput
+ 204  table result(BIGS,C,resHeader) feed for all scenarios;
+ 205  $offexternalOutput
+ 206  result(S,C,"value")     = val(S);
+ 207  result(S,C,"value")$(result(S,C,"z") eq 2 or result(S,C,"z")  eq 5 )   = cscore(S,C)*val(S);
+ 208  result(S,C,"x")         = x.L(S,C);
+ 209  result(S,C,"y")         = y.L(S,C);
+ 210  result(S,C,"z")         = z.L(S)+zc.L(S,C)*2+sponsored(S)*3;
+ 211  result(S,C,"height")    = height(S);
+ 212  result(S,C,"width")     = width(S);
+ 213  result(S,C,'totalwidth') =bwidth;
+ 214  result(S,C,'totalheight')=bheight;
+ 215  result(S,C,'totalval')=value.L;
+ 216  result(S,C,'checkat')=checkat;
+ 217  result(S,C,'time')=time(S);
+ 218  result(S,C,'window')=window;
+ 219  result(bigS,C,'areacover')$(S(BIGS))=(SUM(S$(z.L(S) > 0.1 or zc.L(S,C)> 0.1),
+ 220                     height(S)*width(S))/(bHeight*bWidth))*100;
+ 221  result(S,C,'type')$(result(S,C,"z") ge 3)=3;
+ 222  result(S,C,'type')$(result(S,C,"z") eq 1)=1;
+ 223  result(S,C,'type')$(result(S,C,"z") eq 2)=2;
+ 224  *result(S,"time")      = time(S);
+ 225  $ontext
+      result(S,C,"x")$(Not x.L(S,C)) = EPS;
+      result(S,C,"y")$(Not y.L(S,C)) = EPS;
+      result(S,C,"z")$(Not z.L(S) and Not zc.L(S,C)) = EPS;
+ 229  $offtext
+ 230   
+ 231  display result;
+ 232   
+ 233   
+ 234  display z.L;
+ 235  display zc.L;
+ 236   
+ 237  * END
+
+
+COMPILATION TIME     =        0.016 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 3
+Case Study : Feed optimizer
+E x e c u t i o n
+
+
+----    112 PARAMETER cscore  Multiplier for story score at different scenarios
+
+            c1          c2          c3
+
+s1       3.000       3.000       3.000
+s2       3.000       3.000       3.000
+
+
+----    141 SET S  Filtered stories
+
+                                                      ( EMPTY )
+
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 4
+Case Study : Feed optimizer
+Equation Listing    SOLVE feedOptimizer Using MIP From line 199
+
+
+---- objf  =E=  
+
+objf..  value =E= 0 ; (LHS = 0)
+     
+
+---- checkEqn  =L=  
+
+                NONE
+
+
+---- overlapEqn  =G=  
+
+                NONE
+
+
+---- horLimit  =L=  
+
+                NONE
+
+
+---- verLimit  =L=  
+
+                NONE
+
+
+---- sponsorEqn  =L=  
+
+                NONE
+
+
+---- horOrderEqn  =G=  
+
+                NONE
+
+
+---- verOrderEqn  =G=  
+
+                NONE
+
+
+---- zcEqn  =L=  
+
+                NONE
+
+
+---- selectEqn  =G=  
+
+                NONE
+
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 5
+Case Study : Feed optimizer
+Column Listing      SOLVE feedOptimizer Using MIP From line 199
+
+
+---- value  feed's value
+
+value
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       objf
+
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 6
+Case Study : Feed optimizer
+Model Statistics    SOLVE feedOptimizer Using MIP From line 199
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS          10     SINGLE EQUATIONS            1
+BLOCKS OF VARIABLES           1     SINGLE VARIABLES            1
+NON ZERO ELEMENTS             1
+
+
+GENERATION TIME      =        0.047 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 7
+Case Study : Feed optimizer
+Solution Report     SOLVE feedOptimizer Using MIP From line 199
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   feedOptimizer       OBJECTIVE  value
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  199
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE                0.0000
+
+ RESOURCE USAGE, LIMIT          0.000        30.000
+ ITERATION COUNT, LIMIT         0    2000000000
+
+IBM ILOG CPLEX   30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.00 ticks)
+Optimal solution found.
+Objective :           0.000000
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU objf                .              .              .             1.0000      
+
+---- EQU checkEqn  
+
+                NONE
+
+
+---- EQU overlapEqn  
+
+                NONE
+
+
+---- EQU horLimit  
+
+                NONE
+
+
+---- EQU verLimit  
+
+                NONE
+
+
+---- EQU sponsorEqn  
+
+                NONE
+
+
+---- EQU horOrderEqn  
+
+                NONE
+
+
+---- EQU verOrderEqn  
+
+                NONE
+
+
+---- EQU zcEqn  
+
+                NONE
+
+
+                NONE
+
+---- EQU selectEqn                  (EMPTY)
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR value             -INF             .            +INF             .          
+
+  value  feed's value
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/12/20 20:34:22 Page 8
+Case Study : Feed optimizer
+E x e c u t i o n
+
+
+----    231 PARAMETER result  feed for all scenarios
+
+                      ( ALL       0.000 )
+
+
+----    234 VARIABLE z.L  S is chosen
+
+                      ( ALL       0.000 )
+
+
+----    235 VARIABLE zc.L  S is chosen in case C
+
+                      ( ALL       0.000 )
+
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+
+
+USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+      Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\feedOptimizer.gms
+Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\feedOptimizer.lst

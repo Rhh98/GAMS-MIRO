@@ -1,0 +1,213 @@
+{
+	"modelTitle":	"Case Study : Feed optimizer",
+	"inputSymbols":	{
+		"bigs":	{
+			"alias":	"All stories available",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text All stories available"
+				}
+			}
+		},
+		"c":	{
+			"alias":	"User behavior case",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text User behavior case"
+				}
+			}
+		},
+		"height":	{
+			"alias":	"Stroy height",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Stroy height"
+				}
+			}
+		},
+		"width2":	{
+			"alias":	"Story width",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Story width"
+				}
+			}
+		},
+		"valc":	{
+			"alias":	"Story base score",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Story base score"
+				}
+			}
+		},
+		"time":	{
+			"alias":	"Time when story is available",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Time when story is available"
+				}
+			}
+		},
+		"sponsored":	{
+			"alias":	"Sponsored story",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Sponsored story"
+				}
+			}
+		},
+		"cscore":	{
+			"alias":	"Multiplier for story score at different scenarios",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"c":	{
+					"type":	"string",
+					"alias":	"User behavior case"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Multiplier for story score at different scenarios"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["tottime", "bheight", "bwidth", "checkat", "window", "oned", "sponsorratio", "initratio"],
+			"symtext":	["Total time", "Interface height", "Interface width", "Feed retrieved time", "Time window for freshness", "Dimension of story(1/2)", "Sponsor ratio", "Initial ratio"],
+			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"result":	{
+			"alias":	"feed for all scenarios",
+			"symtype":	"parameter",
+			"headers":	{
+				"bigs":	{
+					"type":	"string",
+					"alias":	"All stories available"
+				},
+				"c":	{
+					"type":	"string",
+					"alias":	"User behavior case"
+				},
+				"height":	{
+					"type":	"numeric",
+					"alias":	"height"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"value"
+				},
+				"time":	{
+					"type":	"numeric",
+					"alias":	"time"
+				},
+				"width":	{
+					"type":	"numeric",
+					"alias":	"width"
+				},
+				"type":	{
+					"type":	"numeric",
+					"alias":	"type"
+				},
+				"window":	{
+					"type":	"numeric",
+					"alias":	"window"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"x"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"y"
+				},
+				"z":	{
+					"type":	"numeric",
+					"alias":	"z"
+				},
+				"totalwidth":	{
+					"type":	"numeric",
+					"alias":	"totalwidth"
+				},
+				"totalheight":	{
+					"type":	"numeric",
+					"alias":	"totalheight"
+				},
+				"totalval":	{
+					"type":	"numeric",
+					"alias":	"totalval"
+				},
+				"areacover":	{
+					"type":	"numeric",
+					"alias":	"areacover"
+				},
+				"checkat":	{
+					"type":	"numeric",
+					"alias":	"checkat"
+				}
+			}
+		}
+	}
+}

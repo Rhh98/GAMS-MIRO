@@ -1,0 +1,184 @@
+{
+  "overwriteSheetOrder": {
+    "input": ["bigs", "c", "height", "width2", "valc", "time", "sponsored", "cscore", "_widgets"]
+  },
+  "overwriteAliases": {
+    "bigs": {
+      "newAlias": "All stories available"
+    },
+    "c": {
+      "newAlias": "User behavior case"
+    },
+    "height": {
+      "newAlias": "Story height"
+    },
+    "width2": {
+      "newAlias": "Story width"
+    },
+    "sponsored": {
+      "newAlias": "sponsored stories"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    },
+    "valc": {
+      "newAlias": "General score for each story"
+    },
+    "time": {
+      "newAlias": "Available time for each story"
+    },
+    "cscore": {
+      "newAlias": "Story score at different scenarios"
+    },
+    "result": {
+      "newAlias": "Feed solution"
+    }
+  },
+  "pivottable": {
+    "bgColor": "transparent"
+  },
+  "theme": "browser",
+  "defCompMode": "split",
+  "roundingDecimals": 2,
+  "activateModules": {
+    "logFile": true,
+    "lstFile": true,
+    "loadLocal": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "autoGenInputGraphs": true,
+  "aggregateWidgets": true,
+  "storeLogFilesDuration": 7,
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "saveTraceFile": true,
+  "dataRendering": {
+    "result": {
+      "outType": "res"
+    }
+  },
+  "inputWidgets": {
+    "tottime": {
+      "widgetType": "slider",
+      "alias": "Total time",
+      "min": 10,
+      "max": 2000,
+      "default": 1000,
+      "step": 50,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Total time"
+    },
+    "bheight": {
+      "widgetType": "slider",
+      "alias": "Interface height",
+      "min": 10,
+      "max": 200,
+      "default": 100,
+      "step": 10,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Interface height"
+    },
+    "bwidth": {
+      "widgetType": "slider",
+      "alias": "Interface width",
+      "min": 10,
+      "max": 200,
+      "default": 100,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "interface width"
+    },
+    "checkat": {
+      "widgetType": "slider",
+      "alias": "Feed retrieved time",
+      "min": 10,
+      "max": 2000,
+      "default": 750,
+      "step": 10,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Feed retrieced time"
+    },
+    "window": {
+      "widgetType": "slider",
+      "alias": "Time window for freshness",
+      "min": 10,
+      "max": 200,
+      "default": 75,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Time window for freshness"
+    },
+    "oned": {
+      "widgetType": "dropdown",
+      "alias": "Dimension of story(1/2)",
+      "selected": "1",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Dimension of interface",
+      "choices": ["1", "2"]
+    },
+    "sponsorratio": {
+      "widgetType": "slider",
+      "alias": "Sponsor ratio",
+      "min": 0,
+      "max": 1,
+      "default": 0.3,
+      "step": 0.01,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Sponsor ratio"
+    },
+    "initratio": {
+      "widgetType": "slider",
+      "alias": "Initial ratio",
+      "min": 0,
+      "max": 1,
+      "default": 0.2,
+      "step": 0.01,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Initial ratio"
+    }
+  },
+  "defaultScenName": "1-D",
+  "inputGroups": [
+    {
+      "name": "Story Imfo",
+      "members": ["bigs", "height", "width2", "sponsored", "valc", "time"]
+    },
+    {
+      "name": "Scenarios Info",
+      "members": ["c", "cscore"]
+    }
+  ],
+  "readme": {
+    "tabTitle": "readme",
+    "filename": "readme.md"
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "highlightCol": true,
+    "highlightRow": true,
+    "columnSorting": true,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true,
+      "allowReadOnly": false
+    },
+    "height": 700,
+    "colWidths": 150
+  }
+}
