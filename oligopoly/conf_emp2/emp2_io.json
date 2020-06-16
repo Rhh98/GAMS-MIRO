@@ -1,0 +1,241 @@
+{
+	"modelTitle":	"Oligopoly : Cournot, Bertrand and Stackelberg",
+	"inputSymbols":	{
+		"i":	{
+			"alias":	"Cournot & Stackelberg firms",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text Cournot & Stackelberg firms"
+				}
+			}
+		},
+		"lead":	{
+			"alias":	"lead",
+			"symtype":	"set",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Cournot & Stackelberg firms"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text "
+				}
+			}
+		},
+		"fdata":	{
+			"alias":	"CES data for firms",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Cournot & Stackelberg firms"
+				},
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"CES data for firms"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["gamma", "dbar", "dbert"],
+			"symtext":	["Demand Elasticity", "Reference Unit Price Demand", "unit reference demand - BERTRAND"],
+			"symtypes":	["parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"jdata":	{
+			"alias":	"jdata",
+			"symtype":	"parameter",
+			"headers":	{
+				"d":	{
+					"type":	"string",
+					"alias":	"Bertrand firms"
+				},
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"jdata"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"resultcour":	{
+			"alias":	"resultcour",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Cournot & Stackelberg firms"
+				},
+				"l":	{
+					"type":	"numeric",
+					"alias":	"l"
+				},
+				"beta":	{
+					"type":	"numeric",
+					"alias":	"beta"
+				},
+				"quantity":	{
+					"type":	"numeric",
+					"alias":	"quantity"
+				},
+				"price":	{
+					"type":	"numeric",
+					"alias":	"price"
+				},
+				"profit":	{
+					"type":	"numeric",
+					"alias":	"profit"
+				},
+				"gamma":	{
+					"type":	"numeric",
+					"alias":	"gamma"
+				},
+				"dbar":	{
+					"type":	"numeric",
+					"alias":	"dbar"
+				},
+				"cost":	{
+					"type":	"numeric",
+					"alias":	"cost"
+				}
+			}
+		},
+		"resultstac":	{
+			"alias":	"Difference between Cournot and Stackelberg model",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Cournot & Stackelberg firms"
+				},
+				"courquantity":	{
+					"type":	"numeric",
+					"alias":	"quantity when not a leader firm"
+				},
+				"stacquantity":	{
+					"type":	"numeric",
+					"alias":	"quantity when as a leader firm"
+				},
+				"courprofit":	{
+					"type":	"numeric",
+					"alias":	"profit when not a leader firm"
+				},
+				"stacprofit":	{
+					"type":	"numeric",
+					"alias":	"profit when as a leader firm"
+				}
+			}
+		},
+		"linfo_stac":	{
+			"alias":	"lead firm info",
+			"symtype":	"parameter",
+			"headers":	{
+				"lead":	{
+					"type":	"string",
+					"alias":	"lead"
+				},
+				"grid":	{
+					"type":	"string",
+					"alias":	"grid"
+				},
+				"lquantity":	{
+					"type":	"numeric",
+					"alias":	"lquantity"
+				},
+				"lprofit":	{
+					"type":	"numeric",
+					"alias":	"lprofit"
+				},
+				"nprofit":	{
+					"type":	"numeric",
+					"alias":	"nprofit"
+				}
+			}
+		},
+		"ninfo_stac":	{
+			"alias":	"Nonleader firm info",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Cournot & Stackelberg firms"
+				},
+				"grid":	{
+					"type":	"string",
+					"alias":	"grid"
+				},
+				"lquantity":	{
+					"type":	"numeric",
+					"alias":	"lquantity"
+				},
+				"lprofit":	{
+					"type":	"numeric",
+					"alias":	"lprofit"
+				},
+				"nprofit":	{
+					"type":	"numeric",
+					"alias":	"nprofit"
+				},
+				"nquantity":	{
+					"type":	"numeric",
+					"alias":	"nquantity"
+				}
+			}
+		},
+		"resultbert":	{
+			"alias":	"Quantity and profits w.r.t the price of firm 1",
+			"symtype":	"parameter",
+			"headers":	{
+				"d":	{
+					"type":	"string",
+					"alias":	"Bertrand firms"
+				},
+				"grid":	{
+					"type":	"string",
+					"alias":	"grid"
+				},
+				"quantity":	{
+					"type":	"numeric",
+					"alias":	"quantity"
+				},
+				"price":	{
+					"type":	"numeric",
+					"alias":	"price"
+				},
+				"profit":	{
+					"type":	"numeric",
+					"alias":	"profit"
+				}
+			}
+		}
+	}
+}
