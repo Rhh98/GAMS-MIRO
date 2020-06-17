@@ -23,18 +23,18 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
                                to the Nash Equilibrium.")
   ind<-data$i
   l<-length(ind)
-   quantity<-data$quantity
-   price<-unique(data$price)
-   cost<-data$cost
-   beta<-data$beta
-   profit<-data$profit
-   gamma<-unique(data$gamma)
-   dbar<-unique(data$dbar)
-   L<-data$l
-   x<-rep(1,l)
-   x<-t(t(x)) %*% rep(1,100)
-   y<-x
-   p<-x
+  quantity<-data$quantity
+  price<-unique(data$price)
+  cost<-data$cost
+  beta<-data$beta
+  profit<-data$profit
+  gamma<-unique(data$gamma)
+  dbar<-unique(data$dbar)
+  L<-data$l
+  x<-rep(1,l)
+  x<-t(t(x)) %*% rep(1,100)
+  y<-x
+  p<-x
   for (i in 1:l){
     for (j in 1:100)
     {
@@ -48,12 +48,12 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
     #par(mfrow=c(1,1),oma=c(3,3,8,3))
     plot(c(),c(),type='l',xlim=c(min(x),max(x)),ylim=c(min(y),max(y)+20),xlab='quantities',ylab='profit',
          main = 'Profits with respect to quantities of each firm')
-     for (i in 1:l)
+    for (i in 1:l)
     {
       lines(x[i,],y[i,],lty=i,col=i,lwd=2)
-       text(quantity[i],profit[i]+5,paste('quantity:',round(quantity[i],2),'\nprofit:',round(profit[i],2)))
-       points(quantity[i],profit[i],col=i,cex=3,pch=16)
-     }
+      text(quantity[i],profit[i]+5,paste('quantity:',round(quantity[i],2),'\nprofit:',round(profit[i],2)))
+      points(quantity[i],profit[i],col=i,cex=3,pch=16)
+    }
     legend(min(x),max(y)+20,legend = paste(rep('firm ',l),ind),lty=1:l,col=1:l)
     
   })
@@ -65,14 +65,14 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
   xx<-t(t(xx)) %*% rep(1,100)
   yy<-xx
   pp<-xx
-
-    for (j in 1:100)
-    {
-      xx[1,j]<-quantity[1]/2+j*quantity[1]/100
-      pp[1,j]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+x[1,j]))^(1/gamma)
-      yy[1,j]<-xx[1,j]*pp[1,j]-cost[1]*xx[1,j]-
-        ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*xx[1,j]^((1+beta[1])/beta[1])
-    }
+  
+  for (j in 1:100)
+  {
+    xx[1,j]<-quantity[1]/2+j*quantity[1]/100
+    pp[1,j]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+x[1,j]))^(1/gamma)
+    yy[1,j]<-xx[1,j]*pp[1,j]-cost[1]*xx[1,j]-
+      ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*xx[1,j]^((1+beta[1])/beta[1])
+  }
   for (i in 2:l){
     for (j in 1:100)
     {
@@ -97,36 +97,36 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
     
   })
 }  
-  
+
 leadOutput <- function(id, height = NULL, options = NULL, path = NULL){
-    ns <- NS(id)
-    
-    # set default height
-    if(is.null(height)){
-      height <- 700
-    } 
-    tagList( 
-      #define rendererOutput function here
-      textOutput(ns('leadtext')),
-      plotOutput(ns('lead'),height=height)
-    ) 
-  }
+  ns <- NS(id)
   
+  # set default height
+  if(is.null(height)){
+    height <- 700
+  } 
+  tagList( 
+    #define rendererOutput function here
+    textOutput(ns('leadtext')),
+    plotOutput(ns('lead'),height=height)
+  ) 
+}
+
 renderLead <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
-    #renderer 
+  #renderer 
   output$leadtext<-renderText(paste('The picture below shows the profits of firm ',unique(data$lead), 
                                     ' as a leader firm or not as a leader firm.'))
-    x<-data$lquantity
-    yl<-data$lprofit
-    yn<-data$nprofit
-    output$lead<-renderPlot({
-      plot(x,yl,ylim = c(min(cbind(yl,yn)),max(cbind(yl,yn))+10),type='l',xlab = 'quantity',ylab = 'profit',lty=1,col=1,
-           main=paste('Profit of firm ',unique(data$lead),' as leader and non-leader firm w.r.t quantity'),lwd=2)
-      lines(x,yn,lty=2,col=2)
-      legend(min(x),max(cbind(yl,yn))+5,legend = c('As leader firm','Not leader firm'),lty=1:2,col=1:2)
-      points(c(x[10],x[10]),c(yl[10],yn[10]),cex=2,col=1:2)
-      text(c(x[10],x[10]),c(yl[10]+1,yn[10]-1),c('Solution as leader firm','Nash Equilibrium'),col=1:2)
-    })
+  x<-data$lquantity
+  yl<-data$lprofit
+  yn<-data$nprofit
+  output$lead<-renderPlot({
+    plot(x,yl,ylim = c(min(cbind(yl,yn)),max(cbind(yl,yn))+10),type='l',xlab = 'quantity',ylab = 'profit',lty=1,col=1,
+         main=paste('Profit of firm ',unique(data$lead),' as leader and non-leader firm w.r.t quantity'),lwd=2)
+    lines(x,yn,lty=2,col=2)
+    legend(min(x),max(cbind(yl,yn))+5,legend = c('As leader firm','Not leader firm'),lty=1:2,col=1:2)
+    points(c(x[10],x[yn==max(yn)]),c(yl[10],max(yn)),cex=2,col=1:2)
+    text(c(x[10],x[yn==max(yn)]),c(yl[10]+1,max(yn)-1),c('Solution as leader firm','Nash Equilibrium'),col=1:2)
+  })
 }
 
 
@@ -171,71 +171,71 @@ renderNonlead <- function(input, output, session, data, options = NULL, path = N
                                        the leader firm when the leader firm choose different production quantity."))
   output$nonlead<-renderPlot({
     
-  par(mfrow=c(floor(sqrt(len)),ceiling(len/floor(sqrt(len)))))
-  for (i in 1:len)
-  {
-    plot(x,y[i,],col=1,lwd=2,ylim=c(min(cbind(y[i,],y2[i,])),max(cbind(y[i,],y2[i,]))),main = paste("Firm ",ind[i],
-    "'s profit w.r.t quantity of the leader firm"),type='l',lty=1,xlab='quantity',ylab = 'profit')
-     lines(x,y2[i,],col=2,lwd=2,lty=2)
-    legend(min(x)+(max(x)-min(x))*0.65,max(cbind(y[i,],y2[i,])),legend=c('When leader firm exists','none leader firm exists'),lty=1:2,col=1:2)
-     
-  }
+    par(mfrow=c(floor(sqrt(len)),ceiling(len/floor(sqrt(len)))))
+    for (i in 1:len)
+    {
+      plot(x,y[i,],col=1,lwd=2,ylim=c(min(cbind(y[i,],y2[i,])),max(cbind(y[i,],y2[i,]))),main = paste("Firm ",ind[i],
+                                                                                                      "'s profit w.r.t quantity of the leader firm"),type='l',lty=1,xlab='quantity',ylab = 'profit')
+      lines(x,y2[i,],col=2,lwd=2,lty=2)
+      legend(min(x)+(max(x)-min(x))*0.65,max(cbind(y[i,],y2[i,])),legend=c('When leader firm exists','none leader firm exists'),lty=1:2,col=1:2)
+      
+    }
   })
 }
 
 
 BertOutput <- function(id, height = NULL, options = NULL, path = NULL){
-    ns <- NS(id)
-    
-    # set default height
-    if(is.null(height)){
-      height <- 700
-    } 
-    tagList( 
-      #define rendererOutput function here 
-      textOutput(ns('berttext')),
-      plotOutput(ns('bert'),height=height)
-      
-    ) 
-  }
+  ns <- NS(id)
   
+  # set default height
+  if(is.null(height)){
+    height <- 700
+  } 
+  tagList( 
+    #define rendererOutput function here 
+    textOutput(ns('berttext')),
+    plotOutput(ns('bert'),height=height)
+    
+  ) 
+}
+
 renderBert <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
-    #renderer 
-    dd<-unique(data$d)
-    x<-unique(data$price)
-    y1<-rep(1,2)
-    y1<-t(t(y1)) %*% rep(1,20)
-    y2<-y1
-    for (ii in 1:2)
+  #renderer 
+  dd<-unique(data$d)
+  x<-unique(data$price)
+  y1<-rep(1,2)
+  y1<-t(t(y1)) %*% rep(1,20)
+  y2<-y1
+  for (ii in 1:2)
+  {
+    temp1<-data$quantity[data$d==dd[ii]]
+    temp2<-data$profit[data$d==dd[ii]]
+    for(jj in 1:20)
     {
-      temp1<-data$quantity[data$d==dd[ii]]
-      temp2<-data$profit[data$d==dd[ii]]
-      for(jj in 1:20)
-      {
-        y1[ii,jj]=temp1[jj]
-        y2[ii,jj]=temp2[jj]
-      }
+      y1[ii,jj]=temp1[jj]
+      y2[ii,jj]=temp2[jj]
     }
-    output$berttext<-renderText(paste("This output gives the result of the toy example for the Bertrand 
+  }
+  output$berttext<-renderText(paste("This output gives the result of the toy example for the Bertrand 
                                       model, where the firm changes stragies by changing the price. The two pictures 
                                       below show the relation ship between the price of the frim 1 and the quantity and profit of
                                        the 2 firms. The price of the firm 2 is fixed to the solution of the Nash Equilibrium in both pictures."))
-    output$bert<-renderPlot({
-      par(mfrow=c(1,2))
-      plot(x,y1[1,],ylim=c(min(y1),max(y1)+5),col=1,lwd=2,lty=1,xlab='price',ylab = 'quantity'
-           ,main='Quantites w.r.t price of firm 1',type='l')
-      lines(x,y1[2,],col=2,lty=2,lwd=2)
-      legend(min(x),max(y1)+5,legend=c('firm 1','firm 2'),lty=1:2,col=1:2)
-      points(c(x[10],x[10]),c(y1[1,10],y1[2,10]),cex=2,col=1:2)
-      text(c(x[10],x[10]),c(y1[1,10]+2,y1[2,10]-2),c('Nash Equilibrium','Nash Equilibrium'),col=1:2)
-      
-      plot(x,y2[1,],ylim=c(min(y2),max(y2)+5),col=1,lwd=2,lty=1,xlab='price',ylab = 'profit'
-           ,main='Profits w.r.t price of firm 1',type='l')
-      lines(x,y2[2,],col=2,lty=2,lwd=2)
-      legend(min(x),max(y2),legend=c('firm 1','firm 2'),lty=1:2,col=1:2)
-      points(c(x[10],x[10]),c(y2[1,10],y2[2,10]),cex=2,col=1:2)
-      text(c(x[10],x[10]),c(y2[1,10]-2,y2[2,10]+2),c('Nash Equilibrium','Nash Equilibrium'),col=1:2)
-         })
+  output$bert<-renderPlot({
+    par(mfrow=c(1,2))
+    plot(x,y1[1,],ylim=c(min(y1),max(y1)+5),col=1,lwd=2,lty=1,xlab='price',ylab = 'quantity'
+         ,main='Quantites w.r.t price of firm 1',type='l')
+    lines(x,y1[2,],col=2,lty=2,lwd=2)
+    legend(min(x),max(y1)+5,legend=c('firm 1','firm 2'),lty=1:2,col=1:2)
+    points(c(x[10],x[10]),c(y1[1,10],y1[2,10]),cex=2,col=1:2)
+    text(c(x[10],x[10]),c(y1[1,10]+2,y1[2,10]-2),c('Nash Equilibrium','Nash Equilibrium'),col=1:2)
+    
+    plot(x,y2[1,],ylim=c(min(y2),max(y2)+5),col=1,lwd=2,lty=1,xlab='price',ylab = 'profit'
+         ,main='Profits w.r.t price of firm 1',type='l')
+    lines(x,y2[2,],col=2,lty=2,lwd=2)
+    legend(min(x),max(y2),legend=c('firm 1','firm 2'),lty=1:2,col=1:2)
+    points(c(x[10],x[10]),c(y2[1,10],y2[2,10]),cex=2,col=1:2)
+    text(c(x[10],x[10]),c(y2[1,10]-2,y2[2,10]+2),c('Nash Equilibrium','Nash Equilibrium'),col=1:2)
+  })
 }
-  
+
 

@@ -87,6 +87,10 @@
     "height": 700,
     "colWidths": 150
   },
+  "readme": {
+    "tabTitle": "readme",
+    "filename": "oligopoly.md"
+  },
   "inputGroups": [
     {
       "name": "Cournot and Stackelberg model",

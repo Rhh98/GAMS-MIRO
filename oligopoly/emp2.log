@@ -1,0 +1,8 @@
+TRACE [2020-06-16 20:23:34] Logging facility initialised.
+DEBUG [2020-06-16 20:23:36] Database connection established.
+DEBUG [2020-06-16 20:23:36] Access Control initialised.
+WARN [2020-06-16 20:23:36] There are orphaned tables in your database: 'emp2_d'.
+This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
+Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
+DEBUG [2020-06-16 20:23:44] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+
