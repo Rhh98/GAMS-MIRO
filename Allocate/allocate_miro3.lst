@@ -1,0 +1,321 @@
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/17/20 16:57:43 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+      Model for transporting kits to labs for testing
+   4   
+   6  *different prevalence level
+   7  option seed = 101;
+   8  set   coord location coordinates/ x 'latitude',y 'longititude' /;
+   9   
+  10  set     prv prevalence ;
+  11   
+  12  set
+  13        c centers  ,
+  14        l labs  ;
+  15   
+  16   
+  18  parameter prv_val(prv<) prevalence setting /prv1 0.02 ,prv2 0.04, prv3 0.06/;
+  19   
+  20  parameter effic(prv) efficiency for different prevalences /prv1 0.9, prv2 0.9, prv3 0.95/;
+  21   
+  22  scalar   T Maximal distance for transportation / 400 /;
+  23   
+  24  parameter prv_weight(prv) importance of different prevalence to test
+  25  /prv1 1,prv2 2,prv3 4/;
+  26   
+  27   
+      parameter prv_weight(prv)
+      /prv1 1,prv2 1,prv3 1,prv4 1,prv5 1/; 
+  32   
+  33  table lablocdata(l<,coord) locations of labs
+  34      x         y
+  35  l1 46.2803    -88.198933
+  36  l2 45.166269  -90.823687
+  37  ;
+  38   
+  39  table centerlocdata(c<,coord) locations of centers
+  40       x         y
+  41  c1   43.068039 -89.400023
+  42  c2   43.066346 -89.399723
+  43  c3   43.059693 -89.400572
+  44  c4   43.060141 -89.400869
+  45  c5   43.059289 -89.403949
+  46  c6   43.053027 -89.396262
+  47  c7   43.080097 -89.431956
+  48  c8   43.075206 -89.430384
+  49  c9   43.172779 -89.288660
+  50  c10  42.942796 -89.217877
+  51  c11  43.060646 -89.391069
+  52  c12  43.362928 -89.062184
+  53  c13  43.473625 -88.835509
+  54  c14  42.388094 -89.637222
+  55  ;
+  57   
+  58   
+  60  parameter centerdata(c,prv) center collection /#c.prv1 500,#c.prv2 250,#c.prv3 125/;
+  62   
+  63   
+  64  parameter centerdata2(c,*,prv);
+  65  centerdata2(c,'bsz',prv)=1;
+  66  centerdata2(c,'kts',prv) = ceil(centerdata(c,prv)/centerdata2(c,'bsz',prv));
+  67  parameter dist(c,l) euclidean distances;
+  68  dist(c,l) = arccos(sin(lablocdata(l,'x')*pi/180)*sin(centerlocdata(c,'x')*pi/180)
+  69  +cos(lablocdata(l,'x')*pi/180)*cos(centerlocdata(c,'x')*pi/180)*
+  70  cos((lablocdata(l,'y')-centerlocdata(c,'y'))*pi/180))*6371.004;
+  71  display dist;
+  72  * s is batch size
+  73  set s batch size / 1, 2, 4, 8, 16, 32, 64 /;
+  74  set rnd round time (5 hours a time) / 5, 10, 15, 20 /;
+  76  parameter runsize(l) runsize of labs / #l 96/;
+  78   
+  79  scalar offset, actrunsize;
+  80  alias(s,ss);
+  81  set metrics / total, negs, percKnown, unknown /;
+  82   
+  83  parameter simres(*,*,rnd,*,metrics);
+  84  set okslots(*,*,rnd,prv);
+  85  parameter new_prev(*,*);
+  86  parameter svals(*);
+  87  svals(s) = s.val;
+  88   
+  89  loop(l,
+  90  simres(l,s,'5',prv,'negs') = power(1-prv_val(prv),s.val)*runsize(l)*s.val;
+  91  simres(l,s,'5',prv,'unknown')=0;
+  92  simres(l,s,'5',prv,'unknown')$(s.val gt 1) = runsize(l)*s.val-simres(l,s,'5',prv,'negs');
+  93  simres(l,s,'5',prv,'total') = runsize(l)*s.val;
+  94  simres(l,s,'5',prv,'percKnown') = 100-simres(l,s,'5',prv,'unknown')/simres(l,s,'5',prv,'total')*100;
+  95   
+  96   
+      * could put these in too
+      loop(s$(s.val le 4),
+        simres(l,s,'10',metrics) = 2*simres(l,s,'5',metrics);
+        simres(l,s,'10','percKnown') = simres(l,s,'5','percKnown');
+        simres(l,s,'15',metrics) = 3*simres(l,s,'5',metrics);
+        simres(l,s,'15','percKnown') = simres(l,s,'5','percKnown');
+        simres(l,s,'20',metrics) = 4*simres(l,s,'5',metrics);
+        simres(l,s,'20','percKnown') = simres(l,s,'5','percKnown');
+      );
+ 108  simres(l,s,'10',prv,'unknown')$(simres(l,s,'5',prv,'unknown') gt 0 and simres(l,s,'5',prv,'percKnown') < 100*effic(prv))=0;
+ 109  loop((prv,s)$(simres(l,s,'5',prv,'unknown') gt 0 and simres(l,s,'5',prv,'percKnown') < 100*effic(prv)),
+ 110    new_prev(prv,s) = prv_val(prv)*simres(l,s,'5',prv,'total')/simres(l,s,'5',prv,'unknown');
+ 111    offset = s.ord - sum(ss$(simres(l,ss,'5',prv,'total') le simres(l,s,'5',prv,'unknown')), 1);
+ 112    simres(l,s,'10',prv,'total') = simres(l,s,'5',prv,'total');
+ 113    if (offset ge s.ord - 1,
+ 114      actrunsize = min(runsize(l),simres(l,s,'5',prv,'unknown'));
+ 115      simres(l,s,'10',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'10',prv,'total'),simres(l,s,'5',prv,'negs') + actrunsize*(1-new_prev(prv,s)));
+ 116  *The min here is not needed?
+ 117      simres(l,s,'10',prv,'unknown') = simres(l,s,'5',prv,'unknown') - actrunsize;
+ 118    else
+ 119      simres(l,s,'10',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'10',prv,'total'),simres(l,s,'5',prv,'negs') + power(1-new_prev(prv,s),svals(s-offset))*runsize(l)*svals(s-offset));
+ 120      simres(l,s,'10',prv,'unknown') = simres(l,s,'10',prv,'total') - simres(l,s,'10',prv,'negs');
+ 121    );
+ 122    simres(l,s,'10',prv,'percKnown') = 100-simres(l,s,'10',prv,'unknown')/simres(l,s,'10',prv,'total')*100;
+ 123  );
+ 124  simres(l,s,'15',prv,'unknown')$(simres(l,s,'10',prv,'unknown') gt 0 and simres(l,s,'10',prv,'percKnown') < 100*effic(prv))=0;
+ 125  loop((prv,s)$(simres(l,s,'10',prv,'unknown') gt 0 and simres(l,s,'10',prv,'percKnown') < 100*effic(prv)),
+        if (simres(l,s,'10',prv,'percKnown') gt effic(prv),
+          simres(l,s,'15',prv,metrics) = simres(l,s,'5',prv,metrics) + simres(l,s,'10',prv,metrics);
+          simres(l,s,'15',prv,'percKnown') = simres(l,s,'15',prv,'negs')/simres(l,s,'15',prv,'total')*100;
+          simres(l,s,'20',prv,metrics) = 2*simres(l,s,'10',prv,metrics);
+          simres(l,s,'20',prv,'percKnown') = simres(l,s,'20',prv,'negs')/simres(l,s,'20',prv,'total')*100;
+        else
+ 134      new_prev(prv,s) = prv_val(prv)*simres(l,s,'10',prv,'total')/simres(l,s,'10',prv,'unknown');
+ 135      offset = s.ord - sum(ss$(simres(l,ss,'5',prv,'total') le simres(l,s,'10',prv,'unknown')), 1);
+ 136      simres(l,s,'15',prv,'total') = simres(l,s,'5',prv,'total');
+ 137      if (offset ge s.ord - 1,
+ 138        actrunsize = min(runsize(l),simres(l,s,'10',prv,'unknown'));
+ 139        simres(l,s,'15',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'15',prv,'total'),simres(l,s,'10',prv,'negs') + actrunsize*(1-new_prev(prv,s)));
+ 140        simres(l,s,'15',prv,'unknown') = simres(l,s,'10',prv,'unknown') - actrunsize;
+ 141      else
+ 142        simres(l,s,'15',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'15',prv,'total'),simres(l,s,'10',prv,'negs') + power(1-new_prev(prv,s),svals(s-offset))*runsize(l)*svals(s-offset));
+ 143        simres(l,s,'15',prv,'unknown') = simres(l,s,'15',prv,'total') - simres(l,s,'15',prv,'negs');
+ 144      );
+ 145      simres(l,s,'15',prv,'percKnown') = 100-simres(l,s,'15',prv,'unknown')/simres(l,s,'15',prv,'total')*100;
+ 146  );
+ 147   
+ 148  simres(l,s,'20',prv,'unknown')$(simres(l,s,'15',prv,'unknown') gt 0 and simres(l,s,'15',prv,'percKnown') < 100*effic(prv))=0;
+ 149  loop((prv,s)$(simres(l,s,'15',prv,'unknown') gt 0 and simres(l,s,'15',prv,'percKnown') < 100*effic(prv)),
+ 150    new_prev(prv,s) = prv_val(prv)*simres(l,s,'15',prv,'total')/simres(l,s,'15',prv,'unknown');
+ 151    offset = s.ord - sum(ss$(simres(l,ss,'5',prv,'total') le simres(l,s,'15',prv,'unknown')), 1);
+ 152    simres(l,s,'20',prv,'total') = simres(l,s,'5',prv,'total');
+ 153    if (offset ge s.ord - 1,
+ 154      actrunsize = min(runsize(l),simres(l,s,'15',prv,'unknown'));
+ 155      simres(l,s,'20',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'20',prv,'total'),simres(l,s,'15',prv,'negs') + actrunsize*(1-new_prev(prv,s)));
+ 156      simres(l,s,'20',prv,'unknown') = simres(l,s,'15',prv,'unknown') - actrunsize;
+ 157    else
+ 158      simres(l,s,'20',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'20',prv,'total'),simres(l,s,'15',prv,'negs') + power(1-new_prev(prv,s),svals(s-offset))*runsize(l)*svals(s-offset));
+ 159      simres(l,s,'20',prv,'unknown') = simres(l,s,'20',prv,'total') - simres(l,s,'20',prv,'negs');
+ 160    );
+ 161    simres(l,s,'20',prv,'percKnown') = 100-simres(l,s,'20',prv,'unknown')/simres(l,s,'20',prv,'total')*100;
+ 162  );
+ 163  );
+ 164  okslots(l,s,rnd,prv) = yes$(simres(l,s,rnd,prv,'percKnown')/100 ge effic(prv));
+ 165   
+ 166   
+ 167  display simres, okslots;
+ 168   
+ 169  parameter cap(l)
+ 170  * 4 x 5 hrs slots in one day!
+ 171  ;
+ 172   
+ 173   
+ 174  cap(l) = 4*5;
+ 175   
+ 176  positive variables
+ 177    x(prv,c,l) kits moved from c to l of prevalence prv,
+ 178    totinl(prv,l) kits at lab l of prevalences prv,
+ 179    numBat(prv,l,s) number of batches in lab l;
+ 180   
+ 181   
+ 182  integer variables
+ 183   
+ 184    numofbs(l,s,rnd,prv) number of batches of size in timeslot,
+ 185    useX(l),
+ 186    extras(l) kits left over in lab l of prevalence prv;
+ 187    extras.up(l)=runsize(l)*4;;
+ 188  variables obj;
+      integer variables
+      extraTrans(prv,l);
+      extraTrans.up(prv,l)=runsize(l)*4;
+       
+      equation defExtraTrans(l);
+       
+      defExtraTrans(l)..
+      sum(prv,extraTrans(prv,l)) =l= sum(okslots(l,s,rnd,prv),numofbs(l,s,rnd,prv)*runsize(l)*s.val-numBat(prv,l,s)*s.val)+runsize(l)*useX(l)-sum(prv,extras(l,prv));
+ 199   
+ 200  equations
+ 201    supply(prv,c), transport(prv,l), balance(prv,l), relax(l,s,prv), logEx1(l),logEx2(l)
+ 202  *  ,log(l)
+ 203  ,log1(l), log2(l), log3(l), log4(l), log5(l), log6(l)
+ 204  , defobj
+ 205   ;
+ 206   
+ 207  supply(prv,c)..
+ 208    sum(l, x(prv,c,l)) =l= centerdata2(c,'kts',prv);
+ 209   
+ 210  transport(prv,l)..
+ 211    totinl(prv,l) =e= sum(c, x(prv,c,l));
+ 212   
+ 213  balance(prv,l)..
+ 214    totinl(prv,l) =e= sum(okslots(l,s,rnd,prv), numBat(prv,l,s)*s.val);
+ 215   
+ 216  relax(l,s,prv)..
+ 217   numBat(prv,l,s) =l= sum(okslots(l,s,rnd,prv),numofbs(l,s,rnd,prv)*runsize(l));
+ 218   
+ 219   
+ 220  * could do runsize(l)-1 here so only use the slot partially with useX
+ 221  logEx1(l)..
+ 222    sum(prv,extras(l)) =l= runsize(l)*useX(l);
+ 223   
+ 224  logEx2(l)..
+ 225    extras(l) =l= sum(okslots(l,s,rnd,prv),s.val*numBat(prv,l,s)*(1-simres(l,s,rnd,prv,'percKnown')/100));
+ 226  *log(l)..
+ 227  * useX(l) + sum(okslots(l,s,'5',prv), numofbs(l,s,'5',prv)) + 2*sum(okslots(l,s,'10',prv), numofbs(l,s,'10',prv))
+ 228  * +3*sum(okslots(l,s,'15',prv), numofbs(l,s,'15',prv))+4*sum(okslots(l,s,'20',prv), numofbs(l,s,'20',prv))=l=4;
+ 229   
+ 230   
+ 231  log1(l)..
+ 232   sum(okslots(l,s,'15',prv), numofbs(l,s,'15',prv)) + sum(okslots(l,s,'20',prv), numofbs(l,s,'20',prv)) =l= 1;
+ 233   
+ 234  log2(l)..
+ 235    sum(okslots(l,s,'10',prv), numofbs(l,s,'10',prv)) + 2*sum(okslots(l,s,'20',prv), numofbs(l,s,'20',prv)) =l= 2;
+ 236   
+ 237  log3(l)..
+ 238    useX(l)+sum(okslots(l,s,'5',prv), numofbs(l,s,'5',prv)) +
+ 239    4*sum(okslots(l,s,'20',prv), numofbs(l,s,'20',prv)) =l= 4;
+ 240   
+ 241  log4(l)..
+ 242   useX(l)+sum(okslots(l,s,'5',prv), numofbs(l,s,'5',prv)) +
+ 243    3*sum(okslots(l,s,'15',prv), numofbs(l,s,'15',prv)) =l= 4;
+      log5(l)..
+        useX(l)+2*sum(okslots(l,s,'10',prv), numofbs(l,s,'10',prv))
+        + 3*sum(okslots(l,s,'15',prv), numofbs(l,s,'15',prv)) =l= 4;
+ 249  log5(l)..
+ 250  sum(okslots(l,s,'10',prv), numofbs(l,s,'10',prv))
+ 251    + 2*sum(okslots(l,s,'15',prv), numofbs(l,s,'15',prv)) =l= 2;
+ 252  log6(l)..
+ 253   useX(l) + sum(okslots(l,s,'5',prv), numofbs(l,s,'5',prv)) +
+ 254   2*sum(okslots(l,s,'10',prv), numofbs(l,s,'10',prv)) =l= 4;
+      log(l)..
+      useX(l) + sum(okslots(l,s,'5',prv), numofbs(l,s,'5',prv)) + 2*sum(okslots(l,s,'10',prv), numofbs(l,s,'10',prv))
+      + 3*sum(okslots(l,s,'15',prv), numofbs(l,s,'15',prv))
+      +4*sum(okslots(l,s,'20',prv), numofbs(l,s,'20',prv)) =l= 4;
+ 261   
+ 262  *defobj..
+ 263  *  obj =e= sum(l, sum(okslots(l,s,rnd,prv), simres(l,s,rnd,prv,'negs')*numofbs(prv,l,s,rnd)) + sum(prv,(1-prv_val(prv))*extras(prv,l)));
+ 264   
+ 265  defobj..
+ 266  obj=e= sum(l, sum(prv, prv_weight(prv)*(sum(okslots(l,s,rnd,prv),simres(l,s,rnd,prv,'percKnown')/100*s.val*numBat(prv,l,s))))+extras(l));
+ 267  model vivak /all/;
+ 268  useX.up(l)=4;
+ 269  numofbs.up(l,s,rnd,prv) = floor(4*5/rnd.val);
+ 270  *numofbs.fx(l,s,rnd,prv)$(not okslots(l,s,rnd,prv))=0;
+ 271  extras.up(l)=runsize(l)*4;
+ 272  x.fx(prv,c,l)$(dist(c,l) gt T) = 0;
+ 273   
+ 274  * write option file (edit in Studio to see options in detail)
+ 278  * Turn on=1/off=0 option file for particular model
+ 279  vivak.optfile = 0;
+ 280  * can change solver and optfile reading in command box above
+ 281   
+ 282  vivak.optcr = 1e-3;
+ 283  solve vivak using mip max obj;
+ 284   
+ 285  set opr /bs batchsize, rn round number, noto 'number of the operation', p prevalence,nb number of batches,ep extra position in this round,er extra round for single kits/,
+ 286      allocateHeader /  val the number of kits from c to l,latl latitude of labs, lonl longititude of labs, latc latitude of centers,
+ 287       lonc longitude of centers/
+ 288  ;
+ 289  *kitsClass kits for different round/normal,extra/
+ 290   
+ 291   
+ 292  set numofop 'operation index' /opr1*opr4/;
+ 294  table allocate(c,l,prv,allocateHeader) 'allocate strategy';
+ 295  allocate(c,l,prv,'latl')$(x.l(prv,c,l) gt 0)=lablocdata(l,'x');
+ 296  allocate(c,l,prv,'lonl')$(x.l(prv,c,l) gt 0)=lablocdata(l,'y');
+ 297  allocate(c,l,prv,'latc')$(x.l(prv,c,l) gt 0)=centerlocdata(c,'x');
+ 298  allocate(c,l,prv,'lonc')$(x.l(prv,c,l) gt 0)=centerlocdata(c,'y');
+ 299  allocate(c,l,prv,'val')$(x.l(prv,c,l) gt 0)=x.l(prv,c,l);
+ 300  parameter kitinl(l,prv) Kits to test in labs l;
+ 301  kitinl(l,prv)=sum(okslots(l,s,rnd,prv),numBat.l(prv,l,s)*s.val);
+ 302  *kitinl(l,'extra','all')=sum(prv,extraTrans.l(prv,l));
+ 303   
+ 304  table operation(l,numofop,opr) operation in lab l(batch size);
+ 305   
+ 306  parameter unmet(c)'Kits left in centers';
+ 307  unmet(c) = sum(prv,centerdata2(c,'kts',prv) - sum(l, x.l(prv,c,l)));
+ 308   
+ 309  scalar alltest, pcplus,leftover;
+ 310  alltest = sum((l,prv), totinl.l(prv,l));
+ 311  leftover = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))));
+ 312  pcplus = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))))/max(1e-4,alltest)*100;
+ 314  scalar opt 'count the number of operation';
+ 315  loop(l, opt=0;
+ 316  loop((s,rnd,prv)$(numofbs.l(l,s,rnd,prv) gt 0),
+ 317  opt=opt+1;
+ 318  operation(l,numofop,'bs')$(ord(numofop)=opt)=s.val;
+ 319  operation(l,numofop,'rn')$(ord(numofop)=opt)=rnd.val/5;
+ 320  operation(l,numofop,'noto')$(ord(numofop)=opt)=numofbs.l(l,s,rnd,prv);
+ 321  operation(l,numofop,'p')$(ord(numofop)=opt)=prv_val(prv);
+ 322  operation(l,numofop,'nb')$(ord(numofop)=opt)=ceil(numBat.l(prv,l,s));
+ 323  operation(l,numofop,'ep')$(ord(numofop)=opt)=numofbs.l(l,s,rnd,prv)$(okslots(l,s,rnd,prv))*runsize(l)-ceil(numBat.l(prv,l,s));
+ 324  );
+ 325  opt=opt+1;
+ 326  operation(l,numofop,'er')$(useX.l(l) gt 0 and ord(numofop)=opt)=useX.l(l);
+ 327  );
+ 328  display unmet;
+
+
+COMPILATION TIME     =        0.016 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+
+
+USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+      Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.gms
+Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.lst

@@ -1,0 +1,269 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"prv_val":	{
+			"alias":	"prevalence setting",
+			"symtype":	"parameter",
+			"headers":	{
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"prevalence setting"
+				}
+			}
+		},
+		"effic":	{
+			"alias":	"efficiency for different prevalences",
+			"symtype":	"parameter",
+			"headers":	{
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"efficiency for different prevalences"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["t"],
+			"symtext":	["Maximal distance for transportation"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"prv_weight":	{
+			"alias":	"importance of different prevalence to test",
+			"symtype":	"parameter",
+			"headers":	{
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"importance of different prevalence to test"
+				}
+			}
+		},
+		"lablocdata":	{
+			"alias":	"locations of labs",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"labs"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"latitude"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"longititude"
+				}
+			}
+		},
+		"centerlocdata":	{
+			"alias":	"locations of centers",
+			"symtype":	"parameter",
+			"headers":	{
+				"c":	{
+					"type":	"string",
+					"alias":	"centers"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"latitude"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"longititude"
+				}
+			}
+		},
+		"centerdata":	{
+			"alias":	"center collection",
+			"symtype":	"parameter",
+			"headers":	{
+				"c":	{
+					"type":	"string",
+					"alias":	"centers"
+				},
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"center collection"
+				}
+			}
+		},
+		"runsize":	{
+			"alias":	"runsize of labs",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"labs"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"runsize of labs"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"allocate":	{
+			"alias":	"allocate strategy",
+			"symtype":	"parameter",
+			"headers":	{
+				"c":	{
+					"type":	"string",
+					"alias":	"centers"
+				},
+				"l":	{
+					"type":	"string",
+					"alias":	"labs"
+				},
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
+				"val":	{
+					"type":	"numeric",
+					"alias":	"the number of kits from c to l"
+				},
+				"latl":	{
+					"type":	"numeric",
+					"alias":	"latitude of labs"
+				},
+				"lonl":	{
+					"type":	"numeric",
+					"alias":	"longititude of labs"
+				},
+				"latc":	{
+					"type":	"numeric",
+					"alias":	"latitude of centers"
+				},
+				"lonc":	{
+					"type":	"numeric",
+					"alias":	"longitude of centers"
+				}
+			}
+		},
+		"kitinl":	{
+			"alias":	"Kits to test in labs l",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"labs"
+				},
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Kits to test in labs l"
+				}
+			}
+		},
+		"operation":	{
+			"alias":	"operation in lab l(batch size)",
+			"symtype":	"parameter",
+			"headers":	{
+				"l":	{
+					"type":	"string",
+					"alias":	"labs"
+				},
+				"numofop":	{
+					"type":	"string",
+					"alias":	"operation index"
+				},
+				"bs":	{
+					"type":	"numeric",
+					"alias":	"batchsize"
+				},
+				"rn":	{
+					"type":	"numeric",
+					"alias":	"round number"
+				},
+				"noto":	{
+					"type":	"numeric",
+					"alias":	"number of the operation"
+				},
+				"p":	{
+					"type":	"numeric",
+					"alias":	"prevalence"
+				},
+				"nb":	{
+					"type":	"numeric",
+					"alias":	"number of batches"
+				},
+				"ep":	{
+					"type":	"numeric",
+					"alias":	"extra position in this round"
+				},
+				"er":	{
+					"type":	"numeric",
+					"alias":	"extra round for single kits"
+				}
+			}
+		},
+		"unmet":	{
+			"alias":	"Kits left in centers",
+			"symtype":	"parameter",
+			"headers":	{
+				"c":	{
+					"type":	"string",
+					"alias":	"centers"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Kits left in centers"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["alltest", "pcplus", "leftover"],
+			"symtext":	["alltest", "pcplus", "leftover"],
+			"symtypes":	["parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	}
+}

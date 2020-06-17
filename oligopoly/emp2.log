@@ -1,8 +1,38 @@
-TRACE [2020-06-16 20:23:34] Logging facility initialised.
-DEBUG [2020-06-16 20:23:36] Database connection established.
-DEBUG [2020-06-16 20:23:36] Access Control initialised.
-WARN [2020-06-16 20:23:36] There are orphaned tables in your database: 'emp2_d'.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'd' was selected to be overwritten. However, this symbol could not be found.
+TRACE [2020-06-17 00:45:40] Logging facility initialised.
+DEBUG [2020-06-17 00:45:40] Database connection established.
+DEBUG [2020-06-17 00:45:40] Access Control initialised.
+WARN [2020-06-17 00:45:40] There are orphaned tables in your database: 'emp2_d'.
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-DEBUG [2020-06-16 20:23:44] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+INFO [2020-06-17 00:45:46] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
+DEBUG [2020-06-17 00:45:46] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
+DEBUG [2020-06-17 00:45:46] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-17 00:45:48] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_resultcour' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_resultstac' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_linfo_stac' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_ninfo_stac' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_resultbert' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_i' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_lead' (Db.importDataset).
+DEBUG [2020-06-17 00:45:48] Db: Data was imported from table: 'emp2_fdata' (Db.importDataset).
+DEBUG [2020-06-17 00:45:49] Db: Data was imported from table: 'emp2_jdata' (Db.importDataset).
+DEBUG [2020-06-17 00:45:49] Db: Data was imported from table: 'emp2__scalars' (Db.importDataset).
+DEBUG [2020-06-17 00:45:49] Db: A table named: '_sys_scripts_emp2' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-17 00:45:49] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-17 00:45:49] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-17 00:45:49] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-06-17 00:45:49] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-06-17 00:45:49] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-17 00:45:49] Dataset: i loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:45:49] Dataset: lead loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:45:49] Dataset: fdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:45:49] Dataset: _scalars loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:45:49] Dataset: jdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:45:50] Scenario: '1' was loaded into UI
+INFO [2020-06-17 00:46:00] Session ended (model: 'emp2', user: 'hasee').
+DEBUG [2020-06-17 00:46:01] Scenario: '1' unlocked.
 

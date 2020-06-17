@@ -1,76 +1,31 @@
---- Job thunder.gms Start 06/09/20 22:21:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
---- Applying:
-    E:\31.1\gmsprmNT.txt
---- GAMS Parameters defined
-    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\thunder.gms
-    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\225a\
-    SysDir E:\31.1\
-    CurDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\
-    LogOption 3
-    Trace C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\_sys_trace_thunder.trc
-    InputDir1 C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\
-    TraceOpt 3
-    ExecMode 0
-    LstTitleLeftAligned 1
-    IDCGDXInput _miro_gdxin_.gdx
-    IDCGDXOutput _miro_gdxout_.gdx
-GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
-          E:\31.1\gamslice.txt
-          Evaluation license: Not for commercial or production use
---- Starting compilation
---- thunder.gms(30) 3 Mb
---- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\_miro_gdxin_.gdx
---- thunder.gms(187) 3 Mb
---- Starting execution: elapsed 0:00:00.013
---- thunder.gms(93) 4 Mb--- thunder.gms(94) 4 Mb--- thunder.gms(95) 4 Mb--- thunder.gms(96) 4 Mb--- thunder.gms(97) 4 Mb--- thunder.gms(98) 4 Mb--- thunder.gms(104) 4 Mb--- thunder.gms(105) 4 Mb--- thunder.gms(107) 4 Mb--- thunder.gms(108) 4 Mb--- thunder.gms(110) 4 Mb--- thunder.gms(111) 4 Mb--- thunder.gms(113) 4 Mb--- thunder.gms(114) 4 Mb--- thunder.gms(116) 4 Mb--- thunder.gms(117) 4 Mb--- thunder.gms(120) 4 Mb--- thunder.gms(122) 4 Mb--- thunder.gms(123) 4 Mb--- thunder.gms(124) 4 Mb--- thunder.gms(125) 4 Mb--- thunder.gms(126) 4 Mb--- thunder.gms(142) 4 Mb--- thunder.gms(143) 4 Mb--- thunder.gms(151) 4 Mb
---- Generating LP model airplane
---- thunder.gms(169) 5 Mb
----   1,278 rows  2,770 columns  7,825 non-zeroes
---- Executing CPLEX: elapsed 0:00:06.614
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
---- GAMS/Cplex licensed for continuous and discrete problems.
-Cplex 12.10.0.0
+TRACE [2020-06-09 22:28:15] Logging facility initialised.
+DEBUG [2020-06-09 22:28:16] Database connection established.
+DEBUG [2020-06-09 22:28:16] Access Control initialised.
+WARN [2020-06-09 22:28:16] There are orphaned tables in your database: 'thunder_xcoordcloud', 'thunder_lowcloud', 'thunder_highcloud', 'thunder_flowoutput', 'thunder_minheight'.
 
-Reading data...
-Starting Cplex...
-Space for names approximately 0.08 Mb
-Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
-CPXPARAM_Advance                                 0
-CPXPARAM_Threads                                 1
-CPXPARAM_Parallel                                1
-CPXPARAM_Simplex_Limits_Iterations               2000000000
-CPXPARAM_TimeLimit                               1000
-CPXPARAM_Tune_TimeLimit                          200
-Row 'balance(801)' infeasible, all entries at implied bounds.
-Presolve time = 0.00 sec. (0.61 ticks)
-LP status(3): infeasible
-Cplex Time: 0.00sec (det. 0.61 ticks)
-Rerunning with presolve turned off and solving with LPMETHOD=1
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
-CPXPARAM_Advance                                 2
-CPXPARAM_Preprocessing_Presolve                  0
-CPXPARAM_LPMethod                                1
-CPXPARAM_Threads                                 1
-CPXPARAM_Parallel                                1
-CPXPARAM_Simplex_Limits_Iterations               2000000000
-CPXPARAM_TimeLimit                               1000
-CPXPARAM_Tune_TimeLimit                          200
-
-Iteration log . . .
-Iteration:     1    Infeasibility =             2.999997
-Iteration:   224    Infeasibility =             1.999995
-LP status(3): infeasible
-Cplex Time: 0.00sec (det. 3.01 ticks)
-
-Model has been proven infeasible.
---- Restarting execution
---- thunder.gms(169) 3 Mb
---- Reading solution for model airplane
---- thunder.gms(187) 4 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\_miro_gdxout_.gdx
-*** Status: Normal completion
---- Job thunder.gms Stop 06/09/20 22:21:16 elapsed 0:00:06.874
+This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
+Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
+INFO [2020-06-09 22:28:16] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-09 22:28:17] Db: Data was imported from table: '_sys_metadata_thunder' (Db.importDataset).
+DEBUG [2020-06-09 22:28:17] Db: 1391 rows in table: '_sys_metadata_thunder' were deleted. (Db.deleteRows)
+DEBUG [2020-06-09 22:28:17] Db: Metadata (table: '_sys_metadata_thunder') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-09 22:28:17] Db: Metadata (table: '_sys_metadata_thunder') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-09 22:28:17] Db: Data was added to table: 'thunder_flowop' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:17] Db: Data was added to table: 'thunder__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:17] Db: Data was added to table: 'thunder_cloudsinfo' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:17] Db: Data was added to table: 'thunder_crcost' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was added to table: 'thunder_climbdis' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was added to table: 'thunder_upcost' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was added to table: 'thunder_downcost' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was added to table: 'thunder_offsetcr' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was added to table: 'thunder_descenddis' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was added to table: 'thunder__scalars' (Db.exportScenDataset).
+DEBUG [2020-06-09 22:28:18] Db: Data was imported from table: '_sys_scenlocks_thunder' (Db.importDataset).
+DEBUG [2020-06-09 22:28:18] Db: 1 rows in table: '_sys_scenlocks_thunder' were deleted. (Db.deleteRows)
+DEBUG [2020-06-09 22:28:18] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-09 22:28:24] Db: Data was imported from table: '_sys_metadata_thunder' (Db.importDataset).
+DEBUG [2020-06-09 22:28:25] Scenario: '1' unlocked.
+DEBUG [2020-06-09 22:28:25] Db: 1 rows in table: '_sys_scenlocks_thunder' were deleted. (Db.deleteRows)
+Warning in normalizePath(path.expand(path), winslash, mustWork) :
+  path[1]="C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Thundercloud/static_thunder/cessnapic.jpg": ???????????

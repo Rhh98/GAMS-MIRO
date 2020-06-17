@@ -1,4 +1,4 @@
---- Job feedOptimizer.gms Start 06/12/20 20:29:29 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job feedOptimizer.gms Start 06/17/20 16:59:57 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\feedOptimizer.gms
     PageSize 0
@@ -13,18 +13,18 @@
     IDCGenerateJSON conf_feedOptimizer/feedOptimizer_io.json
     IDCGenerateGDX data_feedOptimizer/default.gdx
 GAMS 30.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 3 days ago
+*** License has expired 8 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- feedOptimizer.gms(237) 3 Mb
---- Starting execution: elapsed 0:00:00.019
+--- Starting execution: elapsed 0:00:00.008
 --- feedOptimizer.gms(197) 4 Mb
 --- Generating MIP model feedOptimizer
 --- feedOptimizer.gms(199) 4 Mb
 ---   1 rows  1 columns  1 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.074
+--- Executing CPLEX: elapsed 0:00:00.038
 IBM ILOG CPLEX   30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
@@ -51,51 +51,19 @@ Objective :           0.000000
 --- Restarting execution
 --- feedOptimizer.gms(199) 2 Mb
 --- Reading solution for model feedOptimizer
---- Executing after solve: elapsed 0:00:00.207
+--- Executing after solve: elapsed 0:00:00.193
 --- feedOptimizer.gms(235) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\data_feedOptimizer/default.gdx
 *** Status: Normal completion
---- Job feedOptimizer.gms Stop 06/12/20 20:29:29 elapsed 0:00:00.256
-Warning in eval(ei, envir) :
-  The alias of symbol: '_scalars_out' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-12 20:29:34] Logging facility initialised.
-DEBUG [2020-06-12 20:29:34] Database connection established.
-DEBUG [2020-06-12 20:29:34] Access Control initialised.
-WARN [2020-06-12 20:29:34] There are orphaned tables in your database: 'feedoptimizer__scalars_out'.
+--- Job feedOptimizer.gms Stop 06/17/20 16:59:57 elapsed 0:00:00.205
+TRACE [2020-06-17 17:00:01] Logging facility initialised.
+DEBUG [2020-06-17 17:00:02] Database connection established.
+DEBUG [2020-06-17 17:00:02] Access Control initialised.
+WARN [2020-06-17 17:00:02] There are orphaned tables in your database: 'feedoptimizer__scalars_out'.
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-06-12 20:29:34] New data: 'db_save_feedoptimizer.zip' is being stored in the database. Please wait a until the import is finished.
-ERROR [2020-06-12 20:29:35] Problems saving MIRO data to database. Error message: 'Method ('') is not suported for loading data.'.
-INFO [2020-06-12 20:29:42] Session started (model: 'feedoptimizer', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/feedopt').
-DEBUG [2020-06-12 20:29:42] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/feedopt'.
-DEBUG [2020-06-12 20:29:42] Db: Data was imported from table: '_sys_metadata_feedoptimizer' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-12 20:29:44] Loading and rendering scenarios: '6'.
-DEBUG [2020-06-12 20:29:44] Db: A table named: 'feedoptimizer_result' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_bigs' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_c' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_height' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_width2' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_valc' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_time' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_sponsored' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer_cscore' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: Data was imported from table: 'feedoptimizer__scalars' (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Db: A table named: '_sys_scripts_feedoptimizer' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-12 20:29:44] Scenario: 'New Scenario' closed.
-DEBUG [2020-06-12 20:29:45] Db: Data was imported from table: '_sys_metadata_feedoptimizer' (Db.importDataset).
-DEBUG [2020-06-12 20:29:45] Db: Data was imported from table: '_sys_scenlocks_feedoptimizer' (Db.importDataset).
-DEBUG [2020-06-12 20:29:45] Db: 1 rows in table: '_sys_scenlocks_feedoptimizer' were deleted. (Db.deleteRows)
-DEBUG [2020-06-12 20:29:45] Db: hasee: Lock was added for scenario: '6' (Scenario.lock).
-DEBUG [2020-06-12 20:29:45] Dataset: bigs loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: c loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: height loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: width2 loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: valc loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: time loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: sponsored loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Dataset: cscore loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-12 20:29:45] Scenario: '6' was loaded into UI
-INFO [2020-06-12 20:34:21] Session ended (model: 'feedoptimizer', user: 'hasee').
+INFO [2020-06-17 17:00:02] New data: 'db_save_feedoptimizer.zip' is being stored in the database. Please wait a until the import is finished.
+ERROR [2020-06-17 17:00:02] Problems saving MIRO data to database. Error message: 'Method ('') is not suported for loading data.'.
+DEBUG [2020-06-17 17:00:07] Db: Data was imported from table: '_sys_metadata_feedoptimizer' (Db.importDataset).
 

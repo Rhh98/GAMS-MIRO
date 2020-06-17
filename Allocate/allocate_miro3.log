@@ -1,0 +1,29 @@
+--- Job allocate_miro3.gms Start 06/17/20 16:57:43 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.gms
+    PageSize 0
+    Action C
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\
+    SysDir E:\30.2\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCJSON conf_allocate_miro3/allocate_miro3_io.json
+GAMS 30.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 8 days ago
+Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- allocate_miro3.gms(328) 3 Mb
+*** Status: Normal completion
+--- Job allocate_miro3.gms Stop 06/17/20 16:57:43 elapsed 0:00:00.029
+Warning in eval(ei, envir) :
+  The alias of symbol: 'c' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'l' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'locdata' was selected to be overwritten. However, this symbol could not be found.
+

@@ -204,16 +204,20 @@ More explanantions about the figure will be shown on the output page.
 </ul>
 
 
+<a name="GAMS model" ></a>
+
 <h1>GAMS Model</h1>
 
  <a href="static_emp2/emo2.gms" target="_blank">Download GAMS model</a>
+
+<a name="Acknoledgements"></a>
 
 
 <h1>Acknoledgements</h1>
 <p>
 We would like to acknowledge the spectacular instruction we receive from the dedicated faculty at UW-Madison, with special acknowledgment of Prof. Jeffrey Linderoth, Prof. Michael Ferris, Prof. Thomas Rutherford and Prof. Marzena Rostek whose instruction directly informed this case study.
 </p>
-
+<a name="References"></a>
 
 <h1>References</h1>
 <p>

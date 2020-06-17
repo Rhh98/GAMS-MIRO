@@ -59,7 +59,7 @@ allocateOutput <- function(id,height=NULL,options = NULL, path=NULL){
 renderAllocate <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer
   output$dataT<-DT::renderDataTable(datatable(cbind(data$c,data$l,data$prv,data$val),
-                                              colnames=c('center','lab','prevalence','number of kits')))x=
+                                              colnames=c('center','lab','prevalence','number of kits')))
   
   # latl=unique(data$value[data$allocateHeader == 'latl'])
   # lonl=unique(data$value[data$allocateHeader == 'lonl'])

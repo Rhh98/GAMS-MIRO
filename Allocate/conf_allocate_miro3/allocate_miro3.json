@@ -116,26 +116,6 @@
       "pageLength": 15
     }
   },
-  "inputGroups": [
-    {
-      "name": "prevalence",
-      "members": ["prv_val", "effic", "prv_weight"]
-    },
-    {
-      "name": "lab information",
-      "members": ["lablocdata", "runsize"]
-    },
-    {
-      "name": "center information",
-      "members": ["centerlocdata", "centerdata"]
-    }
-  ],
-  "outputGroups": [
-    {
-      "name": "Information for labs",
-      "members": ["kitinl", "operation"]
-    }
-  ],
   "readme": {
     "tabTitle": "Allocate",
     "filename": "Allocate.md"
@@ -155,5 +135,26 @@
     },
     "height": 700,
     "colWidths": 150
-  }
+  },
+  "defaultScenName": "default scenario",
+  "inputGroups": [
+    {
+      "name": "prevalence",
+      "members": ["prv_val", "effic", "prv_weight"]
+    },
+    {
+      "name": "lab information",
+      "members": ["lablocdata", "runsize"]
+    },
+    {
+      "name": "center information",
+      "members": ["centerlocdata", "centerdata"]
+    }
+  ],
+  "outputGroups": [
+    {
+      "name": "Information for labs",
+      "members": ["kitinl", "operation"]
+    }
+  ]
 }
