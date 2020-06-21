@@ -1,0 +1,169 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"mcoord":	{
+			"alias":	"mcoord",
+			"symtype":	"parameter",
+			"headers":	{
+				"machines":	{
+					"type":	"string",
+					"alias":	"machines"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"x"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"y"
+				}
+			}
+		},
+		"rscoord":	{
+			"alias":	"rscoord",
+			"symtype":	"parameter",
+			"headers":	{
+				"rs":	{
+					"type":	"string",
+					"alias":	"recieving and shipping"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"x"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"y"
+				}
+			}
+		},
+		"min_distance":	{
+			"alias":	"min_distance",
+			"symtype":	"parameter",
+			"headers":	{
+				"machines":	{
+					"type":	"string",
+					"alias":	"machines"
+				},
+				"machines#1":	{
+					"type":	"string",
+					"alias":	"machines#1"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"min_distance"
+				}
+			}
+		},
+		"cm":	{
+			"alias":	"cm",
+			"symtype":	"parameter",
+			"headers":	{
+				"machines":	{
+					"type":	"string",
+					"alias":	"machines"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"cm"
+				}
+			}
+		},
+		"ch":	{
+			"alias":	"ch",
+			"symtype":	"parameter",
+			"headers":	{
+				"products":	{
+					"type":	"string",
+					"alias":	"products"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"ch"
+				}
+			}
+		},
+		"lowupcoord":	{
+			"alias":	"lower and upper bound of the co-coordinats of machines",
+			"symtype":	"parameter",
+			"headers":	{
+				"machines":	{
+					"type":	"string",
+					"alias":	"machines"
+				},
+				"xlow":	{
+					"type":	"numeric",
+					"alias":	"xlow"
+				},
+				"xup":	{
+					"type":	"numeric",
+					"alias":	"xup"
+				},
+				"ylow":	{
+					"type":	"numeric",
+					"alias":	"ylow"
+				},
+				"yup":	{
+					"type":	"numeric",
+					"alias":	"yup"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"result":	{
+			"alias":	"result",
+			"symtype":	"parameter",
+			"headers":	{
+				"machines":	{
+					"type":	"string",
+					"alias":	"machines"
+				},
+				"products":	{
+					"type":	"string",
+					"alias":	"products"
+				},
+				"x":	{
+					"type":	"numeric",
+					"alias":	"x"
+				},
+				"y":	{
+					"type":	"numeric",
+					"alias":	"y"
+				},
+				"newx":	{
+					"type":	"numeric",
+					"alias":	"newx"
+				},
+				"newy":	{
+					"type":	"numeric",
+					"alias":	"newy"
+				},
+				"ch":	{
+					"type":	"numeric",
+					"alias":	"ch"
+				},
+				"cm":	{
+					"type":	"numeric",
+					"alias":	"cm"
+				},
+				"xr":	{
+					"type":	"numeric",
+					"alias":	"xr"
+				},
+				"yr":	{
+					"type":	"numeric",
+					"alias":	"yr"
+				},
+				"xs":	{
+					"type":	"numeric",
+					"alias":	"xs"
+				},
+				"ys":	{
+					"type":	"numeric",
+					"alias":	"ys"
+				}
+			}
+		}
+	}
+}

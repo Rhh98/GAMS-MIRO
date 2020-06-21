@@ -1,8 +1,6 @@
 *question about the objective function..
 
-
-$ondollar
-$title Case Study : Feed optimizer
+*$title Case Study : Feed optimizer
 $ontext
 + Validate
 + Tile packing
@@ -12,7 +10,7 @@ $ontext
 + Stochastic value
 $offtext
 
-$offsymxref offsymlist offuelxref offuellist offupper
+*$offsymxref offsymlist offuelxref offuellist offupper
 
 $if not set bH $set bH 100
 $if not set bW $set bW 100
