@@ -104,59 +104,33 @@ x_m &\leq& x2_m; \forall m \in M \\
 y_m &\leq& y2_m; \forall m \in M \\
 \end{eqnarray*}
 </p>
-
 <p><a href="#top">Back to the top</a></p>
 <hr>
 <a id="applet"></a>
-<h2> JAVA Applet </h2>
+<h2> MIRO Applet </h2>
 <p> The applet takes the inputs from the user and solves the mixed integer non-linear programing model (MINLP) using baron solver.<p>
 
 <h3><u> User Inputs </u>
 <p>
 <ul>
 <li>Initial co-ordinates of each machine</li>
+    <li>Costs of moving machines per unit of distance</li>
+    <li>Costs of transporting products per unit of distance</li>
 <li>Minimum distance between machines</li>
 <li>Location constraint for a machine (based on the rectangular region)</li>
 </UL>
 </p>
 
-<h3><u> Output Status </u>
+<h3><u> Output </u>
 <p>
 <ul>
-<li><b>Not Optimized:</b> Initial status of the applet</li>
-<li><b>Optimized:</b> Machines placed at optimal position along with a green notification at bottom</li>
-<li><b>Infeasible:</b> Status change if the problem is infeasible</li>
+    <li>Infeasiblilty information:If the problem is infeasible, infeasibility information will be displayed.</li>
+    <li>Comparison of layout: If the problem is feasible, the output will show the initial and current optimized layout, with cost information.</li>
 </UL>
 </p>
 
-<Body>
 <applet archive="http://neos-dev-1.neos-server.org/guide/sites/default/files/SignedLayout_0.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Commons-logging-1.1.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Ws-commons-util-1.0.2.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-client-3.1.3.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-common-3.1.3.jar" code="mainGame.Starting" height="610" width="800"></applet>
 
-<p><a href="#top">Back to the top</a></p>
-<hr>
-<a id="result"></a>
-<h2> Output </h2>
-<h3><u> Initial Layout</u><h3>
-<p>
-<ul>
-<li><b> Co-ordinates:</b> CNC: (100,200), Drill: (200,100), Mill: (300,100), Punch: (100,300) </li>
-<li><b> Min Distance:</b> CNC - Mill: 50, CNC - Drill: 50, CNC - Punch: 50 </li>
-<li><b> Location:</b> Entire facility for all the machines</li>
-<li><b> Goal:</b> Optimize the given layout</li>
-<li><b> Status:</b> Currently not optimized</li>
-</ul>
-</p>
-<img src="http://i39.tinypic.com/35ba8g5.png" alt="Initial Layout">
-<h3><u> Final Layout</u><h3>
-<p>
-<ul>
-<li><b>  New Co-ordinates:</b> CNC: (155,207), Drill: (200,273), Mill: (228,264), Punch: (221,293) </li>
-<li><b> Min Distance:</b> CNC - Mill: 50, CNC - Drill: 50, CNC - Punch: 50 </li>
-<li><b> Location:</b> Entire facility for all the machines</li>
-<li><b> Status:</b>Optimized</li>
-</ul>
-</p>
-<img src="http://i39.tinypic.com/2z6fjg9.png" alt="Final Layout">
 
 <p><a href="#top">Back to the top</a></p>
 <hr>
@@ -166,3 +140,4 @@ y_m &\leq& y2_m; \forall m \in M \\
 </ol>
 <p><a href="#top">Back to the top</a></p>
 <hr>
+

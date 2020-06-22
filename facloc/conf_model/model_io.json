@@ -162,6 +162,10 @@
 				"ys":	{
 					"type":	"numeric",
 					"alias":	"ys"
+				},
+				"status":	{
+					"type":	"numeric",
+					"alias":	"status"
 				}
 			}
 		}

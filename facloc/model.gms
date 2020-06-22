@@ -90,7 +90,7 @@ X_new.up(Machines) = LowUpcoord(Machines,'xup');
 Y_new.up(Machines) = LowUpcoord(Machines,'yup');
 
 solve Facility_Layout using nlp minimizing cost;
-Set resultHeader /x,y,newx,newy,CH,CM,XR,YR,XS,YS/;
+Set resultHeader /x,y,newx,newy,CH,CM,XR,YR,XS,YS,status/;
 
 $onExternalOutput
 table result(machines,products,resultHeader);
@@ -106,7 +106,7 @@ result(machines,products,'XR')=RScoord('R','X');
 result(machines,products,'XS')=RScoord('S','X');
 result(machines,products,'YR')=RScoord('R','Y');
 result(machines,products,'YS')=RScoord('S','Y');
-
+result(machines,products,'status')=Facility_Layout.suminfes+1;
 
 
 

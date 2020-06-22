@@ -1,4 +1,4 @@
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 13:54:54 Page 1
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 14:36:19 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -222,7 +222,7 @@ C o m p i l a t i o n
  235  * END
 
 
-COMPILATION TIME     =        0.015 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+COMPILATION TIME     =        0.000 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN

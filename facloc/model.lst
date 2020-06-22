@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/19/20 19:23:37 Page 1
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 18:10:36 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -91,7 +91,7 @@ C o m p i l a t i o n
   90  Y_new.up(Machines) = LowUpcoord(Machines,'yup');
   91   
   92  solve Facility_Layout using nlp minimizing cost;
-  93  Set resultHeader /x,y,newx,newy,CH,CM,XR,YR,XS,YS/;
+  93  Set resultHeader /x,y,newx,newy,CH,CM,XR,YR,XS,YS,status/;
   94   
   96  table result(machines,products,resultHeader);
   98   
@@ -105,14 +105,14 @@ C o m p i l a t i o n
  106  result(machines,products,'XS')=RScoord('S','X');
  107  result(machines,products,'YR')=RScoord('R','Y');
  108  result(machines,products,'YS')=RScoord('S','Y');
- 109   
+ 109  result(machines,products,'status')=Facility_Layout.suminfes+1;
  110   
  111   
  112   
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/19/20 19:23:37 Page 2
+COMPILATION TIME     =        0.016 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 18:10:36 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE Facility_Layout Using NLP From line 92
 
@@ -133,7 +133,7 @@ Min_Dist(CNC,Punch)..  - (1)*X_new(CNC) + (1)*X_new(Punch) + (0)*Y_new(CNC) + (0
      
 REMAINING 9 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/19/20 19:23:37 Page 3
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 18:10:36 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE Facility_Layout Using NLP From line 92
 
@@ -218,7 +218,7 @@ Y_new(Drill)
         0       (OLD LEVEL ****)
 
 REMAINING ENTRY SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/19/20 19:23:37 Page 4
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 18:10:36 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE Facility_Layout Using NLP From line 92
 
@@ -232,11 +232,11 @@ DERIVATIVE POOL              20     CONSTANT POOL              26
 CODE LENGTH                 251
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.031 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
 
 
-EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/19/20 19:23:37 Page 5
+EXECUTION TIME       =        0.031 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 18:10:36 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE Facility_Layout Using NLP From line 92
 
@@ -251,11 +251,11 @@ Solution Report     SOLVE Facility_Layout Using NLP From line 92
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE           -10986.3105
 
- RESOURCE USAGE, LIMIT          0.920      1000.000
+ RESOURCE USAGE, LIMIT          0.370      1000.000
  ITERATION COUNT, LIMIT         0    2000000000
  EVALUATION ERRORS              0             0
 
-GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+GAMS/BARON       30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
 
 BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
 Parts of the BARON software were created at the
@@ -263,7 +263,7 @@ University of Illinois at Urbana-Champaign.
 
 
 ===========================================================================
- BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+ BARON version 19.12.7. Built: WIN-64 Sat Dec 7 14:49:49 EST 2019 
 
  BARON is a product of The Optimization Firm.
  For information on BARON, see https://minlp.com/about-baron
@@ -336,12 +336,12 @@ Punch       100.0000       220.6958       293.0000          .
                              0  UNBOUNDED
                              0     ERRORS
                              5  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/19/20 19:23:37 Page 6
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 18:10:36 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.000 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN

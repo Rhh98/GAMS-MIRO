@@ -14,8 +14,13 @@ resOutput <- function(id, height = NULL, options = NULL, path = NULL){
 
 renderRes <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
+   
+   if (data$status[1]>1)  
+   {output$test<-renderText('The problem is infeasible.')
+   output$res<-renderPlot(c())}
 
-    
+   else if (data$status[1]==1)  
+   {
     x<-data$x[c(1,4,7,10)]
     y<-data$y[c(1,4,7,10)]
     mach<-c('CNC','Mill','Drill','Punch')
@@ -128,6 +133,7 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
     machinecost<-round(sum(data$cm[mindex]*sqrt((data$newx[mindex]-data$x[mindex])^2+(data$newy[mindex]-data$y[mindex])^2)))
     mtext(paste('Total cost of moving machines:',machinecost),outer = TRUE,side=3,adj=0,cex=1.5,line = 0)
     })
+   }
   
   
 }
