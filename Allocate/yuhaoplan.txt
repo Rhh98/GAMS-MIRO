@@ -1,0 +1,16 @@
+Take model allocate.gms and build an application in MIRO that incorporates it.
+
+Issues to address:
+
+1. Need for travel times (one possibility is google maps api as per Song Gao).
+Maybe prespecify a number of routes between a lab and subsets of centers.
+
+2. Data in simres should be replaced by simulation data from Vivak.  Note that most recent version allows different runtimes per lab, but also might want to index the data by a finite set of underlying prevalences too (that would be matched to kit prevalence information).   This will require updates to logic encoded in log0 - log6, etc.
+
+3. Add ability to do multiple kits at a center as one "test" sent to the lab.  This changes prevalence.   Centers should have different underlying prevalances anyway (think hospital vs meat packing plant vs restaurant).
+
+4. Add ability to do cheap (possibly inaccurate but fast) tests at centers as part of optimization choice.
+
+5. How to produce output?   Maybe append all results to some database and allow access via queries.
+
+Key design is to make this easy to understand and use.   Users should not see the underlying model.

@@ -2,11 +2,11 @@
 Contains case study examples written in MIRO using GAMS.
 
 ## Examples:
-* Air Ambulance
+* Air Ambulance: Assigning ambulances to locations
 * Allocate: Covid examples motivated by Vivak Patel
 * Thundercloud: Avoiding thunder clouds in small aircraft flights
 * facloc: Facility location
-* feedopt: Feed optimizer
+* feedopt: News/App Feed layout optimization
 * oligopoly: Nash and Stackleberg
 
 ### Installation:
