@@ -1,12 +1,12 @@
 <h2>Introduction:</h2>
 
-<p>This case study is focused on routing a Cessna 182 aircraft through given thunderstorms information at minimum cost using a minimum cost network flow model.  Many aircraft crash every year due to flying  into thunderstorms, creating a need for pilots to know the best way to navigate thunderstorms hazards. There are different limitations imposed by the limits of the airplane and FAA rules and regulations for flying safety.   </p>
+<p>This case study is focused on routing a Cessna 182 aircraft through given thunderstorms ina given formation at minimum cost using a minimum cost network flow model.  Many aircraft crash every year due to flying into thunderstorms, creating a need for pilots to know the best way to navigate thunderstorms hazards. There are different limitations imposed by the limits of the airplane and FAA rules and regulations for flying safety.   </p>
 <p>
 <img src="https://i.ibb.co/Z6wqBNM/cessnapic.jpg" width="488" height="699" alt=""  />
 </p>
-<p>Limitations on the aircraft include climbing and descending limits which vary depending on altitude. Velocity when cruising, climbing and descending will vary. The cost of flying at different altitudes also vary as different combustion mixtures take place at different altitudes due to increasing and decreasing air thickness levels.</p>
+<p>Limitations on the aircraft include climbing and descending limits which vary depending on altitude. Velocity when cruising, climbing and descending will vary. The cost of flying at different altitudes also varies as different combustion mixtures take place at different altitudes due to increasing and decreasing air thickness levels.</p>
 
-<p>FAA rules and regulations will be included into the model for a safe flying path to be output of the model. The FAA requires under Instrument Flight Rules (IFR) that a plane fly at 2,000 foot increments for one direction of flight. Planes flying in the opposite direction take an altitude 1,000 feet above or below. The FAA also requires oxygen for an uncompressed aircraft above 12,500 feet. Also enforced is flying at a minimum of 500 feet above the ground.</p>
+<p>FAA rules and regulations will be included into the model for a safe flying path to be output from the model. The FAA requires under Instrument Flight Rules (IFR) that a plane flies at 2,000 foot increments in one direction of flight. Planes flying in the opposite direction take an altitude 1,000 feet above or below. The FAA also requires oxygen for an uncompressed aircraft above 12,500 feet. Also enforced is flying at a minimum of 500 feet above the ground.</p>
 
 
 
@@ -17,10 +17,10 @@
 </h2>
 
 
-To be more intuitively, we will first explain the problem by giving an example, which is also shown as an default scenario of this MIRO app. 
+To be more clear, we will first explain the problem by giving an example, which is also shown as an default scenario of this MIRO app. 
 
 <p>
-    In this example, we have 3 thunderstorms.The first thunderstorm has its top height of 8 feet and a bottom height of 3 at x=21 nautical miles.  Then thunderstorms two and three has a top height of 12 feet  and a bottom height of 6 at x=71, 72 nautical miles.  The plane will fly for 100 nautical miles without passing through the 3 thunderstorms(clouds) by changing the altitude. The different cost for climbing, descending and crusing are set in the input data. We also confine that the plane will start at 8,000 feet and end at 8,000 feet because this is a height with cheapest cruising cost. And the plane will fly at this altitude before and after. By solving the problem, we will get a best fly path and the cost of this path. As for this setting, we will get the path as: 
+    In this example, we have 3 thunderstorms.The first thunderstorm has its top height of 8,000 feet and a bottom height of 3,000 at x=21 nautical miles.  Then thunderstorms two and three have a top height of 12,000 feet  and a bottom height of 6,000 feet at x=71, 72 nautical miles.  The plane will fly for 100 nautical miles without passing through the 3 thunderstorms(clouds) by changing its altitude. The different costs for climbing, descending and crusing are set in the input data. We also confine the plane to start at 8,000 feet and end at 8,000 feet because this is the height with the cheapest cruising cost and the plane will fly at this altitude before and after. By solving the problem, we will get a best flight path and the cost of this path. As for this data, we will get the path as: 
     The airplane will climb from 8,000 feet to 10,000 feet to go over cloud 1.  Followed by crusing for about 40 nautical miles. Then the plane will descend to an altitude of 4,000 feet.   finish by climbing up to 8,000 feet in the end from the low of 4,000 feet.  
     <br>The picture and the flow table are shown below:
 </p>
@@ -39,7 +39,7 @@ To be more intuitively, we will first explain the problem by giving an example, 
 </h1>
 
 
-Now we explain how exactly we should use this model. To be more explicitly, we will explain what are those input and output data used for.
+Now we explain how exactly we should use this model. To be more explicit, we will explain what those input and output data are used for.
 
 <h2> Input data illustration</h2>
 
@@ -54,7 +54,7 @@ There are 3 input parameters to declare the information of the 3 Thunderstorms.
 </ul>
 
 
-Note: If one wants to set less than 3 Thunderstorms, one can simply put some of the thunderstorm to have same lower and upper bound. 
+Note: If one wants to set less than 3 Thunderstorms, one can simply make some of the thunderstorm have same lower and upper bound. 
 
 The setting for cost rate are as below:
 
@@ -76,7 +76,7 @@ The Output gives the solution of the model:
 
 <ul>
     <li>Flow: This shows the route for the aircraft through the thunderstorm region.
-    <br>If the problem is feasible, then the flying path is presented in 2 ways: a table and a plot. The table shows several nodes the aircraft will stay during the flight. And the actual flight path will just be like a piecewise linear function with breaking point being these nodes. To be more explicitly, the flight path will be displayed in the plot. The 3 vertical lines shown in the figure will be the 3 thunderstorms set. 
+    <br>If the problem is feasible, then the flying path is presented in 2 ways: a table and a plot. The table shows several nodes the aircraft will stay during the flight. And the actual flight path will just be like a piecewise linear function with breaking point being these nodes. To be more explicit, the flight path will be displayed in the plot. The 3 vertical lines shown in the figure will be the 3 thunderstorms set. 
     <br>Else if the problem is infeasible, then a message of infeasibility will be displayed.</li>
     <li> cost: This shows the total cost during the flight generated by climbing, descending etc. </li>
     <li> Solve Status: this shows whether the model is solved. Note that with some special setting of thunderstorms, the problem could be infeasible, and the Flow plot may look very strange.</li>
