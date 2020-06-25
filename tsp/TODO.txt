@@ -1,0 +1,5 @@
+Update the README to incorporate Pataki stuff.
+Update the data to generate from capitals.json information.
+Add plots for MIRO.
+
+Allow to run with just subset of cities.
