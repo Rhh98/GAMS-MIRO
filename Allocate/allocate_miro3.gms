@@ -292,11 +292,11 @@ set opr /bs batchsize, rn round number, noto 'number of the operation', p preval
 set numofop 'operation index' /opr1*opr4/;
 $onExternalOutput
 table allocate(c,l,prv,allocateHeader) 'allocate strategy';
-allocate(c,l,prv,'latl')$(x.l(prv,c,l) gt 0)=lablocdata(l,'x');
-allocate(c,l,prv,'lonl')$(x.l(prv,c,l) gt 0)=lablocdata(l,'y');
-allocate(c,l,prv,'latc')$(x.l(prv,c,l) gt 0)=centerlocdata(c,'x');
-allocate(c,l,prv,'lonc')$(x.l(prv,c,l) gt 0)=centerlocdata(c,'y');
-allocate(c,l,prv,'val')$(x.l(prv,c,l) gt 0)=x.l(prv,c,l);
+allocate(c,l,prv,'latl')=lablocdata(l,'x');
+allocate(c,l,prv,'lonl')=lablocdata(l,'y');
+allocate(c,l,prv,'latc')=centerlocdata(c,'x');
+allocate(c,l,prv,'lonc')=centerlocdata(c,'y');
+allocate(c,l,prv,'val')=x.l(prv,c,l);
 parameter kitinl(l,prv) Kits to test in labs l;
 kitinl(l,prv)=sum(okslots(l,s,rnd,prv),numBat.l(prv,l,s)*s.val);
 *kitinl(l,'extra','all')=sum(prv,extraTrans.l(prv,l));
@@ -308,7 +308,7 @@ unmet(c) = sum(prv,centerdata2(c,'kts',prv) - sum(l, x.l(prv,c,l)));
 
 scalar alltest, pcplus,leftover;
 alltest = sum((l,prv), totinl.l(prv,l));
-leftover = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))));
+leftover = round(sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv))))));
 pcplus = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))))/max(1e-4,alltest)*100;
 $offExternalOutput
 scalar opt 'count the number of operation';

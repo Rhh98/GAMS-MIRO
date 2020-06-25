@@ -1,4 +1,4 @@
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/17/20 16:57:43 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -272,11 +272,11 @@ C o m p i l a t i o n
  291   
  292  set numofop 'operation index' /opr1*opr4/;
  294  table allocate(c,l,prv,allocateHeader) 'allocate strategy';
- 295  allocate(c,l,prv,'latl')$(x.l(prv,c,l) gt 0)=lablocdata(l,'x');
- 296  allocate(c,l,prv,'lonl')$(x.l(prv,c,l) gt 0)=lablocdata(l,'y');
- 297  allocate(c,l,prv,'latc')$(x.l(prv,c,l) gt 0)=centerlocdata(c,'x');
- 298  allocate(c,l,prv,'lonc')$(x.l(prv,c,l) gt 0)=centerlocdata(c,'y');
- 299  allocate(c,l,prv,'val')$(x.l(prv,c,l) gt 0)=x.l(prv,c,l);
+ 295  allocate(c,l,prv,'latl')=lablocdata(l,'x');
+ 296  allocate(c,l,prv,'lonl')=lablocdata(l,'y');
+ 297  allocate(c,l,prv,'latc')=centerlocdata(c,'x');
+ 298  allocate(c,l,prv,'lonc')=centerlocdata(c,'y');
+ 299  allocate(c,l,prv,'val')=x.l(prv,c,l);
  300  parameter kitinl(l,prv) Kits to test in labs l;
  301  kitinl(l,prv)=sum(okslots(l,s,rnd,prv),numBat.l(prv,l,s)*s.val);
  302  *kitinl(l,'extra','all')=sum(prv,extraTrans.l(prv,l));
@@ -288,7 +288,7 @@ C o m p i l a t i o n
  308   
  309  scalar alltest, pcplus,leftover;
  310  alltest = sum((l,prv), totinl.l(prv,l));
- 311  leftover = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))));
+ 311  leftover = round(sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv))))));
  312  pcplus = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))))/max(1e-4,alltest)*100;
  314  scalar opt 'count the number of operation';
  315  loop(l, opt=0;
@@ -307,7 +307,955 @@ C o m p i l a t i o n
  328  display unmet;
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     71 PARAMETER dist  euclidean distances
+
+             l1          l2
+
+c1      369.585     259.509
+c2      369.761     259.690
+c3      370.495     260.328
+c4      370.453     260.273
+c5      370.607     260.252
+c6      371.126     261.148
+c7      368.946     257.189
+c8      369.438     257.736
+c9      356.094     253.217
+c10     379.768     278.543
+c11     370.201     260.565
+c12     331.459     244.698
+c13     316.090     245.832
+c14     447.635     323.262
+
+
+----    167 PARAMETER simres  
+
+INDEX 1 = l1  INDEX 2 = 1
+
+             total        negs   percKnown
+
+5.prv1      96.000      94.080     100.000
+5.prv2      96.000      92.160     100.000
+5.prv3      96.000      90.240     100.000
+
+INDEX 1 = l1  INDEX 2 = 2
+
+              total        negs   percKnown     unknown
+
+5 .prv1     192.000     184.397      96.040       7.603
+5 .prv2     192.000     176.947      92.160      15.053
+5 .prv3     192.000     169.651      88.360      22.349
+10.prv3     192.000     180.480     100.000
+
+INDEX 1 = l1  INDEX 2 = 4
+
+              total        negs   percKnown     unknown
+
+5 .prv1     384.000     354.189      92.237      29.811
+5 .prv2     384.000     326.149      84.935      57.851
+5 .prv3     384.000     299.808      78.075      84.192
+10.prv2     384.000     368.640     100.000
+10.prv3     384.000     360.960     100.000
+
+INDEX 1 = l1  INDEX 2 = 8
+
+              total        negs   percKnown     unknown
+
+5 .prv1     768.000     653.386      85.076     114.614
+5 .prv2     768.000     554.027      72.139     213.973
+5 .prv3     768.000     468.149      60.957     299.851
+10.prv1     768.000     736.521      97.576      18.614
+10.prv2     768.000     694.854      90.476      73.146
+10.prv3     768.000     605.672      78.863     162.328
+15.prv3     768.000     674.420      91.363      66.328
+20.prv3     768.000     694.669     100.000
+
+INDEX 1 = l1  INDEX 2 = 16
+
+              total        negs   percKnown     unknown
+
+5 .prv1    1536.000    1111.753      72.380     424.247
+5 .prv2    1536.000     799.339      52.040     736.661
+5 .prv3    1536.000     570.738      37.157     965.262
+10.prv1    1536.000    1396.038      90.888     139.962
+10.prv2    1536.000    1070.386      69.687     465.614
+10.prv3    1536.000     914.866      59.562     621.134
+15.prv2    1536.000    1288.408      83.881     247.592
+15.prv3    1536.000    1116.855      72.712     419.145
+20.prv2    1536.000    1396.941      90.947     139.059
+20.prv3    1536.000    1259.083      81.972     276.917
+
+INDEX 1 = l1  INDEX 2 = 32
+
+              total        negs   percKnown     unknown
+
+5 .prv1    3072.000    1609.369      52.388    1462.631
+5 .prv2    3072.000     831.957      27.082    2240.043
+5 .prv3    3072.000     424.143      13.807    2647.857
+10.prv1    3072.000    2154.200      70.124     917.800
+10.prv2    3072.000    1454.771      47.356    1617.229
+10.prv3    3072.000     908.343      29.568    2163.657
+15.prv1    3072.000    2595.392      84.485     476.608
+15.prv2    3072.000    1888.561      61.477    1183.439
+15.prv3    3072.000    1277.909      41.599    1794.091
+20.prv1    3072.000    2816.488      91.683     255.512
+20.prv2    3072.000    2208.062      71.877     863.938
+20.prv3    3072.000    1548.994      50.423    1523.006
+
+INDEX 1 = l1  INDEX 2 = 64
+
+              total        negs   percKnown     unknown
+
+5 .prv1    6144.000    1686.243      27.445    4457.757
+5 .prv2    6144.000     450.620       7.334    5693.380
+5 .prv3    6144.000     117.121       1.906    6026.879
+10.prv1    6144.000    2942.139      47.886    3201.861
+10.prv2    6144.000    1199.123      19.517    4944.877
+10.prv3    6144.000     524.748       8.541    5619.252
+15.prv1    6144.000    3820.284      62.179    2323.716
+15.prv2    6144.000    1800.249      29.301    4343.751
+15.prv3    6144.000     875.037      14.242    5268.963
+20.prv1    6144.000    4464.253      72.660    1679.747
+20.prv2    6144.000    2276.697      37.056    3867.303
+20.prv3    6144.000    1176.620      19.151    4967.380
+
+INDEX 1 = l2  INDEX 2 = 1
+
+             total        negs   percKnown
+
+5.prv1      96.000      94.080     100.000
+5.prv2      96.000      92.160     100.000
+5.prv3      96.000      90.240     100.000
+
+INDEX 1 = l2  INDEX 2 = 2
+
+              total        negs   percKnown     unknown
+
+5 .prv1     192.000     184.397      96.040       7.603
+5 .prv2     192.000     176.947      92.160      15.053
+5 .prv3     192.000     169.651      88.360      22.349
+10.prv3     192.000     180.480     100.000
+
+INDEX 1 = l2  INDEX 2 = 4
+
+              total        negs   percKnown     unknown
+
+5 .prv1     384.000     354.189      92.237      29.811
+5 .prv2     384.000     326.149      84.935      57.851
+5 .prv3     384.000     299.808      78.075      84.192
+10.prv2     384.000     368.640     100.000
+10.prv3     384.000     360.960     100.000
+
+INDEX 1 = l2  INDEX 2 = 8
+
+              total        negs   percKnown     unknown
+
+5 .prv1     768.000     653.386      85.076     114.614
+5 .prv2     768.000     554.027      72.139     213.973
+5 .prv3     768.000     468.149      60.957     299.851
+10.prv1     768.000     736.521      97.576      18.614
+10.prv2     768.000     694.854      90.476      73.146
+10.prv3     768.000     605.672      78.863     162.328
+15.prv3     768.000     674.420      91.363      66.328
+20.prv3     768.000     694.669     100.000
+
+INDEX 1 = l2  INDEX 2 = 16
+
+              total        negs   percKnown     unknown
+
+5 .prv1    1536.000    1111.753      72.380     424.247
+5 .prv2    1536.000     799.339      52.040     736.661
+5 .prv3    1536.000     570.738      37.157     965.262
+10.prv1    1536.000    1396.038      90.888     139.962
+10.prv2    1536.000    1070.386      69.687     465.614
+10.prv3    1536.000     914.866      59.562     621.134
+15.prv2    1536.000    1288.408      83.881     247.592
+15.prv3    1536.000    1116.855      72.712     419.145
+20.prv2    1536.000    1396.941      90.947     139.059
+20.prv3    1536.000    1259.083      81.972     276.917
+
+INDEX 1 = l2  INDEX 2 = 32
+
+              total        negs   percKnown     unknown
+
+5 .prv1    3072.000    1609.369      52.388    1462.631
+5 .prv2    3072.000     831.957      27.082    2240.043
+5 .prv3    3072.000     424.143      13.807    2647.857
+10.prv1    3072.000    2154.200      70.124     917.800
+10.prv2    3072.000    1454.771      47.356    1617.229
+10.prv3    3072.000     908.343      29.568    2163.657
+15.prv1    3072.000    2595.392      84.485     476.608
+15.prv2    3072.000    1888.561      61.477    1183.439
+15.prv3    3072.000    1277.909      41.599    1794.091
+20.prv1    3072.000    2816.488      91.683     255.512
+20.prv2    3072.000    2208.062      71.877     863.938
+20.prv3    3072.000    1548.994      50.423    1523.006
+
+INDEX 1 = l2  INDEX 2 = 64
+
+              total        negs   percKnown     unknown
+
+5 .prv1    6144.000    1686.243      27.445    4457.757
+5 .prv2    6144.000     450.620       7.334    5693.380
+5 .prv3    6144.000     117.121       1.906    6026.879
+10.prv1    6144.000    2942.139      47.886    3201.861
+10.prv2    6144.000    1199.123      19.517    4944.877
+10.prv3    6144.000     524.748       8.541    5619.252
+15.prv1    6144.000    3820.284      62.179    2323.716
+15.prv2    6144.000    1800.249      29.301    4343.751
+15.prv3    6144.000     875.037      14.242    5268.963
+20.prv1    6144.000    4464.253      72.660    1679.747
+20.prv2    6144.000    2276.697      37.056    3867.303
+20.prv3    6144.000    1176.620      19.151    4967.380
+
+
+----    167 SET okslots  
+
+INDEX 1 = l1
+
+             prv1        prv2        prv3
+
+1 .5          YES         YES         YES
+2 .5          YES         YES
+2 .10                                 YES
+4 .5          YES
+4 .10                     YES         YES
+8 .10         YES         YES
+8 .20                                 YES
+16.10         YES
+16.20                     YES
+32.20         YES
+
+INDEX 1 = l2
+
+             prv1        prv2        prv3
+
+1 .5          YES         YES         YES
+2 .5          YES         YES
+2 .10                                 YES
+4 .5          YES
+4 .10                     YES         YES
+8 .10         YES         YES
+8 .20                                 YES
+16.10         YES
+16.20                     YES
+32.20         YES
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE vivak Using MIP From line 283
+
+
+---- supply  =L=  
+
+supply(prv1,c1)..  x(prv1,c1,l1) + x(prv1,c1,l2) =L= 500 ; (LHS = 0)
+     
+supply(prv1,c2)..  x(prv1,c2,l1) + x(prv1,c2,l2) =L= 500 ; (LHS = 0)
+     
+supply(prv1,c3)..  x(prv1,c3,l1) + x(prv1,c3,l2) =L= 500 ; (LHS = 0)
+     
+REMAINING 39 ENTRIES SKIPPED
+
+
+---- transport  =E=  
+
+transport(prv1,l1)..  - x(prv1,c1,l1) - x(prv1,c2,l1) - x(prv1,c3,l1) - x(prv1,c4,l1) - x(prv1,c5,l1) - x(prv1,c6,l1) - x(prv1,c7,l1) - x(prv1,c8,l1) - x(prv1,c9,l1) - x(prv1,c10,l1) - x(prv1,c11,l1) - x(prv1,c12,l1) - x(prv1,c13,l1) - x(prv1,c14,l1)
+     
+      + totinl(prv1,l1) =E= 0 ; (LHS = 0)
+     
+transport(prv1,l2)..  - x(prv1,c1,l2) - x(prv1,c2,l2) - x(prv1,c3,l2) - x(prv1,c4,l2) - x(prv1,c5,l2) - x(prv1,c6,l2) - x(prv1,c7,l2) - x(prv1,c8,l2) - x(prv1,c9,l2) - x(prv1,c10,l2) - x(prv1,c11,l2) - x(prv1,c12,l2) - x(prv1,c13,l2) - x(prv1,c14,l2)
+     
+      + totinl(prv1,l2) =E= 0 ; (LHS = 0)
+     
+transport(prv2,l1)..  - x(prv2,c1,l1) - x(prv2,c2,l1) - x(prv2,c3,l1) - x(prv2,c4,l1) - x(prv2,c5,l1) - x(prv2,c6,l1) - x(prv2,c7,l1) - x(prv2,c8,l1) - x(prv2,c9,l1) - x(prv2,c10,l1) - x(prv2,c11,l1) - x(prv2,c12,l1) - x(prv2,c13,l1) - x(prv2,c14,l1)
+     
+      + totinl(prv2,l1) =E= 0 ; (LHS = 0)
+     
+REMAINING 3 ENTRIES SKIPPED
+
+
+---- balance  =E=  
+
+balance(prv1,l1)..  totinl(prv1,l1) - numBat(prv1,l1,1) - 2*numBat(prv1,l1,2) - 4*numBat(prv1,l1,4) - 8*numBat(prv1,l1,8) - 16*numBat(prv1,l1,16) - 32*numBat(prv1,l1,32) =E= 0 ; (LHS = 0)
+     
+balance(prv1,l2)..  totinl(prv1,l2) - numBat(prv1,l2,1) - 2*numBat(prv1,l2,2) - 4*numBat(prv1,l2,4) - 8*numBat(prv1,l2,8) - 16*numBat(prv1,l2,16) - 32*numBat(prv1,l2,32) =E= 0 ; (LHS = 0)
+     
+balance(prv2,l1)..  totinl(prv2,l1) - numBat(prv2,l1,1) - 2*numBat(prv2,l1,2) - 4*numBat(prv2,l1,4) - 8*numBat(prv2,l1,8) - 16*numBat(prv2,l1,16) =E= 0 ; (LHS = 0)
+     
+REMAINING 3 ENTRIES SKIPPED
+
+
+---- relax  =L=  
+
+relax(l1,1,prv1)..  numBat(prv1,l1,1) - 96*numofbs(l1,1,5,prv1) =L= 0 ; (LHS = 0)
+     
+relax(l1,1,prv2)..  numBat(prv2,l1,1) - 96*numofbs(l1,1,5,prv2) =L= 0 ; (LHS = 0)
+     
+relax(l1,1,prv3)..  numBat(prv3,l1,1) - 96*numofbs(l1,1,5,prv3) =L= 0 ; (LHS = 0)
+     
+REMAINING 39 ENTRIES SKIPPED
+
+
+---- logEx1  =L=  
+
+logEx1(l1)..  - 96*useX(l1) + 3*extras(l1) =L= 0 ; (LHS = 0)
+     
+logEx1(l2)..  - 96*useX(l2) + 3*extras(l2) =L= 0 ; (LHS = 0)
+     
+
+---- logEx2  =L=  
+
+logEx2(l1)..  - 0.0792000000000002*numBat(prv1,l1,2) - 0.31052736*numBat(prv1,l1,4) - 0.193895819345718*numBat(prv1,l1,8) - 1.45793300311247*numBat(prv1,l1,16) - 2.66157986941692*numBat(prv1,l1,32) - 0.1568*numBat(prv2,l1,2)
+     
+      - 0.761937471560559*numBat(prv2,l1,8) - 1.44852760250505*numBat(prv2,l1,16) + extras(l1) =L= 0 ; (LHS = 0)
+     
+logEx2(l2)..  - 0.0792000000000002*numBat(prv1,l2,2) - 0.31052736*numBat(prv1,l2,4) - 0.193895819345718*numBat(prv1,l2,8) - 1.45793300311247*numBat(prv1,l2,16) - 2.66157986941692*numBat(prv1,l2,32) - 0.1568*numBat(prv2,l2,2)
+     
+      - 0.761937471560559*numBat(prv2,l2,8) - 1.44852760250505*numBat(prv2,l2,16) + extras(l2) =L= 0 ; (LHS = 0)
+     
+
+---- log1  =L=  
+
+log1(l1)..  numofbs(l1,8,20,prv3) + numofbs(l1,16,20,prv2) + numofbs(l1,32,20,prv1) =L= 1 ; (LHS = 0)
+     
+log1(l2)..  numofbs(l2,8,20,prv3) + numofbs(l2,16,20,prv2) + numofbs(l2,32,20,prv1) =L= 1 ; (LHS = 0)
+     
+
+---- log2  =L=  
+
+log2(l1)..  numofbs(l1,2,10,prv3) + numofbs(l1,4,10,prv2) + numofbs(l1,4,10,prv3) + numofbs(l1,8,10,prv1) + numofbs(l1,8,10,prv2) + 2*numofbs(l1,8,20,prv3) + numofbs(l1,16,10,prv1) + 2*numofbs(l1,16,20,prv2) + 2*numofbs(l1,32,20,prv1) =L= 2 ; (LHS = 0)
+     
+log2(l2)..  numofbs(l2,2,10,prv3) + numofbs(l2,4,10,prv2) + numofbs(l2,4,10,prv3) + numofbs(l2,8,10,prv1) + numofbs(l2,8,10,prv2) + 2*numofbs(l2,8,20,prv3) + numofbs(l2,16,10,prv1) + 2*numofbs(l2,16,20,prv2) + 2*numofbs(l2,32,20,prv1) =L= 2 ; (LHS = 0)
+     
+
+---- log3  =L=  
+
+log3(l1)..  numofbs(l1,1,5,prv1) + numofbs(l1,1,5,prv2) + numofbs(l1,1,5,prv3) + numofbs(l1,2,5,prv1) + numofbs(l1,2,5,prv2) + numofbs(l1,4,5,prv1) + 4*numofbs(l1,8,20,prv3) + 4*numofbs(l1,16,20,prv2) + 4*numofbs(l1,32,20,prv1) + useX(l1) =L= 4 ;
+     
+      (LHS = 0)
+     
+log3(l2)..  numofbs(l2,1,5,prv1) + numofbs(l2,1,5,prv2) + numofbs(l2,1,5,prv3) + numofbs(l2,2,5,prv1) + numofbs(l2,2,5,prv2) + numofbs(l2,4,5,prv1) + 4*numofbs(l2,8,20,prv3) + 4*numofbs(l2,16,20,prv2) + 4*numofbs(l2,32,20,prv1) + useX(l2) =L= 4 ;
+     
+      (LHS = 0)
+     
+
+---- log4  =L=  
+
+log4(l1)..  numofbs(l1,1,5,prv1) + numofbs(l1,1,5,prv2) + numofbs(l1,1,5,prv3) + numofbs(l1,2,5,prv1) + numofbs(l1,2,5,prv2) + numofbs(l1,4,5,prv1) + useX(l1) =L= 4 ; (LHS = 0)
+     
+log4(l2)..  numofbs(l2,1,5,prv1) + numofbs(l2,1,5,prv2) + numofbs(l2,1,5,prv3) + numofbs(l2,2,5,prv1) + numofbs(l2,2,5,prv2) + numofbs(l2,4,5,prv1) + useX(l2) =L= 4 ; (LHS = 0)
+     
+
+---- log5  =L=  
+
+log5(l1)..  numofbs(l1,2,10,prv3) + numofbs(l1,4,10,prv2) + numofbs(l1,4,10,prv3) + numofbs(l1,8,10,prv1) + numofbs(l1,8,10,prv2) + numofbs(l1,16,10,prv1) =L= 2 ; (LHS = 0)
+     
+log5(l2)..  numofbs(l2,2,10,prv3) + numofbs(l2,4,10,prv2) + numofbs(l2,4,10,prv3) + numofbs(l2,8,10,prv1) + numofbs(l2,8,10,prv2) + numofbs(l2,16,10,prv1) =L= 2 ; (LHS = 0)
+     
+
+---- log6  =L=  
+
+log6(l1)..  numofbs(l1,1,5,prv1) + numofbs(l1,1,5,prv2) + numofbs(l1,1,5,prv3) + numofbs(l1,2,5,prv1) + numofbs(l1,2,5,prv2) + 2*numofbs(l1,2,10,prv3) + numofbs(l1,4,5,prv1) + 2*numofbs(l1,4,10,prv2) + 2*numofbs(l1,4,10,prv3) + 2*numofbs(l1,8,10,prv1)
+     
+      + 2*numofbs(l1,8,10,prv2) + 2*numofbs(l1,16,10,prv1) + useX(l1) =L= 4 ; (LHS = 0)
+     
+log6(l2)..  numofbs(l2,1,5,prv1) + numofbs(l2,1,5,prv2) + numofbs(l2,1,5,prv3) + numofbs(l2,2,5,prv1) + numofbs(l2,2,5,prv2) + 2*numofbs(l2,2,10,prv3) + numofbs(l2,4,5,prv1) + 2*numofbs(l2,4,10,prv2) + 2*numofbs(l2,4,10,prv3) + 2*numofbs(l2,8,10,prv1)
+     
+      + 2*numofbs(l2,8,10,prv2) + 2*numofbs(l2,16,10,prv1) + useX(l2) =L= 4 ; (LHS = 0)
+     
+
+---- defobj  =E=  
+
+defobj..  - numBat(prv1,l1,1) - 1.9208*numBat(prv1,l1,2) - 3.68947264*numBat(prv1,l1,4) - 7.80610418065428*numBat(prv1,l1,8) - 14.5420669968875*numBat(prv1,l1,16) - 29.3384201305831*numBat(prv1,l1,32) - numBat(prv1,l2,1) - 1.9208*numBat(prv1,l2,2)
+     
+      - 3.68947264*numBat(prv1,l2,4) - 7.80610418065428*numBat(prv1,l2,8) - 14.5420669968875*numBat(prv1,l2,16) - 29.3384201305831*numBat(prv1,l2,32) - 2*numBat(prv2,l1,1) - 3.6864*numBat(prv2,l1,2) - 8*numBat(prv2,l1,4)
+     
+      - 14.4761250568789*numBat(prv2,l1,8) - 29.1029447949899*numBat(prv2,l1,16) - 2*numBat(prv2,l2,1) - 3.6864*numBat(prv2,l2,2) - 8*numBat(prv2,l2,4) - 14.4761250568789*numBat(prv2,l2,8) - 29.1029447949899*numBat(prv2,l2,16) - 4*numBat(prv3,l1,1)
+     
+      - 8*numBat(prv3,l1,2) - 16*numBat(prv3,l1,4) - 32*numBat(prv3,l1,8) - 4*numBat(prv3,l2,1) - 8*numBat(prv3,l2,2) - 16*numBat(prv3,l2,4) - 32*numBat(prv3,l2,8) - extras(l1) - extras(l2) + obj =E= 0 ; (LHS = 0)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE vivak Using MIP From line 283
+
+
+---- x  kits moved from c to l of prevalence prv
+
+x(prv1,c1,l1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       supply(prv1,c1)
+       -1       transport(prv1,l1)
+
+x(prv1,c1,l2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       supply(prv1,c1)
+       -1       transport(prv1,l2)
+
+x(prv1,c2,l1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       supply(prv1,c2)
+       -1       transport(prv1,l1)
+
+REMAINING 81 ENTRIES SKIPPED
+
+---- totinl  kits at lab l of prevalences prv
+
+totinl(prv1,l1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       transport(prv1,l1)
+        1       balance(prv1,l1)
+
+totinl(prv1,l2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       transport(prv1,l2)
+        1       balance(prv1,l2)
+
+totinl(prv2,l1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        1       transport(prv2,l1)
+        1       balance(prv2,l1)
+
+REMAINING 3 ENTRIES SKIPPED
+
+---- numBat  number of batches in lab l
+
+numBat(prv1,l1,1)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -1       balance(prv1,l1)
+        1       relax(l1,1,prv1)
+       -1       defobj
+
+numBat(prv1,l1,2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -2       balance(prv1,l1)
+        1       relax(l1,2,prv1)
+       -0.0792  logEx2(l1)
+       -1.9208  defobj
+
+numBat(prv1,l1,4)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+       -4       balance(prv1,l1)
+        1       relax(l1,4,prv1)
+       -0.3105  logEx2(l1)
+       -3.6895  defobj
+
+REMAINING 39 ENTRIES SKIPPED
+
+---- numofbs  number of batches of size in timeslot
+
+numofbs(l1,1,5,prv1)
+                (.LO, .L, .UP, .M = 0, 0, 4, 0)
+      -96       relax(l1,1,prv1)
+        1       log3(l1)
+        1       log4(l1)
+        1       log6(l1)
+
+numofbs(l1,1,5,prv2)
+                (.LO, .L, .UP, .M = 0, 0, 4, 0)
+      -96       relax(l1,1,prv2)
+        1       log3(l1)
+        1       log4(l1)
+        1       log6(l1)
+
+numofbs(l1,1,5,prv3)
+                (.LO, .L, .UP, .M = 0, 0, 4, 0)
+      -96       relax(l1,1,prv3)
+        1       log3(l1)
+        1       log4(l1)
+        1       log6(l1)
+
+REMAINING 27 ENTRIES SKIPPED
+
+---- useX  
+
+useX(l1)
+                (.LO, .L, .UP, .M = 0, 0, 4, 0)
+      -96       logEx1(l1)
+        1       log3(l1)
+        1       log4(l1)
+        1       log6(l1)
+
+useX(l2)
+                (.LO, .L, .UP, .M = 0, 0, 4, 0)
+      -96       logEx1(l2)
+        1       log3(l2)
+        1       log4(l2)
+        1       log6(l2)
+
+
+---- extras  kits left over in lab l of prevalence prv
+
+extras(l1)
+                (.LO, .L, .UP, .M = 0, 0, 384, 0)
+        3       logEx1(l1)
+        1       logEx2(l1)
+       -1       defobj
+
+extras(l2)
+                (.LO, .L, .UP, .M = 0, 0, 384, 0)
+        3       logEx1(l2)
+        1       logEx2(l2)
+       -1       defobj
+
+
+---- obj  
+
+obj
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defobj
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE vivak Using MIP From line 283
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS          13     SINGLE EQUATIONS          113
+BLOCKS OF VARIABLES           7     SINGLE VARIABLES          167
+NON ZERO ELEMENTS           433     DISCRETE VARIABLES         34
+
+
+GENERATION TIME      =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE vivak Using MIP From line 283
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   vivak               OBJECTIVE  obj
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  283
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE             6144.0000
+
+ RESOURCE USAGE, LIMIT          0.016      1000.000
+ ITERATION COUNT, LIMIT       143    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.01 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 3.41 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.18 ticks)
+Proven optimal solution.
+
+MIP Solution:         6144.000000    (143 iterations, 0 nodes)
+Final Solve:          6144.000000    (0 iterations)
+
+Best possible:        6144.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+---- EQU supply  
+
+                LOWER          LEVEL          UPPER         MARGINAL
+
+prv1.c1         -INF             .           500.0000          .          
+prv1.c2         -INF             .           500.0000          .          
+prv1.c3         -INF             .           500.0000          .          
+prv1.c4         -INF             .           500.0000          .          
+prv1.c5         -INF             .           500.0000          .          
+prv1.c6         -INF             .           500.0000          .          
+prv1.c7         -INF             .           500.0000          .          
+prv1.c8         -INF             .           500.0000          .          
+prv1.c9         -INF             .           500.0000          .          
+prv1.c10        -INF             .           500.0000          .          
+prv1.c11        -INF             .           500.0000          .          
+prv1.c12        -INF             .           500.0000          .          
+prv1.c13        -INF             .           500.0000          .          
+prv1.c14        -INF             .           500.0000          .          
+prv2.c1         -INF             .           250.0000          .          
+prv2.c2         -INF             .           250.0000          .          
+prv2.c3         -INF             .           250.0000          .          
+prv2.c4         -INF             .           250.0000          .          
+prv2.c5         -INF             .           250.0000          .          
+prv2.c6         -INF             .           250.0000          .          
+prv2.c7         -INF             .           250.0000          .          
+prv2.c8         -INF             .           250.0000          .          
+prv2.c9         -INF             .           250.0000          .          
+prv2.c10        -INF             .           250.0000          .          
+prv2.c11        -INF             .           250.0000          .          
+prv2.c12        -INF             .           250.0000          .          
+prv2.c13        -INF             .           250.0000          .          
+prv2.c14        -INF             .           250.0000          .          
+prv3.c1         -INF          125.0000       125.0000         EPS         
+prv3.c2         -INF           36.0000       125.0000          .          
+prv3.c3         -INF          125.0000       125.0000         EPS         
+prv3.c4         -INF          125.0000       125.0000         EPS         
+prv3.c5         -INF          125.0000       125.0000         EPS         
+prv3.c6         -INF          125.0000       125.0000         EPS         
+prv3.c7         -INF          125.0000       125.0000         EPS         
+prv3.c8         -INF          125.0000       125.0000         EPS         
+prv3.c9         -INF          125.0000       125.0000         EPS         
+prv3.c10        -INF          125.0000       125.0000         EPS         
+prv3.c11        -INF          125.0000       125.0000         EPS         
+prv3.c12        -INF          125.0000       125.0000         EPS         
+prv3.c13        -INF          125.0000       125.0000         EPS         
+prv3.c14        -INF             .           125.0000          .          
+
+---- EQU transport  
+
+               LOWER          LEVEL          UPPER         MARGINAL
+
+prv1.l1          .              .              .              .          
+prv1.l2          .              .              .             EPS         
+prv2.l1          .              .              .              .          
+prv2.l2          .              .              .             EPS         
+prv3.l1          .              .              .             EPS         
+prv3.l2          .              .              .             EPS         
+
+---- EQU balance  
+
+               LOWER          LEVEL          UPPER         MARGINAL
+
+prv1.l1          .              .              .              .          
+prv1.l2          .              .              .              .          
+prv2.l1          .              .              .              .          
+prv2.l2          .              .              .              .          
+prv3.l1          .              .              .             EPS         
+prv3.l2          .              .              .             EPS         
+
+---- EQU relax  
+
+                  LOWER          LEVEL          UPPER         MARGINAL
+
+l1.1 .prv1        -INF             .              .             1.0000      
+l1.1 .prv2        -INF             .              .             2.0000      
+l1.1 .prv3        -INF             .              .             4.0000      
+l1.2 .prv1        -INF             .              .             1.9208      
+l1.2 .prv2        -INF             .              .             3.6864      
+l1.2 .prv3        -INF             .              .             8.0000      
+l1.4 .prv1        -INF             .              .             3.6895      
+l1.4 .prv2        -INF             .              .             8.0000      
+l1.4 .prv3        -INF             .              .            16.0000      
+l1.8 .prv1        -INF             .              .             7.8061      
+l1.8 .prv2        -INF             .              .            14.4761      
+l1.8 .prv3        -INF             .              .            32.0000      
+l1.16.prv1        -INF             .              .            14.5421      
+l1.16.prv2        -INF             .              .            29.1029      
+l1.16.prv3        -INF             .              .              .          
+l1.32.prv1        -INF             .              .            29.3384      
+l1.32.prv2        -INF             .              .              .          
+l1.32.prv3        -INF             .              .              .          
+l1.64.prv1        -INF             .              .              .          
+l1.64.prv2        -INF             .              .              .          
+l1.64.prv3        -INF             .              .              .          
+l2.1 .prv1        -INF             .              .             1.0000      
+l2.1 .prv2        -INF             .              .             2.0000      
+l2.1 .prv3        -INF             .              .             4.0000      
+l2.2 .prv1        -INF             .              .             1.9208      
+l2.2 .prv2        -INF             .              .             3.6864      
+l2.2 .prv3        -INF             .              .             8.0000      
+l2.4 .prv1        -INF             .              .             3.6895      
+l2.4 .prv2        -INF             .              .             8.0000      
+l2.4 .prv3        -INF             .              .            16.0000      
+l2.8 .prv1        -INF             .              .             7.8061      
+l2.8 .prv2        -INF             .              .            14.4761      
+l2.8 .prv3        -INF             .              .            32.0000      
+l2.16.prv1        -INF             .              .            14.5421      
+l2.16.prv2        -INF             .              .            29.1029      
+l2.16.prv3        -INF             .              .              .          
+l2.32.prv1        -INF             .              .            29.3384      
+l2.32.prv2        -INF             .              .              .          
+l2.32.prv3        -INF             .              .              .          
+l2.64.prv1        -INF             .              .              .          
+l2.64.prv2        -INF             .              .              .          
+l2.64.prv3        -INF             .              .              .          
+
+---- EQU logEx1  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF             .              .              .          
+l2        -INF             .              .              .          
+
+---- EQU logEx2  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF             .              .              .          
+l2        -INF             .              .              .          
+
+---- EQU log1  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF             .             1.0000          .          
+l2        -INF             .             1.0000          .          
+
+---- EQU log2  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF            2.0000         2.0000          .          
+l2        -INF            2.0000         2.0000          .          
+
+---- EQU log3  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF             .             4.0000          .          
+l2        -INF             .             4.0000          .          
+
+---- EQU log4  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF             .             4.0000          .          
+l2        -INF             .             4.0000          .          
+
+---- EQU log5  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF            2.0000         2.0000          .          
+l2        -INF            2.0000         2.0000          .          
+
+---- EQU log6  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1        -INF            4.0000         4.0000          .          
+l2        -INF            4.0000         4.0000          .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU defobj              .              .              .             1.0000      
+
+---- VAR x  kits moved from c to l of prevalence prv
+
+                   LOWER          LEVEL          UPPER         MARGINAL
+
+prv1.c1 .l1          .              .            +INF            EPS         
+prv1.c1 .l2          .              .            +INF            EPS         
+prv1.c2 .l1          .              .            +INF            EPS         
+prv1.c2 .l2          .              .            +INF            EPS         
+prv1.c3 .l1          .              .            +INF            EPS         
+prv1.c3 .l2          .              .            +INF            EPS         
+prv1.c4 .l1          .              .            +INF            EPS         
+prv1.c4 .l2          .              .            +INF            EPS         
+prv1.c5 .l1          .              .            +INF            EPS         
+prv1.c5 .l2          .              .            +INF            EPS         
+prv1.c6 .l1          .              .            +INF            EPS         
+prv1.c6 .l2          .              .            +INF            EPS         
+prv1.c7 .l1          .              .            +INF            EPS         
+prv1.c7 .l2          .              .            +INF            EPS         
+prv1.c8 .l1          .              .            +INF            EPS         
+prv1.c8 .l2          .              .            +INF            EPS         
+prv1.c9 .l1          .              .            +INF            EPS         
+prv1.c9 .l2          .              .            +INF            EPS         
+prv1.c10.l1          .              .            +INF            EPS         
+prv1.c10.l2          .              .            +INF            EPS         
+prv1.c11.l1          .              .            +INF            EPS         
+prv1.c11.l2          .              .            +INF            EPS         
+prv1.c12.l1          .              .            +INF            EPS         
+prv1.c12.l2          .              .            +INF            EPS         
+prv1.c13.l1          .              .            +INF            EPS         
+prv1.c13.l2          .              .            +INF            EPS         
+prv1.c14.l1          .              .              .             EPS         
+prv1.c14.l2          .              .            +INF             .          
+prv2.c1 .l1          .              .            +INF            EPS         
+prv2.c1 .l2          .              .            +INF            EPS         
+prv2.c2 .l1          .              .            +INF            EPS         
+prv2.c2 .l2          .              .            +INF            EPS         
+prv2.c3 .l1          .              .            +INF            EPS         
+prv2.c3 .l2          .              .            +INF            EPS         
+prv2.c4 .l1          .              .            +INF            EPS         
+prv2.c4 .l2          .              .            +INF            EPS         
+prv2.c5 .l1          .              .            +INF            EPS         
+prv2.c5 .l2          .              .            +INF            EPS         
+prv2.c6 .l1          .              .            +INF            EPS         
+prv2.c6 .l2          .              .            +INF            EPS         
+prv2.c7 .l1          .              .            +INF            EPS         
+prv2.c7 .l2          .              .            +INF            EPS         
+prv2.c8 .l1          .              .            +INF            EPS         
+prv2.c8 .l2          .              .            +INF            EPS         
+prv2.c9 .l1          .              .            +INF            EPS         
+prv2.c9 .l2          .              .            +INF            EPS         
+prv2.c10.l1          .              .            +INF            EPS         
+prv2.c10.l2          .              .            +INF            EPS         
+prv2.c11.l1          .              .            +INF            EPS         
+prv2.c11.l2          .              .            +INF            EPS         
+prv2.c12.l1          .              .            +INF            EPS         
+prv2.c12.l2          .              .            +INF            EPS         
+prv2.c13.l1          .              .            +INF            EPS         
+prv2.c13.l2          .              .            +INF            EPS         
+prv2.c14.l1          .              .              .             EPS         
+prv2.c14.l2          .              .            +INF             .          
+prv3.c1 .l1          .           125.0000        +INF             .          
+prv3.c1 .l2          .              .            +INF            EPS         
+prv3.c2 .l1          .            18.0000        +INF             .          
+prv3.c2 .l2          .            18.0000        +INF             .          
+prv3.c3 .l1          .           125.0000        +INF             .          
+prv3.c3 .l2          .              .            +INF            EPS         
+prv3.c4 .l1          .              .            +INF            EPS         
+prv3.c4 .l2          .           125.0000        +INF             .          
+prv3.c5 .l1          .           125.0000        +INF             .          
+prv3.c5 .l2          .              .            +INF            EPS         
+prv3.c6 .l1          .              .            +INF            EPS         
+prv3.c6 .l2          .           125.0000        +INF             .          
+prv3.c7 .l1          .              .            +INF            EPS         
+prv3.c7 .l2          .           125.0000        +INF             .          
+prv3.c8 .l1          .           125.0000        +INF             .          
+prv3.c8 .l2          .              .            +INF            EPS         
+prv3.c9 .l1          .              .            +INF            EPS         
+prv3.c9 .l2          .           125.0000        +INF             .          
+prv3.c10.l1          .           125.0000        +INF             .          
+prv3.c10.l2          .              .            +INF            EPS         
+prv3.c11.l1          .              .            +INF            EPS         
+prv3.c11.l2          .           125.0000        +INF             .          
+prv3.c12.l1          .           125.0000        +INF             .          
+prv3.c12.l2          .              .            +INF            EPS         
+prv3.c13.l1          .              .            +INF            EPS         
+prv3.c13.l2          .           125.0000        +INF             .          
+prv3.c14.l1          .              .              .             EPS         
+prv3.c14.l2          .              .            +INF            EPS         
+
+---- VAR totinl  kits at lab l of prevalences prv
+
+               LOWER          LEVEL          UPPER         MARGINAL
+
+prv1.l1          .              .            +INF            EPS         
+prv1.l2          .              .            +INF            EPS         
+prv2.l1          .              .            +INF            EPS         
+prv2.l2          .              .            +INF            EPS         
+prv3.l1          .           768.0000        +INF             .          
+prv3.l2          .           768.0000        +INF             .          
+
+---- VAR numBat  number of batches in lab l
+
+                  LOWER          LEVEL          UPPER         MARGINAL
+
+prv1.l1.1           .              .            +INF             .          
+prv1.l1.2           .              .            +INF             .          
+prv1.l1.4           .              .            +INF             .          
+prv1.l1.8           .              .            +INF             .          
+prv1.l1.16          .              .            +INF             .          
+prv1.l1.32          .              .            +INF             .          
+prv1.l1.64          .              .            +INF            EPS         
+prv1.l2.1           .              .            +INF             .          
+prv1.l2.2           .              .            +INF             .          
+prv1.l2.4           .              .            +INF             .          
+prv1.l2.8           .              .            +INF             .          
+prv1.l2.16          .              .            +INF             .          
+prv1.l2.32          .              .            +INF             .          
+prv1.l2.64          .              .            +INF            EPS         
+prv2.l1.1           .              .            +INF             .          
+prv2.l1.2           .              .            +INF             .          
+prv2.l1.4           .              .            +INF             .          
+prv2.l1.8           .              .            +INF             .          
+prv2.l1.16          .              .            +INF             .          
+prv2.l1.32          .              .            +INF            EPS         
+prv2.l1.64          .              .            +INF            EPS         
+prv2.l2.1           .              .            +INF             .          
+prv2.l2.2           .              .            +INF             .          
+prv2.l2.4           .              .            +INF             .          
+prv2.l2.8           .              .            +INF             .          
+prv2.l2.16          .              .            +INF             .          
+prv2.l2.32          .              .            +INF            EPS         
+prv2.l2.64          .              .            +INF            EPS         
+prv3.l1.1           .              .            +INF             .          
+prv3.l1.2           .              .            +INF             .          
+prv3.l1.4           .           192.0000        +INF             .          
+prv3.l1.8           .              .            +INF             .          
+prv3.l1.16          .              .            +INF            EPS         
+prv3.l1.32          .              .            +INF            EPS         
+prv3.l1.64          .              .            +INF            EPS         
+prv3.l2.1           .              .            +INF             .          
+prv3.l2.2           .              .            +INF             .          
+prv3.l2.4           .           192.0000        +INF             .          
+prv3.l2.8           .              .            +INF             .          
+prv3.l2.16          .              .            +INF            EPS         
+prv3.l2.32          .              .            +INF            EPS         
+prv3.l2.64          .              .            +INF            EPS         
+
+---- VAR numofbs  number of batches of size in timeslot
+
+                     LOWER          LEVEL          UPPER         MARGINAL
+
+l1.1 .5 .prv1          .              .             4.0000        96.0000      
+l1.1 .5 .prv2          .              .             4.0000       192.0000      
+l1.1 .5 .prv3          .              .             4.0000       384.0000      
+l1.2 .5 .prv1          .              .             4.0000       184.3968      
+l1.2 .5 .prv2          .              .             4.0000       353.8944      
+l1.2 .10.prv3          .              .             2.0000       768.0000      
+l1.4 .5 .prv1          .              .             4.0000       354.1894      
+l1.4 .10.prv2          .              .             2.0000       768.0000      
+l1.4 .10.prv3          .             2.0000         2.0000      1536.0000      
+l1.8 .10.prv1          .              .             2.0000       749.3860      
+l1.8 .10.prv2          .              .             2.0000      1389.7080      
+l1.8 .20.prv3          .              .             1.0000      3072.0000      
+l1.16.10.prv1          .              .             2.0000      1396.0384      
+l1.16.20.prv2          .              .             1.0000      2793.8827      
+l1.32.20.prv1          .              .             1.0000      2816.4883      
+l2.1 .5 .prv1          .              .             4.0000        96.0000      
+l2.1 .5 .prv2          .              .             4.0000       192.0000      
+l2.1 .5 .prv3          .              .             4.0000       384.0000      
+l2.2 .5 .prv1          .              .             4.0000       184.3968      
+l2.2 .5 .prv2          .              .             4.0000       353.8944      
+l2.2 .10.prv3          .              .             2.0000       768.0000      
+l2.4 .5 .prv1          .              .             4.0000       354.1894      
+l2.4 .10.prv2          .              .             2.0000       768.0000      
+l2.4 .10.prv3          .             2.0000         2.0000      1536.0000      
+l2.8 .10.prv1          .              .             2.0000       749.3860      
+l2.8 .10.prv2          .              .             2.0000      1389.7080      
+l2.8 .20.prv3          .              .             1.0000      3072.0000      
+l2.16.10.prv1          .              .             2.0000      1396.0384      
+l2.16.20.prv2          .              .             1.0000      2793.8827      
+l2.32.20.prv1          .              .             1.0000      2816.4883      
+
+---- VAR useX  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1          .              .             4.0000         EPS         
+l2          .              .             4.0000         EPS         
+
+---- VAR extras  kits left over in lab l of prevalence prv
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+l1          .              .           384.0000         1.0000      
+l2          .              .           384.0000         1.0000      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR obj               -INF         6144.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 13:43:30 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    328 PARAMETER unmet  Kits left in centers
+
+c1  750.000,    c2  839.000,    c3  750.000,    c4  750.000,    c5  750.000,    c6  750.000,    c7  750.000,    c8  750.000,    c9  750.000,    c10 750.000,    c11 750.000,    c12 750.000,    c13 750.000,    c14 875.000
+
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN

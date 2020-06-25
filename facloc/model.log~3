@@ -1,4 +1,4 @@
---- Job model.gms Start 06/21/20 16:43:45 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job model.gms Start 06/24/20 19:28:59 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\model.gms
     PageSize 0
@@ -11,20 +11,20 @@
     GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\res.gdx
     LstTitleLeftAligned 1
 GAMS 30.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 12 days ago
+*** License has expired 15 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- model.gms(112) 3 Mb
---- Starting execution: elapsed 0:00:00.004
---- model.gms(90) 4 Mb
+--- model.gms(124) 3 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- model.gms(91) 4 Mb
 --- Generating NLP model Facility_Layout
---- model.gms(92) 6 Mb
+--- model.gms(93) 6 Mb
 ---   13 rows  9 columns  57 non-zeroes
 ---   251 nl-code  56 nl-non-zeroes
---- model.gms(92) 4 Mb
---- Executing BARON: elapsed 0:00:00.026
+--- model.gms(93) 4 Mb
+--- Executing BARON: elapsed 0:00:00.028
 GAMS/BARON       30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
 ===========================================================================
  BARON version 19.12.7. Built: WIN-64 Sat Dec 7 14:49:49 EST 2019 
@@ -48,11 +48,11 @@ GAMS/BARON       30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
 ===========================================================================
   Iteration    Open nodes         Time (s)    Lower bound      Upper bound
           1             1             0.22    -11010.6         -10986.3    
-          3             0             0.30    -10987.4         -10986.3    
+          3             0             0.31    -10987.4         -10986.3    
  Cleaning up
                          *** Normal completion ***            
- Wall clock time:                     0.40
- Total CPU time used:                 0.30
+ Wall clock time:                     0.41
+ Total CPU time used:                 0.31
  Total no. of BaR iterations:       3
  Best solution found at node:      -1
  Max. no. of nodes in memory:       2
@@ -66,11 +66,11 @@ Relative gap  = 0.00010000000422061  optcr = 0.0001
   (Note that BARON uses a different formula to compute the relative gap as
    was used for the above reported value.)
 --- Restarting execution
---- model.gms(92) 2 Mb
+--- model.gms(93) 2 Mb
 --- Reading solution for model Facility_Layout
---- Executing after solve: elapsed 0:00:00.607
---- model.gms(109) 3 Mb
+--- Executing after solve: elapsed 0:00:00.620
+--- model.gms(122) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\res.gdx
 *** Status: Normal completion
---- Job model.gms Stop 06/21/20 16:43:45 elapsed 0:00:00.629
+--- Job model.gms Stop 06/24/20 19:28:59 elapsed 0:00:00.646
 

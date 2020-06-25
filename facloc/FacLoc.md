@@ -3,10 +3,11 @@
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#problem">Problem Statement</a></li>
 <li><a href="#math">Mathematical Model</a></li>
-<li><a href="#applet">JAVA Applet</a></li>
+<li><a href="#applet">MIRO Applet</a></li>
 <li><a href="#result">Output</a></li>
 <li><a href="#references">References</a></li>
 </ul>
+
 
 
 <a id="introduction"></a>

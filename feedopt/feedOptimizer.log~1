@@ -1,4 +1,4 @@
---- Job feedOptimizer.gms Start 06/21/20 13:54:54 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job feedOptimizer.gms Start 06/21/20 14:36:19 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\feedOptimizer.gms
     PageSize 0
@@ -21,75 +21,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 --- feedOptimizer.gms(235) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\res.gdx
 *** Status: Normal completion
---- Job feedOptimizer.gms Stop 06/21/20 13:54:54 elapsed 0:00:00.025
+--- Job feedOptimizer.gms Stop 06/21/20 14:36:19 elapsed 0:00:00.010
 Warning in eval(ei, envir) :
   The alias of symbol: '_scalars_out' was selected to be overwritten. However, this symbol could not be found.
-Warning in normalizePath(path.expand(path), winslash, mustWork) :
-  path[2]="data_feedoptimizer/?????": ????????????????
-==== C stack trace ===============================
-	miniz_def_realloc_func [0x0x61f036cc+8700]
-	mz_zip_writer_add_mem_ex_v2 [0x0x61f0ae34+564]
-	zip_zip
-	zip_zip [0x0x61f11cfa+298]
-	R_zip_zip [0x0x61f10fc6+278]
-	Rf_NewFrameConfirm [0x0x6c7ac38d+32717]
-	R_initAssignSymbols [0x0x6c7f6530+45104]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	R_initAssignSymbols [0x0x6c7f87ff+54015]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	R_initAssignSymbols [0x0x6c7f87ff+54015]
-	Rf_eval [0x0x6c801be1+817]
-	Rf_eval [0x0x6c80228c+2524]
-	Rf_eval [0x0x6c802b2a+4730]
-	R_initAssignSymbols [0x0x6c7f6352+44626]
-	Rf_eval [0x0x6c801be1+817]
-	Rf_eval [0x0x6c80228c+2524]
-	Rf_eval [0x0x6c802b2a+4730]
-	R_initAssignSymbols [0x0x6c7f6352+44626]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	R_initAssignSymbols [0x0x6c7f87ff+54015]
-	Rf_eval [0x
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	R_initAssignSymbols [0x0x6c7f87ff+54015]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	Rf_eval [0x0x6c801ba2+754]
-	R_execMethod [0x0x6c805046+2278]
-	Rf_eval [0x0x6c801da6+1270]
-	Rf_eval [0x0x6c80228c+2524
-	Rf_eval [0x0x6c80228c+2524]
-	Rf_eval [0x0x6c802b2a+4730]
-	R_initAssignSymbols [0x0x6c7f6352+44626]
-	Rf_eval [0x0x6c801be1+817]
-	Rf_eval [0x0x6c80228c+2524]
-	Rf_eval [0x0x6c802b2a+4730]
-	R_initAssignSymbols [0x0x6c7f6352+44626]
-	Rf_eval [0x0x6c801be1+817]
-	Rf_eval [0x0x6c80228c+2524]
-	Rf_eval [0x0x6c802b2a+4730]
-	R_initAssignSymbols [0x0x6c7f6352+44626]
-	Rf_eval [0x0x6c801be1+817]
-	Rf_eval [0x0x6c80228c+2524]
-	Rf_eval [0x0x6c802b2a+4730]
-	R_initAssignSymbols [0x0x6c7f6352+44626]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	R_initAssignSymbols [0x0x6c7f87ff+54015]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
-	R_initAssignSymbols [0x0x6c7f87ff+54015]
-	Rf_eval [0x0x6c801be1+817]
-	R_cmpfun1 [0x0x6c803698+1288]
-	Rf_applyClosure [0x0x6c80471f+367]
 

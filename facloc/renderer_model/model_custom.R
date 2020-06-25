@@ -8,16 +8,21 @@ resOutput <- function(id, height = NULL, options = NULL, path = NULL){
   tagList( 
     #define rendererOutput function here
     textOutput(ns('test')),
-    plotOutput(ns('res'),height=900,width = 900 )
+    #plotOutput(ns('res1'),height=900,width = 900 ),
+    #plotOutput(ns('res2'),height=900,width = 900 )
+    leafletOutput(ns('res2'),height=height)
   ) 
 }
 
 renderRes <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
    
+   
    if (data$status[1]>1)  
    {output$test<-renderText('The problem is infeasible.')
-   output$res<-renderPlot(c())}
+   output$res1<-renderPlot(c())
+    output$res2<-renderLeaflet(c())
+   }
 
    else if (data$status[1]==1)  
    {
@@ -68,6 +73,7 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
    {
      cost_old[i]=unique(data$ch[data$products=='P3'])*sqrt((fromx[i]-tox[i])^2+(fromy[i]-toy[i])^2)
    }
+    cost_old=round(cost_old)
    newx<-data$newx[c(1,4,7,10)]
    newy<-data$newy[c(1,4,7,10)]
    fromx[c(2,10)]=data$newx[1]
@@ -99,6 +105,7 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
    {
      cost_new[i]=unique(data$ch[data$products=='P3'])*sqrt((fromx[i]-tox[i])^2+(fromy[i]-toy[i])^2)
    }
+     cost_new=round(cost_new)
    from_old<-from
    from_old[from_old!='Recieve']<-paste(from_old[from_old!='Recieve'],'old')
    from_new<-from
@@ -106,34 +113,107 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
    to_old<-to
    to_old[to_old!='Ship']<-paste(to_old[to_old!='Ship'],'old')
    to_new<-to
-   to_new[to_new!='Ship']<-paste(to_new[to_new!='Ship'],'old')
+   to_new[to_new!='Ship']<-paste(to_new[to_new!='Ship'],'new')
        Ver<-data.frame(c(paste(mach,'old'),'Recieve','Ship',paste(mach,'new')),c(x,data$xr[1],data$xs[1],newx),c(y,data$yr[1],data$ys[1],newy))
        edge_all<-data.frame(c(from_old,from_new),c(to_old,to_new))
       
- output$test<-renderText("Rusult of relocating the facilities. The cost of moving machines from the old location to the new location and the cost 
-                         when transporting products from one facility to another is displayed.")
-  
- output$res<-renderPlot({
-     gra<-graph_from_data_frame(d=edge_all,
-                                vertices=Ver)
-     par(mfrow=c(1,1),oma=c(1,1,4,1))
-     plot(gra,vertex.size=25,vertex.color=c('grey','grey','grey','grey','green','red','yellow','yellow','yellow','yellow')
-          ,edge.width=3,edge.color=c(rep(1,4),rep(2,4),rep(3,5),rep(4,4),rep(5,4),rep(6,5)),
-          edge.label=round(c(cost_old,cost_new)),main = "Comparison of Cost of Transporting Products Before and After Facility Relocation")
-    ProdCost<-rep(1,6)
-    ProdCost[1]<-round(sum(cost_old[1:4]))
-    ProdCost[2]<-round(sum(cost_old[5:8]))
-    ProdCost[3]<-round(sum(cost_old[9:13]))
-    ProdCost[4]<-round(sum(cost_new[1:4]))
-    ProdCost[5]<-round(sum(cost_new[5:8]))
-    ProdCost[6]<-round(sum(cost_new[9:13]))
-      legend('topright',legend = c(paste('P1 old, cost:',ProdCost[1]),paste('P2 old, cost:',ProdCost[2]),paste('P3 old, cost:',ProdCost[3]),
-                                   paste('P1 new, cost:',ProdCost[4]),paste('P2 new, cost:',ProdCost[5]),paste('P3 new, cost:',ProdCost[6])),lty=1,pt.bg=1:6,col=categorical_pal(6),lwd=2.2)
-    mindex<-c(1,4,7,10)
-    machinecost<-round(sum(data$cm[mindex]*sqrt((data$newx[mindex]-data$x[mindex])^2+(data$newy[mindex]-data$y[mindex])^2)))
-    mtext(paste('Total cost of moving machines:',machinecost),outer = TRUE,side=3,adj=0,cex=1.5,line = 0)
-    })
+ output$test<-renderText("Rusult of relocating the facilities. The cost of
+                         transporting products from one facility to another in original and new layouts.")
+ 
+  output$res2<-renderLeaflet({
+     m<-leaflet(data)
+
+     lonX<-c(x,data$xr[1],data$xs[1],newx)
+     latY<-c(y,data$yr[1],data$ys[1],newy)
+      m<-addMarkers(m,x/max(abs(lonX)),y/max(abs(latY)),label = paste(mach,'old'),
+                    labelOptions = labelOptions(noHide = T, direction = "bottom",
+                                                style = list(
+                                                   "color" = "grey",
+                                                   "font-family" = "serif",
+                                                   "font-style" = "italic",
+                                                   "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                                                   "font-size" = "12px",
+                                                   "border-color" = "rgba(0,0,0,0.5)"
+                                                )),group = 'Layout Old')
+       m<-addMarkers(m,newx/max(abs(lonX)),newy/max(abs(latY)),label = paste(mach,'new'),
+                     labelOptions = labelOptions(noHide = T, direction = "bottom",
+                                                 style = list(
+                                                    "color" = "green",
+                                                    "font-family" = "serif",
+                                                    "font-style" = "italic",
+                                                    "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                                                    "font-size" = "12px",
+                                                    "border-color" = "rgba(0,0,0,0.5)"
+                                                 )),group='Layout New')
+      m<-addCircleMarkers(m,data$xr[1]/max(abs(lonX)),data$yr[1]/max(abs(latY)), label = 'Receiving'
+                    ,labelOptions = labelOptions(noHide = T, direction = "bottom",
+                                                 style = list(
+                                                    "color" = "purple",
+                                                    "font-family" = "serif",
+                                                    "font-style" = "italic",
+                                                    "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                                                    "font-size" = "12px",
+                                                    "border-color" = "rgba(0,0,0,0.5)"
+                                                 )))
+      m<-addCircleMarkers(m,data$xs[1]/max(abs(lonX)),data$ys[1]/max(abs(latY)), label = 'Shipping',
+                    labelOptions = labelOptions(noHide = T, direction = "bottom",
+                                                style = list(
+                                                   "color" = "red",
+                                                   "font-family" = "serif",
+                                                   "font-style" = "italic",
+                                                   "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                                                   "font-size" = "12px",
+                                                   "border-color" = "rgba(0,0,0,0.5)"
+                                                )))
+    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$x[c(1,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
+                    ,c(data$yr[1]/max(abs(latY)),data$y[c(1,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'red',group = 'P1 Flow Old',label = sum(cost_old[1:4]))
+    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$x[c(4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
+                    ,c(data$yr[1]/max(abs(latY)),data$y[c(4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'orange',group = 'P2 Flow Old',label =sum( cost_old[5:8]))
+    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$x[c(1,4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
+                    ,c(data$yr[1]/max(abs(latY)),data$y[c(1,4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'yellow',group = 'P3 Flow Old',label =sum( cost_old[9:13]))
+    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$newx[c(1,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
+                    ,c(data$yr[1]/max(abs(latY)),data$newy[c(1,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'red',group = 'P1 Flow New',label = sum(cost_new[1:4]))
+    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$newx[c(4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
+                    ,c(data$yr[1]/max(abs(latY)),data$newy[c(4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'orange',group = 'P2 Flow New',label = sum(cost_new[5:8]))
+    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$newx[c(1,4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
+                    ,c(data$yr[1]/max(abs(latY)),data$newy[c(1,4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'yellow',group = 'P3 Flow New',label =sum( cost_new[9:13]))
+    
+for (i in 1:4) {
+   m<-addPolylines(m,c(x[i]/max(abs(lonX)),newx[i]/max(abs(lonX))),c(y[i]/max(abs(latY)),newy[i]/max(abs(latY))),color='purple',group = 'Movement Cost'
+                   ,label=paste(round(data$cm[3*i-2]*sqrt((newx[i]-x[i])^2+(newy[i]-y[i])^2))))
+
+}
+m<-addLayersControl(m,
+                          baseGroups =c('P1 Flow Old','P2 Flow Old','P3 Flow Old',
+                                           'P1 Flow New','P2 Flow New','P3 Flow New','Movement Cost'),
+                          options = layersControlOptions(collapsed = TRUE)
+    )
+  })
+ # output$res1<-renderPlot({
+ #     gra<-graph_from_data_frame(d=data.frame(from_old,to_old),
+ #                                vertices=Ver)
+ #     par(mfrow=c(1,1),oma=c(1,1,4,1))
+ #     # plot(gra,vertex.size=25,vertex.color=c('grey','grey','grey','grey','green','red','yellow','yellow','yellow','yellow')
+ #     #      ,edge.width=3,edge.color=c(rep(1,4),rep(2,4),rep(3,5)),
+ #     #      main = "Cost of Transporting Products Before Facility Relocation")
+ #     plot.igraph(gra,vertex.size=25,vertex.color=c('grey','grey','grey','grey','green','red','yellow','yellow','yellow','yellow')
+ #          ,edge.width=3,edge.color=c(rep(1,4),rep(2,4),rep(3,5)),
+ #          main = "Cost of Transporting Products Before Facility Relocation",layout=cbind(c(x,data$xr[1],data$xs[1],newx),c(y,data$yr[1],data$ys[1],newy)))
+ #    ProdCost<-rep(1,6)
+ #    ProdCost[1]<-round(sum(cost_old[1:4]))
+ #    ProdCost[2]<-round(sum(cost_old[5:8]))
+ #    ProdCost[3]<-round(sum(cost_old[9:13]))
+ #    
+ #      legend('topright',legend = c(paste('P1 cost:',ProdCost[1]),paste('P2 cost:',ProdCost[2]),paste('P3 cost:',ProdCost[3])),
+ #                                   lty=1,pt.bg=1:3,col=categorical_pal(3),lwd=2.2)
+ #    mindex<-c(1,4,7,10)
+ #    machinecost<-round(sum(data$cm[mindex]*sqrt((data$newx[mindex]-data$x[mindex])^2+(data$newy[mindex]-data$y[mindex])^2)))
+ #    mtext(paste('Total cost of moving machines:',machinecost),outer = TRUE,side=3,adj=0,cex=1.5,line = 0)
+ #    })
    }
   
   
 }
+
+
+

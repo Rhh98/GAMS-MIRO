@@ -1,37 +1,36 @@
 Warning in eval(ei, envir) :
   The alias of symbol: 'd' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-17 00:40:23] Logging facility initialised.
-DEBUG [2020-06-17 00:40:23] Database connection established.
-DEBUG [2020-06-17 00:40:23] Access Control initialised.
-WARN [2020-06-17 00:40:23] There are orphaned tables in your database: 'emp2_d'.
+TRACE [2020-06-17 00:43:38] Logging facility initialised.
+DEBUG [2020-06-17 00:43:38] Database connection established.
+DEBUG [2020-06-17 00:43:38] Access Control initialised.
+WARN [2020-06-17 00:43:38] There are orphaned tables in your database: 'emp2_d'.
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-06-17 00:40:30] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
-DEBUG [2020-06-17 00:40:30] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
-DEBUG [2020-06-17 00:40:30] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-17 00:40:32] Loading and rendering scenarios: '1'.
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_resultcour' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_resultstac' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_linfo_stac' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_ninfo_stac' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_resultbert' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_i' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_lead' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_fdata' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2_jdata' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: Data was imported from table: 'emp2__scalars' (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Db: A table named: '_sys_scripts_emp2' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-17 00:40:32] Scenario: 'New Scenario' closed.
-DEBUG [2020-06-17 00:40:33] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-06-17 00:40:33] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
-DEBUG [2020-06-17 00:40:33] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-06-17 00:40:33] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-17 00:40:33] Dataset: i loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-17 00:40:33] Dataset: lead loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-17 00:40:33] Dataset: fdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-17 00:40:33] Dataset: _scalars loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-17 00:40:33] Dataset: jdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-17 00:40:34] Scenario: '1' was loaded into UI
-INFO [2020-06-17 00:43:32] Session ended (model: 'emp2', user: 'hasee').
+INFO [2020-06-17 00:43:44] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
+DEBUG [2020-06-17 00:43:44] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
+DEBUG [2020-06-17 00:43:44] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-17 00:43:45] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-17 00:43:46] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_resultcour' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_resultstac' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_linfo_stac' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_ninfo_stac' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_resultbert' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_i' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_lead' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_fdata' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2_jdata' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: 'emp2__scalars' (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Db: A table named: '_sys_scripts_emp2' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-17 00:43:46] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-17 00:43:46] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-17 00:43:47] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-06-17 00:43:47] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-17 00:43:47] Dataset: i loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:43:47] Dataset: lead loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:43:47] Dataset: fdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:43:47] Dataset: _scalars loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:43:47] Dataset: jdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-17 00:43:48] Scenario: '1' was loaded into UI
+INFO [2020-06-17 00:44:07] Session ended (model: 'emp2', user: 'hasee').
 

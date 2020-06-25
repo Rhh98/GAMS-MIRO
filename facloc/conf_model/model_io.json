@@ -2,7 +2,7 @@
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
 		"mcoord":	{
-			"alias":	"mcoord",
+			"alias":	"Machine co-coordinates",
 			"symtype":	"parameter",
 			"headers":	{
 				"machines":	{
@@ -20,7 +20,7 @@
 			}
 		},
 		"rscoord":	{
-			"alias":	"rscoord",
+			"alias":	"Recieving and Shipping co-coordinates",
 			"symtype":	"parameter",
 			"headers":	{
 				"rs":	{
@@ -38,7 +38,7 @@
 			}
 		},
 		"min_distance":	{
-			"alias":	"min_distance",
+			"alias":	"Minimum distance between different machines",
 			"symtype":	"parameter",
 			"headers":	{
 				"machines":	{
@@ -51,12 +51,12 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"min_distance"
+					"alias":	"Minimum distance between different machines"
 				}
 			}
 		},
 		"cm":	{
-			"alias":	"cm",
+			"alias":	"Cost of moving machines per distance unit",
 			"symtype":	"parameter",
 			"headers":	{
 				"machines":	{
@@ -65,12 +65,12 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"cm"
+					"alias":	"Cost of moving machines per distance unit"
 				}
 			}
 		},
 		"ch":	{
-			"alias":	"ch",
+			"alias":	"Cost of moving products per distance unit",
 			"symtype":	"parameter",
 			"headers":	{
 				"products":	{
@@ -79,7 +79,7 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"ch"
+					"alias":	"Cost of moving products per distance unit"
 				}
 			}
 		},
@@ -112,7 +112,7 @@
 	},
 	"outputSymbols":	{
 		"result":	{
-			"alias":	"result",
+			"alias":	"result for old layout",
 			"symtype":	"parameter",
 			"headers":	{
 				"machines":	{
@@ -166,6 +166,26 @@
 				"status":	{
 					"type":	"numeric",
 					"alias":	"status"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["mcost", "poldcost", "pnewcost"],
+			"symtext":	["Total cost of moving machines to new location", "Total cost of moving 3 products in old layout", "Total cost of moving 3 products in new layout"],
+			"symtypes":	["parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
 				}
 			}
 		}

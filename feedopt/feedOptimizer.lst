@@ -1,4 +1,4 @@
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/21/20 14:36:19 Page 1
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -222,7 +222,215 @@ C o m p i l a t i o n
  235  * END
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+COMPILATION TIME     =        0.016 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    110 PARAMETER cscore  Multiplier for story score at different scenarios
+
+            c1          c2          c3
+
+s1       3.000       3.000       3.000
+s2       3.000       3.000       3.000
+
+
+----    139 SET S  Filtered stories
+
+                                                      ( EMPTY )
+
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE feedOptimizer Using MIP From line 197
+
+
+---- objf  =E=  
+
+objf..  value =E= 0 ; (LHS = 0)
+     
+
+---- checkEqn  =L=  
+
+                NONE
+
+
+---- overlapEqn  =G=  
+
+                NONE
+
+
+---- horLimit  =L=  
+
+                NONE
+
+
+---- verLimit  =L=  
+
+                NONE
+
+
+---- sponsorEqn  =L=  
+
+                NONE
+
+
+---- horOrderEqn  =G=  
+
+                NONE
+
+
+---- verOrderEqn  =G=  
+
+                NONE
+
+
+---- zcEqn  =L=  
+
+                NONE
+
+
+---- selectEqn  =G=  
+
+                NONE
+
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE feedOptimizer Using MIP From line 197
+
+
+---- value  feed's value
+
+value
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       objf
+
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE feedOptimizer Using MIP From line 197
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS          10     SINGLE EQUATIONS            1
+BLOCKS OF VARIABLES           1     SINGLE VARIABLES            1
+NON ZERO ELEMENTS             1
+
+
+GENERATION TIME      =        0.031 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE feedOptimizer Using MIP From line 197
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   feedOptimizer       OBJECTIVE  value
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  197
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE                0.0000
+
+ RESOURCE USAGE, LIMIT          0.016        30.000
+ ITERATION COUNT, LIMIT         0    2000000000
+
+IBM ILOG CPLEX   30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.00 ticks)
+Optimal solution found.
+Objective :           0.000000
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU objf                .              .              .             1.0000      
+
+---- EQU checkEqn  
+
+                NONE
+
+
+---- EQU overlapEqn  
+
+                NONE
+
+
+---- EQU horLimit  
+
+                NONE
+
+
+---- EQU verLimit  
+
+                NONE
+
+
+---- EQU sponsorEqn  
+
+                NONE
+
+
+---- EQU horOrderEqn  
+
+                NONE
+
+
+---- EQU verOrderEqn  
+
+                NONE
+
+
+---- EQU zcEqn  
+
+                NONE
+
+
+                NONE
+
+---- EQU selectEqn                  (EMPTY)
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR value             -INF             .            +INF             .          
+
+  value  feed's value
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/24/20 21:07:35 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    229 PARAMETER result  feed for all scenarios
+
+                      ( ALL       0.000 )
+
+
+----    232 VARIABLE z.L  S is chosen
+
+                      ( ALL       0.000 )
+
+
+----    233 VARIABLE zc.L  S is chosen in case C
+
+                      ( ALL       0.000 )
+
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN

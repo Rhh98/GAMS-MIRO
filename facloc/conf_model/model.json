@@ -23,6 +23,12 @@
     },
     "result": {
       "newAlias": "result"
+    },
+    "result2": {
+      "newAlias": "result for new layout"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
     }
   },
   "pivottable": {
@@ -47,10 +53,20 @@
   "dataRendering": {
     "result": {
       "outType": "res",
-      "packages": "igraph"
+      "packages": ["igraph", "leaflet"]
     }
   },
   "defaultScenName": "default",
+  "outputGroups": [
+    {
+      "name": "Result",
+      "members": ["result", "result2"]
+    }
+  ],
+  "readme": {
+    "tabTitle": "readme",
+    "filename": "FacLoc.md"
+  },
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -66,9 +82,5 @@
     },
     "height": 700,
     "colWidths": 150
-  },
-  "readme": {
-    "tabTitle": "readme",
-    "filename": "FacLoc.md"
   }
 }

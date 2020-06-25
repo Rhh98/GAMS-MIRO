@@ -1,1 +1,33 @@
 B 3 C o m p i l a t i o n
+B 228 E x e c u t i o n
+I 228 cscore
+I 238 S
+B 245 Equation Listing    SOLVE feedOptimizer Using MIP From line 197
+D 248 objf
+D 253 checkEqn
+D 258 overlapEqn
+D 263 horLimit
+D 268 verLimit
+D 273 sponsorEqn
+D 278 horOrderEqn
+D 283 verOrderEqn
+D 288 zcEqn
+D 293 selectEqn
+B 299 Column Listing      SOLVE feedOptimizer Using MIP From line 197
+E 302 value
+B 310 Model Statistics    SOLVE feedOptimizer Using MIP From line 197
+B 326 Solution Report     SOLVE feedOptimizer Using MIP From line 197
+F 356 objf
+F 358 checkEqn
+F 363 overlapEqn
+F 368 horLimit
+F 373 verLimit
+F 378 sponsorEqn
+F 383 horOrderEqn
+F 388 verOrderEqn
+F 393 zcEqn
+G 404 value
+B 414 E x e c u t i o n
+I 416 result
+I 421 z
+I 426 zc

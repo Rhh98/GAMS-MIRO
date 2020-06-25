@@ -1,1 +1,51 @@
 B 3 C o m p i l a t i o n
+B 313 E x e c u t i o n
+I 313 dist
+I 334 simres
+I 515 okslots
+B 551 Equation Listing    SOLVE vivak Using MIP From line 283
+D 554 supply
+D 565 transport
+D 582 balance
+D 593 relax
+D 604 logEx1
+D 611 logEx2
+D 622 log1
+D 629 log2
+D 636 log3
+D 647 log4
+D 654 log5
+D 661 log6
+D 672 defobj
+B 684 Column Listing      SOLVE vivak Using MIP From line 283
+E 687 x
+E 706 totinl
+E 725 numBat
+E 749 numofbs
+E 774 useX
+E 791 extras
+E 806 obj
+B 814 Model Statistics    SOLVE vivak Using MIP From line 283
+B 830 Solution Report     SOLVE vivak Using MIP From line 283
+F 867 supply
+F 914 transport
+F 925 balance
+F 936 relax
+F 983 logEx1
+F 990 logEx2
+F 997 log1
+F 1004 log2
+F 1011 log3
+F 1018 log4
+F 1025 log5
+F 1032 log6
+F 1041 defobj
+G 1043 x
+G 1132 totinl
+G 1143 numBat
+G 1190 numofbs
+G 1225 useX
+G 1232 extras
+G 1241 obj
+B 1249 E x e c u t i o n
+I 1249 unmet
