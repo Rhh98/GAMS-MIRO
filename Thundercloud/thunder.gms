@@ -29,7 +29,7 @@ scalar  Groundheight /0/;
 set s singular set /1/;
 $onExternalInput
 parameter cloudsInfo(clouds,cloudInf) Information of thunderstorm
-/c1.xc 21,c2.xc 71,c3.xc 72,c1.low 3,c2.low 6, c3.low 6,c1.high 8, c2*c3.high 12/;
+/c1.xc 21,c2.xc 71,c3.xc 72,c1.low 3,c2.low 6, c3.low 6,c1.high 8, c2.high 12,c3.high 12/;
 parameter
 crcost(height) cost to cruise /2 1.36, 4 1.34,6 1.31, 8 1.29,10 1.27,12 1.25/
 climbDis(upheight) nautical distance to climb 2k feet /2 5, 4 5,6 6,8 7, 10 10/
@@ -48,7 +48,7 @@ $offExternalInput
 *min height of the aircraft (height in thousand of feet)*length of x e.g. 2,000 feet and 100 miles is 2*100=200
 
 parameter
-  xcoordcloud(clouds) horizontal position of clouds  /c1 21,c2 71,c3 72/
+  xcoordcloud(clouds) horizontal position of clouds  /c1 21,c2 30,c3 72/
   lowcloud(clouds) height of bottom of the cloud (100 feet) /c1 3, c2 6, c3 6/
   highcloud(clouds) height of top of the cloud (100 feet) /c1 8, c2 12, c3 12/
   ;
@@ -135,7 +135,7 @@ Arcs(N,N2)$((lowcloud('c2')le (zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xco
            AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c2')-xcoord(N)))) le (highcloud('c2')))
            AND xcoord(N) le xcoordcloud('c2') AND xcoord(N2) ge xcoordcloud('c2'))=no;
 
-Arcs(N,N2)$((lowcloud('c3')le (zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c2')-xcoord(N)))))
+Arcs(N,N2)$((lowcloud('c3')le (zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c3')-xcoord(N)))))
            AND ((zcoord(N)+((zcoord(N2)-zcoord(N))/(xcoord(N2)-xcoord(N))*(xcoordcloud('c3')-xcoord(N)))) le (highcloud('c3')))
            AND xcoord(N) le xcoordcloud('c3') AND xcoord(N2) ge xcoordcloud('c3'))=no;
 

@@ -11,7 +11,8 @@ We consider each such update to be a <i>story</i>. Each story has a score depend
 <li>They should be relevant to the user etc.</li>
 </ul>
 We address this problem using an algebraic model. An applet is provided below to demonstrate the effectiveness of the algebraic model.  Sample real world two dimensional feed used in Windows Surface is shown in Figure 1.</p>
-<img src="static_feedoptimizer/windows_interface"  style="width:500px;display:inline">
+<img style="border: 2px solid black ;" src="static_feedoptimizer/windows_interface" width=700  alt="Feed"  />
+Figure 1 : Windows interface </img>
 
 <p><a href="#top">Back to the top</a></p>
 <h2>Case Study Contents</h2>

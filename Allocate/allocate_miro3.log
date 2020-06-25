@@ -1,4 +1,4 @@
---- Job allocate_miro3.gms Start 06/25/20 13:43:30 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job allocate_miro3.gms Start 06/25/20 14:57:53 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -10,6 +10,7 @@
     ErrMsg 1
     ErrorLog 99
     IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\res.gdx
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_allocate_miro3/allocate_miro3_io.json
     IDCGenerateGDX data_allocate_miro3/default.gdx
@@ -21,13 +22,13 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- allocate_miro3.gms(328) 3 Mb
---- Starting execution: elapsed 0:00:00.010
+--- Starting execution: elapsed 0:00:00.021
 --- allocate_miro3.gms(282) 4 Mb
 --- Generating MIP model vivak
 --- allocate_miro3.gms(283) 4 Mb
 ---   113 rows  167 columns  433 non-zeroes
 ---   34 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.032
+--- Executing CPLEX: elapsed 0:00:00.049
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -78,7 +79,7 @@ Iteration log . . .
 Iteration:     1   Dual objective     =         49521.376279
 Iteration:    62   Dual objective     =          8085.023113
 Initializing dual steep norms . . .
-Root relaxation solution time = 0.00 sec. (0.81 ticks)
+Root relaxation solution time = 0.02 sec. (0.81 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
@@ -149,11 +150,12 @@ Relative gap:            0.000000
 --- Restarting execution
 --- allocate_miro3.gms(283) 2 Mb
 --- Reading solution for model vivak
---- Executing after solve: elapsed 0:00:00.158
+--- Executing after solve: elapsed 0:00:00.186
 --- allocate_miro3.gms(328) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\data_allocate_miro3/default.gdx
 *** Status: Normal completion
---- Job allocate_miro3.gms Stop 06/25/20 13:43:31 elapsed 0:00:00.169
+--- Job allocate_miro3.gms Stop 06/25/20 14:57:53 elapsed 0:00:00.214
 
 Warning in eval(ei, envir) :
   The alias of symbol: 'c' was selected to be overwritten. However, this symbol could not be found.
@@ -161,65 +163,193 @@ Warning in eval(ei, envir) :
   The alias of symbol: 'l' was selected to be overwritten. However, this symbol could not be found.
 Warning in eval(ei, envir) :
   The alias of symbol: 'locdata' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-25 13:43:35] Logging facility initialised.
-DEBUG [2020-06-25 13:43:35] Database connection established.
-DEBUG [2020-06-25 13:43:35] Access Control initialised.
-INFO [2020-06-25 13:43:36] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-06-25 13:43:36] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-06-25 13:43:36] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
-DEBUG [2020-06-25 13:43:36] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-06-25 13:43:37] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_operation' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
-DEBUG [2020-06-25 13:43:37] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
-DEBUG [2020-06-25 13:43:37] Db: hasee: Lock was added for scenario: '3' (Scenario.lock).
-DEBUG [2020-06-25 13:43:37] Scenario: '3' unlocked.
-DEBUG [2020-06-25 13:43:37] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
-INFO [2020-06-25 13:43:43] Session started (model: 'allocate_miro3', user: 'hasee', workdir: 'C:\Users\hasee\AppData\Local\Temp\RtmpY55KTJ/fe32dc06d04aac5cbeb4ef28cf4fea58').
-DEBUG [2020-06-25 13:43:43] Working directory was created: 'C:\Users\hasee\AppData\Local\Temp\RtmpY55KTJ/fe32dc06d04aac5cbeb4ef28cf4fea58'.
-DEBUG [2020-06-25 13:43:43] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-06-25 13:43:45] Sidebar menu item: 'inputData' selected.
-TRACE [2020-06-25 13:43:45] Refreshing job list..
-DEBUG [2020-06-25 13:43:45] Job list tab clicked. Job list is being reloaded
-DEBUG [2020-06-25 13:43:45] Db: A table named: '_sys_jobs_allocate_miro3' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-25 13:51:53] Sidebar menu item: 'hcubeAnalyze' selected.
-DEBUG [2020-06-25 13:51:55] Sidebar menu item: 'loadResults' selected.
-DEBUG [2020-06-25 13:52:13] Sidebar menu item: 'scenarios' selected.
-DEBUG [2020-06-25 13:52:15] Load Scenario button clicked (left box in split view).
-DEBUG [2020-06-25 13:52:15] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-06-25 13:52:18] Sidebar menu item: 'importData' selected.
-TRACE [2020-06-25 13:52:18] Refreshing job list..
-DEBUG [2020-06-25 13:52:18] Job list tab clicked. Job list is being reloaded
-DEBUG [2020-06-25 13:52:19] Db: A table named: '_sys_jobs_allocate_miro3' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-25 13:52:20] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-25 13:52:22] Sidebar menu item: 'importData' selected.
-TRACE [2020-06-25 13:52:22] Refreshing job list..
-DEBUG [2020-06-25 13:52:22] Job list tab clicked. Job list is being reloaded
-DEBUG [2020-06-25 13:52:22] Db: A table named: '_sys_jobs_allocate_miro3' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-25 13:52:22] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-25 13:52:23] Sidebar menu item: 'importData' selected.
-TRACE [2020-06-25 13:52:23] Refreshing job list..
-DEBUG [2020-06-25 13:52:23] Job list tab clicked. Job list is being reloaded
-DEBUG [2020-06-25 13:52:23] Db: A table named: '_sys_jobs_allocate_miro3' does not exist in the database (Db.importDataset).
-TRACE [2020-06-25 13:52:26] Import manual Hypercube job button clicked.
-DEBUG [2020-06-25 13:52:29] Sidebar menu item: 'scenarios' selected.
-DEBUG [2020-06-25 13:52:29] Sidebar menu item: 'loadResults' selected.
-DEBUG [2020-06-25 13:52:30] Sidebar menu item: 'importData' selected.
-TRACE [2020-06-25 13:52:30] Refreshing job list..
-DEBUG [2020-06-25 13:52:30] Job list tab clicked. Job list is being reloaded
-DEBUG [2020-06-25 13:52:30] Db: A table named: '_sys_jobs_allocate_miro3' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-25 13:52:31] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-25 13:52:33] Solve button clicked (model: 'allocate_miro3').
-DEBUG [2020-06-25 13:52:33] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-INFO [2020-06-25 13:52:38] Session ended (model: 'allocate_miro3', user: 'hasee').
+TRACE [2020-06-25 14:57:58] Logging facility initialised.
+DEBUG [2020-06-25 14:57:58] Database connection established.
+DEBUG [2020-06-25 14:57:58] Access Control initialised.
+INFO [2020-06-25 14:57:58] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-25 14:57:59] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 14:57:59] Db: 176 rows in table: '_sys_metadata_allocate_miro3' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 14:57:59] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-25 14:57:59] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_operation' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
+DEBUG [2020-06-25 14:57:59] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 14:58:00] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-25 14:58:00] Scenario: '1' unlocked.
+DEBUG [2020-06-25 14:58:00] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
+INFO [2020-06-25 14:58:06] Session started (model: 'allocate_miro3', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate').
+DEBUG [2020-06-25 14:58:06] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate'.
+DEBUG [2020-06-25 14:58:06] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 14:58:07] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 14:58:08] Loading and rendering scenarios: '2'.
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_allocate' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_kitinl' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_operation' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_unmet' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3__scalars_out' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_prv_val' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_effic' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_prv_weight' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_lablocdata' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_centerlocdata' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_centerdata' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3_runsize' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: 'allocatemiro3__scalars' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: A table named: '_sys_scripts_allocate_miro3' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 14:58:08] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 14:58:09] Db: hasee: Lock was added for scenario: '2' (Scenario.lock).
+DEBUG [2020-06-25 14:58:09] Dataset: prv_val loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Dataset: effic loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Dataset: prv_weight loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Dataset: lablocdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Dataset: centerlocdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Dataset: centerdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Dataset: runsize loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 14:58:09] Scenario: '2' was loaded into UI
+DEBUG [2020-06-25 14:58:13] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:02:38] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:02:39] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:02:40] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:02:41] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:02:45] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:02:46] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:05:39] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:05:44] Solve button clicked (model: 'allocate_miro3').
+TRACE [2020-06-25 15:05:44] Dataset: prevalence setting saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: efficiency for different prevalences saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: importance of different prevalence to test saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: locations of labs saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: locations of centers saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: center collection saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: runsize of labs saved in dataTmp.
+TRACE [2020-06-25 15:05:44] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-06-25 15:05:45] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:05:45] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 15:05:47] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:05:48] Sidebar menu item: 'outputData' selected.
+Warning: Error in [: subscript out of bounds
+  100: resolveFormula
+   99: derivePolygons
+   98: addPolylines
+   97: func
+   84: origRenderFunc
+   83: output$tab_1-custom-map
+    3: shiny::runApp
+DEBUG [2020-06-25 15:05:58] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:06:05] Solve button clicked (model: 'allocate_miro3').
+TRACE [2020-06-25 15:06:05] Dataset: prevalence setting saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: efficiency for different prevalences saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: importance of different prevalence to test saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: locations of labs saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: locations of centers saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: center collection saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: runsize of labs saved in dataTmp.
+TRACE [2020-06-25 15:06:05] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-06-25 15:06:06] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:06:06] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 15:06:09] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:06:09] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:11:19] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-06-25 15:11:23] Load active scenario to split comparison mode pressed. ID: '2'.
+TRACE [2020-06-25 15:11:23] Dataset: prevalence setting saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: efficiency for different prevalences saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: importance of different prevalence to test saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: locations of labs saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: locations of centers saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: center collection saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: runsize of labs saved in dataTmp.
+TRACE [2020-06-25 15:11:23] Dataset: Maximal distance for transportation saved in dataTmp.
+TRACE [2020-06-25 15:11:24] New scenario tab added in scenario comparison mode: default scenario.
+DEBUG [2020-06-25 15:11:31] Load Scenario button clicked (right box in split view).
+DEBUG [2020-06-25 15:11:31] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:11:34] Confirm load scenario button clicked.
+DEBUG [2020-06-25 15:11:35] Loading and rendering scenarios: '2'.
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_allocate' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_kitinl' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_operation' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_unmet' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3__scalars_out' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_prv_val' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_effic' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_prv_weight' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_lablocdata' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_centerlocdata' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_centerdata' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3_runsize' (Db.importDataset).
+DEBUG [2020-06-25 15:11:35] Db: Data was imported from table: 'allocatemiro3__scalars' (Db.importDataset).
+DEBUG [2020-06-25 15:11:36] Db: A table named: '_sys_scripts_allocate_miro3' does not exist in the database (Db.importDataset).
+TRACE [2020-06-25 15:11:36] New scenario tab added in scenario comparison mode: default scenario.
+DEBUG [2020-06-25 15:11:36] Scenario: '2' loaded into UI (compare mode).
+DEBUG [2020-06-25 15:11:36] Scenarios: '2' loaded and rendered in scenario comparison mode.
+DEBUG [2020-06-25 15:12:20] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:12:23] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:12:26] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-06-25 15:14:52] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:14:54] Solve button clicked (model: 'allocate_miro3').
+TRACE [2020-06-25 15:14:54] Dataset: prevalence setting saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: efficiency for different prevalences saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: importance of different prevalence to test saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: locations of labs saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: locations of centers saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: center collection saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: runsize of labs saved in dataTmp.
+TRACE [2020-06-25 15:14:54] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-06-25 15:14:54] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:14:55] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 15:14:57] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:14:57] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:15:00] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-06-25 15:15:02] hasee: Close Scenario button clicked (right box in split view).
+DEBUG [2020-06-25 15:15:03] Load active scenario to split comparison mode pressed. ID: '3'.
+TRACE [2020-06-25 15:15:03] Dataset: prevalence setting saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: efficiency for different prevalences saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: importance of different prevalence to test saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: locations of labs saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: locations of centers saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: center collection saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: runsize of labs saved in dataTmp.
+TRACE [2020-06-25 15:15:03] Dataset: Maximal distance for transportation saved in dataTmp.
+TRACE [2020-06-25 15:15:04] New scenario tab added in scenario comparison mode: default scenario.
+DEBUG [2020-06-25 15:16:01] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:16:03] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 15:16:04] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-06-25 15:16:09] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:16:20] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 15:16:22] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 15:16:27] Solve button clicked (model: 'allocate_miro3').
+TRACE [2020-06-25 15:16:27] Dataset: prevalence setting saved in dataTmp.
+TRACE [2020-06-25 15:16:27] Dataset: efficiency for different prevalences saved in dataTmp.
+TRACE [2020-06-25 15:16:27] Dataset: importance of different prevalence to test saved in dataTmp.
+TRACE [2020-06-25 15:16:27] Dataset: locations of labs saved in dataTmp.
+TRACE [2020-06-25 15:16:28] Dataset: locations of centers saved in dataTmp.
+TRACE [2020-06-25 15:16:28] Dataset: center collection saved in dataTmp.
+TRACE [2020-06-25 15:16:28] Dataset: runsize of labs saved in dataTmp.
+TRACE [2020-06-25 15:16:28] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-06-25 15:16:28] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:16:28] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 15:16:30] Db: Data was imported from table: '_sys_attach_allocate_miro3' (Db.importDataset).
+DEBUG [2020-06-25 15:16:30] Sidebar menu item: 'outputData' selected.
+Warning: Error in [: subscript out of bounds
+  100: resolveFormula
+   99: derivePolygons
+   98: addPolylines
+   97: func
+   84: origRenderFunc
+   83: output$tab_1-custom-map
+    3: shiny::runApp
+DEBUG [2020-06-25 15:17:35] Sidebar menu item: 'inputData' selected.
+INFO [2020-06-25 15:19:18] Session ended (model: 'allocate_miro3', user: 'hasee').

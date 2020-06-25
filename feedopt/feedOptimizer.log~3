@@ -1,4 +1,4 @@
---- Job feedOptimizer.gms Start 06/21/20 13:54:39 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job feedOptimizer.gms Start 06/21/20 14:36:19 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\feedOptimizer.gms
     PageSize 0
@@ -21,32 +21,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 --- feedOptimizer.gms(235) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\feedopt\res.gdx
 *** Status: Normal completion
---- Job feedOptimizer.gms Stop 06/21/20 13:54:39 elapsed 0:00:00.019
+--- Job feedOptimizer.gms Stop 06/21/20 14:36:19 elapsed 0:00:00.010
 Warning in eval(ei, envir) :
   The alias of symbol: '_scalars_out' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-21 13:54:44] Logging facility initialised.
-DEBUG [2020-06-21 13:54:44] Database connection established.
-DEBUG [2020-06-21 13:54:44] Access Control initialised.
-WARN [2020-06-21 13:54:44] There are orphaned tables in your database: 'feedoptimizer__scalars_out'.
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-06-21 13:54:44] New data: 'db_save_feedoptimizer.zip' is being stored in the database. Please wait a until the import is finished.
-ERROR [2020-06-21 13:54:45] Problems saving MIRO data to database. Error message: 'Method ('') is not suported for loading data.'.
-INFO [2020-06-21 13:54:50] Session started (model: 'feedoptimizer', user: 'hasee', workdir: 'C:\Users\hasee\AppData\Local\Temp\Rtmp0MsFn3/ba8643a6c2aea2c27c3dbbe9c1a710c5').
-DEBUG [2020-06-21 13:54:50] Working directory was created: 'C:\Users\hasee\AppData\Local\Temp\Rtmp0MsFn3/ba8643a6c2aea2c27c3dbbe9c1a710c5'.
-DEBUG [2020-06-21 13:54:51] Db: Data was imported from table: '_sys_metadata_feedoptimizer' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-21 13:54:52] Loading and rendering scenarios: '6'.
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_result' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_bigs' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_c' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_height' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_width2' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_valc' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_time' (Db.importDataset).
-DEBUG [2020-06-21 13:54:52] Db: Data was imported from table: 'feedoptimizer_sponsored' (Db.importDataset).
-DEBUG [2020-06-21 13:54:53] Db: Data was imported from table: 'feedoptimizer_cscore' (Db.importDataset).
-DEBUG [2020-06-21 13:54:53] Db: Data was imported from table: 'feedoptimizer__scalars' (Db.importDataset).
-DEBUG [2020-06-21 13:54:53] Db: A table named: '_sys_scripts_feedoptimizer' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-21 13:54:53] Scenario: 'New Scenario' closed.
 

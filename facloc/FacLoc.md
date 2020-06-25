@@ -16,18 +16,27 @@
 
 <p> This real life layout redesign decision can be modeled and solved as an optimization problem. The objective would be to minimize all costs including cost of making layout changes and cost of material handling. Figure 1 shows the general layout of any manufacturing facility  </p>
 
-<img src="http://neos-dev-1.neos-server.org/guide/sites/default/files/layout_1.jpg" alt="Facility Layout">
+<img style="border: 2px solid black ;"  src="static_model/layout.jpg" width=700    />
+Figure 1 :Layout  </img>
 
 <p><a href="#top">Back to the top</a></p>
 <hr>
 <a id="problem"></a>
 <h2> Problem Statement </h2> 
-<p> A facility layout optimization model is presented that consists of four machines: CNC, Mill, Drill, and Punch. These machines are the most common machines in any manufacturing facility. There are also a set of three products with pre-specified routings as shown below:</p>
+<p> A facility layout optimization model is presented that consists of four machines: CNC, Mill, Drill, and Punch. These machines are the most common machines in any manufacturing facility.</p>
+The pictures of the 4 machines are shown below:
+<br><img style="border: 2px solid black ;" src="static_model/CNC.png" width=200"  />
+CNC </img> <img style="border: 2px solid black ;" src="static_model/Mill.png" width=200"  />
+Mill </img> <img style="border: 2px solid black ;" src="static_model/Drill.png" width=100"  />
+Drill </img> <img style="border: 2px solid black ;" src="static_model/Punch.png" width=200"  />
+Punch </img>
+<p>There are also a set of three products with pre-specified routings as shown below:</p>
 <ul>
 <li>P1: Receiving -> CNC -> Drill -> Punch -> Shipping</li>
 <li>P2: Receiving -> Mill -> Drill -> Punch -> Shipping</li>
 <li>P3: Receiving -> CNC -> Drill -> Mill -> Punch -> Shipping</li>
 </UL>
+
 
 <p> The Objetive function, decision variables and constraints are presented below: </p>
 <h3> <u> Objective Function and Decision Variables</u> </h3>
