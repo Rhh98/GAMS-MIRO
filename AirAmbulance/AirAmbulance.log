@@ -1,23 +1,227 @@
---- Job AirAmbulance.gms Start 06/17/20 16:45:13 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job AirAmbulance.gms Start 06/23/20 16:35:11 31.1.1 r4b06116 DEX-DEG x86 64bit/Mac OS X
+--- Applying:
+    /Applications/GAMS31.1/GAMS Terminal.app/Contents/MacOS/gmsprmun.txt
+    /Users/ferris/Library/Preferences/GAMS/gamsconfig.yaml
 --- GAMS Parameters defined
-    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\AirAmbulance.gms
+    Input /Users/ferris/Projects/GAMS-MIRO/AirAmbulance/AirAmbulance.gms
     PageSize 0
-    Action C
-    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\225a\
-    SysDir E:\30.2\
+    ScrDir /Users/ferris/Projects/GAMS-MIRO/AirAmbulance/225a/
+    SysDir /Applications/GAMS31.1/GAMS Terminal.app/Contents/MacOS/
     LogOption 3
     ErrMsg 1
     ErrorLog 99
     IDE 1
     LstTitleLeftAligned 1
-    IDCJSON conf_AirAmbulance/AirAmbulance_io.json
-GAMS 30.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 8 days ago
-Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+    IDCGenerateJSON conf_AirAmbulance/AirAmbulance_io.json
+    IDCGenerateGDX data_AirAmbulance/default.gdx
+GAMS 31.1.1   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael C. Ferris                              S200127/0001AN-GEN
+          University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
+          /Users/ferris/Library/Application Support/GAMS/gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- AirAmbulance.gms(72) 3 Mb
+--- Starting execution: elapsed 0:00:00.119
+--- AirAmbulance.gms(59) 4 Mb
+--- Generating LP model AirAmbulance2
+--- AirAmbulance.gms(60) 4 Mb
+---   6 rows  21 columns  61 non-zeroes
+--- Executing CPLEX: elapsed 0:00:00.123
+IBM ILOG CPLEX   31.1.1 r4b06116 Released May 16, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 1 columns.
+Reduced LP has 5 rows, 20 columns, and 40 nonzeros.
+Presolve time = 0.00 sec. (0.01 ticks)
+Iteration      Dual Objective            In Variable           Out Variable
+     1            2236.067977                 z(5.4)      balance2(5) slack
+     2            4836.067977                 z(3.2)      balance2(3) slack
+     3            6798.618349                 z(5.2)      balance2(4) slack
+     4            7161.869060                 z(5.1)      balance2(2) slack
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.02 ticks)
+Optimal solution found.
+Objective :        7161.869060
+--- Restarting execution
+--- AirAmbulance.gms(60) 2 Mb
+--- Reading solution for model AirAmbulance2
+--- Executing after solve: elapsed 0:00:00.424
+--- AirAmbulance.gms(72) 3 Mb
+--- GDX File /Users/ferris/Projects/GAMS-MIRO/AirAmbulance/data_AirAmbulance/default.gdx
 *** Status: Normal completion
---- Job AirAmbulance.gms Stop 06/17/20 16:45:13 elapsed 0:00:00.552
-
+--- Job AirAmbulance.gms Stop 06/23/20 16:35:12 elapsed 0:00:00.426
+========================
+========================TRACE [2020-06-23 16:35:15] Logging facility initialised.
+[1] "Installing: igraph"
+trying URL 'http://cran.us.r-project.org/bin/macosx/el-capitan/contrib/3.6/igraph_1.2.5.tgz'
+Content type 'application/x-gzip' length 7661472 bytes (7.3 MB)
+=
+==
+===
+====
+=====
+======
+=======
+========
+=========
+==========
+===========
+============
+=============
+==============
+===============
+================
+=================
+==================
+===================
+====================
+=====================
+======================
+=======================
+========================
+=========================
+==========================
+===========================
+============================
+=============================
+==============================
+===============================
+================================
+=================================
+==================================
+===================================
+====================================
+=====================================
+======================================
+=======================================
+========================================
+=========================================
+==========================================
+===========================================
+============================================
+=============================================
+==============================================
+===============================================
+================================================
+=================================================
+==================================================
+downloaded 7.3 MB
+The downloaded binary packages are in
+	/var/folders/zw/wp74l5d542vcmkdl6jy41pzr0000gp/T//Rtmpzpv3Sv/downloaded_packages
+DEBUG [2020-06-23 16:35:28] Database connection established.
+DEBUG [2020-06-23 16:35:28] Access Control initialised.
+INFO [2020-06-23 16:35:28] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-23 16:35:28] Db: A table named: '_sys_metadata_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-23 16:35:28] Db: A table named: '_sys_metadata_airambulance' did not yet exist (Db.writeMetadata). Therefore it was created.
+DEBUG [2020-06-23 16:35:28] Db: Metadata (table: '_sys_metadata_airambulance') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-23 16:35:28] Db: Metadata (table: '_sys_metadata_airambulance') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-23 16:35:28] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+TRACE [2020-06-23 16:35:28] Db: Returned database field types: 'int, TEXT, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-06-23 16:35:28] Db: A database table named: 'airambulance_assign' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-23 16:35:28] Db: First data was written to table: 'airambulance_assign' (Db.exportScenDataset).
+TRACE [2020-06-23 16:35:28] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-06-23 16:35:28] Db: A database table named: 'airambulance_numofheli' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-23 16:35:28] Db: First data was written to table: 'airambulance_numofheli' (Db.exportScenDataset).
+TRACE [2020-06-23 16:35:28] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-06-23 16:35:28] Db: A database table named: 'airambulance_x' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-23 16:35:28] Db: First data was written to table: 'airambulance_x' (Db.exportScenDataset).
+TRACE [2020-06-23 16:35:28] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-06-23 16:35:28] Db: A database table named: 'airambulance_y' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-23 16:35:28] Db: First data was written to table: 'airambulance_y' (Db.exportScenDataset).
+TRACE [2020-06-23 16:35:28] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-06-23 16:35:28] Db: A database table named: 'airambulance_d' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-23 16:35:28] Db: First data was written to table: 'airambulance_d' (Db.exportScenDataset).
+TRACE [2020-06-23 16:35:28] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-06-23 16:35:28] Db: A database table named: 'airambulance_s' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-23 16:35:28] Db: First data was written to table: 'airambulance_s' (Db.exportScenDataset).
+DEBUG [2020-06-23 16:35:28] Db: ferris: Table with locks ('_sys_scenlocks_airambulance') was created as it did not yet exist. (Scenario.lock)
+DEBUG [2020-06-23 16:35:28] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
+DEBUG [2020-06-23 16:35:28] Db: ferris: Lock was added for scenario: '1' (Scenario.lock).
+========================================================
+DEBUG [2020-06-23 16:35:29] Scenario: '1' unlocked.
+DEBUG [2020-06-23 16:35:29] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
+INFO [2020-06-23 16:35:31] Session started (model: 'airambulance', user: 'ferris', workdir: '/Users/ferris/Projects/GAMS-MIRO/AirAmbulance').
+DEBUG [2020-06-23 16:35:31] Working directory was created: '/Users/ferris/Projects/GAMS-MIRO/AirAmbulance'.
+DEBUG [2020-06-23 16:35:31] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-23 16:35:32] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: 'airambulance_assign' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: 'airambulance_numofheli' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: 'airambulance_x' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: 'airambulance_y' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: 'airambulance_d' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: 'airambulance_s' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: A table named: '_sys_scripts_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
+DEBUG [2020-06-23 16:35:32] Db: ferris: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-23 16:35:32] Dataset: x loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-23 16:35:32] Dataset: y loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-23 16:35:32] Dataset: d loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-23 16:35:32] Dataset: s loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-23 16:35:32] Scenario: '1' was loaded into UI
+DEBUG [2020-06-23 16:35:49] ferris: Import input data button clicked.
+DEBUG [2020-06-23 16:35:49] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-23 16:35:56] Load local data button clicked.
+DEBUG [2020-06-23 16:36:04] Solve button clicked (model: 'airambulance').
+TRACE [2020-06-23 16:36:04] Dataset: x-coordinates saved in dataTmp.
+TRACE [2020-06-23 16:36:04] Dataset: y-coordinates saved in dataTmp.
+TRACE [2020-06-23 16:36:04] Dataset: projected demand saved in dataTmp.
+TRACE [2020-06-23 16:36:04] Dataset: units currently assigned saved in dataTmp.
+DEBUG [2020-06-23 16:36:04] Db: A table named: '_sys_attach_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-23 16:36:05] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-23 16:36:07] Db: A table named: '_sys_attach_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-23 16:36:07] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-23 16:37:34] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-23 16:37:52] Solve button clicked (model: 'airambulance').
+TRACE [2020-06-23 16:37:52] Dataset: x-coordinates saved in dataTmp.
+TRACE [2020-06-23 16:37:52] Dataset: y-coordinates saved in dataTmp.
+TRACE [2020-06-23 16:37:52] Dataset: projected demand saved in dataTmp.
+TRACE [2020-06-23 16:37:52] Dataset: units currently assigned saved in dataTmp.
+DEBUG [2020-06-23 16:37:52] Db: A table named: '_sys_attach_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-23 16:37:53] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-23 16:37:55] Db: A table named: '_sys_attach_airambulance' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-23 16:37:55] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-23 16:38:37] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-23 16:38:41] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-23 16:38:44] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-06-23 16:38:49] Load Scenario button clicked (left box in split view).
+DEBUG [2020-06-23 16:38:49] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-23 16:39:02] Confirm load scenario button clicked.
+DEBUG [2020-06-23 16:39:02] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-23 16:39:03] Db: Data was imported from table: 'airambulance_assign' (Db.importDataset).
+DEBUG [2020-06-23 16:39:03] Db: Data was imported from table: 'airambulance_numofheli' (Db.importDataset).
+DEBUG [2020-06-23 16:39:03] Db: Data was imported from table: 'airambulance_x' (Db.importDataset).
+DEBUG [2020-06-23 16:39:03] Db: Data was imported from table: 'airambulance_y' (Db.importDataset).
+DEBUG [2020-06-23 16:39:03] Db: Data was imported from table: 'airambulance_d' (Db.importDataset).
+DEBUG [2020-06-23 16:39:03] Db: Data was imported from table: 'airambulance_s' (Db.importDataset).
+DEBUG [2020-06-23 16:39:03] Db: A table named: '_sys_scripts_airambulance' does not exist in the database (Db.importDataset).
+TRACE [2020-06-23 16:39:03] New scenario tab added in scenario comparison mode: default.
+DEBUG [2020-06-23 16:39:03] Scenario: '1' loaded into UI (compare mode).
+DEBUG [2020-06-23 16:39:03] Scenarios: '1' loaded and rendered in scenario comparison mode.
+DEBUG [2020-06-23 16:39:07] Load active scenario to split comparison mode pressed. ID: '3'.
+TRACE [2020-06-23 16:39:07] Dataset: x-coordinates saved in dataTmp.
+TRACE [2020-06-23 16:39:07] Dataset: y-coordinates saved in dataTmp.
+TRACE [2020-06-23 16:39:07] Dataset: projected demand saved in dataTmp.
+TRACE [2020-06-23 16:39:07] Dataset: units currently assigned saved in dataTmp.
+TRACE [2020-06-23 16:39:07] New scenario tab added in scenario comparison mode: default.
