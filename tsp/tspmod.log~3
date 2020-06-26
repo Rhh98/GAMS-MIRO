@@ -1,4 +1,4 @@
---- Job tspmod.gms Start 06/26/20 16:36:16 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job tspmod.gms Start 06/26/20 16:37:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -28,13 +28,13 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 --- tspmod.gms(13) 3 Mb
 --- Ignoring $include in externalInput section
 --- tspmod.gms(78) 3 Mb
---- Starting execution: elapsed 0:00:00.008
+--- Starting execution: elapsed 0:00:00.012
 --- tspmod.gms(55) 4 Mb
 --- Generating MIP model tsp
 --- tspmod.gms(56) 4 Mb
 ---   578 rows  600 columns  3,222 non-zeroes
 ---   552 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.115
+--- Executing CPLEX: elapsed 0:00:00.118
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -71,7 +71,7 @@ Detecting symmetries...
 Reduced MIP has 554 rows, 575 columns, and 2622 nonzeros.
 Reduced MIP has 552 binaries, 0 generals, 0 SOSs, and 0 indicators.
 Presolve time = 0.00 sec. (2.04 ticks)
-Probing time = 0.02 sec. (2.41 ticks)
+Probing time = 0.00 sec. (2.41 ticks)
 Clique table members: 301.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -98,21 +98,21 @@ Found incumbent of value 335519.533813 after 0.03 sec. (16.06 ticks)
       0     0   323326.5613    25   335519.5338      Cuts: 47      260    3.63%
       0     0   323328.9110    25   335519.5338       Cuts: 3      270    3.63%
 *     0+    0                       329960.0927   323328.9110             2.01%
-Found incumbent of value 329960.092705 after 0.28 sec. (190.59 ticks)
+Found incumbent of value 329960.092705 after 0.30 sec. (190.59 ticks)
 *     0+    0                       324572.4087   323328.9110             0.38%
-Found incumbent of value 324572.408656 after 0.28 sec. (193.06 ticks)
+Found incumbent of value 324572.408656 after 0.30 sec. (193.06 ticks)
       0     0  -1.00000e+75     0   324572.4087   323328.9110      270    0.38%
 Detecting symmetries...
       0     2   323328.9110    42   324572.4087   323331.5864      270    0.38%
-Elapsed time = 0.28 sec. (193.90 ticks, tree = 0.01 MB, solutions = 3)
+Elapsed time = 0.30 sec. (193.90 ticks, tree = 0.01 MB, solutions = 3)
 *    54    44      integral     0   323942.7600   323332.9298      555    0.19%
-Found incumbent of value 323942.760045 after 0.31 sec. (211.70 ticks)
+Found incumbent of value 323942.760045 after 0.33 sec. (211.70 ticks)
 *    92    55      integral     0   323689.2193   323344.7272      817    0.11%
                                                   Impl Bds: 1                  
-Found incumbent of value 323689.219308 after 0.33 sec. (229.98 ticks)
+Found incumbent of value 323689.219308 after 0.34 sec. (229.98 ticks)
 *   192+  128                       323685.4372   323361.2876             0.10%
                                                   Impl Bds: 8                  
-Found incumbent of value 323685.437165 after 0.39 sec. (273.89 ticks)
+Found incumbent of value 323685.437165 after 0.41 sec. (273.89 ticks)
 
 Clique cuts applied:  5
 Cover cuts applied:  2
@@ -123,13 +123,13 @@ Multi commodity flow cuts applied:  4
 Gomory fractional cuts applied:  6
 
 Root node processing (before b&c):
-  Real time             =    0.28 sec. (193.92 ticks)
+  Real time             =    0.30 sec. (193.92 ticks)
 Sequential b&c:
   Real time             =    0.13 sec. (88.44 ticks)
                           ------------
-Total (root+branch&cut) =    0.41 sec. (282.36 ticks)
+Total (root+branch&cut) =    0.42 sec. (282.36 ticks)
 MIP status(102): integer optimal, tolerance
-Cplex Time: 0.41sec (det. 282.36 ticks)
+Cplex Time: 0.42sec (det. 282.36 ticks)
 Fixing integer variables, and solving final LP...
 Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
 CPXPARAM_Advance                                 2
@@ -197,4 +197,4 @@ Relative gap:            0.000971
 --- tspmod.gms(79) 4 Mb
 --- GDX File C:\Users\hasee\Desktop\Summer research\tsp\_miro_gdxout_.gdx
 *** Status: Normal completion
---- Job tspmod.gms Stop 06/26/20 16:36:17 elapsed 0:00:00.688
+--- Job tspmod.gms Stop 06/26/20 16:37:11 elapsed 0:00:00.704

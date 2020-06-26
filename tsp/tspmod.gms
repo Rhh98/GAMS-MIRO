@@ -1,30 +1,30 @@
 $ontext
 TSP with Pataki modifications
 $offtext
-set state /
+set city /
 $include set.csv
 /
 ;
-alias(state,i,j);
+alias(city,i,j);
 set Header /l_lat,l_long,select/;
 $onexternalInput
-table StateInfo(state,Header)
+table CityInfo(city,Header)
 $onDelim
 $include capitals.csv
 $offDelim
 ;
 $offexternalInput
-set select(state) Selected capitals;
-select(state)$(StateInfo(State,'select') eq 1)=yes;
+set select(city) Selected capitals;
+select(city)$(cityInfo(city,'select') eq 1)=yes;
 scalar count /0/;
 parameter OrderVal(i);
 loop(select,count=count+1;OrderVal(select)=count;);
 
 alias(select,k)
 table  dist(i,j)  "distances" ;
-dist(i,j)=arccos(sin(StateInfo(i,'l_lat')*pi/180)*sin(StateInfo(j,'l_long')*pi/180)
-+cos(StateInfo(i,'l_lat')*pi/180)*cos(StateInfo(j,'l_long')*pi/180)*
-cos((StateInfo(i,'l_long')-StateInfo(j,'l_lat'))*pi/180))*6371.004;
+dist(i,j)=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_long')*pi/180)
++cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_long')*pi/180)*
+cos((cityInfo(i,'l_long')-cityInfo(j,'l_lat'))*pi/180))*6371.004;
 binary variables x(i,j);
 free variable obj;
 positive variables u(i) ;
@@ -64,10 +64,10 @@ table TourT(i,j,TourHeader);
 TourT(select,k,'status')$tour(select,k)=1;
 TourT(i,j,'status')$(not tour(i,j))=-1;
 TourT(i,j,'dist')=dist(i,j);
-TourT(i,j,'lat1')=StateInfo(i,'l_lat');
-TourT(i,j,'long1')=StateInfo(i,'l_long');
-TourT(i,j,'lat2')=StateInfo(j,'l_lat');
-TourT(i,j,'long2')=StateInfo(j,'l_long');
+TourT(i,j,'lat1')=cityInfo(i,'l_lat');
+TourT(i,j,'long1')=cityInfo(i,'l_long');
+TourT(i,j,'lat2')=cityInfo(j,'l_lat');
+TourT(i,j,'long2')=cityInfo(j,'l_long');
 scalar TotalCost Total Cost;
 TotalCost=obj.l;
 $offExternalOutput
