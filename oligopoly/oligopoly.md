@@ -128,21 +128,6 @@ at the NE.  This is the case depisted in our graph of a continuous case Bertrand
 </p>
 
 
-
-
-<h2>
-    Extended Mathematical programming(EMP) solvers
-</h2>
-<p>
-    Knowing that the Cournot and Bertrand model can be solved as Nash Equilibrium and the Stackelberg model can be solved as bilevel problem. In both of the 2 cases, we can solved by writing down KKT conditions and then solve them as MCP or MOPEC. However, writing down those KKT conditions may be boring and tough work. Fortunately, we can use the "EMP" solver in GAMS to help do the transferation autlmatically by writing down the problem in equilibrium or bilevel form in the option files. This will largely reduce the work for programming.
-</p>
-
-<p>
-    To see how these Euilibrium and Bilevel problems are actually solved. One can refer to <a href="static_emp2/Mathematical Programming with Equilibrium Constraints.md" target="_blank">here</a>
-</p>
-
-
-
 <a href="Input and Output specification"></a>
 
 <h1>
@@ -208,36 +193,105 @@ More explanantions about the figure will be shown on the output page.
 
 <h1>GAMS Model</h1>
 
- <a href="static_emp2/emo2.gms" target="_blank">Download GAMS model</a>
-
-<a name="Acknoledgements"></a>
+<a href="static_emp2/emp2.gms" target="_blank">Download GAMS model</a>
 
 
-<h1>Acknoledgements</h1>
+<h2>
+    Extended Mathematical programming(EMP) solvers
+</h2>
+<p>
+    Knowing that the Cournot and Bertrand model can be solved as Nash Equilibrium and the Stackelberg model can be solved as bilevel problem. In both of the 2 cases, we can solved by writing down KKT conditions and then solve them as MCP or MOPEC. However, writing down those KKT conditions may be boring and tough work. Fortunately, we can use the "EMP" solver in GAMS to help do the transferation autlmatically by writing down the problem in equilibrium or bilevel form in the option files. This will largely reduce the work for programming.
+</p>
+
+<p>
+To see how these Equilibrium and Bilevel problems are actually solved, we consider the more general class of 
+Mathematical Programming with Equilibrium Constraints.
+
+<p> Mathematical programs with equilibrium constraints (MPEC) refer to a class of constrained optimization problems with variational inequalities as constraints on the optimization problem.  In general an MPEC consists of two sets of variables: x &isin; <b>R</b><sup>n</sup> and y &isin; <b>R</b><sup>m</sup>.  Typically x contains the design variables and y contains the primary variables of a variational inequality that is parameterized by x.  The following are givens for a complete formulation: the "first level objective function" F : <b>R</b><sup>n+m</sup> &rarr; <b>R&#773;</b>, the joint feasible region Z &sube; <b>R</b><sup>n+m</sup>, the "second level equilibrium function" F : <b>R</b><sup>n+m</sup> &rarr; <b>R&#773;</b>, and a set-valued mapping C : <b>R</b><sup>n + m</sup> &rarr; <b>R</b><sup>m</sup> where for each 
+x &isin; <b>R</b><sup>n</sup>, C(x) &sube; <b>R</b><sup>m</sup> is the constraint set. <br>
+<b>DEFINITION</b> - <b>MPEC</b> : given the definition of x and y above we have, 
+<center> min f( x, y ) </center>
+<center> s.t. x, y &isin; Z </center>
+<center> y solves (F( x, &sdot; ), C( x )) . </center>
+The special case where (F( x, &sdot; ), C( x )) is equivalent to a complementarity system, the above problem can be formulated as a minimisation problem with mixed complementarity constraint : <br>
+<center> min f( x, u, v, w ) </center>
+<center> s.t. ( x, u, v, w ) &isin; Z , </center>
+<center> H( x, u, v, w ) = 0 , </center>
+<center> 0 &le; u &perp; v &ge; 0 , </center>
+where (u,v,w) is the concatenation of the y variables, the slacks and multipliers of the constraints that define the set C(x), f and Z.  H is a vector-valued function that summarizes the functional constraints of the y variables
+</p>
+
+<h3>Mixed Complementarity Problem</h3>
+<p>
+In order for a solution to a mixed complementarity problem to be solved using General Algebraic Modeling System (GAMS) the problem must have a particular correct formulation.  A workable MCP formulation for the equilibrium problem needs to incorporate individual simplex constraints which do not render the mapping singular at the equilibrium.   The model declaration in GAMS requires that we explicitly state our complementarity associations for equations and variables.  The syntax is,
+MODEL  model_name  /  equ1.var1,  equ2.var2, ... / ;
+This statement will be more clear after the following sections and reference to the attached GAMS model.
+Letting R&#773; := {R, &infin;, -&infin;}, denote the extended real space for the following formulation :
+<b>DEFINITION</b> - <b>MCP</b> : Given a function F : R<sup>n</sup> &rarr; R<sup>n</sup> and bounds l, u &isin; R&#773;<sup>n</sup> ,
+<center>find  x &isin; R<sup>n</sup> , u, v &isin; R<sup>n</sup><sub>+</sub> </center>
+<center>F(x) = w - v ,</center>
+<center>l &le; x &le; u ,</center>
+<center>s.t. (x - l)'w = 0 ,</center>
+<center> (u - v)'v = 0 .</center> 
+We adopt the following notation to indicate a complementarity function / variable pair and its associated bounds :<br>
+<center> f(x) &ge; 0 , x &ge; 0 , &perp; </center>
+This is understood to mean that as well as satisfying the indicated constraints, we have &lang; f(x), x &rang; = 0.  We can rewrite the above condition equivalently as,
+<center> x&#773;<sub>i</sub> f( x&#773;<sub>i</sub> ) = 0 &forall; i </center>
+where x&#773;<sub>i</sub> satisfies the inequalities. <br>
+Also note that the complementarity function does not have an objective function to be optimised but finds dual feasible pairs which satisfy complementary slackness (complementarity conditions).  We know by SPNE that all games where players always know what node of a decision tree they are at will always have at least one MS - SPNE. We have by the Lemke-Howson method that quadratic programs always terminate in a solution in the case of finite bimatrix game.  Because a zero-sum game is a special case of quadratic programs solvable as a convex LP we have that all linear simultaneous games are solvable as an LCP where Q = 0 and each $A$ corresponds to a payoff matrix; which are made nonnegative by an additive transformation.  We note that an LCP is described above and is a special case of the MCP described in this section.
+</p>
+
+<h3>Solution to Cournot by Complementarity</h3>
+<p>
+Given the formulation above we have that a NE is satisfied by the vector q<sup>*</sup> such that, 
+<center> &forall; i ,  q<sup>*</sup> &isin; <b>argmax</b><sub>q<sub>i</sub> &ge; 0</sub> q<sub>i</sub>p( q<sub>i</sub> + &Sigma;<sub>j &ne; i</sub>q<sub>j</sub><sup>*</sup>) - c<sub>i</sub>(q<sub>i</sub>) 
+</center>
+The KKT Conditions for our NE take the following form, <br>
+<center> &forall; i ,  &nabla;c<sub>i</sub>(q<sub>i</sub>) - p(<b>Q</b>) - q<sub>i</sub>&nabla;p(<b>Q</b>) &ge; 0 ,  q<sub>i</sub> &ge; 0 , &perp;      (<b>NE</b>)    
+</center>
+This describes our NE conditions which are both necessary and sufficient for equilibrium.  See Ferris, Dirkse (1995) which is the source of this definition and where this problem is originally stated.  Also see the updated nash.gms (NASH, SEQ=269) which has the solution to the Cournot problem by MCP as well as the solution the the Stackelberg problem by MPEC.  Our GAMS model closely follows the description found in this paper and this model as we are describing solution to the same canonical microeconomics problem.
+</p>
+
+<h3>Solution to Bertrand by Complementarity</h3>
+<p>
+We assume a model formulation similar to our linear model we defined, save that we suppose continuous strategies and proportional sharing of the market.  As in the Cournot solution by complementarity our problems KKT conditions are both necessary and sufficient conditions for our optimal solution and a NE.  We define them here as,
+<center>&forall; i , p<sub>i</sub> &nabla; q<sub>i</sub>( p<sub>i</sub>, p<sub>-i</sub> ) - c<sub>i</sub> ,  p<sub>i</sub>  &ge; 0  ,  &perp;  (<b>NE</b>)
+</center>
+We note that this is not a demonstration of the classical Bertrand model which has a discontinuous  allocation of market share as a function of firm prices.  This model does not demonstrate the Bertrand paradox because market share is no longer allocated in a Bertrand fashion.  There is no meaningful direct comparison between our Cournot model and our Bertrand model because the model formulations are not congruous. </p>
+
+<h3>Solution to Stackelberg by Complementarity</h3>
+<p>The Stackelberg game problem can be formulated as an MPEC where the second level equilibrium function is a Cournot game solved by complementarity and the first level objective function is the Stackelberg-leader's non-linear optimisation problem.  This is immediate by annalyzing the formulation of the problem as mutual best response where the Stackelberg-leader optimises by internalizing the best response dynamics of the Stackelberg-followers.  We note that this defines an SPNE because there are 2 subgames, the initial subgame of the Stackelberg-leader that contains all the following decision nodes and the Stackelberg-follower's problem where the remaining players simulataneously optimize given the leader's decision. <br><br>
+
+We note that our MPEC formultion is only appropriate for markets with a single Stackelberg-leader.  For an expopsition of multi-leader-follower games see, Leyffer, Munson (2005).  They explain our MPEC formultaion for single-leader game and offer formulations of multi-leader-follower games as a nonlienaer complementarity problem (NCP) and as a nonlinear problem (NLP).  It is also worth noting at this point that the GAMS model types page states that work on MPEC algorithms is ongoing and their performance on more difficult problems is not as certain as other formulations.  We assert here that the single Stackelberg-leader problem is clearly an MPEC from an intuition stand point and the NLP formulation is very complicated.
+
+<a name="Acknowledgements"></a>
+
+
+<h1>Acknowledgements</h1>
 <p>
 We would like to acknowledge the spectacular instruction we receive from the dedicated faculty at UW-Madison, with special acknowledgment of Prof. Jeffrey Linderoth, Prof. Michael Ferris, Prof. Thomas Rutherford and Prof. Marzena Rostek whose instruction directly informed this case study.
 </p>
 <a name="References"></a>
 
 <h1>References</h1>
-<p>
-Dirkse, S P, and Ferris, M C, MCPLIB: A Collection of Nonlinear Mixed Complementarity Problems. Optimization Methods and Software 5 (1995), 319-345.
-Engineering and Economic Applications of Complementarity Problems by M.C. Ferris, J.S. Pang (1997).
-GAMS Model Library : nash.gms http://www.gams.com/modlib/libhtml/nash.htm 
-GAMS Model Type Descriptions http://www.gams.com/modtype/modeltyp.htm 
-M. C. Ferris and T. S. Munson. Complementarity problems in GAMS and the PATH solver. Journal of Economic Dynamics and Control, 24:165-188, 2000. 
-M. C. Ferris and K. Sinapiromsaran. Formulating and solving nonlinear programs as mixed complementarity problems. In V.~H. Nguyen, J.~J. Strodiot, and P.~Tossings, editors, Optimization, volume 481 of Lecture Notes in Economics and Mathematical Systems. Springer-Verlag, 2000 
-Ferris, Michael C., Mangasarian, Olvi L. and Wright, Stephen J., Linear Programming with MATLAB 
-Leyffer S., Munson T. Solving Multi-Leader-Follower Games. Mathematics and Computer Science Division (2005) 
-Lecture Notes on CES Utility by Thomas Rutherford http://www.gamsworld.eu/mpsge/debreu/ces.pdf 
-Lecture : An Introduction to Complementarity by Michael Ferris  http://pages.cs.wisc.edu/~ferris/talks/aussois-intro.pdf 
-Lecture : Complementarity Problems and Applications by Michael Ferris http://pages.cs.wisc.edu/~ferris/talks/StockholmEmbed.pdf 
-Lecture : An Extended Mathematical Programming Framework by Michael Ferris  http://pages.cs.wisc.edu/~ferris/talks/berkeley.pdf 
-Linear Complementarity, Linear and Nonlinear Programming by Katta G. Murty http://ioe.engin.umich.edu/people/fac/books/murty 
-An Introduction to Game Theory by Martin J. Osbourne (2004) Oxford University Press, New York, Oxford
-Microeconomic Analysis, Second Edition by Hal R. Varian, (1984) W.W. Norton & Company - University of Michigan 
-T. Rutherford, Extension of GAMS for complementarity problems in applied economic analysis, (1994) Journal of Economic Dynamics & Control 
-William H. Sandholm, Population Games and Evolutionary Dynamics (2010) The MIT Press, Cambridge, Massachusetts
+
+1. Dirkse, S P, and Ferris, M C, MCPLIB: A Collection of Nonlinear Mixed Complementarity Problems. Optimization Methods and Software 5 (1995), 319-345.
+2. Engineering and Economic Applications of Complementarity Problems by M.C. Ferris, J.S. Pang (1997).
+3. GAMS Model Library : nash.gms http://www.gams.com/modlib/libhtml/nash.htm
+4. GAMS Model Type Descriptions http://www.gams.com/modtype/modeltyp.htm 
+5. M. C. Ferris and T. S. Munson. Complementarity problems in GAMS and the PATH solver. Journal of Economic Dynamics and Control, 24:165-188, 2000. 
+6. M. C. Ferris and K. Sinapiromsaran. Formulating and solving nonlinear programs as mixed complementarity problems. In V.~H. Nguyen,  J.~J. Strodiot, and P.~Tossings, editors, Optimization, volume 481 of Lecture Notes in Economics and Mathematical Systems. Springer-Verlag, 2000 
+7. Ferris, Michael C., Mangasarian, Olvi L. and Wright, Stephen J., Linear Programming with MATLAB 
+8. Leyffer S., Munson T. Solving Multi-Leader-Follower Games. Mathematics and Computer Science Division (2005) 
+9. Lecture Notes on CES Utility by Thomas Rutherford http://www.gamsworld.eu/mpsge/debreu/ces.pdf 
+10. Lecture : An Introduction to Complementarity by Michael Ferris  http://pages.cs.wisc.edu/~ferris/talks/aussois-intro.pdf 
+11. Lecture : Complementarity Problems and Applications by Michael Ferris http://pages.cs.wisc.edu/~ferris/talks/StockholmEmbed.pdf 
+12. Lecture : An Extended Mathematical Programming Framework by Michael Ferris  http://pages.cs.wisc.edu/~ferris/talks/berkeley.pdf 
+13. Linear Complementarity, Linear and Nonlinear Programming by Katta G. Murty http://ioe.engin.umich.edu/people/fac/books/murty 
+14. An Introduction to Game Theory by Martin J. Osbourne (2004) Oxford University Press, New York, Oxford
+15. Microeconomic Analysis, Second Edition by Hal R. Varian, (1984) W.W. Norton & Company - University of Michigan 
+16. T. Rutherford, Extension of GAMS for complementarity problems in applied economic analysis, (1994) Journal of Economic Dynamics & Control 
+17. William H. Sandholm, Population Games and Evolutionary Dynamics (2010) The MIT Press, Cambridge, Massachusetts
 </p>
 
 
