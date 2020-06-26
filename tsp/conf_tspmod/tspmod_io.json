@@ -1,13 +1,13 @@
 {
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
-		"stateinfo":	{
-			"alias":	"stateinfo",
+		"cityinfo":	{
+			"alias":	"cityinfo",
 			"symtype":	"parameter",
 			"headers":	{
-				"state":	{
+				"city":	{
 					"type":	"string",
-					"alias":	"state"
+					"alias":	"city"
 				},
 				"l_lat":	{
 					"type":	"numeric",
@@ -31,11 +31,11 @@
 			"headers":	{
 				"i":	{
 					"type":	"string",
-					"alias":	"Aliased with state"
+					"alias":	"Aliased with city"
 				},
 				"j":	{
 					"type":	"string",
-					"alias":	"Aliased with state"
+					"alias":	"Aliased with city"
 				},
 				"status":	{
 					"type":	"numeric",

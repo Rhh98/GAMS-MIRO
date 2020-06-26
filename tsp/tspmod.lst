@@ -1,4 +1,4 @@
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -13,118 +13,73 @@ INCLUDE    C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
    8  ;
    9  alias(city,i,j);
   10  set Header /l_lat,l_long,select/;
+GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
   12  table CityInfo(city,Header)
-INCLUDE    C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\capitals.csv
-  15  ,l_lat,l_long,select
-  16  Montgomery_AL,32.361538,-86.279118,
-  17  Juneau_AK,58.301935,-134.41974,1
-  18  Phoenix_AZ,33.448457,-112.073844,1
-  19  Little-Rock_AR,34.736009,-92.331122,1
-  20  Sacramento_CA,38.555605,-121.468926,1
-  21  Denver_CO,39.7391667,-104.984167,1
-  22  Hartford_CT,41.767,-72.677,1
-  23  Dover_DE,39.161921,-75.526755,1
-  24  Tallahassee_FL,30.4518,-84.27277,1
-  25  Atlanta_GA,33.76,-84.39,1
-  26  Honolulu_HI,21.30895,-157.826182,1
-  27  Boise_ID,43.613739,-116.237651,1
-  28  Springfield_IL,39.78325,-89.650373,1
-  29  Indianapolis_IN,39.790942,-86.147685,1
-  30  Des-Moines_IA,41.590939,-93.620866,1
-  31  Topeka_KS,39.04,-95.69,1
-  32  Frankfort_KY,38.197274,-84.86311,1
-  33  Baton-Rouge_LA,30.45809,-91.140229,1
-  34  Augusta_ME,44.323535,-69.765261,1
-  35  Annapolis_MD,38.972945,-76.501157,1
-  36  Boston_MA,42.2352,-71.0275,1
-  37  Lansing_MI,42.7335,-84.5467,1
-  38  Saint-Paul_MN,44.95,-93.094,1
-  39  Jackson_MS,32.32,-90.207,1
-  40  Jefferson-City_MO,38.572954,-92.189283,1
-  41  Helana_MT,46.595805,-112.027031,1
-  42  Lincoln_NE,40.809868,-96.675345,1
-  43  Carson-City_NV,39.160949,-119.753877,1
-  44  Concord_NH,43.220093,-71.549127,1
-  45  Trenton_NJ,40.221741,-74.756138,1
-  46  Santa-Fe_NM,35.667231,-105.964575,1
-  47  Albany_NY,42.659829,-73.781339,1
-  48  Raleigh_NC,35.771,-78.638,1
-  49  Bismarck_ND,46.813343,-100.779004,1
-  50  Columbus_OH,39.962245,-83.000647,1
-  51  Oklahoma-City_OK,35.482309,-97.534994,1
-  52  Salem_OR,44.931109,-123.029159,1
-  53  Harrisburg_PA,40.269789,-76.875613,1
-  54  Providence_RI,41.82355,-71.422132,1
-  55  Columbia_SC,34,-81.035,1
-  56  Pierre_SD,44.367966,-100.336378,1
-  57  Nashville_TN,36.165,-86.784,1
-  58  Austin_TX,30.266667,-97.75,1
-  59  Salt-Lake-City_UT,40.7547,-111.892622,1
-  60  Montpelier_VT,44.26639,-72.57194,1
-  61  Richmond_VA,37.54,-77.46,1
-  62  Olympia_WA,47.042418,-122.893077,1
-  63  Charleston_WV,38.349497,-81.633294,1
-  64  Madison_WI,43.074722,-89.384444,1
-  65  Cheyenne_WY,41.145548,-104.802042,1
-  67  ;
-  69  set select(city) Selected capitals;
-  70  select(city)$(cityInfo(city,'select') eq 1)=yes;
-  71  scalar count /0/;
-  72  parameter OrderVal(i);
-  73  loop(select,count=count+1;OrderVal(select)=count;);
-  74   
-  75  alias(select,k)
-  76  table  dist(i,j)  "distances" ;
-  77  dist(i,j)=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_long')*pi/180)
-  78  +cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_long')*pi/180)*
-  79  cos((cityInfo(i,'l_long')-cityInfo(j,'l_lat'))*pi/180))*6371.004;
-  80  binary variables x(i,j);
-  81  free variable obj;
-  82  positive variables u(i) ;
-  83  equations defobj, assign1(j), assign2(i), mtz(i,j);
-  84  defobj..
-  85  obj =e= sum((select,k), dist(select,k) * x(select,k));
-  86   
-  87  assign1(select)..
-  88  sum(k$(not sameas(select,k)), x(select,k)) =e= 1;
-  89   
-  90  assign2(select)..
-  91  sum(k$(not sameas(select,k)), x(k,select)) =e= 1;
-  92   
-  93  mtz(select,k)$(OrderVal(select) ne 1 and OrderVal(k) ne 1)..
-  94    u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
-  95   
-  96  model tsp /defobj, assign1, assign2, mtz/;
-  97   
-  98  x.fx(select,select) = 0;
-  99  u.lo(select) = 2; u.up(select) = card(i);
- 100  u.fx(select)$(OrderVal(select) eq 1) = 1;
- 101   
- 102  option optcr = 1e-3;
- 106  tsp.optfile = 1;
- 107  solve tsp using mip minimizing obj ;
- 108  display obj.l;
- 109  set tour(i,j) ;
- 110   
- 111  tour(select,select) = no;
- 112  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
- 113  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
- 115  table TourT(i,j,TourHeader);
- 116  TourT(select,k,'status')$tour(select,k)=1;
- 117  TourT(i,j,'status')$(not tour(i,j))=-1;
- 118  TourT(i,j,'dist')=dist(i,j);
- 119  TourT(i,j,'lat1')=cityInfo(i,'l_lat');
- 120  TourT(i,j,'long1')=cityInfo(i,'l_long');
- 121  TourT(i,j,'lat2')=cityInfo(j,'l_lat');
- 122  TourT(i,j,'long2')=cityInfo(j,'l_long');
- 123  scalar TotalCost Total Cost;
- 124  TotalCost=obj.l;
- 126  * Just print the tour in a simple way
- 127  option tour:0:0:1 ;
- 128   
- 129  display tour;
- 130  display u.L;
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 2
+--- LOAD  CityInfo = 1:cityinfo
+  16  ;
+  18  set select(city) Selected capitals;
+  19  select(city)$(cityInfo(city,'select') eq 1)=yes;
+  20  scalar count /0/;
+  21  parameter OrderVal(i);
+  22  loop(select,count=count+1;OrderVal(select)=count;);
+  23   
+  24  alias(select,k)
+  25  table  dist(i,j)  "distances" ;
+  26  dist(i,j)=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_long')*pi/180)
+  27  +cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_long')*pi/180)*
+  28  cos((cityInfo(i,'l_long')-cityInfo(j,'l_lat'))*pi/180))*6371.004;
+  29  binary variables x(i,j);
+  30  free variable obj;
+  31  positive variables u(i) ;
+  32  equations defobj, assign1(j), assign2(i), mtz(i,j);
+  33  defobj..
+  34  obj =e= sum((select,k), dist(select,k) * x(select,k));
+  35   
+  36  assign1(select)..
+  37  sum(k$(not sameas(select,k)), x(select,k)) =e= 1;
+  38   
+  39  assign2(select)..
+  40  sum(k$(not sameas(select,k)), x(k,select)) =e= 1;
+  41   
+  42  mtz(select,k)$(OrderVal(select) ne 1 and OrderVal(k) ne 1)..
+  43    u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
+  44   
+  45  model tsp /defobj, assign1, assign2, mtz/;
+  46   
+  47  x.fx(select,select) = 0;
+  48  u.lo(select) = 2; u.up(select) = card(i);
+  49  u.fx(select)$(OrderVal(select) eq 1) = 1;
+  50   
+  51  option optcr = 1e-3;
+  55  tsp.optfile = 1;
+  56  solve tsp using mip minimizing obj ;
+  57  display obj.l;
+  58  set tour(i,j) ;
+  59   
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+  60  tour(select,select) = no;
+  61  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
+  62  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
+  64  table TourT(i,j,TourHeader);
+  65  TourT(select,k,'status')$tour(select,k)=1;
+  66  TourT(i,j,'status')$(not tour(i,j))=-1;
+  67  TourT(i,j,'dist')=dist(i,j);
+  68  TourT(i,j,'lat1')=cityInfo(i,'l_lat');
+  69  TourT(i,j,'long1')=cityInfo(i,'l_long');
+  70  TourT(i,j,'lat2')=cityInfo(j,'l_lat');
+  71  TourT(i,j,'long2')=cityInfo(j,'l_long');
+  72  scalar TotalCost Total Cost;
+  73  TotalCost=obj.l;
+  75  * Just print the tour in a simple way
+  76  option tour:0:0:1 ;
+  77   
+  78  display tour;
+  79  display u.L;
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -133,13 +88,13 @@ Include File Summary
 
      1        1 INPUT          0       0  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
      2        5 INCLUDE        1       5  .C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
-     3       14 INCLUDE        1      13  .C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\capitals.csv
+     3       11 GDXIN          1      10  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
 
 
-COMPILATION TIME     =        0.078 SECONDS      3 MB  30.2.0 r482c588 WEX-WEI
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 3
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE tsp Using MIP From line 107
+Equation Listing    SOLVE tsp Using MIP From line 56
 
 
 ---- defobj  =E=  
@@ -195,6 +150,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 13856.9134505458*x(Little-Rock_AR,Jackson_MS) - 13708.829635105*x(Little-Rock_AR,Jefferson-City_MO) - 11921.0976625028*x(Little-Rock_AR,Helana_MT) - 13347.9044270553*x(Little-Rock_AR,Lincoln_NE) - 11450.0160065899*x(Little-Rock_AR,Carson-City_NV)
      
       - 15185.5492291713*x(Little-Rock_AR,Concord_NH) - 14910.8704026088*x(Little-Rock_AR,Trenton_NJ) - 12689.7155156305*x(Little-Rock_AR,Santa-Fe_NM) - 15031.9746887597*x(Little-Rock_AR,Albany_NY) - 14587.4394308391*x(Little-Rock_AR,Raleigh_NC)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 12934.9988145567*x(Little-Rock_AR,Bismarck_ND) - 14373.8636757038*x(Little-Rock_AR,Columbus_OH) - 13334.6319002794*x(Little-Rock_AR,Oklahoma-City_OK) - 10958.6061878475*x(Little-Rock_AR,Salem_OR) - 14782.154226682*x(Little-Rock_AR,Harrisburg_PA)
      
@@ -247,6 +208,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 13870.9527633947*x(Hartford_CT,Denver_CO) - 15200.5104359879*x(Hartford_CT,Hartford_CT) - 15076.5468793526*x(Hartford_CT,Dover_DE) - 14768.8064304713*x(Hartford_CT,Tallahassee_FL) - 14802.412681999*x(Hartford_CT,Atlanta_GA)
      
       - 11312.4352266916*x(Hartford_CT,Honolulu_HI) - 12991.462939554*x(Hartford_CT,Boise_ID) - 14666.5929357715*x(Hartford_CT,Springfield_IL) - 14804.1977580587*x(Hartford_CT,Indianapolis_IN) - 14477.2188606399*x(Hartford_CT,Des-Moines_IA)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14394.6346247576*x(Hartford_CT,Topeka_KS) - 14834.6004837707*x(Hartford_CT,Frankfort_KY) - 14621.9565648882*x(Hartford_CT,Baton-Rouge_LA) - 15335.0725907881*x(Hartford_CT,Augusta_ME) - 15054.9699289282*x(Hartford_CT,Annapolis_MD)
      
@@ -299,6 +266,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 10824.6914605546*x(Tallahassee_FL,Salem_OR) - 14143.73205474*x(Tallahassee_FL,Harrisburg_PA) - 14450.5449289144*x(Tallahassee_FL,Providence_RI) - 13827.141716105*x(Tallahassee_FL,Columbia_SC) - 12643.2575750186*x(Tallahassee_FL,Pierre_SD)
      
       - 13570.2681185013*x(Tallahassee_FL,Nashville_TN) - 13009.1930092498*x(Tallahassee_FL,Austin_TX) - 11853.9383038651*x(Tallahassee_FL,Salt-Lake-City_UT) - 14468.8899105898*x(Tallahassee_FL,Montpelier_VT)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14054.8125254864*x(Tallahassee_FL,Richmond_VA) - 10751.3628311504*x(Tallahassee_FL,Olympia_WA) - 13864.1736423497*x(Tallahassee_FL,Charleston_WV) - 13435.0228835044*x(Tallahassee_FL,Madison_WI) - 12369.890365828*x(Tallahassee_FL,Cheyenne_WY)
      
@@ -351,6 +324,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 16907.2079227382*x(Boise_ID,Augusta_ME) - 16179.3250361042*x(Boise_ID,Annapolis_MD) - 16746.894092024*x(Boise_ID,Boston_MA) - 15419.1764544499*x(Boise_ID,Lansing_MI) - 14530.6579587229*x(Boise_ID,Saint-Paul_MN)
      
       - 14837.5308781846*x(Boise_ID,Jackson_MS) - 14636.1234712725*x(Boise_ID,Jefferson-City_MO) - 12490.9810562832*x(Boise_ID,Helana_MT) - 14168.1936671306*x(Boise_ID,Lincoln_NE) - 11763.6587494926*x(Boise_ID,Carson-City_NV)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 8
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 16716.1412798264*x(Boise_ID,Concord_NH) - 16361.7406906128*x(Boise_ID,Trenton_NJ) - 13251.9701005106*x(Boise_ID,Santa-Fe_NM) - 16492.4836349178*x(Boise_ID,Albany_NY) - 15939.0197937613*x(Boise_ID,Raleigh_NC)
      
@@ -403,6 +382,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 14617.0610495289*x(Indianapolis_IN,Nashville_TN) - 14012.6336488518*x(Indianapolis_IN,Austin_TX) - 12781.6828776892*x(Indianapolis_IN,Salt-Lake-City_UT) - 15505.8438917853*x(Indianapolis_IN,Montpelier_VT)
      
       - 15103.4503313128*x(Indianapolis_IN,Richmond_VA) - 11629.1404863381*x(Indianapolis_IN,Olympia_WA) - 14916.4613748285*x(Indianapolis_IN,Charleston_WV) - 14475.1990869058*x(Indianapolis_IN,Madison_WI) - 13341.9900542058*x(Indianapolis_IN,Cheyenne_WY)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 9
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 10085.6122076242*x(Des-Moines_IA,Juneau_AK) - 12950.8990163029*x(Des-Moines_IA,Phoenix_AZ) - 14468.6118593221*x(Des-Moines_IA,Little-Rock_AR) - 11975.7118682254*x(Des-Moines_IA,Sacramento_CA) - 13405.8975127385*x(Des-Moines_IA,Denver_CO)
      
@@ -455,6 +440,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 14244.3544374896*x(Frankfort_KY,Jackson_MS) - 14118.2756139595*x(Frankfort_KY,Jefferson-City_MO) - 12477.7983246526*x(Frankfort_KY,Helana_MT) - 13801.3463310933*x(Frankfort_KY,Lincoln_NE) - 12073.4845679069*x(Frankfort_KY,Carson-City_NV)
      
       - 15315.0397381866*x(Frankfort_KY,Concord_NH) - 15086.3396078363*x(Frankfort_KY,Trenton_NJ) - 13231.5323429926*x(Frankfort_KY,Santa-Fe_NM) - 15197.40534931*x(Frankfort_KY,Albany_NY) - 14816.3920452805*x(Frankfort_KY,Raleigh_NC)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 10
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 13415.2262057161*x(Frankfort_KY,Bismarck_ND) - 14671.9304473329*x(Frankfort_KY,Columbus_OH) - 13801.8224981548*x(Frankfort_KY,Oklahoma-City_OK) - 11579.7288627278*x(Frankfort_KY,Salem_OR) - 14991.5721573054*x(Frankfort_KY,Harrisburg_PA)
      
@@ -507,6 +498,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 15037.9729576264*x(Annapolis_MD,Hartford_CT) - 14886.7159655297*x(Annapolis_MD,Dover_DE) - 14502.4721144555*x(Annapolis_MD,Tallahassee_FL) - 14534.5419057348*x(Annapolis_MD,Atlanta_GA) - 10899.4986673498*x(Annapolis_MD,Honolulu_HI)
      
       - 12571.7593538705*x(Annapolis_MD,Boise_ID) - 14358.2844570997*x(Annapolis_MD,Springfield_IL) - 14521.1795138963*x(Annapolis_MD,Indianapolis_IN) - 14143.8328691371*x(Annapolis_MD,Des-Moines_IA) - 14048.7302398979*x(Annapolis_MD,Topeka_KS)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 11
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14561.9344003938*x(Annapolis_MD,Frankfort_KY) - 14303.2361308309*x(Annapolis_MD,Baton-Rouge_LA) - 15201.7268692321*x(Annapolis_MD,Augusta_ME) - 14855.7552427601*x(Annapolis_MD,Annapolis_MD) - 15094.7597150485*x(Annapolis_MD,Boston_MA)
      
@@ -559,6 +556,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 15727.8572280191*x(Lansing_MI,Providence_RI) - 15174.6282740207*x(Lansing_MI,Columbia_SC) - 13987.0113385889*x(Lansing_MI,Pierre_SD) - 14934.8260862498*x(Lansing_MI,Nashville_TN) - 14356.4830042712*x(Lansing_MI,Austin_TX)
      
       - 13134.8174697969*x(Lansing_MI,Salt-Lake-City_UT) - 15761.9846538535*x(Lansing_MI,Montpelier_VT) - 15382.8558354225*x(Lansing_MI,Richmond_VA) - 11982.3032284712*x(Lansing_MI,Olympia_WA) - 15215.6284106043*x(Lansing_MI,Charleston_WV)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 12
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14800.8688787983*x(Lansing_MI,Madison_WI) - 13691.7866012237*x(Lansing_MI,Cheyenne_WY) - 10452.0436116866*x(Saint-Paul_MN,Juneau_AK) - 13316.5400505784*x(Saint-Paul_MN,Phoenix_AZ) - 14843.6095288471*x(Saint-Paul_MN,Little-Rock_AR)
      
@@ -611,6 +614,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 14227.5672567361*x(Jefferson-City_MO,Baton-Rouge_LA) - 15719.8596166664*x(Jefferson-City_MO,Augusta_ME) - 15187.6482381036*x(Jefferson-City_MO,Annapolis_MD) - 15582.2992725953*x(Jefferson-City_MO,Boston_MA)
      
       - 14712.3280322067*x(Jefferson-City_MO,Lansing_MI) - 14041.2180114527*x(Jefferson-City_MO,Saint-Paul_MN) - 14283.6064519976*x(Jefferson-City_MO,Jackson_MS) - 14135.6590217595*x(Jefferson-City_MO,Jefferson-City_MO)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 13
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 12336.2428526735*x(Jefferson-City_MO,Helana_MT) - 13773.6757953966*x(Jefferson-City_MO,Lincoln_NE) - 11848.6592045508*x(Jefferson-City_MO,Carson-City_NV) - 15583.43366729*x(Jefferson-City_MO,Concord_NH)
      
@@ -663,6 +672,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 14783.6687260142*x(Lincoln_NE,Nashville_TN) - 13998.4001643865*x(Lincoln_NE,Austin_TX) - 12619.4579433701*x(Lincoln_NE,Salt-Lake-City_UT) - 15910.8601279811*x(Lincoln_NE,Montpelier_VT) - 15435.274910601*x(Lincoln_NE,Richmond_VA)
      
       - 11403.9580325982*x(Lincoln_NE,Olympia_WA) - 15170.0714326738*x(Lincoln_NE,Charleston_WV) - 14597.50973094*x(Lincoln_NE,Madison_WI) - 13259.605664553*x(Lincoln_NE,Cheyenne_WY) - 9424.79713063513*x(Carson-City_NV,Juneau_AK)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 14
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 12117.228031262*x(Carson-City_NV,Phoenix_AZ) - 14127.3505694657*x(Carson-City_NV,Little-Rock_AR) - 11047.5055328311*x(Carson-City_NV,Sacramento_CA) - 12784.889095811*x(Carson-City_NV,Denver_CO) - 16153.0875329254*x(Carson-City_NV,Hartford_CT)
      
@@ -715,6 +730,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 14303.785077173*x(Trenton_NJ,Saint-Paul_MN) - 14473.2150691901*x(Trenton_NJ,Jackson_MS) - 14380.347698152*x(Trenton_NJ,Jefferson-City_MO) - 12978.5918453358*x(Trenton_NJ,Helana_MT) - 14131.7526193127*x(Trenton_NJ,Lincoln_NE)
      
       - 12678.0055613058*x(Trenton_NJ,Carson-City_NV) - 15183.1301370389*x(Trenton_NJ,Concord_NH) - 15017.584824872*x(Trenton_NJ,Trenton_NJ) - 13699.1881147182*x(Trenton_NJ,Santa-Fe_NM) - 15112.4844116805*x(Trenton_NJ,Albany_NY)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 15
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14822.4722220404*x(Trenton_NJ,Raleigh_NC) - 13791.2564906688*x(Trenton_NJ,Bismarck_ND) - 14770.1806439667*x(Trenton_NJ,Columbus_OH) - 14151.493479073*x(Trenton_NJ,Oklahoma-City_OK) - 12185.7306595939*x(Trenton_NJ,Salem_OR)
      
@@ -767,6 +788,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 13088.5616721663*x(Raleigh_NC,Denver_CO) - 14774.1832333528*x(Raleigh_NC,Hartford_CT) - 14604.7282861209*x(Raleigh_NC,Dover_DE) - 14172.1295677307*x(Raleigh_NC,Tallahassee_FL) - 14203.1656847002*x(Raleigh_NC,Atlanta_GA)
      
       - 10587.0411767241*x(Raleigh_NC,Honolulu_HI) - 12169.7521659673*x(Raleigh_NC,Boise_ID) - 14003.5429899876*x(Raleigh_NC,Springfield_IL) - 14180.7028886701*x(Raleigh_NC,Indianapolis_IN) - 13775.8142981503*x(Raleigh_NC,Des-Moines_IA)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 16
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 13674.4166361254*x(Raleigh_NC,Topeka_KS) - 14227.5607493763*x(Raleigh_NC,Frankfort_KY) - 13942.8214890291*x(Raleigh_NC,Baton-Rouge_LA) - 14957.8859504355*x(Raleigh_NC,Augusta_ME) - 14567.5277721363*x(Raleigh_NC,Annapolis_MD)
      
@@ -819,6 +846,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 15137.5994248655*x(Columbus_OH,Harrisburg_PA) - 15393.8443755154*x(Columbus_OH,Providence_RI) - 14847.2325886414*x(Columbus_OH,Columbia_SC) - 13705.5192639487*x(Columbus_OH,Pierre_SD) - 14618.7924684162*x(Columbus_OH,Nashville_TN)
      
       - 14072.2261761156*x(Columbus_OH,Austin_TX) - 12890.0695182157*x(Columbus_OH,Salt-Lake-City_UT) - 15427.9745457594*x(Columbus_OH,Montpelier_VT) - 15051.2598565354*x(Columbus_OH,Richmond_VA) - 11759.3763642469*x(Columbus_OH,Olympia_WA)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 17
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14889.6203858436*x(Columbus_OH,Charleston_WV) - 14491.2533150529*x(Columbus_OH,Madison_WI) - 13425.0274522064*x(Columbus_OH,Cheyenne_WY) - 9334.66404342156*x(Oklahoma-City_OK,Juneau_AK) - 12198.8590987917*x(Oklahoma-City_OK,Phoenix_AZ)
      
@@ -871,6 +904,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 12689.5005693794*x(Harrisburg_PA,Boise_ID) - 14502.7113284596*x(Harrisburg_PA,Springfield_IL) - 14667.4853489639*x(Harrisburg_PA,Indianapolis_IN) - 14285.4188640561*x(Harrisburg_PA,Des-Moines_IA) - 14188.443244*x(Harrisburg_PA,Topeka_KS)
      
       - 14708.7678109203*x(Harrisburg_PA,Frankfort_KY) - 14446.6073501269*x(Harrisburg_PA,Baton-Rouge_LA) - 15345.4220716082*x(Harrisburg_PA,Augusta_ME) - 15003.0156585035*x(Harrisburg_PA,Annapolis_MD) - 15239.3452271552*x(Harrisburg_PA,Boston_MA)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 18
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14765.3714244276*x(Harrisburg_PA,Lansing_MI) - 14298.4419712899*x(Harrisburg_PA,Saint-Paul_MN) - 14477.7493777841*x(Harrisburg_PA,Jackson_MS) - 14377.5962222714*x(Harrisburg_PA,Jefferson-City_MO) - 12919.975260819*x(Harrisburg_PA,Helana_MT)
      
@@ -923,6 +962,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 12326.6292315205*x(Columbia_SC,Salt-Lake-City_UT) - 14745.628989153*x(Columbia_SC,Montpelier_VT) - 14365.7374793413*x(Columbia_SC,Richmond_VA) - 11237.6403103008*x(Columbia_SC,Olympia_WA) - 14206.8876203605*x(Columbia_SC,Charleston_WV)
      
       - 13826.3918796967*x(Columbia_SC,Madison_WI) - 12824.1240636607*x(Columbia_SC,Cheyenne_WY) - 10220.8265475652*x(Pierre_SD,Juneau_AK) - 13068.060382885*x(Pierre_SD,Phoenix_AZ) - 14755.0481008434*x(Pierre_SD,Little-Rock_AR)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 19
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 12050.7543317459*x(Pierre_SD,Sacramento_CA) - 13594.5544614413*x(Pierre_SD,Denver_CO) - 16308.9202868019*x(Pierre_SD,Hartford_CT) - 16054.6482140309*x(Pierre_SD,Dover_DE) - 15337.592923465*x(Pierre_SD,Tallahassee_FL)
      
@@ -975,6 +1020,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 12806.6069679087*x(Austin_TX,Lincoln_NE) - 10803.1476698291*x(Austin_TX,Carson-City_NV) - 14863.0420944842*x(Austin_TX,Concord_NH) - 14557.4041114117*x(Austin_TX,Trenton_NJ) - 12091.620803686*x(Austin_TX,Santa-Fe_NM)
      
       - 14684.0381847043*x(Austin_TX,Albany_NY) - 14197.9190971887*x(Austin_TX,Raleigh_NC) - 12377.8811500366*x(Austin_TX,Bismarck_ND) - 13934.8476988862*x(Austin_TX,Columbus_OH) - 12783.7584575568*x(Austin_TX,Oklahoma-City_OK)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 20
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 10314.6399255219*x(Austin_TX,Salem_OR) - 14404.444793976*x(Austin_TX,Harrisburg_PA) - 14834.6437354472*x(Austin_TX,Providence_RI) - 14008.2342337806*x(Austin_TX,Columbia_SC) - 12446.4585391066*x(Austin_TX,Pierre_SD)
      
@@ -1027,6 +1078,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 12587.121012413*x(Montpelier_VT,Olympia_WA) - 15200.373779365*x(Montpelier_VT,Charleston_WV) - 14959.0828568896*x(Montpelier_VT,Madison_WI) - 14117.2137040756*x(Montpelier_VT,Cheyenne_WY) - 10247.0265314288*x(Richmond_VA,Juneau_AK)
      
       - 13040.7347804324*x(Richmond_VA,Phoenix_AZ) - 14080.4773217907*x(Richmond_VA,Little-Rock_AR) - 12205.1606959792*x(Richmond_VA,Sacramento_CA) - 13305.8585699494*x(Richmond_VA,Denver_CO) - 14920.533579498*x(Richmond_VA,Hartford_CT)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 21
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14760.9608131469*x(Richmond_VA,Dover_DE) - 14354.7317023488*x(Richmond_VA,Tallahassee_FL) - 14386.3441739486*x(Richmond_VA,Atlanta_GA) - 10761.2393690657*x(Richmond_VA,Honolulu_HI) - 12392.0935310722*x(Richmond_VA,Boise_ID)
      
@@ -1079,6 +1136,12 @@ defobj..  - 11610.4979803365*x(Juneau_AK,Juneau_AK) - 14070.8318698128*x(Juneau_
       - 15014.4373529458*x(Charleston_WV,Trenton_NJ) - 13325.71763032*x(Charleston_WV,Santa-Fe_NM) - 15121.0369826321*x(Charleston_WV,Albany_NY) - 14766.4123810017*x(Charleston_WV,Raleigh_NC) - 13478.9580459413*x(Charleston_WV,Bismarck_ND)
      
       - 14650.1125065813*x(Charleston_WV,Columbus_OH) - 13857.8592097817*x(Charleston_WV,Oklahoma-City_OK) - 11719.8204242998*x(Charleston_WV,Salem_OR) - 14932.9911262828*x(Charleston_WV,Harrisburg_PA) - 15182.7269249806*x(Charleston_WV,Providence_RI)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 22
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
      
       - 14648.7816411438*x(Charleston_WV,Columbia_SC) - 13548.9473378739*x(Charleston_WV,Pierre_SD) - 14432.181687726*x(Charleston_WV,Nashville_TN) - 13913.1320545365*x(Charleston_WV,Austin_TX) - 12762.5614940577*x(Charleston_WV,Salt-Lake-City_UT)
      
@@ -1131,6 +1194,13 @@ assign1(Juneau_AK)..  x(Juneau_AK,Phoenix_AZ) + x(Juneau_AK,Little-Rock_AR) + x(
      
       + x(Juneau_AK,Honolulu_HI) + x(Juneau_AK,Boise_ID) + x(Juneau_AK,Springfield_IL) + x(Juneau_AK,Indianapolis_IN) + x(Juneau_AK,Des-Moines_IA) + x(Juneau_AK,Topeka_KS) + x(Juneau_AK,Frankfort_KY) + x(Juneau_AK,Baton-Rouge_LA) + x(Juneau_AK,Augusta_ME)
      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 23
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     assign1  =E=       
+     
       + x(Juneau_AK,Annapolis_MD) + x(Juneau_AK,Boston_MA) + x(Juneau_AK,Lansing_MI) + x(Juneau_AK,Saint-Paul_MN) + x(Juneau_AK,Jackson_MS) + x(Juneau_AK,Jefferson-City_MO) + x(Juneau_AK,Helana_MT) + x(Juneau_AK,Lincoln_NE) + x(Juneau_AK,Carson-City_NV)
      
       + x(Juneau_AK,Concord_NH) + x(Juneau_AK,Trenton_NJ) + x(Juneau_AK,Santa-Fe_NM) + x(Juneau_AK,Albany_NY) + x(Juneau_AK,Raleigh_NC) + x(Juneau_AK,Bismarck_ND) + x(Juneau_AK,Columbus_OH) + x(Juneau_AK,Oklahoma-City_OK) + x(Juneau_AK,Salem_OR)
@@ -1182,6 +1252,13 @@ assign2(Juneau_AK)..  x(Phoenix_AZ,Juneau_AK) + x(Little-Rock_AR,Juneau_AK) + x(
      
       + x(Richmond_VA,Juneau_AK) + x(Olympia_WA,Juneau_AK) + x(Charleston_WV,Juneau_AK) + x(Madison_WI,Juneau_AK) + x(Cheyenne_WY,Juneau_AK) =E= 1 ; (LHS = 0, INFES = 1 ****)
      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 24
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     assign2  =E=  
+
 assign2(Phoenix_AZ)..  x(Juneau_AK,Phoenix_AZ) + x(Little-Rock_AR,Phoenix_AZ) + x(Sacramento_CA,Phoenix_AZ) + x(Denver_CO,Phoenix_AZ) + x(Hartford_CT,Phoenix_AZ) + x(Dover_DE,Phoenix_AZ) + x(Tallahassee_FL,Phoenix_AZ) + x(Atlanta_GA,Phoenix_AZ)
      
       + x(Honolulu_HI,Phoenix_AZ) + x(Boise_ID,Phoenix_AZ) + x(Springfield_IL,Phoenix_AZ) + x(Indianapolis_IN,Phoenix_AZ) + x(Des-Moines_IA,Phoenix_AZ) + x(Topeka_KS,Phoenix_AZ) + x(Frankfort_KY,Phoenix_AZ) + x(Baton-Rouge_LA,Phoenix_AZ)
@@ -1221,9 +1298,9 @@ mtz(Phoenix_AZ,Sacramento_CA)..  48*x(Phoenix_AZ,Sacramento_CA) + u(Phoenix_AZ) 
      
 REMAINING 2301 ENTRIES SKIPPED
 
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 25
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE tsp Using MIP From line 107
+Column Listing      SOLVE tsp Using MIP From line 56
 
 
 ---- x  
@@ -1279,6 +1356,13 @@ u(Phoenix_AZ)
         1       mtz(Phoenix_AZ,Saint-Paul_MN)
         1       mtz(Phoenix_AZ,Jackson_MS)
         1       mtz(Phoenix_AZ,Jefferson-City_MO)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 26
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
         1       mtz(Phoenix_AZ,Helana_MT)
         1       mtz(Phoenix_AZ,Lincoln_NE)
         1       mtz(Phoenix_AZ,Carson-City_NV)
@@ -1330,6 +1414,13 @@ u(Phoenix_AZ)
        -1       mtz(Lincoln_NE,Phoenix_AZ)
        -1       mtz(Carson-City_NV,Phoenix_AZ)
        -1       mtz(Concord_NH,Phoenix_AZ)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 27
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
        -1       mtz(Trenton_NJ,Phoenix_AZ)
        -1       mtz(Santa-Fe_NM,Phoenix_AZ)
        -1       mtz(Albany_NY,Phoenix_AZ)
@@ -1381,6 +1472,13 @@ u(Little-Rock_AR)
         1       mtz(Little-Rock_AR,Helana_MT)
         1       mtz(Little-Rock_AR,Lincoln_NE)
         1       mtz(Little-Rock_AR,Carson-City_NV)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 28
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
         1       mtz(Little-Rock_AR,Concord_NH)
         1       mtz(Little-Rock_AR,Trenton_NJ)
         1       mtz(Little-Rock_AR,Santa-Fe_NM)
@@ -1432,6 +1530,13 @@ u(Little-Rock_AR)
        -1       mtz(Santa-Fe_NM,Little-Rock_AR)
        -1       mtz(Albany_NY,Little-Rock_AR)
        -1       mtz(Raleigh_NC,Little-Rock_AR)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 29
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
        -1       mtz(Bismarck_ND,Little-Rock_AR)
        -1       mtz(Columbus_OH,Little-Rock_AR)
        -1       mtz(Oklahoma-City_OK,Little-Rock_AR)
@@ -1483,6 +1588,13 @@ u(Sacramento_CA)
         1       mtz(Sacramento_CA,Concord_NH)
         1       mtz(Sacramento_CA,Trenton_NJ)
         1       mtz(Sacramento_CA,Santa-Fe_NM)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 30
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
         1       mtz(Sacramento_CA,Albany_NY)
         1       mtz(Sacramento_CA,Raleigh_NC)
         1       mtz(Sacramento_CA,Bismarck_ND)
@@ -1534,6 +1646,13 @@ u(Sacramento_CA)
        -1       mtz(Columbus_OH,Sacramento_CA)
        -1       mtz(Oklahoma-City_OK,Sacramento_CA)
        -1       mtz(Salem_OR,Sacramento_CA)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 31
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
        -1       mtz(Harrisburg_PA,Sacramento_CA)
        -1       mtz(Providence_RI,Sacramento_CA)
        -1       mtz(Columbia_SC,Sacramento_CA)
@@ -1550,9 +1669,9 @@ u(Sacramento_CA)
         0       (OLD LEVEL ****)
 
 REMAINING 45 ENTRIES SKIPPED
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 32
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tsp Using MIP From line 107
+Model Statistics    SOLVE tsp Using MIP From line 56
 
 
 MODEL STATISTICS
@@ -1562,29 +1681,29 @@ BLOCKS OF VARIABLES           3     SINGLE VARIABLES        2,450  48 projected
 NON ZERO ELEMENTS        13,922     DISCRETE VARIABLES      2,352
 
 
-GENERATION TIME      =        0.203 SECONDS      5 MB  30.2.0 r482c588 WEX-WEI
+GENERATION TIME      =        0.125 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.218 SECONDS      5 MB  30.2.0 r482c588 WEX-WEI
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 6
+EXECUTION TIME       =        0.140 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 33
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tsp Using MIP From line 107
+Solution Report     SOLVE tsp Using MIP From line 56
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tsp                 OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  107
+     SOLVER  CPLEX               FROM LINE  56
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      8 Integer Solution          
 **** OBJECTIVE VALUE           671259.5827
 
- RESOURCE USAGE, LIMIT          3.172      1000.000
+ RESOURCE USAGE, LIMIT          1.782      1000.000
  ITERATION COUNT, LIMIT      6212    2000000000
 
-IBM ILOG CPLEX   30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
@@ -1594,10 +1713,10 @@ Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
 Space for names approximately 0.17 Mb
 Use option 'names no' to turn use of names off
 MIP status(102): integer optimal, tolerance
-Cplex Time: 2.38sec (det. 1337.84 ticks)
+Cplex Time: 1.75sec (det. 1337.84 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.20sec (det. 4.68 ticks)
+Cplex Time: 0.02sec (det. 4.68 ticks)
 Solution satisfies tolerances.
 
 MIP Solution:       671259.582708    (6200 iterations, 518 nodes)
@@ -1624,6 +1743,15 @@ Denver_CO                 1.0000         1.0000         1.0000          .
 Hartford_CT               1.0000         1.0000         1.0000          .          
 Dover_DE                  1.0000         1.0000         1.0000          .          
 Tallahassee_FL            1.0000         1.0000         1.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 34
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU assign1  
+
+                         LOWER          LEVEL          UPPER         MARGINAL
+
 Atlanta_GA                1.0000         1.0000         1.0000          .          
 Honolulu_HI               1.0000         1.0000         1.0000          .          
 Boise_ID                  1.0000         1.0000         1.0000          .          
@@ -1673,6 +1801,15 @@ Cheyenne_WY               1.0000         1.0000         1.0000          .
 Juneau_AK                 1.0000         1.0000         1.0000          .          
 Phoenix_AZ                1.0000         1.0000         1.0000          .          
 Little-Rock_AR            1.0000         1.0000         1.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 35
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU assign2  
+
+                         LOWER          LEVEL          UPPER         MARGINAL
+
 Sacramento_CA             1.0000         1.0000         1.0000          .          
 Denver_CO                 1.0000         1.0000         1.0000          .          
 Hartford_CT               1.0000         1.0000         1.0000          .          
@@ -1719,6 +1856,10 @@ Olympia_WA                1.0000         1.0000         1.0000          .
 Charleston_WV             1.0000         1.0000         1.0000          .          
 Madison_WI                1.0000         1.0000         1.0000          .          
 Cheyenne_WY               1.0000         1.0000         1.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 36
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
 
 ---- EQU mtz  
 
@@ -1773,6 +1914,15 @@ Phoenix_AZ       .Charleston_WV            -INF          -16.0000        47.0000
 Phoenix_AZ       .Madison_WI               -INF          -36.0000        47.0000          .          
 Phoenix_AZ       .Cheyenne_WY              -INF          -44.0000        47.0000          .          
 Little-Rock_AR   .Phoenix_AZ               -INF           10.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 37
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Little-Rock_AR   .Little-Rock_AR           -INF             .            47.0000          .          
 Little-Rock_AR   .Sacramento_CA            -INF            6.0000        47.0000          .          
 Little-Rock_AR   .Denver_CO                -INF          -36.0000        47.0000          .          
@@ -1822,6 +1972,15 @@ Little-Rock_AR   .Madison_WI               -INF          -26.0000        47.0000
 Little-Rock_AR   .Cheyenne_WY              -INF          -34.0000        47.0000          .          
 Sacramento_CA    .Phoenix_AZ               -INF            4.0000        47.0000          .          
 Sacramento_CA    .Little-Rock_AR           -INF           -6.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 38
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Sacramento_CA    .Sacramento_CA            -INF             .            47.0000          .          
 Sacramento_CA    .Denver_CO                -INF          -42.0000        47.0000          .          
 Sacramento_CA    .Hartford_CT              -INF          -16.0000        47.0000          .          
@@ -1871,6 +2030,15 @@ Sacramento_CA    .Cheyenne_WY              -INF          -40.0000        47.0000
 Denver_CO        .Phoenix_AZ               -INF           46.0000        47.0000          .          
 Denver_CO        .Little-Rock_AR           -INF           36.0000        47.0000          .          
 Denver_CO        .Sacramento_CA            -INF           42.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 39
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Denver_CO        .Denver_CO                -INF             .            47.0000          .          
 Denver_CO        .Hartford_CT              -INF           26.0000        47.0000          .          
 Denver_CO        .Dover_DE                 -INF           31.0000        47.0000          .          
@@ -1920,6 +2088,15 @@ Hartford_CT      .Phoenix_AZ               -INF           20.0000        47.0000
 Hartford_CT      .Little-Rock_AR           -INF           10.0000        47.0000          .          
 Hartford_CT      .Sacramento_CA            -INF           16.0000        47.0000          .          
 Hartford_CT      .Denver_CO                -INF          -26.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 40
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Hartford_CT      .Hartford_CT              -INF             .            47.0000          .          
 Hartford_CT      .Dover_DE                 -INF            5.0000        47.0000          .          
 Hartford_CT      .Tallahassee_FL           -INF          -13.0000        47.0000          .          
@@ -1969,6 +2146,15 @@ Dover_DE         .Little-Rock_AR           -INF            5.0000        47.0000
 Dover_DE         .Sacramento_CA            -INF           11.0000        47.0000          .          
 Dover_DE         .Denver_CO                -INF          -31.0000        47.0000          .          
 Dover_DE         .Hartford_CT              -INF           -5.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 41
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Dover_DE         .Dover_DE                 -INF             .            47.0000          .          
 Dover_DE         .Tallahassee_FL           -INF          -18.0000        47.0000          .          
 Dover_DE         .Atlanta_GA               -INF          -14.0000        47.0000          .          
@@ -2018,6 +2204,15 @@ Tallahassee_FL   .Sacramento_CA            -INF           29.0000        47.0000
 Tallahassee_FL   .Denver_CO                -INF          -13.0000        47.0000          .          
 Tallahassee_FL   .Hartford_CT              -INF           13.0000        47.0000          .          
 Tallahassee_FL   .Dover_DE                 -INF           18.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 42
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Tallahassee_FL   .Tallahassee_FL           -INF             .            47.0000          .          
 Tallahassee_FL   .Atlanta_GA               -INF            4.0000        47.0000          .          
 Tallahassee_FL   .Honolulu_HI              -INF           34.0000        47.0000          .          
@@ -2067,6 +2262,15 @@ Atlanta_GA       .Denver_CO                -INF          -17.0000        47.0000
 Atlanta_GA       .Hartford_CT              -INF            9.0000        47.0000          .          
 Atlanta_GA       .Dover_DE                 -INF           14.0000        47.0000          .          
 Atlanta_GA       .Tallahassee_FL           -INF           -4.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 43
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Atlanta_GA       .Atlanta_GA               -INF             .            47.0000          .          
 Atlanta_GA       .Honolulu_HI              -INF           30.0000        47.0000          .          
 Atlanta_GA       .Boise_ID                 -INF           27.0000        47.0000          .          
@@ -2116,6 +2320,15 @@ Honolulu_HI      .Hartford_CT              -INF          -21.0000        47.0000
 Honolulu_HI      .Dover_DE                 -INF          -16.0000        47.0000          .          
 Honolulu_HI      .Tallahassee_FL           -INF          -34.0000        47.0000          .          
 Honolulu_HI      .Atlanta_GA               -INF          -30.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 44
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Honolulu_HI      .Honolulu_HI              -INF             .            47.0000          .          
 Honolulu_HI      .Boise_ID                 -INF           -3.0000        47.0000          .          
 Honolulu_HI      .Springfield_IL           -INF          -13.0000        47.0000          .          
@@ -2165,6 +2378,15 @@ Boise_ID         .Dover_DE                 -INF          -13.0000        47.0000
 Boise_ID         .Tallahassee_FL           -INF          -31.0000        47.0000          .          
 Boise_ID         .Atlanta_GA               -INF          -27.0000        47.0000          .          
 Boise_ID         .Honolulu_HI              -INF            3.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 45
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Boise_ID         .Boise_ID                 -INF             .            47.0000          .          
 Boise_ID         .Springfield_IL           -INF          -10.0000        47.0000          .          
 Boise_ID         .Indianapolis_IN          -INF          -25.0000        47.0000          .          
@@ -2214,6 +2436,15 @@ Springfield_IL   .Tallahassee_FL           -INF          -21.0000        47.0000
 Springfield_IL   .Atlanta_GA               -INF          -17.0000        47.0000          .          
 Springfield_IL   .Honolulu_HI              -INF           13.0000        47.0000          .          
 Springfield_IL   .Boise_ID                 -INF           10.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 46
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Springfield_IL   .Springfield_IL           -INF             .            47.0000          .          
 Springfield_IL   .Indianapolis_IN          -INF          -15.0000        47.0000          .          
 Springfield_IL   .Des-Moines_IA            -INF            3.0000        47.0000          .          
@@ -2263,6 +2494,15 @@ Indianapolis_IN  .Atlanta_GA               -INF           -2.0000        47.0000
 Indianapolis_IN  .Honolulu_HI              -INF           28.0000        47.0000          .          
 Indianapolis_IN  .Boise_ID                 -INF           25.0000        47.0000          .          
 Indianapolis_IN  .Springfield_IL           -INF           15.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 47
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Indianapolis_IN  .Indianapolis_IN          -INF             .            47.0000          .          
 Indianapolis_IN  .Des-Moines_IA            -INF           18.0000        47.0000          .          
 Indianapolis_IN  .Topeka_KS                -INF          -13.0000        47.0000          .          
@@ -2312,6 +2552,15 @@ Des-Moines_IA    .Honolulu_HI              -INF           10.0000        47.0000
 Des-Moines_IA    .Boise_ID                 -INF            7.0000        47.0000          .          
 Des-Moines_IA    .Springfield_IL           -INF           -3.0000        47.0000          .          
 Des-Moines_IA    .Indianapolis_IN          -INF          -18.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 48
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Des-Moines_IA    .Des-Moines_IA            -INF             .            47.0000          .          
 Des-Moines_IA    .Topeka_KS                -INF          -31.0000        47.0000          .          
 Des-Moines_IA    .Frankfort_KY             -INF          -19.0000        47.0000          .          
@@ -2361,6 +2610,15 @@ Topeka_KS        .Boise_ID                 -INF           38.0000        47.0000
 Topeka_KS        .Springfield_IL           -INF           28.0000        47.0000          .          
 Topeka_KS        .Indianapolis_IN          -INF           13.0000        47.0000          .          
 Topeka_KS        .Des-Moines_IA            -INF           31.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 49
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Topeka_KS        .Topeka_KS                -INF             .            47.0000          .          
 Topeka_KS        .Frankfort_KY             -INF           12.0000        47.0000          .          
 Topeka_KS        .Baton-Rouge_LA           -INF            3.0000        47.0000          .          
@@ -2410,6 +2668,15 @@ Frankfort_KY     .Springfield_IL           -INF           16.0000        47.0000
 Frankfort_KY     .Indianapolis_IN          -INF            1.0000        47.0000          .          
 Frankfort_KY     .Des-Moines_IA            -INF           19.0000        47.0000          .          
 Frankfort_KY     .Topeka_KS                -INF          -12.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 50
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Frankfort_KY     .Frankfort_KY             -INF             .            47.0000          .          
 Frankfort_KY     .Baton-Rouge_LA           -INF           -9.0000        47.0000          .          
 Frankfort_KY     .Augusta_ME               -INF            4.0000        47.0000          .          
@@ -2459,6 +2726,15 @@ Baton-Rouge_LA   .Indianapolis_IN          -INF           10.0000        47.0000
 Baton-Rouge_LA   .Des-Moines_IA            -INF           28.0000        47.0000          .          
 Baton-Rouge_LA   .Topeka_KS                -INF           -3.0000        47.0000          .          
 Baton-Rouge_LA   .Frankfort_KY             -INF            9.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 51
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Baton-Rouge_LA   .Baton-Rouge_LA           -INF             .            47.0000          .          
 Baton-Rouge_LA   .Augusta_ME               -INF           13.0000        47.0000          .          
 Baton-Rouge_LA   .Annapolis_MD             -INF           23.0000        47.0000          .          
@@ -2508,6 +2784,15 @@ Augusta_ME       .Des-Moines_IA            -INF           15.0000        47.0000
 Augusta_ME       .Topeka_KS                -INF          -16.0000        47.0000          .          
 Augusta_ME       .Frankfort_KY             -INF           -4.0000        47.0000          .          
 Augusta_ME       .Baton-Rouge_LA           -INF          -13.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 52
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Augusta_ME       .Augusta_ME               -INF             .            47.0000          .          
 Augusta_ME       .Annapolis_MD             -INF           10.0000        47.0000          .          
 Augusta_ME       .Boston_MA                -INF           47.0000        47.0000         EPS         
@@ -2557,6 +2842,15 @@ Annapolis_MD     .Topeka_KS                -INF          -26.0000        47.0000
 Annapolis_MD     .Frankfort_KY             -INF          -14.0000        47.0000          .          
 Annapolis_MD     .Baton-Rouge_LA           -INF          -23.0000        47.0000          .          
 Annapolis_MD     .Augusta_ME               -INF          -10.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 53
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Annapolis_MD     .Annapolis_MD             -INF             .            47.0000          .          
 Annapolis_MD     .Boston_MA                -INF          -11.0000        47.0000          .          
 Annapolis_MD     .Lansing_MI               -INF          -16.0000        47.0000          .          
@@ -2606,6 +2900,15 @@ Boston_MA        .Frankfort_KY             -INF           -3.0000        47.0000
 Boston_MA        .Baton-Rouge_LA           -INF          -12.0000        47.0000          .          
 Boston_MA        .Augusta_ME               -INF            1.0000        47.0000          .          
 Boston_MA        .Annapolis_MD             -INF           11.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 54
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Boston_MA        .Boston_MA                -INF             .            47.0000          .          
 Boston_MA        .Lansing_MI               -INF           -5.0000        47.0000          .          
 Boston_MA        .Saint-Paul_MN            -INF          -14.0000        47.0000          .          
@@ -2655,6 +2958,15 @@ Lansing_MI       .Baton-Rouge_LA           -INF           -7.0000        47.0000
 Lansing_MI       .Augusta_ME               -INF            6.0000        47.0000          .          
 Lansing_MI       .Annapolis_MD             -INF           16.0000        47.0000          .          
 Lansing_MI       .Boston_MA                -INF            5.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 55
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Lansing_MI       .Lansing_MI               -INF             .            47.0000          .          
 Lansing_MI       .Saint-Paul_MN            -INF           -9.0000        47.0000          .          
 Lansing_MI       .Jackson_MS               -INF           -5.0000        47.0000          .          
@@ -2704,6 +3016,15 @@ Saint-Paul_MN    .Augusta_ME               -INF           15.0000        47.0000
 Saint-Paul_MN    .Annapolis_MD             -INF           25.0000        47.0000          .          
 Saint-Paul_MN    .Boston_MA                -INF           14.0000        47.0000          .          
 Saint-Paul_MN    .Lansing_MI               -INF            9.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 56
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Saint-Paul_MN    .Saint-Paul_MN            -INF             .            47.0000          .          
 Saint-Paul_MN    .Jackson_MS               -INF            4.0000        47.0000          .          
 Saint-Paul_MN    .Jefferson-City_MO        -INF            1.0000        47.0000          .          
@@ -2753,6 +3074,15 @@ Jackson_MS       .Annapolis_MD             -INF           21.0000        47.0000
 Jackson_MS       .Boston_MA                -INF           10.0000        47.0000          .          
 Jackson_MS       .Lansing_MI               -INF            5.0000        47.0000          .          
 Jackson_MS       .Saint-Paul_MN            -INF           -4.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 57
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Jackson_MS       .Jackson_MS               -INF             .            47.0000          .          
 Jackson_MS       .Jefferson-City_MO        -INF           -3.0000        47.0000          .          
 Jackson_MS       .Helana_MT                -INF           34.0000        47.0000          .          
@@ -2802,6 +3132,15 @@ Jefferson-City_MO.Boston_MA                -INF           13.0000        47.0000
 Jefferson-City_MO.Lansing_MI               -INF            8.0000        47.0000          .          
 Jefferson-City_MO.Saint-Paul_MN            -INF           47.0000        47.0000         EPS         
 Jefferson-City_MO.Jackson_MS               -INF            3.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 58
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Jefferson-City_MO.Jefferson-City_MO        -INF             .            47.0000          .          
 Jefferson-City_MO.Helana_MT                -INF           37.0000        47.0000          .          
 Jefferson-City_MO.Lincoln_NE               -INF           27.0000        47.0000          .          
@@ -2851,6 +3190,15 @@ Helana_MT        .Lansing_MI               -INF          -29.0000        47.0000
 Helana_MT        .Saint-Paul_MN            -INF          -38.0000        47.0000          .          
 Helana_MT        .Jackson_MS               -INF          -34.0000        47.0000          .          
 Helana_MT        .Jefferson-City_MO        -INF          -37.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 59
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Helana_MT        .Helana_MT                -INF             .            47.0000          .          
 Helana_MT        .Lincoln_NE               -INF          -10.0000        47.0000          .          
 Helana_MT        .Carson-City_NV           -INF           -5.0000        47.0000          .          
@@ -2900,6 +3248,15 @@ Lincoln_NE       .Saint-Paul_MN            -INF          -28.0000        47.0000
 Lincoln_NE       .Jackson_MS               -INF          -24.0000        47.0000          .          
 Lincoln_NE       .Jefferson-City_MO        -INF          -27.0000        47.0000          .          
 Lincoln_NE       .Helana_MT                -INF           10.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 60
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Lincoln_NE       .Lincoln_NE               -INF             .            47.0000          .          
 Lincoln_NE       .Carson-City_NV           -INF            5.0000        47.0000          .          
 Lincoln_NE       .Concord_NH               -INF          -12.0000        47.0000          .          
@@ -2949,6 +3306,15 @@ Carson-City_NV   .Jackson_MS               -INF          -29.0000        47.0000
 Carson-City_NV   .Jefferson-City_MO        -INF          -32.0000        47.0000          .          
 Carson-City_NV   .Helana_MT                -INF            5.0000        47.0000          .          
 Carson-City_NV   .Lincoln_NE               -INF           -5.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 61
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Carson-City_NV   .Carson-City_NV           -INF             .            47.0000          .          
 Carson-City_NV   .Concord_NH               -INF          -17.0000        47.0000          .          
 Carson-City_NV   .Trenton_NJ               -INF           -7.0000        47.0000          .          
@@ -2998,6 +3364,15 @@ Concord_NH       .Jefferson-City_MO        -INF          -15.0000        47.0000
 Concord_NH       .Helana_MT                -INF           22.0000        47.0000          .          
 Concord_NH       .Lincoln_NE               -INF           12.0000        47.0000          .          
 Concord_NH       .Carson-City_NV           -INF           17.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 62
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Concord_NH       .Concord_NH               -INF             .            47.0000          .          
 Concord_NH       .Trenton_NJ               -INF           10.0000        47.0000          .          
 Concord_NH       .Santa-Fe_NM              -INF          -22.0000        47.0000          .          
@@ -3047,6 +3422,15 @@ Trenton_NJ       .Helana_MT                -INF           12.0000        47.0000
 Trenton_NJ       .Lincoln_NE               -INF            2.0000        47.0000          .          
 Trenton_NJ       .Carson-City_NV           -INF            7.0000        47.0000          .          
 Trenton_NJ       .Concord_NH               -INF          -10.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 63
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Trenton_NJ       .Trenton_NJ               -INF             .            47.0000          .          
 Trenton_NJ       .Santa-Fe_NM              -INF          -32.0000        47.0000          .          
 Trenton_NJ       .Albany_NY                -INF           -8.0000        47.0000          .          
@@ -3096,6 +3480,15 @@ Santa-Fe_NM      .Lincoln_NE               -INF           34.0000        47.0000
 Santa-Fe_NM      .Carson-City_NV           -INF           39.0000        47.0000          .          
 Santa-Fe_NM      .Concord_NH               -INF           22.0000        47.0000          .          
 Santa-Fe_NM      .Trenton_NJ               -INF           32.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 64
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Santa-Fe_NM      .Santa-Fe_NM              -INF             .            47.0000          .          
 Santa-Fe_NM      .Albany_NY                -INF           24.0000        47.0000          .          
 Santa-Fe_NM      .Raleigh_NC               -INF           28.0000        47.0000          .          
@@ -3145,6 +3538,15 @@ Albany_NY        .Carson-City_NV           -INF           15.0000        47.0000
 Albany_NY        .Concord_NH               -INF           -2.0000        47.0000          .          
 Albany_NY        .Trenton_NJ               -INF            8.0000        47.0000          .          
 Albany_NY        .Santa-Fe_NM              -INF          -24.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 65
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Albany_NY        .Albany_NY                -INF             .            47.0000          .          
 Albany_NY        .Raleigh_NC               -INF            4.0000        47.0000          .          
 Albany_NY        .Bismarck_ND              -INF          -21.0000        47.0000          .          
@@ -3194,6 +3596,15 @@ Raleigh_NC       .Concord_NH               -INF           -6.0000        47.0000
 Raleigh_NC       .Trenton_NJ               -INF            4.0000        47.0000          .          
 Raleigh_NC       .Santa-Fe_NM              -INF          -28.0000        47.0000          .          
 Raleigh_NC       .Albany_NY                -INF           -4.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 66
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Raleigh_NC       .Raleigh_NC               -INF             .            47.0000          .          
 Raleigh_NC       .Bismarck_ND              -INF          -25.0000        47.0000          .          
 Raleigh_NC       .Columbus_OH              -INF          -14.0000        47.0000          .          
@@ -3243,6 +3654,15 @@ Bismarck_ND      .Trenton_NJ               -INF           29.0000        47.0000
 Bismarck_ND      .Santa-Fe_NM              -INF           -3.0000        47.0000          .          
 Bismarck_ND      .Albany_NY                -INF           21.0000        47.0000          .          
 Bismarck_ND      .Raleigh_NC               -INF           25.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 67
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Bismarck_ND      .Bismarck_ND              -INF             .            47.0000          .          
 Bismarck_ND      .Columbus_OH              -INF           11.0000        47.0000          .          
 Bismarck_ND      .Oklahoma-City_OK         -INF            1.0000        47.0000          .          
@@ -3292,6 +3712,15 @@ Columbus_OH      .Santa-Fe_NM              -INF          -14.0000        47.0000
 Columbus_OH      .Albany_NY                -INF           10.0000        47.0000          .          
 Columbus_OH      .Raleigh_NC               -INF           14.0000        47.0000          .          
 Columbus_OH      .Bismarck_ND              -INF          -11.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 68
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Columbus_OH      .Columbus_OH              -INF             .            47.0000          .          
 Columbus_OH      .Oklahoma-City_OK         -INF          -10.0000        47.0000          .          
 Columbus_OH      .Salem_OR                 -INF           26.0000        47.0000          .          
@@ -3341,6 +3770,15 @@ Oklahoma-City_OK .Albany_NY                -INF           20.0000        47.0000
 Oklahoma-City_OK .Raleigh_NC               -INF           24.0000        47.0000          .          
 Oklahoma-City_OK .Bismarck_ND              -INF           47.0000        47.0000         EPS         
 Oklahoma-City_OK .Columbus_OH              -INF           10.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 69
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Oklahoma-City_OK .Oklahoma-City_OK         -INF             .            47.0000          .          
 Oklahoma-City_OK .Salem_OR                 -INF           36.0000        47.0000          .          
 Oklahoma-City_OK .Harrisburg_PA            -INF           22.0000        47.0000          .          
@@ -3390,6 +3828,15 @@ Salem_OR         .Raleigh_NC               -INF          -12.0000        47.0000
 Salem_OR         .Bismarck_ND              -INF          -37.0000        47.0000          .          
 Salem_OR         .Columbus_OH              -INF          -26.0000        47.0000          .          
 Salem_OR         .Oklahoma-City_OK         -INF          -36.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 70
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Salem_OR         .Salem_OR                 -INF             .            47.0000          .          
 Salem_OR         .Harrisburg_PA            -INF          -14.0000        47.0000          .          
 Salem_OR         .Providence_RI            -INF          -21.0000        47.0000          .          
@@ -3439,6 +3886,15 @@ Harrisburg_PA    .Bismarck_ND              -INF          -23.0000        47.0000
 Harrisburg_PA    .Columbus_OH              -INF          -12.0000        47.0000          .          
 Harrisburg_PA    .Oklahoma-City_OK         -INF          -22.0000        47.0000          .          
 Harrisburg_PA    .Salem_OR                 -INF           14.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 71
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Harrisburg_PA    .Harrisburg_PA            -INF             .            47.0000          .          
 Harrisburg_PA    .Providence_RI            -INF           -7.0000        47.0000          .          
 Harrisburg_PA    .Columbia_SC              -INF          -13.0000        47.0000          .          
@@ -3488,6 +3944,15 @@ Providence_RI    .Columbus_OH              -INF           -5.0000        47.0000
 Providence_RI    .Oklahoma-City_OK         -INF          -15.0000        47.0000          .          
 Providence_RI    .Salem_OR                 -INF           21.0000        47.0000          .          
 Providence_RI    .Harrisburg_PA            -INF            7.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 72
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Providence_RI    .Providence_RI            -INF             .            47.0000          .          
 Providence_RI    .Columbia_SC              -INF           -6.0000        47.0000          .          
 Providence_RI    .Pierre_SD                -INF          -17.0000        47.0000          .          
@@ -3537,6 +4002,15 @@ Columbia_SC      .Oklahoma-City_OK         -INF           -9.0000        47.0000
 Columbia_SC      .Salem_OR                 -INF           27.0000        47.0000          .          
 Columbia_SC      .Harrisburg_PA            -INF           13.0000        47.0000          .          
 Columbia_SC      .Providence_RI            -INF            6.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 73
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Columbia_SC      .Columbia_SC              -INF             .            47.0000          .          
 Columbia_SC      .Pierre_SD                -INF          -11.0000        47.0000          .          
 Columbia_SC      .Nashville_TN             -INF           -2.0000        47.0000          .          
@@ -3586,6 +4060,15 @@ Pierre_SD        .Salem_OR                 -INF           38.0000        47.0000
 Pierre_SD        .Harrisburg_PA            -INF           24.0000        47.0000          .          
 Pierre_SD        .Providence_RI            -INF           17.0000        47.0000          .          
 Pierre_SD        .Columbia_SC              -INF           11.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 74
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Pierre_SD        .Pierre_SD                -INF             .            47.0000          .          
 Pierre_SD        .Nashville_TN             -INF            9.0000        47.0000          .          
 Pierre_SD        .Austin_TX                -INF           35.0000        47.0000          .          
@@ -3635,6 +4118,15 @@ Nashville_TN     .Harrisburg_PA            -INF           15.0000        47.0000
 Nashville_TN     .Providence_RI            -INF            8.0000        47.0000          .          
 Nashville_TN     .Columbia_SC              -INF            2.0000        47.0000          .          
 Nashville_TN     .Pierre_SD                -INF           -9.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 75
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Nashville_TN     .Nashville_TN             -INF             .            47.0000          .          
 Nashville_TN     .Austin_TX                -INF           26.0000        47.0000          .          
 Nashville_TN     .Salt-Lake-City_UT        -INF           27.0000        47.0000          .          
@@ -3684,6 +4176,15 @@ Austin_TX        .Providence_RI            -INF          -18.0000        47.0000
 Austin_TX        .Columbia_SC              -INF          -24.0000        47.0000          .          
 Austin_TX        .Pierre_SD                -INF          -35.0000        47.0000          .          
 Austin_TX        .Nashville_TN             -INF          -26.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 76
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Austin_TX        .Austin_TX                -INF             .            47.0000          .          
 Austin_TX        .Salt-Lake-City_UT        -INF            1.0000        47.0000          .          
 Austin_TX        .Montpelier_VT            -INF          -14.0000        47.0000          .          
@@ -3733,6 +4234,15 @@ Salt-Lake-City_UT.Columbia_SC              -INF          -25.0000        47.0000
 Salt-Lake-City_UT.Pierre_SD                -INF          -36.0000        47.0000          .          
 Salt-Lake-City_UT.Nashville_TN             -INF          -27.0000        47.0000          .          
 Salt-Lake-City_UT.Austin_TX                -INF           47.0000        47.0000         EPS         
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 77
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Salt-Lake-City_UT.Salt-Lake-City_UT        -INF             .            47.0000          .          
 Salt-Lake-City_UT.Montpelier_VT            -INF          -15.0000        47.0000          .          
 Salt-Lake-City_UT.Richmond_VA              -INF          -11.0000        47.0000          .          
@@ -3782,6 +4292,15 @@ Montpelier_VT    .Pierre_SD                -INF          -21.0000        47.0000
 Montpelier_VT    .Nashville_TN             -INF          -12.0000        47.0000          .          
 Montpelier_VT    .Austin_TX                -INF           14.0000        47.0000          .          
 Montpelier_VT    .Salt-Lake-City_UT        -INF           15.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 78
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Montpelier_VT    .Montpelier_VT            -INF             .            47.0000          .          
 Montpelier_VT    .Richmond_VA              -INF            4.0000        47.0000          .          
 Montpelier_VT    .Olympia_WA               -INF           19.0000        47.0000          .          
@@ -3831,6 +4350,15 @@ Richmond_VA      .Nashville_TN             -INF          -16.0000        47.0000
 Richmond_VA      .Austin_TX                -INF           10.0000        47.0000          .          
 Richmond_VA      .Salt-Lake-City_UT        -INF           11.0000        47.0000          .          
 Richmond_VA      .Montpelier_VT            -INF           -4.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 79
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Richmond_VA      .Richmond_VA              -INF             .            47.0000          .          
 Richmond_VA      .Olympia_WA               -INF           15.0000        47.0000          .          
 Richmond_VA      .Charleston_WV            -INF            2.0000        47.0000          .          
@@ -3880,6 +4408,15 @@ Olympia_WA       .Austin_TX                -INF           -5.0000        47.0000
 Olympia_WA       .Salt-Lake-City_UT        -INF           -4.0000        47.0000          .          
 Olympia_WA       .Montpelier_VT            -INF          -19.0000        47.0000          .          
 Olympia_WA       .Richmond_VA              -INF          -15.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 80
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Olympia_WA       .Olympia_WA               -INF             .            47.0000          .          
 Olympia_WA       .Charleston_WV            -INF          -13.0000        47.0000          .          
 Olympia_WA       .Madison_WI               -INF          -33.0000        47.0000          .          
@@ -3929,6 +4466,15 @@ Charleston_WV    .Salt-Lake-City_UT        -INF            9.0000        47.0000
 Charleston_WV    .Montpelier_VT            -INF           -6.0000        47.0000          .          
 Charleston_WV    .Richmond_VA              -INF           -2.0000        47.0000          .          
 Charleston_WV    .Olympia_WA               -INF           13.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 81
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Charleston_WV    .Charleston_WV            -INF             .            47.0000          .          
 Charleston_WV    .Madison_WI               -INF          -20.0000        47.0000          .          
 Charleston_WV    .Cheyenne_WY              -INF          -28.0000        47.0000          .          
@@ -3978,6 +4524,15 @@ Madison_WI       .Montpelier_VT            -INF           14.0000        47.0000
 Madison_WI       .Richmond_VA              -INF           18.0000        47.0000          .          
 Madison_WI       .Olympia_WA               -INF           33.0000        47.0000          .          
 Madison_WI       .Charleston_WV            -INF           20.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 82
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Madison_WI       .Madison_WI               -INF             .            47.0000          .          
 Madison_WI       .Cheyenne_WY              -INF           -8.0000        47.0000          .          
 Cheyenne_WY      .Phoenix_AZ               -INF           44.0000        47.0000          .          
@@ -4027,6 +4582,15 @@ Cheyenne_WY      .Richmond_VA              -INF           26.0000        47.0000
 Cheyenne_WY      .Olympia_WA               -INF           41.0000        47.0000          .          
 Cheyenne_WY      .Charleston_WV            -INF           28.0000        47.0000          .          
 Cheyenne_WY      .Madison_WI               -INF            8.0000        47.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 83
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Cheyenne_WY      .Cheyenne_WY              -INF             .            47.0000          .          
 
 ---- VAR x  
@@ -4076,6 +4640,15 @@ Juneau_AK        .Pierre_SD                  .              .             1.0000
 Juneau_AK        .Nashville_TN               .              .             1.0000     16842.7352      
 Juneau_AK        .Austin_TX                  .              .             1.0000     15653.9589      
 Juneau_AK        .Salt-Lake-City_UT          .              .             1.0000     14061.5824      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 84
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Juneau_AK        .Montpelier_VT              .              .             1.0000     18427.2771      
 Juneau_AK        .Richmond_VA                .              .             1.0000     17863.1532      
 Juneau_AK        .Olympia_WA                 .              .             1.0000     12833.5429      
@@ -4125,6 +4698,15 @@ Phoenix_AZ       .Pierre_SD                  .              .             1.0000
 Phoenix_AZ       .Nashville_TN               .              .             1.0000     14028.9591      
 Phoenix_AZ       .Austin_TX                  .              .             1.0000     13031.9046      
 Phoenix_AZ       .Salt-Lake-City_UT          .              .             1.0000     11516.6164      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 85
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Phoenix_AZ       .Montpelier_VT              .              .             1.0000     15456.8085      
 Phoenix_AZ       .Richmond_VA                .              .             1.0000     14897.0863      
 Phoenix_AZ       .Olympia_WA                 .              .             1.0000     10259.0221      
@@ -4174,6 +4756,15 @@ Little-Rock_AR   .Pierre_SD                  .              .             1.0000
 Little-Rock_AR   .Nashville_TN               .              .             1.0000     14088.1727      
 Little-Rock_AR   .Austin_TX                  .              .             1.0000     13379.4272      
 Little-Rock_AR   .Salt-Lake-City_UT          .              .             1.0000     12078.6911      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 86
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Little-Rock_AR   .Montpelier_VT              .              .             1.0000     15151.2450      
 Little-Rock_AR   .Richmond_VA                .              .             1.0000     14690.2315      
 Little-Rock_AR   .Olympia_WA                 .              .             1.0000     10900.6838      
@@ -4223,6 +4814,15 @@ Sacramento_CA    .Pierre_SD                  .              .             1.0000
 Sacramento_CA    .Nashville_TN               .              .             1.0000     14624.2058      
 Sacramento_CA    .Austin_TX                  .              .             1.0000     13526.6543      
 Sacramento_CA    .Salt-Lake-City_UT          .              .             1.0000     11953.1777      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 87
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Sacramento_CA    .Montpelier_VT              .              .             1.0000     16151.1824      
 Sacramento_CA    .Richmond_VA                .              .             1.0000     15576.0552      
 Sacramento_CA    .Olympia_WA                 .              .             1.0000     10691.6944      
@@ -4272,6 +4872,15 @@ Denver_CO        .Pierre_SD                  .              .             1.0000
 Denver_CO        .Nashville_TN               .              .             1.0000     14701.3731      
 Denver_CO        .Austin_TX                  .              .             1.0000     13792.9251      
 Denver_CO        .Salt-Lake-City_UT          .              .             1.0000     12327.9965      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 88
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Denver_CO        .Montpelier_VT              .              .             1.0000     15999.7456      
 Denver_CO        .Richmond_VA                .              .             1.0000     15473.9343      
 Denver_CO        .Olympia_WA                 .              .             1.0000     11082.9342      
@@ -4321,6 +4930,15 @@ Hartford_CT      .Pierre_SD                  .              .             1.0000
 Hartford_CT      .Nashville_TN               .              .             1.0000     14759.1130      
 Hartford_CT      .Austin_TX                  .              .             1.0000     14411.4137      
 Hartford_CT      .Salt-Lake-City_UT          .              .             1.0000     13398.5323      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 89
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Hartford_CT      .Montpelier_VT              .              .             1.0000     15284.2979      
 Hartford_CT      .Richmond_VA                .              .             1.0000     15002.9458      
 Hartford_CT      .Olympia_WA                 .              .             1.0000     12343.6081      
@@ -4370,6 +4988,15 @@ Dover_DE         .Pierre_SD                  .              .             1.0000
 Dover_DE         .Nashville_TN               .              .             1.0000     14487.0985      
 Dover_DE         .Austin_TX                  .              .             1.0000     14085.7285      
 Dover_DE         .Salt-Lake-City_UT          .              .             1.0000     13038.2314      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 90
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Dover_DE         .Montpelier_VT              .              .             1.0000     15109.4275      
 Dover_DE         .Richmond_VA                .              .             1.0000     14792.5079      
 Dover_DE         .Olympia_WA                 .              .             1.0000     11972.7975      
@@ -4419,6 +5046,15 @@ Tallahassee_FL   .Pierre_SD                  .              .             1.0000
 Tallahassee_FL   .Nashville_TN               .             1.0000         1.0000     13570.2681      
 Tallahassee_FL   .Austin_TX                  .              .             1.0000     13009.1930      
 Tallahassee_FL   .Salt-Lake-City_UT          .              .             1.0000     11853.9383      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 91
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Tallahassee_FL   .Montpelier_VT              .              .             1.0000     14468.8899      
 Tallahassee_FL   .Richmond_VA                .              .             1.0000     14054.8125      
 Tallahassee_FL   .Olympia_WA                 .              .             1.0000     10751.3628      
@@ -4468,6 +5104,15 @@ Atlanta_GA       .Pierre_SD                  .              .             1.0000
 Atlanta_GA       .Nashville_TN               .              .             1.0000     13938.1432      
 Atlanta_GA       .Austin_TX                  .              .             1.0000     13371.8975      
 Atlanta_GA       .Salt-Lake-City_UT          .              .             1.0000     12198.7620      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 92
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Atlanta_GA       .Montpelier_VT              .              .             1.0000     14821.6402      
 Atlanta_GA       .Richmond_VA                .              .             1.0000     14415.0272      
 Atlanta_GA       .Olympia_WA                 .              .             1.0000     11082.0402      
@@ -4517,6 +5162,15 @@ Honolulu_HI      .Pierre_SD                  .              .             1.0000
 Honolulu_HI      .Nashville_TN               .              .             1.0000     12723.7475      
 Honolulu_HI      .Austin_TX                  .              .             1.0000     11523.4379      
 Honolulu_HI      .Salt-Lake-City_UT          .              .             1.0000     10058.0103      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 93
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Honolulu_HI      .Montpelier_VT              .              .             1.0000     14149.2863      
 Honolulu_HI      .Richmond_VA                .              .             1.0000     13716.0732      
 Honolulu_HI      .Olympia_WA                 .              .             1.0000      9023.1878      
@@ -4566,6 +5220,15 @@ Boise_ID         .Pierre_SD                  .              .             1.0000
 Boise_ID         .Nashville_TN               .              .             1.0000     15171.9031      
 Boise_ID         .Austin_TX                  .              .             1.0000     14123.8287      
 Boise_ID         .Salt-Lake-City_UT          .              .             1.0000     12570.7981      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 94
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Boise_ID         .Montpelier_VT              .              .             1.0000     16635.1069      
 Boise_ID         .Richmond_VA                .              .             1.0000     16070.3301      
 Boise_ID         .Olympia_WA                 .             1.0000         1.0000     11307.5987      
@@ -4615,6 +5278,15 @@ Springfield_IL   .Pierre_SD                  .              .             1.0000
 Springfield_IL   .Nashville_TN               .              .             1.0000     14634.7857      
 Springfield_IL   .Austin_TX                  .              .             1.0000     13967.9161      
 Springfield_IL   .Salt-Lake-City_UT          .              .             1.0000     12685.1041      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 95
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Springfield_IL   .Montpelier_VT              .              .             1.0000     15608.1924      
 Springfield_IL   .Richmond_VA                .              .             1.0000     15179.0592      
 Springfield_IL   .Olympia_WA                 .              .             1.0000     11509.7786      
@@ -4664,6 +5336,15 @@ Indianapolis_IN  .Pierre_SD                  .              .             1.0000
 Indianapolis_IN  .Nashville_TN               .              .             1.0000     14617.0610      
 Indianapolis_IN  .Austin_TX                  .              .             1.0000     14012.6336      
 Indianapolis_IN  .Salt-Lake-City_UT          .              .             1.0000     12781.6829      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 96
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Indianapolis_IN  .Montpelier_VT              .              .             1.0000     15505.8439      
 Indianapolis_IN  .Richmond_VA                .              .             1.0000     15103.4503      
 Indianapolis_IN  .Olympia_WA                 .              .             1.0000     11629.1405      
@@ -4713,6 +5394,15 @@ Des-Moines_IA    .Pierre_SD                  .              .             1.0000
 Des-Moines_IA    .Nashville_TN               .              .             1.0000     14855.5856      
 Des-Moines_IA    .Austin_TX                  .              .             1.0000     14119.3416      
 Des-Moines_IA    .Salt-Lake-City_UT          .              .             1.0000     12775.4023      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 97
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Des-Moines_IA    .Montpelier_VT              .              .             1.0000     15910.1133      
 Des-Moines_IA    .Richmond_VA                .              .             1.0000     15457.4758      
 Des-Moines_IA    .Olympia_WA                 .              .             1.0000     11572.9835      
@@ -4762,6 +5452,15 @@ Topeka_KS        .Pierre_SD                  .              .             1.0000
 Topeka_KS        .Nashville_TN               .              .             1.0000     14582.4839      
 Topeka_KS        .Austin_TX                  .              .             1.0000     13814.4704      
 Topeka_KS        .Salt-Lake-City_UT          .              .             1.0000     12453.5001      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 98
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Topeka_KS        .Montpelier_VT              .              .             1.0000     15697.6957      
 Topeka_KS        .Richmond_VA                .              .             1.0000     15224.2818      
 Topeka_KS        .Olympia_WA                 .              .             1.0000     11246.2475      
@@ -4811,6 +5510,15 @@ Frankfort_KY     .Pierre_SD                  .              .             1.0000
 Frankfort_KY     .Nashville_TN               .              .             1.0000     14433.2203      
 Frankfort_KY     .Austin_TX                  .              .             1.0000     13853.9178      
 Frankfort_KY     .Salt-Lake-City_UT          .              .             1.0000     12651.0432      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 99
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Frankfort_KY     .Montpelier_VT              .              .             1.0000     15301.0990      
 Frankfort_KY     .Richmond_VA                .              .             1.0000     14903.6598      
 Frankfort_KY     .Olympia_WA                 .              .             1.0000     11513.4948      
@@ -4860,6 +5568,15 @@ Baton-Rouge_LA   .Pierre_SD                  .              .             1.0000
 Baton-Rouge_LA   .Nashville_TN               .              .             1.0000     13607.1823      
 Baton-Rouge_LA   .Austin_TX                  .              .             1.0000     12922.2580      
 Baton-Rouge_LA   .Salt-Lake-City_UT          .              .             1.0000     11655.0649      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 100
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Baton-Rouge_LA   .Montpelier_VT              .              .             1.0000     14663.6605      
 Baton-Rouge_LA   .Richmond_VA                .              .             1.0000     14201.6749      
 Baton-Rouge_LA   .Olympia_WA                 .              .             1.0000     10497.0621      
@@ -4909,6 +5626,15 @@ Augusta_ME       .Pierre_SD                  .              .             1.0000
 Augusta_ME       .Nashville_TN               .              .             1.0000     15025.0132      
 Augusta_ME       .Austin_TX                  .              .             1.0000     14732.7459      
 Augusta_ME       .Salt-Lake-City_UT          .              .             1.0000     13754.6009      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 101
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Augusta_ME       .Montpelier_VT              .              .             1.0000     15448.1862      
 Augusta_ME       .Richmond_VA                .              .             1.0000     15204.7542      
 Augusta_ME       .Olympia_WA                 .              .             1.0000     12709.3176      
@@ -4958,6 +5684,15 @@ Annapolis_MD     .Pierre_SD                  .              .             1.0000
 Annapolis_MD     .Nashville_TN               .              .             1.0000     14471.8569      
 Annapolis_MD     .Austin_TX                  .              .             1.0000     14051.4399      
 Annapolis_MD     .Salt-Lake-City_UT          .              .             1.0000     12987.3028      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 102
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Annapolis_MD     .Montpelier_VT              .              .             1.0000     15121.2062      
 Annapolis_MD     .Richmond_VA                .              .             1.0000     14795.1984      
 Annapolis_MD     .Olympia_WA                 .              .             1.0000     11914.2013      
@@ -5007,6 +5742,15 @@ Boston_MA        .Pierre_SD                  .              .             1.0000
 Boston_MA        .Nashville_TN               .              .             1.0000     14801.1066      
 Boston_MA        .Austin_TX                  .              .             1.0000     14486.1380      
 Boston_MA        .Salt-Lake-City_UT          .              .             1.0000     13500.9249      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 103
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Boston_MA        .Montpelier_VT              .              .             1.0000     15277.8922      
 Boston_MA        .Richmond_VA                .              .             1.0000     15013.3215      
 Boston_MA        .Olympia_WA                 .              .             1.0000     12458.0185      
@@ -5056,6 +5800,15 @@ Lansing_MI       .Pierre_SD                  .              .             1.0000
 Lansing_MI       .Nashville_TN               .              .             1.0000     14934.8261      
 Lansing_MI       .Austin_TX                  .              .             1.0000     14356.4830      
 Lansing_MI       .Salt-Lake-City_UT          .              .             1.0000     13134.8175      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 104
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Lansing_MI       .Montpelier_VT              .              .             1.0000     15761.9847      
 Lansing_MI       .Richmond_VA                .              .             1.0000     15382.8558      
 Lansing_MI       .Olympia_WA                 .              .             1.0000     11982.3032      
@@ -5105,6 +5858,15 @@ Saint-Paul_MN    .Pierre_SD                  .              .             1.0000
 Saint-Paul_MN    .Nashville_TN               .              .             1.0000     15225.7661      
 Saint-Paul_MN    .Austin_TX                  .              .             1.0000     14495.1004      
 Saint-Paul_MN    .Salt-Lake-City_UT          .              .             1.0000     13144.5484      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 105
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Saint-Paul_MN    .Montpelier_VT              .              .             1.0000     16245.3077      
 Saint-Paul_MN    .Richmond_VA                .              .             1.0000     15807.2449      
 Saint-Paul_MN    .Olympia_WA                 .              .             1.0000     11936.8351      
@@ -5154,6 +5916,15 @@ Jackson_MS       .Pierre_SD                  .              .             1.0000
 Jackson_MS       .Nashville_TN               .              .             1.0000     13809.1610      
 Jackson_MS       .Austin_TX                  .              .             1.0000     13139.0533      
 Jackson_MS       .Salt-Lake-City_UT          .              .             1.0000     11878.9051      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 106
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Jackson_MS       .Montpelier_VT              .              .             1.0000     14836.3708      
 Jackson_MS       .Richmond_VA                .              .             1.0000     14384.4038      
 Jackson_MS       .Olympia_WA                 .              .             1.0000     10722.1576      
@@ -5203,6 +5974,15 @@ Jefferson-City_MO.Pierre_SD                  .              .             1.0000
 Jefferson-City_MO.Nashville_TN               .              .             1.0000     14513.4339      
 Jefferson-City_MO.Austin_TX                  .              .             1.0000     13803.9020      
 Jefferson-City_MO.Salt-Lake-City_UT          .              .             1.0000     12490.5452      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 107
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Jefferson-City_MO.Montpelier_VT              .              .             1.0000     15553.1642      
 Jefferson-City_MO.Richmond_VA                .              .             1.0000     15102.3150      
 Jefferson-City_MO.Olympia_WA                 .              .             1.0000     11303.3603      
@@ -5252,6 +6032,15 @@ Helana_MT        .Pierre_SD                  .              .             1.0000
 Helana_MT        .Nashville_TN               .              .             1.0000     15489.5156      
 Helana_MT        .Austin_TX                  .              .             1.0000     14486.9428      
 Helana_MT        .Salt-Lake-City_UT          .              .             1.0000     12954.8581      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 108
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Helana_MT        .Montpelier_VT              .              .             1.0000     16883.5368      
 Helana_MT        .Richmond_VA                .              .             1.0000     16335.8461      
 Helana_MT        .Olympia_WA                 .              .             1.0000     11693.2182      
@@ -5301,6 +6090,15 @@ Lincoln_NE       .Pierre_SD                  .              .             1.0000
 Lincoln_NE       .Nashville_TN               .              .             1.0000     14783.6687      
 Lincoln_NE       .Austin_TX                  .              .             1.0000     13998.4002      
 Lincoln_NE       .Salt-Lake-City_UT          .              .             1.0000     12619.4579      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 109
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Lincoln_NE       .Montpelier_VT              .              .             1.0000     15910.8601      
 Lincoln_NE       .Richmond_VA                .              .             1.0000     15435.2749      
 Lincoln_NE       .Olympia_WA                 .              .             1.0000     11403.9580      
@@ -5350,6 +6148,15 @@ Carson-City_NV   .Pierre_SD                  .              .             1.0000
 Carson-City_NV   .Nashville_TN               .              .             1.0000     14687.0807      
 Carson-City_NV   .Austin_TX                  .              .             1.0000     13605.2554      
 Carson-City_NV   .Salt-Lake-City_UT          .             1.0000         1.0000     12038.5481      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 110
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Carson-City_NV   .Montpelier_VT              .              .             1.0000     16197.3856      
 Carson-City_NV   .Richmond_VA                .              .             1.0000     15624.0427      
 Carson-City_NV   .Olympia_WA                 .              .             1.0000     10775.8980      
@@ -5399,6 +6206,15 @@ Concord_NH       .Pierre_SD                  .              .             1.0000
 Concord_NH       .Nashville_TN               .              .             1.0000     14913.4717      
 Concord_NH       .Austin_TX                  .              .             1.0000     14586.5477      
 Concord_NH       .Salt-Lake-City_UT          .              .             1.0000     13583.6541      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 111
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Concord_NH       .Montpelier_VT              .              .             1.0000     15395.2891      
 Concord_NH       .Richmond_VA                .              .             1.0000     15130.5178      
 Concord_NH       .Olympia_WA                 .              .             1.0000     12529.7460      
@@ -5448,6 +6264,15 @@ Trenton_NJ       .Pierre_SD                  .              .             1.0000
 Trenton_NJ       .Nashville_TN               .              .             1.0000     14600.1119      
 Trenton_NJ       .Austin_TX                  .              .             1.0000     14212.7612      
 Trenton_NJ       .Salt-Lake-City_UT          .              .             1.0000     13172.2823      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 112
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Trenton_NJ       .Montpelier_VT              .              .             1.0000     15193.6756      
 Trenton_NJ       .Richmond_VA                .              .             1.0000     14887.5795      
 Trenton_NJ       .Olympia_WA                 .              .             1.0000     12107.8332      
@@ -5497,6 +6322,15 @@ Santa-Fe_NM      .Pierre_SD                  .              .             1.0000
 Santa-Fe_NM      .Nashville_TN               .              .             1.0000     14252.9972      
 Santa-Fe_NM      .Austin_TX                  .              .             1.0000     13333.3760      
 Santa-Fe_NM      .Salt-Lake-City_UT          .              .             1.0000     11867.3306      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 113
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Santa-Fe_NM      .Montpelier_VT              .              .             1.0000     15581.9903      
 Santa-Fe_NM      .Richmond_VA                .              .             1.0000     15046.2298      
 Santa-Fe_NM      .Olympia_WA                 .              .             1.0000     10623.0722      
@@ -5546,6 +6380,15 @@ Albany_NY        .Pierre_SD                  .              .             1.0000
 Albany_NY        .Nashville_TN               .              .             1.0000     14864.7319      
 Albany_NY        .Austin_TX                  .              .             1.0000     14493.6656      
 Albany_NY        .Salt-Lake-City_UT          .              .             1.0000     13453.6289      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 114
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Albany_NY        .Montpelier_VT              .             1.0000         1.0000     15411.5360      
 Albany_NY        .Richmond_VA                .              .             1.0000     15124.3014      
 Albany_NY        .Olympia_WA                 .              .             1.0000     12383.6624      
@@ -5595,6 +6438,15 @@ Raleigh_NC       .Pierre_SD                  .              .             1.0000
 Raleigh_NC       .Nashville_TN               .              .             1.0000     14128.9957      
 Raleigh_NC       .Austin_TX                  .              .             1.0000     13670.2992      
 Raleigh_NC       .Salt-Lake-City_UT          .              .             1.0000     12587.0687      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 115
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Raleigh_NC       .Montpelier_VT              .              .             1.0000     14856.5753      
 Raleigh_NC       .Richmond_VA                .             1.0000         1.0000     14501.4932      
 Raleigh_NC       .Olympia_WA                 .              .             1.0000     11511.2264      
@@ -5644,6 +6496,15 @@ Bismarck_ND      .Pierre_SD                  .             1.0000         1.0000
 Bismarck_ND      .Nashville_TN               .              .             1.0000     15468.9769      
 Bismarck_ND      .Austin_TX                  .              .             1.0000     14615.7273      
 Bismarck_ND      .Salt-Lake-City_UT          .              .             1.0000     13173.6081      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 116
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Bismarck_ND      .Montpelier_VT              .              .             1.0000     16649.1882      
 Bismarck_ND      .Richmond_VA                .              .             1.0000     16162.9967      
 Bismarck_ND      .Olympia_WA                 .              .             1.0000     11933.1408      
@@ -5693,6 +6554,15 @@ Columbus_OH      .Pierre_SD                  .              .             1.0000
 Columbus_OH      .Nashville_TN               .              .             1.0000     14618.7925      
 Columbus_OH      .Austin_TX                  .              .             1.0000     14072.2262      
 Columbus_OH      .Salt-Lake-City_UT          .              .             1.0000     12890.0695      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 117
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Columbus_OH      .Montpelier_VT              .              .             1.0000     15427.9745      
 Columbus_OH      .Richmond_VA                .              .             1.0000     15051.2599      
 Columbus_OH      .Olympia_WA                 .              .             1.0000     11759.3764      
@@ -5742,6 +6612,15 @@ Oklahoma-City_OK .Pierre_SD                  .              .             1.0000
 Oklahoma-City_OK .Nashville_TN               .              .             1.0000     14196.1507      
 Oklahoma-City_OK .Austin_TX                  .              .             1.0000     13401.2631      
 Oklahoma-City_OK .Salt-Lake-City_UT          .              .             1.0000     12028.5859      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 118
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Oklahoma-City_OK .Montpelier_VT              .              .             1.0000     15367.0894      
 Oklahoma-City_OK .Richmond_VA                .              .             1.0000     14874.7308      
 Oklahoma-City_OK .Olympia_WA                 .              .             1.0000     10819.0555      
@@ -5791,6 +6670,15 @@ Salem_OR         .Pierre_SD                  .              .             1.0000
 Salem_OR         .Nashville_TN               .              .             1.0000     15336.5904      
 Salem_OR         .Austin_TX                  .              .             1.0000     14223.7301      
 Salem_OR         .Salt-Lake-City_UT          .              .             1.0000     12642.2018      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 119
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Salem_OR         .Montpelier_VT              .              .             1.0000     16871.0315      
 Salem_OR         .Richmond_VA                .              .             1.0000     16295.6079      
 Salem_OR         .Olympia_WA                 .              .             1.0000     11383.6507      
@@ -5840,6 +6728,15 @@ Harrisburg_PA    .Pierre_SD                  .              .             1.0000
 Harrisburg_PA    .Nashville_TN               .              .             1.0000     14617.9132      
 Harrisburg_PA    .Austin_TX                  .              .             1.0000     14188.5709      
 Harrisburg_PA    .Salt-Lake-City_UT          .              .             1.0000     13109.1766      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 120
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Harrisburg_PA    .Montpelier_VT              .              .             1.0000     15266.9339      
 Harrisburg_PA    .Richmond_VA                .              .             1.0000     14942.6697      
 Harrisburg_PA    .Olympia_WA                 .              .             1.0000     12025.9772      
@@ -5889,6 +6786,15 @@ Providence_RI    .Pierre_SD                  .              .             1.0000
 Providence_RI    .Nashville_TN               .              .             1.0000     14757.8383      
 Providence_RI    .Austin_TX                  .              .             1.0000     14435.4249      
 Providence_RI    .Salt-Lake-City_UT          .              .             1.0000     13445.8838      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 121
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Providence_RI    .Montpelier_VT              .              .             1.0000     15248.8943      
 Providence_RI    .Richmond_VA                .              .             1.0000     14978.9697      
 Providence_RI    .Olympia_WA                 .              .             1.0000     12401.9952      
@@ -5938,6 +6844,15 @@ Columbia_SC      .Pierre_SD                  .              .             1.0000
 Columbia_SC      .Nashville_TN               .              .             1.0000     13946.1224      
 Columbia_SC      .Austin_TX                  .              .             1.0000     13442.9604      
 Columbia_SC      .Salt-Lake-City_UT          .              .             1.0000     12326.6292      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 122
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Columbia_SC      .Montpelier_VT              .              .             1.0000     14745.6290      
 Columbia_SC      .Richmond_VA                .              .             1.0000     14365.7375      
 Columbia_SC      .Olympia_WA                 .              .             1.0000     11237.6403      
@@ -5987,6 +6902,15 @@ Pierre_SD        .Pierre_SD                  .              .              .    
 Pierre_SD        .Nashville_TN               .              .             1.0000     15195.5358      
 Pierre_SD        .Austin_TX                  .              .             1.0000     14350.8607      
 Pierre_SD        .Salt-Lake-City_UT          .              .             1.0000     12920.2574      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 123
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Pierre_SD        .Montpelier_VT              .              .             1.0000     16381.1859      
 Pierre_SD        .Richmond_VA                .              .             1.0000     15891.0256      
 Pierre_SD        .Olympia_WA                 .              .             1.0000     11684.4496      
@@ -6036,6 +6960,15 @@ Nashville_TN     .Pierre_SD                  .              .             1.0000
 Nashville_TN     .Nashville_TN               .              .              .         14218.0581      
 Nashville_TN     .Austin_TX                  .              .             1.0000     13605.6272      
 Nashville_TN     .Salt-Lake-City_UT          .              .             1.0000     12382.1017      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 124
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Nashville_TN     .Montpelier_VT              .              .             1.0000     15145.2877      
 Nashville_TN     .Richmond_VA                .              .             1.0000     14727.1543      
 Nashville_TN     .Olympia_WA                 .              .             1.0000     11237.8015      
@@ -6085,6 +7018,15 @@ Austin_TX        .Pierre_SD                  .              .             1.0000
 Austin_TX        .Nashville_TN               .              .             1.0000     13617.9019      
 Austin_TX        .Austin_TX                  .              .              .         12823.1175      
 Austin_TX        .Salt-Lake-City_UT          .              .             1.0000     11462.9804      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 125
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Austin_TX        .Montpelier_VT              .              .             1.0000     14813.1825      
 Austin_TX        .Richmond_VA                .              .             1.0000     14311.0298      
 Austin_TX        .Olympia_WA                 .              .             1.0000     10262.3291      
@@ -6134,6 +7076,15 @@ Salt-Lake-City_UT.Pierre_SD                  .              .             1.0000
 Salt-Lake-City_UT.Nashville_TN               .              .             1.0000     14840.1510      
 Salt-Lake-City_UT.Austin_TX                  .             1.0000         1.0000     13842.0919      
 Salt-Lake-City_UT.Salt-Lake-City_UT          .              .              .         12318.7953      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 126
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Salt-Lake-City_UT.Montpelier_VT              .              .             1.0000     16249.7288      
 Salt-Lake-City_UT.Richmond_VA                .              .             1.0000     15695.9167      
 Salt-Lake-City_UT.Olympia_WA                 .              .             1.0000     11058.8950      
@@ -6183,6 +7134,15 @@ Montpelier_VT    .Pierre_SD                  .              .             1.0000
 Montpelier_VT    .Nashville_TN               .              .             1.0000     15035.6439      
 Montpelier_VT    .Austin_TX                  .              .             1.0000     14686.5876      
 Montpelier_VT    .Salt-Lake-City_UT          .              .             1.0000     13656.4233      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 127
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Montpelier_VT    .Montpelier_VT              .              .              .         15535.0859      
 Montpelier_VT    .Richmond_VA                .              .             1.0000     15266.0659      
 Montpelier_VT    .Olympia_WA                 .              .             1.0000     12587.1210      
@@ -6232,6 +7192,15 @@ Richmond_VA      .Pierre_SD                  .              .             1.0000
 Richmond_VA      .Nashville_TN               .              .             1.0000     14318.4703      
 Richmond_VA      .Austin_TX                  .              .             1.0000     13880.8546      
 Richmond_VA      .Salt-Lake-City_UT          .              .             1.0000     12808.3575      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 128
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Richmond_VA      .Montpelier_VT              .              .             1.0000     15003.4319      
 Richmond_VA      .Richmond_VA                .              .              .         14664.1019      
 Richmond_VA      .Olympia_WA                 .              .             1.0000     11734.2134      
@@ -6281,6 +7250,15 @@ Olympia_WA       .Pierre_SD                  .              .             1.0000
 Olympia_WA       .Nashville_TN               .              .             1.0000     15570.9282      
 Olympia_WA       .Austin_TX                  .              .             1.0000     14458.6006      
 Olympia_WA       .Salt-Lake-City_UT          .              .             1.0000     12876.6178      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 129
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Olympia_WA       .Montpelier_VT              .              .             1.0000     17101.8030      
 Olympia_WA       .Richmond_VA                .              .             1.0000     16526.7947      
 Olympia_WA       .Olympia_WA                 .              .              .         11618.3312      
@@ -6330,6 +7308,15 @@ Charleston_WV    .Pierre_SD                  .              .             1.0000
 Charleston_WV    .Nashville_TN               .              .             1.0000     14432.1817      
 Charleston_WV    .Austin_TX                  .              .             1.0000     13913.1321      
 Charleston_WV    .Salt-Lake-City_UT          .              .             1.0000     12762.5615      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 130
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Charleston_WV    .Montpelier_VT              .              .             1.0000     15218.3214      
 Charleston_WV    .Richmond_VA                .              .             1.0000     14847.1859      
 Charleston_WV    .Olympia_WA                 .              .             1.0000     11649.2354      
@@ -6379,6 +7366,15 @@ Madison_WI       .Pierre_SD                  .              .             1.0000
 Madison_WI       .Nashville_TN               .              .             1.0000     14998.6761      
 Madison_WI       .Austin_TX                  .              .             1.0000     14333.1896      
 Madison_WI       .Salt-Lake-City_UT          .              .             1.0000     13039.3761      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 131
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Madison_WI       .Montpelier_VT              .              .             1.0000     15943.2010      
 Madison_WI       .Richmond_VA                .              .             1.0000     15526.7691      
 Madison_WI       .Olympia_WA                 .              .             1.0000     11855.8633      
@@ -6428,6 +7424,15 @@ Cheyenne_WY      .Pierre_SD                  .              .             1.0000
 Cheyenne_WY      .Nashville_TN               .              .             1.0000     14856.8323      
 Cheyenne_WY      .Austin_TX                  .              .             1.0000     13950.0404      
 Cheyenne_WY      .Salt-Lake-City_UT          .              .             1.0000     12483.8108      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 132
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                           LOWER          LEVEL          UPPER         MARGINAL
+
 Cheyenne_WY      .Montpelier_VT              .              .             1.0000     16146.4666      
 Cheyenne_WY      .Richmond_VA                .              .             1.0000     15623.8237      
 Cheyenne_WY      .Olympia_WA                 .              .             1.0000     11237.9523      
@@ -6477,6 +7482,15 @@ Raleigh_NC                2.0000        21.0000        50.0000          .
 Bismarck_ND               2.0000        46.0000        50.0000          .          
 Columbus_OH               2.0000        35.0000        50.0000          .          
 Oklahoma-City_OK          2.0000        45.0000        50.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 133
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR u  
+
+                         LOWER          LEVEL          UPPER         MARGINAL
+
 Salem_OR                  2.0000         9.0000        50.0000          .          
 Harrisburg_PA             2.0000        23.0000        50.0000          .          
 Providence_RI             2.0000        30.0000        50.0000          .          
@@ -6496,14 +7510,14 @@ Cheyenne_WY               2.0000        48.0000        50.0000          .
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 30.2.0  r482c588 Released Feb  7, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:47:48 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 134
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    108 VARIABLE obj.L                 =   671259.583  
+----     57 VARIABLE obj.L                 =   671259.583  
 
-----    129 SET tour  
+----     78 SET tour  
 
 Juneau_AK        .Honolulu_HI      
 Phoenix_AZ       .Helana_MT        
@@ -6554,9 +7568,12 @@ Olympia_WA       .Sacramento_CA
 Charleston_WV    .Raleigh_NC       
 Madison_WI       .Baton-Rouge_LA   
 Cheyenne_WY      .Santa-Fe_NM      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:50:09 Page 135
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
 
 
-----    130 VARIABLE u.L  
+----     79 VARIABLE u.L  
 
 Juneau_AK          1.000,    Phoenix_AZ         4.000,    Little-Rock_AR    14.000,    Sacramento_CA      8.000,    Denver_CO         50.000,    Hartford_CT       24.000,    Dover_DE          19.000,    Tallahassee_FL    37.000
 Atlanta_GA        33.000,    Honolulu_HI        3.000,    Boise_ID           6.000,    Springfield_IL    16.000,    Indianapolis_IN   31.000,    Des-Moines_IA     13.000,    Topeka_KS         44.000,    Frankfort_KY      32.000
@@ -6568,7 +7585,7 @@ Cheyenne_WY       48.000
 
 
 
-EXECUTION TIME       =        0.047 SECONDS      4 MB  30.2.0 r482c588 WEX-WEI
+EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
