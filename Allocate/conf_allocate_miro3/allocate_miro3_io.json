@@ -247,8 +247,8 @@
 		},
 		"_scalars_out":	{
 			"alias":	"Output Scalars",
-			"symnames":	["alltest", "pcplus", "leftover"],
-			"symtext":	["alltest", "pcplus", "leftover"],
+			"symnames":	["alltest", "leftover", "pcplus"],
+			"symtext":	["Number of people tested", "Number of samples tested with unknown result", " percent of leftover/alltest"],
 			"symtypes":	["parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{

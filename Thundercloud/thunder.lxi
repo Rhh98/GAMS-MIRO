@@ -1,22 +1,22 @@
 B 3 C o m p i l a t i o n
-B 191 E x e c u t i o n
-I 191 xcoord
-I 288 zcoord
-I 378 Arcs
-I 3386 c
-I 6158 b
-B 6166 Equation Listing    SOLVE airplane Using LP From line 169
-D 6169 balance
-D 6180 objective
-B 6616 Column Listing      SOLVE airplane Using LP From line 169
-E 6619 flow
-E 6641 totalcost
-B 6649 Model Statistics    SOLVE airplane Using LP From line 169
-B 6665 Solution Report     SOLVE airplane Using LP From line 169
-F 6693 balance
-F 7980 objective
-G 7982 flow
-G 10836 totalcost
-B 10844 E x e c u t i o n
-I 10844 flow
-I 10902 FlowOP
+B 195 E x e c u t i o n
+I 195 xcoord
+I 292 zcoord
+I 382 Arcs
+I 3390 c
+I 6162 b
+B 6170 Equation Listing    SOLVE airplane Using LP From line 173
+D 6173 balance
+D 6184 objective
+B 6620 Column Listing      SOLVE airplane Using LP From line 173
+E 6623 flow
+E 6645 totalcost
+B 6653 Model Statistics    SOLVE airplane Using LP From line 173
+B 6669 Solution Report     SOLVE airplane Using LP From line 173
+F 6697 balance
+F 7984 objective
+G 7986 flow
+G 10840 totalcost
+B 10848 E x e c u t i o n
+I 10848 flow
+I 10906 FlowOP

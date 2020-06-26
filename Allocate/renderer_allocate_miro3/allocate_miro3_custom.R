@@ -88,10 +88,14 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                               lon=cbind(data$lonc[ind],data$lonl[ind])
                               lat=cbind(data$latc[ind],data$latl[ind])
                               val=data$val[ind]
+                              if (length(val))
+                              {
                               for (j in 1:length(data$lonc[ind]))
                               {
+                                
                                 map<-addPolylines(map,lon[j,],lat[j,],weight=val[j]/max(data$val[-Nan])*6,
                                                   color='purple',group = paste('lab:',l[i]),label = val[j] )
+                              }
                               }
                              
                             }
@@ -108,10 +112,12 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                               lon=cbind(data$lonc[ind],data$lonl[ind])
                               lat=cbind(data$latc[ind],data$latl[ind])
                               val=data$val[ind]
+                              if (length(val)){
                               for (j in 1:length(data$lonc[ind]))
                               {
                                 map<-addPolylines(map,lon[j,],lat[j,],weight=val[j]/max(data$val[-Nan])*6,
                                                   color='green',group = paste('center:',c[i]),label=val[j])
+                              }
                               }
                               
                             }

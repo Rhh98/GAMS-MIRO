@@ -1,23 +1,80 @@
---- Job AirAmbulance.gms Start 06/17/20 16:45:13 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job AirAmbulance.gms Start 06/25/20 20:24:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\AirAmbulance.gms
     PageSize 0
-    Action C
     ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\225a\
-    SysDir E:\30.2\
+    SysDir E:\31.1\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
     IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
     LstTitleLeftAligned 1
-    IDCJSON conf_AirAmbulance/AirAmbulance_io.json
-GAMS 30.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 8 days ago
+    IDCGenerateJSON conf_AirAmbulance/AirAmbulance_io.json
+    IDCGenerateGDX data_AirAmbulance/default.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 16 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- AirAmbulance.gms(72) 3 Mb
-*** Status: Normal completion
---- Job AirAmbulance.gms Stop 06/17/20 16:45:13 elapsed 0:00:00.552
+--- AirAmbulance.gms(68) 3 Mb
+--- Starting execution: elapsed 0:00:00.012
+--- AirAmbulance.gms(55) 4 Mb
+--- Generating LP model AirAmbulance2
+--- AirAmbulance.gms(56) 4 Mb
+---   6 rows  21 columns  61 non-zeroes
+--- Executing CPLEX: elapsed 0:00:00.034
 
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 1 columns.
+Reduced LP has 5 rows, 20 columns, and 40 nonzeros.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Iteration      Dual Objective            In Variable           Out Variable
+     1            2236.067977                 z(5.4)      balance2(5) slack
+     2            4836.067977                 z(3.2)      balance2(3) slack
+     3            6798.618349                 z(5.2)      balance2(4) slack
+     4            7161.869060                 z(5.1)      balance2(2) slack
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.02 ticks)
+
+Optimal solution found.
+Objective :        7161.869060
+
+--- Restarting execution
+--- AirAmbulance.gms(56) 2 Mb
+--- Reading solution for model AirAmbulance2
+--- Executing after solve: elapsed 0:00:00.143
+--- AirAmbulance.gms(68) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\data_AirAmbulance/default.gdx
+*** Status: Normal completion
+--- Job AirAmbulance.gms Stop 06/25/20 20:24:07 elapsed 0:00:00.163
+
+Warning in eval(ei, envir) :
+  The alias of symbol: 'x' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'y' was selected to be overwritten. However, this symbol could not be found.
+Warning in ..stacktraceon..({ :
+  
+Some of the input elements in the 'overwriteSheetOrder' option are not defined in the data model!

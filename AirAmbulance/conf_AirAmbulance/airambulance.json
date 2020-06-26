@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["x", "y", "d", "s", "_widgets"]
+    "input": ["locinfo", "d", "s", "_widgets"]
   },
   "overwriteAliases": {
     "x": {
@@ -20,6 +20,9 @@
     },
     "numofheli": {
       "newAlias": "number of helicopters in L"
+    },
+    "locinfo": {
+      "newAlias": "Coordinates of loctions"
     }
   },
   "pivottable": {
@@ -51,12 +54,6 @@
     }
   },
   "defaultScenName": "default",
-  "inputGroups": [
-    {
-      "name": "locations",
-      "members": ["x", "y"]
-    }
-  ],
   "readme": {
     "tabTitle": "readme",
     "filename": "readme.md"

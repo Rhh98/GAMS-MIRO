@@ -4,25 +4,25 @@
   },
   "overwriteAliases": {
     "mcoord": {
-      "newAlias": "mcoord"
+      "newAlias": "Machine co-coordinates"
     },
     "rscoord": {
-      "newAlias": "rscoord"
+      "newAlias": "Recieving and Shipping co-coordinates"
     },
     "min_distance": {
-      "newAlias": "min_distance"
+      "newAlias": "Minimum distance between different machines"
     },
     "cm": {
-      "newAlias": "cm"
+      "newAlias": "Cost of moving machines per distance unit"
     },
     "ch": {
-      "newAlias": "ch"
+      "newAlias": "Cost of moving products per distance unit"
     },
     "lowupcoord": {
       "newAlias": "lower and upper bound of the co-coordinats of machines"
     },
     "result": {
-      "newAlias": "result"
+      "newAlias": "Layout and Work Flow"
     },
     "result2": {
       "newAlias": "result for new layout"
@@ -57,12 +57,6 @@
     }
   },
   "defaultScenName": "default",
-  "outputGroups": [
-    {
-      "name": "Result",
-      "members": ["result", "result2"]
-    }
-  ],
   "readme": {
     "tabTitle": "readme",
     "filename": "FacLoc.md"

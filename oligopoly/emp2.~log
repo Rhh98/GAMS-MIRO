@@ -1,4 +1,4 @@
---- Job emp2.gms Start 06/25/20 15:52:35 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp2.gms Start 06/25/20 20:33:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,17 +21,15 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- emp2.gms(272) 3 Mb
---- Resetting Table request for fdata due to last domain is universe.
---- Resetting Table request for jdata due to last domain is universe.
---- Starting execution: elapsed 0:00:00.019
---- emp2.gms(100) 4 Mb
+--- emp2.gms(274) 3 Mb
+--- Starting execution: elapsed 0:00:00.009
+--- emp2.gms(101) 4 Mb
 --- Generating EMP model Cournot
---- emp2.gms(101) 6 Mb
+--- emp2.gms(102) 6 Mb
 ---   4 rows  7 columns  13 non-zeroes
 ---   47 nl-code  9 nl-non-zeroes
---- emp2.gms(101) 4 Mb
---- Executing JAMS: elapsed 0:00:00.374
+--- emp2.gms(102) 4 Mb
+--- Executing JAMS: elapsed 0:00:00.038
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -51,7 +49,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:35 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -89,14 +87,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(55) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(54) 3 Mb
 --- Generating MCP model m
 --- emp.dat(55) 5 Mb
 ---   7 rows  7 columns  28 non-zeroes
 ---   73 nl-code  15 nl-non-zeroes
 --- emp.dat(55) 3 Mb
---- Executing PATH: elapsed 0:00:00.056
+--- Executing PATH: elapsed 0:00:00.041
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -162,7 +160,7 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 7
 Gradient Evaluations. . 7
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.000000
 Residual. . . . . . . . 3.119504e-08
 
 --- Restarting execution
@@ -170,24 +168,24 @@ Residual. . . . . . . . 3.119504e-08
 --- Reading solution for model m
 --- Putfile implvarfile C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\implvar.dat
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:36 elapsed 0:00:00.419
+--- Job emp.dat Stop 06/25/20 20:33:07 elapsed 0:00:00.209
 --- Returning from GAMS step
 ---
 --- Equations skipped = 3  Equations added = 6
 --- Variables skipped = 3  Variables added = 3
 ---
 --- Restarting execution
---- emp2.gms(101) 2 Mb
+--- emp2.gms(102) 2 Mb
 --- Reading solution for model Cournot
---- Executing after solve: elapsed 0:00:01.274
---- emp2.gms(146) 3 Mb
+--- Executing after solve: elapsed 0:00:00.429
+--- emp2.gms(147) 3 Mb
 --- Generating EMP model Stackelberg
---- emp2.gms(156) 5 Mb
+--- emp2.gms(157) 5 Mb
 --- LOOPS k = 1
 ---   4 rows  7 columns  15 non-zeroes
 ---   59 nl-code  11 nl-non-zeroes
---- emp2.gms(156) 3 Mb
---- Executing JAMS: elapsed 0:00:01.330
+--- emp2.gms(157) 3 Mb
+--- Executing JAMS: elapsed 0:00:00.465
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -207,7 +205,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:36 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -245,14 +243,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(36) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(35) 3 Mb
 --- Generating MPEC model m
 --- emp.dat(36) 5 Mb
 ---   4 rows  5 columns  13 non-zeroes
 ---   83 nl-code  11 nl-non-zeroes
 --- emp.dat(36) 3 Mb
---- Executing NLPEC: elapsed 0:00:00.038
+--- Executing NLPEC: elapsed 0:00:00.031
 
 NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -271,7 +269,7 @@ Michael Ferris, University of Wisconsin
 --- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat will be solved by GAMS
 --- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\pf.dat"
 
---- Job gms.dat Start 06/25/20 15:52:36 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job gms.dat Start 06/25/20 20:33:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -295,14 +293,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- gms.dat(103) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.005
 --- gms.dat(101) 3 Mb
 --- Generating DNLP model m
 --- gms.dat(103) 5 Mb
 ---   6 rows  7 columns  19 non-zeroes
 ---   91 nl-code  15 nl-non-zeroes
 --- gms.dat(103) 3 Mb
---- Executing CONOPT: elapsed 0:00:00.042
+--- Executing CONOPT: elapsed 0:00:00.026
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -337,7 +335,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- gms.dat(103) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job gms.dat Stop 06/25/20 15:52:37 elapsed 0:00:00.194
+--- Job gms.dat Stop 06/25/20 20:33:07 elapsed 0:00:00.164
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 2
@@ -346,24 +344,24 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- emp.dat(36) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:37 elapsed 0:00:00.685
+--- Job emp.dat Stop 06/25/20 20:33:07 elapsed 0:00:00.367
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(156) 2 Mb
+--- emp2.gms(157) 2 Mb
 --- Reading solution for model Stackelberg
---- Executing after solve: elapsed 0:00:02.222
---- emp2.gms(146) 3 Mb
+--- Executing after solve: elapsed 0:00:01.020
+--- emp2.gms(147) 3 Mb
 --- Generating EMP model Stackelberg
---- emp2.gms(156) 5 Mb
+--- emp2.gms(157) 5 Mb
 --- LOOPS k = 2
 ---   4 rows  7 columns  15 non-zeroes
 ---   59 nl-code  11 nl-non-zeroes
---- emp2.gms(156) 3 Mb
---- Executing JAMS: elapsed 0:00:02.274
+--- emp2.gms(157) 3 Mb
+--- Executing JAMS: elapsed 0:00:01.051
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -383,7 +381,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:37 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -428,7 +426,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   4 rows  5 columns  13 non-zeroes
 ---   83 nl-code  11 nl-non-zeroes
 --- emp.dat(38) 3 Mb
---- Executing NLPEC: elapsed 0:00:00.040
+--- Executing NLPEC: elapsed 0:00:00.045
 
 NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -447,7 +445,7 @@ Michael Ferris, University of Wisconsin
 --- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat will be solved by GAMS
 --- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\pf.dat"
 
---- Job gms.dat Start 06/25/20 15:52:37 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job gms.dat Start 06/25/20 20:33:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -471,14 +469,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- gms.dat(103) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.007
 --- gms.dat(101) 3 Mb
 --- Generating DNLP model m
 --- gms.dat(103) 5 Mb
 ---   6 rows  7 columns  19 non-zeroes
 ---   91 nl-code  15 nl-non-zeroes
 --- gms.dat(103) 3 Mb
---- Executing CONOPT: elapsed 0:00:00.042
+--- Executing CONOPT: elapsed 0:00:00.035
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -513,7 +511,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- gms.dat(103) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job gms.dat Stop 06/25/20 15:52:37 elapsed 0:00:00.170
+--- Job gms.dat Stop 06/25/20 20:33:08 elapsed 0:00:00.189
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 2
@@ -522,24 +520,24 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- emp.dat(38) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:37 elapsed 0:00:00.411
+--- Job emp.dat Stop 06/25/20 20:33:08 elapsed 0:00:00.437
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(156) 2 Mb
+--- emp2.gms(157) 2 Mb
 --- Reading solution for model Stackelberg
---- Executing after solve: elapsed 0:00:02.878
---- emp2.gms(146) 3 Mb
+--- Executing after solve: elapsed 0:00:01.674
+--- emp2.gms(147) 3 Mb
 --- Generating EMP model Stackelberg
---- emp2.gms(156) 5 Mb
+--- emp2.gms(157) 5 Mb
 --- LOOPS k = 3
 ---   4 rows  7 columns  15 non-zeroes
 ---   59 nl-code  11 nl-non-zeroes
---- emp2.gms(156) 3 Mb
---- Executing JAMS: elapsed 0:00:02.928
+--- emp2.gms(157) 3 Mb
+--- Executing JAMS: elapsed 0:00:01.697
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -559,7 +557,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:38 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -597,14 +595,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(38) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.005
 --- emp.dat(37) 3 Mb
 --- Generating MPEC model m
 --- emp.dat(38) 5 Mb
 ---   4 rows  5 columns  13 non-zeroes
 ---   83 nl-code  11 nl-non-zeroes
 --- emp.dat(38) 3 Mb
---- Executing NLPEC: elapsed 0:00:00.038
+--- Executing NLPEC: elapsed 0:00:00.036
 
 NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -623,7 +621,7 @@ Michael Ferris, University of Wisconsin
 --- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat will be solved by GAMS
 --- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\pf.dat"
 
---- Job gms.dat Start 06/25/20 15:52:38 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job gms.dat Start 06/25/20 20:33:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -647,14 +645,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- gms.dat(103) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.004
 --- gms.dat(101) 3 Mb
 --- Generating DNLP model m
 --- gms.dat(103) 5 Mb
 ---   6 rows  7 columns  19 non-zeroes
 ---   91 nl-code  15 nl-non-zeroes
 --- gms.dat(103) 3 Mb
---- Executing CONOPT: elapsed 0:00:00.042
+--- Executing CONOPT: elapsed 0:00:00.028
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -687,7 +685,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- gms.dat(103) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job gms.dat Stop 06/25/20 15:52:38 elapsed 0:00:00.184
+--- Job gms.dat Stop 06/25/20 20:33:08 elapsed 0:00:00.142
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 2
@@ -696,24 +694,24 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- emp.dat(38) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:38 elapsed 0:00:00.425
+--- Job emp.dat Stop 06/25/20 20:33:08 elapsed 0:00:00.344
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(156) 2 Mb
+--- emp2.gms(157) 2 Mb
 --- Reading solution for model Stackelberg
---- Executing after solve: elapsed 0:00:03.549
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:02.213
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 1
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:03.599
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:02.245
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -733,7 +731,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:38 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -771,7 +769,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(33) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.006
 --- emp.dat(32) 3 Mb
 --- Generating MCP model m
 --- emp.dat(33) 5 Mb
@@ -779,7 +777,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(33) 3 Mb
---- Executing PATH: elapsed 0:00:00.055
+--- Executing PATH: elapsed 0:00:00.032
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -851,24 +849,24 @@ Residual. . . . . . . . 2.727457e-09
 --- emp.dat(33) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:38 elapsed 0:00:00.195
+--- Job emp.dat Stop 06/25/20 20:33:09 elapsed 0:00:00.154
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:04.038
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:02.647
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 2
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:04.069
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:02.677
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -888,7 +886,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:39 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -926,7 +924,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.007
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -934,7 +932,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.041
+--- Executing PATH: elapsed 0:00:00.040
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1006,24 +1004,24 @@ Residual. . . . . . . . 9.388322e-10
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:39 elapsed 0:00:00.171
+--- Job emp.dat Stop 06/25/20 20:33:09 elapsed 0:00:00.188
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:04.445
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:03.047
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 3
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:04.477
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:03.069
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1043,7 +1041,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:39 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -1081,7 +1079,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.006
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -1089,7 +1087,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.033
+--- Executing PATH: elapsed 0:00:00.032
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1161,24 +1159,24 @@ Residual. . . . . . . . 3.251365e-10
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:39 elapsed 0:00:00.176
+--- Job emp.dat Stop 06/25/20 20:33:10 elapsed 0:00:00.162
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:04.863
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:03.426
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 4
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:04.898
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:03.450
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1198,7 +1196,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:40 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -1236,7 +1234,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.009
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -1244,7 +1242,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.040
+--- Executing PATH: elapsed 0:00:00.030
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1316,24 +1314,24 @@ Residual. . . . . . . . 1.133567e-10
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:40 elapsed 0:00:00.180
+--- Job emp.dat Stop 06/25/20 20:33:10 elapsed 0:00:00.152
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:05.318
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:03.787
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 5
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:05.358
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:03.816
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1353,7 +1351,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:40 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -1391,7 +1389,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.005
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -1399,7 +1397,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.039
+--- Executing PATH: elapsed 0:00:00.031
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1471,24 +1469,24 @@ Residual. . . . . . . . 3.984143e-11
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:40 elapsed 0:00:00.164
+--- Job emp.dat Stop 06/25/20 20:33:10 elapsed 0:00:00.157
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:05.744
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:04.167
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 6
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:05.779
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:04.194
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1508,7 +1506,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:40 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -1546,7 +1544,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -1554,7 +1552,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.039
+--- Executing PATH: elapsed 0:00:00.029
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1619,31 +1617,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 6
 Gradient Evaluations. . 6
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.000000
 Residual. . . . . . . . 1.414549e-11
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:41 elapsed 0:00:00.173
+--- Job emp.dat Stop 06/25/20 20:33:11 elapsed 0:00:00.171
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:06.147
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:04.542
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 7
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:06.179
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:04.575
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1663,7 +1661,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:41 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -1701,7 +1699,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.007
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -1709,7 +1707,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.037
+--- Executing PATH: elapsed 0:00:00.032
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1774,31 +1772,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 6
 Gradient Evaluations. . 6
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.015000
 Residual. . . . . . . . 5.047386e-12
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:41 elapsed 0:00:00.171
+--- Job emp.dat Stop 06/25/20 20:33:11 elapsed 0:00:00.176
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:06.554
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:04.951
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 8
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:06.589
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:04.979
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1818,7 +1816,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:41 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -1856,7 +1854,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.006
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -1864,7 +1862,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.038
+--- Executing PATH: elapsed 0:00:00.032
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1929,31 +1927,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 6
 Gradient Evaluations. . 6
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
 Residual. . . . . . . . 1.857774e-12
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:41 elapsed 0:00:00.175
+--- Job emp.dat Stop 06/25/20 20:33:12 elapsed 0:00:00.199
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:06.970
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:05.399
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 9
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:06.999
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:05.433
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -1973,7 +1971,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:42 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2011,7 +2009,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.006
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -2019,7 +2017,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.037
+--- Executing PATH: elapsed 0:00:00.036
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -2091,24 +2089,24 @@ Residual. . . . . . . . 6.385107e-13
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:42 elapsed 0:00:00.170
+--- Job emp.dat Stop 06/25/20 20:33:12 elapsed 0:00:00.170
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:07.357
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:05.797
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 10
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:07.391
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:05.818
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -2128,7 +2126,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:42 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2166,7 +2164,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.005
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -2174,7 +2172,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.035
+--- Executing PATH: elapsed 0:00:00.037
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -2239,31 +2237,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 6
 Gradient Evaluations. . 6
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
 Residual. . . . . . . . 2.614807e-13
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:42 elapsed 0:00:00.161
+--- Job emp.dat Stop 06/25/20 20:33:12 elapsed 0:00:00.169
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:07.749
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:06.163
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 11
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:07.789
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:06.194
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -2283,7 +2281,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:42 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2321,7 +2319,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.004
+--- Starting execution: elapsed 0:00:00.005
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -2329,7 +2327,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.040
+--- Executing PATH: elapsed 0:00:00.030
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -2394,31 +2392,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 6
 Gradient Evaluations. . 6
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.015000
+Total Time. . . . . . . 0.000000
 Residual. . . . . . . . 6.550880e-14
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:43 elapsed 0:00:00.178
+--- Job emp.dat Stop 06/25/20 20:33:13 elapsed 0:00:00.154
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:08.165
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:06.531
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 12
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:08.514
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:06.560
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -2438,7 +2436,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:43 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2476,7 +2474,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.006
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -2484,7 +2482,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.035
+--- Executing PATH: elapsed 0:00:00.030
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -2556,24 +2554,24 @@ Residual. . . . . . . . 6.550880e-14
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:43 elapsed 0:00:00.175
+--- Job emp.dat Stop 06/25/20 20:33:13 elapsed 0:00:00.143
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:08.876
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:06.910
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 13
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:08.909
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:06.930
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -2593,7 +2591,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2639,7 +2637,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.035
+--- Executing PATH: elapsed 0:00:00.025
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -2704,31 +2702,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 6
 Gradient Evaluations. . 6
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
 Residual. . . . . . . . 1.776357e-14
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:44 elapsed 0:00:00.168
+--- Job emp.dat Stop 06/25/20 20:33:13 elapsed 0:00:00.139
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:09.272
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:07.230
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 14
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:09.304
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:07.253
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -2748,7 +2746,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:14 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2786,7 +2784,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -2794,7 +2792,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.034
+--- Executing PATH: elapsed 0:00:00.032
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -2865,24 +2863,24 @@ Residual. . . . . . . . 8.999970e-07
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:44 elapsed 0:00:00.169
+--- Job emp.dat Stop 06/25/20 20:33:14 elapsed 0:00:00.137
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:09.675
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:07.538
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 15
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:09.706
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:07.563
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -2902,7 +2900,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:14 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -2948,7 +2946,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.037
+--- Executing PATH: elapsed 0:00:00.028
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -3019,24 +3017,24 @@ Residual. . . . . . . . 5.631848e-07
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:45 elapsed 0:00:00.168
+--- Job emp.dat Stop 06/25/20 20:33:14 elapsed 0:00:00.140
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:10.078
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:07.867
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 16
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:10.116
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:07.894
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3056,7 +3054,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:45 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:14 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -3094,7 +3092,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -3102,7 +3100,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.037
+--- Executing PATH: elapsed 0:00:00.024
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -3173,24 +3171,24 @@ Residual. . . . . . . . 3.544247e-07
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:45 elapsed 0:00:00.169
+--- Job emp.dat Stop 06/25/20 20:33:14 elapsed 0:00:00.126
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:10.481
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:08.199
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 17
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:10.516
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:08.226
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3210,7 +3208,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:45 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:15 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -3248,7 +3246,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -3256,7 +3254,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.035
+--- Executing PATH: elapsed 0:00:00.023
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -3320,31 +3318,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 5
 Gradient Evaluations. . 5
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
 Residual. . . . . . . . 2.243332e-07
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:45 elapsed 0:00:00.168
+--- Job emp.dat Stop 06/25/20 20:33:15 elapsed 0:00:00.125
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:10.880
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:08.514
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 18
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:10.912
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:08.534
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3364,7 +3362,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:46 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:15 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -3410,7 +3408,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.034
+--- Executing PATH: elapsed 0:00:00.031
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -3474,31 +3472,31 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 5
 Gradient Evaluations. . 5
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.015000
+Total Time. . . . . . . 0.000000
 Residual. . . . . . . . 1.428202e-07
 
 --- Restarting execution
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:46 elapsed 0:00:00.165
+--- Job emp.dat Stop 06/25/20 20:33:15 elapsed 0:00:00.143
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:11.281
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:08.842
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 19
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:11.320
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:08.867
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3518,7 +3516,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:46 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:15 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -3556,7 +3554,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.005
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -3564,7 +3562,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.039
+--- Executing PATH: elapsed 0:00:00.023
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -3635,24 +3633,24 @@ Residual. . . . . . . . 9.146121e-08
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:46 elapsed 0:00:00.171
+--- Job emp.dat Stop 06/25/20 20:33:15 elapsed 0:00:00.125
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:11.702
---- emp2.gms(181) 3 Mb
+--- Executing after solve: elapsed 0:00:09.146
+--- emp2.gms(182) 3 Mb
 --- Generating EMP model subStackelberg
---- emp2.gms(190) 5 Mb
+--- emp2.gms(191) 5 Mb
 --- LOOPS grid = 20
 ---   2 rows  5 columns  8 non-zeroes
 ---   37 nl-code  6 nl-non-zeroes
---- emp2.gms(190) 3 Mb
---- Executing JAMS: elapsed 0:00:11.734
+--- emp2.gms(191) 3 Mb
+--- Executing JAMS: elapsed 0:00:09.172
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3672,7 +3670,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:46 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:16 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -3710,7 +3708,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(34) 2 Mb
---- Starting execution: elapsed 0:00:00.006
+--- Starting execution: elapsed 0:00:00.004
 --- emp.dat(33) 3 Mb
 --- Generating MCP model m
 --- emp.dat(34) 5 Mb
@@ -3718,7 +3716,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   1 unmatched fixed column(s) will be ignored
 ---   61 nl-code  6 nl-non-zeroes
 --- emp.dat(34) 3 Mb
---- Executing PATH: elapsed 0:00:00.038
+--- Executing PATH: elapsed 0:00:00.033
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -3789,23 +3787,23 @@ Residual. . . . . . . . 5.891936e-08
 --- emp.dat(34) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:47 elapsed 0:00:00.158
+--- Job emp.dat Stop 06/25/20 20:33:16 elapsed 0:00:00.145
 --- Returning from GAMS step
 ---
 --- Equations skipped = 2  Equations added = 2
 --- Variables skipped = 2  Variables added = 0
 ---
 --- Restarting execution
---- emp2.gms(190) 2 Mb
+--- emp2.gms(191) 2 Mb
 --- Reading solution for model subStackelberg
---- Executing after solve: elapsed 0:00:12.089
---- emp2.gms(259) 3 Mb
+--- Executing after solve: elapsed 0:00:09.484
+--- emp2.gms(261) 3 Mb
 --- Generating EMP model BertrandMCP
---- emp2.gms(260) 5 Mb
+--- emp2.gms(262) 5 Mb
 ---   4 rows  6 columns  12 non-zeroes
 ---   15 nl-code  4 nl-non-zeroes
---- emp2.gms(260) 3 Mb
---- Executing JAMS: elapsed 0:00:12.139
+--- emp2.gms(262) 3 Mb
+--- Executing JAMS: elapsed 0:00:09.510
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3825,7 +3823,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 06/25/20 15:52:47 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 06/25/20 20:33:16 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -3870,7 +3868,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   10 rows  10 columns  32 non-zeroes
 ---   30 nl-code  12 nl-non-zeroes
 --- emp.dat(41) 3 Mb
---- Executing PATH: elapsed 0:00:00.049
+--- Executing PATH: elapsed 0:00:00.037
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -4037,80 +4035,82 @@ Crash Iterations. . . . 3
 Gradient Steps. . . . . 0
 Function Evaluations. . 733
 Gradient Evaluations. . 98
-Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.141000
+Basis Time. . . . . . . 0.015000
+Total Time. . . . . . . 0.140000
 Residual. . . . . . . . 1.819048e-12
 
 --- Restarting execution
 --- emp.dat(41) 2 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 06/25/20 15:52:47 elapsed 0:00:00.325
+--- Job emp.dat Stop 06/25/20 20:33:16 elapsed 0:00:00.310
 --- Returning from GAMS step
 ---
 --- Equations skipped = 0  Equations added = 6
 --- Variables skipped = 0  Variables added = 4
 ---
 --- Restarting execution
---- emp2.gms(260) 2 Mb
+--- emp2.gms(262) 2 Mb
 --- Reading solution for model BertrandMCP
---- Executing after solve: elapsed 0:00:12.655
---- emp2.gms(265) 3 Mb
+--- Executing after solve: elapsed 0:00:09.990
+--- emp2.gms(267) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\data_emp2/default.gdx
 *** Status: Normal completion
---- Job emp2.gms Stop 06/25/20 15:52:47 elapsed 0:00:12.691
+--- Job emp2.gms Stop 06/25/20 20:33:16 elapsed 0:00:10.016
 
 Warning in eval(ei, envir) :
   The alias of symbol: 'd' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-25 15:52:52] Logging facility initialised.
-DEBUG [2020-06-25 15:52:53] Database connection established.
-DEBUG [2020-06-25 15:52:53] Access Control initialised.
-WARN [2020-06-25 15:52:53] There are orphaned tables in your database: 'emp2_d'.
+TRACE [2020-06-25 20:33:21] Logging facility initialised.
+DEBUG [2020-06-25 20:33:21] Database connection established.
+DEBUG [2020-06-25 20:33:21] Access Control initialised.
+WARN [2020-06-25 20:33:21] There are orphaned tables in your database: 'emp2_d'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-06-25 15:52:53] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-06-25 15:52:54] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-06-25 15:52:54] Db: 127 rows in table: '_sys_metadata_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-06-25 15:52:54] Db: Metadata (table: '_sys_metadata_emp2') was written to database. (Db.writeMetadata).
-DEBUG [2020-06-25 15:52:54] Db: Metadata (table: '_sys_metadata_emp2') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_resultcour' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_resultstac' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_linfo_stac' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_ninfo_stac' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_resultbert' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_i' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_lead' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_fdata' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2_jdata' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was added to table: 'emp2__scalars' (Db.exportScenDataset).
-DEBUG [2020-06-25 15:52:54] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
-DEBUG [2020-06-25 15:52:55] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-25 15:52:56] Scenario: '1' unlocked.
-DEBUG [2020-06-25 15:52:56] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
-INFO [2020-06-25 15:53:01] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
-DEBUG [2020-06-25 15:53:01] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
-DEBUG [2020-06-25 15:53:01] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-25 15:53:03] Loading and rendering scenarios: '1'.
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_resultcour' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_resultstac' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_linfo_stac' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_ninfo_stac' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_resultbert' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_i' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_lead' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_fdata' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2_jdata' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: Data was imported from table: 'emp2__scalars' (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Db: A table named: '_sys_scripts_emp2' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-25 15:53:03] Scenario: 'New Scenario' closed.
-DEBUG [2020-06-25 15:53:04] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-06-25 15:53:04] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
-DEBUG [2020-06-25 15:53:04] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-25 15:53:04] Dataset: i loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 15:53:04] Dataset: lead loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 15:53:04] Dataset: fdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 15:53:04] Dataset: _scalars loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 15:53:04] Dataset: jdata loaded successfully (mode: scen, overwrite: FALSE)
+INFO [2020-06-25 20:33:21] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-25 20:33:22] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-25 20:33:22] Db: 114 rows in table: '_sys_metadata_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:33:22] Db: Metadata (table: '_sys_metadata_emp2') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-25 20:33:22] Db: Metadata (table: '_sys_metadata_emp2') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-25 20:33:22] Db: Data was added to table: 'emp2_resultcour' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2_resultstac' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2_linfo_stac' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2_ninfo_stac' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2_resultbert' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2_i' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2_lead' (Db.exportScenDataset).
+TRACE [2020-06-25 20:33:23] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-06-25 20:33:23] Db: A database table named: 'emp2_fdata' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-25 20:33:23] Db: First data was written to table: 'emp2_fdata' (Db.exportScenDataset).
+TRACE [2020-06-25 20:33:23] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-06-25 20:33:23] Db: A database table named: 'emp2_jdata' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-25 20:33:23] Db: First data was written to table: 'emp2_jdata' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was added to table: 'emp2__scalars' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:33:23] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-06-25 20:33:23] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:33:23] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-25 20:33:25] Scenario: '1' unlocked.
+DEBUG [2020-06-25 20:33:25] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+INFO [2020-06-25 20:33:29] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
+DEBUG [2020-06-25 20:33:29] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
+DEBUG [2020-06-25 20:33:29] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 20:33:31] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_resultcour' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_resultstac' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_linfo_stac' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_ninfo_stac' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_resultbert' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_i' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_lead' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_fdata' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2_jdata' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: Data was imported from table: 'emp2__scalars' (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Db: A table named: '_sys_scripts_emp2' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-25 20:33:31] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-25 20:33:32] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-06-25 20:33:32] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-06-25 20:33:32] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).

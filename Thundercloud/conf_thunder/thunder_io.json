@@ -9,13 +9,17 @@
 					"type":	"string",
 					"alias":	"clouds"
 				},
-				"cloudinf":	{
-					"type":	"string",
-					"alias":	"cloudinf"
-				},
-				"value":	{
+				"xc":	{
 					"type":	"numeric",
-					"alias":	"Information of thunderstorm"
+					"alias":	"x coordinate"
+				},
+				"low":	{
+					"type":	"numeric",
+					"alias":	"lower bound of the cloud"
+				},
+				"high":	{
+					"type":	"numeric",
+					"alias":	"higher bound of the cloud"
 				}
 			}
 		},

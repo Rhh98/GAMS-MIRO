@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:14:30 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -18,20 +18,17 @@ C o m p i l a t i o n
   13  *Initial Co-ordinates of Machines
   14  set coord /X,Y/
   15      RS recieving and shipping /R,S/;
-GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
   17  table Mcoord (machines,coord) 'Machine co-coordinates'
   18        X    Y
   19  CNC   100  200
   20  Drill 200  100
   21  Mill  300  100
---- LOAD  Mcoord = 1:mcoord
   22  Punch 100  300;
   23   
   24  * Co-ordinates of Shipping and Receiving
   25  table RScoord(RS,coord) 'Recieving and Shipping co-coordinates'
   26     X    Y
   27  R  500  125
---- LOAD  RScoord = 2:rscoord
   28  S  715  450;
   29   
   30  *Minimum Distance
@@ -40,12 +37,9 @@ GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
   33     CNC.Mill 50,
   34     CNC.Drill 50,
   35     CNC.Punch 50
---- LOAD  Min_Distance = 3:min_distance
   36  /;
   37   
   38  *Costing Data
---- LOAD  CM = 4:cm
---- LOAD  CH = 5:ch
   39  Parameters CM(Machines) 'Cost of moving machines per distance unit'/set.Machines 300/, CH(Products) 'Cost of moving products per distance unit' /set.Products 100/;
   41  Set Arcs(Products, Machines, Machines);
   42  Arcs('P1','CNC', 'Drill')=yes;
@@ -56,20 +50,13 @@ GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
   47  Arcs('P3','Drill', 'Mill')=yes;
   48  Arcs('P3','Mill', 'Punch')=yes;
   49  *Area for Machine movement restriction
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 2
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
   50  set lucoord /Xlow,Xup,Ylow,Yup/;
-GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
   52  table LowUpCoord(Machines,lucoord) "lower and upper bound of the co-coordinats of machines"
   53         Xlow    Xup  Ylow  Yup
   54  CNC    155     300  100   300
   55  Drill  100     300  100   300
   56  Punch  221     300  100   293
   57  Mill   100     228  100   300
---- LOAD  LowUpCoord = 6:lowupcoord
   58  ;
   60   
   61  *Initial Distance Matrix
@@ -114,11 +101,6 @@ GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
  101  Mcost=sum(Machines,CM(Machines)*sqrt(sqr(X_new.l(Machines)-Mcoord(Machines,'X'))+  sqr(Y_new.l(Machines)-Mcoord(Machines,'Y'))));
  102  POldcost =sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*( sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')))))
  103         + (CH('P1')+CH('P3'))*(sqrt(sqr(Mcoord('CNC','X')-RScoord('R','X'))+ sqr(Mcoord('CNC','Y')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(Mcoord('Mill','X')-RScoord('R','X'))+ sqr(Mcoord('Mill','y')-RScoord('R','Y'))))
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 3
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
  104         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(Mcoord('Punch','X')-RScoord('S','X'))+ sqr(Mcoord('Punch','Y')-RScoord('S','Y'))));
  105  PNewcost=sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*(sqrt(sqr(X_new.l(m1)-X_new.l(m2))+  sqr(Y_new.l(m1)-Y_new.l(m2)))))
  106         + (CH('P1')+CH('P3'))*(sqrt(sqr(X_new.l('CNC')-RScoord('R','X'))+ sqr(Y_new.l('CNC')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(X_new.l('Mill')-RScoord('R','X'))+
@@ -139,28 +121,18 @@ C o m p i l a t i o n
  122  result(machines,products,'status')=facility_layout.suminfes+1;
  123   
  124   
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 4
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Include File Summary
 
 
-   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
-
-     1        1 INPUT          0       0  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\model.gms
-     2       16 GDXIN          1      16  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
-     3       51 GDXIN          1      51  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\_miro_gdxin_.gdx
-
-
-COMPILATION TIME     =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 5
+COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:14:30 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE Facility_Layout Using NLP From line 93
 
 
 ---- Objective  =E=  
 
-Objective..  cost - (145.098665735068)*X_new(CNC) + (499.805257848289)*X_new(Mill) + (700)*X_new(Drill) - (269.321761839033)*X_new(Punch) + (277.319624718688)*Y_new(CNC) + (6.23782861551805)*Y_new(Mill) + (0)*Y_new(Drill) + (492.084501235916)*Y_new(Punch)
-      =E= -289921.688721158 ; (LHS = -389155.405630339, INFES = 99233.7169091804 ****)
+Objective..  cost - (145.098665735068)*X_new(CNC) + (499.805257848289)*X_new(Mill) + (700)*X_new(Drill) - (210.503498736116)*X_new(Punch) + (277.319624718688)*Y_new(CNC) + (6.23782861551805)*Y_new(Mill) + (0)*Y_new(Drill) + (430.11263940086)*Y_new(Punch)
+      =E= -412748.180010247 ; (LHS = -532550.001043358, INFES = 119801.821033111 ****)
      
 
 ---- Min_Dist  =G=  
@@ -173,7 +145,7 @@ Min_Dist(CNC,Punch)..  - (1)*X_new(CNC) + (1)*X_new(Punch) + (0)*Y_new(CNC) + (0
      
 REMAINING 9 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 6
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:14:30 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE Facility_Layout Using NLP From line 93
 
@@ -231,13 +203,6 @@ Y_new(CNC)
        (0)      Min_Dist(CNC,Drill)
        (0)      Min_Dist(CNC,Punch)
        (0)      Min_Dist(Mill,CNC)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 7
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Facility_Layout Using NLP From line 93
-
-
-     Y_new  
-
        (0)      Min_Dist(Drill,CNC)
        (0)      Min_Dist(Punch,CNC)
         0       (OLD LEVEL ****)
@@ -265,7 +230,7 @@ Y_new(Drill)
         0       (OLD LEVEL ****)
 
 REMAINING ENTRY SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 8
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:14:30 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE Facility_Layout Using NLP From line 93
 
@@ -275,15 +240,15 @@ MODEL STATISTICS
 BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           13
 BLOCKS OF VARIABLES           3     SINGLE VARIABLES            9  8 projected
 NON ZERO ELEMENTS            57     NON LINEAR N-Z             56
-DERIVATIVE POOL              20     CONSTANT POOL              24
+DERIVATIVE POOL              20     CONSTANT POOL              26
 CODE LENGTH                 251
 
 
-GENERATION TIME      =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 9
+EXECUTION TIME       =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:14:30 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE Facility_Layout Using NLP From line 93
 
@@ -295,10 +260,10 @@ Solution Report     SOLVE Facility_Layout Using NLP From line 93
      SOLVER  BARON               FROM LINE  93
 
 **** SOLVER STATUS     1 Normal Completion         
-**** MODEL STATUS      7 Feasible Solution         
-**** OBJECTIVE VALUE           -31365.7294
+**** MODEL STATUS      2 Locally Optimal           
+**** OBJECTIVE VALUE           -10986.3105
 
- RESOURCE USAGE, LIMIT          1.760      1000.000
+ RESOURCE USAGE, LIMIT          1.060      1000.000
  ITERATION COUNT, LIMIT         0    2000000000
  EVALUATION ERRORS              0             0
 
@@ -326,60 +291,56 @@ University of Illinois at Urbana-Champaign.
  For LP/MIP/QP: ILOG CPLEX                                      
  For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
 
-Solution      = -31365.7294372314  best solution found during preprocessing
-Best possible = -31368.8663239
-Absolute gap  = 3.13688666856615  optca = 1E-9
-Relative gap  = 0.00010000000115325  optcr = 0.0001
+Solution      = -10986.3105324263  best solution found during preprocessing
+Best possible = -10987.4092734
+Absolute gap  = 1.09874097371357  optca = 1E-9
+Relative gap  = 0.00010000000422061  optcr = 0.0001
   (Note that BARON uses a different formula to compute the relative gap as
    was used for the above reported value.)
 
 
-                           LOWER          LEVEL          UPPER
+                           LOWER          LEVEL          UPPER         MARGINAL
 
----- EQU Objective    -289921.6887   -289921.6887   -289921.6887      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 10
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Facility_Layout Using NLP From line 93
-
+---- EQU Objective    -412748.1800   -412748.1800   -412748.1800         1.0000      
 
 ---- EQU Min_Dist  
 
-                   LOWER          LEVEL          UPPER
+                   LOWER          LEVEL          UPPER         MARGINAL
 
-CNC  .Mill         80.0000        89.6047        +INF         
-CNC  .Drill        80.0000        80.0000        +INF         
-CNC  .Punch        80.0000        80.0000        +INF         
-Mill .CNC          30.0000        89.6047        +INF         
-Mill .Drill        30.0000        30.0000        +INF         
-Mill .Punch        30.0000        60.7007        +INF         
-Drill.CNC          30.0000        80.0000        +INF         
-Drill.Mill         30.0000        30.0000        +INF         
-Drill.Punch        30.0000        80.9454        +INF         
-Punch.CNC          30.0000        80.0000        +INF         
-Punch.Mill         30.0000        60.7007        +INF         
-Punch.Drill        30.0000        80.9454        +INF         
+CNC  .Mill         80.0000        90.8553        +INF             .          
+CNC  .Drill        80.0000        80.0000        +INF           93.7293      
+CNC  .Punch        80.0000        80.0000        +INF            9.9911      
+Mill .CNC          30.0000        90.8553        +INF             .          
+Mill .Drill        30.0000        30.0000        +INF          160.2776      
+Mill .Punch        30.0000        99.5384        +INF             .          
+Drill.CNC          30.0000        80.0000        +INF             .          
+Drill.Mill         30.0000        30.0000        +INF             .          
+Drill.Punch        30.0000       112.9613        +INF             .          
+Punch.CNC          30.0000        80.0000        +INF             .          
+Punch.Mill         30.0000        99.5384        +INF             .          
+Punch.Drill        30.0000       112.9613        +INF             .          
 
-                           LOWER          LEVEL          UPPER
+                           LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR cost              -INF       -31365.7294        +INF         
+---- VAR cost              -INF       -10986.3105        +INF             .          
 
 ---- VAR X_new  
 
-             LOWER          LEVEL          UPPER
+             LOWER          LEVEL          UPPER         MARGINAL
 
-CNC         155.0000       155.0000       300.0000      
-Mill        100.0000       228.0000       228.0000      
-Drill       100.0000       201.1511       300.0000      
-Punch       221.0000       234.5595       300.0000      
+CNC         155.0000       155.0000       300.0000        24.0607      
+Mill        100.0000       228.0000       228.0000      -343.9926      
+Drill       100.0000       200.4075       300.0000          .          
+Punch       221.0000       221.0054       300.0000          .          
 
 ---- VAR Y_new  
 
-             LOWER          LEVEL          UPPER
+             LOWER          LEVEL          UPPER         MARGINAL
 
-CNC         100.0000       173.4000       300.0000      
-Mill        100.0000       121.4384       300.0000      
-Drill       100.0000       108.0542       300.0000      
-Punch       100.0000       181.7837       293.0000      
+CNC         100.0000       175.4930       300.0000          .          
+Mill        100.0000       121.4034       300.0000          .          
+Drill       100.0000       109.6283       300.0000          .          
+Punch       100.0000       220.6958       293.0000          .          
 
 
 **** REPORT SUMMARY :        0     NONOPT
@@ -387,7 +348,7 @@ Punch       100.0000       181.7837       293.0000
                              0  UNBOUNDED
                              0     ERRORS
                              5  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 15:32:24 Page 11
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:14:30 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 

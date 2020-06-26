@@ -1,14 +1,14 @@
 B 3 C o m p i l a t i o n
-B 79 Equation Listing    SOLVE AirAmbulance2 Using LP From line 60
-D 82 objective
-D 91 balance2
-B 103 Column Listing      SOLVE AirAmbulance2 Using LP From line 60
-E 106 obj
-E 113 z
-B 136 Model Statistics    SOLVE AirAmbulance2 Using LP From line 60
-B 152 Solution Report     SOLVE AirAmbulance2 Using LP From line 60
-F 182 objective
-F 184 balance2
-G 196 obj
-G 198 z
-B 229 E x e c u t i o n
+B 75 Equation Listing    SOLVE AirAmbulance2 Using LP From line 56
+D 78 objective
+D 87 balance2
+B 99 Column Listing      SOLVE AirAmbulance2 Using LP From line 56
+E 102 obj
+E 109 z
+B 132 Model Statistics    SOLVE AirAmbulance2 Using LP From line 56
+B 148 Solution Report     SOLVE AirAmbulance2 Using LP From line 56
+F 178 objective
+F 180 balance2
+G 192 obj
+G 194 z
+B 225 E x e c u t i o n

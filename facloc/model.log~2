@@ -1,4 +1,4 @@
---- Job model.gms Start 06/25/20 11:21:00 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job model.gms Start 06/25/20 20:12:54 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -10,6 +10,7 @@
     ErrMsg 1
     ErrorLog 99
     IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\res.gdx
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_model/model_io.json
     IDCGenerateGDX data_model/default.gdx
@@ -21,14 +22,14 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- model.gms(124) 3 Mb
---- Starting execution: elapsed 0:00:00.176
+--- Starting execution: elapsed 0:00:00.008
 --- model.gms(91) 4 Mb
 --- Generating NLP model Facility_Layout
 --- model.gms(93) 6 Mb
 ---   13 rows  9 columns  57 non-zeroes
 ---   251 nl-code  56 nl-non-zeroes
 --- model.gms(93) 4 Mb
---- Executing BARON: elapsed 0:00:00.324
+--- Executing BARON: elapsed 0:00:00.033
 
 GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -56,17 +57,17 @@ GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  Done with local search
 ===========================================================================
   Iteration    Open nodes         Time (s)    Lower bound      Upper bound
-          1             1             0.25    -11235.0         -10986.3    
-          9             0             0.83    -10987.4         -10986.3    
+          1             1             0.16    -11235.0         -10986.3    
+         11             0             0.84    -10987.4         -10986.3    
 
  Cleaning up
 
                          *** Normal completion ***            
 
- Wall clock time:                     4.21
+ Wall clock time:                     1.11
  Total CPU time used:                 0.84
 
- Total no. of BaR iterations:       9
+ Total no. of BaR iterations:      11
  Best solution found at node:      -1
  Max. no. of nodes in memory:       3
  
@@ -83,64 +84,64 @@ Relative gap  = 0.00010000000422061  optcr = 0.0001
 --- Restarting execution
 --- model.gms(93) 2 Mb
 --- Reading solution for model Facility_Layout
---- Executing after solve: elapsed 0:00:05.612
+--- Executing after solve: elapsed 0:00:01.341
 --- model.gms(122) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\data_model/default.gdx
 *** Status: Normal completion
---- Job model.gms Stop 06/25/20 11:21:05 elapsed 0:00:05.636
+--- Job model.gms Stop 06/25/20 20:12:55 elapsed 0:00:01.363
 
 Warning in eval(ei, envir) :
   The alias of symbol: 'result2' was selected to be overwritten. However, this symbol could not be found.
 Warning in getTabs(names(modelOut), modelOutAlias, config$outputGroups,  :
   The table(s): 'result2' that you specified in group: 'Result' do not exist. Thus, they were ignored.
-TRACE [2020-06-25 11:21:24] Logging facility initialised.
-DEBUG [2020-06-25 11:21:25] Database connection established.
-DEBUG [2020-06-25 11:21:25] Access Control initialised.
-WARN [2020-06-25 11:21:25] There are orphaned tables in your database: 'model_x', 'model_y', 'model_x1', 'model_y1', 'model_x2', 'model_y2', 'model__scalars', 'model_result2'.
+TRACE [2020-06-25 20:13:01] Logging facility initialised.
+DEBUG [2020-06-25 20:13:01] Database connection established.
+DEBUG [2020-06-25 20:13:01] Access Control initialised.
+WARN [2020-06-25 20:13:01] There are orphaned tables in your database: 'model_x', 'model_y', 'model_x1', 'model_y1', 'model_x2', 'model_y2', 'model__scalars', 'model_result2'.
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-06-25 11:21:25] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-06-25 11:21:26] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
-DEBUG [2020-06-25 11:21:26] Db: 36 rows in table: '_sys_metadata_model' were deleted. (Db.deleteRows)
-DEBUG [2020-06-25 11:21:26] Db: Metadata (table: '_sys_metadata_model') was written to database. (Db.writeMetadata).
-DEBUG [2020-06-25 11:21:26] Db: Metadata (table: '_sys_metadata_model') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-06-25 11:21:26] Db: Data was added to table: 'model_result' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:26] Db: Data was added to table: 'model__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:26] Db: Data was added to table: 'model_mcoord' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:27] Db: Data was added to table: 'model_rscoord' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:27] Db: Data was added to table: 'model_min_distance' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:27] Db: Data was added to table: 'model_cm' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:27] Db: Data was added to table: 'model_ch' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:27] Db: Data was added to table: 'model_lowupcoord' (Db.exportScenDataset).
-DEBUG [2020-06-25 11:21:27] Db: Data was imported from table: '_sys_scenlocks_model' (Db.importDataset).
-DEBUG [2020-06-25 11:21:27] Db: 1 rows in table: '_sys_scenlocks_model' were deleted. (Db.deleteRows)
-DEBUG [2020-06-25 11:21:27] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-25 11:21:27] Scenario: '1' unlocked.
-DEBUG [2020-06-25 11:21:27] Db: 1 rows in table: '_sys_scenlocks_model' were deleted. (Db.deleteRows)
-INFO [2020-06-25 11:21:34] Session started (model: 'model', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/facloc').
-DEBUG [2020-06-25 11:21:34] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/facloc'.
-DEBUG [2020-06-25 11:21:34] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-25 11:21:36] Loading and rendering scenarios: '1'.
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_result' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model__scalars_out' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_mcoord' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_rscoord' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_min_distance' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_cm' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_ch' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: Data was imported from table: 'model_lowupcoord' (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Db: A table named: '_sys_scripts_model' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-25 11:21:36] Scenario: 'New Scenario' closed.
-DEBUG [2020-06-25 11:21:37] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
-DEBUG [2020-06-25 11:21:37] Db: Data was imported from table: '_sys_scenlocks_model' (Db.importDataset).
-DEBUG [2020-06-25 11:21:37] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-25 11:21:37] Dataset: mcoord loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 11:21:37] Dataset: rscoord loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 11:21:37] Dataset: min_distance loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 11:21:37] Dataset: cm loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 11:21:37] Dataset: ch loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 11:21:37] Dataset: lowupcoord loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-06-25 11:21:37] Scenario: '1' was loaded into UI
-DEBUG [2020-06-25 11:22:02] Sidebar menu item: 'outputData' selected.
-INFO [2020-06-25 11:23:37] Session ended (model: 'model', user: 'hasee').
+INFO [2020-06-25 20:13:01] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-25 20:13:02] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
+DEBUG [2020-06-25 20:13:02] Db: 36 rows in table: '_sys_metadata_model' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:13:02] Db: Metadata (table: '_sys_metadata_model') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-25 20:13:02] Db: Metadata (table: '_sys_metadata_model') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-25 20:13:02] Db: Data was added to table: 'model_result' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model_mcoord' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model_rscoord' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model_min_distance' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model_cm' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model_ch' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was added to table: 'model_lowupcoord' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:13:03] Db: Data was imported from table: '_sys_scenlocks_model' (Db.importDataset).
+DEBUG [2020-06-25 20:13:03] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-25 20:13:03] Scenario: '1' unlocked.
+DEBUG [2020-06-25 20:13:03] Db: 1 rows in table: '_sys_scenlocks_model' were deleted. (Db.deleteRows)
+INFO [2020-06-25 20:13:10] Session started (model: 'model', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/facloc').
+DEBUG [2020-06-25 20:13:10] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/facloc'.
+DEBUG [2020-06-25 20:13:10] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 20:13:12] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_result' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model__scalars_out' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_mcoord' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_rscoord' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_min_distance' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_cm' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_ch' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: Data was imported from table: 'model_lowupcoord' (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Db: A table named: '_sys_scripts_model' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-25 20:13:12] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-25 20:13:13] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
+DEBUG [2020-06-25 20:13:13] Db: Data was imported from table: '_sys_scenlocks_model' (Db.importDataset).
+DEBUG [2020-06-25 20:13:13] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-25 20:13:13] Dataset: mcoord loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:13:13] Dataset: rscoord loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:13:13] Dataset: min_distance loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:13:13] Dataset: cm loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:13:13] Dataset: ch loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:13:13] Dataset: lowupcoord loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:13:13] Scenario: '1' was loaded into UI
+DEBUG [2020-06-25 20:13:45] Sidebar menu item: 'outputData' selected.
+INFO [2020-06-25 20:13:53] Session ended (model: 'model', user: 'hasee').

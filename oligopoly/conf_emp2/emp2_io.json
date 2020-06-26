@@ -37,13 +37,17 @@
 					"type":	"string",
 					"alias":	"Cournot & Stackelberg firms"
 				},
-				"uni":	{
-					"type":	"string",
-					"alias":	"Universal set"
-				},
-				"value":	{
+				"c":	{
 					"type":	"numeric",
-					"alias":	"CES data for firms"
+					"alias":	"c"
+				},
+				"l":	{
+					"type":	"numeric",
+					"alias":	"l"
+				},
+				"beta":	{
+					"type":	"numeric",
+					"alias":	"beta"
 				}
 			}
 		},
@@ -75,13 +79,13 @@
 					"type":	"string",
 					"alias":	"Bertrand firms"
 				},
-				"uni":	{
-					"type":	"string",
-					"alias":	"Universal set"
-				},
-				"value":	{
+				"c":	{
 					"type":	"numeric",
-					"alias":	"jdata"
+					"alias":	"cost"
+				},
+				"w":	{
+					"type":	"numeric",
+					"alias":	"weight"
 				}
 			}
 		}

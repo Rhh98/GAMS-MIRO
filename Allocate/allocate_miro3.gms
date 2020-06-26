@@ -306,7 +306,7 @@ table operation(l,numofop,opr) operation in lab l(batch size);
 parameter unmet(c)'Kits left in centers';
 unmet(c) = sum(prv,centerdata2(c,'kts',prv) - sum(l, x.l(prv,c,l)));
 
-scalar alltest, pcplus,leftover;
+scalar alltest 'Number of people tested',leftover'Number of samples tested with unknown result', pcplus ' percent of leftover/alltest';
 alltest = sum((l,prv), totinl.l(prv,l));
 leftover = round(sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv))))));
 pcplus = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))))/max(1e-4,alltest)*100;

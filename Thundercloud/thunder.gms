@@ -28,8 +28,12 @@ downheight(height)/4,6,8,10,12/;
 scalar  Groundheight /0/;
 set s singular set /1/;
 $onExternalInput
-parameter cloudsInfo(clouds,cloudInf) Information of thunderstorm
-/c1.xc 21,c2.xc 71,c3.xc 72,c1.low 3,c2.low 6, c3.low 6,c1.high 8, c2.high 12,c3.high 12/;
+table cloudsInfo(clouds,cloudInf) Information of thunderstorm
+    xc   low   high
+c1  21   3     8
+c2  71   6     12
+c3  72   6     12
+;
 parameter
 crcost(height) cost to cruise /2 1.36, 4 1.34,6 1.31, 8 1.29,10 1.27,12 1.25/
 climbDis(upheight) nautical distance to climb 2k feet /2 5, 4 5,6 6,8 7, 10 10/

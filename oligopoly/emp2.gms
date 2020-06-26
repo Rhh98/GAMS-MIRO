@@ -26,8 +26,9 @@ $offexternalInput
 set
 leader(i)        "Stackelberg-leader"
 ;
+set CESHeader /c ,L,beta/;
 $onExternalInput
-TABLE fData(i,*) "CES data for firms"
+TABLE fData(i,CESHeader) "CES data for firms"
    c L  beta
 1  5 5  1.1
 2  5 10  1.2
@@ -210,8 +211,9 @@ ninfo_stac(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(l
 * comparison to the CES quantity competition models
 
 SETS d  "Bertrand firms"  / 1*2 / ;
+set jHeader /w 'weight',c 'cost'/;
 $onexternalInput
-TABLE jData(d,*)
+TABLE jData(d,jHeader)
    w   c
 1  15  12
 2  7   11

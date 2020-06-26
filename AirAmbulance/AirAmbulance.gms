@@ -1,21 +1,17 @@
-set L ;
+set L 'locations';
 
-
+set coord 'Coordinates'/x,y/;
 $onexternalInput
-Parameters
-   x(L<) x-coordinates
-   / 1 36
-     2 23
-     3 23
-     4 10
-     5 5   /
+table LocInfo(L<,coord) Coordinates of loctions
+  x  y
+1 36 20
+2 23 30
+3 23 56
+4 10 15
+5 5  5
+;
 
-   y(L) y-coordinates
-   / 1 20
-     2 30
-     3 56
-     4 15
-     5 5  /
+Parameters
 
    d(L) projected demand
    / 1 7
@@ -33,7 +29,7 @@ Parameters
 $offExternalInput
 alias(L,nL);
 Parameter dist(L,nL) distance;
-dist(L,nL) = sqrt( (x(nL) - x(L))*(x(nL) - x(L)) + (y(nL) - y(L))*(y(nL) - y(L)));
+dist(L,nL) = sqrt( (LocInfo(nL,'x') - LocInfo(L,'x'))*(LocInfo(nL,'x') - LocInfo(L,'x')) + (LocInfo(nL,'y') - LocInfo(L,'y'))*(LocInfo(nL,'y') - LocInfo(L,'y')));
 
 Scalar c cost per kilometer /100/;
 
@@ -65,8 +61,8 @@ table assign(L,nL,assignHeader) helicoptpers assignment;
 table  numofHeli(L,HeliHeader) number of helicopters in L;
 $offExternalOutput
 assign(L,nL,'value')=z.l(L,nL);
-assign(L,nL,'x')=x(nL);
-assign(L,nL,'y')=y(nL);
+assign(L,nL,'x')=LocInfo(nL,'x');
+assign(L,nL,'y')=LocInfo(nL,'y');
 numofHeli(L,'old')=s(L);
 numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
 numofHeli(L,'demand')=d(L);

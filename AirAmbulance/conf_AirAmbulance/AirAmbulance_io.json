@@ -1,31 +1,21 @@
 {
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
-		"x":	{
-			"alias":	"x-coordinates",
+		"locinfo":	{
+			"alias":	"Coordinates of loctions",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"l"
+					"alias":	"locations"
 				},
-				"value":	{
+				"x":	{
 					"type":	"numeric",
-					"alias":	"x-coordinates"
-				}
-			}
-		},
-		"y":	{
-			"alias":	"y-coordinates",
-			"symtype":	"parameter",
-			"headers":	{
-				"l":	{
-					"type":	"string",
-					"alias":	"l"
+					"alias":	"x"
 				},
-				"value":	{
+				"y":	{
 					"type":	"numeric",
-					"alias":	"y-coordinates"
+					"alias":	"y"
 				}
 			}
 		},
@@ -35,7 +25,7 @@
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"l"
+					"alias":	"locations"
 				},
 				"value":	{
 					"type":	"numeric",
@@ -49,7 +39,7 @@
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"l"
+					"alias":	"locations"
 				},
 				"value":	{
 					"type":	"numeric",
@@ -65,7 +55,7 @@
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"l"
+					"alias":	"locations"
 				},
 				"nl":	{
 					"type":	"string",
@@ -91,7 +81,7 @@
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"l"
+					"alias":	"locations"
 				},
 				"old":	{
 					"type":	"numeric",
