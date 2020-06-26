@@ -1,0 +1,2020 @@
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+      TSP with Pataki modifications
+   4  set state /
+INCLUDE    C:\Users\hasee\Desktop\Summer research\tsp\set.csv
+   6  Montgomery_AL,Juneau_AK,Phoenix_AZ,Little-Rock_AR,Sacramento_CA,Denver_CO,Hartford_CT,Dover_DE,Tallahassee_FL,Atlanta_GA,Honolulu_HI,Boise_ID,Springfield_IL,Indianapolis_IN,Des-Moines_IA,Topeka_KS,Frankfort_KY,Baton-Rouge_LA,Augusta_ME,Annapolis_MD,
+      Boston_MA,Lansing_MI,Saint-Paul_MN,Jackson_MS,Jefferson-City_MO,Helana_MT,Lincoln_NE,Carson-City_NV,Concord_NH,Trenton_NJ,Santa-Fe_NM,Albany_NY,Raleigh_NC,Bismarck_ND,Columbus_OH,Oklahoma-City_OK,Salem_OR,Harrisburg_PA,Providence_RI,Columbia_SC,Pier
+      re_SD,Nashville_TN,Austin_TX,Salt-Lake-City_UT,Montpelier_VT,Richmond_VA,Olympia_WA,Charleston_WV,Madison_WI,Cheyenne_WY
+   7  /
+   8  ;
+   9  alias(state,i,j);
+  10  set Header /l_lat,l_long,select/;
+GDXIN   C:\Users\hasee\Desktop\Summer research\tsp\_miro_gdxin_.gdx
+  12  table StateInfo(state,Header)
+--- LOAD  StateInfo = 1:stateinfo
+  16  ;
+  18  set select(state) Selected capitals;
+  19  select(state)$(StateInfo(State,'select') eq 1)=yes;
+  20  scalar count /0/;
+  21  parameter OrderVal(i);
+  22  loop(select,count=count+1;OrderVal(select)=count;);
+  23   
+  24  alias(select,k)
+  25  table  dist(i,j)  "distances" ;
+  26  dist(i,j)=arccos(sin(StateInfo(i,'l_lat')*pi/180)*sin(StateInfo(j,'l_long')*pi/180)
+  27  +cos(StateInfo(i,'l_lat')*pi/180)*cos(StateInfo(j,'l_long')*pi/180)*
+  28  cos((StateInfo(i,'l_long')-StateInfo(j,'l_lat'))*pi/180))*6371.004;
+  29  binary variables x(i,j);
+  30  free variable obj;
+  31  positive variables u(i) ;
+  32  equations defobj, assign1(j), assign2(i), mtz(i,j);
+  33  defobj..
+  34  obj =e= sum((select,k), dist(select,k) * x(select,k));
+  35   
+  36  assign1(select)..
+  37  sum(k$(not sameas(select,k)), x(select,k)) =e= 1;
+  38   
+  39  assign2(select)..
+  40  sum(k$(not sameas(select,k)), x(k,select)) =e= 1;
+  41   
+  42  mtz(select,k)$(OrderVal(select) ne 1 and OrderVal(k) ne 1)..
+  43    u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
+  44   
+  45  model tsp /defobj, assign1, assign2, mtz/;
+  46   
+  47  x.fx(select,select) = 0;
+  48  u.lo(select) = 2; u.up(select) = card(i);
+  49  u.fx(select)$(OrderVal(select) eq 1) = 1;
+  50   
+  51  option optcr = 1e-3;
+  55  tsp.optfile = 1;
+  56  solve tsp using mip minimizing obj ;
+  57  display obj.l;
+  58  set tour(i,j) ;
+  59   
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+  60  tour(select,select) = no;
+  61  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
+  62  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
+  64  table TourT(i,j,TourHeader);
+  65  TourT(select,k,'status')$tour(select,k)=1;
+  66  TourT(i,j,'status')$(not tour(i,j))=-1;
+  67  TourT(i,j,'dist')=dist(i,j);
+  68  TourT(i,j,'lat1')=StateInfo(i,'l_lat');
+  69  TourT(i,j,'long1')=StateInfo(i,'l_long');
+  70  TourT(i,j,'lat2')=StateInfo(j,'l_lat');
+  71  TourT(i,j,'long2')=StateInfo(j,'l_long');
+  72  scalar TotalCost Total Cost;
+  73  TotalCost=obj.l;
+  75  * Just print the tour in a simple way
+  76  option tour:0:0:1 ;
+  77   
+  78  display tour;
+  79  display u.L;
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\hasee\Desktop\Summer research\tsp\tspmod.gms
+     2        5 INCLUDE        1       5  .C:\Users\hasee\Desktop\Summer research\tsp\set.csv
+     3       11 GDXIN          1      10  C:\Users\hasee\Desktop\Summer research\tsp\_miro_gdxin_.gdx
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+---- defobj  =E=  
+
+defobj..  - 13797.5073269497*x(Montgomery_AL,Montgomery_AL) - 9372.61865722161*x(Montgomery_AL,Juneau_AK) - 12208.392387358*x(Montgomery_AL,Phoenix_AZ) - 13470.0343450934*x(Montgomery_AL,Little-Rock_AR) - 11320.6915716884*x(Montgomery_AL,Sacramento_CA)
+     
+      - 12550.5231290491*x(Montgomery_AL,Denver_CO) - 14650.8427264638*x(Montgomery_AL,Hartford_CT) - 14437.9154323546*x(Montgomery_AL,Dover_DE) - 13875.5046869914*x(Montgomery_AL,Tallahassee_FL) - 13902.9174827789*x(Montgomery_AL,Atlanta_GA)
+     
+      - 9788.68138840231*x(Montgomery_AL,Honolulu_HI) - 11555.6582753904*x(Montgomery_AL,Boise_ID) - 13628.8268782273*x(Montgomery_AL,Springfield_IL) - 13851.9545419323*x(Montgomery_AL,Indianapolis_IN) - 13354.0285848984*x(Montgomery_AL,Des-Moines_IA)
+     
+      - 13227.8062619335*x(Montgomery_AL,Topeka_KS) - 13917.6314791668*x(Montgomery_AL,Frankfort_KY) - 13548.3180676428*x(Montgomery_AL,Baton-Rouge_LA) - 14879.7980042303*x(Montgomery_AL,Augusta_ME) - 14384.8834367179*x(Montgomery_AL,Annapolis_MD)
+     
+      - 14747.1784654273*x(Montgomery_AL,Boston_MA) - 13975.8626859578*x(Montgomery_AL,Lansing_MI) - 13376.0500585338*x(Montgomery_AL,Saint-Paul_MN) - 16891.9287695159*x(Juneau_AK,Montgomery_AL) - 11610.4979803365*x(Juneau_AK,Juneau_AK)
+     
+      - 14070.8318698128*x(Juneau_AK,Phoenix_AZ) - 16235.5712687237*x(Juneau_AK,Little-Rock_AR) - 13005.9554285462*x(Juneau_AK,Sacramento_CA) - 14830.4481680062*x(Juneau_AK,Denver_CO) - 18407.7995285012*x(Juneau_AK,Hartford_CT)
+     
+      - 18082.1552447229*x(Juneau_AK,Dover_DE) - 17100.9457788036*x(Juneau_AK,Tallahassee_FL) - 17098.4966716399*x(Juneau_AK,Atlanta_GA) - 9225.42183684477*x(Juneau_AK,Honolulu_HI) - 13573.9661997391*x(Juneau_AK,Boise_ID)
+     
+      - 16529.1091120497*x(Juneau_AK,Springfield_IL) - 16916.336276829*x(Juneau_AK,Indianapolis_IN) - 16088.6970913265*x(Juneau_AK,Des-Moines_IA) - 15861.2921459054*x(Juneau_AK,Topeka_KS) - 17056.0771821241*x(Juneau_AK,Frankfort_KY)
+     
+      - 16367.9014987217*x(Juneau_AK,Baton-Rouge_LA) - 18739.0342865368*x(Juneau_AK,Augusta_ME) - 17974.8845421548*x(Juneau_AK,Annapolis_MD) - 18591.6868457013*x(Juneau_AK,Boston_MA) - 17095.9251143707*x(Juneau_AK,Lansing_MI)
+     
+      - 16146.4149759142*x(Juneau_AK,Saint-Paul_MN) - 14060.2187342537*x(Phoenix_AZ,Montgomery_AL) - 8840.89621219793*x(Phoenix_AZ,Juneau_AK) - 11632.5228800064*x(Phoenix_AZ,Phoenix_AZ) - 13508.9257744417*x(Phoenix_AZ,Little-Rock_AR)
+     
+      - 10585.1008600583*x(Phoenix_AZ,Sacramento_CA) - 12233.3264492257*x(Phoenix_AZ,Denver_CO) - 15402.6843131631*x(Phoenix_AZ,Hartford_CT) - 15096.510831649*x(Phoenix_AZ,Dover_DE) - 14223.7086646752*x(Phoenix_AZ,Tallahassee_FL)
+     
+      - 14235.9850675274*x(Phoenix_AZ,Atlanta_GA) - 7914.17204910641*x(Phoenix_AZ,Honolulu_HI) - 11019.9172627027*x(Phoenix_AZ,Boise_ID) - 13761.113720417*x(Phoenix_AZ,Springfield_IL) - 14102.3232091296*x(Phoenix_AZ,Indianapolis_IN)
+     
+      - 13364.4650358987*x(Phoenix_AZ,Des-Moines_IA) - 13168.4832343341*x(Phoenix_AZ,Topeka_KS) - 14218.3021061622*x(Phoenix_AZ,Frankfort_KY) - 13625.9174446614*x(Phoenix_AZ,Baton-Rouge_LA) - 15723.9158806077*x(Phoenix_AZ,Augusta_ME)
+     
+      - 15004.8093499426*x(Phoenix_AZ,Annapolis_MD) - 15563.8523568042*x(Phoenix_AZ,Boston_MA) - 14271.7223763156*x(Phoenix_AZ,Lansing_MI) - 13409.2236131874*x(Phoenix_AZ,Saint-Paul_MN) - 14098.9353518933*x(Little-Rock_AR,Montgomery_AL)
+     
+      - 9405.88536509743*x(Little-Rock_AR,Juneau_AK) - 12268.4250078368*x(Little-Rock_AR,Phoenix_AZ) - 13711.5197911765*x(Little-Rock_AR,Little-Rock_AR) - 11324.1184897158*x(Little-Rock_AR,Sacramento_CA) - 12685.4245686249*x(Little-Rock_AR,Denver_CO)
+     
+      - 15075.8365770751*x(Little-Rock_AR,Hartford_CT) - 14839.5607388983*x(Little-Rock_AR,Dover_DE) - 14198.2223343778*x(Little-Rock_AR,Tallahassee_FL) - 14222.6864427514*x(Little-Rock_AR,Atlanta_GA) - 9432.70490751107*x(Little-Rock_AR,Honolulu_HI)
+     
+      - 11617.3115405197*x(Little-Rock_AR,Boise_ID) - 13896.0458620464*x(Little-Rock_AR,Springfield_IL) - 14151.5309971341*x(Little-Rock_AR,Indianapolis_IN) - 13586.380621634*x(Little-Rock_AR,Des-Moines_IA) - 13440.480295669*x(Little-Rock_AR,Topeka_KS)
+     
+      - 14230.2082388892*x(Little-Rock_AR,Frankfort_KY) - 13800.747753899*x(Little-Rock_AR,Baton-Rouge_LA) - 15327.6553902204*x(Little-Rock_AR,Augusta_ME) - 14777.3813635133*x(Little-Rock_AR,Annapolis_MD) - 15186.942829319*x(Little-Rock_AR,Boston_MA)
+     
+      - 14288.4626920778*x(Little-Rock_AR,Lansing_MI) - 13614.4283744209*x(Little-Rock_AR,Saint-Paul_MN) - 14663.8323175816*x(Sacramento_CA,Montgomery_AL) - 9355.51524297631*x(Sacramento_CA,Juneau_AK) - 12025.1874524649*x(Sacramento_CA,Phoenix_AZ)
+     
+      - 14056.9108211121*x(Sacramento_CA,Little-Rock_AR) - 10953.4874756134*x(Sacramento_CA,Sacramento_CA) - 12703.6862213728*x(Sacramento_CA,Denver_CO) - 16109.9982278513*x(Sacramento_CA,Hartford_CT) - 15788.3008533136*x(Sacramento_CA,Dover_DE)
+     
+      - 14850.3397058211*x(Sacramento_CA,Tallahassee_FL) - 14856.3659593455*x(Sacramento_CA,Atlanta_GA) - 7787.72699299338*x(Sacramento_CA,Honolulu_HI) - 11453.325677398*x(Sacramento_CA,Boise_ID) - 14331.5442699515*x(Sacramento_CA,Springfield_IL)
+     
+      - 14699.1060678282*x(Sacramento_CA,Indianapolis_IN) - 13908.7863751689*x(Sacramento_CA,Des-Moines_IA) - 13695.7996256538*x(Sacramento_CA,Topeka_KS) - 14827.6016069054*x(Sacramento_CA,Frankfort_KY) - 14182.6509952102*x(Sacramento_CA,Baton-Rouge_LA)
+     
+      - 16444.3278417886*x(Sacramento_CA,Augusta_ME) - 15687.7900968818*x(Sacramento_CA,Annapolis_MD) - 16284.934552938*x(Sacramento_CA,Boston_MA) - 14876.3017699732*x(Sacramento_CA,Lansing_MI) - 13959.938912456*x(Sacramento_CA,Saint-Paul_MN)
+     
+      - 14725.1925875448*x(Denver_CO,Montgomery_AL) - 9632.31675234234*x(Denver_CO,Juneau_AK) - 12464.983455232*x(Denver_CO,Phoenix_AZ) - 14226.8322391551*x(Denver_CO,Little-Rock_AR) - 11436.4979928386*x(Denver_CO,Sacramento_CA)
+     
+      - 13018.8034318484*x(Denver_CO,Denver_CO) - 15934.2771613197*x(Denver_CO,Hartford_CT) - 15654.5364469866*x(Denver_CO,Dover_DE) - 14865.8233056545*x(Denver_CO,Tallahassee_FL) - 14883.1897028819*x(Denver_CO,Atlanta_GA)
+     
+      - 8853.0684816368*x(Denver_CO,Honolulu_HI) - 11837.2731601087*x(Denver_CO,Boise_ID) - 14458.0683669522*x(Denver_CO,Springfield_IL) - 14772.0014890498*x(Denver_CO,Indianapolis_IN) - 14087.302957461*x(Denver_CO,Des-Moines_IA)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
+     
+      - 13906.1377517961*x(Denver_CO,Topeka_KS) - 14875.237782143*x(Denver_CO,Frankfort_KY) - 14335.4969422053*x(Denver_CO,Baton-Rouge_LA) - 16228.8305111985*x(Denver_CO,Augusta_ME) - 15574.4852375079*x(Denver_CO,Annapolis_MD)
+     
+      - 16074.6641163412*x(Denver_CO,Boston_MA) - 14931.4132779132*x(Denver_CO,Lansing_MI) - 14126.7671002397*x(Denver_CO,Saint-Paul_MN) - 14747.7639939092*x(Hartford_CT,Montgomery_AL) - 10860.0557042913*x(Hartford_CT,Juneau_AK)
+     
+      - 13637.4799972649*x(Hartford_CT,Phoenix_AZ) - 14570.0403161441*x(Hartford_CT,Little-Rock_AR) - 12819.1357459563*x(Hartford_CT,Sacramento_CA) - 13870.9527633947*x(Hartford_CT,Denver_CO) - 15200.5104359879*x(Hartford_CT,Hartford_CT)
+     
+      - 15076.5468793526*x(Hartford_CT,Dover_DE) - 14768.8064304713*x(Hartford_CT,Tallahassee_FL) - 14802.412681999*x(Hartford_CT,Atlanta_GA) - 11312.4352266916*x(Hartford_CT,Honolulu_HI) - 12991.462939554*x(Hartford_CT,Boise_ID)
+     
+      - 14666.5929357715*x(Hartford_CT,Springfield_IL) - 14804.1977580587*x(Hartford_CT,Indianapolis_IN) - 14477.2188606399*x(Hartford_CT,Des-Moines_IA) - 14394.6346247576*x(Hartford_CT,Topeka_KS) - 14834.6004837707*x(Hartford_CT,Frankfort_KY)
+     
+      - 14621.9565648882*x(Hartford_CT,Baton-Rouge_LA) - 15335.0725907881*x(Hartford_CT,Augusta_ME) - 15054.9699289282*x(Hartford_CT,Annapolis_MD) - 15240.3203074204*x(Hartford_CT,Boston_MA) - 14889.9122884145*x(Hartford_CT,Lansing_MI)
+     
+      - 14485.9889198294*x(Hartford_CT,Saint-Paul_MN) - 14479.0987414589*x(Dover_DE,Montgomery_AL) - 10487.3295862878*x(Dover_DE,Juneau_AK) - 13273.573461903*x(Dover_DE,Phoenix_AZ) - 14268.6743344244*x(Dover_DE,Little-Rock_AR)
+     
+      - 12446.0163739944*x(Dover_DE,Sacramento_CA) - 13524.9739938917*x(Dover_DE,Denver_CO) - 15026.0210174547*x(Dover_DE,Hartford_CT) - 14880.2844946096*x(Dover_DE,Dover_DE) - 14512.7361144804*x(Dover_DE,Tallahassee_FL)
+     
+      - 14545.183011987*x(Dover_DE,Atlanta_GA) - 10985.4077217621*x(Dover_DE,Honolulu_HI) - 12626.0436678839*x(Dover_DE,Boise_ID) - 14378.7005756251*x(Dover_DE,Springfield_IL) - 14535.4188722874*x(Dover_DE,Indianapolis_IN)
+     
+      - 14170.7137628459*x(Dover_DE,Des-Moines_IA) - 14079.0085518959*x(Dover_DE,Topeka_KS) - 14573.7206066036*x(Dover_DE,Frankfort_KY) - 14326.3009538224*x(Dover_DE,Baton-Rouge_LA) - 15184.0818386059*x(Dover_DE,Augusta_ME)
+     
+      - 14851.2826693733*x(Dover_DE,Annapolis_MD) - 15079.4428920361*x(Dover_DE,Boston_MA) - 14630.0117285175*x(Dover_DE,Lansing_MI) - 14182.233651892*x(Dover_DE,Saint-Paul_MN) - 13572.5914603748*x(Tallahassee_FL,Montgomery_AL)
+     
+      - 9259.30908009351*x(Tallahassee_FL,Juneau_AK) - 12075.8270232621*x(Tallahassee_FL,Phoenix_AZ) - 13265.6182197389*x(Tallahassee_FL,Little-Rock_AR) - 11214.4395593132*x(Tallahassee_FL,Sacramento_CA) - 12387.3181528889*x(Tallahassee_FL,Denver_CO)
+     
+      - 14389.5700284668*x(Tallahassee_FL,Hartford_CT) - 14182.8153827394*x(Tallahassee_FL,Dover_DE) - 13643.8110007504*x(Tallahassee_FL,Tallahassee_FL) - 13672.0673206389*x(Tallahassee_FL,Atlanta_GA) - 9860.02671085583*x(Tallahassee_FL,Honolulu_HI)
+     
+      - 11424.3581634307*x(Tallahassee_FL,Boise_ID) - 13415.3605365651*x(Tallahassee_FL,Springfield_IL) - 13627.4989772365*x(Tallahassee_FL,Indianapolis_IN) - 13153.0507496509*x(Tallahassee_FL,Des-Moines_IA) - 13034.0428432476*x(Tallahassee_FL,Topeka_KS)
+     
+      - 13688.9640759618*x(Tallahassee_FL,Frankfort_KY) - 13339.9889970083*x(Tallahassee_FL,Baton-Rouge_LA) - 14612.9052314202*x(Tallahassee_FL,Augusta_ME) - 14132.2667651423*x(Tallahassee_FL,Annapolis_MD) - 14482.2879666224*x(Tallahassee_FL,Boston_MA)
+     
+      - 13747.0583660203*x(Tallahassee_FL,Lansing_MI) - 13172.9387472167*x(Tallahassee_FL,Saint-Paul_MN) - 13940.3211294999*x(Atlanta_GA,Montgomery_AL) - 9587.29739573856*x(Atlanta_GA,Juneau_AK) - 12415.92705359*x(Atlanta_GA,Phoenix_AZ)
+     
+      - 13632.6993896091*x(Atlanta_GA,Little-Rock_AR) - 11538.2224892632*x(Atlanta_GA,Sacramento_CA) - 12742.5053232918*x(Atlanta_GA,Denver_CO) - 14741.7405382508*x(Atlanta_GA,Hartford_CT) - 14540.0903375429*x(Atlanta_GA,Dover_DE)
+     
+      - 14010.6548076869*x(Atlanta_GA,Tallahassee_FL) - 14039.0534036171*x(Atlanta_GA,Atlanta_GA) - 10016.5877184743*x(Atlanta_GA,Honolulu_HI) - 11763.6086103409*x(Atlanta_GA,Boise_ID) - 13783.2752462551*x(Atlanta_GA,Springfield_IL)
+     
+      - 13995.2634797351*x(Atlanta_GA,Indianapolis_IN) - 13519.6128628841*x(Atlanta_GA,Des-Moines_IA) - 13399.2057636957*x(Atlanta_GA,Topeka_KS) - 14056.2767276465*x(Atlanta_GA,Frankfort_KY) - 13707.527178052*x(Atlanta_GA,Baton-Rouge_LA)
+     
+      - 14958.8304582077*x(Atlanta_GA,Augusta_ME) - 14491.1918505425*x(Atlanta_GA,Annapolis_MD) - 14830.6787490175*x(Atlanta_GA,Boston_MA) - 14114.3476618319*x(Atlanta_GA,Lansing_MI) - 13539.8311920818*x(Atlanta_GA,Saint-Paul_MN)
+     
+      - 12784.0409279486*x(Honolulu_HI,Montgomery_AL) - 8284.81211771794*x(Honolulu_HI,Juneau_AK) - 9965.54621425441*x(Honolulu_HI,Phoenix_AZ) - 12123.9019235874*x(Honolulu_HI,Little-Rock_AR) - 9005.38314535321*x(Honolulu_HI,Sacramento_CA)
+     
+      - 10782.8730550341*x(Honolulu_HI,Denver_CO) - 14173.2802041139*x(Honolulu_HI,Hartford_CT) - 13906.9159662663*x(Honolulu_HI,Dover_DE) - 13006.9112033758*x(Honolulu_HI,Tallahassee_FL) - 12987.5495978811*x(Honolulu_HI,Atlanta_GA)
+     
+      - 4835.97613355838*x(Honolulu_HI,Honolulu_HI) - 9641.55673443236*x(Honolulu_HI,Boise_ID) - 12414.04907727*x(Honolulu_HI,Springfield_IL) - 12784.7091904352*x(Honolulu_HI,Indianapolis_IN) - 11996.7666804271*x(Honolulu_HI,Des-Moines_IA)
+     
+      - 11770.5978977634*x(Honolulu_HI,Topeka_KS) - 12925.1554957086*x(Honolulu_HI,Frankfort_KY) - 12251.5235547309*x(Honolulu_HI,Baton-Rouge_LA) - 14427.3234632841*x(Honolulu_HI,Augusta_ME) - 13806.2691721115*x(Honolulu_HI,Annapolis_MD)
+     
+      - 14334.6909939971*x(Honolulu_HI,Boston_MA) - 12943.2039607409*x(Honolulu_HI,Lansing_MI) - 12059.2771712277*x(Honolulu_HI,Saint-Paul_MN) - 15206.5851696506*x(Boise_ID,Montgomery_AL) - 9932.57768629098*x(Boise_ID,Juneau_AK)
+     
+      - 12659.5947018296*x(Boise_ID,Phoenix_AZ) - 14629.3975476052*x(Boise_ID,Little-Rock_AR) - 11593.5260921813*x(Boise_ID,Sacramento_CA) - 13309.3136483551*x(Boise_ID,Denver_CO) - 16583.2443425224*x(Boise_ID,Hartford_CT)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
+     
+      - 16273.2656955995*x(Boise_ID,Dover_DE) - 15379.1485181197*x(Boise_ID,Tallahassee_FL) - 15389.233362022*x(Boise_ID,Atlanta_GA) - 8500.52871641538*x(Boise_ID,Honolulu_HI) - 12070.8791783038*x(Boise_ID,Boise_ID)
+     
+      - 14892.6818984701*x(Boise_ID,Springfield_IL) - 15246.1309649435*x(Boise_ID,Indianapolis_IN) - 14482.7243092401*x(Boise_ID,Des-Moines_IA) - 14277.7912762784*x(Boise_ID,Topeka_KS) - 15367.3823811478*x(Boise_ID,Frankfort_KY)
+     
+      - 14750.8595891584*x(Boise_ID,Baton-Rouge_LA) - 16907.2079227382*x(Boise_ID,Augusta_ME) - 16179.3250361042*x(Boise_ID,Annapolis_MD) - 16746.894092024*x(Boise_ID,Boston_MA) - 15419.1764544499*x(Boise_ID,Lansing_MI)
+     
+      - 14530.6579587229*x(Boise_ID,Saint-Paul_MN) - 14642.1805624947*x(Springfield_IL,Montgomery_AL) - 10014.7648903739*x(Springfield_IL,Juneau_AK) - 12876.7026868022*x(Springfield_IL,Phoenix_AZ) - 14281.9474604804*x(Springfield_IL,Little-Rock_AR)
+     
+      - 11933.0828031649*x(Springfield_IL,Sacramento_CA) - 13285.0011479305*x(Springfield_IL,Denver_CO) - 15529.655435349*x(Springfield_IL,Hartford_CT) - 15314.6371041704*x(Springfield_IL,Dover_DE) - 14729.5613738669*x(Springfield_IL,Tallahassee_FL)
+     
+      - 14755.7991385716*x(Springfield_IL,Atlanta_GA) - 9924.39158766597*x(Springfield_IL,Honolulu_HI) - 12225.3023682507*x(Springfield_IL,Boise_ID) - 14455.8827213285*x(Springfield_IL,Springfield_IL) - 14695.8375819782*x(Springfield_IL,Indianapolis_IN)
+     
+      - 14160.1342737308*x(Springfield_IL,Des-Moines_IA) - 14020.964856108*x(Springfield_IL,Topeka_KS) - 14767.479634568*x(Springfield_IL,Frankfort_KY) - 14366.8698862365*x(Springfield_IL,Baton-Rouge_LA) - 15758.0018834228*x(Springfield_IL,Augusta_ME)
+     
+      - 15260.1485236516*x(Springfield_IL,Annapolis_MD) - 15625.9381530544*x(Springfield_IL,Boston_MA) - 14825.7998347388*x(Springfield_IL,Lansing_MI) - 14185.9355317395*x(Springfield_IL,Saint-Paul_MN) - 14620.6087387589*x(Indianapolis_IN,Montgomery_AL)
+     
+      - 10132.0692173923*x(Indianapolis_IN,Juneau_AK) - 12984.6210607314*x(Indianapolis_IN,Phoenix_AZ) - 14295.8996700319*x(Indianapolis_IN,Little-Rock_AR) - 12065.9025267799*x(Indianapolis_IN,Sacramento_CA) - 13356.4337620047*x(Indianapolis_IN,Denver_CO)
+     
+      - 15425.5014969069*x(Indianapolis_IN,Hartford_CT) - 15227.3903092509*x(Indianapolis_IN,Dover_DE) - 14694.8732135799*x(Indianapolis_IN,Tallahassee_FL) - 14722.8474119903*x(Indianapolis_IN,Atlanta_GA) - 10186.5163172755*x(Indianapolis_IN,Honolulu_HI)
+     
+      - 12331.8110338799*x(Indianapolis_IN,Boise_ID) - 14454.8515383633*x(Indianapolis_IN,Springfield_IL) - 14675.2589046896*x(Indianapolis_IN,Indianapolis_IN) - 14179.3545000001*x(Indianapolis_IN,Des-Moines_IA)
+     
+      - 14051.2132380506*x(Indianapolis_IN,Topeka_KS) - 14738.8827156132*x(Indianapolis_IN,Frankfort_KY) - 14374.4907235118*x(Indianapolis_IN,Baton-Rouge_LA) - 15636.546269109*x(Indianapolis_IN,Augusta_ME)
+     
+      - 15179.2292634752*x(Indianapolis_IN,Annapolis_MD) - 15510.9854008278*x(Indianapolis_IN,Boston_MA) - 14797.0438491411*x(Indianapolis_IN,Lansing_MI) - 14201.7451769598*x(Indianapolis_IN,Saint-Paul_MN) - 14867.1489613063*x(Des-Moines_IA,Montgomery_AL)
+     
+      - 10085.6122076242*x(Des-Moines_IA,Juneau_AK) - 12950.8990163029*x(Des-Moines_IA,Phoenix_AZ) - 14468.6118593221*x(Des-Moines_IA,Little-Rock_AR) - 11975.7118682254*x(Des-Moines_IA,Sacramento_CA) - 13405.8975127385*x(Des-Moines_IA,Denver_CO)
+     
+      - 15833.5392333594*x(Des-Moines_IA,Hartford_CT) - 15603.6838369711*x(Des-Moines_IA,Dover_DE) - 14968.2358932724*x(Des-Moines_IA,Tallahassee_FL) - 14992.5133484313*x(Des-Moines_IA,Atlanta_GA) - 9743.71825105238*x(Des-Moines_IA,Honolulu_HI)
+     
+      - 12303.8404457776*x(Des-Moines_IA,Boise_ID) - 14658.9119047727*x(Des-Moines_IA,Springfield_IL) - 14919.4824427526*x(Des-Moines_IA,Indianapolis_IN) - 14341.2071718595*x(Des-Moines_IA,Des-Moines_IA) - 14189.6290735106*x(Des-Moines_IA,Topeka_KS)
+     
+      - 14999.482933461*x(Des-Moines_IA,Frankfort_KY) - 14560.4529745641*x(Des-Moines_IA,Baton-Rouge_LA) - 16076.3473931242*x(Des-Moines_IA,Augusta_ME) - 15543.37273138*x(Des-Moines_IA,Annapolis_MD) - 15939.1090502287*x(Des-Moines_IA,Boston_MA)
+     
+      - 15057.7087835435*x(Des-Moines_IA,Lansing_MI) - 14370.8712362677*x(Des-Moines_IA,Saint-Paul_MN) - 14596.5253248371*x(Topeka_KS,Montgomery_AL) - 9760.90013973657*x(Topeka_KS,Juneau_AK) - 12625.5427255603*x(Topeka_KS,Phoenix_AZ)
+     
+      - 14178.1143983193*x(Topeka_KS,Little-Rock_AR) - 11645.7839432484*x(Topeka_KS,Sacramento_CA) - 13091.5627920958*x(Topeka_KS,Denver_CO) - 15623.5157545014*x(Topeka_KS,Hartford_CT) - 15379.650571849*x(Topeka_KS,Dover_DE)
+     
+      - 14706.1055806565*x(Topeka_KS,Tallahassee_FL) - 14729.0252921844*x(Topeka_KS,Atlanta_GA) - 9441.02134803279*x(Topeka_KS,Honolulu_HI) - 11979.6620910108*x(Topeka_KS,Boise_ID) - 14376.2709406328*x(Topeka_KS,Springfield_IL)
+     
+      - 14647.9370913986*x(Topeka_KS,Indianapolis_IN) - 14048.3105123407*x(Topeka_KS,Des-Moines_IA) - 13891.5047415229*x(Topeka_KS,Topeka_KS) - 14732.9294407584*x(Topeka_KS,Frankfort_KY) - 14273.1558979893*x(Topeka_KS,Baton-Rouge_LA)
+     
+      - 15881.6895828667*x(Topeka_KS,Augusta_ME) - 15314.1632509998*x(Topeka_KS,Annapolis_MD) - 15738.9467390795*x(Topeka_KS,Boston_MA) - 14790.9523540931*x(Topeka_KS,Lansing_MI) - 14079.719719278*x(Topeka_KS,Saint-Paul_MN)
+     
+      - 14435.5133327711*x(Frankfort_KY,Montgomery_AL) - 10016.5933334667*x(Frankfort_KY,Juneau_AK) - 12860.4341919388*x(Frankfort_KY,Phoenix_AZ) - 14123.8034045286*x(Frankfort_KY,Little-Rock_AR) - 11958.5708832796*x(Frankfort_KY,Sacramento_CA)
+     
+      - 13211.4399416394*x(Frankfort_KY,Denver_CO) - 15220.5252303688*x(Frankfort_KY,Hartford_CT) - 15025.2586456153*x(Frankfort_KY,Dover_DE) - 14505.6745514687*x(Frankfort_KY,Tallahassee_FL) - 14534.1424407958*x(Frankfort_KY,Atlanta_GA)
+     
+      - 10203.0752702881*x(Frankfort_KY,Honolulu_HI) - 12207.4945908519*x(Frankfort_KY,Boise_ID) - 14276.9338136502*x(Frankfort_KY,Springfield_IL) - 14490.4375905311*x(Frankfort_KY,Indianapolis_IN) - 14009.4766626229*x(Frankfort_KY,Des-Moines_IA)
+     
+      - 13886.0546962817*x(Frankfort_KY,Topeka_KS) - 14551.4827554479*x(Frankfort_KY,Frankfort_KY) - 14199.8665230821*x(Frankfort_KY,Baton-Rouge_LA) - 15429.3852875568*x(Frankfort_KY,Augusta_ME) - 14978.3222097777*x(Frankfort_KY,Annapolis_MD)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
+     
+      - 15304.5700012316*x(Frankfort_KY,Boston_MA) - 14609.5476470204*x(Frankfort_KY,Lansing_MI) - 14030.4764165863*x(Frankfort_KY,Saint-Paul_MN) - 13616.9826445838*x(Baton-Rouge_LA,Montgomery_AL) - 9000.04454442365*x(Baton-Rouge_LA,Juneau_AK)
+     
+      - 11854.5056879132*x(Baton-Rouge_LA,Phoenix_AZ) - 13240.4502854828*x(Baton-Rouge_LA,Little-Rock_AR) - 10934.20398412*x(Baton-Rouge_LA,Sacramento_CA) - 12243.5817535752*x(Baton-Rouge_LA,Denver_CO) - 14588.5170636458*x(Baton-Rouge_LA,Hartford_CT)
+     
+      - 14351.1239824308*x(Baton-Rouge_LA,Dover_DE) - 13713.5339624636*x(Baton-Rouge_LA,Tallahassee_FL) - 13738.3590995685*x(Baton-Rouge_LA,Atlanta_GA) - 9282.83732152935*x(Baton-Rouge_LA,Honolulu_HI) - 11201.904478603*x(Baton-Rouge_LA,Boise_ID)
+     
+      - 13419.7631332669*x(Baton-Rouge_LA,Springfield_IL) - 13669.8896122083*x(Baton-Rouge_LA,Indianapolis_IN) - 13117.2912545034*x(Baton-Rouge_LA,Des-Moines_IA) - 12976.1034884723*x(Baton-Rouge_LA,Topeka_KS)
+     
+      - 13746.7900423478*x(Baton-Rouge_LA,Frankfort_KY) - 13327.3732942999*x(Baton-Rouge_LA,Baton-Rouge_LA) - 14842.6294160683*x(Baton-Rouge_LA,Augusta_ME) - 14288.8115655844*x(Baton-Rouge_LA,Annapolis_MD) - 14700.9885468958*x(Baton-Rouge_LA,Boston_MA)
+     
+      - 13805.0780856856*x(Baton-Rouge_LA,Lansing_MI) - 13143.9684830889*x(Baton-Rouge_LA,Saint-Paul_MN) - 15010.2682576525*x(Augusta_ME,Montgomery_AL) - 11227.4177539503*x(Augusta_ME,Juneau_AK) - 13996.8296198031*x(Augusta_ME,Phoenix_AZ)
+     
+      - 14866.4379064528*x(Augusta_ME,Little-Rock_AR) - 13186.6994360239*x(Augusta_ME,Sacramento_CA) - 14213.0312359615*x(Augusta_ME,Denver_CO) - 15364.5071522217*x(Augusta_ME,Hartford_CT) - 15263.4790687541*x(Augusta_ME,Dover_DE)
+     
+      - 15018.3385380937*x(Augusta_ME,Tallahassee_FL) - 15053.0150338177*x(Augusta_ME,Atlanta_GA) - 11625.8338749916*x(Augusta_ME,Honolulu_HI) - 13352.3580425492*x(Augusta_ME,Boise_ID) - 14949.0102018218*x(Augusta_ME,Springfield_IL)
+     
+      - 15066.6379247763*x(Augusta_ME,Indianapolis_IN) - 14779.0356649356*x(Augusta_ME,Des-Moines_IA) - 14705.8430965747*x(Augusta_ME,Topeka_KS) - 15088.834591995*x(Augusta_ME,Frankfort_KY) - 14912.4143152994*x(Augusta_ME,Baton-Rouge_LA)
+     
+      - 15474.2838925403*x(Augusta_ME,Augusta_ME) - 15249.6106211718*x(Augusta_ME,Annapolis_MD) - 15390.1986832228*x(Augusta_ME,Boston_MA) - 15142.9472745742*x(Augusta_ME,Lansing_MI) - 14784.9956462081*x(Augusta_ME,Saint-Paul_MN)
+     
+      - 14464.9318071788*x(Annapolis_MD,Montgomery_AL) - 10426.9246463124*x(Annapolis_MD,Juneau_AK) - 13220.2434484838*x(Annapolis_MD,Phoenix_AZ) - 14243.6137536433*x(Annapolis_MD,Little-Rock_AR) - 12384.9804207786*x(Annapolis_MD,Sacramento_CA)
+     
+      - 13481.7985825918*x(Annapolis_MD,Denver_CO) - 15037.9729576264*x(Annapolis_MD,Hartford_CT) - 14886.7159655297*x(Annapolis_MD,Dover_DE) - 14502.4721144555*x(Annapolis_MD,Tallahassee_FL) - 14534.5419057348*x(Annapolis_MD,Atlanta_GA)
+     
+      - 10899.4986673498*x(Annapolis_MD,Honolulu_HI) - 12571.7593538705*x(Annapolis_MD,Boise_ID) - 14358.2844570997*x(Annapolis_MD,Springfield_IL) - 14521.1795138963*x(Annapolis_MD,Indianapolis_IN) - 14143.8328691371*x(Annapolis_MD,Des-Moines_IA)
+     
+      - 14048.7302398979*x(Annapolis_MD,Topeka_KS) - 14561.9344003938*x(Annapolis_MD,Frankfort_KY) - 14303.2361308309*x(Annapolis_MD,Baton-Rouge_LA) - 15201.7268692321*x(Annapolis_MD,Augusta_ME) - 14855.7552427601*x(Annapolis_MD,Annapolis_MD)
+     
+      - 15094.7597150485*x(Annapolis_MD,Boston_MA) - 14618.4902901446*x(Annapolis_MD,Lansing_MI) - 14156.3534929638*x(Annapolis_MD,Saint-Paul_MN) - 14787.9457422105*x(Boston_MA,Montgomery_AL) - 10977.5223939223*x(Boston_MA,Juneau_AK)
+     
+      - 13743.403439347*x(Boston_MA,Phoenix_AZ) - 14629.1036090153*x(Boston_MA,Little-Rock_AR) - 12936.9158742165*x(Boston_MA,Sacramento_CA) - 13960.7875941537*x(Boston_MA,Denver_CO) - 15194.0898525201*x(Boston_MA,Hartford_CT)
+     
+      - 15080.1774363644*x(Boston_MA,Dover_DE) - 14802.2422802582*x(Boston_MA,Tallahassee_FL) - 14836.4121997065*x(Boston_MA,Atlanta_GA) - 11458.2395123361*x(Boston_MA,Honolulu_HI) - 13099.2070417832*x(Boston_MA,Boise_ID)
+     
+      - 14717.6104727969*x(Boston_MA,Springfield_IL) - 14844.3683496884*x(Boston_MA,Indianapolis_IN) - 14539.5110546018*x(Boston_MA,Des-Moines_IA) - 14462.739969735*x(Boston_MA,Topeka_KS) - 14870.4869741602*x(Boston_MA,Frankfort_KY)
+     
+      - 14677.5521441618*x(Boston_MA,Baton-Rouge_LA) - 15318.2090854692*x(Boston_MA,Augusta_ME) - 15062.0830928328*x(Boston_MA,Annapolis_MD) - 15227.8727088897*x(Boston_MA,Boston_MA) - 14925.2031965566*x(Boston_MA,Lansing_MI)
+     
+      - 14546.5870469138*x(Boston_MA,Saint-Paul_MN) - 14936.3012849615*x(Lansing_MI,Montgomery_AL) - 10485.2700656986*x(Lansing_MI,Juneau_AK) - 13338.1034530031*x(Lansing_MI,Phoenix_AZ) - 14628.9046652206*x(Lansing_MI,Little-Rock_AR)
+     
+      - 12417.9098550698*x(Lansing_MI,Sacramento_CA) - 13706.6192462563*x(Lansing_MI,Denver_CO) - 15680.3571668899*x(Lansing_MI,Hartford_CT) - 15497.2738291452*x(Lansing_MI,Dover_DE) - 15002.9605247052*x(Lansing_MI,Tallahassee_FL)
+     
+      - 15031.9102143897*x(Lansing_MI,Atlanta_GA) - 10455.6234847348*x(Lansing_MI,Honolulu_HI) - 12685.2886645864*x(Lansing_MI,Boise_ID) - 14781.1508593767*x(Lansing_MI,Springfield_IL) - 14991.400258791*x(Lansing_MI,Indianapolis_IN)
+     
+      - 14514.5548076017*x(Lansing_MI,Des-Moines_IA) - 14390.5193960214*x(Lansing_MI,Topeka_KS) - 15050.4456826597*x(Lansing_MI,Frankfort_KY) - 14704.7616861497*x(Lansing_MI,Baton-Rouge_LA) - 15874.513523837*x(Lansing_MI,Augusta_ME)
+     
+      - 15454.3080480585*x(Lansing_MI,Annapolis_MD) - 15755.6744623666*x(Lansing_MI,Boston_MA) - 15108.4085503975*x(Lansing_MI,Lansing_MI) - 14535.5905963329*x(Lansing_MI,Saint-Paul_MN) - 15236.4077600206*x(Saint-Paul_MN,Montgomery_AL)
+     
+      - 10452.0436116866*x(Saint-Paul_MN,Juneau_AK) - 13316.5400505784*x(Saint-Paul_MN,Phoenix_AZ) - 14843.6095288471*x(Saint-Paul_MN,Little-Rock_AR) - 12333.6526243772*x(Saint-Paul_MN,Sacramento_CA) - 13779.4981961005*x(Saint-Paul_MN,Denver_CO)
+     
+      - 16167.2437672878*x(Saint-Paul_MN,Hartford_CT) - 15947.4232983256*x(Saint-Paul_MN,Dover_DE) - 15333.9319668797*x(Saint-Paul_MN,Tallahassee_FL) - 15358.7914088046*x(Saint-Paul_MN,Atlanta_GA) - 9981.23366624455*x(Saint-Paul_MN,Honolulu_HI)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 8
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     defobj  =E=       
+     
+      - 12670.8350972354*x(Saint-Paul_MN,Boise_ID) - 15032.1537521798*x(Saint-Paul_MN,Springfield_IL) - 15289.0652324901*x(Saint-Paul_MN,Indianapolis_IN) - 14716.5816889363*x(Saint-Paul_MN,Des-Moines_IA) - 14565.4984451167*x(Saint-Paul_MN,Topeka_KS)
+     
+      - 15367.0589012136*x(Saint-Paul_MN,Frankfort_KY) - 14934.8278670061*x(Saint-Paul_MN,Baton-Rouge_LA) - 16398.0292509356*x(Saint-Paul_MN,Augusta_ME) - 15890.5342542193*x(Saint-Paul_MN,Annapolis_MD) - 16265.3732059031*x(Saint-Paul_MN,Boston_MA)
+     
+      - 15425.3362169054*x(Saint-Paul_MN,Lansing_MI) - 14745.9864888841*x(Saint-Paul_MN,Saint-Paul_MN) + obj =E= 0 ; (LHS = 0)
+     
+
+---- assign1  =E=  
+
+assign1(Montgomery_AL)..  x(Montgomery_AL,Juneau_AK) + x(Montgomery_AL,Phoenix_AZ) + x(Montgomery_AL,Little-Rock_AR) + x(Montgomery_AL,Sacramento_CA) + x(Montgomery_AL,Denver_CO) + x(Montgomery_AL,Hartford_CT) + x(Montgomery_AL,Dover_DE)
+     
+      + x(Montgomery_AL,Tallahassee_FL) + x(Montgomery_AL,Atlanta_GA) + x(Montgomery_AL,Honolulu_HI) + x(Montgomery_AL,Boise_ID) + x(Montgomery_AL,Springfield_IL) + x(Montgomery_AL,Indianapolis_IN) + x(Montgomery_AL,Des-Moines_IA)
+     
+      + x(Montgomery_AL,Topeka_KS) + x(Montgomery_AL,Frankfort_KY) + x(Montgomery_AL,Baton-Rouge_LA) + x(Montgomery_AL,Augusta_ME) + x(Montgomery_AL,Annapolis_MD) + x(Montgomery_AL,Boston_MA) + x(Montgomery_AL,Lansing_MI) + x(Montgomery_AL,Saint-Paul_MN)
+      =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+assign1(Juneau_AK)..  x(Juneau_AK,Montgomery_AL) + x(Juneau_AK,Phoenix_AZ) + x(Juneau_AK,Little-Rock_AR) + x(Juneau_AK,Sacramento_CA) + x(Juneau_AK,Denver_CO) + x(Juneau_AK,Hartford_CT) + x(Juneau_AK,Dover_DE) + x(Juneau_AK,Tallahassee_FL)
+     
+      + x(Juneau_AK,Atlanta_GA) + x(Juneau_AK,Honolulu_HI) + x(Juneau_AK,Boise_ID) + x(Juneau_AK,Springfield_IL) + x(Juneau_AK,Indianapolis_IN) + x(Juneau_AK,Des-Moines_IA) + x(Juneau_AK,Topeka_KS) + x(Juneau_AK,Frankfort_KY) + x(Juneau_AK,Baton-Rouge_LA)
+     
+      + x(Juneau_AK,Augusta_ME) + x(Juneau_AK,Annapolis_MD) + x(Juneau_AK,Boston_MA) + x(Juneau_AK,Lansing_MI) + x(Juneau_AK,Saint-Paul_MN) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+assign1(Phoenix_AZ)..  x(Phoenix_AZ,Montgomery_AL) + x(Phoenix_AZ,Juneau_AK) + x(Phoenix_AZ,Little-Rock_AR) + x(Phoenix_AZ,Sacramento_CA) + x(Phoenix_AZ,Denver_CO) + x(Phoenix_AZ,Hartford_CT) + x(Phoenix_AZ,Dover_DE) + x(Phoenix_AZ,Tallahassee_FL)
+     
+      + x(Phoenix_AZ,Atlanta_GA) + x(Phoenix_AZ,Honolulu_HI) + x(Phoenix_AZ,Boise_ID) + x(Phoenix_AZ,Springfield_IL) + x(Phoenix_AZ,Indianapolis_IN) + x(Phoenix_AZ,Des-Moines_IA) + x(Phoenix_AZ,Topeka_KS) + x(Phoenix_AZ,Frankfort_KY)
+     
+      + x(Phoenix_AZ,Baton-Rouge_LA) + x(Phoenix_AZ,Augusta_ME) + x(Phoenix_AZ,Annapolis_MD) + x(Phoenix_AZ,Boston_MA) + x(Phoenix_AZ,Lansing_MI) + x(Phoenix_AZ,Saint-Paul_MN) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+REMAINING 20 ENTRIES SKIPPED
+
+
+---- assign2  =E=  
+
+assign2(Montgomery_AL)..  x(Juneau_AK,Montgomery_AL) + x(Phoenix_AZ,Montgomery_AL) + x(Little-Rock_AR,Montgomery_AL) + x(Sacramento_CA,Montgomery_AL) + x(Denver_CO,Montgomery_AL) + x(Hartford_CT,Montgomery_AL) + x(Dover_DE,Montgomery_AL)
+     
+      + x(Tallahassee_FL,Montgomery_AL) + x(Atlanta_GA,Montgomery_AL) + x(Honolulu_HI,Montgomery_AL) + x(Boise_ID,Montgomery_AL) + x(Springfield_IL,Montgomery_AL) + x(Indianapolis_IN,Montgomery_AL) + x(Des-Moines_IA,Montgomery_AL)
+     
+      + x(Topeka_KS,Montgomery_AL) + x(Frankfort_KY,Montgomery_AL) + x(Baton-Rouge_LA,Montgomery_AL) + x(Augusta_ME,Montgomery_AL) + x(Annapolis_MD,Montgomery_AL) + x(Boston_MA,Montgomery_AL) + x(Lansing_MI,Montgomery_AL) + x(Saint-Paul_MN,Montgomery_AL)
+      =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+assign2(Juneau_AK)..  x(Montgomery_AL,Juneau_AK) + x(Phoenix_AZ,Juneau_AK) + x(Little-Rock_AR,Juneau_AK) + x(Sacramento_CA,Juneau_AK) + x(Denver_CO,Juneau_AK) + x(Hartford_CT,Juneau_AK) + x(Dover_DE,Juneau_AK) + x(Tallahassee_FL,Juneau_AK)
+     
+      + x(Atlanta_GA,Juneau_AK) + x(Honolulu_HI,Juneau_AK) + x(Boise_ID,Juneau_AK) + x(Springfield_IL,Juneau_AK) + x(Indianapolis_IN,Juneau_AK) + x(Des-Moines_IA,Juneau_AK) + x(Topeka_KS,Juneau_AK) + x(Frankfort_KY,Juneau_AK) + x(Baton-Rouge_LA,Juneau_AK)
+     
+      + x(Augusta_ME,Juneau_AK) + x(Annapolis_MD,Juneau_AK) + x(Boston_MA,Juneau_AK) + x(Lansing_MI,Juneau_AK) + x(Saint-Paul_MN,Juneau_AK) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+assign2(Phoenix_AZ)..  x(Montgomery_AL,Phoenix_AZ) + x(Juneau_AK,Phoenix_AZ) + x(Little-Rock_AR,Phoenix_AZ) + x(Sacramento_CA,Phoenix_AZ) + x(Denver_CO,Phoenix_AZ) + x(Hartford_CT,Phoenix_AZ) + x(Dover_DE,Phoenix_AZ) + x(Tallahassee_FL,Phoenix_AZ)
+     
+      + x(Atlanta_GA,Phoenix_AZ) + x(Honolulu_HI,Phoenix_AZ) + x(Boise_ID,Phoenix_AZ) + x(Springfield_IL,Phoenix_AZ) + x(Indianapolis_IN,Phoenix_AZ) + x(Des-Moines_IA,Phoenix_AZ) + x(Topeka_KS,Phoenix_AZ) + x(Frankfort_KY,Phoenix_AZ)
+     
+      + x(Baton-Rouge_LA,Phoenix_AZ) + x(Augusta_ME,Phoenix_AZ) + x(Annapolis_MD,Phoenix_AZ) + x(Boston_MA,Phoenix_AZ) + x(Lansing_MI,Phoenix_AZ) + x(Saint-Paul_MN,Phoenix_AZ) =E= 1 ; (LHS = 0, INFES = 1 ****)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 9
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE tsp Using MIP From line 56
+
+
+     assign2  =E=  
+
+REMAINING 20 ENTRIES SKIPPED
+
+
+---- mtz  =L=  
+
+mtz(Juneau_AK,Juneau_AK)..  22*x(Juneau_AK,Juneau_AK) =L= 21 ; (LHS = 0)
+     
+mtz(Juneau_AK,Phoenix_AZ)..  22*x(Juneau_AK,Phoenix_AZ) + u(Juneau_AK) - u(Phoenix_AZ) =L= 21 ; (LHS = 0)
+     
+mtz(Juneau_AK,Little-Rock_AR)..  22*x(Juneau_AK,Little-Rock_AR) + u(Juneau_AK) - u(Little-Rock_AR) =L= 21 ; (LHS = 0)
+     
+REMAINING 481 ENTRIES SKIPPED
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 10
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+---- x  
+
+x(Montgomery_AL,Montgomery_AL)
+                (.LO, .L, .UP, .M = 0, 0, 0, 0)
+   -13797.5073  defobj
+
+x(Montgomery_AL,Juneau_AK)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+    -9372.6187  defobj
+        1       assign1(Montgomery_AL)
+        1       assign2(Juneau_AK)
+
+x(Montgomery_AL,Phoenix_AZ)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+   -12208.3924  defobj
+        1       assign1(Montgomery_AL)
+        1       assign2(Phoenix_AZ)
+
+REMAINING 526 ENTRIES SKIPPED
+
+---- obj  
+
+obj
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defobj
+
+
+---- u  
+
+u(Juneau_AK)
+                (.LO, .L, .UP, .M = 2, 2, 50, 0)
+        1       mtz(Juneau_AK,Phoenix_AZ)
+        1       mtz(Juneau_AK,Little-Rock_AR)
+        1       mtz(Juneau_AK,Sacramento_CA)
+        1       mtz(Juneau_AK,Denver_CO)
+        1       mtz(Juneau_AK,Hartford_CT)
+        1       mtz(Juneau_AK,Dover_DE)
+        1       mtz(Juneau_AK,Tallahassee_FL)
+        1       mtz(Juneau_AK,Atlanta_GA)
+        1       mtz(Juneau_AK,Honolulu_HI)
+        1       mtz(Juneau_AK,Boise_ID)
+        1       mtz(Juneau_AK,Springfield_IL)
+        1       mtz(Juneau_AK,Indianapolis_IN)
+        1       mtz(Juneau_AK,Des-Moines_IA)
+        1       mtz(Juneau_AK,Topeka_KS)
+        1       mtz(Juneau_AK,Frankfort_KY)
+        1       mtz(Juneau_AK,Baton-Rouge_LA)
+        1       mtz(Juneau_AK,Augusta_ME)
+        1       mtz(Juneau_AK,Annapolis_MD)
+        1       mtz(Juneau_AK,Boston_MA)
+        1       mtz(Juneau_AK,Lansing_MI)
+        1       mtz(Juneau_AK,Saint-Paul_MN)
+       -1       mtz(Phoenix_AZ,Juneau_AK)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 11
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
+       -1       mtz(Little-Rock_AR,Juneau_AK)
+       -1       mtz(Sacramento_CA,Juneau_AK)
+       -1       mtz(Denver_CO,Juneau_AK)
+       -1       mtz(Hartford_CT,Juneau_AK)
+       -1       mtz(Dover_DE,Juneau_AK)
+       -1       mtz(Tallahassee_FL,Juneau_AK)
+       -1       mtz(Atlanta_GA,Juneau_AK)
+       -1       mtz(Honolulu_HI,Juneau_AK)
+       -1       mtz(Boise_ID,Juneau_AK)
+       -1       mtz(Springfield_IL,Juneau_AK)
+       -1       mtz(Indianapolis_IN,Juneau_AK)
+       -1       mtz(Des-Moines_IA,Juneau_AK)
+       -1       mtz(Topeka_KS,Juneau_AK)
+       -1       mtz(Frankfort_KY,Juneau_AK)
+       -1       mtz(Baton-Rouge_LA,Juneau_AK)
+       -1       mtz(Augusta_ME,Juneau_AK)
+       -1       mtz(Annapolis_MD,Juneau_AK)
+       -1       mtz(Boston_MA,Juneau_AK)
+       -1       mtz(Lansing_MI,Juneau_AK)
+       -1       mtz(Saint-Paul_MN,Juneau_AK)
+        0       (OLD LEVEL ****)
+
+u(Phoenix_AZ)
+                (.LO, .L, .UP, .M = 2, 2, 50, 0)
+       -1       mtz(Juneau_AK,Phoenix_AZ)
+        1       mtz(Phoenix_AZ,Juneau_AK)
+        1       mtz(Phoenix_AZ,Little-Rock_AR)
+        1       mtz(Phoenix_AZ,Sacramento_CA)
+        1       mtz(Phoenix_AZ,Denver_CO)
+        1       mtz(Phoenix_AZ,Hartford_CT)
+        1       mtz(Phoenix_AZ,Dover_DE)
+        1       mtz(Phoenix_AZ,Tallahassee_FL)
+        1       mtz(Phoenix_AZ,Atlanta_GA)
+        1       mtz(Phoenix_AZ,Honolulu_HI)
+        1       mtz(Phoenix_AZ,Boise_ID)
+        1       mtz(Phoenix_AZ,Springfield_IL)
+        1       mtz(Phoenix_AZ,Indianapolis_IN)
+        1       mtz(Phoenix_AZ,Des-Moines_IA)
+        1       mtz(Phoenix_AZ,Topeka_KS)
+        1       mtz(Phoenix_AZ,Frankfort_KY)
+        1       mtz(Phoenix_AZ,Baton-Rouge_LA)
+        1       mtz(Phoenix_AZ,Augusta_ME)
+        1       mtz(Phoenix_AZ,Annapolis_MD)
+        1       mtz(Phoenix_AZ,Boston_MA)
+        1       mtz(Phoenix_AZ,Lansing_MI)
+        1       mtz(Phoenix_AZ,Saint-Paul_MN)
+       -1       mtz(Little-Rock_AR,Phoenix_AZ)
+       -1       mtz(Sacramento_CA,Phoenix_AZ)
+       -1       mtz(Denver_CO,Phoenix_AZ)
+       -1       mtz(Hartford_CT,Phoenix_AZ)
+       -1       mtz(Dover_DE,Phoenix_AZ)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 12
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
+       -1       mtz(Tallahassee_FL,Phoenix_AZ)
+       -1       mtz(Atlanta_GA,Phoenix_AZ)
+       -1       mtz(Honolulu_HI,Phoenix_AZ)
+       -1       mtz(Boise_ID,Phoenix_AZ)
+       -1       mtz(Springfield_IL,Phoenix_AZ)
+       -1       mtz(Indianapolis_IN,Phoenix_AZ)
+       -1       mtz(Des-Moines_IA,Phoenix_AZ)
+       -1       mtz(Topeka_KS,Phoenix_AZ)
+       -1       mtz(Frankfort_KY,Phoenix_AZ)
+       -1       mtz(Baton-Rouge_LA,Phoenix_AZ)
+       -1       mtz(Augusta_ME,Phoenix_AZ)
+       -1       mtz(Annapolis_MD,Phoenix_AZ)
+       -1       mtz(Boston_MA,Phoenix_AZ)
+       -1       mtz(Lansing_MI,Phoenix_AZ)
+       -1       mtz(Saint-Paul_MN,Phoenix_AZ)
+        0       (OLD LEVEL ****)
+
+u(Little-Rock_AR)
+                (.LO, .L, .UP, .M = 2, 2, 50, 0)
+       -1       mtz(Juneau_AK,Little-Rock_AR)
+       -1       mtz(Phoenix_AZ,Little-Rock_AR)
+        1       mtz(Little-Rock_AR,Juneau_AK)
+        1       mtz(Little-Rock_AR,Phoenix_AZ)
+        1       mtz(Little-Rock_AR,Sacramento_CA)
+        1       mtz(Little-Rock_AR,Denver_CO)
+        1       mtz(Little-Rock_AR,Hartford_CT)
+        1       mtz(Little-Rock_AR,Dover_DE)
+        1       mtz(Little-Rock_AR,Tallahassee_FL)
+        1       mtz(Little-Rock_AR,Atlanta_GA)
+        1       mtz(Little-Rock_AR,Honolulu_HI)
+        1       mtz(Little-Rock_AR,Boise_ID)
+        1       mtz(Little-Rock_AR,Springfield_IL)
+        1       mtz(Little-Rock_AR,Indianapolis_IN)
+        1       mtz(Little-Rock_AR,Des-Moines_IA)
+        1       mtz(Little-Rock_AR,Topeka_KS)
+        1       mtz(Little-Rock_AR,Frankfort_KY)
+        1       mtz(Little-Rock_AR,Baton-Rouge_LA)
+        1       mtz(Little-Rock_AR,Augusta_ME)
+        1       mtz(Little-Rock_AR,Annapolis_MD)
+        1       mtz(Little-Rock_AR,Boston_MA)
+        1       mtz(Little-Rock_AR,Lansing_MI)
+        1       mtz(Little-Rock_AR,Saint-Paul_MN)
+       -1       mtz(Sacramento_CA,Little-Rock_AR)
+       -1       mtz(Denver_CO,Little-Rock_AR)
+       -1       mtz(Hartford_CT,Little-Rock_AR)
+       -1       mtz(Dover_DE,Little-Rock_AR)
+       -1       mtz(Tallahassee_FL,Little-Rock_AR)
+       -1       mtz(Atlanta_GA,Little-Rock_AR)
+       -1       mtz(Honolulu_HI,Little-Rock_AR)
+       -1       mtz(Boise_ID,Little-Rock_AR)
+       -1       mtz(Springfield_IL,Little-Rock_AR)
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 13
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE tsp Using MIP From line 56
+
+
+     u  
+
+       -1       mtz(Indianapolis_IN,Little-Rock_AR)
+       -1       mtz(Des-Moines_IA,Little-Rock_AR)
+       -1       mtz(Topeka_KS,Little-Rock_AR)
+       -1       mtz(Frankfort_KY,Little-Rock_AR)
+       -1       mtz(Baton-Rouge_LA,Little-Rock_AR)
+       -1       mtz(Augusta_ME,Little-Rock_AR)
+       -1       mtz(Annapolis_MD,Little-Rock_AR)
+       -1       mtz(Boston_MA,Little-Rock_AR)
+       -1       mtz(Lansing_MI,Little-Rock_AR)
+       -1       mtz(Saint-Paul_MN,Little-Rock_AR)
+        0       (OLD LEVEL ****)
+
+REMAINING 19 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 14
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE tsp Using MIP From line 56
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          531
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES          552  22 projected
+NON ZERO ELEMENTS         2,950     DISCRETE VARIABLES        506
+
+
+GENERATION TIME      =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 15
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   tsp                 OBJECTIVE  obj
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  56
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      8 Integer Solution          
+**** OBJECTIVE VALUE           310513.4100
+
+ RESOURCE USAGE, LIMIT          0.250      1000.000
+ ITERATION COUNT, LIMIT       748    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Reading parameter(s) from "C:\Users\hasee\Desktop\Summer research\tsp\cplex.opt"
+>>  lpmethod 4
+Finished reading from "C:\Users\hasee\Desktop\Summer research\tsp\cplex.opt"
+Space for names approximately 0.04 Mb
+Use option 'names no' to turn use of names off
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.25sec (det. 140.89 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 2.48 ticks)
+Solution satisfies tolerances.
+
+MIP Solution:       310513.410040    (740 iterations, 83 nodes)
+Final Solve:        310513.410040    (0 iterations)
+
+Best possible:      310207.994532
+Absolute gap:          305.415508
+Relative gap:            0.000984
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU defobj              .              .              .             1.0000      
+
+---- EQU assign1  
+
+                       LOWER          LEVEL          UPPER         MARGINAL
+
+Montgomery_AL           1.0000         1.0000         1.0000          .          
+Juneau_AK               1.0000         1.0000         1.0000          .          
+Phoenix_AZ              1.0000         1.0000         1.0000          .          
+Little-Rock_AR          1.0000         1.0000         1.0000          .          
+Sacramento_CA           1.0000         1.0000         1.0000          .          
+Denver_CO               1.0000         1.0000         1.0000          .          
+Hartford_CT             1.0000         1.0000         1.0000          .          
+Dover_DE                1.0000         1.0000         1.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 16
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU assign1  
+
+                       LOWER          LEVEL          UPPER         MARGINAL
+
+Tallahassee_FL          1.0000         1.0000         1.0000          .          
+Atlanta_GA              1.0000         1.0000         1.0000          .          
+Honolulu_HI             1.0000         1.0000         1.0000          .          
+Boise_ID                1.0000         1.0000         1.0000          .          
+Springfield_IL          1.0000         1.0000         1.0000          .          
+Indianapolis_IN         1.0000         1.0000         1.0000          .          
+Des-Moines_IA           1.0000         1.0000         1.0000          .          
+Topeka_KS               1.0000         1.0000         1.0000          .          
+Frankfort_KY            1.0000         1.0000         1.0000          .          
+Baton-Rouge_LA          1.0000         1.0000         1.0000          .          
+Augusta_ME              1.0000         1.0000         1.0000          .          
+Annapolis_MD            1.0000         1.0000         1.0000          .          
+Boston_MA               1.0000         1.0000         1.0000          .          
+Lansing_MI              1.0000         1.0000         1.0000          .          
+Saint-Paul_MN           1.0000         1.0000         1.0000          .          
+
+---- EQU assign2  
+
+                       LOWER          LEVEL          UPPER         MARGINAL
+
+Montgomery_AL           1.0000         1.0000         1.0000          .          
+Juneau_AK               1.0000         1.0000         1.0000          .          
+Phoenix_AZ              1.0000         1.0000         1.0000          .          
+Little-Rock_AR          1.0000         1.0000         1.0000          .          
+Sacramento_CA           1.0000         1.0000         1.0000          .          
+Denver_CO               1.0000         1.0000         1.0000          .          
+Hartford_CT             1.0000         1.0000         1.0000          .          
+Dover_DE                1.0000         1.0000         1.0000          .          
+Tallahassee_FL          1.0000         1.0000         1.0000          .          
+Atlanta_GA              1.0000         1.0000         1.0000          .          
+Honolulu_HI             1.0000         1.0000         1.0000          .          
+Boise_ID                1.0000         1.0000         1.0000          .          
+Springfield_IL          1.0000         1.0000         1.0000          .          
+Indianapolis_IN         1.0000         1.0000         1.0000          .          
+Des-Moines_IA           1.0000         1.0000         1.0000          .          
+Topeka_KS               1.0000         1.0000         1.0000          .          
+Frankfort_KY            1.0000         1.0000         1.0000          .          
+Baton-Rouge_LA          1.0000         1.0000         1.0000          .          
+Augusta_ME              1.0000         1.0000         1.0000          .          
+Annapolis_MD            1.0000         1.0000         1.0000          .          
+Boston_MA               1.0000         1.0000         1.0000          .          
+Lansing_MI              1.0000         1.0000         1.0000          .          
+Saint-Paul_MN           1.0000         1.0000         1.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 17
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+---- EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Juneau_AK      .Juneau_AK              -INF             .            21.0000          .          
+Juneau_AK      .Phoenix_AZ             -INF           -2.0000        21.0000          .          
+Juneau_AK      .Little-Rock_AR         -INF           -6.0000        21.0000          .          
+Juneau_AK      .Sacramento_CA          -INF           -4.0000        21.0000          .          
+Juneau_AK      .Denver_CO              -INF           -5.0000        21.0000          .          
+Juneau_AK      .Hartford_CT            -INF          -12.0000        21.0000          .          
+Juneau_AK      .Dover_DE               -INF          -11.0000        21.0000          .          
+Juneau_AK      .Tallahassee_FL         -INF          -17.0000        21.0000          .          
+Juneau_AK      .Atlanta_GA             -INF          -16.0000        21.0000          .          
+Juneau_AK      .Honolulu_HI            -INF           21.0000        21.0000         EPS         
+Juneau_AK      .Boise_ID               -INF           -3.0000        21.0000          .          
+Juneau_AK      .Springfield_IL         -INF           -8.0000        21.0000          .          
+Juneau_AK      .Indianapolis_IN        -INF           -9.0000        21.0000          .          
+Juneau_AK      .Des-Moines_IA          -INF            2.0000        21.0000          .          
+Juneau_AK      .Topeka_KS              -INF           -7.0000        21.0000          .          
+Juneau_AK      .Frankfort_KY           -INF          -18.0000        21.0000          .          
+Juneau_AK      .Baton-Rouge_LA         -INF            3.0000        21.0000          .          
+Juneau_AK      .Augusta_ME             -INF          -13.0000        21.0000          .          
+Juneau_AK      .Annapolis_MD           -INF          -15.0000        21.0000          .          
+Juneau_AK      .Boston_MA              -INF          -14.0000        21.0000          .          
+Juneau_AK      .Lansing_MI             -INF          -10.0000        21.0000          .          
+Juneau_AK      .Saint-Paul_MN          -INF            1.0000        21.0000          .          
+Phoenix_AZ     .Juneau_AK              -INF            2.0000        21.0000          .          
+Phoenix_AZ     .Phoenix_AZ             -INF             .            21.0000          .          
+Phoenix_AZ     .Little-Rock_AR         -INF           -4.0000        21.0000          .          
+Phoenix_AZ     .Sacramento_CA          -INF           -2.0000        21.0000          .          
+Phoenix_AZ     .Denver_CO              -INF           -3.0000        21.0000          .          
+Phoenix_AZ     .Hartford_CT            -INF          -10.0000        21.0000          .          
+Phoenix_AZ     .Dover_DE               -INF           -9.0000        21.0000          .          
+Phoenix_AZ     .Tallahassee_FL         -INF          -15.0000        21.0000          .          
+Phoenix_AZ     .Atlanta_GA             -INF          -14.0000        21.0000          .          
+Phoenix_AZ     .Honolulu_HI            -INF            1.0000        21.0000          .          
+Phoenix_AZ     .Boise_ID               -INF           21.0000        21.0000         EPS         
+Phoenix_AZ     .Springfield_IL         -INF           -6.0000        21.0000          .          
+Phoenix_AZ     .Indianapolis_IN        -INF           -7.0000        21.0000          .          
+Phoenix_AZ     .Des-Moines_IA          -INF            4.0000        21.0000          .          
+Phoenix_AZ     .Topeka_KS              -INF           -5.0000        21.0000          .          
+Phoenix_AZ     .Frankfort_KY           -INF          -16.0000        21.0000          .          
+Phoenix_AZ     .Baton-Rouge_LA         -INF            5.0000        21.0000          .          
+Phoenix_AZ     .Augusta_ME             -INF          -11.0000        21.0000          .          
+Phoenix_AZ     .Annapolis_MD           -INF          -13.0000        21.0000          .          
+Phoenix_AZ     .Boston_MA              -INF          -12.0000        21.0000          .          
+Phoenix_AZ     .Lansing_MI             -INF           -8.0000        21.0000          .          
+Phoenix_AZ     .Saint-Paul_MN          -INF            3.0000        21.0000          .          
+Little-Rock_AR .Juneau_AK              -INF            6.0000        21.0000          .          
+Little-Rock_AR .Phoenix_AZ             -INF            4.0000        21.0000          .          
+Little-Rock_AR .Little-Rock_AR         -INF             .            21.0000          .          
+Little-Rock_AR .Sacramento_CA          -INF            2.0000        21.0000          .          
+Little-Rock_AR .Denver_CO              -INF            1.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 18
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Little-Rock_AR .Hartford_CT            -INF           -6.0000        21.0000          .          
+Little-Rock_AR .Dover_DE               -INF           -5.0000        21.0000          .          
+Little-Rock_AR .Tallahassee_FL         -INF          -11.0000        21.0000          .          
+Little-Rock_AR .Atlanta_GA             -INF          -10.0000        21.0000          .          
+Little-Rock_AR .Honolulu_HI            -INF            5.0000        21.0000          .          
+Little-Rock_AR .Boise_ID               -INF            3.0000        21.0000          .          
+Little-Rock_AR .Springfield_IL         -INF           -2.0000        21.0000          .          
+Little-Rock_AR .Indianapolis_IN        -INF           -3.0000        21.0000          .          
+Little-Rock_AR .Des-Moines_IA          -INF            8.0000        21.0000          .          
+Little-Rock_AR .Topeka_KS              -INF           21.0000        21.0000         EPS         
+Little-Rock_AR .Frankfort_KY           -INF          -12.0000        21.0000          .          
+Little-Rock_AR .Baton-Rouge_LA         -INF            9.0000        21.0000          .          
+Little-Rock_AR .Augusta_ME             -INF           -7.0000        21.0000          .          
+Little-Rock_AR .Annapolis_MD           -INF           -9.0000        21.0000          .          
+Little-Rock_AR .Boston_MA              -INF           -8.0000        21.0000          .          
+Little-Rock_AR .Lansing_MI             -INF           -4.0000        21.0000          .          
+Little-Rock_AR .Saint-Paul_MN          -INF            7.0000        21.0000          .          
+Sacramento_CA  .Juneau_AK              -INF            4.0000        21.0000          .          
+Sacramento_CA  .Phoenix_AZ             -INF            2.0000        21.0000          .          
+Sacramento_CA  .Little-Rock_AR         -INF           -2.0000        21.0000          .          
+Sacramento_CA  .Sacramento_CA          -INF             .            21.0000          .          
+Sacramento_CA  .Denver_CO              -INF           21.0000        21.0000         EPS         
+Sacramento_CA  .Hartford_CT            -INF           -8.0000        21.0000          .          
+Sacramento_CA  .Dover_DE               -INF           -7.0000        21.0000          .          
+Sacramento_CA  .Tallahassee_FL         -INF          -13.0000        21.0000          .          
+Sacramento_CA  .Atlanta_GA             -INF          -12.0000        21.0000          .          
+Sacramento_CA  .Honolulu_HI            -INF            3.0000        21.0000          .          
+Sacramento_CA  .Boise_ID               -INF            1.0000        21.0000          .          
+Sacramento_CA  .Springfield_IL         -INF           -4.0000        21.0000          .          
+Sacramento_CA  .Indianapolis_IN        -INF           -5.0000        21.0000          .          
+Sacramento_CA  .Des-Moines_IA          -INF            6.0000        21.0000          .          
+Sacramento_CA  .Topeka_KS              -INF           -3.0000        21.0000          .          
+Sacramento_CA  .Frankfort_KY           -INF          -14.0000        21.0000          .          
+Sacramento_CA  .Baton-Rouge_LA         -INF            7.0000        21.0000          .          
+Sacramento_CA  .Augusta_ME             -INF           -9.0000        21.0000          .          
+Sacramento_CA  .Annapolis_MD           -INF          -11.0000        21.0000          .          
+Sacramento_CA  .Boston_MA              -INF          -10.0000        21.0000          .          
+Sacramento_CA  .Lansing_MI             -INF           -6.0000        21.0000          .          
+Sacramento_CA  .Saint-Paul_MN          -INF            5.0000        21.0000          .          
+Denver_CO      .Juneau_AK              -INF            5.0000        21.0000          .          
+Denver_CO      .Phoenix_AZ             -INF            3.0000        21.0000          .          
+Denver_CO      .Little-Rock_AR         -INF           21.0000        21.0000         EPS         
+Denver_CO      .Sacramento_CA          -INF            1.0000        21.0000          .          
+Denver_CO      .Denver_CO              -INF             .            21.0000          .          
+Denver_CO      .Hartford_CT            -INF           -7.0000        21.0000          .          
+Denver_CO      .Dover_DE               -INF           -6.0000        21.0000          .          
+Denver_CO      .Tallahassee_FL         -INF          -12.0000        21.0000          .          
+Denver_CO      .Atlanta_GA             -INF          -11.0000        21.0000          .          
+Denver_CO      .Honolulu_HI            -INF            4.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 19
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Denver_CO      .Boise_ID               -INF            2.0000        21.0000          .          
+Denver_CO      .Springfield_IL         -INF           -3.0000        21.0000          .          
+Denver_CO      .Indianapolis_IN        -INF           -4.0000        21.0000          .          
+Denver_CO      .Des-Moines_IA          -INF            7.0000        21.0000          .          
+Denver_CO      .Topeka_KS              -INF           -2.0000        21.0000          .          
+Denver_CO      .Frankfort_KY           -INF          -13.0000        21.0000          .          
+Denver_CO      .Baton-Rouge_LA         -INF            8.0000        21.0000          .          
+Denver_CO      .Augusta_ME             -INF           -8.0000        21.0000          .          
+Denver_CO      .Annapolis_MD           -INF          -10.0000        21.0000          .          
+Denver_CO      .Boston_MA              -INF           -9.0000        21.0000          .          
+Denver_CO      .Lansing_MI             -INF           -5.0000        21.0000          .          
+Denver_CO      .Saint-Paul_MN          -INF            6.0000        21.0000          .          
+Hartford_CT    .Juneau_AK              -INF           12.0000        21.0000          .          
+Hartford_CT    .Phoenix_AZ             -INF           10.0000        21.0000          .          
+Hartford_CT    .Little-Rock_AR         -INF            6.0000        21.0000          .          
+Hartford_CT    .Sacramento_CA          -INF            8.0000        21.0000          .          
+Hartford_CT    .Denver_CO              -INF            7.0000        21.0000          .          
+Hartford_CT    .Hartford_CT            -INF             .            21.0000          .          
+Hartford_CT    .Dover_DE               -INF            1.0000        21.0000          .          
+Hartford_CT    .Tallahassee_FL         -INF           -5.0000        21.0000          .          
+Hartford_CT    .Atlanta_GA             -INF           -4.0000        21.0000          .          
+Hartford_CT    .Honolulu_HI            -INF           11.0000        21.0000          .          
+Hartford_CT    .Boise_ID               -INF            9.0000        21.0000          .          
+Hartford_CT    .Springfield_IL         -INF            4.0000        21.0000          .          
+Hartford_CT    .Indianapolis_IN        -INF            3.0000        21.0000          .          
+Hartford_CT    .Des-Moines_IA          -INF           14.0000        21.0000          .          
+Hartford_CT    .Topeka_KS              -INF            5.0000        21.0000          .          
+Hartford_CT    .Frankfort_KY           -INF           -6.0000        21.0000          .          
+Hartford_CT    .Baton-Rouge_LA         -INF           15.0000        21.0000          .          
+Hartford_CT    .Augusta_ME             -INF           21.0000        21.0000         EPS         
+Hartford_CT    .Annapolis_MD           -INF           -3.0000        21.0000          .          
+Hartford_CT    .Boston_MA              -INF           -2.0000        21.0000          .          
+Hartford_CT    .Lansing_MI             -INF            2.0000        21.0000          .          
+Hartford_CT    .Saint-Paul_MN          -INF           13.0000        21.0000          .          
+Dover_DE       .Juneau_AK              -INF           11.0000        21.0000          .          
+Dover_DE       .Phoenix_AZ             -INF            9.0000        21.0000          .          
+Dover_DE       .Little-Rock_AR         -INF            5.0000        21.0000          .          
+Dover_DE       .Sacramento_CA          -INF            7.0000        21.0000          .          
+Dover_DE       .Denver_CO              -INF            6.0000        21.0000          .          
+Dover_DE       .Hartford_CT            -INF           21.0000        21.0000         EPS         
+Dover_DE       .Dover_DE               -INF             .            21.0000          .          
+Dover_DE       .Tallahassee_FL         -INF           -6.0000        21.0000          .          
+Dover_DE       .Atlanta_GA             -INF           -5.0000        21.0000          .          
+Dover_DE       .Honolulu_HI            -INF           10.0000        21.0000          .          
+Dover_DE       .Boise_ID               -INF            8.0000        21.0000          .          
+Dover_DE       .Springfield_IL         -INF            3.0000        21.0000          .          
+Dover_DE       .Indianapolis_IN        -INF            2.0000        21.0000          .          
+Dover_DE       .Des-Moines_IA          -INF           13.0000        21.0000          .          
+Dover_DE       .Topeka_KS              -INF            4.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 20
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Dover_DE       .Frankfort_KY           -INF           -7.0000        21.0000          .          
+Dover_DE       .Baton-Rouge_LA         -INF           14.0000        21.0000          .          
+Dover_DE       .Augusta_ME             -INF           -2.0000        21.0000          .          
+Dover_DE       .Annapolis_MD           -INF           -4.0000        21.0000          .          
+Dover_DE       .Boston_MA              -INF           -3.0000        21.0000          .          
+Dover_DE       .Lansing_MI             -INF            1.0000        21.0000          .          
+Dover_DE       .Saint-Paul_MN          -INF           12.0000        21.0000          .          
+Tallahassee_FL .Juneau_AK              -INF           17.0000        21.0000          .          
+Tallahassee_FL .Phoenix_AZ             -INF           15.0000        21.0000          .          
+Tallahassee_FL .Little-Rock_AR         -INF           11.0000        21.0000          .          
+Tallahassee_FL .Sacramento_CA          -INF           13.0000        21.0000          .          
+Tallahassee_FL .Denver_CO              -INF           12.0000        21.0000          .          
+Tallahassee_FL .Hartford_CT            -INF            5.0000        21.0000          .          
+Tallahassee_FL .Dover_DE               -INF            6.0000        21.0000          .          
+Tallahassee_FL .Tallahassee_FL         -INF             .            21.0000          .          
+Tallahassee_FL .Atlanta_GA             -INF            1.0000        21.0000          .          
+Tallahassee_FL .Honolulu_HI            -INF           16.0000        21.0000          .          
+Tallahassee_FL .Boise_ID               -INF           14.0000        21.0000          .          
+Tallahassee_FL .Springfield_IL         -INF            9.0000        21.0000          .          
+Tallahassee_FL .Indianapolis_IN        -INF            8.0000        21.0000          .          
+Tallahassee_FL .Des-Moines_IA          -INF           19.0000        21.0000          .          
+Tallahassee_FL .Topeka_KS              -INF           10.0000        21.0000          .          
+Tallahassee_FL .Frankfort_KY           -INF           21.0000        21.0000         EPS         
+Tallahassee_FL .Baton-Rouge_LA         -INF           20.0000        21.0000          .          
+Tallahassee_FL .Augusta_ME             -INF            4.0000        21.0000          .          
+Tallahassee_FL .Annapolis_MD           -INF            2.0000        21.0000          .          
+Tallahassee_FL .Boston_MA              -INF            3.0000        21.0000          .          
+Tallahassee_FL .Lansing_MI             -INF            7.0000        21.0000          .          
+Tallahassee_FL .Saint-Paul_MN          -INF           18.0000        21.0000          .          
+Atlanta_GA     .Juneau_AK              -INF           16.0000        21.0000          .          
+Atlanta_GA     .Phoenix_AZ             -INF           14.0000        21.0000          .          
+Atlanta_GA     .Little-Rock_AR         -INF           10.0000        21.0000          .          
+Atlanta_GA     .Sacramento_CA          -INF           12.0000        21.0000          .          
+Atlanta_GA     .Denver_CO              -INF           11.0000        21.0000          .          
+Atlanta_GA     .Hartford_CT            -INF            4.0000        21.0000          .          
+Atlanta_GA     .Dover_DE               -INF            5.0000        21.0000          .          
+Atlanta_GA     .Tallahassee_FL         -INF           21.0000        21.0000         EPS         
+Atlanta_GA     .Atlanta_GA             -INF             .            21.0000          .          
+Atlanta_GA     .Honolulu_HI            -INF           15.0000        21.0000          .          
+Atlanta_GA     .Boise_ID               -INF           13.0000        21.0000          .          
+Atlanta_GA     .Springfield_IL         -INF            8.0000        21.0000          .          
+Atlanta_GA     .Indianapolis_IN        -INF            7.0000        21.0000          .          
+Atlanta_GA     .Des-Moines_IA          -INF           18.0000        21.0000          .          
+Atlanta_GA     .Topeka_KS              -INF            9.0000        21.0000          .          
+Atlanta_GA     .Frankfort_KY           -INF           -2.0000        21.0000          .          
+Atlanta_GA     .Baton-Rouge_LA         -INF           19.0000        21.0000          .          
+Atlanta_GA     .Augusta_ME             -INF            3.0000        21.0000          .          
+Atlanta_GA     .Annapolis_MD           -INF            1.0000        21.0000          .          
+Atlanta_GA     .Boston_MA              -INF            2.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 21
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Atlanta_GA     .Lansing_MI             -INF            6.0000        21.0000          .          
+Atlanta_GA     .Saint-Paul_MN          -INF           17.0000        21.0000          .          
+Honolulu_HI    .Juneau_AK              -INF            1.0000        21.0000          .          
+Honolulu_HI    .Phoenix_AZ             -INF           21.0000        21.0000         EPS         
+Honolulu_HI    .Little-Rock_AR         -INF           -5.0000        21.0000          .          
+Honolulu_HI    .Sacramento_CA          -INF           -3.0000        21.0000          .          
+Honolulu_HI    .Denver_CO              -INF           -4.0000        21.0000          .          
+Honolulu_HI    .Hartford_CT            -INF          -11.0000        21.0000          .          
+Honolulu_HI    .Dover_DE               -INF          -10.0000        21.0000          .          
+Honolulu_HI    .Tallahassee_FL         -INF          -16.0000        21.0000          .          
+Honolulu_HI    .Atlanta_GA             -INF          -15.0000        21.0000          .          
+Honolulu_HI    .Honolulu_HI            -INF             .            21.0000          .          
+Honolulu_HI    .Boise_ID               -INF           -2.0000        21.0000          .          
+Honolulu_HI    .Springfield_IL         -INF           -7.0000        21.0000          .          
+Honolulu_HI    .Indianapolis_IN        -INF           -8.0000        21.0000          .          
+Honolulu_HI    .Des-Moines_IA          -INF            3.0000        21.0000          .          
+Honolulu_HI    .Topeka_KS              -INF           -6.0000        21.0000          .          
+Honolulu_HI    .Frankfort_KY           -INF          -17.0000        21.0000          .          
+Honolulu_HI    .Baton-Rouge_LA         -INF            4.0000        21.0000          .          
+Honolulu_HI    .Augusta_ME             -INF          -12.0000        21.0000          .          
+Honolulu_HI    .Annapolis_MD           -INF          -14.0000        21.0000          .          
+Honolulu_HI    .Boston_MA              -INF          -13.0000        21.0000          .          
+Honolulu_HI    .Lansing_MI             -INF           -9.0000        21.0000          .          
+Honolulu_HI    .Saint-Paul_MN          -INF            2.0000        21.0000          .          
+Boise_ID       .Juneau_AK              -INF            3.0000        21.0000          .          
+Boise_ID       .Phoenix_AZ             -INF            1.0000        21.0000          .          
+Boise_ID       .Little-Rock_AR         -INF           -3.0000        21.0000          .          
+Boise_ID       .Sacramento_CA          -INF           21.0000        21.0000         EPS         
+Boise_ID       .Denver_CO              -INF           -2.0000        21.0000          .          
+Boise_ID       .Hartford_CT            -INF           -9.0000        21.0000          .          
+Boise_ID       .Dover_DE               -INF           -8.0000        21.0000          .          
+Boise_ID       .Tallahassee_FL         -INF          -14.0000        21.0000          .          
+Boise_ID       .Atlanta_GA             -INF          -13.0000        21.0000          .          
+Boise_ID       .Honolulu_HI            -INF            2.0000        21.0000          .          
+Boise_ID       .Boise_ID               -INF             .            21.0000          .          
+Boise_ID       .Springfield_IL         -INF           -5.0000        21.0000          .          
+Boise_ID       .Indianapolis_IN        -INF           -6.0000        21.0000          .          
+Boise_ID       .Des-Moines_IA          -INF            5.0000        21.0000          .          
+Boise_ID       .Topeka_KS              -INF           -4.0000        21.0000          .          
+Boise_ID       .Frankfort_KY           -INF          -15.0000        21.0000          .          
+Boise_ID       .Baton-Rouge_LA         -INF            6.0000        21.0000          .          
+Boise_ID       .Augusta_ME             -INF          -10.0000        21.0000          .          
+Boise_ID       .Annapolis_MD           -INF          -12.0000        21.0000          .          
+Boise_ID       .Boston_MA              -INF          -11.0000        21.0000          .          
+Boise_ID       .Lansing_MI             -INF           -7.0000        21.0000          .          
+Boise_ID       .Saint-Paul_MN          -INF            4.0000        21.0000          .          
+Springfield_IL .Juneau_AK              -INF            8.0000        21.0000          .          
+Springfield_IL .Phoenix_AZ             -INF            6.0000        21.0000          .          
+Springfield_IL .Little-Rock_AR         -INF            2.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 22
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Springfield_IL .Sacramento_CA          -INF            4.0000        21.0000          .          
+Springfield_IL .Denver_CO              -INF            3.0000        21.0000          .          
+Springfield_IL .Hartford_CT            -INF           -4.0000        21.0000          .          
+Springfield_IL .Dover_DE               -INF           -3.0000        21.0000          .          
+Springfield_IL .Tallahassee_FL         -INF           -9.0000        21.0000          .          
+Springfield_IL .Atlanta_GA             -INF           -8.0000        21.0000          .          
+Springfield_IL .Honolulu_HI            -INF            7.0000        21.0000          .          
+Springfield_IL .Boise_ID               -INF            5.0000        21.0000          .          
+Springfield_IL .Springfield_IL         -INF             .            21.0000          .          
+Springfield_IL .Indianapolis_IN        -INF           21.0000        21.0000         EPS         
+Springfield_IL .Des-Moines_IA          -INF           10.0000        21.0000          .          
+Springfield_IL .Topeka_KS              -INF            1.0000        21.0000          .          
+Springfield_IL .Frankfort_KY           -INF          -10.0000        21.0000          .          
+Springfield_IL .Baton-Rouge_LA         -INF           11.0000        21.0000          .          
+Springfield_IL .Augusta_ME             -INF           -5.0000        21.0000          .          
+Springfield_IL .Annapolis_MD           -INF           -7.0000        21.0000          .          
+Springfield_IL .Boston_MA              -INF           -6.0000        21.0000          .          
+Springfield_IL .Lansing_MI             -INF           -2.0000        21.0000          .          
+Springfield_IL .Saint-Paul_MN          -INF            9.0000        21.0000          .          
+Indianapolis_IN.Juneau_AK              -INF            9.0000        21.0000          .          
+Indianapolis_IN.Phoenix_AZ             -INF            7.0000        21.0000          .          
+Indianapolis_IN.Little-Rock_AR         -INF            3.0000        21.0000          .          
+Indianapolis_IN.Sacramento_CA          -INF            5.0000        21.0000          .          
+Indianapolis_IN.Denver_CO              -INF            4.0000        21.0000          .          
+Indianapolis_IN.Hartford_CT            -INF           -3.0000        21.0000          .          
+Indianapolis_IN.Dover_DE               -INF           -2.0000        21.0000          .          
+Indianapolis_IN.Tallahassee_FL         -INF           -8.0000        21.0000          .          
+Indianapolis_IN.Atlanta_GA             -INF           -7.0000        21.0000          .          
+Indianapolis_IN.Honolulu_HI            -INF            8.0000        21.0000          .          
+Indianapolis_IN.Boise_ID               -INF            6.0000        21.0000          .          
+Indianapolis_IN.Springfield_IL         -INF            1.0000        21.0000          .          
+Indianapolis_IN.Indianapolis_IN        -INF             .            21.0000          .          
+Indianapolis_IN.Des-Moines_IA          -INF           11.0000        21.0000          .          
+Indianapolis_IN.Topeka_KS              -INF            2.0000        21.0000          .          
+Indianapolis_IN.Frankfort_KY           -INF           -9.0000        21.0000          .          
+Indianapolis_IN.Baton-Rouge_LA         -INF           12.0000        21.0000          .          
+Indianapolis_IN.Augusta_ME             -INF           -4.0000        21.0000          .          
+Indianapolis_IN.Annapolis_MD           -INF           -6.0000        21.0000          .          
+Indianapolis_IN.Boston_MA              -INF           -5.0000        21.0000          .          
+Indianapolis_IN.Lansing_MI             -INF           21.0000        21.0000         EPS         
+Indianapolis_IN.Saint-Paul_MN          -INF           10.0000        21.0000          .          
+Des-Moines_IA  .Juneau_AK              -INF           -2.0000        21.0000          .          
+Des-Moines_IA  .Phoenix_AZ             -INF           -4.0000        21.0000          .          
+Des-Moines_IA  .Little-Rock_AR         -INF           -8.0000        21.0000          .          
+Des-Moines_IA  .Sacramento_CA          -INF           -6.0000        21.0000          .          
+Des-Moines_IA  .Denver_CO              -INF           -7.0000        21.0000          .          
+Des-Moines_IA  .Hartford_CT            -INF          -14.0000        21.0000          .          
+Des-Moines_IA  .Dover_DE               -INF          -13.0000        21.0000          .          
+Des-Moines_IA  .Tallahassee_FL         -INF          -19.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 23
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Des-Moines_IA  .Atlanta_GA             -INF          -18.0000        21.0000          .          
+Des-Moines_IA  .Honolulu_HI            -INF           -3.0000        21.0000          .          
+Des-Moines_IA  .Boise_ID               -INF           -5.0000        21.0000          .          
+Des-Moines_IA  .Springfield_IL         -INF          -10.0000        21.0000          .          
+Des-Moines_IA  .Indianapolis_IN        -INF          -11.0000        21.0000          .          
+Des-Moines_IA  .Des-Moines_IA          -INF             .            21.0000          .          
+Des-Moines_IA  .Topeka_KS              -INF           -9.0000        21.0000          .          
+Des-Moines_IA  .Frankfort_KY           -INF          -20.0000        21.0000          .          
+Des-Moines_IA  .Baton-Rouge_LA         -INF            1.0000        21.0000          .          
+Des-Moines_IA  .Augusta_ME             -INF          -15.0000        21.0000          .          
+Des-Moines_IA  .Annapolis_MD           -INF          -17.0000        21.0000          .          
+Des-Moines_IA  .Boston_MA              -INF          -16.0000        21.0000          .          
+Des-Moines_IA  .Lansing_MI             -INF          -12.0000        21.0000          .          
+Des-Moines_IA  .Saint-Paul_MN          -INF           21.0000        21.0000          .          
+Topeka_KS      .Juneau_AK              -INF            7.0000        21.0000          .          
+Topeka_KS      .Phoenix_AZ             -INF            5.0000        21.0000          .          
+Topeka_KS      .Little-Rock_AR         -INF            1.0000        21.0000          .          
+Topeka_KS      .Sacramento_CA          -INF            3.0000        21.0000          .          
+Topeka_KS      .Denver_CO              -INF            2.0000        21.0000          .          
+Topeka_KS      .Hartford_CT            -INF           -5.0000        21.0000          .          
+Topeka_KS      .Dover_DE               -INF           -4.0000        21.0000          .          
+Topeka_KS      .Tallahassee_FL         -INF          -10.0000        21.0000          .          
+Topeka_KS      .Atlanta_GA             -INF           -9.0000        21.0000          .          
+Topeka_KS      .Honolulu_HI            -INF            6.0000        21.0000          .          
+Topeka_KS      .Boise_ID               -INF            4.0000        21.0000          .          
+Topeka_KS      .Springfield_IL         -INF           21.0000        21.0000         EPS         
+Topeka_KS      .Indianapolis_IN        -INF           -2.0000        21.0000          .          
+Topeka_KS      .Des-Moines_IA          -INF            9.0000        21.0000          .          
+Topeka_KS      .Topeka_KS              -INF             .            21.0000          .          
+Topeka_KS      .Frankfort_KY           -INF          -11.0000        21.0000          .          
+Topeka_KS      .Baton-Rouge_LA         -INF           10.0000        21.0000          .          
+Topeka_KS      .Augusta_ME             -INF           -6.0000        21.0000          .          
+Topeka_KS      .Annapolis_MD           -INF           -8.0000        21.0000          .          
+Topeka_KS      .Boston_MA              -INF           -7.0000        21.0000          .          
+Topeka_KS      .Lansing_MI             -INF           -3.0000        21.0000          .          
+Topeka_KS      .Saint-Paul_MN          -INF            8.0000        21.0000          .          
+Frankfort_KY   .Juneau_AK              -INF           18.0000        21.0000          .          
+Frankfort_KY   .Phoenix_AZ             -INF           16.0000        21.0000          .          
+Frankfort_KY   .Little-Rock_AR         -INF           12.0000        21.0000          .          
+Frankfort_KY   .Sacramento_CA          -INF           14.0000        21.0000          .          
+Frankfort_KY   .Denver_CO              -INF           13.0000        21.0000          .          
+Frankfort_KY   .Hartford_CT            -INF            6.0000        21.0000          .          
+Frankfort_KY   .Dover_DE               -INF            7.0000        21.0000          .          
+Frankfort_KY   .Tallahassee_FL         -INF            1.0000        21.0000          .          
+Frankfort_KY   .Atlanta_GA             -INF            2.0000        21.0000          .          
+Frankfort_KY   .Honolulu_HI            -INF           17.0000        21.0000          .          
+Frankfort_KY   .Boise_ID               -INF           15.0000        21.0000          .          
+Frankfort_KY   .Springfield_IL         -INF           10.0000        21.0000          .          
+Frankfort_KY   .Indianapolis_IN        -INF            9.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 24
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Frankfort_KY   .Des-Moines_IA          -INF           20.0000        21.0000          .          
+Frankfort_KY   .Topeka_KS              -INF           11.0000        21.0000          .          
+Frankfort_KY   .Frankfort_KY           -INF             .            21.0000          .          
+Frankfort_KY   .Baton-Rouge_LA         -INF           21.0000        21.0000         EPS         
+Frankfort_KY   .Augusta_ME             -INF            5.0000        21.0000          .          
+Frankfort_KY   .Annapolis_MD           -INF            3.0000        21.0000          .          
+Frankfort_KY   .Boston_MA              -INF            4.0000        21.0000          .          
+Frankfort_KY   .Lansing_MI             -INF            8.0000        21.0000          .          
+Frankfort_KY   .Saint-Paul_MN          -INF           19.0000        21.0000          .          
+Baton-Rouge_LA .Juneau_AK              -INF           -3.0000        21.0000          .          
+Baton-Rouge_LA .Phoenix_AZ             -INF           -5.0000        21.0000          .          
+Baton-Rouge_LA .Little-Rock_AR         -INF           -9.0000        21.0000          .          
+Baton-Rouge_LA .Sacramento_CA          -INF           -7.0000        21.0000          .          
+Baton-Rouge_LA .Denver_CO              -INF           -8.0000        21.0000          .          
+Baton-Rouge_LA .Hartford_CT            -INF          -15.0000        21.0000          .          
+Baton-Rouge_LA .Dover_DE               -INF          -14.0000        21.0000          .          
+Baton-Rouge_LA .Tallahassee_FL         -INF          -20.0000        21.0000          .          
+Baton-Rouge_LA .Atlanta_GA             -INF          -19.0000        21.0000          .          
+Baton-Rouge_LA .Honolulu_HI            -INF           -4.0000        21.0000          .          
+Baton-Rouge_LA .Boise_ID               -INF           -6.0000        21.0000          .          
+Baton-Rouge_LA .Springfield_IL         -INF          -11.0000        21.0000          .          
+Baton-Rouge_LA .Indianapolis_IN        -INF          -12.0000        21.0000          .          
+Baton-Rouge_LA .Des-Moines_IA          -INF           21.0000        21.0000         EPS         
+Baton-Rouge_LA .Topeka_KS              -INF          -10.0000        21.0000          .          
+Baton-Rouge_LA .Frankfort_KY           -INF          -21.0000        21.0000          .          
+Baton-Rouge_LA .Baton-Rouge_LA         -INF             .            21.0000          .          
+Baton-Rouge_LA .Augusta_ME             -INF          -16.0000        21.0000          .          
+Baton-Rouge_LA .Annapolis_MD           -INF          -18.0000        21.0000          .          
+Baton-Rouge_LA .Boston_MA              -INF          -17.0000        21.0000          .          
+Baton-Rouge_LA .Lansing_MI             -INF          -13.0000        21.0000          .          
+Baton-Rouge_LA .Saint-Paul_MN          -INF           -2.0000        21.0000          .          
+Augusta_ME     .Juneau_AK              -INF           13.0000        21.0000          .          
+Augusta_ME     .Phoenix_AZ             -INF           11.0000        21.0000          .          
+Augusta_ME     .Little-Rock_AR         -INF            7.0000        21.0000          .          
+Augusta_ME     .Sacramento_CA          -INF            9.0000        21.0000          .          
+Augusta_ME     .Denver_CO              -INF            8.0000        21.0000          .          
+Augusta_ME     .Hartford_CT            -INF            1.0000        21.0000          .          
+Augusta_ME     .Dover_DE               -INF            2.0000        21.0000          .          
+Augusta_ME     .Tallahassee_FL         -INF           -4.0000        21.0000          .          
+Augusta_ME     .Atlanta_GA             -INF           -3.0000        21.0000          .          
+Augusta_ME     .Honolulu_HI            -INF           12.0000        21.0000          .          
+Augusta_ME     .Boise_ID               -INF           10.0000        21.0000          .          
+Augusta_ME     .Springfield_IL         -INF            5.0000        21.0000          .          
+Augusta_ME     .Indianapolis_IN        -INF            4.0000        21.0000          .          
+Augusta_ME     .Des-Moines_IA          -INF           15.0000        21.0000          .          
+Augusta_ME     .Topeka_KS              -INF            6.0000        21.0000          .          
+Augusta_ME     .Frankfort_KY           -INF           -5.0000        21.0000          .          
+Augusta_ME     .Baton-Rouge_LA         -INF           16.0000        21.0000          .          
+Augusta_ME     .Augusta_ME             -INF             .            21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 25
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Augusta_ME     .Annapolis_MD           -INF           -2.0000        21.0000          .          
+Augusta_ME     .Boston_MA              -INF           21.0000        21.0000         EPS         
+Augusta_ME     .Lansing_MI             -INF            3.0000        21.0000          .          
+Augusta_ME     .Saint-Paul_MN          -INF           14.0000        21.0000          .          
+Annapolis_MD   .Juneau_AK              -INF           15.0000        21.0000          .          
+Annapolis_MD   .Phoenix_AZ             -INF           13.0000        21.0000          .          
+Annapolis_MD   .Little-Rock_AR         -INF            9.0000        21.0000          .          
+Annapolis_MD   .Sacramento_CA          -INF           11.0000        21.0000          .          
+Annapolis_MD   .Denver_CO              -INF           10.0000        21.0000          .          
+Annapolis_MD   .Hartford_CT            -INF            3.0000        21.0000          .          
+Annapolis_MD   .Dover_DE               -INF            4.0000        21.0000          .          
+Annapolis_MD   .Tallahassee_FL         -INF           -2.0000        21.0000          .          
+Annapolis_MD   .Atlanta_GA             -INF           21.0000        21.0000         EPS         
+Annapolis_MD   .Honolulu_HI            -INF           14.0000        21.0000          .          
+Annapolis_MD   .Boise_ID               -INF           12.0000        21.0000          .          
+Annapolis_MD   .Springfield_IL         -INF            7.0000        21.0000          .          
+Annapolis_MD   .Indianapolis_IN        -INF            6.0000        21.0000          .          
+Annapolis_MD   .Des-Moines_IA          -INF           17.0000        21.0000          .          
+Annapolis_MD   .Topeka_KS              -INF            8.0000        21.0000          .          
+Annapolis_MD   .Frankfort_KY           -INF           -3.0000        21.0000          .          
+Annapolis_MD   .Baton-Rouge_LA         -INF           18.0000        21.0000          .          
+Annapolis_MD   .Augusta_ME             -INF            2.0000        21.0000          .          
+Annapolis_MD   .Annapolis_MD           -INF             .            21.0000          .          
+Annapolis_MD   .Boston_MA              -INF            1.0000        21.0000          .          
+Annapolis_MD   .Lansing_MI             -INF            5.0000        21.0000          .          
+Annapolis_MD   .Saint-Paul_MN          -INF           16.0000        21.0000          .          
+Boston_MA      .Juneau_AK              -INF           14.0000        21.0000          .          
+Boston_MA      .Phoenix_AZ             -INF           12.0000        21.0000          .          
+Boston_MA      .Little-Rock_AR         -INF            8.0000        21.0000          .          
+Boston_MA      .Sacramento_CA          -INF           10.0000        21.0000          .          
+Boston_MA      .Denver_CO              -INF            9.0000        21.0000          .          
+Boston_MA      .Hartford_CT            -INF            2.0000        21.0000          .          
+Boston_MA      .Dover_DE               -INF            3.0000        21.0000          .          
+Boston_MA      .Tallahassee_FL         -INF           -3.0000        21.0000          .          
+Boston_MA      .Atlanta_GA             -INF           -2.0000        21.0000          .          
+Boston_MA      .Honolulu_HI            -INF           13.0000        21.0000          .          
+Boston_MA      .Boise_ID               -INF           11.0000        21.0000          .          
+Boston_MA      .Springfield_IL         -INF            6.0000        21.0000          .          
+Boston_MA      .Indianapolis_IN        -INF            5.0000        21.0000          .          
+Boston_MA      .Des-Moines_IA          -INF           16.0000        21.0000          .          
+Boston_MA      .Topeka_KS              -INF            7.0000        21.0000          .          
+Boston_MA      .Frankfort_KY           -INF           -4.0000        21.0000          .          
+Boston_MA      .Baton-Rouge_LA         -INF           17.0000        21.0000          .          
+Boston_MA      .Augusta_ME             -INF            1.0000        21.0000          .          
+Boston_MA      .Annapolis_MD           -INF           21.0000        21.0000         EPS         
+Boston_MA      .Boston_MA              -INF             .            21.0000          .          
+Boston_MA      .Lansing_MI             -INF            4.0000        21.0000          .          
+Boston_MA      .Saint-Paul_MN          -INF           15.0000        21.0000          .          
+Lansing_MI     .Juneau_AK              -INF           10.0000        21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 26
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     EQU mtz  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Lansing_MI     .Phoenix_AZ             -INF            8.0000        21.0000          .          
+Lansing_MI     .Little-Rock_AR         -INF            4.0000        21.0000          .          
+Lansing_MI     .Sacramento_CA          -INF            6.0000        21.0000          .          
+Lansing_MI     .Denver_CO              -INF            5.0000        21.0000          .          
+Lansing_MI     .Hartford_CT            -INF           -2.0000        21.0000          .          
+Lansing_MI     .Dover_DE               -INF           21.0000        21.0000         EPS         
+Lansing_MI     .Tallahassee_FL         -INF           -7.0000        21.0000          .          
+Lansing_MI     .Atlanta_GA             -INF           -6.0000        21.0000          .          
+Lansing_MI     .Honolulu_HI            -INF            9.0000        21.0000          .          
+Lansing_MI     .Boise_ID               -INF            7.0000        21.0000          .          
+Lansing_MI     .Springfield_IL         -INF            2.0000        21.0000          .          
+Lansing_MI     .Indianapolis_IN        -INF            1.0000        21.0000          .          
+Lansing_MI     .Des-Moines_IA          -INF           12.0000        21.0000          .          
+Lansing_MI     .Topeka_KS              -INF            3.0000        21.0000          .          
+Lansing_MI     .Frankfort_KY           -INF           -8.0000        21.0000          .          
+Lansing_MI     .Baton-Rouge_LA         -INF           13.0000        21.0000          .          
+Lansing_MI     .Augusta_ME             -INF           -3.0000        21.0000          .          
+Lansing_MI     .Annapolis_MD           -INF           -5.0000        21.0000          .          
+Lansing_MI     .Boston_MA              -INF           -4.0000        21.0000          .          
+Lansing_MI     .Lansing_MI             -INF             .            21.0000          .          
+Lansing_MI     .Saint-Paul_MN          -INF           11.0000        21.0000          .          
+Saint-Paul_MN  .Juneau_AK              -INF           21.0000        21.0000         EPS         
+Saint-Paul_MN  .Phoenix_AZ             -INF           -3.0000        21.0000          .          
+Saint-Paul_MN  .Little-Rock_AR         -INF           -7.0000        21.0000          .          
+Saint-Paul_MN  .Sacramento_CA          -INF           -5.0000        21.0000          .          
+Saint-Paul_MN  .Denver_CO              -INF           -6.0000        21.0000          .          
+Saint-Paul_MN  .Hartford_CT            -INF          -13.0000        21.0000          .          
+Saint-Paul_MN  .Dover_DE               -INF          -12.0000        21.0000          .          
+Saint-Paul_MN  .Tallahassee_FL         -INF          -18.0000        21.0000          .          
+Saint-Paul_MN  .Atlanta_GA             -INF          -17.0000        21.0000          .          
+Saint-Paul_MN  .Honolulu_HI            -INF           -2.0000        21.0000          .          
+Saint-Paul_MN  .Boise_ID               -INF           -4.0000        21.0000          .          
+Saint-Paul_MN  .Springfield_IL         -INF           -9.0000        21.0000          .          
+Saint-Paul_MN  .Indianapolis_IN        -INF          -10.0000        21.0000          .          
+Saint-Paul_MN  .Des-Moines_IA          -INF            1.0000        21.0000          .          
+Saint-Paul_MN  .Topeka_KS              -INF           -8.0000        21.0000          .          
+Saint-Paul_MN  .Frankfort_KY           -INF          -19.0000        21.0000          .          
+Saint-Paul_MN  .Baton-Rouge_LA         -INF            2.0000        21.0000          .          
+Saint-Paul_MN  .Augusta_ME             -INF          -14.0000        21.0000          .          
+Saint-Paul_MN  .Annapolis_MD           -INF          -16.0000        21.0000          .          
+Saint-Paul_MN  .Boston_MA              -INF          -15.0000        21.0000          .          
+Saint-Paul_MN  .Lansing_MI             -INF          -11.0000        21.0000          .          
+Saint-Paul_MN  .Saint-Paul_MN          -INF             .            21.0000          .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 27
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+---- VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Montgomery_AL  .Montgomery_AL            .              .              .         13797.5073      
+Montgomery_AL  .Juneau_AK                .              .             1.0000      9372.6187      
+Montgomery_AL  .Phoenix_AZ               .              .             1.0000     12208.3924      
+Montgomery_AL  .Little-Rock_AR           .              .             1.0000     13470.0343      
+Montgomery_AL  .Sacramento_CA            .              .             1.0000     11320.6916      
+Montgomery_AL  .Denver_CO                .              .             1.0000     12550.5231      
+Montgomery_AL  .Hartford_CT              .              .             1.0000     14650.8427      
+Montgomery_AL  .Dover_DE                 .              .             1.0000     14437.9154      
+Montgomery_AL  .Tallahassee_FL           .              .             1.0000     13875.5047      
+Montgomery_AL  .Atlanta_GA               .              .             1.0000     13902.9175      
+Montgomery_AL  .Honolulu_HI              .              .             1.0000      9788.6814      
+Montgomery_AL  .Boise_ID                 .              .             1.0000     11555.6583      
+Montgomery_AL  .Springfield_IL           .              .             1.0000     13628.8269      
+Montgomery_AL  .Indianapolis_IN          .              .             1.0000     13851.9545      
+Montgomery_AL  .Des-Moines_IA            .              .             1.0000     13354.0286      
+Montgomery_AL  .Topeka_KS                .              .             1.0000     13227.8063      
+Montgomery_AL  .Frankfort_KY             .              .             1.0000     13917.6315      
+Montgomery_AL  .Baton-Rouge_LA           .             1.0000         1.0000     13548.3181      
+Montgomery_AL  .Augusta_ME               .              .             1.0000     14879.7980      
+Montgomery_AL  .Annapolis_MD             .              .             1.0000     14384.8834      
+Montgomery_AL  .Boston_MA                .              .             1.0000     14747.1785      
+Montgomery_AL  .Lansing_MI               .              .             1.0000     13975.8627      
+Montgomery_AL  .Saint-Paul_MN            .              .             1.0000     13376.0501      
+Juneau_AK      .Montgomery_AL            .              .             1.0000     16891.9288      
+Juneau_AK      .Juneau_AK                .              .              .         11610.4980      
+Juneau_AK      .Phoenix_AZ               .              .             1.0000     14070.8319      
+Juneau_AK      .Little-Rock_AR           .              .             1.0000     16235.5713      
+Juneau_AK      .Sacramento_CA            .              .             1.0000     13005.9554      
+Juneau_AK      .Denver_CO                .              .             1.0000     14830.4482      
+Juneau_AK      .Hartford_CT              .              .             1.0000     18407.7995      
+Juneau_AK      .Dover_DE                 .              .             1.0000     18082.1552      
+Juneau_AK      .Tallahassee_FL           .              .             1.0000     17100.9458      
+Juneau_AK      .Atlanta_GA               .              .             1.0000     17098.4967      
+Juneau_AK      .Honolulu_HI              .             1.0000         1.0000      9225.4218      
+Juneau_AK      .Boise_ID                 .              .             1.0000     13573.9662      
+Juneau_AK      .Springfield_IL           .              .             1.0000     16529.1091      
+Juneau_AK      .Indianapolis_IN          .              .             1.0000     16916.3363      
+Juneau_AK      .Des-Moines_IA            .              .             1.0000     16088.6971      
+Juneau_AK      .Topeka_KS                .              .             1.0000     15861.2921      
+Juneau_AK      .Frankfort_KY             .              .             1.0000     17056.0772      
+Juneau_AK      .Baton-Rouge_LA           .              .             1.0000     16367.9015      
+Juneau_AK      .Augusta_ME               .              .             1.0000     18739.0343      
+Juneau_AK      .Annapolis_MD             .              .             1.0000     17974.8845      
+Juneau_AK      .Boston_MA                .              .             1.0000     18591.6868      
+Juneau_AK      .Lansing_MI               .              .             1.0000     17095.9251      
+Juneau_AK      .Saint-Paul_MN            .              .             1.0000     16146.4150      
+Phoenix_AZ     .Montgomery_AL            .              .             1.0000     14060.2187      
+Phoenix_AZ     .Juneau_AK                .              .             1.0000      8840.8962      
+Phoenix_AZ     .Phoenix_AZ               .              .              .         11632.5229      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 28
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Phoenix_AZ     .Little-Rock_AR           .              .             1.0000     13508.9258      
+Phoenix_AZ     .Sacramento_CA            .              .             1.0000     10585.1009      
+Phoenix_AZ     .Denver_CO                .              .             1.0000     12233.3264      
+Phoenix_AZ     .Hartford_CT              .              .             1.0000     15402.6843      
+Phoenix_AZ     .Dover_DE                 .              .             1.0000     15096.5108      
+Phoenix_AZ     .Tallahassee_FL           .              .             1.0000     14223.7087      
+Phoenix_AZ     .Atlanta_GA               .              .             1.0000     14235.9851      
+Phoenix_AZ     .Honolulu_HI              .              .             1.0000      7914.1720      
+Phoenix_AZ     .Boise_ID                 .             1.0000         1.0000     11019.9173      
+Phoenix_AZ     .Springfield_IL           .              .             1.0000     13761.1137      
+Phoenix_AZ     .Indianapolis_IN          .              .             1.0000     14102.3232      
+Phoenix_AZ     .Des-Moines_IA            .              .             1.0000     13364.4650      
+Phoenix_AZ     .Topeka_KS                .              .             1.0000     13168.4832      
+Phoenix_AZ     .Frankfort_KY             .              .             1.0000     14218.3021      
+Phoenix_AZ     .Baton-Rouge_LA           .              .             1.0000     13625.9174      
+Phoenix_AZ     .Augusta_ME               .              .             1.0000     15723.9159      
+Phoenix_AZ     .Annapolis_MD             .              .             1.0000     15004.8093      
+Phoenix_AZ     .Boston_MA                .              .             1.0000     15563.8524      
+Phoenix_AZ     .Lansing_MI               .              .             1.0000     14271.7224      
+Phoenix_AZ     .Saint-Paul_MN            .              .             1.0000     13409.2236      
+Little-Rock_AR .Montgomery_AL            .              .             1.0000     14098.9354      
+Little-Rock_AR .Juneau_AK                .              .             1.0000      9405.8854      
+Little-Rock_AR .Phoenix_AZ               .              .             1.0000     12268.4250      
+Little-Rock_AR .Little-Rock_AR           .              .              .         13711.5198      
+Little-Rock_AR .Sacramento_CA            .              .             1.0000     11324.1185      
+Little-Rock_AR .Denver_CO                .              .             1.0000     12685.4246      
+Little-Rock_AR .Hartford_CT              .              .             1.0000     15075.8366      
+Little-Rock_AR .Dover_DE                 .              .             1.0000     14839.5607      
+Little-Rock_AR .Tallahassee_FL           .              .             1.0000     14198.2223      
+Little-Rock_AR .Atlanta_GA               .              .             1.0000     14222.6864      
+Little-Rock_AR .Honolulu_HI              .              .             1.0000      9432.7049      
+Little-Rock_AR .Boise_ID                 .              .             1.0000     11617.3115      
+Little-Rock_AR .Springfield_IL           .              .             1.0000     13896.0459      
+Little-Rock_AR .Indianapolis_IN          .              .             1.0000     14151.5310      
+Little-Rock_AR .Des-Moines_IA            .              .             1.0000     13586.3806      
+Little-Rock_AR .Topeka_KS                .             1.0000         1.0000     13440.4803      
+Little-Rock_AR .Frankfort_KY             .              .             1.0000     14230.2082      
+Little-Rock_AR .Baton-Rouge_LA           .              .             1.0000     13800.7478      
+Little-Rock_AR .Augusta_ME               .              .             1.0000     15327.6554      
+Little-Rock_AR .Annapolis_MD             .              .             1.0000     14777.3814      
+Little-Rock_AR .Boston_MA                .              .             1.0000     15186.9428      
+Little-Rock_AR .Lansing_MI               .              .             1.0000     14288.4627      
+Little-Rock_AR .Saint-Paul_MN            .              .             1.0000     13614.4284      
+Sacramento_CA  .Montgomery_AL            .              .             1.0000     14663.8323      
+Sacramento_CA  .Juneau_AK                .              .             1.0000      9355.5152      
+Sacramento_CA  .Phoenix_AZ               .              .             1.0000     12025.1875      
+Sacramento_CA  .Little-Rock_AR           .              .             1.0000     14056.9108      
+Sacramento_CA  .Sacramento_CA            .              .              .         10953.4875      
+Sacramento_CA  .Denver_CO                .             1.0000         1.0000     12703.6862      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 29
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Sacramento_CA  .Hartford_CT              .              .             1.0000     16109.9982      
+Sacramento_CA  .Dover_DE                 .              .             1.0000     15788.3009      
+Sacramento_CA  .Tallahassee_FL           .              .             1.0000     14850.3397      
+Sacramento_CA  .Atlanta_GA               .              .             1.0000     14856.3660      
+Sacramento_CA  .Honolulu_HI              .              .             1.0000      7787.7270      
+Sacramento_CA  .Boise_ID                 .              .             1.0000     11453.3257      
+Sacramento_CA  .Springfield_IL           .              .             1.0000     14331.5443      
+Sacramento_CA  .Indianapolis_IN          .              .             1.0000     14699.1061      
+Sacramento_CA  .Des-Moines_IA            .              .             1.0000     13908.7864      
+Sacramento_CA  .Topeka_KS                .              .             1.0000     13695.7996      
+Sacramento_CA  .Frankfort_KY             .              .             1.0000     14827.6016      
+Sacramento_CA  .Baton-Rouge_LA           .              .             1.0000     14182.6510      
+Sacramento_CA  .Augusta_ME               .              .             1.0000     16444.3278      
+Sacramento_CA  .Annapolis_MD             .              .             1.0000     15687.7901      
+Sacramento_CA  .Boston_MA                .              .             1.0000     16284.9346      
+Sacramento_CA  .Lansing_MI               .              .             1.0000     14876.3018      
+Sacramento_CA  .Saint-Paul_MN            .              .             1.0000     13959.9389      
+Denver_CO      .Montgomery_AL            .              .             1.0000     14725.1926      
+Denver_CO      .Juneau_AK                .              .             1.0000      9632.3168      
+Denver_CO      .Phoenix_AZ               .              .             1.0000     12464.9835      
+Denver_CO      .Little-Rock_AR           .             1.0000         1.0000     14226.8322      
+Denver_CO      .Sacramento_CA            .              .             1.0000     11436.4980      
+Denver_CO      .Denver_CO                .              .              .         13018.8034      
+Denver_CO      .Hartford_CT              .              .             1.0000     15934.2772      
+Denver_CO      .Dover_DE                 .              .             1.0000     15654.5364      
+Denver_CO      .Tallahassee_FL           .              .             1.0000     14865.8233      
+Denver_CO      .Atlanta_GA               .              .             1.0000     14883.1897      
+Denver_CO      .Honolulu_HI              .              .             1.0000      8853.0685      
+Denver_CO      .Boise_ID                 .              .             1.0000     11837.2732      
+Denver_CO      .Springfield_IL           .              .             1.0000     14458.0684      
+Denver_CO      .Indianapolis_IN          .              .             1.0000     14772.0015      
+Denver_CO      .Des-Moines_IA            .              .             1.0000     14087.3030      
+Denver_CO      .Topeka_KS                .              .             1.0000     13906.1378      
+Denver_CO      .Frankfort_KY             .              .             1.0000     14875.2378      
+Denver_CO      .Baton-Rouge_LA           .              .             1.0000     14335.4969      
+Denver_CO      .Augusta_ME               .              .             1.0000     16228.8305      
+Denver_CO      .Annapolis_MD             .              .             1.0000     15574.4852      
+Denver_CO      .Boston_MA                .              .             1.0000     16074.6641      
+Denver_CO      .Lansing_MI               .              .             1.0000     14931.4133      
+Denver_CO      .Saint-Paul_MN            .              .             1.0000     14126.7671      
+Hartford_CT    .Montgomery_AL            .              .             1.0000     14747.7640      
+Hartford_CT    .Juneau_AK                .              .             1.0000     10860.0557      
+Hartford_CT    .Phoenix_AZ               .              .             1.0000     13637.4800      
+Hartford_CT    .Little-Rock_AR           .              .             1.0000     14570.0403      
+Hartford_CT    .Sacramento_CA            .              .             1.0000     12819.1357      
+Hartford_CT    .Denver_CO                .              .             1.0000     13870.9528      
+Hartford_CT    .Hartford_CT              .              .              .         15200.5104      
+Hartford_CT    .Dover_DE                 .              .             1.0000     15076.5469      
+Hartford_CT    .Tallahassee_FL           .              .             1.0000     14768.8064      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 30
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Hartford_CT    .Atlanta_GA               .              .             1.0000     14802.4127      
+Hartford_CT    .Honolulu_HI              .              .             1.0000     11312.4352      
+Hartford_CT    .Boise_ID                 .              .             1.0000     12991.4629      
+Hartford_CT    .Springfield_IL           .              .             1.0000     14666.5929      
+Hartford_CT    .Indianapolis_IN          .              .             1.0000     14804.1978      
+Hartford_CT    .Des-Moines_IA            .              .             1.0000     14477.2189      
+Hartford_CT    .Topeka_KS                .              .             1.0000     14394.6346      
+Hartford_CT    .Frankfort_KY             .              .             1.0000     14834.6005      
+Hartford_CT    .Baton-Rouge_LA           .              .             1.0000     14621.9566      
+Hartford_CT    .Augusta_ME               .             1.0000         1.0000     15335.0726      
+Hartford_CT    .Annapolis_MD             .              .             1.0000     15054.9699      
+Hartford_CT    .Boston_MA                .              .             1.0000     15240.3203      
+Hartford_CT    .Lansing_MI               .              .             1.0000     14889.9123      
+Hartford_CT    .Saint-Paul_MN            .              .             1.0000     14485.9889      
+Dover_DE       .Montgomery_AL            .              .             1.0000     14479.0987      
+Dover_DE       .Juneau_AK                .              .             1.0000     10487.3296      
+Dover_DE       .Phoenix_AZ               .              .             1.0000     13273.5735      
+Dover_DE       .Little-Rock_AR           .              .             1.0000     14268.6743      
+Dover_DE       .Sacramento_CA            .              .             1.0000     12446.0164      
+Dover_DE       .Denver_CO                .              .             1.0000     13524.9740      
+Dover_DE       .Hartford_CT              .             1.0000         1.0000     15026.0210      
+Dover_DE       .Dover_DE                 .              .              .         14880.2845      
+Dover_DE       .Tallahassee_FL           .              .             1.0000     14512.7361      
+Dover_DE       .Atlanta_GA               .              .             1.0000     14545.1830      
+Dover_DE       .Honolulu_HI              .              .             1.0000     10985.4077      
+Dover_DE       .Boise_ID                 .              .             1.0000     12626.0437      
+Dover_DE       .Springfield_IL           .              .             1.0000     14378.7006      
+Dover_DE       .Indianapolis_IN          .              .             1.0000     14535.4189      
+Dover_DE       .Des-Moines_IA            .              .             1.0000     14170.7138      
+Dover_DE       .Topeka_KS                .              .             1.0000     14079.0086      
+Dover_DE       .Frankfort_KY             .              .             1.0000     14573.7206      
+Dover_DE       .Baton-Rouge_LA           .              .             1.0000     14326.3010      
+Dover_DE       .Augusta_ME               .              .             1.0000     15184.0818      
+Dover_DE       .Annapolis_MD             .              .             1.0000     14851.2827      
+Dover_DE       .Boston_MA                .              .             1.0000     15079.4429      
+Dover_DE       .Lansing_MI               .              .             1.0000     14630.0117      
+Dover_DE       .Saint-Paul_MN            .              .             1.0000     14182.2337      
+Tallahassee_FL .Montgomery_AL            .              .             1.0000     13572.5915      
+Tallahassee_FL .Juneau_AK                .              .             1.0000      9259.3091      
+Tallahassee_FL .Phoenix_AZ               .              .             1.0000     12075.8270      
+Tallahassee_FL .Little-Rock_AR           .              .             1.0000     13265.6182      
+Tallahassee_FL .Sacramento_CA            .              .             1.0000     11214.4396      
+Tallahassee_FL .Denver_CO                .              .             1.0000     12387.3182      
+Tallahassee_FL .Hartford_CT              .              .             1.0000     14389.5700      
+Tallahassee_FL .Dover_DE                 .              .             1.0000     14182.8154      
+Tallahassee_FL .Tallahassee_FL           .              .              .         13643.8110      
+Tallahassee_FL .Atlanta_GA               .              .             1.0000     13672.0673      
+Tallahassee_FL .Honolulu_HI              .              .             1.0000      9860.0267      
+Tallahassee_FL .Boise_ID                 .              .             1.0000     11424.3582      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 31
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Tallahassee_FL .Springfield_IL           .              .             1.0000     13415.3605      
+Tallahassee_FL .Indianapolis_IN          .              .             1.0000     13627.4990      
+Tallahassee_FL .Des-Moines_IA            .              .             1.0000     13153.0507      
+Tallahassee_FL .Topeka_KS                .              .             1.0000     13034.0428      
+Tallahassee_FL .Frankfort_KY             .             1.0000         1.0000     13688.9641      
+Tallahassee_FL .Baton-Rouge_LA           .              .             1.0000     13339.9890      
+Tallahassee_FL .Augusta_ME               .              .             1.0000     14612.9052      
+Tallahassee_FL .Annapolis_MD             .              .             1.0000     14132.2668      
+Tallahassee_FL .Boston_MA                .              .             1.0000     14482.2880      
+Tallahassee_FL .Lansing_MI               .              .             1.0000     13747.0584      
+Tallahassee_FL .Saint-Paul_MN            .              .             1.0000     13172.9387      
+Atlanta_GA     .Montgomery_AL            .              .             1.0000     13940.3211      
+Atlanta_GA     .Juneau_AK                .              .             1.0000      9587.2974      
+Atlanta_GA     .Phoenix_AZ               .              .             1.0000     12415.9271      
+Atlanta_GA     .Little-Rock_AR           .              .             1.0000     13632.6994      
+Atlanta_GA     .Sacramento_CA            .              .             1.0000     11538.2225      
+Atlanta_GA     .Denver_CO                .              .             1.0000     12742.5053      
+Atlanta_GA     .Hartford_CT              .              .             1.0000     14741.7405      
+Atlanta_GA     .Dover_DE                 .              .             1.0000     14540.0903      
+Atlanta_GA     .Tallahassee_FL           .             1.0000         1.0000     14010.6548      
+Atlanta_GA     .Atlanta_GA               .              .              .         14039.0534      
+Atlanta_GA     .Honolulu_HI              .              .             1.0000     10016.5877      
+Atlanta_GA     .Boise_ID                 .              .             1.0000     11763.6086      
+Atlanta_GA     .Springfield_IL           .              .             1.0000     13783.2752      
+Atlanta_GA     .Indianapolis_IN          .              .             1.0000     13995.2635      
+Atlanta_GA     .Des-Moines_IA            .              .             1.0000     13519.6129      
+Atlanta_GA     .Topeka_KS                .              .             1.0000     13399.2058      
+Atlanta_GA     .Frankfort_KY             .              .             1.0000     14056.2767      
+Atlanta_GA     .Baton-Rouge_LA           .              .             1.0000     13707.5272      
+Atlanta_GA     .Augusta_ME               .              .             1.0000     14958.8305      
+Atlanta_GA     .Annapolis_MD             .              .             1.0000     14491.1919      
+Atlanta_GA     .Boston_MA                .              .             1.0000     14830.6787      
+Atlanta_GA     .Lansing_MI               .              .             1.0000     14114.3477      
+Atlanta_GA     .Saint-Paul_MN            .              .             1.0000     13539.8312      
+Honolulu_HI    .Montgomery_AL            .              .             1.0000     12784.0409      
+Honolulu_HI    .Juneau_AK                .              .             1.0000      8284.8121      
+Honolulu_HI    .Phoenix_AZ               .             1.0000         1.0000      9965.5462      
+Honolulu_HI    .Little-Rock_AR           .              .             1.0000     12123.9019      
+Honolulu_HI    .Sacramento_CA            .              .             1.0000      9005.3831      
+Honolulu_HI    .Denver_CO                .              .             1.0000     10782.8731      
+Honolulu_HI    .Hartford_CT              .              .             1.0000     14173.2802      
+Honolulu_HI    .Dover_DE                 .              .             1.0000     13906.9160      
+Honolulu_HI    .Tallahassee_FL           .              .             1.0000     13006.9112      
+Honolulu_HI    .Atlanta_GA               .              .             1.0000     12987.5496      
+Honolulu_HI    .Honolulu_HI              .              .              .          4835.9761      
+Honolulu_HI    .Boise_ID                 .              .             1.0000      9641.5567      
+Honolulu_HI    .Springfield_IL           .              .             1.0000     12414.0491      
+Honolulu_HI    .Indianapolis_IN          .              .             1.0000     12784.7092      
+Honolulu_HI    .Des-Moines_IA            .              .             1.0000     11996.7667      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 32
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Honolulu_HI    .Topeka_KS                .              .             1.0000     11770.5979      
+Honolulu_HI    .Frankfort_KY             .              .             1.0000     12925.1555      
+Honolulu_HI    .Baton-Rouge_LA           .              .             1.0000     12251.5236      
+Honolulu_HI    .Augusta_ME               .              .             1.0000     14427.3235      
+Honolulu_HI    .Annapolis_MD             .              .             1.0000     13806.2692      
+Honolulu_HI    .Boston_MA                .              .             1.0000     14334.6910      
+Honolulu_HI    .Lansing_MI               .              .             1.0000     12943.2040      
+Honolulu_HI    .Saint-Paul_MN            .              .             1.0000     12059.2772      
+Boise_ID       .Montgomery_AL            .              .             1.0000     15206.5852      
+Boise_ID       .Juneau_AK                .              .             1.0000      9932.5777      
+Boise_ID       .Phoenix_AZ               .              .             1.0000     12659.5947      
+Boise_ID       .Little-Rock_AR           .              .             1.0000     14629.3975      
+Boise_ID       .Sacramento_CA            .             1.0000         1.0000     11593.5261      
+Boise_ID       .Denver_CO                .              .             1.0000     13309.3136      
+Boise_ID       .Hartford_CT              .              .             1.0000     16583.2443      
+Boise_ID       .Dover_DE                 .              .             1.0000     16273.2657      
+Boise_ID       .Tallahassee_FL           .              .             1.0000     15379.1485      
+Boise_ID       .Atlanta_GA               .              .             1.0000     15389.2334      
+Boise_ID       .Honolulu_HI              .              .             1.0000      8500.5287      
+Boise_ID       .Boise_ID                 .              .              .         12070.8792      
+Boise_ID       .Springfield_IL           .              .             1.0000     14892.6819      
+Boise_ID       .Indianapolis_IN          .              .             1.0000     15246.1310      
+Boise_ID       .Des-Moines_IA            .              .             1.0000     14482.7243      
+Boise_ID       .Topeka_KS                .              .             1.0000     14277.7913      
+Boise_ID       .Frankfort_KY             .              .             1.0000     15367.3824      
+Boise_ID       .Baton-Rouge_LA           .              .             1.0000     14750.8596      
+Boise_ID       .Augusta_ME               .              .             1.0000     16907.2079      
+Boise_ID       .Annapolis_MD             .              .             1.0000     16179.3250      
+Boise_ID       .Boston_MA                .              .             1.0000     16746.8941      
+Boise_ID       .Lansing_MI               .              .             1.0000     15419.1765      
+Boise_ID       .Saint-Paul_MN            .              .             1.0000     14530.6580      
+Springfield_IL .Montgomery_AL            .              .             1.0000     14642.1806      
+Springfield_IL .Juneau_AK                .              .             1.0000     10014.7649      
+Springfield_IL .Phoenix_AZ               .              .             1.0000     12876.7027      
+Springfield_IL .Little-Rock_AR           .              .             1.0000     14281.9475      
+Springfield_IL .Sacramento_CA            .              .             1.0000     11933.0828      
+Springfield_IL .Denver_CO                .              .             1.0000     13285.0011      
+Springfield_IL .Hartford_CT              .              .             1.0000     15529.6554      
+Springfield_IL .Dover_DE                 .              .             1.0000     15314.6371      
+Springfield_IL .Tallahassee_FL           .              .             1.0000     14729.5614      
+Springfield_IL .Atlanta_GA               .              .             1.0000     14755.7991      
+Springfield_IL .Honolulu_HI              .              .             1.0000      9924.3916      
+Springfield_IL .Boise_ID                 .              .             1.0000     12225.3024      
+Springfield_IL .Springfield_IL           .              .              .         14455.8827      
+Springfield_IL .Indianapolis_IN          .             1.0000         1.0000     14695.8376      
+Springfield_IL .Des-Moines_IA            .              .             1.0000     14160.1343      
+Springfield_IL .Topeka_KS                .              .             1.0000     14020.9649      
+Springfield_IL .Frankfort_KY             .              .             1.0000     14767.4796      
+Springfield_IL .Baton-Rouge_LA           .              .             1.0000     14366.8699      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 33
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Springfield_IL .Augusta_ME               .              .             1.0000     15758.0019      
+Springfield_IL .Annapolis_MD             .              .             1.0000     15260.1485      
+Springfield_IL .Boston_MA                .              .             1.0000     15625.9382      
+Springfield_IL .Lansing_MI               .              .             1.0000     14825.7998      
+Springfield_IL .Saint-Paul_MN            .              .             1.0000     14185.9355      
+Indianapolis_IN.Montgomery_AL            .              .             1.0000     14620.6087      
+Indianapolis_IN.Juneau_AK                .              .             1.0000     10132.0692      
+Indianapolis_IN.Phoenix_AZ               .              .             1.0000     12984.6211      
+Indianapolis_IN.Little-Rock_AR           .              .             1.0000     14295.8997      
+Indianapolis_IN.Sacramento_CA            .              .             1.0000     12065.9025      
+Indianapolis_IN.Denver_CO                .              .             1.0000     13356.4338      
+Indianapolis_IN.Hartford_CT              .              .             1.0000     15425.5015      
+Indianapolis_IN.Dover_DE                 .              .             1.0000     15227.3903      
+Indianapolis_IN.Tallahassee_FL           .              .             1.0000     14694.8732      
+Indianapolis_IN.Atlanta_GA               .              .             1.0000     14722.8474      
+Indianapolis_IN.Honolulu_HI              .              .             1.0000     10186.5163      
+Indianapolis_IN.Boise_ID                 .              .             1.0000     12331.8110      
+Indianapolis_IN.Springfield_IL           .              .             1.0000     14454.8515      
+Indianapolis_IN.Indianapolis_IN          .              .              .         14675.2589      
+Indianapolis_IN.Des-Moines_IA            .              .             1.0000     14179.3545      
+Indianapolis_IN.Topeka_KS                .              .             1.0000     14051.2132      
+Indianapolis_IN.Frankfort_KY             .              .             1.0000     14738.8827      
+Indianapolis_IN.Baton-Rouge_LA           .              .             1.0000     14374.4907      
+Indianapolis_IN.Augusta_ME               .              .             1.0000     15636.5463      
+Indianapolis_IN.Annapolis_MD             .              .             1.0000     15179.2293      
+Indianapolis_IN.Boston_MA                .              .             1.0000     15510.9854      
+Indianapolis_IN.Lansing_MI               .             1.0000         1.0000     14797.0438      
+Indianapolis_IN.Saint-Paul_MN            .              .             1.0000     14201.7452      
+Des-Moines_IA  .Montgomery_AL            .              .             1.0000     14867.1490      
+Des-Moines_IA  .Juneau_AK                .              .             1.0000     10085.6122      
+Des-Moines_IA  .Phoenix_AZ               .              .             1.0000     12950.8990      
+Des-Moines_IA  .Little-Rock_AR           .              .             1.0000     14468.6119      
+Des-Moines_IA  .Sacramento_CA            .              .             1.0000     11975.7119      
+Des-Moines_IA  .Denver_CO                .              .             1.0000     13405.8975      
+Des-Moines_IA  .Hartford_CT              .              .             1.0000     15833.5392      
+Des-Moines_IA  .Dover_DE                 .              .             1.0000     15603.6838      
+Des-Moines_IA  .Tallahassee_FL           .              .             1.0000     14968.2359      
+Des-Moines_IA  .Atlanta_GA               .              .             1.0000     14992.5133      
+Des-Moines_IA  .Honolulu_HI              .              .             1.0000      9743.7183      
+Des-Moines_IA  .Boise_ID                 .              .             1.0000     12303.8404      
+Des-Moines_IA  .Springfield_IL           .              .             1.0000     14658.9119      
+Des-Moines_IA  .Indianapolis_IN          .              .             1.0000     14919.4824      
+Des-Moines_IA  .Des-Moines_IA            .              .              .         14341.2072      
+Des-Moines_IA  .Topeka_KS                .              .             1.0000     14189.6291      
+Des-Moines_IA  .Frankfort_KY             .              .             1.0000     14999.4829      
+Des-Moines_IA  .Baton-Rouge_LA           .              .             1.0000     14560.4530      
+Des-Moines_IA  .Augusta_ME               .              .             1.0000     16076.3474      
+Des-Moines_IA  .Annapolis_MD             .              .             1.0000     15543.3727      
+Des-Moines_IA  .Boston_MA                .              .             1.0000     15939.1091      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 34
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Des-Moines_IA  .Lansing_MI               .              .             1.0000     15057.7088      
+Des-Moines_IA  .Saint-Paul_MN            .             1.0000         1.0000     14370.8712      
+Topeka_KS      .Montgomery_AL            .              .             1.0000     14596.5253      
+Topeka_KS      .Juneau_AK                .              .             1.0000      9760.9001      
+Topeka_KS      .Phoenix_AZ               .              .             1.0000     12625.5427      
+Topeka_KS      .Little-Rock_AR           .              .             1.0000     14178.1144      
+Topeka_KS      .Sacramento_CA            .              .             1.0000     11645.7839      
+Topeka_KS      .Denver_CO                .              .             1.0000     13091.5628      
+Topeka_KS      .Hartford_CT              .              .             1.0000     15623.5158      
+Topeka_KS      .Dover_DE                 .              .             1.0000     15379.6506      
+Topeka_KS      .Tallahassee_FL           .              .             1.0000     14706.1056      
+Topeka_KS      .Atlanta_GA               .              .             1.0000     14729.0253      
+Topeka_KS      .Honolulu_HI              .              .             1.0000      9441.0213      
+Topeka_KS      .Boise_ID                 .              .             1.0000     11979.6621      
+Topeka_KS      .Springfield_IL           .             1.0000         1.0000     14376.2709      
+Topeka_KS      .Indianapolis_IN          .              .             1.0000     14647.9371      
+Topeka_KS      .Des-Moines_IA            .              .             1.0000     14048.3105      
+Topeka_KS      .Topeka_KS                .              .              .         13891.5047      
+Topeka_KS      .Frankfort_KY             .              .             1.0000     14732.9294      
+Topeka_KS      .Baton-Rouge_LA           .              .             1.0000     14273.1559      
+Topeka_KS      .Augusta_ME               .              .             1.0000     15881.6896      
+Topeka_KS      .Annapolis_MD             .              .             1.0000     15314.1633      
+Topeka_KS      .Boston_MA                .              .             1.0000     15738.9467      
+Topeka_KS      .Lansing_MI               .              .             1.0000     14790.9524      
+Topeka_KS      .Saint-Paul_MN            .              .             1.0000     14079.7197      
+Frankfort_KY   .Montgomery_AL            .             1.0000         1.0000     14435.5133      
+Frankfort_KY   .Juneau_AK                .              .             1.0000     10016.5933      
+Frankfort_KY   .Phoenix_AZ               .              .             1.0000     12860.4342      
+Frankfort_KY   .Little-Rock_AR           .              .             1.0000     14123.8034      
+Frankfort_KY   .Sacramento_CA            .              .             1.0000     11958.5709      
+Frankfort_KY   .Denver_CO                .              .             1.0000     13211.4399      
+Frankfort_KY   .Hartford_CT              .              .             1.0000     15220.5252      
+Frankfort_KY   .Dover_DE                 .              .             1.0000     15025.2586      
+Frankfort_KY   .Tallahassee_FL           .              .             1.0000     14505.6746      
+Frankfort_KY   .Atlanta_GA               .              .             1.0000     14534.1424      
+Frankfort_KY   .Honolulu_HI              .              .             1.0000     10203.0753      
+Frankfort_KY   .Boise_ID                 .              .             1.0000     12207.4946      
+Frankfort_KY   .Springfield_IL           .              .             1.0000     14276.9338      
+Frankfort_KY   .Indianapolis_IN          .              .             1.0000     14490.4376      
+Frankfort_KY   .Des-Moines_IA            .              .             1.0000     14009.4767      
+Frankfort_KY   .Topeka_KS                .              .             1.0000     13886.0547      
+Frankfort_KY   .Frankfort_KY             .              .              .         14551.4828      
+Frankfort_KY   .Baton-Rouge_LA           .              .             1.0000     14199.8665      
+Frankfort_KY   .Augusta_ME               .              .             1.0000     15429.3853      
+Frankfort_KY   .Annapolis_MD             .              .             1.0000     14978.3222      
+Frankfort_KY   .Boston_MA                .              .             1.0000     15304.5700      
+Frankfort_KY   .Lansing_MI               .              .             1.0000     14609.5476      
+Frankfort_KY   .Saint-Paul_MN            .              .             1.0000     14030.4764      
+Baton-Rouge_LA .Montgomery_AL            .              .             1.0000     13616.9826      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 35
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Baton-Rouge_LA .Juneau_AK                .              .             1.0000      9000.0445      
+Baton-Rouge_LA .Phoenix_AZ               .              .             1.0000     11854.5057      
+Baton-Rouge_LA .Little-Rock_AR           .              .             1.0000     13240.4503      
+Baton-Rouge_LA .Sacramento_CA            .              .             1.0000     10934.2040      
+Baton-Rouge_LA .Denver_CO                .              .             1.0000     12243.5818      
+Baton-Rouge_LA .Hartford_CT              .              .             1.0000     14588.5171      
+Baton-Rouge_LA .Dover_DE                 .              .             1.0000     14351.1240      
+Baton-Rouge_LA .Tallahassee_FL           .              .             1.0000     13713.5340      
+Baton-Rouge_LA .Atlanta_GA               .              .             1.0000     13738.3591      
+Baton-Rouge_LA .Honolulu_HI              .              .             1.0000      9282.8373      
+Baton-Rouge_LA .Boise_ID                 .              .             1.0000     11201.9045      
+Baton-Rouge_LA .Springfield_IL           .              .             1.0000     13419.7631      
+Baton-Rouge_LA .Indianapolis_IN          .              .             1.0000     13669.8896      
+Baton-Rouge_LA .Des-Moines_IA            .             1.0000         1.0000     13117.2913      
+Baton-Rouge_LA .Topeka_KS                .              .             1.0000     12976.1035      
+Baton-Rouge_LA .Frankfort_KY             .              .             1.0000     13746.7900      
+Baton-Rouge_LA .Baton-Rouge_LA           .              .              .         13327.3733      
+Baton-Rouge_LA .Augusta_ME               .              .             1.0000     14842.6294      
+Baton-Rouge_LA .Annapolis_MD             .              .             1.0000     14288.8116      
+Baton-Rouge_LA .Boston_MA                .              .             1.0000     14700.9885      
+Baton-Rouge_LA .Lansing_MI               .              .             1.0000     13805.0781      
+Baton-Rouge_LA .Saint-Paul_MN            .              .             1.0000     13143.9685      
+Augusta_ME     .Montgomery_AL            .              .             1.0000     15010.2683      
+Augusta_ME     .Juneau_AK                .              .             1.0000     11227.4178      
+Augusta_ME     .Phoenix_AZ               .              .             1.0000     13996.8296      
+Augusta_ME     .Little-Rock_AR           .              .             1.0000     14866.4379      
+Augusta_ME     .Sacramento_CA            .              .             1.0000     13186.6994      
+Augusta_ME     .Denver_CO                .              .             1.0000     14213.0312      
+Augusta_ME     .Hartford_CT              .              .             1.0000     15364.5072      
+Augusta_ME     .Dover_DE                 .              .             1.0000     15263.4791      
+Augusta_ME     .Tallahassee_FL           .              .             1.0000     15018.3385      
+Augusta_ME     .Atlanta_GA               .              .             1.0000     15053.0150      
+Augusta_ME     .Honolulu_HI              .              .             1.0000     11625.8339      
+Augusta_ME     .Boise_ID                 .              .             1.0000     13352.3580      
+Augusta_ME     .Springfield_IL           .              .             1.0000     14949.0102      
+Augusta_ME     .Indianapolis_IN          .              .             1.0000     15066.6379      
+Augusta_ME     .Des-Moines_IA            .              .             1.0000     14779.0357      
+Augusta_ME     .Topeka_KS                .              .             1.0000     14705.8431      
+Augusta_ME     .Frankfort_KY             .              .             1.0000     15088.8346      
+Augusta_ME     .Baton-Rouge_LA           .              .             1.0000     14912.4143      
+Augusta_ME     .Augusta_ME               .              .              .         15474.2839      
+Augusta_ME     .Annapolis_MD             .              .             1.0000     15249.6106      
+Augusta_ME     .Boston_MA                .             1.0000         1.0000     15390.1987      
+Augusta_ME     .Lansing_MI               .              .             1.0000     15142.9473      
+Augusta_ME     .Saint-Paul_MN            .              .             1.0000     14784.9956      
+Annapolis_MD   .Montgomery_AL            .              .             1.0000     14464.9318      
+Annapolis_MD   .Juneau_AK                .              .             1.0000     10426.9246      
+Annapolis_MD   .Phoenix_AZ               .              .             1.0000     13220.2434      
+Annapolis_MD   .Little-Rock_AR           .              .             1.0000     14243.6138      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 36
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Annapolis_MD   .Sacramento_CA            .              .             1.0000     12384.9804      
+Annapolis_MD   .Denver_CO                .              .             1.0000     13481.7986      
+Annapolis_MD   .Hartford_CT              .              .             1.0000     15037.9730      
+Annapolis_MD   .Dover_DE                 .              .             1.0000     14886.7160      
+Annapolis_MD   .Tallahassee_FL           .              .             1.0000     14502.4721      
+Annapolis_MD   .Atlanta_GA               .             1.0000         1.0000     14534.5419      
+Annapolis_MD   .Honolulu_HI              .              .             1.0000     10899.4987      
+Annapolis_MD   .Boise_ID                 .              .             1.0000     12571.7594      
+Annapolis_MD   .Springfield_IL           .              .             1.0000     14358.2845      
+Annapolis_MD   .Indianapolis_IN          .              .             1.0000     14521.1795      
+Annapolis_MD   .Des-Moines_IA            .              .             1.0000     14143.8329      
+Annapolis_MD   .Topeka_KS                .              .             1.0000     14048.7302      
+Annapolis_MD   .Frankfort_KY             .              .             1.0000     14561.9344      
+Annapolis_MD   .Baton-Rouge_LA           .              .             1.0000     14303.2361      
+Annapolis_MD   .Augusta_ME               .              .             1.0000     15201.7269      
+Annapolis_MD   .Annapolis_MD             .              .              .         14855.7552      
+Annapolis_MD   .Boston_MA                .              .             1.0000     15094.7597      
+Annapolis_MD   .Lansing_MI               .              .             1.0000     14618.4903      
+Annapolis_MD   .Saint-Paul_MN            .              .             1.0000     14156.3535      
+Boston_MA      .Montgomery_AL            .              .             1.0000     14787.9457      
+Boston_MA      .Juneau_AK                .              .             1.0000     10977.5224      
+Boston_MA      .Phoenix_AZ               .              .             1.0000     13743.4034      
+Boston_MA      .Little-Rock_AR           .              .             1.0000     14629.1036      
+Boston_MA      .Sacramento_CA            .              .             1.0000     12936.9159      
+Boston_MA      .Denver_CO                .              .             1.0000     13960.7876      
+Boston_MA      .Hartford_CT              .              .             1.0000     15194.0899      
+Boston_MA      .Dover_DE                 .              .             1.0000     15080.1774      
+Boston_MA      .Tallahassee_FL           .              .             1.0000     14802.2423      
+Boston_MA      .Atlanta_GA               .              .             1.0000     14836.4122      
+Boston_MA      .Honolulu_HI              .              .             1.0000     11458.2395      
+Boston_MA      .Boise_ID                 .              .             1.0000     13099.2070      
+Boston_MA      .Springfield_IL           .              .             1.0000     14717.6105      
+Boston_MA      .Indianapolis_IN          .              .             1.0000     14844.3683      
+Boston_MA      .Des-Moines_IA            .              .             1.0000     14539.5111      
+Boston_MA      .Topeka_KS                .              .             1.0000     14462.7400      
+Boston_MA      .Frankfort_KY             .              .             1.0000     14870.4870      
+Boston_MA      .Baton-Rouge_LA           .              .             1.0000     14677.5521      
+Boston_MA      .Augusta_ME               .              .             1.0000     15318.2091      
+Boston_MA      .Annapolis_MD             .             1.0000         1.0000     15062.0831      
+Boston_MA      .Boston_MA                .              .              .         15227.8727      
+Boston_MA      .Lansing_MI               .              .             1.0000     14925.2032      
+Boston_MA      .Saint-Paul_MN            .              .             1.0000     14546.5870      
+Lansing_MI     .Montgomery_AL            .              .             1.0000     14936.3013      
+Lansing_MI     .Juneau_AK                .              .             1.0000     10485.2701      
+Lansing_MI     .Phoenix_AZ               .              .             1.0000     13338.1035      
+Lansing_MI     .Little-Rock_AR           .              .             1.0000     14628.9047      
+Lansing_MI     .Sacramento_CA            .              .             1.0000     12417.9099      
+Lansing_MI     .Denver_CO                .              .             1.0000     13706.6192      
+Lansing_MI     .Hartford_CT              .              .             1.0000     15680.3572      
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 37
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+     VAR x  
+
+                                       LOWER          LEVEL          UPPER         MARGINAL
+
+Lansing_MI     .Dover_DE                 .             1.0000         1.0000     15497.2738      
+Lansing_MI     .Tallahassee_FL           .              .             1.0000     15002.9605      
+Lansing_MI     .Atlanta_GA               .              .             1.0000     15031.9102      
+Lansing_MI     .Honolulu_HI              .              .             1.0000     10455.6235      
+Lansing_MI     .Boise_ID                 .              .             1.0000     12685.2887      
+Lansing_MI     .Springfield_IL           .              .             1.0000     14781.1509      
+Lansing_MI     .Indianapolis_IN          .              .             1.0000     14991.4003      
+Lansing_MI     .Des-Moines_IA            .              .             1.0000     14514.5548      
+Lansing_MI     .Topeka_KS                .              .             1.0000     14390.5194      
+Lansing_MI     .Frankfort_KY             .              .             1.0000     15050.4457      
+Lansing_MI     .Baton-Rouge_LA           .              .             1.0000     14704.7617      
+Lansing_MI     .Augusta_ME               .              .             1.0000     15874.5135      
+Lansing_MI     .Annapolis_MD             .              .             1.0000     15454.3080      
+Lansing_MI     .Boston_MA                .              .             1.0000     15755.6745      
+Lansing_MI     .Lansing_MI               .              .              .         15108.4086      
+Lansing_MI     .Saint-Paul_MN            .              .             1.0000     14535.5906      
+Saint-Paul_MN  .Montgomery_AL            .              .             1.0000     15236.4078      
+Saint-Paul_MN  .Juneau_AK                .             1.0000         1.0000     10452.0436      
+Saint-Paul_MN  .Phoenix_AZ               .              .             1.0000     13316.5401      
+Saint-Paul_MN  .Little-Rock_AR           .              .             1.0000     14843.6095      
+Saint-Paul_MN  .Sacramento_CA            .              .             1.0000     12333.6526      
+Saint-Paul_MN  .Denver_CO                .              .             1.0000     13779.4982      
+Saint-Paul_MN  .Hartford_CT              .              .             1.0000     16167.2438      
+Saint-Paul_MN  .Dover_DE                 .              .             1.0000     15947.4233      
+Saint-Paul_MN  .Tallahassee_FL           .              .             1.0000     15333.9320      
+Saint-Paul_MN  .Atlanta_GA               .              .             1.0000     15358.7914      
+Saint-Paul_MN  .Honolulu_HI              .              .             1.0000      9981.2337      
+Saint-Paul_MN  .Boise_ID                 .              .             1.0000     12670.8351      
+Saint-Paul_MN  .Springfield_IL           .              .             1.0000     15032.1538      
+Saint-Paul_MN  .Indianapolis_IN          .              .             1.0000     15289.0652      
+Saint-Paul_MN  .Des-Moines_IA            .              .             1.0000     14716.5817      
+Saint-Paul_MN  .Topeka_KS                .              .             1.0000     14565.4984      
+Saint-Paul_MN  .Frankfort_KY             .              .             1.0000     15367.0589      
+Saint-Paul_MN  .Baton-Rouge_LA           .              .             1.0000     14934.8279      
+Saint-Paul_MN  .Augusta_ME               .              .             1.0000     16398.0293      
+Saint-Paul_MN  .Annapolis_MD             .              .             1.0000     15890.5343      
+Saint-Paul_MN  .Boston_MA                .              .             1.0000     16265.3732      
+Saint-Paul_MN  .Lansing_MI               .              .             1.0000     15425.3362      
+Saint-Paul_MN  .Saint-Paul_MN            .              .              .         14745.9865      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR obj               -INF       310513.4100        +INF             .          
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 38
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE tsp Using MIP From line 56
+
+
+---- VAR u  
+
+                       LOWER          LEVEL          UPPER         MARGINAL
+
+Juneau_AK               2.0000         5.0000        50.0000          .          
+Phoenix_AZ              2.0000         7.0000        50.0000          .          
+Little-Rock_AR          2.0000        11.0000        50.0000          .          
+Sacramento_CA           2.0000         9.0000        50.0000          .          
+Denver_CO               2.0000        10.0000        50.0000          .          
+Hartford_CT             2.0000        17.0000        50.0000          .          
+Dover_DE                2.0000        16.0000        50.0000          .          
+Tallahassee_FL          2.0000        22.0000        50.0000          .          
+Atlanta_GA              2.0000        21.0000        50.0000          .          
+Honolulu_HI             2.0000         6.0000        50.0000          .          
+Boise_ID                2.0000         8.0000        50.0000          .          
+Springfield_IL          2.0000        13.0000        50.0000          .          
+Indianapolis_IN         2.0000        14.0000        50.0000          .          
+Des-Moines_IA           2.0000         3.0000        50.0000          .          
+Topeka_KS               2.0000        12.0000        50.0000          .          
+Frankfort_KY            2.0000        23.0000        50.0000          .          
+Baton-Rouge_LA          2.0000         2.0000        50.0000         EPS         
+Augusta_ME              2.0000        18.0000        50.0000          .          
+Annapolis_MD            2.0000        20.0000        50.0000          .          
+Boston_MA               2.0000        19.0000        50.0000          .          
+Lansing_MI              2.0000        15.0000        50.0000          .          
+Saint-Paul_MN           2.0000         4.0000        50.0000          .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/26/20 16:40:21 Page 39
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     57 VARIABLE obj.L                 =   310513.410  
+
+----     78 SET tour  
+
+Montgomery_AL  .Baton-Rouge_LA 
+Juneau_AK      .Honolulu_HI    
+Phoenix_AZ     .Boise_ID       
+Little-Rock_AR .Topeka_KS      
+Sacramento_CA  .Denver_CO      
+Denver_CO      .Little-Rock_AR 
+Hartford_CT    .Augusta_ME     
+Dover_DE       .Hartford_CT    
+Tallahassee_FL .Frankfort_KY   
+Atlanta_GA     .Tallahassee_FL 
+Honolulu_HI    .Phoenix_AZ     
+Boise_ID       .Sacramento_CA  
+Springfield_IL .Indianapolis_IN
+Indianapolis_IN.Lansing_MI     
+Des-Moines_IA  .Saint-Paul_MN  
+Topeka_KS      .Springfield_IL 
+Frankfort_KY   .Montgomery_AL  
+Baton-Rouge_LA .Des-Moines_IA  
+Augusta_ME     .Boston_MA      
+Annapolis_MD   .Atlanta_GA     
+Boston_MA      .Annapolis_MD   
+Lansing_MI     .Dover_DE       
+Saint-Paul_MN  .Juneau_AK      
+
+
+----     79 VARIABLE u.L  
+
+Montgomery_AL    1.000,    Juneau_AK        5.000,    Phoenix_AZ       7.000,    Little-Rock_AR  11.000,    Sacramento_CA    9.000,    Denver_CO       10.000,    Hartford_CT     17.000,    Dover_DE        16.000,    Tallahassee_FL  22.000
+Atlanta_GA      21.000,    Honolulu_HI      6.000,    Boise_ID         8.000,    Springfield_IL  13.000,    Indianapolis_IN 14.000,    Des-Moines_IA    3.000,    Topeka_KS       12.000,    Frankfort_KY    23.000,    Baton-Rouge_LA   2.000
+Augusta_ME      18.000,    Annapolis_MD    20.000,    Boston_MA       19.000,    Lansing_MI      15.000,    Saint-Paul_MN    4.000
+
+
+
+EXECUTION TIME       =        0.015 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+      Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\hasee\Desktop\Summer research\tsp\tspmod.gms
+Output     C:\Users\hasee\Desktop\Summer research\tsp\tspmod.lst

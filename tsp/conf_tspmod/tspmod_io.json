@@ -1,0 +1,87 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"stateinfo":	{
+			"alias":	"stateinfo",
+			"symtype":	"parameter",
+			"headers":	{
+				"state":	{
+					"type":	"string",
+					"alias":	"state"
+				},
+				"l_lat":	{
+					"type":	"numeric",
+					"alias":	"l_lat"
+				},
+				"l_long":	{
+					"type":	"numeric",
+					"alias":	"l_long"
+				},
+				"select":	{
+					"type":	"numeric",
+					"alias":	"select"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"tourt":	{
+			"alias":	"tourt",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Aliased with state"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with state"
+				},
+				"status":	{
+					"type":	"numeric",
+					"alias":	"whether selected"
+				},
+				"dist":	{
+					"type":	"numeric",
+					"alias":	"distance"
+				},
+				"lat1":	{
+					"type":	"numeric",
+					"alias":	"latitude1"
+				},
+				"long1":	{
+					"type":	"numeric",
+					"alias":	"longitude1"
+				},
+				"lat2":	{
+					"type":	"numeric",
+					"alias":	"latitude2"
+				},
+				"long2":	{
+					"type":	"numeric",
+					"alias":	"longitude2"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["totalcost"],
+			"symtext":	["Total Cost"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	}
+}
