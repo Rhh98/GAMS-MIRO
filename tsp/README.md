@@ -1,29 +1,101 @@
 # Traveling Salesman Problem
 
-The Traveling Salesman Problem (TSP) is one of the most famous combinatorial optimization problems. 
-The TSP goal is to find the shortest possible route that visits each city once and returns to the original city.
-It is classified as an NP-hard problem in the field of combinatorial optimization.
+## Problem Description
+The TSP can be defined as follows: for a given list of cities and the distances between each pair of them, we want to find the shortest possible route that goes to each city once and returns to the origin city.
 
-The continued interest in the TSP can be explained by its success as a general engine of discovery and a 
-steady stream of new applications. Some of the general applications of the TSP are as follows:
-* Scheduling and routing problems.
-* Genome sequencing.
-* Drilling problems.
-* Aiming telescopes and x-rays.
-* Data clustering.
-* Machine scheduling.
+There is a class of Traveling Salesman Problems that assumes that the distance of going from city $i$ to city $j$  is the same as going form city $j$ to city $i$, this type of Traveling Salesman Problem  is also known as the symmetric Traveling Salesman Problem. In this example, we use Spherical distance, but the TSP model formulation is valid independent of the way in which the individual distances are determined.
 
-This modeling example is at the advanced level, where we assume that you know Python and the Gurobi Python API and 
-you have advanced knowledge of building mathematical optimization models. Typically, the objective function and/or 
-constraints of these examples are complex or required advanced features of the Gurobi Python API.
+<h3>
+    Input and Output illustration
+</h3>
 
-## Licensing
+<h4>
+    Input:
+</h4>
 
-In order to run this Jupyter Notebook properly, you must have a Gurobi license. If you do not have one, you can request an [evaluation license](https://www.gurobi.com/downloads/request-an-evaluation-license/?utm_source=Github&utm_medium=website_JupyterME&utm_campaign=CommercialDataScience) as a *commercial user*, or download a [free license](https://www.gurobi.com/academia/academic-program-and-licenses/?utm_source=Github&utm_medium=website_JupyterME&utm_campaign=AcademicDataScience) as an *academic user*.
+User can select the cities he/she may want to tour among the 50 capital cities in the U.S. The location information could also be modified if he/she want(Although not recommended since they're the real locations.) 
 
-## HTML Example URL
+<h4>
+    Output:
+</h4>
 
-https://gurobi.github.io/modeling-examples/traveling_salesman/tsp.html
+This gives the tour route(The Hamilton cycles) among the selected cities. The user can choose whether to display those cities not selected.
 
 
-Copyright © 2020 Gurobi Optimization, LLC
+## Solution Approach
+
+Mathematical programming is a declarative approach where the modeler formulates a mathematical optimization model that captures the key aspects of a complex decision problem. The Gurobi Optimizer solves such models using state-of-the-art mathematics and computer science.
+
+A mathematical optimization model has five components, namely:
+
+* Sets and indices.
+* Parameters.
+* Decision variables.
+* Objective function(s).
+* Constraints.
+
+We now present a MIP formulation of the TSP that identifies the shortest route that goes to all the cities once and returns to the origin city.
+
+## TSP Model Formulation
+
+### Sets and Indices
+$i, j \in Capitals $: indices and set of US capital cities.
+
+$\text{Pairings}= \{(i,j) \in Capitals \times Capitals \}$: Set of allowed pairings
+
+$S \subset Capitals$: A subset of the set of US capital cities.
+
+$G = (Capitals, Pairings)$: A graph where the set $Capitals$ defines the set of nodes and the set $Pairings$ defines the set of edges. 
+
+### Parameters 
+
+$d_{i, j} \in \mathbb{R}^+$: Distance from capital city $i$ to capital city $j$, for all $(i, j) \in Pairings$. 
+
+Notice that the distance from capital city $i$ to capital city $j$ is the same as the distance from capital city $j$ to capital city $i$, i.e. $d_{i, j} = d_{j, i}$. For this reason, this TSP is also called the symmetric Traveling Salesman Problem.
+
+### Decision Variables
+$x_{i, j} \in \{0, 1\}$: This variable is equal to 1, if we decide to connect city $i$ with city $j$. Otherwise, the decision variable is equal to zero.
+
+### Objective Function
+- **Shortest Route**. Minimize the total distance of a route. A route is a sequence of capital cities where the salesperson visits each city only once and returns to the starting capital city.
+
+$$
+\text{Min} \quad Z = \sum_{(i,j) \in \text{Pairings}}d_{i,j} \cdot x_{i,j}
+\tag{0}
+$$
+
+### Constraints 
+- **Entering a capital city**. For each capital city $i$, ensure that this city is connected to two other cities. 
+
+$$
+\sum_{(j,i) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals
+\tag{1}
+$$
+- **leaving a capital city**. For each capital city $i$, ensure that this city is connected to two other cities. 
+
+$$
+\sum_{(i,j) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals
+\tag{2}
+$$
+
+- **Position constraints**. Although not intuitive enough, these constraints ensure that for any subset of cities $S$ of the set of $Capitals$, there is no cycle. That is, there is no route that visits all the cities in the subset and returns to the origin city.
+
+$$
+u_i+u_j+1\leq (n-1)(1-x_{ij}) \quad \forall  (i,j) \subset  S \quad and \quad i,j\neq 1
+\tag{3}
+$$
+Here $u_i$ represent the position of city $i\ge 2$ in the Hamilton cycle.
+
+- **Remark**. Another constraints have the same function is the subtour elimination constraint. Although more intuitive, 
+since there are an exponential number of constraints ($2^{n} - 2$) to eliminate cycles,  which is difficult to deal with. However, by using the position constraints which generally has $O(n^2)$ constraints, we can avoid eliminating cycles.
+
+
+
+<h3> 
+    GAMS model
+</h3>
+
+The GAMS model can be download <a href="static_tspmod/tspmod.gms" target="_blank">here</a>.
+
+
+
