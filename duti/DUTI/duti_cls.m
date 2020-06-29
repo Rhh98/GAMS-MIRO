@@ -84,7 +84,7 @@ for s = 2:(g+1)
     % Compute and report which training point is flagged.
     ranking((deltas(:,s)>threshold)&(ranking==(g+1))) = s-1 + 1-deltas((deltas(:,s)>threshold)&(ranking==(g+1)),s);
     % Report the total number points flagged up to this iteration
-    num = sum(ranking>0);
+    num = sum(ranking>0 & ranking ~= g+1);
 end
 deltas = deltas(:,2:end);
 

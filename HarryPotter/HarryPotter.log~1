@@ -1,0 +1,65 @@
+--- Job HarryPotter.gms Start 06/29/20 02:26:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
+    LstTitleLeftAligned 1
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 20 days ago
+Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- HarryPotter.gms(164) 3 Mb
+--- Starting execution: elapsed 0:00:00.006
+--- HarryPotter.gms(87) 4 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(88) 8 Mb
+---   401 rows  502 columns  21,101 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(88) 6 Mb
+--- Executing CONOPT: elapsed 0:00:00.076
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.5031125428E+02 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.705168645158
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      6   4        1.6978954731E-01 5.0E-02   101 1.0E+00    6 F  T
+     11   4        1.5288407582E-01 3.7E-07   101 1.0E+00   14 F  T
+     12   4        1.5288407582E-01 7.9E-08   101
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(88) 2 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:00.236
+--- HarryPotter.gms(89) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
+*** Status: Normal completion
+--- Job HarryPotter.gms Stop 06/29/20 02:26:06 elapsed 0:00:00.264

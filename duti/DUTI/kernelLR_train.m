@@ -15,7 +15,7 @@ function alpha = kernelLR_train( K,y_train,w,lam,alpha0)
 options = optimoptions('fminunc','Display','off','Algorithm','quasi-newton',...
     'SpecifyObjectiveGradient',true,'FunctionTolerance',1e-12,...
     'MaxIterations',4000,'StepTolerance',1e-9,'UseParallel',true);
-alpha = fminunc(@(alpha)costKernelReg(alpha, K, y_train, w, lam),alpha0,options);
+[alpha,fval] = fminunc(@(alpha)costKernelReg(alpha, K, y_train, w, lam),alpha0,options);
 
 end
 

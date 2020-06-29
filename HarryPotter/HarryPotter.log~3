@@ -1,0 +1,3096 @@
+--- Job HarryPotter.gms Start 06/29/20 02:23:33 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
+    LstTitleLeftAligned 1
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 20 days ago
+Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- HarryPotter.gms(164) 3 Mb
+--- Starting execution: elapsed 0:00:00.021
+--- HarryPotter.gms(87) 4 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(88) 8 Mb
+---   401 rows  502 columns  21,101 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(88) 6 Mb
+--- Executing CONOPT: elapsed 0:00:00.091
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3862943611E+02 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(88) 2 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:00.242
+--- HarryPotter.gms(123) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(141) 38 Mb
+---   5 rows  5 columns  9 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(141) 36 Mb
+--- Executing CONOPT: elapsed 0:00:01.219
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.0794415417E+00 (Input point)
+ 
+                   Pre-triangular equations:   5
+                   Post-triangular equations:  0
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(141) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:01.545
+--- HarryPotter.gms(148) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(150) 38 Mb
+--- LOOPS FOR/WHILE = 1
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(150) 36 Mb
+--- Executing CONOPT: elapsed 0:00:01.573
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.9999999992E-05 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(150) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:01.905
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g1
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:01.925
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:02.537
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g1
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:02.598
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        7.9103390505E-16 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:02.946
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g2
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:02.968
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:03.291
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g2
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:03.360
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:03.713
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g3
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:03.739
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:04.069
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g3
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:04.133
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:04.483
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g4
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:04.506
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:04.851
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g4
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:04.923
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:05.266
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g5
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:05.290
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:05.618
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g5
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:05.681
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:06.036
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g6
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:06.058
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:06.379
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g6
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:06.438
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:06.784
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g7
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:06.805
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:07.125
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g7
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:07.187
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:07.519
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g8
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:07.544
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:07.866
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g8
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:07.932
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:08.268
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g9
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:08.293
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:08.613
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g9
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:08.678
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:09.022
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g10
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:09.049
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:09.366
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g10
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:09.431
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:09.775
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g11
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:09.800
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:10.121
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g11
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:10.186
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:10.531
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g12
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:10.557
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:10.873
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g12
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:10.939
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:11.286
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g13
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:11.311
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:11.631
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g13
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:11.693
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:12.034
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g14
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:12.059
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:12.379
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g14
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:12.441
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:12.785
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g15
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:12.813
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:13.131
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g15
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:13.195
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:13.529
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g16
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:13.551
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:13.874
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g16
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:13.939
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:14.290
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g17
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:14.316
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:14.635
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g17
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:14.699
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:15.039
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g18
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:15.064
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:15.381
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g18
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:15.445
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:15.790
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g19
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:15.815
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:16.121
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g19
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:16.181
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:16.528
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g20
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:16.549
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:16.864
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g20
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:16.923
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:17.260
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g21
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:17.285
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:17.594
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g21
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:17.657
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:18.001
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g22
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:18.021
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:18.331
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g22
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:18.394
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:18.727
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g23
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:18.752
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:19.063
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g23
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:19.129
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:19.477
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g24
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:19.503
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:19.818
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g24
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:19.881
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:20.223
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g25
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:20.247
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:20.556
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g25
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:20.624
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:20.964
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g26
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:20.988
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:21.308
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g26
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:21.369
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:21.703
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g27
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:21.727
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:22.045
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g27
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:22.106
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:22.446
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g28
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:22.470
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:22.801
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g28
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:22.861
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:23.202
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g29
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:23.230
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:23.546
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g29
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:23.609
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:23.942
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g30
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:23.968
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:24.280
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g30
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:24.338
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:24.670
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g31
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:24.695
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:25.014
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g31
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:25.074
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:25.417
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g32
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:25.443
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:25.769
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g32
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:25.836
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:26.191
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g33
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:26.215
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:26.526
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g33
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:26.587
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:26.928
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g34
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:26.951
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:27.261
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g34
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:27.321
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:27.658
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g35
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:27.683
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:27.993
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g35
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:28.056
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:28.402
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g36
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:28.425
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:28.736
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g36
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:28.801
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:29.143
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g37
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:29.168
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:29.485
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g37
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:29.552
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:29.907
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g38
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:29.928
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:30.247
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g38
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:30.314
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:30.665
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g39
+---   5 rows  105 columns  109 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:30.687
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   4
+                   Post-triangular equations:  1
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:30.998
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g39
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:31.062
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:31.404
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_duti
+--- HarryPotter.gms(157) 38 Mb
+--- LOOPS g = g40
+---   5 rows  5 columns  9 non-zeroes
+---   76 nl-code  2 nl-non-zeroes
+--- HarryPotter.gms(157) 36 Mb
+--- Executing CONOPT: elapsed 0:00:31.428
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        0.0000000000E+00 (Input point)
+ 
+                   Pre-triangular equations:   5
+                   Post-triangular equations:  0
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    70.0078652366
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.0007865237E+01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- HarryPotter.gms(157) 35 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:31.750
+--- HarryPotter.gms(154) 36 Mb
+--- Generating DNLP model Kernel_train
+--- HarryPotter.gms(158) 39 Mb
+--- LOOPS g = g40
+---   401 rows  502 columns  21,001 non-zeroes
+---   47,503 nl-code  300 nl-non-zeroes
+--- HarryPotter.gms(158) 37 Mb
+--- Executing CONOPT: elapsed 0:00:31.817
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3877787808E-17 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  401
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        6.9314718056E-01 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter.gms(158) 35 Mb
+--- Reading solution for model Kernel_train
+--- Executing after solve: elapsed 0:00:32.171
+--- HarryPotter.gms(154) 36 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
+*** Status: Normal completion
+--- Job HarryPotter.gms Stop 06/29/20 02:24:06 elapsed 0:00:32.277

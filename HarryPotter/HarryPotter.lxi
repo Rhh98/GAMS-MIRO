@@ -1,0 +1,1830 @@
+B 3 C o m p i l a t i o n
+B 171 E x e c u t i o n
+I 171 X_E
+I 182 X_MH
+B 195 Equation Listing    SOLVE Kernel_train Using DNLP From line 88
+D 198 defobj
+D 265 deflog_l
+D 276 defh
+D 359 deflog_l2
+D 370 defh2
+B 454 Column Listing      SOLVE Kernel_train Using DNLP From line 88
+E 457 alpha
+E 1073 obj
+E 1080 log_l
+E 1099 log_l2
+E 1118 h
+E 1137 h2
+B 1157 Model Statistics    SOLVE Kernel_train Using DNLP From line 88
+B 1175 Solution Report     SOLVE Kernel_train Using DNLP From line 88
+F 1221 defobj
+F 1223 deflog_l
+F 1328 defh
+F 1433 deflog_l2
+F 1538 defh2
+G 1643 alpha
+G 1751 obj
+G 1753 log_l
+G 1858 log_l2
+G 1963 h
+G 2068 h2
+B 2180 E x e c u t i o n
+I 2180 alpha
+I 2191 Z
+B 2712 Equation Listing    SOLVE Kernel_duti Using DNLP From line 141
+D 2715 defobj2
+D 2742 deflog_l3
+D 2749 defh3
+B 2757 Column Listing      SOLVE Kernel_duti Using DNLP From line 141
+E 2760 w
+E 2776 log_l3
+E 2789 h3
+E 2802 obj2
+B 2810 Model Statistics    SOLVE Kernel_duti Using DNLP From line 141
+B 2828 Solution Report     SOLVE Kernel_duti Using DNLP From line 141
+F 2872 defobj2
+F 2874 deflog_l3
+F 2881 defh3
+G 2888 w
+G 2993 log_l3
+G 3000 h3
+G 3009 obj2
+B 3018 Equation Listing    SOLVE Kernel_duti Using DNLP From line 150
+D 3021 defobj2
+D 3048 deflog_l3
+D 3055 defh3
+B 3063 Column Listing      SOLVE Kernel_duti Using DNLP From line 150
+E 3066 w
+E 3082 log_l3
+E 3095 h3
+E 3108 obj2
+B 3116 Model Statistics    SOLVE Kernel_duti Using DNLP From line 150
+B 3139 Solution Report     SOLVE Kernel_duti Using DNLP From line 150
+F 3183 defobj2
+F 3185 deflog_l3
+F 3192 defh3
+G 3199 w
+G 3304 log_l3
+G 3311 h3
+G 3320 obj2
+B 3329 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 3332 defobj2
+D 3359 deflog_l3
+D 3366 defh3
+B 3374 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 3377 w
+E 3393 log_l3
+E 3406 h3
+E 3419 obj2
+B 3427 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 3450 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 3494 defobj2
+F 3496 deflog_l3
+F 3503 defh3
+G 3510 w
+G 3615 log_l3
+G 3622 h3
+G 3631 obj2
+B 3640 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 3643 defobj
+D 3690 deflog_l
+D 3701 defh
+D 3784 deflog_l2
+D 3795 defh2
+B 3879 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 3882 alpha
+E 4498 obj
+E 4505 log_l
+E 4524 log_l2
+E 4540 h
+E 4559 h2
+B 4579 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 4602 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 4648 defobj
+F 4650 deflog_l
+F 4755 defh
+F 4860 deflog_l2
+F 4965 defh2
+G 5070 alpha
+G 5178 obj
+G 5180 log_l
+G 5285 log_l2
+G 5390 h
+G 5495 h2
+B 5607 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 5610 defobj2
+D 5637 deflog_l3
+D 5644 defh3
+B 5652 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 5655 w
+E 5671 log_l3
+E 5684 h3
+E 5697 obj2
+B 5705 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 5728 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 5772 defobj2
+F 5774 deflog_l3
+F 5781 defh3
+G 5788 w
+G 5893 log_l3
+G 5900 h3
+G 5909 obj2
+B 5918 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 5921 defobj
+D 5968 deflog_l
+D 5979 defh
+D 6062 deflog_l2
+D 6073 defh2
+B 6157 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 6160 alpha
+E 6776 obj
+E 6783 log_l
+E 6802 log_l2
+E 6818 h
+E 6837 h2
+B 6857 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 6880 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 6924 defobj
+F 6926 deflog_l
+F 7031 defh
+F 7136 deflog_l2
+F 7241 defh2
+G 7346 alpha
+G 7454 obj
+G 7456 log_l
+G 7561 log_l2
+G 7666 h
+G 7771 h2
+B 7883 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 7886 defobj2
+D 7913 deflog_l3
+D 7920 defh3
+B 7928 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 7931 w
+E 7947 log_l3
+E 7960 h3
+E 7973 obj2
+B 7981 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 8004 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 8048 defobj2
+F 8050 deflog_l3
+F 8057 defh3
+G 8064 w
+G 8169 log_l3
+G 8176 h3
+G 8185 obj2
+B 8194 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 8197 defobj
+D 8244 deflog_l
+D 8255 defh
+D 8338 deflog_l2
+D 8349 defh2
+B 8433 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 8436 alpha
+E 9052 obj
+E 9059 log_l
+E 9078 log_l2
+E 9094 h
+E 9113 h2
+B 9133 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 9156 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 9200 defobj
+F 9202 deflog_l
+F 9307 defh
+F 9412 deflog_l2
+F 9517 defh2
+G 9622 alpha
+G 9730 obj
+G 9732 log_l
+G 9837 log_l2
+G 9942 h
+G 10047 h2
+B 10159 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 10162 defobj2
+D 10189 deflog_l3
+D 10196 defh3
+B 10204 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 10207 w
+E 10223 log_l3
+E 10236 h3
+E 10249 obj2
+B 10257 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 10280 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 10324 defobj2
+F 10326 deflog_l3
+F 10333 defh3
+G 10340 w
+G 10445 log_l3
+G 10452 h3
+G 10461 obj2
+B 10470 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 10473 defobj
+D 10520 deflog_l
+D 10531 defh
+D 10614 deflog_l2
+D 10625 defh2
+B 10709 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 10712 alpha
+E 11328 obj
+E 11335 log_l
+E 11354 log_l2
+E 11370 h
+E 11389 h2
+B 11409 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 11432 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 11478 defobj
+F 11480 deflog_l
+F 11585 defh
+F 11690 deflog_l2
+F 11795 defh2
+G 11900 alpha
+G 12008 obj
+G 12010 log_l
+G 12115 log_l2
+G 12220 h
+G 12325 h2
+B 12437 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 12440 defobj2
+D 12467 deflog_l3
+D 12474 defh3
+B 12482 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 12485 w
+E 12501 log_l3
+E 12514 h3
+E 12527 obj2
+B 12535 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 12558 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 12602 defobj2
+F 12604 deflog_l3
+F 12611 defh3
+G 12618 w
+G 12723 log_l3
+G 12730 h3
+G 12739 obj2
+B 12748 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 12751 defobj
+D 12798 deflog_l
+D 12809 defh
+D 12892 deflog_l2
+D 12903 defh2
+B 12987 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 12990 alpha
+E 13606 obj
+E 13613 log_l
+E 13632 log_l2
+E 13648 h
+E 13667 h2
+B 13687 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 13710 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 13754 defobj
+F 13756 deflog_l
+F 13861 defh
+F 13966 deflog_l2
+F 14071 defh2
+G 14176 alpha
+G 14284 obj
+G 14286 log_l
+G 14391 log_l2
+G 14496 h
+G 14601 h2
+B 14713 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 14716 defobj2
+D 14743 deflog_l3
+D 14750 defh3
+B 14758 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 14761 w
+E 14777 log_l3
+E 14790 h3
+E 14803 obj2
+B 14811 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 14834 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 14878 defobj2
+F 14880 deflog_l3
+F 14887 defh3
+G 14894 w
+G 14999 log_l3
+G 15006 h3
+G 15015 obj2
+B 15024 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 15027 defobj
+D 15074 deflog_l
+D 15085 defh
+D 15168 deflog_l2
+D 15179 defh2
+B 15263 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 15266 alpha
+E 15882 obj
+E 15889 log_l
+E 15908 log_l2
+E 15924 h
+E 15943 h2
+B 15963 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 15986 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 16030 defobj
+F 16032 deflog_l
+F 16137 defh
+F 16242 deflog_l2
+F 16347 defh2
+G 16452 alpha
+G 16560 obj
+G 16562 log_l
+G 16667 log_l2
+G 16772 h
+G 16877 h2
+B 16989 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 16992 defobj2
+D 17019 deflog_l3
+D 17026 defh3
+B 17034 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 17037 w
+E 17053 log_l3
+E 17066 h3
+E 17079 obj2
+B 17087 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 17110 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 17154 defobj2
+F 17156 deflog_l3
+F 17163 defh3
+G 17170 w
+G 17275 log_l3
+G 17282 h3
+G 17291 obj2
+B 17300 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 17303 defobj
+D 17350 deflog_l
+D 17361 defh
+D 17444 deflog_l2
+D 17455 defh2
+B 17539 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 17542 alpha
+E 18158 obj
+E 18165 log_l
+E 18184 log_l2
+E 18200 h
+E 18219 h2
+B 18239 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 18262 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 18308 defobj
+F 18310 deflog_l
+F 18415 defh
+F 18520 deflog_l2
+F 18625 defh2
+G 18730 alpha
+G 18838 obj
+G 18840 log_l
+G 18945 log_l2
+G 19050 h
+G 19155 h2
+B 19267 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 19270 defobj2
+D 19297 deflog_l3
+D 19304 defh3
+B 19312 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 19315 w
+E 19331 log_l3
+E 19344 h3
+E 19357 obj2
+B 19365 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 19388 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 19432 defobj2
+F 19434 deflog_l3
+F 19441 defh3
+G 19448 w
+G 19553 log_l3
+G 19560 h3
+G 19569 obj2
+B 19578 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 19581 defobj
+D 19628 deflog_l
+D 19639 defh
+D 19722 deflog_l2
+D 19733 defh2
+B 19817 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 19820 alpha
+E 20436 obj
+E 20443 log_l
+E 20462 log_l2
+E 20478 h
+E 20497 h2
+B 20517 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 20540 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 20586 defobj
+F 20588 deflog_l
+F 20693 defh
+F 20798 deflog_l2
+F 20903 defh2
+G 21008 alpha
+G 21116 obj
+G 21118 log_l
+G 21223 log_l2
+G 21328 h
+G 21433 h2
+B 21545 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 21548 defobj2
+D 21575 deflog_l3
+D 21582 defh3
+B 21590 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 21593 w
+E 21609 log_l3
+E 21622 h3
+E 21635 obj2
+B 21643 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 21666 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 21710 defobj2
+F 21712 deflog_l3
+F 21719 defh3
+G 21726 w
+G 21831 log_l3
+G 21838 h3
+G 21847 obj2
+B 21856 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 21859 defobj
+D 21906 deflog_l
+D 21917 defh
+D 22000 deflog_l2
+D 22011 defh2
+B 22095 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 22098 alpha
+E 22714 obj
+E 22721 log_l
+E 22740 log_l2
+E 22756 h
+E 22775 h2
+B 22795 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 22818 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 22862 defobj
+F 22864 deflog_l
+F 22969 defh
+F 23074 deflog_l2
+F 23179 defh2
+G 23284 alpha
+G 23392 obj
+G 23394 log_l
+G 23499 log_l2
+G 23604 h
+G 23709 h2
+B 23821 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 23824 defobj2
+D 23851 deflog_l3
+D 23858 defh3
+B 23866 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 23869 w
+E 23885 log_l3
+E 23898 h3
+E 23911 obj2
+B 23919 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 23942 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 23986 defobj2
+F 23988 deflog_l3
+F 23995 defh3
+G 24002 w
+G 24107 log_l3
+G 24114 h3
+G 24123 obj2
+B 24132 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 24135 defobj
+D 24182 deflog_l
+D 24193 defh
+D 24276 deflog_l2
+D 24287 defh2
+B 24371 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 24374 alpha
+E 24990 obj
+E 24997 log_l
+E 25016 log_l2
+E 25032 h
+E 25051 h2
+B 25071 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 25094 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 25138 defobj
+F 25140 deflog_l
+F 25245 defh
+F 25350 deflog_l2
+F 25455 defh2
+G 25560 alpha
+G 25668 obj
+G 25670 log_l
+G 25775 log_l2
+G 25880 h
+G 25985 h2
+B 26097 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 26100 defobj2
+D 26127 deflog_l3
+D 26134 defh3
+B 26142 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 26145 w
+E 26161 log_l3
+E 26174 h3
+E 26187 obj2
+B 26195 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 26218 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 26262 defobj2
+F 26264 deflog_l3
+F 26271 defh3
+G 26278 w
+G 26383 log_l3
+G 26390 h3
+G 26399 obj2
+B 26408 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 26411 defobj
+D 26458 deflog_l
+D 26469 defh
+D 26552 deflog_l2
+D 26563 defh2
+B 26647 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 26650 alpha
+E 27266 obj
+E 27273 log_l
+E 27292 log_l2
+E 27308 h
+E 27327 h2
+B 27347 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 27370 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 27414 defobj
+F 27416 deflog_l
+F 27521 defh
+F 27626 deflog_l2
+F 27731 defh2
+G 27836 alpha
+G 27944 obj
+G 27946 log_l
+G 28051 log_l2
+G 28156 h
+G 28261 h2
+B 28373 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 28376 defobj2
+D 28403 deflog_l3
+D 28410 defh3
+B 28418 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 28421 w
+E 28437 log_l3
+E 28450 h3
+E 28463 obj2
+B 28471 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 28494 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 28538 defobj2
+F 28540 deflog_l3
+F 28547 defh3
+G 28554 w
+G 28659 log_l3
+G 28666 h3
+G 28675 obj2
+B 28684 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 28687 defobj
+D 28734 deflog_l
+D 28745 defh
+D 28828 deflog_l2
+D 28839 defh2
+B 28923 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 28926 alpha
+E 29542 obj
+E 29549 log_l
+E 29568 log_l2
+E 29584 h
+E 29603 h2
+B 29623 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 29646 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 29690 defobj
+F 29692 deflog_l
+F 29797 defh
+F 29902 deflog_l2
+F 30007 defh2
+G 30112 alpha
+G 30220 obj
+G 30222 log_l
+G 30327 log_l2
+G 30432 h
+G 30537 h2
+B 30649 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 30652 defobj2
+D 30679 deflog_l3
+D 30686 defh3
+B 30694 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 30697 w
+E 30713 log_l3
+E 30726 h3
+E 30739 obj2
+B 30747 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 30770 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 30814 defobj2
+F 30816 deflog_l3
+F 30823 defh3
+G 30830 w
+G 30935 log_l3
+G 30942 h3
+G 30951 obj2
+B 30960 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 30963 defobj
+D 31010 deflog_l
+D 31021 defh
+D 31104 deflog_l2
+D 31115 defh2
+B 31199 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 31202 alpha
+E 31818 obj
+E 31825 log_l
+E 31844 log_l2
+E 31860 h
+E 31879 h2
+B 31899 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 31922 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 31966 defobj
+F 31968 deflog_l
+F 32073 defh
+F 32178 deflog_l2
+F 32283 defh2
+G 32388 alpha
+G 32496 obj
+G 32498 log_l
+G 32603 log_l2
+G 32708 h
+G 32813 h2
+B 32925 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 32928 defobj2
+D 32955 deflog_l3
+D 32962 defh3
+B 32970 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 32973 w
+E 32989 log_l3
+E 33002 h3
+E 33015 obj2
+B 33023 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 33046 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 33090 defobj2
+F 33092 deflog_l3
+F 33099 defh3
+G 33106 w
+G 33211 log_l3
+G 33218 h3
+G 33227 obj2
+B 33236 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 33239 defobj
+D 33286 deflog_l
+D 33297 defh
+D 33380 deflog_l2
+D 33391 defh2
+B 33475 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 33478 alpha
+E 34094 obj
+E 34101 log_l
+E 34120 log_l2
+E 34136 h
+E 34155 h2
+B 34175 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 34198 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 34242 defobj
+F 34244 deflog_l
+F 34349 defh
+F 34454 deflog_l2
+F 34559 defh2
+G 34664 alpha
+G 34772 obj
+G 34774 log_l
+G 34879 log_l2
+G 34984 h
+G 35089 h2
+B 35201 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 35204 defobj2
+D 35231 deflog_l3
+D 35238 defh3
+B 35246 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 35249 w
+E 35265 log_l3
+E 35278 h3
+E 35291 obj2
+B 35299 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 35322 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 35366 defobj2
+F 35368 deflog_l3
+F 35375 defh3
+G 35382 w
+G 35487 log_l3
+G 35494 h3
+G 35503 obj2
+B 35512 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 35515 defobj
+D 35562 deflog_l
+D 35573 defh
+D 35656 deflog_l2
+D 35667 defh2
+B 35751 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 35754 alpha
+E 36370 obj
+E 36377 log_l
+E 36396 log_l2
+E 36412 h
+E 36431 h2
+B 36451 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 36474 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 36518 defobj
+F 36520 deflog_l
+F 36625 defh
+F 36730 deflog_l2
+F 36835 defh2
+G 36940 alpha
+G 37048 obj
+G 37050 log_l
+G 37155 log_l2
+G 37260 h
+G 37365 h2
+B 37477 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 37480 defobj2
+D 37507 deflog_l3
+D 37514 defh3
+B 37522 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 37525 w
+E 37541 log_l3
+E 37554 h3
+E 37567 obj2
+B 37575 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 37598 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 37642 defobj2
+F 37644 deflog_l3
+F 37651 defh3
+G 37658 w
+G 37763 log_l3
+G 37770 h3
+G 37779 obj2
+B 37788 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 37791 defobj
+D 37838 deflog_l
+D 37849 defh
+D 37932 deflog_l2
+D 37943 defh2
+B 38027 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 38030 alpha
+E 38646 obj
+E 38653 log_l
+E 38672 log_l2
+E 38688 h
+E 38707 h2
+B 38727 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 38750 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 38794 defobj
+F 38796 deflog_l
+F 38901 defh
+F 39006 deflog_l2
+F 39111 defh2
+G 39216 alpha
+G 39324 obj
+G 39326 log_l
+G 39431 log_l2
+G 39536 h
+G 39641 h2
+B 39753 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 39756 defobj2
+D 39783 deflog_l3
+D 39790 defh3
+B 39798 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 39801 w
+E 39817 log_l3
+E 39830 h3
+E 39843 obj2
+B 39851 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 39874 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 39918 defobj2
+F 39920 deflog_l3
+F 39927 defh3
+G 39934 w
+G 40039 log_l3
+G 40046 h3
+G 40055 obj2
+B 40064 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 40067 defobj
+D 40114 deflog_l
+D 40125 defh
+D 40208 deflog_l2
+D 40219 defh2
+B 40303 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 40306 alpha
+E 40922 obj
+E 40929 log_l
+E 40948 log_l2
+E 40964 h
+E 40983 h2
+B 41003 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 41026 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 41070 defobj
+F 41072 deflog_l
+F 41177 defh
+F 41282 deflog_l2
+F 41387 defh2
+G 41492 alpha
+G 41600 obj
+G 41602 log_l
+G 41707 log_l2
+G 41812 h
+G 41917 h2
+B 42029 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 42032 defobj2
+D 42059 deflog_l3
+D 42066 defh3
+B 42074 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 42077 w
+E 42093 log_l3
+E 42106 h3
+E 42119 obj2
+B 42127 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 42150 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 42194 defobj2
+F 42196 deflog_l3
+F 42203 defh3
+G 42210 w
+G 42315 log_l3
+G 42322 h3
+G 42331 obj2
+B 42340 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 42343 defobj
+D 42390 deflog_l
+D 42401 defh
+D 42484 deflog_l2
+D 42495 defh2
+B 42579 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 42582 alpha
+E 43198 obj
+E 43205 log_l
+E 43224 log_l2
+E 43240 h
+E 43259 h2
+B 43279 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 43302 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 43346 defobj
+F 43348 deflog_l
+F 43453 defh
+F 43558 deflog_l2
+F 43663 defh2
+G 43768 alpha
+G 43876 obj
+G 43878 log_l
+G 43983 log_l2
+G 44088 h
+G 44193 h2
+B 44305 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 44308 defobj2
+D 44335 deflog_l3
+D 44342 defh3
+B 44350 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 44353 w
+E 44369 log_l3
+E 44382 h3
+E 44395 obj2
+B 44403 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 44426 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 44470 defobj2
+F 44472 deflog_l3
+F 44479 defh3
+G 44486 w
+G 44591 log_l3
+G 44598 h3
+G 44607 obj2
+B 44616 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 44619 defobj
+D 44666 deflog_l
+D 44677 defh
+D 44760 deflog_l2
+D 44771 defh2
+B 44855 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 44858 alpha
+E 45474 obj
+E 45481 log_l
+E 45500 log_l2
+E 45516 h
+E 45535 h2
+B 45555 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 45578 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 45622 defobj
+F 45624 deflog_l
+F 45729 defh
+F 45834 deflog_l2
+F 45939 defh2
+G 46044 alpha
+G 46152 obj
+G 46154 log_l
+G 46259 log_l2
+G 46364 h
+G 46469 h2
+B 46581 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 46584 defobj2
+D 46611 deflog_l3
+D 46618 defh3
+B 46626 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 46629 w
+E 46645 log_l3
+E 46658 h3
+E 46671 obj2
+B 46679 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 46702 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 46746 defobj2
+F 46748 deflog_l3
+F 46755 defh3
+G 46762 w
+G 46867 log_l3
+G 46874 h3
+G 46883 obj2
+B 46892 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 46895 defobj
+D 46942 deflog_l
+D 46953 defh
+D 47036 deflog_l2
+D 47047 defh2
+B 47131 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 47134 alpha
+E 47750 obj
+E 47757 log_l
+E 47776 log_l2
+E 47792 h
+E 47811 h2
+B 47831 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 47854 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 47898 defobj
+F 47900 deflog_l
+F 48005 defh
+F 48110 deflog_l2
+F 48215 defh2
+G 48320 alpha
+G 48428 obj
+G 48430 log_l
+G 48535 log_l2
+G 48640 h
+G 48745 h2
+B 48857 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 48860 defobj2
+D 48887 deflog_l3
+D 48894 defh3
+B 48902 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 48905 w
+E 48921 log_l3
+E 48934 h3
+E 48947 obj2
+B 48955 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 48978 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 49022 defobj2
+F 49024 deflog_l3
+F 49031 defh3
+G 49038 w
+G 49143 log_l3
+G 49150 h3
+G 49159 obj2
+B 49168 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 49171 defobj
+D 49218 deflog_l
+D 49229 defh
+D 49312 deflog_l2
+D 49323 defh2
+B 49407 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 49410 alpha
+E 50026 obj
+E 50033 log_l
+E 50052 log_l2
+E 50068 h
+E 50087 h2
+B 50107 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 50130 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 50174 defobj
+F 50176 deflog_l
+F 50281 defh
+F 50386 deflog_l2
+F 50491 defh2
+G 50596 alpha
+G 50704 obj
+G 50706 log_l
+G 50811 log_l2
+G 50916 h
+G 51021 h2
+B 51133 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 51136 defobj2
+D 51163 deflog_l3
+D 51170 defh3
+B 51178 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 51181 w
+E 51197 log_l3
+E 51210 h3
+E 51223 obj2
+B 51231 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 51254 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 51298 defobj2
+F 51300 deflog_l3
+F 51307 defh3
+G 51314 w
+G 51419 log_l3
+G 51426 h3
+G 51435 obj2
+B 51444 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 51447 defobj
+D 51494 deflog_l
+D 51505 defh
+D 51588 deflog_l2
+D 51599 defh2
+B 51683 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 51686 alpha
+E 52302 obj
+E 52309 log_l
+E 52328 log_l2
+E 52344 h
+E 52363 h2
+B 52383 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 52406 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 52450 defobj
+F 52452 deflog_l
+F 52557 defh
+F 52662 deflog_l2
+F 52767 defh2
+G 52872 alpha
+G 52980 obj
+G 52982 log_l
+G 53087 log_l2
+G 53192 h
+G 53297 h2
+B 53409 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 53412 defobj2
+D 53439 deflog_l3
+D 53446 defh3
+B 53454 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 53457 w
+E 53473 log_l3
+E 53486 h3
+E 53499 obj2
+B 53507 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 53530 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 53574 defobj2
+F 53576 deflog_l3
+F 53583 defh3
+G 53590 w
+G 53695 log_l3
+G 53702 h3
+G 53711 obj2
+B 53720 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 53723 defobj
+D 53770 deflog_l
+D 53781 defh
+D 53864 deflog_l2
+D 53875 defh2
+B 53959 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 53962 alpha
+E 54578 obj
+E 54585 log_l
+E 54604 log_l2
+E 54620 h
+E 54639 h2
+B 54659 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 54682 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 54726 defobj
+F 54728 deflog_l
+F 54833 defh
+F 54938 deflog_l2
+F 55043 defh2
+G 55148 alpha
+G 55256 obj
+G 55258 log_l
+G 55363 log_l2
+G 55468 h
+G 55573 h2
+B 55685 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 55688 defobj2
+D 55715 deflog_l3
+D 55722 defh3
+B 55730 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 55733 w
+E 55749 log_l3
+E 55762 h3
+E 55775 obj2
+B 55783 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 55806 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 55850 defobj2
+F 55852 deflog_l3
+F 55859 defh3
+G 55866 w
+G 55971 log_l3
+G 55978 h3
+G 55987 obj2
+B 55996 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 55999 defobj
+D 56046 deflog_l
+D 56057 defh
+D 56140 deflog_l2
+D 56151 defh2
+B 56235 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 56238 alpha
+E 56854 obj
+E 56861 log_l
+E 56880 log_l2
+E 56896 h
+E 56915 h2
+B 56935 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 56958 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 57002 defobj
+F 57004 deflog_l
+F 57109 defh
+F 57214 deflog_l2
+F 57319 defh2
+G 57424 alpha
+G 57532 obj
+G 57534 log_l
+G 57639 log_l2
+G 57744 h
+G 57849 h2
+B 57961 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 57964 defobj2
+D 57991 deflog_l3
+D 57998 defh3
+B 58006 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 58009 w
+E 58025 log_l3
+E 58038 h3
+E 58051 obj2
+B 58059 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 58082 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 58126 defobj2
+F 58128 deflog_l3
+F 58135 defh3
+G 58142 w
+G 58247 log_l3
+G 58254 h3
+G 58263 obj2
+B 58272 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 58275 defobj
+D 58322 deflog_l
+D 58333 defh
+D 58416 deflog_l2
+D 58427 defh2
+B 58511 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 58514 alpha
+E 59130 obj
+E 59137 log_l
+E 59156 log_l2
+E 59172 h
+E 59191 h2
+B 59211 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 59234 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 59278 defobj
+F 59280 deflog_l
+F 59385 defh
+F 59490 deflog_l2
+F 59595 defh2
+G 59700 alpha
+G 59808 obj
+G 59810 log_l
+G 59915 log_l2
+G 60020 h
+G 60125 h2
+B 60237 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 60240 defobj2
+D 60267 deflog_l3
+D 60274 defh3
+B 60282 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 60285 w
+E 60301 log_l3
+E 60314 h3
+E 60327 obj2
+B 60335 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 60358 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 60402 defobj2
+F 60404 deflog_l3
+F 60411 defh3
+G 60418 w
+G 60523 log_l3
+G 60530 h3
+G 60539 obj2
+B 60548 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 60551 defobj
+D 60598 deflog_l
+D 60609 defh
+D 60692 deflog_l2
+D 60703 defh2
+B 60787 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 60790 alpha
+E 61406 obj
+E 61413 log_l
+E 61432 log_l2
+E 61448 h
+E 61467 h2
+B 61487 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 61510 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 61554 defobj
+F 61556 deflog_l
+F 61661 defh
+F 61766 deflog_l2
+F 61871 defh2
+G 61976 alpha
+G 62084 obj
+G 62086 log_l
+G 62191 log_l2
+G 62296 h
+G 62401 h2
+B 62513 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 62516 defobj2
+D 62543 deflog_l3
+D 62550 defh3
+B 62558 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 62561 w
+E 62577 log_l3
+E 62590 h3
+E 62603 obj2
+B 62611 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 62634 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 62678 defobj2
+F 62680 deflog_l3
+F 62687 defh3
+G 62694 w
+G 62799 log_l3
+G 62806 h3
+G 62815 obj2
+B 62824 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 62827 defobj
+D 62874 deflog_l
+D 62885 defh
+D 62968 deflog_l2
+D 62979 defh2
+B 63063 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 63066 alpha
+E 63682 obj
+E 63689 log_l
+E 63708 log_l2
+E 63724 h
+E 63743 h2
+B 63763 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 63786 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 63830 defobj
+F 63832 deflog_l
+F 63937 defh
+F 64042 deflog_l2
+F 64147 defh2
+G 64252 alpha
+G 64360 obj
+G 64362 log_l
+G 64467 log_l2
+G 64572 h
+G 64677 h2
+B 64789 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 64792 defobj2
+D 64819 deflog_l3
+D 64826 defh3
+B 64834 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 64837 w
+E 64853 log_l3
+E 64866 h3
+E 64879 obj2
+B 64887 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 64910 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 64954 defobj2
+F 64956 deflog_l3
+F 64963 defh3
+G 64970 w
+G 65075 log_l3
+G 65082 h3
+G 65091 obj2
+B 65100 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 65103 defobj
+D 65150 deflog_l
+D 65161 defh
+D 65244 deflog_l2
+D 65255 defh2
+B 65339 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 65342 alpha
+E 65958 obj
+E 65965 log_l
+E 65984 log_l2
+E 66000 h
+E 66019 h2
+B 66039 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 66062 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 66106 defobj
+F 66108 deflog_l
+F 66213 defh
+F 66318 deflog_l2
+F 66423 defh2
+G 66528 alpha
+G 66636 obj
+G 66638 log_l
+G 66743 log_l2
+G 66848 h
+G 66953 h2
+B 67065 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 67068 defobj2
+D 67095 deflog_l3
+D 67102 defh3
+B 67110 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 67113 w
+E 67129 log_l3
+E 67142 h3
+E 67155 obj2
+B 67163 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 67186 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 67230 defobj2
+F 67232 deflog_l3
+F 67239 defh3
+G 67246 w
+G 67351 log_l3
+G 67358 h3
+G 67367 obj2
+B 67376 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 67379 defobj
+D 67426 deflog_l
+D 67437 defh
+D 67520 deflog_l2
+D 67531 defh2
+B 67615 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 67618 alpha
+E 68234 obj
+E 68241 log_l
+E 68260 log_l2
+E 68276 h
+E 68295 h2
+B 68315 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 68338 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 68382 defobj
+F 68384 deflog_l
+F 68489 defh
+F 68594 deflog_l2
+F 68699 defh2
+G 68804 alpha
+G 68912 obj
+G 68914 log_l
+G 69019 log_l2
+G 69124 h
+G 69229 h2
+B 69341 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 69344 defobj2
+D 69371 deflog_l3
+D 69378 defh3
+B 69386 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 69389 w
+E 69405 log_l3
+E 69418 h3
+E 69431 obj2
+B 69439 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 69462 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 69506 defobj2
+F 69508 deflog_l3
+F 69515 defh3
+G 69522 w
+G 69627 log_l3
+G 69634 h3
+G 69643 obj2
+B 69652 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 69655 defobj
+D 69702 deflog_l
+D 69713 defh
+D 69796 deflog_l2
+D 69807 defh2
+B 69891 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 69894 alpha
+E 70510 obj
+E 70517 log_l
+E 70536 log_l2
+E 70552 h
+E 70571 h2
+B 70591 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 70614 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 70658 defobj
+F 70660 deflog_l
+F 70765 defh
+F 70870 deflog_l2
+F 70975 defh2
+G 71080 alpha
+G 71188 obj
+G 71190 log_l
+G 71295 log_l2
+G 71400 h
+G 71505 h2
+B 71617 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 71620 defobj2
+D 71647 deflog_l3
+D 71654 defh3
+B 71662 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 71665 w
+E 71681 log_l3
+E 71694 h3
+E 71707 obj2
+B 71715 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 71738 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 71782 defobj2
+F 71784 deflog_l3
+F 71791 defh3
+G 71798 w
+G 71903 log_l3
+G 71910 h3
+G 71919 obj2
+B 71928 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 71931 defobj
+D 71978 deflog_l
+D 71989 defh
+D 72072 deflog_l2
+D 72083 defh2
+B 72167 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 72170 alpha
+E 72786 obj
+E 72793 log_l
+E 72812 log_l2
+E 72828 h
+E 72847 h2
+B 72867 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 72890 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 72934 defobj
+F 72936 deflog_l
+F 73041 defh
+F 73146 deflog_l2
+F 73251 defh2
+G 73356 alpha
+G 73464 obj
+G 73466 log_l
+G 73571 log_l2
+G 73676 h
+G 73781 h2
+B 73893 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 73896 defobj2
+D 73923 deflog_l3
+D 73930 defh3
+B 73938 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 73941 w
+E 73957 log_l3
+E 73970 h3
+E 73983 obj2
+B 73991 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 74014 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 74058 defobj2
+F 74060 deflog_l3
+F 74067 defh3
+G 74074 w
+G 74179 log_l3
+G 74186 h3
+G 74195 obj2
+B 74204 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 74207 defobj
+D 74254 deflog_l
+D 74265 defh
+D 74348 deflog_l2
+D 74359 defh2
+B 74443 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 74446 alpha
+E 75062 obj
+E 75069 log_l
+E 75088 log_l2
+E 75104 h
+E 75123 h2
+B 75143 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 75166 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 75210 defobj
+F 75212 deflog_l
+F 75317 defh
+F 75422 deflog_l2
+F 75527 defh2
+G 75632 alpha
+G 75740 obj
+G 75742 log_l
+G 75847 log_l2
+G 75952 h
+G 76057 h2
+B 76169 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 76172 defobj2
+D 76199 deflog_l3
+D 76206 defh3
+B 76214 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 76217 w
+E 76233 log_l3
+E 76246 h3
+E 76259 obj2
+B 76267 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 76290 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 76334 defobj2
+F 76336 deflog_l3
+F 76343 defh3
+G 76350 w
+G 76455 log_l3
+G 76462 h3
+G 76471 obj2
+B 76480 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 76483 defobj
+D 76530 deflog_l
+D 76541 defh
+D 76624 deflog_l2
+D 76635 defh2
+B 76719 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 76722 alpha
+E 77338 obj
+E 77345 log_l
+E 77364 log_l2
+E 77380 h
+E 77399 h2
+B 77419 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 77442 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 77486 defobj
+F 77488 deflog_l
+F 77593 defh
+F 77698 deflog_l2
+F 77803 defh2
+G 77908 alpha
+G 78016 obj
+G 78018 log_l
+G 78123 log_l2
+G 78228 h
+G 78333 h2
+B 78445 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 78448 defobj2
+D 78475 deflog_l3
+D 78482 defh3
+B 78490 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 78493 w
+E 78509 log_l3
+E 78522 h3
+E 78535 obj2
+B 78543 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 78566 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 78610 defobj2
+F 78612 deflog_l3
+F 78619 defh3
+G 78626 w
+G 78731 log_l3
+G 78738 h3
+G 78747 obj2
+B 78756 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 78759 defobj
+D 78806 deflog_l
+D 78817 defh
+D 78900 deflog_l2
+D 78911 defh2
+B 78995 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 78998 alpha
+E 79614 obj
+E 79621 log_l
+E 79640 log_l2
+E 79656 h
+E 79675 h2
+B 79695 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 79718 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 79762 defobj
+F 79764 deflog_l
+F 79869 defh
+F 79974 deflog_l2
+F 80079 defh2
+G 80184 alpha
+G 80292 obj
+G 80294 log_l
+G 80399 log_l2
+G 80504 h
+G 80609 h2
+B 80721 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 80724 defobj2
+D 80751 deflog_l3
+D 80758 defh3
+B 80766 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 80769 w
+E 80785 log_l3
+E 80798 h3
+E 80811 obj2
+B 80819 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 80842 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 80886 defobj2
+F 80888 deflog_l3
+F 80895 defh3
+G 80902 w
+G 81007 log_l3
+G 81014 h3
+G 81023 obj2
+B 81032 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 81035 defobj
+D 81082 deflog_l
+D 81093 defh
+D 81176 deflog_l2
+D 81187 defh2
+B 81271 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 81274 alpha
+E 81890 obj
+E 81897 log_l
+E 81916 log_l2
+E 81932 h
+E 81951 h2
+B 81971 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 81994 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 82038 defobj
+F 82040 deflog_l
+F 82145 defh
+F 82250 deflog_l2
+F 82355 defh2
+G 82460 alpha
+G 82568 obj
+G 82570 log_l
+G 82675 log_l2
+G 82780 h
+G 82885 h2
+B 82997 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 83000 defobj2
+D 83027 deflog_l3
+D 83034 defh3
+B 83042 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 83045 w
+E 83061 log_l3
+E 83074 h3
+E 83087 obj2
+B 83095 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 83118 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 83162 defobj2
+F 83164 deflog_l3
+F 83171 defh3
+G 83178 w
+G 83283 log_l3
+G 83290 h3
+G 83299 obj2
+B 83308 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 83311 defobj
+D 83358 deflog_l
+D 83369 defh
+D 83452 deflog_l2
+D 83463 defh2
+B 83547 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 83550 alpha
+E 84166 obj
+E 84173 log_l
+E 84192 log_l2
+E 84208 h
+E 84227 h2
+B 84247 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 84270 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 84314 defobj
+F 84316 deflog_l
+F 84421 defh
+F 84526 deflog_l2
+F 84631 defh2
+G 84736 alpha
+G 84844 obj
+G 84846 log_l
+G 84951 log_l2
+G 85056 h
+G 85161 h2
+B 85273 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 85276 defobj2
+D 85303 deflog_l3
+D 85310 defh3
+B 85318 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 85321 w
+E 85337 log_l3
+E 85350 h3
+E 85363 obj2
+B 85371 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 85394 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 85438 defobj2
+F 85440 deflog_l3
+F 85447 defh3
+G 85454 w
+G 85559 log_l3
+G 85566 h3
+G 85575 obj2
+B 85584 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 85587 defobj
+D 85634 deflog_l
+D 85645 defh
+D 85728 deflog_l2
+D 85739 defh2
+B 85823 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 85826 alpha
+E 86442 obj
+E 86449 log_l
+E 86468 log_l2
+E 86484 h
+E 86503 h2
+B 86523 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 86546 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 86590 defobj
+F 86592 deflog_l
+F 86697 defh
+F 86802 deflog_l2
+F 86907 defh2
+G 87012 alpha
+G 87120 obj
+G 87122 log_l
+G 87227 log_l2
+G 87332 h
+G 87437 h2
+B 87549 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 87552 defobj2
+D 87579 deflog_l3
+D 87586 defh3
+B 87594 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 87597 w
+E 87613 log_l3
+E 87626 h3
+E 87639 obj2
+B 87647 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 87670 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 87714 defobj2
+F 87716 deflog_l3
+F 87723 defh3
+G 87730 w
+G 87835 log_l3
+G 87842 h3
+G 87851 obj2
+B 87860 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 87863 defobj
+D 87910 deflog_l
+D 87921 defh
+D 88004 deflog_l2
+D 88015 defh2
+B 88099 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 88102 alpha
+E 88718 obj
+E 88725 log_l
+E 88744 log_l2
+E 88760 h
+E 88779 h2
+B 88799 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 88822 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 88866 defobj
+F 88868 deflog_l
+F 88973 defh
+F 89078 deflog_l2
+F 89183 defh2
+G 89288 alpha
+G 89396 obj
+G 89398 log_l
+G 89503 log_l2
+G 89608 h
+G 89713 h2
+B 89825 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 89828 defobj2
+D 89855 deflog_l3
+D 89862 defh3
+B 89870 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 89873 w
+E 89889 log_l3
+E 89902 h3
+E 89915 obj2
+B 89923 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 89946 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 89990 defobj2
+F 89992 deflog_l3
+F 89999 defh3
+G 90006 w
+G 90111 log_l3
+G 90118 h3
+G 90127 obj2
+B 90136 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 90139 defobj
+D 90186 deflog_l
+D 90197 defh
+D 90280 deflog_l2
+D 90291 defh2
+B 90375 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 90378 alpha
+E 90994 obj
+E 91001 log_l
+E 91020 log_l2
+E 91036 h
+E 91055 h2
+B 91075 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 91098 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 91142 defobj
+F 91144 deflog_l
+F 91249 defh
+F 91354 deflog_l2
+F 91459 defh2
+G 91564 alpha
+G 91672 obj
+G 91674 log_l
+G 91779 log_l2
+G 91884 h
+G 91989 h2
+B 92101 Equation Listing    SOLVE Kernel_duti Using DNLP From line 157
+D 92104 defobj2
+D 92131 deflog_l3
+D 92138 defh3
+B 92146 Column Listing      SOLVE Kernel_duti Using DNLP From line 157
+E 92149 w
+E 92165 log_l3
+E 92178 h3
+E 92191 obj2
+B 92199 Model Statistics    SOLVE Kernel_duti Using DNLP From line 157
+B 92222 Solution Report     SOLVE Kernel_duti Using DNLP From line 157
+F 92266 defobj2
+F 92268 deflog_l3
+F 92275 defh3
+G 92282 w
+G 92387 log_l3
+G 92394 h3
+G 92403 obj2
+B 92412 Equation Listing    SOLVE Kernel_train Using DNLP From line 158
+D 92415 defobj
+D 92462 deflog_l
+D 92473 defh
+D 92556 deflog_l2
+D 92567 defh2
+B 92651 Column Listing      SOLVE Kernel_train Using DNLP From line 158
+E 92654 alpha
+E 93270 obj
+E 93277 log_l
+E 93296 log_l2
+E 93312 h
+E 93331 h2
+B 93351 Model Statistics    SOLVE Kernel_train Using DNLP From line 158
+B 93374 Solution Report     SOLVE Kernel_train Using DNLP From line 158
+F 93418 defobj
+F 93420 deflog_l
+F 93525 defh
+F 93630 deflog_l2
+F 93735 defh2
+G 93840 alpha
+G 93948 obj
+G 93950 log_l
+G 94055 log_l2
+G 94160 h
+G 94265 h2
+B 94377 E x e c u t i o n

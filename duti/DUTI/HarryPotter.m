@@ -43,6 +43,7 @@ w_true = (y_train ~= y_clean); % 1 if an item is a true bug
 
 % alpha's are the dual parameters in kernel logistic regression to be learned.
 alpha0 = zeros(n+1,1); % intialize to be all-zero vector.
+test=rbf(X_train,X_train,sigma);
 K = [rbf(X_train,X_train,sigma),ones(n,1)];
 alpha = kernelLR_train( K,y_train,w,lam,alpha0);
 

@@ -14,6 +14,7 @@ function K = rbf( X1,X2,sigma)
 nms = sum(X1'.^2,1);
 mms = sum(X2'.^2,1);
 D = -nms'*ones(1,m) -ones(n,1)*mms + 2*X1*X2';
+
 K = exp(D/(2*sigma^2));
 
 end
