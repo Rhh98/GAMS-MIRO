@@ -1,5 +1,5 @@
 ,l_lat,l_long,select
-Montgomery_AL,32.361538,-86.279118,
+Montgomery_AL,32.361538,-86.279118,0
 Juneau_AK,58.301935,-134.41974,1
 Phoenix_AZ,33.448457,-112.073844,1
 Little-Rock_AR,34.736009,-92.331122,1
@@ -9,7 +9,7 @@ Hartford_CT,41.767,-72.677,1
 Dover_DE,39.161921,-75.526755,1
 Tallahassee_FL,30.4518,-84.27277,1
 Atlanta_GA,33.76,-84.39,1
-Honolulu_HI,21.30895,-157.826182,1
+Honolulu_HI,21.30895,-157.826182,0
 Boise_ID,43.613739,-116.237651,1
 Springfield_IL,39.78325,-89.650373,1
 Indianapolis_IN,39.790942,-86.147685,1

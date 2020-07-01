@@ -116,7 +116,7 @@ Z(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
 display Z;
 
 
-scalar budget /100/,gamma /10/;
+scalar budget /100/,gamma /1/;
 parameter K_tilde(Header,n);
 alias(Header,Header2);
 K_tilde(Header,n)=-sum(aspect,sqr(trust_data(Header,aspect)))-(sqr(X_Train(n,'Heritage'))+sqr(X_Train(n,'Education')))

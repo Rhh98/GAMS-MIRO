@@ -48,7 +48,8 @@ u.lo(select) = 2; u.up(select) = card(i);
 u.fx(select)$(OrderVal(select) eq 1) = 1;
 
 option optcr = 1e-3;
-$onecho > cplex.opt
+option mip=mosek;
+$onecho > mosek.opt
 lpmethod 4
 $offecho
 tsp.optfile = 1;

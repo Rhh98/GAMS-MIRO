@@ -1,0 +1,633 @@
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 1
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+C o m p i l a t i o n
+
+
+   2   
+       
+      The Microwave Radar Division of the Defence Sciences and Technology
+      Organisation employs synthetic aperture radar to obtain
+      high-resolution images of selected ground targets. It uses this
+      device, mounted on an aircraft, to scan up to 20 rectangular regions
+      called swaths to obtain images with resolutions down to one
+      meter. Missions consisting of a designated sequence of swaths and
+      flight paths are planned using mapping software. Previously DSTO had
+      been determining the best tours for missions by visually tracking
+      possible swath sequences from a starting base to an ending base. This
+      method was time consuming and did not guarantee optimality interms of
+      distance traveled. We developed optimization software tools to plan
+      mission tours more efficiently. DSTO can now plan missions with up to
+      20 swaths in a few seconds, rather than the hour it took using the
+      visual approach. Proposed tour lengths show an average improvement of
+      15 percent over those manually produced. The software incorporates
+      methods for dealing with the operational problems of no-fly zones and
+      shadowing associated with images.
+       
+       
+      Panton, D M, and Elbers, A W, Mission Planning for Synthetic Aperture
+      Radar Surveillance. Interfaces 29, 2 (1999), 73-88.
+       
+  28   
+  29  Set s          swaths                         / s0*s20 /
+  30      n          nodes                          / n1*n4 /
+  31      sx(s,n)    valid swath node combinations  / s0.n1, (s1*s20).set.n /
+  32      a(s,n,s,n) arcs;
+  33  Alias (s,i,j), (n,np);
+  34  Parameter l(s,n,s,n) arc length;
+GDXIN   C:\Users\hasee\Desktop\Summer research\swath\swathdat.gdx
+--- LOAD  l = 1:l
+  37   
+  38  a(sx,s,n) = l(sx,s,n);
+  39   
+  40  * TSP Type model
+  41  Variable
+  42     x(s,n,s,n)  TSP tour between nodes
+  43     y(s,s)      TSP tour between swath
+  44     z           objective;
+  45  Binary Variables x,y;
+  46   
+  47  Equations
+  48     defobj       Objective
+  49     defone(s)    one entering arc per swath
+  50     defbal(s,n)  flow balance
+  51     defy(s,s)    TSP swath tour determined by TSP node tour;
+  52   
+  53  defobj..          z =e= sum(a, l(a)*x(a));
+  54   
+  55  defone(s)..       sum(a(sx,s,n), x(a)) =e= 1;
+  56   
+  57  defbal(sx)..      sum(a(s,n,sx), x(a)) - sum(a(sx,s,n), x(a)) =e= 0;
+  58   
+  59  defy(i,j)$(not sameas(i,j))..  y(i,j) =e= sum(a(i,n,j,np), x(a));
+  60   
+  62  Set cc    Subtour elimination cuts /c1*c150/
+  63      c(cc) Active cuts; c(cc)=no;
+  64   
+  65  Parameters
+  66      cutcoeff(cc,s,s) coeffients for the subtour elimination cuts
+  67      rhs(cc)          right hand side for the subtour elimination cuts;
+  68  cutcoeff(c,s,s)=0; rhs(c)=0;
+  69   
+  70  Equations cut(cc) dynamic subtour elimination cuts;
+  71   
+  72  cut(c).. sum((i,j), cutcoeff(c,i,j)*y(i,j)) =l= rhs(c);
+  73   
+  75  model swath /all/;
+  76   
+  77  option optcr=0, limrow=0, limcol=0, solprint=off;
+  78   
+  79  * Solve without subtour elimination constraints
+  80  solve swath min z using mip;
+  81   
+  83   
+  84  set t            tours /t1*t25/
+  85      tour(i,j,t)  subtours
+  86      from(i)      contains always one element: the from swath
+  87      next(j)      contains always one element: the to swath
+  88      visited(i)   flag whether a swath is already visited
+  89      tt(t)        contains always one element: the current subtour
+  90      curc(cc)     contains always one element: the current SE cut /c1/;
+  91  scalar goon      go on flag used to control loop /1/;
+  92   
+  94  while(goon=1,
+  95    // Start tour in first swath
+  96    from(i) = no; tt(t) = no; tour(i,j,t)=no; visited(i)=no;
+  97    from('s0') = yes; tt('t1') = yes; y.l(i,j) = round(y.l(i,j));
+  98    while (card(from),
+  99       // find swath visited after swath 'from'
+ 100       next(i)=no; loop((from,i)$y.l(from,i), next(i) = yes);
+ 101       tour(from,next,tt) = yes;   // store in table
+ 102       visited(from) = yes;        // mark swath 'from' as visited
+ 103       from(j) = next(j);
+ 104       if (sum(visited(next),1)>0, // if we are back at the start of the tour
+ 105         // find starting point of new subtour
+ 106         tt(t) = tt(t-1); from(i) = no;
+ 107         goon=1; loop(i$(not visited(i) and goon), from(i) = yes; goon=0);
+ 108       )
+ 109    );
+ 110    display tour;
+ 111   
+ 112    if (tt('t2'), goon = 0; // just one tour -> stop
+ 113    else                    // else: introduce cut(s)
+ 114      // in case of two tours, we get complement cuts so eliminate the long tour
+ 115      if (tt('t3'),
+ 116        if (sum(tour(i,j,'t1'),1) < sum(tour(i,j,'t2'),1),
+ 117          tour(i,j,'t2') = no;
+ 118        else
+ 119          tour(i,j,'t1') = tour(i,j,'t2');
+ 120          tour(i,j,'t2') = no;
+ 121        );
+ 122        tt('t2') = yes;
+ 123      );
+ 124      goon = 1; loop(t$goon,
+ 125        rhs(curc)=-1;
+ 126        visited(i) = sum(tour(i,j,t),1);
+ 127        loop(tour(i,j,t),
+ 128          cutcoeff(curc,i,visited) = 1;
+ 129          rhs(curc) = rhs(curc) + 1;
+ 130        );
+ 131        c(curc) = yes;
+ 132        curc(cc) = curc(cc-1);
+ 133        goon = card(curc) and not tt(t+1);
+ 134      );
+ 135      abort$(card(curc)=0) 'set cc to small';
+ 136      solve swath using mip minimizing z; goon = 1;
+ 137    );
+ 138  );
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 2
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\hasee\Desktop\Summer research\swath\swath.gms
+     2       35 GDXIN          1      35  C:\Users\hasee\Desktop\Summer research\swath\swathdat.gdx
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 3
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Model Statistics    SOLVE swath Using MIP From line 80
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS          523
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES        6,661
+NON ZERO ELEMENTS        31,621     DISCRETE VARIABLES      6,660
+
+
+GENERATION TIME      =        0.047 SECONDS      7 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      7 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 4
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Solution Report     SOLVE swath Using MIP From line 80
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   swath               OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  80
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE              330.1206
+
+ RESOURCE USAGE, LIMIT          0.172      1000.000
+ ITERATION COUNT, LIMIT        37    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.16sec (det. 93.35 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 3.03 ticks)
+Proven optimal solution.
+
+MIP Solution:          330.120643    (37 iterations, 0 nodes)
+Final Solve:           330.120643    (0 iterations)
+
+Best possible:         330.120643
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 5
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+E x e c u t i o n
+
+
+----    110 SET tour  subtours
+
+                 t1          t2          t3          t4          t5          t6          t7          t8          t9         t10
+
+s0 .s1          YES
+s1 .s3          YES
+s2 .s4                      YES
+s3 .s0          YES
+s4 .s2                      YES
+s5 .s7                                  YES
+s6 .s8                                              YES
+s7 .s5                                  YES
+s8 .s6                                              YES
+s9 .s11                                                         YES
+s10.s12                                                                     YES
+s11.s9                                                          YES
+s12.s10                                                                     YES
+s13.s15                                                                                 YES
+s14.s16                                                                                             YES
+s15.s13                                                                                 YES
+s16.s14                                                                                             YES
+s17.s19                                                                                                         YES
+s18.s20                                                                                                                     YES
+s19.s17                                                                                                         YES
+s20.s18                                                                                                                     YES
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 6
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Model Statistics    SOLVE swath Using MIP From line 136
+
+
+LOOPS                            FOR/WHILE   1
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS          533
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES        6,682
+NON ZERO ELEMENTS        31,666     DISCRETE VARIABLES      6,681
+
+
+GENERATION TIME      =        0.062 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.062 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S          FOR/WHILE 1
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 7
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Solution Report     SOLVE swath Using MIP From line 136
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   swath               OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  136
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE              380.8644
+
+ RESOURCE USAGE, LIMIT          0.796      1000.000
+ ITERATION COUNT, LIMIT       244    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.78sec (det. 420.80 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 3.04 ticks)
+Proven optimal solution.
+
+MIP Solution:          380.864390    (244 iterations, 0 nodes)
+Final Solve:           380.864390    (0 iterations)
+
+Best possible:         380.864390
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 8
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+E x e c u t i o n
+
+
+----    110 SET tour  subtours
+
+                 t1          t2          t3          t4          t5
+
+s0 .s1          YES
+s1 .s8          YES
+s2 .s4                      YES
+s3 .s0          YES
+s4 .s7                      YES
+s5 .s2                      YES
+s6 .s3          YES
+s7 .s5                      YES
+s8 .s6          YES
+s9 .s11                                 YES
+s10.s13                                             YES
+s11.s14                                 YES
+s12.s10                                             YES
+s13.s15                                             YES
+s14.s16                                 YES
+s15.s12                                             YES
+s16.s9                                  YES
+s17.s19                                                         YES
+s18.s17                                                         YES
+s19.s20                                                         YES
+s20.s18                                                         YES
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 9
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Model Statistics    SOLVE swath Using MIP From line 136
+
+
+LOOPS                            FOR/WHILE   2
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS          538
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES        6,682
+NON ZERO ELEMENTS        31,755     DISCRETE VARIABLES      6,681
+
+
+GENERATION TIME      =        0.094 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.094 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S          FOR/WHILE 2
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 10
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Solution Report     SOLVE swath Using MIP From line 136
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   swath               OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  136
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE              412.0409
+
+ RESOURCE USAGE, LIMIT          0.906      1000.000
+ ITERATION COUNT, LIMIT       382    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.89sec (det. 648.74 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 3.05 ticks)
+Proven optimal solution.
+
+MIP Solution:          412.040929    (382 iterations, 0 nodes)
+Final Solve:           412.040929    (0 iterations)
+
+Best possible:         412.040929
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 11
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+E x e c u t i o n
+
+
+----    110 SET tour  subtours
+
+                 t1          t2          t3          t4
+
+s0 .s4          YES
+s1 .s3                      YES
+s2 .s0          YES
+s3 .s1                      YES
+s4 .s7          YES
+s5 .s2          YES
+s6 .s17                                 YES
+s7 .s5          YES
+s8 .s6                                  YES
+s9 .s14                                             YES
+s10.s11                                             YES
+s11.s9                                              YES
+s12.s10                                             YES
+s13.s12                                             YES
+s14.s16                                             YES
+s15.s13                                             YES
+s16.s15                                             YES
+s17.s19                                 YES
+s18.s20                                 YES
+s19.s18                                 YES
+s20.s8                                  YES
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 12
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Model Statistics    SOLVE swath Using MIP From line 136
+
+
+LOOPS                            FOR/WHILE   3
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS          542
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES        6,682
+NON ZERO ELEMENTS        31,884     DISCRETE VARIABLES      6,681
+
+
+GENERATION TIME      =        0.047 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S          FOR/WHILE 3
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 13
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Solution Report     SOLVE swath Using MIP From line 136
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   swath               OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  136
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE              453.8760
+
+ RESOURCE USAGE, LIMIT          1.328      1000.000
+ ITERATION COUNT, LIMIT       610    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 1.31sec (det. 806.79 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 3.05 ticks)
+Proven optimal solution.
+
+MIP Solution:          453.875998    (610 iterations, 0 nodes)
+Final Solve:           453.875998    (0 iterations)
+
+Best possible:         453.875998
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 14
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+E x e c u t i o n
+
+
+----    110 SET tour  subtours
+
+                 t1          t2          t3
+
+s0 .s4          YES
+s1 .s3          YES
+s2 .s5          YES
+s3 .s0          YES
+s4 .s2          YES
+s5 .s7          YES
+s6 .s8          YES
+s7 .s6          YES
+s8 .s1          YES
+s9 .s11                     YES
+s10.s20                                 YES
+s11.s15                     YES
+s12.s10                                 YES
+s13.s16                     YES
+s14.s9                      YES
+s15.s13                     YES
+s16.s14                     YES
+s17.s19                                 YES
+s18.s17                                 YES
+s19.s12                                 YES
+s20.s18                                 YES
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 15
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Model Statistics    SOLVE swath Using MIP From line 136
+
+
+LOOPS                            FOR/WHILE   4
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS          545
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES        6,682
+NON ZERO ELEMENTS        32,037     DISCRETE VARIABLES      6,681
+
+
+GENERATION TIME      =        0.047 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S          FOR/WHILE 4
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 16
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+Solution Report     SOLVE swath Using MIP From line 136
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   swath               OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  136
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE              467.4075
+
+ RESOURCE USAGE, LIMIT          0.594      1000.000
+ ITERATION COUNT, LIMIT       576    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.56sec (det. 350.45 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.02sec (det. 3.06 ticks)
+Proven optimal solution.
+
+MIP Solution:          467.407491    (576 iterations, 0 nodes)
+Final Solve:           467.407491    (0 iterations)
+
+Best possible:         467.407491
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             5  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 15:26:31 Page 17
+Mission Planning for Synthetic Aperture Radar Surveillance (SWATH,SEQ=325)
+E x e c u t i o n
+
+
+----    110 SET tour  subtours
+
+                 t1
+
+s0 .s3          YES
+s1 .s8          YES
+s2 .s0          YES
+s3 .s1          YES
+s4 .s2          YES
+s5 .s7          YES
+s6 .s17         YES
+s7 .s4          YES
+s8 .s6          YES
+s9 .s11         YES
+s10.s15         YES
+s11.s5          YES
+s12.s10         YES
+s13.s16         YES
+s14.s9          YES
+s15.s13         YES
+s16.s14         YES
+s17.s19         YES
+s18.s20         YES
+s19.s18         YES
+s20.s12         YES
+
+
+
+EXECUTION TIME       =        0.000 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+      Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\hasee\Desktop\Summer research\swath\swath.gms
+Output     C:\Users\hasee\Desktop\Summer research\swath\swath.lst
