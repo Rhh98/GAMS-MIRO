@@ -1,0 +1,34 @@
+
+TRACE [2020-07-01 13:56:43] Logging facility initialised.
+DEBUG [2020-07-01 13:56:43] Database connection established.
+DEBUG [2020-07-01 13:56:43] Access Control initialised.
+INFO [2020-07-01 13:56:43] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-01 13:56:44] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 13:56:44] Db: 10006 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
+DEBUG [2020-07-01 13:56:44] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-01 13:56:44] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-01 13:56:44] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
+DEBUG [2020-07-01 13:56:44] Db: Data was added to table: 'harrypotteremp_trust_data' (Db.exportScenDataset).
+DEBUG [2020-07-01 13:56:44] Db: Data was added to table: 'harrypotteremp_trust_label' (Db.exportScenDataset).
+DEBUG [2020-07-01 13:56:44] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 13:56:44] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-01 13:56:45] Scenario: '1' unlocked.
+DEBUG [2020-07-01 13:56:45] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
+INFO [2020-07-01 13:56:49] Session started (model: 'harrypotter_emp', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter').
+DEBUG [2020-07-01 13:56:49] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter'.
+DEBUG [2020-07-01 13:56:49] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 13:56:50] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-01 13:56:50] Loading and rendering scenarios: '1'.
+DEBUG [2020-07-01 13:56:50] Db: Data was imported from table: 'harrypotteremp_output1' (Db.importDataset).
+DEBUG [2020-07-01 13:56:50] Db: Data was imported from table: 'harrypotteremp_trust_data' (Db.importDataset).
+DEBUG [2020-07-01 13:56:50] Db: Data was imported from table: 'harrypotteremp_trust_label' (Db.importDataset).
+DEBUG [2020-07-01 13:56:50] Db: A table named: '_sys_scripts_harrypotter_emp' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-01 13:56:50] Scenario: 'New Scenario' closed.
+DEBUG [2020-07-01 13:56:51] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 13:56:51] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 13:56:51] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-01 13:56:51] Dataset: trust_data loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-01 13:56:51] Dataset: trust_label loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-01 13:56:51] Scenario: '1' was loaded into UI
+DEBUG [2020-07-01 13:56:53] Sidebar menu item: 'outputData' selected.
+INFO [2020-07-01 13:58:40] Session ended (model: 'harrypotter_emp', user: 'hasee').

@@ -1,0 +1,93 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"trust_data":	{
+			"alias":	"trust_data",
+			"symtype":	"parameter",
+			"headers":	{
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"heritage":	{
+					"type":	"numeric",
+					"alias":	"heritage"
+				},
+				"education":	{
+					"type":	"numeric",
+					"alias":	"education"
+				}
+			}
+		},
+		"trust_label":	{
+			"alias":	"trust_label",
+			"symtype":	"parameter",
+			"headers":	{
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"trust_label"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"output1":	{
+			"alias":	"output1",
+			"symtype":	"parameter",
+			"headers":	{
+				"n":	{
+					"type":	"string",
+					"alias":	"training set"
+				},
+				"n1":	{
+					"type":	"string",
+					"alias":	"Aliased with n"
+				},
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"heritage":	{
+					"type":	"numeric",
+					"alias":	"heritage"
+				},
+				"education":	{
+					"type":	"numeric",
+					"alias":	"education"
+				},
+				"val":	{
+					"type":	"numeric",
+					"alias":	"label of training data"
+				},
+				"zval":	{
+					"type":	"numeric",
+					"alias":	"zval"
+				},
+				"newz":	{
+					"type":	"numeric",
+					"alias":	"newz"
+				},
+				"heritage_t":	{
+					"type":	"numeric",
+					"alias":	"heritage_t"
+				},
+				"education_t":	{
+					"type":	"numeric",
+					"alias":	"education_t"
+				},
+				"label":	{
+					"type":	"numeric",
+					"alias":	"label of trust data"
+				},
+				"ranking":	{
+					"type":	"numeric",
+					"alias":	"ranking"
+				}
+			}
+		}
+	}
+}

@@ -98,7 +98,7 @@ true  0.5        0.4
 false 0.2        0.6
 ;
 
-parameter Trust_label(Header) /true 1,false -1/;
+parameter Trust_label(Header) /true -1,false 1/;
 parameter c(header) /set.header 100/;
 
 *Generating contour by kernel logistic regression

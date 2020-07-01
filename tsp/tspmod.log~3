@@ -1,21 +1,18 @@
---- Job tspmod.gms Start 06/26/20 23:57:43 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job tspmod.gms Start 06/29/20 15:23:41 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
+    PageSize 0
     ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\
     SysDir E:\31.1\
-    CurDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\
     LogOption 3
-    Trace C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_sys_trace_tspmod.trc
-    InputDir1 C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\
-    TraceOpt 3
-    ExecMode 0
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
     LstTitleLeftAligned 1
-    IDCGDXInput _miro_gdxin_.gdx
-    IDCGDXOutput _miro_gdxout_.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 17 days ago
+*** License has expired 20 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           E:\31.1\gamslice.txt
@@ -23,10 +20,204 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 --- Starting compilation
 --- tspmod.gms(5) 2 Mb
 --- . set.csv(1) 3 Mb
---- tspmod.gms(10) 3 Mb
---- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
 --- tspmod.gms(13) 3 Mb
---- Ignoring $include in externalInput section
---- tspmod.gms(78) 3 Mb 3 Errors
-*** Status: Compilation error(s)
---- Job tspmod.gms Stop 06/26/20 23:57:43 elapsed 0:00:00.021
+--- . capitals.csv(51) 3 Mb
+--- tspmod.gms(78) 3 Mb
+--- Starting execution: elapsed 0:00:00.008
+--- tspmod.gms(106) 4 Mb
+--- Generating MIP model tsp
+--- tspmod.gms(107) 5 Mb
+---   2,403 rows  2,450 columns  13,922 non-zeroes
+---   2,352 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.102
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
+>>  lpmethod 4
+Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
+Reading data...
+Starting Cplex...
+Space for names approximately 0.17 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_LPMethod                                4
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Barrier_Limits_Iteration                2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.001
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+Tried aggregator 1 time.
+MIP Presolve eliminated 49 rows and 50 columns.
+Reduced MIP has 2354 rows, 2400 columns, and 11472 nonzeros.
+Reduced MIP has 2352 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.91 ticks)
+Found incumbent of value 689480.496335 after 0.02 sec. (15.96 ticks)
+Probing time = 0.02 sec. (3.25 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 2354 rows, 2400 columns, and 11472 nonzeros.
+Reduced MIP has 2352 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (7.50 ticks)
+Probing time = 0.00 sec. (3.25 ticks)
+Clique table members: 1181.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (1.42 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        480721.770404
+Iteration:   180   Dual objective     =        660825.289795
+Iteration:   377   Dual objective     =        668604.513549
+Iteration:   556   Dual objective     =        670622.576376
+Iteration:   618   Dual objective     =        670634.827705
+Root relaxation solution time = 0.02 sec. (18.39 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       689480.4963        0.0000           100.00%
+Found incumbent of value 689480.496335 after 0.08 sec. (56.03 ticks)
+      0     0   670635.1936    47   689480.4963   670635.1936      654    2.73%
+      0     0   670646.2062    47   689480.4963     Cuts: 103      743    2.73%
+      0     0   670648.2575    47   689480.4963     Cuts: 128      789    2.73%
+      0     0   670649.5799    47   689480.4963      Cuts: 80      823    2.73%
+      0     0   670649.9799    47   689480.4963      Cuts: 37      852    2.73%
+      0     0   670650.3762    47   689480.4963      Cuts: 30      877    2.73%
+Detecting symmetries...
+*     0+    0                       675354.3288   670650.3762             0.70%
+Found incumbent of value 675354.328754 after 0.66 sec. (404.12 ticks)
+*     0+    0                       673209.3353   670650.3762             0.38%
+Found incumbent of value 673209.335285 after 0.69 sec. (423.99 ticks)
+*     0+    0                       673168.3364   670650.3762             0.37%
+Found incumbent of value 673168.336360 after 0.70 sec. (431.06 ticks)
+*     0+    0                       672406.5075   670650.3762             0.26%
+Found incumbent of value 672406.507527 after 0.77 sec. (464.40 ticks)
+      0     0  -1.00000e+75     0   672406.5075   670650.3762      877    0.26%
+Detecting symmetries...
+      0     2   670650.3762    51   672406.5075   670650.3776      877    0.26%
+Elapsed time = 0.78 sec. (467.92 ticks, tree = 0.01 MB, solutions = 5)
+*   109    88      integral     0   672285.3029   670650.6120     1921    0.24%
+Found incumbent of value 672285.302882 after 1.02 sec. (657.13 ticks)
+    129   108   670659.9020    47   672285.3029   670650.6215     2273    0.24%
+                                                      Cuts: 6                  
+*   209+  173                       672259.4157   670650.6215             0.24%
+Found incumbent of value 672259.415724 after 1.23 sec. (857.90 ticks)
+*   240+  203                       672046.7712   670650.6215             0.21%
+Found incumbent of value 672046.771239 after 1.28 sec. (907.98 ticks)
+    271   229   671817.7025    10   672046.7712   670650.6215     3716    0.21%
+*   275   228      integral     0   671928.5052   670650.6215     3737    0.19%
+Found incumbent of value 671928.505193 after 1.33 sec. (951.72 ticks)
+*   375+  309                       671342.6675   670650.6985             0.10%
+                                                  Impl Bds: 1                  
+Found incumbent of value 671342.667488 after 1.53 sec. (1116.46 ticks)
+    410   342   670710.4865    29   671342.6675   670651.1005     5265    0.10%
+                                                  Impl Bds: 1                  
+*   518+  416                       671259.5827   670651.1861             0.09%
+                                                  Impl Bds: 2                  
+Found incumbent of value 671259.582708 after 1.77 sec. (1336.54 ticks)
+
+Clique cuts applied:  5
+Cover cuts applied:  2
+Implied bound cuts applied:  10
+Flow cuts applied:  1
+Mixed integer rounding cuts applied:  19
+Zero-half cuts applied:  2
+Multi commodity flow cuts applied:  1
+Gomory fractional cuts applied:  7
+
+Root node processing (before b&c):
+  Real time             =    0.78 sec. (468.09 ticks)
+Sequential b&c:
+  Real time             =    0.98 sec. (869.75 ticks)
+                          ------------
+Total (root+branch&cut) =    1.77 sec. (1337.84 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 1.77sec (det. 1337.84 ticks)
+Fixing integer variables, and solving final LP...
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 2
+CPXPARAM_LPMethod                                4
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Barrier_Limits_Iteration                2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.001
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+Tried aggregator 1 time.
+LP Presolve eliminated 2271 rows and 2402 columns.
+Aggregator did 2 substitutions.
+Reduced LP has 130 rows, 46 columns, and 260 nonzeros.
+Presolve time = 0.00 sec. (1.94 ticks)
+Parallel mode: none, using 1 thread for barrier
+
+***NOTE: Found 2 dense columns.
+
+Number of nonzeros in lower triangle of A*A' = 254
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.00 sec. (0.02 ticks)
+Summary statistics for Cholesky factor:
+  Rows in Factor            = 132
+  Integer space required    = 179
+  Total non-zeros in factor = 1469
+  Total FP ops to factor    = 20423
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   6.7125958e+05   6.6909958e+05  4.33e+03  1.61e+03  1.30e+02  1.00e+00
+   1   6.7125958e+05   6.7106080e+05  2.37e+02  8.82e+01  1.21e+01  6.08e-01
+   2   6.7125958e+05   6.7121837e+05  6.05e+01  2.25e+01  2.51e+00  2.34e+00
+   3   6.7125958e+05   6.7125388e+05  1.34e+01  4.99e+00  3.45e-01  3.43e+01
+   4   6.7125958e+05   6.7125841e+05  3.77e+00  1.40e+00  7.12e-02  1.30e+02
+   5   6.7125958e+05   6.7125952e+05  2.21e-01  8.22e-02  3.83e-03  2.38e+03
+   6   6.7125958e+05   6.7125958e+05  1.11e-02  4.11e-03  1.91e-04  4.76e+04
+   7   6.7125958e+05   6.7125958e+05  5.53e-04  2.06e-04  9.59e-06  9.50e+05
+   8   6.7125958e+05   6.7125958e+05  2.77e-05  1.03e-05  4.80e-07  1.89e+07
+   9   6.7125958e+05   6.7125958e+05  1.39e-06  5.16e-07  2.40e-08  3.78e+08
+  10   6.7125958e+05   6.7125958e+05  6.94e-08  2.58e-08  1.20e-09  7.54e+09
+  11   6.7125958e+05   6.7125958e+05  3.48e-09  1.29e-09  6.15e-11  1.49e+11
+  12   6.7125958e+05   6.7125958e+05  1.75e-10  6.46e-11  3.08e-12  2.98e+12
+Barrier time = 0.00 sec. (1.54 ticks)
+
+Primal crossover.
+  Primal:  Fixing 1 variable.
+        0 PMoves:  Infeasibility  0.00000000e+00  Objective  6.71259583e+05
+  Primal:  Pushed 1, exchanged 0.
+  Dual:  Fixing 1 variable.
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective  6.71259583e+05
+  Dual:  Pushed 1, exchanged 0.
+Using devex.
+Total crossover time = 0.00 sec. (1.12 ticks)
+
+Total time on 1 threads = 0.00 sec. (4.68 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 4.68 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:       671259.582708    (6200 iterations, 518 nodes)
+Final Solve:        671259.582708    (0 iterations)
+
+Best possible:      670651.186119
+Absolute gap:          608.396588
+Relative gap:            0.000906
+
+--- Restarting execution
+--- tspmod.gms(107) 2 Mb
+--- Reading solution for model tsp
+--- Executing after solve: elapsed 0:00:02.048
+--- tspmod.gms(130) 4 Mb
+*** Status: Normal completion
+--- Job tspmod.gms Stop 06/29/20 15:23:43 elapsed 0:00:02.058

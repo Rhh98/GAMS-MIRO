@@ -1,4 +1,4 @@
---- Job HarryPotter.gms Start 06/29/20 02:27:03 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job HarryPotter.gms Start 06/30/20 15:19:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -13,7 +13,7 @@
     GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
     LstTitleLeftAligned 1
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 20 days ago
+*** License has expired 21 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           E:\31.1\gamslice.txt
@@ -27,7 +27,7 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 ---   401 rows  502 columns  21,101 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(88) 6 Mb
---- Executing CONOPT: elapsed 0:00:00.077
+--- Executing CONOPT: elapsed 0:00:00.074
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -58,14 +58,14 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(88) 2 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:00.235
+--- Executing after solve: elapsed 0:00:00.229
 --- HarryPotter.gms(123) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(141) 39 Mb
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(141) 37 Mb
---- Executing CONOPT: elapsed 0:00:01.141
+--- Executing CONOPT: elapsed 0:00:01.149
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -84,17 +84,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.693112333
+ ** Feasible solution. Value of objective =    108.705411012
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0369311233E+02 0.0E+00     0
+      4   3        1.0870541101E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(141) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:01.436
+--- Executing after solve: elapsed 0:00:01.446
 --- HarryPotter.gms(148) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(150) 39 Mb
@@ -102,7 +102,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(150) 37 Mb
---- Executing CONOPT: elapsed 0:00:01.460
+--- Executing CONOPT: elapsed 0:00:01.468
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -121,17 +121,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.697097018
+ ** Feasible solution. Value of objective =    108.709395696
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0369709702E+02 0.0E+00     0
+      4   3        1.0870939570E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(150) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:01.759
+--- Executing after solve: elapsed 0:00:01.768
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -139,7 +139,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:01.784
+--- Executing CONOPT: elapsed 0:00:01.791
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -158,17 +158,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.697097018
+ ** Feasible solution. Value of objective =    108.709395696
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0369709702E+02 0.0E+00     0
+      4   3        1.0870939570E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:02.082
+--- Executing after solve: elapsed 0:00:02.088
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -176,7 +176,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:02.141
+--- Executing CONOPT: elapsed 0:00:02.145
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -206,7 +206,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:02.480
+--- Executing after solve: elapsed 0:00:02.474
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -214,7 +214,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:02.501
+--- Executing CONOPT: elapsed 0:00:02.498
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -233,17 +233,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.707703399
+ ** Feasible solution. Value of objective =    108.714263110
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0370770340E+02 0.0E+00     0
+      4   3        1.0871426311E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:02.808
+--- Executing after solve: elapsed 0:00:02.804
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -251,7 +251,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:02.866
+--- Executing CONOPT: elapsed 0:00:02.860
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -280,7 +280,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:03.180
+--- Executing after solve: elapsed 0:00:03.171
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -288,7 +288,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:03.202
+--- Executing CONOPT: elapsed 0:00:03.194
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -307,17 +307,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.707703399
+ ** Feasible solution. Value of objective =    108.714263110
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0370770340E+02 0.0E+00     0
+      4   3        1.0871426311E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:03.525
+--- Executing after solve: elapsed 0:00:03.501
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -325,7 +325,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:03.583
+--- Executing CONOPT: elapsed 0:00:03.558
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -354,7 +354,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:03.904
+--- Executing after solve: elapsed 0:00:03.872
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -362,7 +362,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:03.927
+--- Executing CONOPT: elapsed 0:00:03.894
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -381,17 +381,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.706218044
+ ** Feasible solution. Value of objective =    108.712777754
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0370621804E+02 0.0E+00     0
+      4   3        1.0871277775E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:04.237
+--- Executing after solve: elapsed 0:00:04.195
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -399,7 +399,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:04.295
+--- Executing CONOPT: elapsed 0:00:04.251
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -429,7 +429,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:04.651
+--- Executing after solve: elapsed 0:00:04.594
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -437,7 +437,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:04.671
+--- Executing CONOPT: elapsed 0:00:04.615
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -456,17 +456,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    107.738271062
+ ** Feasible solution. Value of objective =    122.330732894
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0773827106E+02 0.0E+00     0
+      4   3        1.2233073289E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:04.981
+--- Executing after solve: elapsed 0:00:04.918
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -474,7 +474,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:05.055
+--- Executing CONOPT: elapsed 0:00:04.974
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -503,7 +503,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:05.384
+--- Executing after solve: elapsed 0:00:05.290
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -511,7 +511,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:05.405
+--- Executing CONOPT: elapsed 0:00:05.313
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -530,17 +530,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    107.737646062
+ ** Feasible solution. Value of objective =    122.330107894
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0773764606E+02 0.0E+00     0
+      4   3        1.2233010789E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:05.722
+--- Executing after solve: elapsed 0:00:05.614
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -548,7 +548,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:05.781
+--- Executing CONOPT: elapsed 0:00:05.672
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -577,7 +577,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:06.104
+--- Executing after solve: elapsed 0:00:05.985
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -585,7 +585,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:06.126
+--- Executing CONOPT: elapsed 0:00:06.007
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -596,7 +596,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        3.1250000001E-04 (Input point)
+      0   0        3.1249999999E-04 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -604,17 +604,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    107.737190101
+ ** Feasible solution. Value of objective =    122.329651933
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.0773719010E+02 0.0E+00     0
+      4   3        1.2232965193E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:06.430
+--- Executing after solve: elapsed 0:00:06.319
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -622,7 +622,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:06.485
+--- Executing CONOPT: elapsed 0:00:06.375
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -652,7 +652,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:06.849
+--- Executing after solve: elapsed 0:00:06.734
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -660,7 +660,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:06.872
+--- Executing CONOPT: elapsed 0:00:06.754
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -679,17 +679,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    115.768020276
+ ** Feasible solution. Value of objective =    137.895478207
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.1576802028E+02 0.0E+00     0
+      4   3        1.3789547821E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:07.181
+--- Executing after solve: elapsed 0:00:07.057
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -697,7 +697,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:07.244
+--- Executing CONOPT: elapsed 0:00:07.113
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -727,7 +727,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:07.586
+--- Executing after solve: elapsed 0:00:07.474
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -735,7 +735,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:07.608
+--- Executing CONOPT: elapsed 0:00:07.494
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -754,17 +754,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320199811
+ ** Feasible solution. Value of objective =    155.433783212
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532019981E+02 0.0E+00     0
+      4   3        1.5543378321E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:07.910
+--- Executing after solve: elapsed 0:00:07.798
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -772,7 +772,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:07.967
+--- Executing CONOPT: elapsed 0:00:07.858
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -801,7 +801,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:08.294
+--- Executing after solve: elapsed 0:00:08.176
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -809,7 +809,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:08.316
+--- Executing CONOPT: elapsed 0:00:08.197
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -820,7 +820,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        7.8125000002E-05 (Input point)
+      0   0        7.8124999987E-05 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -828,17 +828,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320121686
+ ** Feasible solution. Value of objective =    155.433705087
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532012169E+02 0.0E+00     0
+      4   3        1.5543370509E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:08.625
+--- Executing after solve: elapsed 0:00:08.501
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -846,7 +846,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:08.689
+--- Executing CONOPT: elapsed 0:00:08.559
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -875,7 +875,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:09.055
+--- Executing after solve: elapsed 0:00:08.884
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -883,7 +883,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:09.077
+--- Executing CONOPT: elapsed 0:00:08.906
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -894,7 +894,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        3.9062499994E-05 (Input point)
+      0   0        3.9062500008E-05 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -902,17 +902,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320082623
+ ** Feasible solution. Value of objective =    155.433666025
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532008262E+02 0.0E+00     0
+      4   3        1.5543366602E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:09.384
+--- Executing after solve: elapsed 0:00:09.237
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -920,7 +920,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:09.451
+--- Executing CONOPT: elapsed 0:00:09.292
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -949,7 +949,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:09.772
+--- Executing after solve: elapsed 0:00:09.613
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -957,7 +957,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:09.793
+--- Executing CONOPT: elapsed 0:00:09.635
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -968,7 +968,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        1.9531250004E-05 (Input point)
+      0   0        1.9531249990E-05 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -976,17 +976,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320063092
+ ** Feasible solution. Value of objective =    155.433646494
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532006309E+02 0.0E+00     0
+      4   3        1.5543364649E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:10.098
+--- Executing after solve: elapsed 0:00:09.939
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -994,7 +994,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:10.156
+--- Executing CONOPT: elapsed 0:00:09.998
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1023,7 +1023,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:10.478
+--- Executing after solve: elapsed 0:00:10.329
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1031,7 +1031,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:10.500
+--- Executing CONOPT: elapsed 0:00:10.351
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1042,7 +1042,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        9.7656249949E-06 (Input point)
+      0   0        9.7656250091E-06 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1050,17 +1050,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320053326
+ ** Feasible solution. Value of objective =    155.433636728
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532005333E+02 0.0E+00     0
+      4   3        1.5543363673E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:10.801
+--- Executing after solve: elapsed 0:00:10.656
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1068,7 +1068,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:10.866
+--- Executing CONOPT: elapsed 0:00:10.712
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1097,7 +1097,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:11.191
+--- Executing after solve: elapsed 0:00:11.031
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1105,7 +1105,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:11.213
+--- Executing CONOPT: elapsed 0:00:11.060
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1124,17 +1124,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320048444
+ ** Feasible solution. Value of objective =    155.433631845
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004844E+02 0.0E+00     0
+      4   3        1.5543363185E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:11.517
+--- Executing after solve: elapsed 0:00:11.362
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1142,7 +1142,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:11.573
+--- Executing CONOPT: elapsed 0:00:11.418
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1171,7 +1171,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:11.920
+--- Executing after solve: elapsed 0:00:11.739
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1179,7 +1179,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:11.943
+--- Executing CONOPT: elapsed 0:00:11.761
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1198,17 +1198,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320046002
+ ** Feasible solution. Value of objective =    155.433629404
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004600E+02 0.0E+00     0
+      4   3        1.5543362940E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:12.246
+--- Executing after solve: elapsed 0:00:12.063
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1216,7 +1216,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:12.304
+--- Executing CONOPT: elapsed 0:00:12.119
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1245,7 +1245,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:12.629
+--- Executing after solve: elapsed 0:00:12.446
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1253,7 +1253,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:12.651
+--- Executing CONOPT: elapsed 0:00:12.469
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1272,17 +1272,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320044782
+ ** Feasible solution. Value of objective =    155.433628183
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004478E+02 0.0E+00     0
+      4   3        1.5543362818E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:12.983
+--- Executing after solve: elapsed 0:00:12.773
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1290,7 +1290,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:13.050
+--- Executing CONOPT: elapsed 0:00:12.830
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1319,7 +1319,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:13.361
+--- Executing after solve: elapsed 0:00:13.156
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1327,7 +1327,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:13.385
+--- Executing CONOPT: elapsed 0:00:13.178
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1338,7 +1338,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        6.1035156307E-07 (Input point)
+      0   0        6.1035154886E-07 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1346,17 +1346,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320044171
+ ** Feasible solution. Value of objective =    155.433627573
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004417E+02 0.0E+00     0
+      4   3        1.5543362757E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:13.693
+--- Executing after solve: elapsed 0:00:13.483
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1364,7 +1364,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:13.747
+--- Executing CONOPT: elapsed 0:00:13.540
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1393,7 +1393,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:14.067
+--- Executing after solve: elapsed 0:00:13.863
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1401,7 +1401,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:14.087
+--- Executing CONOPT: elapsed 0:00:13.889
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1412,7 +1412,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        3.0517577443E-07 (Input point)
+      0   0        3.0517580285E-07 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1420,17 +1420,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043866
+ ** Feasible solution. Value of objective =    155.433627268
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004387E+02 0.0E+00     0
+      4   3        1.5543362727E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:14.391
+--- Executing after solve: elapsed 0:00:14.196
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1438,7 +1438,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:14.447
+--- Executing CONOPT: elapsed 0:00:14.252
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1467,7 +1467,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:14.771
+--- Executing after solve: elapsed 0:00:14.570
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1475,7 +1475,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:14.800
+--- Executing CONOPT: elapsed 0:00:14.595
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1494,17 +1494,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043713
+ ** Feasible solution. Value of objective =    155.433627115
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004371E+02 0.0E+00     0
+      4   3        1.5543362711E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:15.114
+--- Executing after solve: elapsed 0:00:14.905
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1512,7 +1512,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:15.174
+--- Executing CONOPT: elapsed 0:00:14.960
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1541,7 +1541,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:15.493
+--- Executing after solve: elapsed 0:00:15.280
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1549,7 +1549,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:15.517
+--- Executing CONOPT: elapsed 0:00:15.302
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1560,7 +1560,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        7.6293943607E-08 (Input point)
+      0   0        7.6293929396E-08 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1568,17 +1568,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043637
+ ** Feasible solution. Value of objective =    155.433627039
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004364E+02 0.0E+00     0
+      4   3        1.5543362704E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:15.827
+--- Executing after solve: elapsed 0:00:15.610
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1586,7 +1586,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:15.884
+--- Executing CONOPT: elapsed 0:00:15.668
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1615,7 +1615,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:16.198
+--- Executing after solve: elapsed 0:00:16.008
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1623,7 +1623,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:16.220
+--- Executing CONOPT: elapsed 0:00:16.029
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1634,7 +1634,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        3.8146978909E-08 (Input point)
+      0   0        3.8146964698E-08 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1642,17 +1642,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043599
+ ** Feasible solution. Value of objective =    155.433627001
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004360E+02 0.0E+00     0
+      4   3        1.5543362700E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:16.539
+--- Executing after solve: elapsed 0:00:16.333
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1660,7 +1660,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:16.603
+--- Executing CONOPT: elapsed 0:00:16.389
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1689,7 +1689,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:16.924
+--- Executing after solve: elapsed 0:00:16.703
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1697,7 +1697,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:16.944
+--- Executing CONOPT: elapsed 0:00:16.724
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1708,7 +1708,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        1.9073482349E-08 (Input point)
+      0   0        1.9073496560E-08 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1716,17 +1716,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043580
+ ** Feasible solution. Value of objective =    155.433626981
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004358E+02 0.0E+00     0
+      4   3        1.5543362698E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:17.252
+--- Executing after solve: elapsed 0:00:17.063
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1734,7 +1734,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:17.308
+--- Executing CONOPT: elapsed 0:00:17.124
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1763,7 +1763,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:17.625
+--- Executing after solve: elapsed 0:00:17.441
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1771,7 +1771,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:17.647
+--- Executing CONOPT: elapsed 0:00:17.462
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1782,7 +1782,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        9.5367482800E-09 (Input point)
+      0   0        9.5367340691E-09 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1790,17 +1790,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043570
+ ** Feasible solution. Value of objective =    155.433626972
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004357E+02 0.0E+00     0
+      4   3        1.5543362697E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:17.966
+--- Executing after solve: elapsed 0:00:17.770
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1808,7 +1808,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:18.028
+--- Executing CONOPT: elapsed 0:00:17.829
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1837,7 +1837,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:18.348
+--- Executing after solve: elapsed 0:00:18.205
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1845,7 +1845,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:18.369
+--- Executing CONOPT: elapsed 0:00:18.225
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1856,7 +1856,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        4.7683670346E-09 (Input point)
+      0   0        4.7683954563E-09 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -1864,17 +1864,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043566
+ ** Feasible solution. Value of objective =    155.433626967
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004357E+02 0.0E+00     0
+      4   3        1.5543362697E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:18.673
+--- Executing after solve: elapsed 0:00:18.545
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1882,7 +1882,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:18.731
+--- Executing CONOPT: elapsed 0:00:18.607
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1911,7 +1911,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:19.048
+--- Executing after solve: elapsed 0:00:18.917
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1919,7 +1919,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:19.074
+--- Executing CONOPT: elapsed 0:00:18.939
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1938,17 +1938,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043563
+ ** Feasible solution. Value of objective =    155.433626965
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:19.422
+--- Executing after solve: elapsed 0:00:19.282
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -1956,7 +1956,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:19.488
+--- Executing CONOPT: elapsed 0:00:19.344
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -1985,7 +1985,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:19.803
+--- Executing after solve: elapsed 0:00:19.668
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -1993,7 +1993,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:19.823
+--- Executing CONOPT: elapsed 0:00:19.690
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2012,17 +2012,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043562
+ ** Feasible solution. Value of objective =    155.433626964
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:20.147
+--- Executing after solve: elapsed 0:00:19.994
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2030,7 +2030,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:20.206
+--- Executing CONOPT: elapsed 0:00:20.050
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2059,7 +2059,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:20.521
+--- Executing after solve: elapsed 0:00:20.393
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2067,7 +2067,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:20.542
+--- Executing CONOPT: elapsed 0:00:20.419
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2078,7 +2078,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        5.9604587932E-10 (Input point)
+      0   0        5.9603166847E-10 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2086,17 +2086,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626963
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:20.848
+--- Executing after solve: elapsed 0:00:20.720
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2104,7 +2104,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:20.907
+--- Executing CONOPT: elapsed 0:00:20.778
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2133,7 +2133,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:21.223
+--- Executing after solve: elapsed 0:00:21.097
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2141,7 +2141,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:21.243
+--- Executing CONOPT: elapsed 0:00:21.118
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2160,17 +2160,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626963
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:21.551
+--- Executing after solve: elapsed 0:00:21.432
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2178,7 +2178,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:21.609
+--- Executing CONOPT: elapsed 0:00:21.505
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2207,7 +2207,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:21.930
+--- Executing after solve: elapsed 0:00:21.821
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2215,7 +2215,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:21.951
+--- Executing CONOPT: elapsed 0:00:21.842
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2234,17 +2234,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626963
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:22.256
+--- Executing after solve: elapsed 0:00:22.149
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2252,7 +2252,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:22.314
+--- Executing CONOPT: elapsed 0:00:22.206
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2281,7 +2281,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:22.632
+--- Executing after solve: elapsed 0:00:22.553
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2289,7 +2289,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:22.652
+--- Executing CONOPT: elapsed 0:00:22.578
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2300,7 +2300,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        7.4507511272E-11 (Input point)
+      0   0        7.4493300417E-11 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2308,17 +2308,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:22.956
+--- Executing after solve: elapsed 0:00:22.881
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2326,7 +2326,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:23.020
+--- Executing CONOPT: elapsed 0:00:22.940
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2355,7 +2355,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:23.341
+--- Executing after solve: elapsed 0:00:23.280
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2363,7 +2363,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:23.360
+--- Executing CONOPT: elapsed 0:00:23.306
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2374,7 +2374,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        3.7246650209E-11 (Input point)
+      0   0        3.7260861063E-11 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2382,17 +2382,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:23.666
+--- Executing after solve: elapsed 0:00:23.660
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2400,7 +2400,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:23.723
+--- Executing CONOPT: elapsed 0:00:23.719
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2429,7 +2429,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:24.055
+--- Executing after solve: elapsed 0:00:24.035
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2437,7 +2437,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:24.078
+--- Executing CONOPT: elapsed 0:00:24.059
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2448,7 +2448,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        1.8630430532E-11 (Input point)
+      0   0        1.8616219677E-11 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2456,17 +2456,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:24.382
+--- Executing after solve: elapsed 0:00:24.363
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2474,7 +2474,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:24.448
+--- Executing CONOPT: elapsed 0:00:24.418
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2503,7 +2503,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:24.761
+--- Executing after solve: elapsed 0:00:24.751
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2511,7 +2511,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:24.783
+--- Executing CONOPT: elapsed 0:00:24.777
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2522,7 +2522,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        9.3081098385E-12 (Input point)
+      0   0        9.3223206932E-12 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2530,17 +2530,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:25.089
+--- Executing after solve: elapsed 0:00:25.082
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2548,7 +2548,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:25.148
+--- Executing CONOPT: elapsed 0:00:25.139
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2577,7 +2577,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:25.473
+--- Executing after solve: elapsed 0:00:25.451
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2585,7 +2585,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:25.493
+--- Executing CONOPT: elapsed 0:00:25.473
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2604,17 +2604,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:25.801
+--- Executing after solve: elapsed 0:00:25.791
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2622,7 +2622,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:25.860
+--- Executing CONOPT: elapsed 0:00:25.850
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2651,7 +2651,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:26.178
+--- Executing after solve: elapsed 0:00:26.160
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2659,7 +2659,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:26.199
+--- Executing CONOPT: elapsed 0:00:26.180
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2678,17 +2678,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:26.505
+--- Executing after solve: elapsed 0:00:26.482
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2696,7 +2696,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:26.562
+--- Executing CONOPT: elapsed 0:00:26.541
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2725,7 +2725,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:26.881
+--- Executing after solve: elapsed 0:00:26.873
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2733,7 +2733,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:26.901
+--- Executing CONOPT: elapsed 0:00:26.902
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2752,17 +2752,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:27.210
+--- Executing after solve: elapsed 0:00:27.201
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2770,7 +2770,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:27.269
+--- Executing CONOPT: elapsed 0:00:27.257
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2799,7 +2799,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:27.584
+--- Executing after solve: elapsed 0:00:27.580
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2807,7 +2807,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:27.604
+--- Executing CONOPT: elapsed 0:00:27.605
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2818,7 +2818,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        5.8264504332E-13 (Input point)
+      0   0        5.6843418861E-13 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2826,17 +2826,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:27.911
+--- Executing after solve: elapsed 0:00:27.921
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2844,7 +2844,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:27.968
+--- Executing CONOPT: elapsed 0:00:27.976
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2873,7 +2873,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:28.280
+--- Executing after solve: elapsed 0:00:28.290
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2881,7 +2881,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:28.300
+--- Executing CONOPT: elapsed 0:00:28.311
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2892,7 +2892,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        2.8421709430E-13 (Input point)
+      0   0        3.1263880373E-13 (Input point)
  
                    Pre-triangular equations:   4
                    Post-triangular equations:  1
@@ -2900,17 +2900,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:28.608
+--- Executing after solve: elapsed 0:00:28.617
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2918,7 +2918,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:28.666
+--- Executing CONOPT: elapsed 0:00:28.675
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2947,7 +2947,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:28.983
+--- Executing after solve: elapsed 0:00:28.997
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -2955,7 +2955,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:29.004
+--- Executing CONOPT: elapsed 0:00:29.019
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -2974,17 +2974,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:29.317
+--- Executing after solve: elapsed 0:00:29.347
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -2992,7 +2992,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:29.376
+--- Executing CONOPT: elapsed 0:00:29.406
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -3021,7 +3021,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:29.708
+--- Executing after solve: elapsed 0:00:29.718
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_duti
 --- HarryPotter.gms(157) 39 Mb
@@ -3029,7 +3029,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   5 rows  105 columns  109 non-zeroes
 ---   76 nl-code  2 nl-non-zeroes
 --- HarryPotter.gms(157) 37 Mb
---- Executing CONOPT: elapsed 0:00:29.729
+--- Executing CONOPT: elapsed 0:00:29.740
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -3048,17 +3048,17 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    125.320043561
+ ** Feasible solution. Value of objective =    155.433626962
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      4   3        1.2532004356E+02 0.0E+00     0
+      4   3        1.5543362696E+02 0.0E+00     0
  
  ** Optimal solution. There are no superbasic variables.
  
 --- Restarting execution
 --- HarryPotter.gms(157) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:30.026
+--- Executing after solve: elapsed 0:00:30.057
 --- HarryPotter.gms(154) 37 Mb
 --- Generating DNLP model Kernel_train
 --- HarryPotter.gms(158) 40 Mb
@@ -3066,7 +3066,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 ---   401 rows  502 columns  21,001 non-zeroes
 ---   47,503 nl-code  300 nl-non-zeroes
 --- HarryPotter.gms(158) 38 Mb
---- Executing CONOPT: elapsed 0:00:30.083
+--- Executing CONOPT: elapsed 0:00:30.120
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -3095,8 +3095,8 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter.gms(158) 36 Mb
 --- Reading solution for model Kernel_train
---- Executing after solve: elapsed 0:00:30.405
+--- Executing after solve: elapsed 0:00:30.438
 --- HarryPotter.gms(154) 37 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
 *** Status: Normal completion
---- Job HarryPotter.gms Stop 06/29/20 02:27:34 elapsed 0:00:30.514
+--- Job HarryPotter.gms Stop 06/30/20 15:19:37 elapsed 0:00:30.539

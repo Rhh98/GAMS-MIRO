@@ -1,20 +1,22 @@
---- Job tspmod.gms Start 06/26/20 23:57:21 30.2.0 r482c588 WEX-WEI x86 64bit/MS Windows
+--- Job tspmod.gms Start 06/29/20 15:23:49 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
     PageSize 0
     ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\
-    SysDir E:\30.2\
+    SysDir E:\31.1\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
     IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\res.gdx
     LstTitleLeftAligned 1
-    IDCGenerateJSON conf_tspmod/tspmod_io.json
-    IDCGenerateGDX data_tspmod/default.gdx
-GAMS 30.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 17 days ago
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 20 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- tspmod.gms(5) 2 Mb
@@ -22,16 +24,18 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 --- tspmod.gms(13) 3 Mb
 --- . capitals.csv(51) 3 Mb
 --- tspmod.gms(78) 3 Mb
---- Starting execution: elapsed 0:00:00.009
+--- Starting execution: elapsed 0:00:00.008
 --- tspmod.gms(106) 4 Mb
 --- Generating MIP model tsp
 --- tspmod.gms(107) 5 Mb
 ---   2,403 rows  2,450 columns  13,922 non-zeroes
 ---   2,352 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.103
-IBM ILOG CPLEX   30.2.0 r482c588 Released Feb 07, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.099
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
+
 Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
 >>  lpmethod 4
 Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
@@ -55,7 +59,7 @@ Tried aggregator 1 time.
 MIP Presolve eliminated 49 rows and 50 columns.
 Reduced MIP has 2354 rows, 2400 columns, and 11472 nonzeros.
 Reduced MIP has 2352 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.01 sec. (5.91 ticks)
+Presolve time = 0.02 sec. (5.91 ticks)
 Found incumbent of value 689480.496335 after 0.03 sec. (15.96 ticks)
 Probing time = 0.00 sec. (3.25 ticks)
 Tried aggregator 1 time.
@@ -63,7 +67,7 @@ Detecting symmetries...
 Reduced MIP has 2354 rows, 2400 columns, and 11472 nonzeros.
 Reduced MIP has 2352 binaries, 0 generals, 0 SOSs, and 0 indicators.
 Presolve time = 0.02 sec. (7.50 ticks)
-Probing time = 0.01 sec. (3.25 ticks)
+Probing time = 0.00 sec. (3.25 ticks)
 Clique table members: 1181.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -72,17 +76,20 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (1.42 ticks)
 Initializing dual steep norms . . .
+
 Iteration log . . .
 Iteration:     1   Dual objective     =        480721.770404
 Iteration:   180   Dual objective     =        660825.289795
 Iteration:   377   Dual objective     =        668604.513549
 Iteration:   556   Dual objective     =        670622.576376
 Iteration:   618   Dual objective     =        670634.827705
-Root relaxation solution time = 0.02 sec. (18.39 ticks)
+Root relaxation solution time = 0.03 sec. (18.39 ticks)
+
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
 *     0+    0                       689480.4963        0.0000           100.00%
-Found incumbent of value 689480.496335 after 0.08 sec. (56.03 ticks)
+Found incumbent of value 689480.496335 after 0.09 sec. (56.03 ticks)
       0     0   670635.1936    47   689480.4963   670635.1936      654    2.73%
       0     0   670646.2062    47   689480.4963     Cuts: 103      743    2.73%
       0     0   670648.2575    47   689480.4963     Cuts: 128      789    2.73%
@@ -91,36 +98,37 @@ Found incumbent of value 689480.496335 after 0.08 sec. (56.03 ticks)
       0     0   670650.3762    47   689480.4963      Cuts: 30      877    2.73%
 Detecting symmetries...
 *     0+    0                       675354.3288   670650.3762             0.70%
-Found incumbent of value 675354.328754 after 0.56 sec. (404.12 ticks)
+Found incumbent of value 675354.328754 after 0.61 sec. (404.12 ticks)
 *     0+    0                       673209.3353   670650.3762             0.38%
-Found incumbent of value 673209.335285 after 0.58 sec. (423.99 ticks)
+Found incumbent of value 673209.335285 after 0.63 sec. (423.99 ticks)
 *     0+    0                       673168.3364   670650.3762             0.37%
-Found incumbent of value 673168.336360 after 0.59 sec. (431.06 ticks)
+Found incumbent of value 673168.336360 after 0.64 sec. (431.06 ticks)
 *     0+    0                       672406.5075   670650.3762             0.26%
-Found incumbent of value 672406.507527 after 0.64 sec. (464.40 ticks)
+Found incumbent of value 672406.507527 after 0.69 sec. (464.40 ticks)
       0     0  -1.00000e+75     0   672406.5075   670650.3762      877    0.26%
 Detecting symmetries...
       0     2   670650.3762    51   672406.5075   670650.3776      877    0.26%
-Elapsed time = 0.64 sec. (467.92 ticks, tree = 0.01 MB, solutions = 5)
+Elapsed time = 0.69 sec. (467.92 ticks, tree = 0.01 MB, solutions = 5)
 *   109    88      integral     0   672285.3029   670650.6120     1921    0.24%
-Found incumbent of value 672285.302882 after 0.83 sec. (657.13 ticks)
+Found incumbent of value 672285.302882 after 0.91 sec. (657.13 ticks)
     129   108   670659.9020    47   672285.3029   670650.6215     2273    0.24%
                                                       Cuts: 6                  
 *   209+  173                       672259.4157   670650.6215             0.24%
-Found incumbent of value 672259.415724 after 1.05 sec. (857.90 ticks)
+Found incumbent of value 672259.415724 after 1.16 sec. (857.90 ticks)
 *   240+  203                       672046.7712   670650.6215             0.21%
-Found incumbent of value 672046.771239 after 1.09 sec. (907.98 ticks)
+Found incumbent of value 672046.771239 after 1.20 sec. (907.98 ticks)
     271   229   671817.7025    10   672046.7712   670650.6215     3716    0.21%
 *   275   228      integral     0   671928.5052   670650.6215     3737    0.19%
-Found incumbent of value 671928.505193 after 1.14 sec. (951.72 ticks)
+Found incumbent of value 671928.505193 after 1.25 sec. (951.72 ticks)
 *   375+  309                       671342.6675   670650.6985             0.10%
                                                   Impl Bds: 1                  
-Found incumbent of value 671342.667488 after 1.31 sec. (1116.46 ticks)
+Found incumbent of value 671342.667488 after 1.44 sec. (1116.46 ticks)
     410   342   670710.4865    29   671342.6675   670651.1005     5265    0.10%
                                                   Impl Bds: 1                  
 *   518+  416                       671259.5827   670651.1861             0.09%
                                                   Impl Bds: 2                  
-Found incumbent of value 671259.582708 after 1.55 sec. (1336.54 ticks)
+Found incumbent of value 671259.582708 after 1.70 sec. (1336.54 ticks)
+
 Clique cuts applied:  5
 Cover cuts applied:  2
 Implied bound cuts applied:  10
@@ -129,14 +137,15 @@ Mixed integer rounding cuts applied:  19
 Zero-half cuts applied:  2
 Multi commodity flow cuts applied:  1
 Gomory fractional cuts applied:  7
+
 Root node processing (before b&c):
-  Real time             =    0.64 sec. (468.09 ticks)
+  Real time             =    0.69 sec. (468.09 ticks)
 Sequential b&c:
-  Real time             =    0.91 sec. (869.75 ticks)
+  Real time             =    1.02 sec. (869.75 ticks)
                           ------------
-Total (root+branch&cut) =    1.55 sec. (1337.84 ticks)
+Total (root+branch&cut) =    1.70 sec. (1337.84 ticks)
 MIP status(102): integer optimal, tolerance
-Cplex Time: 1.55sec (det. 1337.84 ticks)
+Cplex Time: 1.70sec (det. 1337.84 ticks)
 Fixing integer variables, and solving final LP...
 Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
 CPXPARAM_Advance                                 2
@@ -156,7 +165,9 @@ Aggregator did 2 substitutions.
 Reduced LP has 130 rows, 46 columns, and 260 nonzeros.
 Presolve time = 0.00 sec. (1.94 ticks)
 Parallel mode: none, using 1 thread for barrier
+
 ***NOTE: Found 2 dense columns.
+
 Number of nonzeros in lower triangle of A*A' = 254
 Using Approximate Minimum Degree ordering
 Total time for automatic ordering = 0.00 sec. (0.02 ticks)
@@ -179,7 +190,8 @@ Summary statistics for Cholesky factor:
   10   6.7125958e+05   6.7125958e+05  6.94e-08  2.58e-08  1.20e-09  7.54e+09
   11   6.7125958e+05   6.7125958e+05  3.48e-09  1.29e-09  6.15e-11  1.49e+11
   12   6.7125958e+05   6.7125958e+05  1.75e-10  6.46e-11  3.08e-12  2.98e+12
-Barrier time = 0.01 sec. (1.54 ticks)
+Barrier time = 0.00 sec. (1.54 ticks)
+
 Primal crossover.
   Primal:  Fixing 1 variable.
         0 PMoves:  Infeasibility  0.00000000e+00  Objective  6.71259583e+05
@@ -188,91 +200,26 @@ Primal crossover.
         0 DMoves:  Infeasibility  0.00000000e+00  Objective  6.71259583e+05
   Dual:  Pushed 1, exchanged 0.
 Using devex.
-Total crossover time = 0.00 sec. (1.12 ticks)
+Total crossover time = 0.01 sec. (1.12 ticks)
+
 Total time on 1 threads = 0.01 sec. (4.68 ticks)
 Fixed MIP status(1): optimal
 Cplex Time: 0.01sec (det. 4.68 ticks)
+
 Solution satisfies tolerances.
+
 MIP Solution:       671259.582708    (6200 iterations, 518 nodes)
 Final Solve:        671259.582708    (0 iterations)
+
 Best possible:      670651.186119
 Absolute gap:          608.396588
 Relative gap:            0.000906
+
 --- Restarting execution
 --- tspmod.gms(107) 2 Mb
 --- Reading solution for model tsp
---- Executing after solve: elapsed 0:00:01.798
+--- Executing after solve: elapsed 0:00:02.013
 --- tspmod.gms(130) 4 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\data_tspmod/default.gdx
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\res.gdx
 *** Status: Normal completion
---- Job tspmod.gms Stop 06/26/20 23:57:23 elapsed 0:00:01.817
-Warning in eval(ei, envir) :
-  The alias of symbol: 'stateinfo' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'tour' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-26 23:57:27] Logging facility initialised.
-DEBUG [2020-06-26 23:57:27] Database connection established.
-DEBUG [2020-06-26 23:57:27] Access Control initialised.
-WARN [2020-06-26 23:57:27] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-06-26 23:57:27] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-06-26 23:57:28] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:57:28] Db: 2552 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-06-26 23:57:28] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
-DEBUG [2020-06-26 23:57:28] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-06-26 23:57:28] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
-DEBUG [2020-06-26 23:57:28] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-06-26 23:57:28] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
-DEBUG [2020-06-26 23:57:28] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:57:28] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-06-26 23:57:28] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-26 23:57:30] Scenario: '1' unlocked.
-DEBUG [2020-06-26 23:57:30] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
-INFO [2020-06-26 23:57:33] Session started (model: 'tspmod', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp').
-DEBUG [2020-06-26 23:57:33] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp'.
-DEBUG [2020-06-26 23:57:33] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:57:33] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-26 23:57:34] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-06-26 23:57:35] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-26 23:57:39] Solve button clicked (model: 'tspmod').
-TRACE [2020-06-26 23:57:39] Dataset: cityinfo saved in dataTmp.
-DEBUG [2020-06-26 23:57:39] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-06-26 23:57:41] GAMS model was not solved successfully (model: 'tspmod'). Model status: Run did not terminate successfully: There was a compilation error.
-DEBUG [2020-06-26 23:57:41] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-26 23:57:42] Solve button clicked (model: 'tspmod').
-TRACE [2020-06-26 23:57:43] Dataset: cityinfo saved in dataTmp.
-DEBUG [2020-06-26 23:57:43] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-06-26 23:57:44] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-06-26 23:57:45] GAMS model was not solved successfully (model: 'tspmod'). Model status: Run did not terminate successfully: There was a compilation error.
-DEBUG [2020-06-26 23:57:45] hasee: Import input data button clicked.
-DEBUG [2020-06-26 23:57:45] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Confirm load scenario button clicked.
-DEBUG [2020-06-26 23:57:51] Loading and rendering scenarios: '2'.
-DEBUG [2020-06-26 23:57:51] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Db: A table named: '_sys_scripts_tspmod' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Scenario: 'New Scenario' closed.
-DEBUG [2020-06-26 23:57:51] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:57:51] Db: hasee: Lock was added for scenario: '2' (Scenario.lock).
-DEBUG [2020-06-26 23:57:51] Scenario: '2' was loaded into UI
-DEBUG [2020-06-26 23:57:55] hasee: Import input data button clicked.
-DEBUG [2020-06-26 23:57:55] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:58:00] Confirm load scenario button clicked.
-DEBUG [2020-06-26 23:58:01] Overwrite scenario button clicked.
-DEBUG [2020-06-26 23:58:02] Loading and rendering scenarios: '1'.
-DEBUG [2020-06-26 23:58:02] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
-DEBUG [2020-06-26 23:58:02] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
-DEBUG [2020-06-26 23:58:02] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
-DEBUG [2020-06-26 23:58:02] Db: A table named: '_sys_scripts_tspmod' does not exist in the database (Db.importDataset).
-DEBUG [2020-06-26 23:58:02] Scenario: '23 cities' closed.
-DEBUG [2020-06-26 23:58:02] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:58:02] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-06-26 23:58:02] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-06-26 23:58:02] Dataset: cityinfo loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-06-26 23:58:03] Scenario: '1' was loaded into UI
-DEBUG [2020-06-26 23:58:04] Sidebar menu item: 'outputData' selected.
-INFO [2020-06-26 23:58:06] Session ended (model: 'tspmod', user: 'hasee').
-
+--- Job tspmod.gms Stop 06/29/20 15:23:51 elapsed 0:00:02.042

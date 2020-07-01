@@ -1,0 +1,10 @@
+* Trace Record Definition
+* GamsSolve
+* InputFileName,ModelType,SolverName,NLP,MIP,JulianDate,Direction,NumberOfEquations,NumberOfVariables,NumberOfDiscreteVariables,NumberOfNonZeros,NumberOfNonlinearNonZeros,OptionFile,ModelStatus,SolverStatus,ObjectiveValue
+* ,ObjectiveValueEstimate,SolverTime,NumberOfIterations,NumberOfDomainViolations,NumberOfNodes,#User1
+*
+HarryPotter_emp.gms,NLP,CONOPT,CONOPT,CPLEX,44011.933,0,201,302,0,20701,20300,NA,2,1,0.18707932441201,NA,0.141,12,0,NA,#
+HarryPotter_emp.gms,NLP,CONOPT,CONOPT,CPLEX,44011.934,0,201,302,0,20701,20300,NA,2,1,0.18707932441201,NA,0.125,12,0,NA,#
+HarryPotter_emp.gms,NLP,CONOPT,CONOPT,CPLEX,44011.935,0,201,302,0,20701,20300,NA,2,1,0.18707932441201,NA,0.141,12,0,NA,#
+HarryPotter_emp.gms,NLP,CONOPT,CONOPT,CPLEX,44011.935,0,201,302,0,20701,20300,NA,2,1,0.18707932441201,NA,0.14,12,0,NA,#
+HarryPotter_emp.gms,NLP,CONOPT,CONOPT,CPLEX,44011.944,0,201,302,0,20701,20300,NA,2,1,0.18707932441201,NA,0.156,12,0,NA,#

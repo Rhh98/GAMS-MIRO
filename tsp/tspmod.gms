@@ -22,9 +22,9 @@ loop(select,count=count+1;OrderVal(select)=count;);
 
 alias(select,k)
 table  dist(i,j)  "distances" ;
-dist(i,j)=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_long')*pi/180)
-+cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_long')*pi/180)*
-cos((cityInfo(i,'l_long')-cityInfo(j,'l_lat'))*pi/180))*6371.004;
+dist(i,j)$(not sameas(i,j))=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_lat')*pi/180)
++cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_lat')*pi/180)*
+cos((cityInfo(j,'l_long')-cityInfo(i,'l_long'))*pi/180))*6371.004;
 binary variables x(i,j);
 free variable obj;
 positive variables u(i) ;

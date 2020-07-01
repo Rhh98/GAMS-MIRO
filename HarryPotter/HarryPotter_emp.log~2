@@ -1,0 +1,9 @@
+
+Warning in ..stacktraceon..({ :
+  
+Some error occurred while sourcing custom renderer file 'harrypotter_emp_custom.R'. Error message: Error in source(file.path(customRendererDir, file)): C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter/renderer_harrypotter_emp/harrypotter_emp_custom.R:51:79: unexpected input
+50:   legend(0.8,1,legend=c("Train Pos","Train Neg","Trust Pos","Trust Neg"),pch=c(3,21,3,21)
+51:           ,col=c("blue","blue","red","red"),pt.bg=c("blue","blue","red","red")\
+                                                                                  ^
+.
+No output function for custom renderer function: 'renderOutput' was found. Please make sure you define such a function.
