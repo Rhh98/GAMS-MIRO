@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["_widgets", "trust_info"]
+    "input": ["trust_info", "_widgets"]
   },
   "overwriteAliases": {
     "output1": {
@@ -8,6 +8,9 @@
     },
     "trust_info": {
       "newAlias": "Information of Trusted Item"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
     }
   },
   "pivottable": {
@@ -35,6 +38,23 @@
     }
   },
   "defaultScenName": "default",
+  "inputWidgets": {
+    "gamma": {
+      "widgetType": "slider",
+      "alias": "debug parameter",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "ticks": false,
+      "noHcube": false,
+      "default": 5
+    }
+  },
+  "readme": {
+    "tabTitle": "Readme",
+    "filename": "HarryPotter.md",
+    "enableMath": true
+  },
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -50,9 +70,5 @@
     },
     "height": 700,
     "colWidths": 150
-  },
-  "readme": {
-    "tabTitle": "Readme",
-    "filename": "HarryPotter.md"
   }
 }

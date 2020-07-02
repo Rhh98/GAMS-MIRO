@@ -98,6 +98,7 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
+scalar gamma  debug parameter /5/
 
 $offexternalInput
 parameter Trust_data(Header,aspect),Trust_label(Header);
@@ -120,7 +121,7 @@ Z(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
 display Z;
 
 
-scalar budget /100/,gamma /1/;
+scalar budget /100/;
 parameter K_tilde(Header,n);
 alias(Header,Header2);
 K_tilde(Header,n)=-sum(aspect,sqr(trust_data(Header,aspect)))-(sqr(X_Train(n,'Heritage'))+sqr(X_Train(n,'Education')))
@@ -147,18 +148,18 @@ $echo subsolver mosek>jams.opt
 Kernel_duti.optcr=1e-1;
 Kernel_duti.optfile=1;
 $offtext
-w.l(n)=1e-5;
+w.l(n)=1-1e-5;
 
 solve Kernel_duti using emp minimizing obj2;
 
 set g /g1*g40/;
 parameter ranking(n);
-ranking(n)=card(g)+1;
-gamma=1;
-scalar num /1/,
+scalar num /0/,
 threshold /0.5/;
+ranking(n)=card(g)+1;
+ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=w.l(n);
+num=sum(n$(ranking(n) ne card(g)+1) ,1);
 
-num=0;
 $ontext
 loop(g$(num < budget),
 gamma=gamma/2;

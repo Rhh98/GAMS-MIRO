@@ -88,16 +88,20 @@ $\beta$ = minimum fraction of stories chosen in first stage, $ \beta \in [0,1] $
 
 <p>
 We set the value of $v_{s}$ to follow an exponential decay pattern thus :
-\begin{eqnarray*}
+$$
+
 v_{s} = c_{s}.e^{(1+ \frac{t_{s} - t_{checkAt}}{t_{total}})}
-\end{eqnarray*}
+
+$$
 where, $c_{s}$ is a parameter following an uniform distribution.
 
 We consider only stories that are recent i.e. which satisfy the constraints  :
-\begin{eqnarray*}
+$$
+\begin{aligned}
 t_{s} \leq t_{checkAt} \\
 t_{s} \geq t_{checkAt}-t_{window} \\ 
-\end{eqnarray*}
+\end{aligned}
+$$
 </p>
 
 <hr>
@@ -113,90 +117,101 @@ $left_{stc}$ = whether story $s$ is on left of story $t$ in scenario ${c}$ or no
 $top_{stc}$ = whether story $s$ is on top of story $t$ in scenario ${c}$ or not, $\forall s \in S, \forall c \in C$ <br />
 </p>
 
-<p><b>Objective Function</b>: 
-\begin{align}
-    & \mbox{Max} \sum_{s} z_{s}.v_{s} + \sum_{c} p_{c}. \sum_{s} zc_{sc}.v_{sc} & \forall s \in S, \forall c \in C \\ 
-\end{align}
-
+<p><b>Objective Function</b>:<br/> 
+$$
+\begin{aligned}
+     \sum_{s} z_{s} \cdot v_{s} + \sum_{c} p_{c} \cdot \sum _{s} zc_{sc}.v_{sc} & \forall s \in S, \forall c \in C \\ 
+\end{aligned}
+$$
+</p>
 <p><b>Constraint Set 1</b>:  Positive variables. <br />
-\begin{align}
+$$
+\begin{aligned}
 x_{sc} \geq 0 & \forall s \in S, \forall c \in C \\
 y_{sc} \geq 0 & \forall s \in S, \forall c \in C \\
-\end{align}
+\end{aligned}
+$$
 </p>
 
 <p><b>Constraint Set 2</b>:  Binary decision variables. <br />
-\begin{align}
+$$
+\begin{aligned}
 z_{s} \in \{0,1\} & \forall s \in S, \forall c \in C \\
 zc_{sc} \in \{0,1\} & \forall s \in S, \forall c \in C \\
 check_{stc} \in \{0,1\} & \forall s \in S, \forall t \in S ,\forall c \in C \\
 left_{stc} \in \{0,1\} & \forall s \in S, \forall t \in S, \forall c \in C \\
 top_{stc} \in \{0,1\} & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}
+$$
 </p>
 
 <p><b>Constraint Set 3</b>: A story already picked in the first stage cannot be chosen in the second stage. <br />
-\begin{align}
+$$
+\begin{aligned}
 z_{s} \Rightarrow \lnot zc_{sc} & \forall s \in S, \forall c \in C 
-\end{align}
+\end{aligned}
+$$
 </p>
 
 <p><b>Constraint Set 4</b>: We need to check stories only when they are picked together. <br />
-\begin{align}
+$$
+\begin{aligned}
 z_{s} + z_{t} + zc_{sc} + zc_{st} \leq check_{stc} + 1 \\ 
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}
+$$
 </p>
 
 <p><b>Constraint Set 5</b>: We need to disallow overlap among all picked stories. <br />
-\begin{align}
+$$\begin{aligned}
 left_{stc} + left_{tsc} + top_{stc} + top_{tsc} \geq check_{stc}  \\
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}$$
 </p>
 
 <p><b>Constraint Set 6</b>: Horizontal overlap (Origin at top-left). <br />
-\begin{align}
+$$\begin{aligned}
 left_{stc} \wedge check_{stc} \Rightarrow  x_{sc} + w_{s}  \leq x_{tc}  \\
 x_{sc} + w_{s} \leq W \\
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}$$
 </p>
 
 <p><b>Constraint Set 7</b>: Vertical overlap. <br />
-\begin{align}
+$$\begin{aligned}
 top_{stc} \wedge check_{stc}  \Rightarrow  y_{sc} + h_{s}  \leq y_{tc}  \\  
 y_{sc} + h_{s} \leq H \\
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}$$
 </p>
 
 <p><b>Constraint Set 8</b>: Temporal order along horizontal axis. <br />
-\begin{align}
+$$\begin{aligned}
 left_{stc} \Rightarrow  t_{s} \geq t_{t}  
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}$$
 </p>
 
 <p><b>Constraint Set 9</b>: Temporal order along vertical axis. <br />
-\begin{align}
+$$\begin{aligned}
 top_{stc}  \Rightarrow t_{s} \geq t_{t} 
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}$$
 </p>
 
 <p><b>Constraint Set 10</b>: Sponsored stories must not exceed the $\alpha$ threshold. <br />
-\begin{align}
+$$\begin{aligned}
 \sum_{s : sp_{s} = 1 } z_{s} + zc_{sc} \leq \alpha .  (\sum_{s} z_{s} + zc_{sc})
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}
+$$
 </p>
 
 <p><b>Constraint Set 11</b>: A fraction of stories must be picked in the initial stage satisfying the $\beta$ threshold. <br />
-\begin{align}
+$$\begin{aligned}
 \sum_{s} z_{s} \geq \beta . (\sum_{c} p_{c}. \sum_{s} zc_{sc}) 
 & \forall s \in S, \forall t \in S, \forall c \in C \\
-\end{align}
+\end{aligned}$$
 </p>
 
 <hr> 

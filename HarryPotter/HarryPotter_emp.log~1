@@ -1,4 +1,4 @@
---- Job HarryPotter_emp.gms Start 07/01/20 22:26:37 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job HarryPotter_emp.gms Start 07/02/20 12:53:36 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -10,25 +10,26 @@
     ErrMsg 1
     ErrorLog 99
     IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_HarryPotter_emp/HarryPotter_emp_io.json
     IDCGenerateGDX data_HarryPotter_emp/default.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 22 days ago
+*** License has expired 23 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- HarryPotter_emp.gms(187) 3 Mb
---- Starting execution: elapsed 0:00:00.011
+--- HarryPotter_emp.gms(188) 3 Mb
+--- Starting execution: elapsed 0:00:00.016
 --- HarryPotter_emp.gms(87) 4 Mb
 --- Generating NLP model submodel
 --- HarryPotter_emp.gms(89) 8 Mb
 ---   201 rows  302 columns  20,601 non-zeroes
 ---   81,104 nl-code  20,300 nl-non-zeroes
 --- HarryPotter_emp.gms(89) 6 Mb
---- Executing CONOPT: elapsed 0:00:00.086
+--- Executing CONOPT: elapsed 0:00:00.092
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -59,14 +60,14 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter_emp.gms(89) 2 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:00.313
---- HarryPotter_emp.gms(150) 37 Mb
+--- Executing after solve: elapsed 0:00:00.300
+--- HarryPotter_emp.gms(151) 37 Mb
 --- Generating EMP model Kernel_duti
---- HarryPotter_emp.gms(152) 40 Mb
+--- HarryPotter_emp.gms(153) 40 Mb
 ---   204 rows  405 columns  21,308 non-zeroes
 ---   83,121 nl-code  21,102 nl-non-zeroes
---- HarryPotter_emp.gms(152) 38 Mb
---- Executing JAMS: elapsed 0:00:01.413
+--- HarryPotter_emp.gms(153) 38 Mb
+--- Executing JAMS: elapsed 0:00:01.373
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -82,7 +83,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 ---
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 07/01/20 22:26:39 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 07/02/20 12:53:38 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -113,14 +114,14 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empsolu.dat
     ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 22 days ago
+*** License has expired 23 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- emp.dat(13754) 4 Mb
---- Starting execution: elapsed 0:00:00.060
+--- Starting execution: elapsed 0:00:00.063
 --- emp.dat(13753) 5 Mb
 --- Generating DNLP model m
 --- emp.dat(13754) 9 Mb
@@ -138,7 +139,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        2.3145012696E+00 (Input point)
+      0   0        1.4625018836E+01 (Input point)
  
                    Pre-triangular equations:   0
                    Post-triangular equations:  204
@@ -146,16 +147,15 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =    103.176066738
+ ** Feasible solution. Value of objective =    111.831295521
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      6   3        8.9057801873E+01 3.9E+01   173 1.0E+00   18 T  T
-     11   3        1.6161315802E+00 2.2E+01   104 4.6E-03      F  T
-     21   4        3.9932978724E-01 1.0E-01   108 5.7E-01      T  T
-     31   4        1.4229371749E-01 1.1E-02   102 2.8E+01      F  T
-     36   4        1.1178426295E-01 5.2E-04   101 1.0E+00    3 F  T
-     41   4        1.1001177825E-01 4.0E-06   101 1.0E+00    2 F  T
-     45   4        1.1000058637E-01 7.3E-08   101
+     11   4        2.8975055053E+00 8.9E-01   179 1.0E+00   14 T  T
+     16   4        9.5309259524E-01 8.4E-02   102 1.0E+00    5 T  T
+     21   4        5.7855869126E-01 3.6E-02   105 1.0E+00    9 T  T
+     26   4        4.5297706899E-01 3.3E-04   101 1.0E+00    5 F  T
+     31   4        4.5002700000E-01 8.0E-06   101 1.0E+00    3 F  T
+     36   4        4.5000049415E-01 5.4E-08   101
  
  ** Optimal solution. Reduced gradient less than tolerance.
  
@@ -163,50 +163,50 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- emp.dat(13754) 3 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 07/01/20 22:26:39 elapsed 0:00:00.467
+--- Job emp.dat Stop 07/02/20 12:53:38 elapsed 0:00:00.648
 --- Returning from GAMS step
 ---
 --- Equations skipped = 0  Equations added = 0
 --- Variables skipped = 0  Variables added = 0
 ---
 --- Restarting execution
---- HarryPotter_emp.gms(152) 36 Mb
+--- HarryPotter_emp.gms(153) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:02.351
---- HarryPotter_emp.gms(187) 38 Mb
+--- Executing after solve: elapsed 0:00:02.468
+--- HarryPotter_emp.gms(188) 38 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\data_HarryPotter_emp/default.gdx
 *** Status: Normal completion
---- Job HarryPotter_emp.gms Stop 07/01/20 22:26:40 elapsed 0:00:02.577
+--- Job HarryPotter_emp.gms Stop 07/02/20 12:53:39 elapsed 0:00:02.805
 
-TRACE [2020-07-01 22:26:44] Logging facility initialised.
-DEBUG [2020-07-01 22:26:44] Database connection established.
-DEBUG [2020-07-01 22:26:44] Access Control initialised.
-INFO [2020-07-01 22:26:44] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-01 22:26:45] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 22:26:45] Db: 10004 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-01 22:26:45] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-01 22:26:45] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-01 22:26:45] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
-DEBUG [2020-07-01 22:26:45] Db: Data was added to table: 'harrypotteremp_trust_info' (Db.exportScenDataset).
-DEBUG [2020-07-01 22:26:46] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 22:26:46] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-01 22:26:46] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-01 22:26:47] Scenario: '1' unlocked.
-DEBUG [2020-07-01 22:26:47] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
-INFO [2020-07-01 22:26:49] Session started (model: 'harrypotter_emp', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter').
-DEBUG [2020-07-01 22:26:49] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter'.
-DEBUG [2020-07-01 22:26:49] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 22:26:50] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-01 22:26:50] Loading and rendering scenarios: '1'.
-DEBUG [2020-07-01 22:26:50] Db: Data was imported from table: 'harrypotteremp_output1' (Db.importDataset).
-DEBUG [2020-07-01 22:26:50] Db: Data was imported from table: 'harrypotteremp_trust_info' (Db.importDataset).
-DEBUG [2020-07-01 22:26:50] Db: A table named: '_sys_scripts_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-01 22:26:50] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-01 22:26:50] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 22:26:50] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 22:26:51] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-01 22:26:51] Dataset: trust_info loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-01 22:26:51] Scenario: '1' was loaded into UI
-INFO [2020-07-01 22:29:57] Session ended (model: 'harrypotter_emp', user: 'hasee').
-DEBUG [2020-07-01 22:29:58] Scenario: '1' unlocked.
-DEBUG [2020-07-01 22:29:58] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
+TRACE [2020-07-02 12:53:43] Logging facility initialised.
+DEBUG [2020-07-02 12:53:43] Database connection established.
+DEBUG [2020-07-02 12:53:43] Access Control initialised.
+INFO [2020-07-02 12:53:43] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-02 12:53:44] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-02 12:53:44] Db: 10005 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
+DEBUG [2020-07-02 12:53:44] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-02 12:53:44] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-02 12:53:44] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
+DEBUG [2020-07-02 12:53:45] Db: Data was added to table: 'harrypotteremp_trust_info' (Db.exportScenDataset).
+DEBUG [2020-07-02 12:53:45] Db: Data was added to table: 'harrypotteremp__scalars' (Db.exportScenDataset).
+DEBUG [2020-07-02 12:53:45] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-02 12:53:45] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-02 12:53:45] Scenario: '1' unlocked.
+DEBUG [2020-07-02 12:53:45] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
+INFO [2020-07-02 12:53:48] Session started (model: 'harrypotter_emp', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter').
+DEBUG [2020-07-02 12:53:48] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter'.
+DEBUG [2020-07-02 12:53:48] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-02 12:53:49] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-02 12:53:49] Loading and rendering scenarios: '1'.
+DEBUG [2020-07-02 12:53:49] Db: Data was imported from table: 'harrypotteremp_output1' (Db.importDataset).
+DEBUG [2020-07-02 12:53:49] Db: Data was imported from table: 'harrypotteremp_trust_info' (Db.importDataset).
+DEBUG [2020-07-02 12:53:49] Db: Data was imported from table: 'harrypotteremp__scalars' (Db.importDataset).
+DEBUG [2020-07-02 12:53:49] Db: A table named: '_sys_scripts_harrypotter_emp' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-02 12:53:49] Scenario: 'New Scenario' closed.
+DEBUG [2020-07-02 12:53:49] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-02 12:53:49] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-02 12:53:50] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-02 12:53:50] Dataset: trust_info loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-02 12:53:50] Scenario: '1' was loaded into UI
+INFO [2020-07-02 12:53:59] Session ended (model: 'harrypotter_emp', user: 'hasee').

@@ -22,6 +22,26 @@
 					"alias":	"label"
 				}
 			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["gamma"],
+			"symtext":	["debug parameter"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
 		}
 	},
 	"outputSymbols":	{

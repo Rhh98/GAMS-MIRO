@@ -151,19 +151,10 @@
     }
   },
   "defaultScenName": "1-D",
-  "inputGroups": [
-    {
-      "name": "Story Imfo",
-      "members": ["bigs", "height", "width2", "sponsored", "valc", "time"]
-    },
-    {
-      "name": "Scenarios Info",
-      "members": ["c", "cscore"]
-    }
-  ],
   "readme": {
     "tabTitle": "readme",
-    "filename": "readme.md"
+    "filename": "readme.md",
+    "enableMath": true
   },
   "handsontable": {
     "stretchH": "none",
@@ -180,5 +171,15 @@
     },
     "height": 700,
     "colWidths": 150
-  }
+  },
+  "inputGroups": [
+    {
+      "name": "Story Imfo",
+      "members": ["bigs", "height", "width2", "sponsored", "valc", "time"]
+    },
+    {
+      "name": "Scenarios Info",
+      "members": ["c", "cscore"]
+    }
+  ]
 }

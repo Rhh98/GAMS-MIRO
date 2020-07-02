@@ -75,7 +75,7 @@ $\omega$: weight parameter of certain label
 
 $\Omega(\theta)$: Regularization item
 
-$\gamma$: coefficient of weight parameter limiting change of label when debugging
+$\gamma$: coefficient of weight parameter limiting change of label when debugging. Larger $\gamma$ will enforce fewer change label, i.e.  one will find fewer bugs label.
 
 
 
@@ -87,9 +87,8 @@ $\gamma$: coefficient of weight parameter limiting change of label when debuggin
 The problem could be formulated as a bilevel optimation as:
 
 ​               $$min \quad Distance \left(Y^{\prime}, Y\right) $$
-s.t. Predictor $=\mathcal{A}\left(X, Y^{\prime}\right)$
-$\quad$  Predictor $(\tilde{X})=\tilde{Y} \wedge \operatorname{Predictor}(X)=Y^{\prime}$
-
+$$\quad s.t.  \quad Predictor =\mathcal{A}\left(X, Y^{\prime}\right)$$
+$$\quad  Predictor (\tilde{X})=\tilde{Y} \wedge \operatorname{Predictor}(X)=Y^{\prime}$$
 This is a discontinous combinatorial optimization, which is hard to solve. We relax it to a nice continous continous bilevel optimization:
 
 $\begin{aligned} \min _{\omega \in [0,1]^n, \theta} & \frac{1}{m} \sum_{i=1}^{m} c_{i} \ell\left(\tilde{x}_{i}, \tilde{y}_{i}, \theta\right) \\ &+\frac{1}{n} \sum_{i=1}^{n}[(1-\omega) \ell\left(x_{i},y_j, \theta\right)+\omega \cdot \ell\left(x_{i},-y_j, \theta\right)]+\frac{\gamma}{n} \sum_{i=1}^{n}\omega \\ \text { s.t. } & \theta=\underset{\beta}{\operatorname{argmin}} \frac{1}{n} \sum_{i=1}^{n}  [(1-\omega) \ell\left(x_{i},y_j, \theta\right)+\omega \cdot \ell\left(x_{i},-y_j, \theta\right)]+\lambda \Omega(\beta) \end{aligned}$
