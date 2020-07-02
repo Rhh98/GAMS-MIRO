@@ -1,10 +1,13 @@
 {
   "overwriteSheetOrder": {
-    "input": "_widgets"
+    "input": ["_widgets", "trust_info"]
   },
   "overwriteAliases": {
     "output1": {
       "newAlias": "output1"
+    },
+    "trust_info": {
+      "newAlias": "Information of Trusted Item"
     }
   },
   "pivottable": {
@@ -31,6 +34,7 @@
       "outType": "output"
     }
   },
+  "defaultScenName": "default",
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -47,5 +51,8 @@
     "height": 700,
     "colWidths": 150
   },
-  "defaultScenName": "default"
+  "readme": {
+    "tabTitle": "Readme",
+    "filename": "HarryPotter.md"
+  }
 }

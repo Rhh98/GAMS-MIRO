@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -92,62 +92,66 @@ C o m p i l a t i o n
   91  *generated trusted data--------------------
   92  set Header;
   93  ;
-  95  table Trust_data(Header<,aspect)
-  96        heritage   education
-  97  1     0.3        0.4
-  98  2     0.2        0.6
-  99  ;
- 100   
- 101  parameter Trust_label(Header) /1 -1,2 1/;
- 103  parameter c(header) /set.header 100/;
- 104   
- 105  *Generating contour by kernel logistic regression
- 106  parameter Z(n,n) 'label of testing data (0.01:0.01:1,0.01:0.01,1)',
- 107  temp(n,n,n)  'temporary value',
- 108  e(n,n), d(n,n)  'mesh grid'
- 109  ;
- 110  e(n,n1)=0.01*n1.val;
- 111  d(n,n1)=0.01*n.val;
- 112  temp(n,n1,n2)=-(sqr(X_Train(n2,'Heritage'))+sqr(X_Train(n2,'Education')))-(sqr(e(n,n1))+sqr(d(n,n1)))
- 113  +2*(e(n,n1)*X_Train(n2,'Heritage')+d(n,n1)*X_Train(n2,'Education'));
- 114  temp(n,n1,n2)=exp(temp(n,n1,n2)/(2*sigma*sigma));
- 115  Z(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
- 116  display Z;
- 117   
- 118   
- 119  scalar budget /100/,gamma /10/;
- 120  parameter K_tilde(Header,n);
- 121  alias(Header,Header2);
- 122  K_tilde(Header,n)=-sum(aspect,sqr(trust_data(Header,aspect)))-(sqr(X_Train(n,'Heritage'))+sqr(X_Train(n,'Education')))
- 123  +2*(trust_data(Header,'heritage')*X_Train(n,'Heritage')+trust_data(Header,'education')*X_Train(n,'Education'));
- 124  K_tilde(Header,n)=exp(K_tilde(Header,n)/(2*sigma*sigma));
- 125   
- 126  *outter level problem
- 127  variables log_l3(Header),obj2;
- 128  equations defobj2,deflog_l3(Header);
+  94  Set T_column /heritage,education,label/;
+  96  table Trust_info(Header<,T_column) Information of Trusted Item
+  97        heritage   education  label
+  98  1     0.3        0.4        -1
+  99  2     0.2        0.6        1
+ 100  ;
+ 101   
+ 103  parameter Trust_data(Header,aspect),Trust_label(Header);
+ 104  Trust_data(Header,'heritage')=Trust_info(Header,'heritage');
+ 105  Trust_data(Header,'education')=Trust_info(Header,'education');
+ 106  Trust_label(Header)=Trust_info(Header,'label');
+ 107  parameter c(header) /set.header 100/;
+ 108   
+ 109  *Generating contour by kernel logistic regression
+ 110  parameter Z(n,n) 'label of testing data (0.01:0.01:1,0.01:0.01,1)',
+ 111  temp(n,n,n)  'temporary value',
+ 112  e(n,n), d(n,n)  'mesh grid'
+ 113  ;
+ 114  e(n,n1)=0.01*n1.val;
+ 115  d(n,n1)=0.01*n.val;
+ 116  temp(n,n1,n2)=-(sqr(X_Train(n2,'Heritage'))+sqr(X_Train(n2,'Education')))-(sqr(e(n,n1))+sqr(d(n,n1)))
+ 117  +2*(e(n,n1)*X_Train(n2,'Heritage')+d(n,n1)*X_Train(n2,'Education'));
+ 118  temp(n,n1,n2)=exp(temp(n,n1,n2)/(2*sigma*sigma));
+ 119  Z(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
+ 120  display Z;
+ 121   
+ 122   
+ 123  scalar budget /100/,gamma /1/;
+ 124  parameter K_tilde(Header,n);
+ 125  alias(Header,Header2);
+ 126  K_tilde(Header,n)=-sum(aspect,sqr(trust_data(Header,aspect)))-(sqr(X_Train(n,'Heritage'))+sqr(X_Train(n,'Education')))
+ 127  +2*(trust_data(Header,'heritage')*X_Train(n,'Heritage')+trust_data(Header,'education')*X_Train(n,'Education'));
+ 128  K_tilde(Header,n)=exp(K_tilde(Header,n)/(2*sigma*sigma));
  129   
- 130  deflog_l3(Header)..
- 131  log_l3(Header) =e= log(1+exp(-Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'))));
- 132  defobj2..
- 133  obj2 =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log_l3(Header))+1/card(n)*sum(n,(1-w(n))*log_l(n)+w(n)*log_l2(n));
- 134   
- 135  model Kernel_duti /defobj,deflog_l,deflog_l2,defobj2,deflog_l3/;
- 136  File myinfo /'C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat'/;
+ 130  *outter level problem
+ 131  variables log_l3(Header),obj2;
+ 132  equations defobj2,deflog_l3(Header);
+ 133   
+ 134  deflog_l3(Header)..
+ 135  log_l3(Header) =e= log(1+exp(-Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'))));
+ 136  defobj2..
+ 137  obj2 =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log_l3(Header))+1/card(n)*sum(n,(1-w(n))*log_l(n)+w(n)*log_l2(n));
+ 138   
+ 139  model Kernel_duti /defobj,deflog_l,deflog_l2,defobj2,deflog_l3/;
+ 140  File myinfo /'C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat'/;
       $echo subsolver mosek>jams.opt
       Kernel_duti.optcr=1e-1;
       Kernel_duti.optfile=1;
- 146  w.l(n)=1e-5;
- 147   
- 148  solve Kernel_duti using emp minimizing obj2;
- 149   
- 150  set g /g1*g40/;
- 151  parameter ranking(n);
- 152  ranking(n)=card(g)+1;
- 153  gamma=1;
- 154  scalar num /1/,
- 155  threshold /0.5/;
- 156   
- 157  num=0;
+ 150  w.l(n)=1e-5;
+ 151   
+ 152  solve Kernel_duti using emp minimizing obj2;
+ 153   
+ 154  set g /g1*g40/;
+ 155  parameter ranking(n);
+ 156  ranking(n)=card(g)+1;
+ 157  gamma=1;
+ 158  scalar num /1/,
+ 159  threshold /0.5/;
+ 160   
+ 161  num=0;
       loop(g$(num < budget),
       gamma=gamma/2;
       if(ord(g)eq card(g),gamma=0;);
@@ -155,25 +159,25 @@ C o m p i l a t i o n
       ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=ord(g)+1-w.l(n);
       num=sum(n$(ranking(n) ne card(g)+1) ,1);
       );
- 167   
- 168   
- 169  *boundary and debug output
- 170  set output1Header /heritage,education,val label of training data,Zval,newz,heritage_T,education_T,label label of trust data,ranking/;
- 172  table Output1(n,n1,Header,output1Header);
- 173  Output1(n,n1,Header,'heritage')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'heritage');
- 174  Output1(n,n1,Header,'education')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'education');
- 175  Output1(n,n1,Header,'val')$(ord(n1)=1 and ord(Header)=1)=y_Con(n);
- 176  Output1(n,n1,Header,'zval')$(ord(Header)=1)=Z(n,n1);
- 177  Output1(n,n1,Header,'heritage_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'heritage');
- 178  Output1(n,n1,Header,'education_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'education');
- 179  Output1(n,n1,Header,'label')$(ord(n1)=1 and ord(n)=1)=Trust_label(Header);
- 180  Output1(n,n1,Header,'ranking')$(ord(n1)=1 and ord(Header)=1)=ranking(n);
- 181  Output1(n,n1,Header,'newz')$(ord(Header)=1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
- 183  display ranking;
+ 171   
+ 172   
+ 173  *boundary and debug output
+ 174  set output1Header /heritage,education,val label of training data,Zval,newz,heritage_T,education_T,label label of trust data,ranking/;
+ 176  table Output1(n,n1,Header,output1Header);
+ 177  Output1(n,n1,Header,'heritage')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'heritage');
+ 178  Output1(n,n1,Header,'education')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'education');
+ 179  Output1(n,n1,Header,'val')$(ord(n1)=1 and ord(Header)=1)=y_Con(n);
+ 180  Output1(n,n1,Header,'zval')$(ord(Header)=1)=Z(n,n1);
+ 181  Output1(n,n1,Header,'heritage_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'heritage');
+ 182  Output1(n,n1,Header,'education_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'education');
+ 183  Output1(n,n1,Header,'label')$(ord(n1)=1 and ord(n)=1)=Trust_label(Header);
+ 184  Output1(n,n1,Header,'ranking')$(ord(n1)=1 and ord(Header)=1)=ranking(n);
+ 185  Output1(n,n1,Header,'newz')$(ord(Header)=1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
+ 187  display ranking;
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 2
+COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -283,7 +287,7 @@ E x e c u t i o n
 99        0.950       0.850
 100       0.950      -0.050
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE submodel Using NLP From line 89
 
@@ -508,7 +512,7 @@ deflog_l2(3)..  (0.488894473829015)*alpha(1) + (0.499980622151999)*alpha(2) + (0
      
 REMAINING 97 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE submodel Using NLP From line 89
 
@@ -1170,7 +1174,7 @@ obj_sub
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj_sub
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE submodel Using NLP From line 89
 
@@ -1184,11 +1188,11 @@ DERIVATIVE POOL              20     CONSTANT POOL           9,917
 CODE LENGTH              81,104
 
 
-GENERATION TIME      =        0.062 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.078 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 EXECUTION TIME       =        0.078 SECONDS      6 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 6
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE submodel Using NLP From line 89
 
@@ -1203,7 +1207,7 @@ Solution Report     SOLVE submodel Using NLP From line 89
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE                0.1528
 
- RESOURCE USAGE, LIMIT          0.094      1000.000
+ RESOURCE USAGE, LIMIT          0.093      1000.000
  ITERATION COUNT, LIMIT        12    2000000000
  EVALUATION ERRORS              0             0
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -1227,11 +1231,11 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.087 seconds
-   of which: Function evaluations             0.014 = 16.1%
-             1st Derivative evaluations       0.019 = 21.8%
-             2nd Derivative evaluations       0.024 = 27.6%
-             Directional 2nd Derivative       0.009 = 10.3%
+ CONOPT time Total                            0.085 seconds
+   of which: Function evaluations             0.018 = 21.2%
+             1st Derivative evaluations       0.013 = 15.3%
+             2nd Derivative evaluations       0.023 = 27.1%
+             Directional 2nd Derivative       0.012 = 14.1%
  
 
                            LOWER          LEVEL          UPPER         MARGINAL
@@ -1773,12 +1777,12 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    116 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
+----    120 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
 
               1           2           3           4           5           6           7           8           9          10          11          12          13          14          15          16          17          18          19          20          21
 
@@ -2295,9 +2299,9 @@ E x e c u t i o n
 99        4.452       4.403       4.352       4.297       4.240       4.180       4.118       4.053       3.985       3.916       3.844       3.770       3.695       3.617       3.538       3.457
 100       4.422       4.373       4.322       4.268       4.211       4.151       4.089       4.025       3.958       3.889       3.818       3.744       3.669       3.592       3.513       3.433
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 8
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 148
+Equation Listing    SOLVE Kernel_duti Using EMP From line 152
 
 
 ---- defobj  =E=  
@@ -2587,67 +2591,69 @@ REMAINING 97 ENTRIES SKIPPED
 
 ---- defobj2  =E=  
 
-defobj2..  - (0.159134223909488)*w(1) - (0.157221154047659)*w(2) - (0.157210618130999)*w(3) - (0.152193623470613)*w(4) - (0.14363444806909)*w(5) - (0.141824842200458)*w(6) - (0.136133855425182)*w(7) - (0.123437755503998)*w(8) - (0.12629885415396)*w(9)
+defobj2..  - (0.0691342239094885)*w(1) - (0.067221154047659)*w(2) - (0.0672106181309986)*w(3) - (0.0621936234706129)*w(4) - (0.0536344480690901)*w(5) - (0.0518248422004584)*w(6) - (0.0461338554251821)*w(7) - (0.0334377555039978)*w(8)
      
-      - (0.157625571183029)*w(10) - (0.159749434609214)*w(11) - (0.156114400344844)*w(12) - (0.154447599239194)*w(13) - (0.148738937322757)*w(14) - (0.136479330278552)*w(15) - (0.129609799808162)*w(16) - (0.125436110951139)*w(17)
+      - (0.0362988541539598)*w(9) - (0.0676255711830291)*w(10) - (0.0697494346092139)*w(11) - (0.0661144003448439)*w(12) - (0.0644475992391944)*w(13) - (0.0587389373227569)*w(14) - (0.0464793302785522)*w(15) - (0.0396097998081623)*w(16)
      
-      - (0.120635703446917)*w(18) - (0.109505674237046)*w(19) - (0.160799433177091)*w(20) - (0.160932686763574)*w(21) - (0.154752146398724)*w(22) - (0.146654383348995)*w(23) - (0.142763342846158)*w(24) - (0.134219728763858)*w(25)
+      - (0.0354361109511394)*w(17) - (0.0306357034469168)*w(18) - (0.0195056742370456)*w(19) - (0.0707994331770911)*w(20) - (0.0709326867635736)*w(21) - (0.0647521463987244)*w(22) - (0.0566543833489951)*w(23) - (0.0527633428461577)*w(24)
      
-      - (0.112822831422229)*w(26) - (0.108991897652336)*w(27) - (0.10305785398868)*w(28) - (0.108524379542538)*w(29) - (0.162380370909766)*w(30) - (0.159866826656339)*w(31) - (0.156005771644811)*w(32) - (0.145716073477743)*w(33) - (0.1297741775602)*w(34)
+      - (0.0442197287638583)*w(25) - (0.0228228314222294)*w(26) - (0.0189918976523364)*w(27) - (0.0130578539886801)*w(28) - (0.0185243795425376)*w(29) - (0.072380370909766)*w(30) - (0.0698668266563387)*w(31) - (0.0660057716448109)*w(32)
      
-      - (0.12340557301287)*w(35) - (0.103688511953256)*w(36) - (0.102357809710293)*w(37) - (0.110103745393931)*w(38) - (0.127545749626728)*w(39) - (0.163055552955528)*w(40) - (0.16088204512688)*w(41) - (0.154364013224238)*w(42) - (0.136617718894058)*w(43)
+      - (0.0557160734777431)*w(33) - (0.0397741775601995)*w(34) - (0.03340557301287)*w(35) - (0.013688511953256)*w(36) - (0.0123578097102926)*w(37) - (0.0201037453939311)*w(38) - (0.0375457496267283)*w(39) - (0.0730555529555279)*w(40)
      
-      - (0.124734049025005)*w(44) - (0.1090968889478)*w(45) - (0.0983453065923444)*w(46) - (0.123823081649848)*w(47) - (0.124181429641214)*w(48) - (0.13326474357237)*w(49) - (0.164521748102482)*w(50) - (0.161450857228039)*w(51) - (0.157559117230025)*w(52)
+      - (0.0708820451268801)*w(41) - (0.0643640132242379)*w(42) - (0.0466177188940577)*w(43) - (0.0347340490250049)*w(44) - (0.0190968889477998)*w(45) - (0.00834530659234438)*w(46) - (0.0338230816498478)*w(47) - (0.0341814296412137)*w(48)
      
-      - (0.134309834353247)*w(53) - (0.124803803184525)*w(54) - (0.118668825957491)*w(55) - (0.113339266770792)*w(56) - (0.125234555508577)*w(57) - (0.136954292631684)*w(58) - (0.141306796053828)*w(59) - (0.16482708308483)*w(60) - (0.15904923538973)*w(61)
+      - (0.0432647435723705)*w(49) - (0.0745217481024818)*w(50) - (0.071450857228039)*w(51) - (0.0675591172300248)*w(52) - (0.0443098343532475)*w(53) - (0.034803803184525)*w(54) - (0.0286688259574907)*w(55) - (0.0233392667707923)*w(56)
      
-      - (0.154452055926649)*w(62) - (0.13278813540008)*w(63) - (0.128499767947395)*w(64) - (0.105043922553135)*w(65) - (0.118063250783146)*w(66) - (0.130549028212147)*w(67) - (0.138710625371844)*w(68) - (0.143289345180847)*w(69)
+      - (0.0352345555085775)*w(57) - (0.046954292631684)*w(58) - (0.0513067960538282)*w(59) - (0.07482708308483)*w(60) - (0.0690492353897304)*w(61) - (0.0644520559266488)*w(62) - (0.0427881354000802)*w(63) - (0.038499767947395)*w(64)
      
-      - (0.164267736367835)*w(70) - (0.158687870509734)*w(71) - (0.143895653706442)*w(72) - (0.130565886968434)*w(73) - (0.116577722093852)*w(74) - (0.0976694996398611)*w(75) - (0.11589141843577)*w(76) - (0.133664553810143)*w(77)
+      - (0.0150439225531354)*w(65) - (0.0280632507831463)*w(66) - (0.0405490282121475)*w(67) - (0.048710625371844)*w(68) - (0.053289345180847)*w(69) - (0.0742677363678348)*w(70) - (0.0686878705097339)*w(71) - (0.0538956537064425)*w(72)
      
-      - (0.143279840092207)*w(78) - (0.148073680174096)*w(79) - (0.163072271557149)*w(80) - (0.158877563748698)*w(81) - (0.149745338947591)*w(82) - (0.138091736108464)*w(83) - (0.120495968265316)*w(84) - (0.107789565494471)*w(85)
+      - (0.0405658869684338)*w(73) - (0.0265777220938521)*w(74) - (0.00766949963986113)*w(75) - (0.0258914184357695)*w(76) - (0.0436645538101432)*w(77) - (0.0532798400922066)*w(78) - (0.0580736801740964)*w(79) - (0.0730722715571493)*w(80)
      
-      - (0.110219738162189)*w(86) - (0.131957844435151)*w(87) - (0.141617141438434)*w(88) - (0.145654693598408)*w(89) - (0.162255249618484)*w(90) - (0.155865223944656)*w(91) - (0.149626112750236)*w(92) - (0.137338892215277)*w(93)
+      - (0.0688775637486981)*w(81) - (0.0597453389475908)*w(82) - (0.0480917361084642)*w(83) - (0.0304959682653165)*w(84) - (0.0177895654944712)*w(85) - (0.0202197381621885)*w(86) - (0.041957844435151)*w(87) - (0.0516171414384335)*w(88)
      
-      - (0.125361457840163)*w(94) - (0.115822335516921)*w(95) - (0.106637186084735)*w(96) - (0.121810855871402)*w(97) - (0.129340506787418)*w(98) - (0.138775077984366)*w(99) - (0.160851661405777)*w(100) - (0.0099999)*log_l(1) - (0.0099999)*log_l(2)
+      - (0.0556546935984081)*w(89) - (0.0722552496184841)*w(90) - (0.065865223944656)*w(91) - (0.0596261127502365)*w(92) - (0.0473388922152766)*w(93) - (0.0353614578401629)*w(94) - (0.0258223355169213)*w(95) - (0.0166371860847353)*w(96)
      
-      - (0.0099999)*log_l(3) - (0.0099999)*log_l(4) - (0.0099999)*log_l(5) - (0.0099999)*log_l(6) - (0.0099999)*log_l(7) - (0.0099999)*log_l(8) - (0.0099999)*log_l(9) - (0.0099999)*log_l(10) - (0.0099999)*log_l(11) - (0.0099999)*log_l(12)
+      - (0.0318108558714021)*w(97) - (0.0393405067874176)*w(98) - (0.0487750779843664)*w(99) - (0.0708516614057774)*w(100) - (0.0099999)*log_l(1) - (0.0099999)*log_l(2) - (0.0099999)*log_l(3) - (0.0099999)*log_l(4) - (0.0099999)*log_l(5)
      
-      - (0.0099999)*log_l(13) - (0.0099999)*log_l(14) - (0.0099999)*log_l(15) - (0.0099999)*log_l(16) - (0.0099999)*log_l(17) - (0.0099999)*log_l(18) - (0.0099999)*log_l(19) - (0.0099999)*log_l(20) - (0.0099999)*log_l(21) - (0.0099999)*log_l(22)
+      - (0.0099999)*log_l(6) - (0.0099999)*log_l(7) - (0.0099999)*log_l(8) - (0.0099999)*log_l(9) - (0.0099999)*log_l(10) - (0.0099999)*log_l(11) - (0.0099999)*log_l(12) - (0.0099999)*log_l(13) - (0.0099999)*log_l(14) - (0.0099999)*log_l(15)
      
-      - (0.0099999)*log_l(23) - (0.0099999)*log_l(24) - (0.0099999)*log_l(25) - (0.0099999)*log_l(26) - (0.0099999)*log_l(27) - (0.0099999)*log_l(28) - (0.0099999)*log_l(29) - (0.0099999)*log_l(30) - (0.0099999)*log_l(31) - (0.0099999)*log_l(32)
+      - (0.0099999)*log_l(16) - (0.0099999)*log_l(17) - (0.0099999)*log_l(18) - (0.0099999)*log_l(19) - (0.0099999)*log_l(20) - (0.0099999)*log_l(21) - (0.0099999)*log_l(22) - (0.0099999)*log_l(23) - (0.0099999)*log_l(24) - (0.0099999)*log_l(25)
      
-      - (0.0099999)*log_l(33) - (0.0099999)*log_l(34) - (0.0099999)*log_l(35) - (0.0099999)*log_l(36) - (0.0099999)*log_l(37) - (0.0099999)*log_l(38) - (0.0099999)*log_l(39) - (0.0099999)*log_l(40) - (0.0099999)*log_l(41) - (0.0099999)*log_l(42)
+      - (0.0099999)*log_l(26) - (0.0099999)*log_l(27) - (0.0099999)*log_l(28) - (0.0099999)*log_l(29) - (0.0099999)*log_l(30) - (0.0099999)*log_l(31) - (0.0099999)*log_l(32) - (0.0099999)*log_l(33) - (0.0099999)*log_l(34) - (0.0099999)*log_l(35)
      
-      - (0.0099999)*log_l(43) - (0.0099999)*log_l(44) - (0.0099999)*log_l(45) - (0.0099999)*log_l(46) - (0.0099999)*log_l(47) - (0.0099999)*log_l(48) - (0.0099999)*log_l(49) - (0.0099999)*log_l(50) - (0.0099999)*log_l(51) - (0.0099999)*log_l(52)
+      - (0.0099999)*log_l(36) - (0.0099999)*log_l(37) - (0.0099999)*log_l(38) - (0.0099999)*log_l(39) - (0.0099999)*log_l(40) - (0.0099999)*log_l(41) - (0.0099999)*log_l(42) - (0.0099999)*log_l(43) - (0.0099999)*log_l(44) - (0.0099999)*log_l(45)
      
-      - (0.0099999)*log_l(53) - (0.0099999)*log_l(54) - (0.0099999)*log_l(55) - (0.0099999)*log_l(56) - (0.0099999)*log_l(57) - (0.0099999)*log_l(58) - (0.0099999)*log_l(59) - (0.0099999)*log_l(60) - (0.0099999)*log_l(61) - (0.0099999)*log_l(62)
+      - (0.0099999)*log_l(46) - (0.0099999)*log_l(47) - (0.0099999)*log_l(48) - (0.0099999)*log_l(49) - (0.0099999)*log_l(50) - (0.0099999)*log_l(51) - (0.0099999)*log_l(52) - (0.0099999)*log_l(53) - (0.0099999)*log_l(54) - (0.0099999)*log_l(55)
      
-      - (0.0099999)*log_l(63) - (0.0099999)*log_l(64) - (0.0099999)*log_l(65) - (0.0099999)*log_l(66) - (0.0099999)*log_l(67) - (0.0099999)*log_l(68) - (0.0099999)*log_l(69) - (0.0099999)*log_l(70) - (0.0099999)*log_l(71) - (0.0099999)*log_l(72)
+      - (0.0099999)*log_l(56) - (0.0099999)*log_l(57) - (0.0099999)*log_l(58) - (0.0099999)*log_l(59) - (0.0099999)*log_l(60) - (0.0099999)*log_l(61) - (0.0099999)*log_l(62) - (0.0099999)*log_l(63) - (0.0099999)*log_l(64) - (0.0099999)*log_l(65)
      
-      - (0.0099999)*log_l(73) - (0.0099999)*log_l(74) - (0.0099999)*log_l(75) - (0.0099999)*log_l(76) - (0.0099999)*log_l(77) - (0.0099999)*log_l(78) - (0.0099999)*log_l(79) - (0.0099999)*log_l(80) - (0.0099999)*log_l(81) - (0.0099999)*log_l(82)
+      - (0.0099999)*log_l(66) - (0.0099999)*log_l(67) - (0.0099999)*log_l(68) - (0.0099999)*log_l(69) - (0.0099999)*log_l(70) - (0.0099999)*log_l(71) - (0.0099999)*log_l(72) - (0.0099999)*log_l(73) - (0.0099999)*log_l(74) - (0.0099999)*log_l(75)
      
-      - (0.0099999)*log_l(83) - (0.0099999)*log_l(84) - (0.0099999)*log_l(85) - (0.0099999)*log_l(86) - (0.0099999)*log_l(87) - (0.0099999)*log_l(88) - (0.0099999)*log_l(89) - (0.0099999)*log_l(90) - (0.0099999)*log_l(91) - (0.0099999)*log_l(92)
+      - (0.0099999)*log_l(76) - (0.0099999)*log_l(77) - (0.0099999)*log_l(78) - (0.0099999)*log_l(79) - (0.0099999)*log_l(80) - (0.0099999)*log_l(81) - (0.0099999)*log_l(82) - (0.0099999)*log_l(83) - (0.0099999)*log_l(84) - (0.0099999)*log_l(85)
      
-      - (0.0099999)*log_l(93) - (0.0099999)*log_l(94) - (0.0099999)*log_l(95) - (0.0099999)*log_l(96) - (0.0099999)*log_l(97) - (0.0099999)*log_l(98) - (0.0099999)*log_l(99) - (0.0099999)*log_l(100) - (1E-7)*log_l2(1) - (1E-7)*log_l2(2) - (1E-7)*log_l2(3)
+      - (0.0099999)*log_l(86) - (0.0099999)*log_l(87) - (0.0099999)*log_l(88) - (0.0099999)*log_l(89) - (0.0099999)*log_l(90) - (0.0099999)*log_l(91) - (0.0099999)*log_l(92) - (0.0099999)*log_l(93) - (0.0099999)*log_l(94) - (0.0099999)*log_l(95)
      
-      - (1E-7)*log_l2(4) - (1E-7)*log_l2(5) - (1E-7)*log_l2(6) - (1E-7)*log_l2(7) - (1E-7)*log_l2(8) - (1E-7)*log_l2(9) - (1E-7)*log_l2(10) - (1E-7)*log_l2(11) - (1E-7)*log_l2(12) - (1E-7)*log_l2(13) - (1E-7)*log_l2(14) - (1E-7)*log_l2(15)
+      - (0.0099999)*log_l(96) - (0.0099999)*log_l(97) - (0.0099999)*log_l(98) - (0.0099999)*log_l(99) - (0.0099999)*log_l(100) - (1E-7)*log_l2(1) - (1E-7)*log_l2(2) - (1E-7)*log_l2(3) - (1E-7)*log_l2(4) - (1E-7)*log_l2(5) - (1E-7)*log_l2(6)
      
-      - (1E-7)*log_l2(16) - (1E-7)*log_l2(17) - (1E-7)*log_l2(18) - (1E-7)*log_l2(19) - (1E-7)*log_l2(20) - (1E-7)*log_l2(21) - (1E-7)*log_l2(22) - (1E-7)*log_l2(23) - (1E-7)*log_l2(24) - (1E-7)*log_l2(25) - (1E-7)*log_l2(26) - (1E-7)*log_l2(27)
+      - (1E-7)*log_l2(7) - (1E-7)*log_l2(8) - (1E-7)*log_l2(9) - (1E-7)*log_l2(10) - (1E-7)*log_l2(11) - (1E-7)*log_l2(12) - (1E-7)*log_l2(13) - (1E-7)*log_l2(14) - (1E-7)*log_l2(15) - (1E-7)*log_l2(16) - (1E-7)*log_l2(17) - (1E-7)*log_l2(18)
      
-      - (1E-7)*log_l2(28) - (1E-7)*log_l2(29) - (1E-7)*log_l2(30) - (1E-7)*log_l2(31) - (1E-7)*log_l2(32) - (1E-7)*log_l2(33) - (1E-7)*log_l2(34) - (1E-7)*log_l2(35) - (1E-7)*log_l2(36) - (1E-7)*log_l2(37) - (1E-7)*log_l2(38) - (1E-7)*log_l2(39)
+      - (1E-7)*log_l2(19) - (1E-7)*log_l2(20) - (1E-7)*log_l2(21) - (1E-7)*log_l2(22) - (1E-7)*log_l2(23) - (1E-7)*log_l2(24) - (1E-7)*log_l2(25) - (1E-7)*log_l2(26) - (1E-7)*log_l2(27) - (1E-7)*log_l2(28) - (1E-7)*log_l2(29) - (1E-7)*log_l2(30)
      
-      - (1E-7)*log_l2(40) - (1E-7)*log_l2(41) - (1E-7)*log_l2(42) - (1E-7)*log_l2(43) - (1E-7)*log_l2(44) - (1E-7)*log_l2(45) - (1E-7)*log_l2(46) - (1E-7)*log_l2(47) - (1E-7)*log_l2(48) - (1E-7)*log_l2(49) - (1E-7)*log_l2(50) - (1E-7)*log_l2(51)
+      - (1E-7)*log_l2(31) - (1E-7)*log_l2(32) - (1E-7)*log_l2(33) - (1E-7)*log_l2(34) - (1E-7)*log_l2(35) - (1E-7)*log_l2(36) - (1E-7)*log_l2(37) - (1E-7)*log_l2(38) - (1E-7)*log_l2(39) - (1E-7)*log_l2(40) - (1E-7)*log_l2(41) - (1E-7)*log_l2(42)
      
-      - (1E-7)*log_l2(52) - (1E-7)*log_l2(53) - (1E-7)*log_l2(54) - (1E-7)*log_l2(55) - (1E-7)*log_l2(56) - (1E-7)*log_l2(57) - (1E-7)*log_l2(58) - (1E-7)*log_l2(59) - (1E-7)*log_l2(60) - (1E-7)*log_l2(61) - (1E-7)*log_l2(62) - (1E-7)*log_l2(63)
+      - (1E-7)*log_l2(43) - (1E-7)*log_l2(44) - (1E-7)*log_l2(45) - (1E-7)*log_l2(46) - (1E-7)*log_l2(47) - (1E-7)*log_l2(48) - (1E-7)*log_l2(49) - (1E-7)*log_l2(50) - (1E-7)*log_l2(51) - (1E-7)*log_l2(52) - (1E-7)*log_l2(53) - (1E-7)*log_l2(54)
      
-      - (1E-7)*log_l2(64) - (1E-7)*log_l2(65) - (1E-7)*log_l2(66) - (1E-7)*log_l2(67) - (1E-7)*log_l2(68) - (1E-7)*log_l2(69) - (1E-7)*log_l2(70) - (1E-7)*log_l2(71) - (1E-7)*log_l2(72) - (1E-7)*log_l2(73) - (1E-7)*log_l2(74) - (1E-7)*log_l2(75)
+      - (1E-7)*log_l2(55) - (1E-7)*log_l2(56) - (1E-7)*log_l2(57) - (1E-7)*log_l2(58) - (1E-7)*log_l2(59) - (1E-7)*log_l2(60) - (1E-7)*log_l2(61) - (1E-7)*log_l2(62) - (1E-7)*log_l2(63) - (1E-7)*log_l2(64) - (1E-7)*log_l2(65) - (1E-7)*log_l2(66)
      
-      - (1E-7)*log_l2(76) - (1E-7)*log_l2(77) - (1E-7)*log_l2(78) - (1E-7)*log_l2(79) - (1E-7)*log_l2(80) - (1E-7)*log_l2(81) - (1E-7)*log_l2(82) - (1E-7)*log_l2(83) - (1E-7)*log_l2(84) - (1E-7)*log_l2(85) - (1E-7)*log_l2(86) - (1E-7)*log_l2(87)
+      - (1E-7)*log_l2(67) - (1E-7)*log_l2(68) - (1E-7)*log_l2(69) - (1E-7)*log_l2(70) - (1E-7)*log_l2(71) - (1E-7)*log_l2(72) - (1E-7)*log_l2(73) - (1E-7)*log_l2(74) - (1E-7)*log_l2(75) - (1E-7)*log_l2(76) - (1E-7)*log_l2(77) - (1E-7)*log_l2(78)
      
-      - (1E-7)*log_l2(88) - (1E-7)*log_l2(89) - (1E-7)*log_l2(90) - (1E-7)*log_l2(91) - (1E-7)*log_l2(92) - (1E-7)*log_l2(93) - (1E-7)*log_l2(94) - (1E-7)*log_l2(95) - (1E-7)*log_l2(96) - (1E-7)*log_l2(97) - (1E-7)*log_l2(98) - (1E-7)*log_l2(99)
+      - (1E-7)*log_l2(79) - (1E-7)*log_l2(80) - (1E-7)*log_l2(81) - (1E-7)*log_l2(82) - (1E-7)*log_l2(83) - (1E-7)*log_l2(84) - (1E-7)*log_l2(85) - (1E-7)*log_l2(86) - (1E-7)*log_l2(87) - (1E-7)*log_l2(88) - (1E-7)*log_l2(89) - (1E-7)*log_l2(90)
      
-      - (1E-7)*log_l2(100) - 50*log_l3(1) - 50*log_l3(2) + obj2 =E= 0 ; (LHS = -0.100187811717993, INFES = 0.100187811717993 ****)
+      - (1E-7)*log_l2(91) - (1E-7)*log_l2(92) - (1E-7)*log_l2(93) - (1E-7)*log_l2(94) - (1E-7)*log_l2(95) - (1E-7)*log_l2(96) - (1E-7)*log_l2(97) - (1E-7)*log_l2(98) - (1E-7)*log_l2(99) - (1E-7)*log_l2(100) - 50*log_l3(1) - 50*log_l3(2) + obj2 =E= 0 ;
+     
+      (LHS = -0.100097811717993, INFES = 0.100097811717993 ****)
      
 
 ---- deflog_l3  =E=  
@@ -2712,9 +2718,9 @@ deflog_l3(2)..  (0.494356275659771)*alpha(1) + (0.604873160075951)*alpha(2) + (0
      
       + (0.23791332371054)*alpha(99) + (0.124248015049814)*alpha(100) + (0.866722187532141)*alpha(0) + log_l3(2) =E= 0 ; (LHS = -2.01531951375458, INFES = 2.01531951375458 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 9
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 148
+Column Listing      SOLVE Kernel_duti Using EMP From line 152
 
 
 ---- w  
@@ -2722,17 +2728,17 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 148
 w(1)
                 (.LO, .L, .UP, .M = 0, 1E-5, 1, 0)
       (-0.0591) defobj
-      (-0.1591) defobj2
+      (-0.0691) defobj2
 
 w(2)
                 (.LO, .L, .UP, .M = 0, 1E-5, 1, 0)
       (-0.0572) defobj
-      (-0.1572) defobj2
+      (-0.0672) defobj2
 
 w(3)
                 (.LO, .L, .UP, .M = 0, 1E-5, 1, 0)
       (-0.0572) defobj
-      (-0.1572) defobj2
+      (-0.0672) defobj2
 
 REMAINING 97 ENTRIES SKIPPED
 
@@ -3428,9 +3434,9 @@ obj2
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj2
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 10
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE Kernel_duti Using EMP From line 148
+Model Statistics    SOLVE Kernel_duti Using EMP From line 152
 
 
 MODEL STATISTICS
@@ -3442,28 +3448,28 @@ DERIVATIVE POOL              20     CONSTANT POOL          10,118
 CODE LENGTH              83,121
 
 
-GENERATION TIME      =        0.094 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.078 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        1.157 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 11
+EXECUTION TIME       =        1.078 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 11
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 148
+Solution Report     SOLVE Kernel_duti Using EMP From line 152
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Kernel_duti         OBJECTIVE  obj2
      TYPE    EMP                 DIRECTION  MINIMIZE
-     SOLVER  JAMS                FROM LINE  148
+     SOLVER  JAMS                FROM LINE  152
 
-**** SOLVER STATUS     5 Evaluation Interrupt      
-**** MODEL STATUS      7 Feasible Solution         
-**** OBJECTIVE VALUE                0.2298
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      2 Locally Optimal           
+**** OBJECTIVE VALUE                0.1100
 
- RESOURCE USAGE, LIMIT          0.266      1000.000
- ITERATION COUNT, LIMIT        40    2000000000
- EVALUATION ERRORS              1             0
+ RESOURCE USAGE, LIMIT          0.188      1000.000
+ ITERATION COUNT, LIMIT        45    2000000000
+ EVALUATION ERRORS              0             0
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -3498,67 +3504,168 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                    Post-triangular equations:  204
  
  
- ** Domain error(s) in nonlinear functions.
-    Check bounds on variables.
+ ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.244 seconds
-   of which: Function evaluations             0.119 = 48.8%
-             1st Derivative evaluations       0.043 = 17.6%
-             2nd Derivative evaluations       0.036 = 14.8%
-             Directional 2nd Derivative       0.008 =  3.3%
+ CONOPT time Total                            0.164 seconds
+   of which: Function evaluations             0.057 = 34.8%
+             1st Derivative evaluations       0.048 = 29.3%
+             2nd Derivative evaluations       0.012 =  7.3%
+             Directional 2nd Derivative       0.005 =  3.0%
  
 ---
 --- Equations skipped = 0  Equations added = 0
 --- Variables skipped = 0  Variables added = 0
 ---
 
-**** ERRORS/WARNINGS IN EQUATION deflog_l2(60)
-     1 error(s): exp: FUNC OVERFLOW: x too large (RETURNED 1E299)
-
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- EQU defobj              .          1395.5545          .             EPS         
+---- EQU defobj              .              .              .             EPS         
 
 ---- EQU deflog_l  
+
+           LOWER          LEVEL          UPPER         MARGINAL
+
+1            .              .              .             0.0100      
+2            .              .              .             0.0100      
+3            .              .              .             0.0100      
+4            .              .              .             0.0100      
+5            .              .              .             0.0100      
+6            .              .              .             EPS         
+7            .              .              .             EPS         
+8            .              .              .             EPS         
+9            .              .              .             EPS         
+10           .              .              .             0.0100      
+11           .              .              .             0.0100      
+12           .              .              .             0.0100      
+13           .              .              .             0.0100      
+14           .              .              .             0.0100      
+15           .              .              .             0.0100      
+16           .              .              .             EPS         
+17           .              .              .             EPS         
+18           .              .              .             EPS         
+19           .              .              .             EPS         
+20           .              .              .             0.0100      
+21           .              .              .             0.0100      
+22           .              .              .             0.0100      
+23           .              .              .             0.0100      
+24           .              .              .             0.0100      
+25           .              .              .             0.0100      
+26           .              .              .             EPS         
+27           .              .              .             EPS         
+28           .              .              .             EPS         
+29           .              .              .             0.0100      
+30           .              .              .             0.0100      
+31           .              .              .             0.0100      
+32           .              .              .             0.0100      
+33           .              .              .             0.0100      
+34           .              .              .             0.0100      
+35           .              .              .             0.0100      
+36           .              .              .             0.0100      
+37           .              .              .             0.0100      
+38           .              .              .             0.0100      
+39           .              .              .             0.0100      
+40           .              .              .             0.0100      
+41           .              .              .             0.0100      
+42           .              .              .             0.0100      
+43           .              .              .             0.0100      
+44           .              .              .             0.0100      
+45           .              .              .             0.0100      
+46           .              .              .             0.0100      
+47           .              .              .             0.0100      
+48           .              .              .             0.0100      
+49           .              .              .             0.0100      
+50           .              .              .             0.0100      
+51           .              .              .             0.0100      
+52           .              .              .             0.0100      
+53           .              .              .             0.0100      
+54           .              .              .             0.0100      
+55           .              .              .             0.0100      
+56           .              .              .             0.0100      
+57           .              .              .             0.0100      
+58           .              .              .             0.0100      
+59           .              .              .             0.0100      
+60           .              .              .             0.0100      
+61           .              .              .             0.0100      
+62           .              .              .             0.0100      
+63           .              .              .             0.0100      
+64           .              .              .             0.0100      
+65           .              .              .             0.0100      
+66           .              .              .             0.0100      
+67           .              .              .             0.0100      
+68           .              .              .             0.0100      
+69           .              .              .             0.0100      
+70           .              .              .             0.0100      
+71           .              .              .             0.0100      
+72           .              .              .             0.0100      
+73           .              .              .             0.0100      
+74           .              .              .             0.0100      
+75           .              .              .             0.0100      
+76           .              .              .             0.0100      
+77           .              .              .             0.0100      
+78           .              .              .             0.0100      
+79           .              .              .             0.0100      
+80           .              .              .             0.0100      
+81           .              .              .             0.0100      
+82           .              .              .             0.0100      
+83           .              .              .             0.0100      
+84           .              .              .             0.0100      
+85           .              .              .             0.0100      
+86           .              .              .             0.0100      
+87           .              .              .             0.0100      
+88           .              .              .             0.0100      
+89           .              .              .             0.0100      
+90           .              .              .             0.0100      
+91           .              .              .             0.0100      
+92           .              .              .             0.0100      
+93           .              .              .             0.0100      
+94           .              .              .             0.0100      
+95           .              .              .             0.0100      
+96           .              .              .             0.0100      
+97           .              .              .             0.0100      
+98           .              .              .             0.0100      
+99           .              .              .             0.0100      
+100          .              .              .             0.0100      
+
+---- EQU deflog_l2  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
 1            .              .              .             EPS         
 2            .              .              .             EPS         
 3            .              .              .             EPS         
-4            .       1.9709419E-5          .             EPS         
-5            .             0.0104          .             EPS         
-6            .       1.0781834E-7          .             EPS         
-7            .              .              .             EPS         
-8            .              .              .             EPS         
-9            .              .              .             EPS         
+4            .              .              .             EPS         
+5            .              .              .             EPS         
+6            .              .              .             0.0100      
+7            .              .              .             0.0100      
+8            .              .              .             0.0100      
+9            .              .              .             0.0100      
 10           .              .              .             EPS         
 11           .              .              .             EPS         
 12           .              .              .             EPS         
 13           .              .              .             EPS         
 14           .              .              .             EPS         
-15           .             0.0063          .             EPS         
-16           .             0.0580          .             EPS         
-17           .              .              .             EPS         
-18           .              .              .             EPS         
-19           .              .              .             EPS         
+15           .              .              .             EPS         
+16           .              .              .             0.0100      
+17           .              .              .             0.0100      
+18           .              .              .             0.0100      
+19           .              .              .             0.0100      
 20           .              .              .             EPS         
 21           .              .              .             EPS         
 22           .              .              .             EPS         
 23           .              .              .             EPS         
 24           .              .              .             EPS         
-25           .             0.3790          .             EPS         
-26           .            24.7206          .             EPS         
-27           .             0.0706          .             EPS         
-28           .              .              .             EPS         
-29           .             0.1826          .             EPS         
+25           .              .              .             EPS         
+26           .              .              .             0.0100      
+27           .              .              .             0.0100      
+28           .              .              .             0.0100      
+29           .              .              .             EPS         
 30           .              .              .             EPS         
 31           .              .              .             EPS         
 32           .              .              .             EPS         
 33           .              .              .             EPS         
 34           .              .              .             EPS         
-35           .       1.5043908E-5          .             EPS         
+35           .              .              .             EPS         
 36           .              .              .             EPS         
 37           .              .              .             EPS         
 38           .              .              .             EPS         
@@ -3568,7 +3675,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 42           .              .              .             EPS         
 43           .              .              .             EPS         
 44           .              .              .             EPS         
-45           .       6.1560206E-5          .             EPS         
+45           .              .              .             EPS         
 46           .              .              .             EPS         
 47           .              .              .             EPS         
 48           .              .              .             EPS         
@@ -3588,7 +3695,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 62           .              .              .             EPS         
 63           .              .              .             EPS         
 64           .              .              .             EPS         
-65           .             0.1317          .             EPS         
+65           .              .              .             EPS         
 66           .              .              .             EPS         
 67           .              .              .             EPS         
 68           .              .              .             EPS         
@@ -3625,570 +3732,464 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 99           .              .              .             EPS         
 100          .              .              .             EPS         
 
----- EQU deflog_l2  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-1            .           280.0874          .             EPS         
-2            .           154.7170          .             EPS         
-3            .           157.5792          .             EPS         
-4            .            10.8344          .             EPS         
-5            .             4.5702          .             EPS         
-6            .            16.0428          .             EPS         
-7            .            40.2465          .             EPS         
-8            .            96.7841          .             EPS         
-9            .           147.7813          .             EPS         
-10           .           510.6128          .             EPS         
-11           .           343.6241          .             EPS         
-12           .           201.3079          .             EPS         
-13           .           135.3460          .             EPS         
-14           .            51.6787          .             EPS         
-15           .             5.0742          .             EPS         
-16           .             2.8768          .             EPS         
-17           .            37.3141          .             EPS         
-18           .            73.8482          .             EPS         
-19           .            75.3029          .             EPS         
-20           .           545.5195          .             EPS         
-21           .           450.8000          .             EPS         
-22           .           259.2440          .             EPS         
-23           .           138.8537          .             EPS         
-24           .            57.8736          .             EPS         
-25           .             1.1537          .             EPS         
-26           .              .              .             EPS         
-27           .             2.6861          .             EPS         
-28           .            21.1558          .             EPS         
-29           .             1.7903          .             EPS         
-30           .           617.9613          .             EPS         
-31           .           475.5797          .             EPS         
-32           .           332.0457          .             EPS         
-33           .           180.2949          .             EPS         
-34           .            29.3521          .             EPS         
-35           .            11.1045          .             EPS         
-36           .            56.7664          .             EPS         
-37           .            53.2640          .             EPS         
-38           .            45.1359          .             EPS         
-39           .           135.0295          .             EPS         
-40           .           589.5066          .             EPS         
-41           .           529.4043          .             EPS         
-42           .           369.8423          .             EPS         
-43           .           193.9091          .             EPS         
-44           .           110.6407          .             EPS         
-45           .             9.6955          .             EPS         
-46           .            48.1812          .             EPS         
-47           .           137.2584          .             EPS         
-48           .           135.2309          .             EPS         
-49           .           186.6356          .             EPS         
-50           .           665.2529          .             EPS         
-51           .           579.7205          .             EPS         
-52           .           519.7950          .             EPS         
-53           .           204.4037          .             EPS         
-54           .           122.6681          .             EPS         
-55           .            96.6056          .             EPS         
-56           .            83.3237          .             EPS         
-57           .           145.2839          .             EPS         
-58           .           232.3384          .             EPS         
-59           .           280.7474          .             EPS         
-60           .           688.4729          .             EPS         
-61           .           558.4360          .             EPS         
-62           .           495.0588          .             EPS         
-63           .           250.5213          .             EPS         
-64           .           246.0349          .             EPS         
-65           .             2.0922          .             EPS         
-66           .            91.9029          .             EPS         
-67           .           183.4765          .             EPS         
-68           .           253.5108          .             EPS         
-69           .           316.5024          .             EPS         
-70           .           653.7569          .             EPS         
-71           .           571.0727          .             EPS         
-72           .           429.1051          .             EPS         
-73           .           302.4788          .             EPS         
-74           .           194.5589          .             EPS         
-75           .            37.4944          .             EPS         
-76           .            75.4573          .             EPS         
-77           .           236.4417          .             EPS         
-78           .           373.5490          .             EPS         
-79           .           429.0215          .             EPS         
-80           .           632.0779          .             EPS         
-81           .           569.8229          .             EPS         
-82           .           485.7492          .             EPS         
-83           .           382.1477          .             EPS         
-84           .           230.6699          .             EPS         
-85           .           121.4597          .             EPS         
-86           .            36.1085          .             EPS         
-87           .           257.9749          .             EPS         
-88           .           392.3651          .             EPS         
-89           .           515.5212          .             EPS         
-90           .           612.4504          .             EPS         
-91           .           526.7539          .             EPS         
-92           .           468.5429          .             EPS         
-93           .           367.2945          .             EPS         
-94           .           256.0820          .             EPS         
-95           .           171.7970          .             EPS         
-96           .            44.5877          .             EPS         
-97           .           224.0166          .             EPS         
-98           .           378.3707          .             EPS         
-99           .           610.4456          .             EPS         
-100          .           563.9333          .             EPS         
-
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- EQU defobj2             .             0.1037          .             EPS         
+---- EQU defobj2             .              .              .             1.0000      
 
 ---- EQU deflog_l3  
 
          LOWER          LEVEL          UPPER         MARGINAL
 
-1          .              .              .             EPS         
-2          .       9.3050152E-5          .             EPS         
+1          .              .              .            50.0000      
+2          .              .              .            50.0000      
 
 ---- VAR w  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1            .              .             1.0000         EPS         
-2            .              .             1.0000         EPS         
-3            .              .             1.0000         EPS         
-4            .              .             1.0000         EPS         
-5            .              .             1.0000         EPS         
-6            .              .             1.0000         EPS         
-7            .              .             1.0000         EPS         
-8            .              .             1.0000         EPS         
-9            .              .             1.0000         EPS         
-10           .              .             1.0000         EPS         
-11           .              .             1.0000         EPS         
-12           .              .             1.0000         EPS         
-13           .              .             1.0000         EPS         
-14           .              .             1.0000         EPS         
-15           .              .             1.0000         EPS         
-16           .              .             1.0000         EPS         
-17           .              .             1.0000         EPS         
-18           .              .             1.0000         EPS         
-19           .              .             1.0000         EPS         
-20           .              .             1.0000         EPS         
-21           .              .             1.0000         EPS         
-22           .              .             1.0000         EPS         
-23           .              .             1.0000         EPS         
-24           .              .             1.0000         EPS         
-25           .              .             1.0000         EPS         
-26           .             1.0000         1.0000         EPS         
-27           .              .             1.0000         EPS         
-28           .              .             1.0000         EPS         
-29           .              .             1.0000         EPS         
-30           .              .             1.0000         EPS         
-31           .              .             1.0000         EPS         
-32           .              .             1.0000         EPS         
-33           .              .             1.0000         EPS         
-34           .              .             1.0000         EPS         
-35           .              .             1.0000         EPS         
-36           .              .             1.0000         EPS         
-37           .              .             1.0000         EPS         
-38           .              .             1.0000         EPS         
-39           .              .             1.0000         EPS         
-40           .              .             1.0000         EPS         
-41           .              .             1.0000         EPS         
-42           .              .             1.0000         EPS         
-43           .              .             1.0000         EPS         
-44           .              .             1.0000         EPS         
-45           .              .             1.0000         EPS         
-46           .              .             1.0000         EPS         
-47           .              .             1.0000         EPS         
-48           .              .             1.0000         EPS         
-49           .              .             1.0000         EPS         
-50           .              .             1.0000         EPS         
-51           .              .             1.0000         EPS         
-52           .              .             1.0000         EPS         
-53           .              .             1.0000         EPS         
-54           .              .             1.0000         EPS         
-55           .              .             1.0000         EPS         
-56           .              .             1.0000         EPS         
-57           .              .             1.0000         EPS         
-58           .              .             1.0000         EPS         
-59           .              .             1.0000         EPS         
-60           .              .             1.0000         EPS         
-61           .              .             1.0000         EPS         
-62           .              .             1.0000         EPS         
-63           .              .             1.0000         EPS         
-64           .              .             1.0000         EPS         
-65           .              .             1.0000         EPS         
-66           .              .             1.0000         EPS         
-67           .              .             1.0000         EPS         
-68           .              .             1.0000         EPS         
-69           .              .             1.0000         EPS         
-70           .              .             1.0000         EPS         
-71           .              .             1.0000         EPS         
-72           .              .             1.0000         EPS         
-73           .              .             1.0000         EPS         
-74           .              .             1.0000         EPS         
-75           .              .             1.0000         EPS         
-76           .              .             1.0000         EPS         
-77           .              .             1.0000         EPS         
-78           .              .             1.0000         EPS         
-79           .              .             1.0000         EPS         
-80           .              .             1.0000         EPS         
-81           .              .             1.0000         EPS         
-82           .              .             1.0000         EPS         
-83           .              .             1.0000         EPS         
-84           .              .             1.0000         EPS         
-85           .              .             1.0000         EPS         
-86           .              .             1.0000         EPS         
-87           .              .             1.0000         EPS         
-88           .              .             1.0000         EPS         
-89           .              .             1.0000         EPS         
-90           .              .             1.0000         EPS         
-91           .              .             1.0000         EPS         
-92           .              .             1.0000         EPS         
-93           .              .             1.0000         EPS         
-94           .              .             1.0000         EPS         
-95           .              .             1.0000         EPS         
-96           .              .             1.0000         EPS         
-97           .              .             1.0000         EPS         
-98           .              .             1.0000         EPS         
-99           .              .             1.0000         EPS         
-100          .              .             1.0000         EPS         
+1            .              .             1.0000         2.1438      
+2            .              .             1.0000         1.8125      
+3            .              .             1.0000         1.8271      
+4            .              .             1.0000         0.8194      
+5            .              .             1.0000         0.1212      
+6            .             1.0000         1.0000        -0.0985      
+7            .             1.0000         1.0000        -0.4796      
+8            .             1.0000         1.0000        -1.1869      
+9            .             1.0000         1.0000        -1.2884      
+10           .              .             1.0000         2.4239      
+11           .              .             1.0000         2.4150      
+12           .              .             1.0000         2.0683      
+13           .              .             1.0000         1.7769      
+14           .              .             1.0000         1.2593      
+15           .              .             1.0000         0.6692      
+16           .             1.0000         1.0000        -0.3582      
+17           .             1.0000         1.0000        -0.8030      
+18           .             1.0000         1.0000        -1.1738      
+19           .             1.0000         1.0000        -1.5833      
+20           .              .             1.0000         2.8046      
+21           .              .             1.0000         2.7636      
+22           .              .             1.0000         2.3261      
+23           .              .             1.0000         1.7594      
+24           .              .             1.0000         1.2488      
+25           .              .             1.0000         0.5825      
+26           .             1.0000         1.0000        -0.6956      
+27           .             1.0000         1.0000        -1.1652      
+28           .             1.0000         1.0000        -1.5484      
+29           .              .             1.0000         1.9994      
+30           .              .             1.0000         3.0891      
+31           .              .             1.0000         3.0144      
+32           .              .             1.0000         2.5850      
+33           .              .             1.0000         1.9203      
+34           .              .             1.0000         0.8081      
+35           .              .             1.0000         0.5297      
+36           .              .             1.0000         1.1688      
+37           .              .             1.0000         1.1362      
+38           .              .             1.0000         1.7289      
+39           .              .             1.0000         2.2553      
+40           .              .             1.0000         3.1966      
+41           .              .             1.0000         3.1532      
+42           .              .             1.0000         2.6811      
+43           .              .             1.0000         1.7369      
+44           .              .             1.0000         1.1116      
+45           .              .             1.0000         0.2235      
+46           .              .             1.0000         0.4934      
+47           .              .             1.0000         1.4583      
+48           .              .             1.0000         1.6730      
+49           .              .             1.0000         2.3481      
+50           .              .             1.0000         3.3905      
+51           .              .             1.0000         3.2457      
+52           .              .             1.0000         3.0414      
+53           .              .             1.0000         1.6953      
+54           .              .             1.0000         1.1568      
+55           .              .             1.0000         0.8845      
+56           .              .             1.0000         0.8353      
+57           .              .             1.0000         1.4551      
+58           .              .             1.0000         1.9203      
+59           .              .             1.0000         2.4295      
+60           .              .             1.0000         3.4165      
+61           .              .             1.0000         3.1220      
+62           .              .             1.0000         2.8863      
+63           .              .             1.0000         1.7453      
+64           .              .             1.0000         1.5765      
+65           .              .             1.0000         0.1228      
+66           .              .             1.0000         0.7769      
+67           .              .             1.0000         1.4823      
+68           .              .             1.0000         1.9436      
+69           .              .             1.0000         2.1202      
+70           .              .             1.0000         3.3840      
+71           .              .             1.0000         3.0738      
+72           .              .             1.0000         2.3206      
+73           .              .             1.0000         1.7018      
+74           .              .             1.0000         1.0310      
+75           .              .             1.0000         0.1243      
+76           .              .             1.0000         0.5358      
+77           .              .             1.0000         1.4415      
+78           .              .             1.0000         1.9455      
+79           .              .             1.0000         2.4036      
+80           .              .             1.0000         3.2561      
+81           .              .             1.0000         2.9481      
+82           .              .             1.0000         2.5813      
+83           .              .             1.0000         2.0150      
+84           .              .             1.0000         1.2058      
+85           .              .             1.0000         0.5937      
+86           .              .             1.0000         0.2583      
+87           .              .             1.0000         1.3121      
+88           .              .             1.0000         1.8273      
+89           .              .             1.0000         2.0961      
+90           .              .             1.0000         3.1456      
+91           .              .             1.0000         2.7245      
+92           .              .             1.0000         2.4122      
+93           .              .             1.0000         1.8744      
+94           .              .             1.0000         1.3043      
+95           .              .             1.0000         0.8832      
+96           .              .             1.0000         0.1493      
+97           .              .             1.0000         0.8632      
+98           .              .             1.0000         1.2711      
+99           .              .             1.0000         1.8303      
+100          .              .             1.0000         2.9383      
 
 ---- VAR alpha  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1          -INF         -268.0486        +INF            EPS         
-2          -INF           25.3645        +INF            EPS         
-3          -INF           29.0618        +INF            EPS         
-4          -INF          105.6798        +INF            EPS         
-5          -INF           51.2715        +INF            EPS         
-6          -INF          -16.5875        +INF            EPS         
-7          -INF         -113.9910        +INF            EPS         
-8          -INF         -249.1601        +INF            EPS         
-9          -INF         -273.5256        +INF            EPS         
-10         -INF         -734.9687        +INF            EPS         
-11         -INF         -185.8856        +INF            EPS         
-12         -INF          136.9501        +INF            EPS         
-13         -INF          184.3255        +INF            EPS         
-14         -INF          270.9914        +INF            EPS         
-15         -INF          266.1224        +INF            EPS         
-16         -INF           14.1441        +INF            EPS         
-17         -INF         -130.2235        +INF            EPS         
-18         -INF         -217.7717        +INF            EPS         
-19         -INF         -178.7195        +INF            EPS         
-20         -INF         -440.2408        +INF            EPS         
-21         -INF         -187.7937        +INF            EPS         
-22         -INF          193.1697        +INF            EPS         
-23         -INF          301.5180        +INF            EPS         
-24         -INF          314.1875        +INF            EPS         
-25         -INF          253.3784        +INF            EPS         
-26         -INF          -25.0561        +INF            EPS         
-27         -INF         -133.8038        +INF            EPS         
-28         -INF         -165.1485        +INF            EPS         
-29         -INF          -31.5803        +INF            EPS         
-30         -INF         -355.0137        +INF            EPS         
-31         -INF           34.1497        +INF            EPS         
-32         -INF          153.3288        +INF            EPS         
-33         -INF          279.8832        +INF            EPS         
-34         -INF          248.1681        +INF            EPS         
-35         -INF          190.2487        +INF            EPS         
-36         -INF         -110.7890        +INF            EPS         
-37         -INF         -105.6270        +INF            EPS         
-38         -INF         -134.0352        +INF            EPS         
-39         -INF           69.5693        +INF            EPS         
-40         -INF         -180.2065        +INF            EPS         
-41         -INF            1.3808        +INF            EPS         
-42         -INF          151.5677        +INF            EPS         
-43         -INF          190.9545        +INF            EPS         
-44         -INF          131.3409        +INF            EPS         
-45         -INF           27.1474        +INF            EPS         
-46         -INF          -28.8138        +INF            EPS         
-47         -INF         -156.9438        +INF            EPS         
-48         -INF         -140.3409        +INF            EPS         
-49         -INF          142.8675        +INF            EPS         
-50         -INF         -189.9263        +INF            EPS         
-51         -INF          -25.6298        +INF            EPS         
-52         -INF           26.5409        +INF            EPS         
-53         -INF          149.7555        +INF            EPS         
-54         -INF          118.6668        +INF            EPS         
-55         -INF           64.0906        +INF            EPS         
-56         -INF         -141.0440        +INF            EPS         
-57         -INF         -158.9223        +INF            EPS         
-58         -INF          -72.2470        +INF            EPS         
-59         -INF          242.0564        +INF            EPS         
-60         -INF         -214.9431        +INF            EPS         
-61         -INF           -6.7253        +INF            EPS         
-62         -INF           30.1925        +INF            EPS         
-63         -INF           70.0255        +INF            EPS         
-64         -INF           13.3019        +INF            EPS         
-65         -INF         -136.9866        +INF            EPS         
-66         -INF         -174.9323        +INF            EPS         
-67         -INF         -151.6742        +INF            EPS         
-68         -INF          -51.4589        +INF            EPS         
-69         -INF           59.2786        +INF            EPS         
-70         -INF         -106.4231        +INF            EPS         
-71         -INF          -26.4850        +INF            EPS         
-72         -INF          -20.5634        +INF            EPS         
-73         -INF          -35.2633        +INF            EPS         
-74         -INF          -93.5271        +INF            EPS         
-75         -INF         -148.8657        +INF            EPS         
-76         -INF         -166.3117        +INF            EPS         
-77         -INF         -104.7256        +INF            EPS         
-78         -INF           92.5167        +INF            EPS         
-79         -INF          381.3074        +INF            EPS         
-80         -INF          -81.0992        +INF            EPS         
-81         -INF          -43.8379        +INF            EPS         
-82         -INF          -21.8253        +INF            EPS         
-83         -INF          -40.6506        +INF            EPS         
-84         -INF          -86.3882        +INF            EPS         
-85         -INF         -121.4845        +INF            EPS         
-86         -INF         -149.2941        +INF            EPS         
-87         -INF          -64.9738        +INF            EPS         
-88         -INF          107.5911        +INF            EPS         
-89         -INF          360.3548        +INF            EPS         
-90         -INF          -73.2292        +INF            EPS         
-91         -INF          -30.7989        +INF            EPS         
-92         -INF          -24.8754        +INF            EPS         
-93         -INF          -43.5076        +INF            EPS         
-94         -INF          -63.9429        +INF            EPS         
-95         -INF          -83.7819        +INF            EPS         
-96         -INF          -97.3024        +INF            EPS         
-97         -INF          -32.0839        +INF            EPS         
-98         -INF          108.6598        +INF            EPS         
-99         -INF          463.4439        +INF            EPS         
-100        -INF          -60.6535        +INF            EPS         
-0          -INF          422.2176        +INF            EPS         
+1          -INF          -13.3426        +INF      -3.762819E-8      
+2          -INF          -12.3277        +INF      -4.716751E-8      
+3          -INF          -12.2706        +INF      -4.710777E-8      
+4          -INF           -9.2292        +INF      -5.958411E-8      
+5          -INF           -4.8231        +INF      -6.701161E-8      
+6          -INF           -3.4489        +INF      -6.799161E-8      
+7          -INF           -1.1853        +INF      -6.954050E-8      
+8          -INF            3.0069        +INF      -6.822327E-8      
+9          -INF            4.5943        +INF      -6.278154E-8      
+10         -INF          -12.8546        +INF      -2.359627E-8      
+11         -INF          -12.1417        +INF      -3.675828E-8      
+12         -INF          -10.6014        +INF      -4.699203E-8      
+13         -INF          -10.4553        +INF      -5.100174E-8      
+14         -INF           -8.2792        +INF      -5.847633E-8      
+15         -INF           -2.7618        +INF      -6.479833E-8      
+16         -INF           -0.0719        +INF      -7.093788E-8      
+17         -INF            1.6590        +INF      -7.118059E-8      
+18         -INF            3.4670        +INF      -6.959632E-8      
+19         -INF            7.4003        +INF      -6.682460E-8      
+20         -INF          -11.8283        +INF      -2.649482E-8      
+21         -INF          -11.4205        +INF      -3.282210E-8      
+22         -INF           -9.2210        +INF      -4.515127E-8      
+23         -INF           -6.4959        +INF      -5.321470E-8      
+24         -INF           -5.2185        +INF      -5.927253E-8      
+25         -INF           -1.7476        +INF      -6.536803E-8      
+26         -INF            7.1309        +INF      -7.084875E-8      
+27         -INF            8.0860        +INF      -7.105197E-8      
+28         -INF            9.9352        +INF      -6.893523E-8      
+29         -INF           14.3256        +INF      -6.356102E-8      
+30         -INF          -11.6641        +INF      -2.414416E-8      
+31         -INF          -11.0612        +INF      -3.294342E-8      
+32         -INF           -9.5389        +INF      -4.118211E-8      
+33         -INF           -6.3010        +INF      -5.049883E-8      
+34         -INF            0.0525        +INF      -6.159461E-8      
+35         -INF            2.5007        +INF      -6.265159E-8      
+36         -INF           13.3689        +INF      -6.825897E-8      
+37         -INF           12.9240        +INF      -6.858335E-8      
+38         -INF           15.1045        +INF      -6.703146E-8      
+39         -INF           19.8840        +INF      -5.880325E-8      
+40         -INF          -11.7412        +INF      -2.640360E-8      
+41         -INF          -12.0281        +INF      -2.935433E-8      
+42         -INF           -9.7435        +INF      -3.880938E-8      
+43         -INF           -5.0344        +INF      -4.798650E-8      
+44         -INF           -0.9928        +INF      -5.213397E-8      
+45         -INF            5.6894        +INF      -5.780888E-8      
+46         -INF           10.6182        +INF      -6.438483E-8      
+47         -INF           17.1951        +INF      -5.843461E-8      
+48         -INF           18.3365        +INF      -6.076873E-8      
+49         -INF           20.8837        +INF      -5.568060E-8      
+50         -INF          -13.2899        +INF      -2.070259E-8      
+51         -INF          -14.0281        +INF      -2.443266E-8      
+52         -INF          -13.6413        +INF      -2.738044E-8      
+53         -INF           -5.2428        +INF      -4.630155E-8      
+54         -INF           -1.4931        +INF      -5.089332E-8      
+55         -INF            0.1476        +INF      -5.115970E-8      
+56         -INF           13.0685        +INF      -5.746990E-8      
+57         -INF           17.0397        +INF      -5.695071E-8      
+58         -INF           18.9382        +INF      -5.145487E-8      
+59         -INF           21.3787        +INF      -5.001233E-8      
+60         -INF          -13.8733        +INF      -1.844149E-8      
+61         -INF          -15.0088        +INF      -2.375186E-8      
+62         -INF          -14.0526        +INF      -2.733764E-8      
+63         -INF           -7.2074        +INF      -4.085510E-8      
+64         -INF           -7.4572        +INF      -3.844660E-8      
+65         -INF            5.5896        +INF      -4.697394E-8      
+66         -INF           10.8277        +INF      -4.832811E-8      
+67         -INF           16.2218        +INF      -5.048175E-8      
+68         -INF           18.7802        +INF      -4.936756E-8      
+69         -INF           19.2336        +INF      -4.542270E-8      
+70         -INF          -16.0875        +INF      -1.759971E-8      
+71         -INF          -16.8120        +INF      -1.989800E-8      
+72         -INF          -15.4160        +INF      -2.365937E-8      
+73         -INF          -10.7926        +INF      -3.087704E-8      
+74         -INF           -6.7505        +INF      -3.211219E-8      
+75         -INF            1.7158        +INF      -3.870460E-8      
+76         -INF            6.8603        +INF      -3.787021E-8      
+77         -INF           14.5174        +INF      -4.071416E-8      
+78         -INF           17.6305        +INF      -3.728785E-8      
+79         -INF           20.5708        +INF      -3.977934E-8      
+80         -INF          -18.3231        +INF      -1.424585E-8      
+81         -INF          -19.4596        +INF      -1.260338E-8      
+82         -INF          -17.0933        +INF      -2.008505E-8      
+83         -INF          -14.8624        +INF      -2.293234E-8      
+84         -INF           -8.8411        +INF      -2.895800E-8      
+85         -INF           -4.5521        +INF      -2.834421E-8      
+86         -INF            3.5832        +INF      -3.255407E-8      
+87         -INF           13.0310        +INF      -3.418907E-8      
+88         -INF           16.7788        +INF      -3.335341E-8      
+89         -INF           18.6273        +INF      -2.983556E-8      
+90         -INF          -19.4691        +INF      -1.166602E-8      
+91         -INF          -19.7755        +INF      -1.115097E-8      
+92         -INF          -19.1702        +INF      -1.270262E-8      
+93         -INF          -16.3071        +INF      -1.715551E-8      
+94         -INF          -12.7627        +INF      -1.855698E-8      
+95         -INF           -8.9437        +INF      -2.078981E-8      
+96         -INF            1.2578        +INF      -2.439886E-8      
+97         -INF            8.3881        +INF      -2.500518E-8      
+98         -INF           11.6448        +INF      -2.226252E-8      
+99         -INF           16.1634        +INF      -2.050125E-8      
+100        -INF          -20.3226        +INF      -7.587814E-9      
+0          -INF           -7.9699        +INF      -7.294932E-8      
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR obj               -INF         2791.1175        +INF            EPS         
+---- VAR obj               -INF          111.1222        +INF             .          
 
 ---- VAR log_l  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1          -INF             .            +INF            EPS         
-2          -INF             .            +INF            EPS         
-3          -INF             .            +INF            EPS         
-4          -INF      3.9418838E-5        +INF            EPS         
-5          -INF            0.0208        +INF            EPS         
-6          -INF      2.1563668E-7        +INF            EPS         
-7          -INF             .            +INF            EPS         
-8          -INF             .            +INF            EPS         
-9          -INF             .            +INF            EPS         
-10         -INF             .            +INF            EPS         
-11         -INF             .            +INF            EPS         
-12         -INF             .            +INF            EPS         
-13         -INF             .            +INF            EPS         
-14         -INF             .            +INF            EPS         
-15         -INF            0.0126        +INF            EPS         
-16         -INF            0.1159        +INF            EPS         
-17         -INF             .            +INF            EPS         
-18         -INF             .            +INF            EPS         
-19         -INF             .            +INF            EPS         
-20         -INF             .            +INF            EPS         
-21         -INF             .            +INF            EPS         
-22         -INF             .            +INF            EPS         
-23         -INF             .            +INF            EPS         
-24         -INF             .            +INF            EPS         
-25         -INF            0.7580        +INF            EPS         
-26         -INF           49.4412        +INF            EPS         
-27         -INF            0.1412        +INF            EPS         
-28         -INF      1.2977481E-9        +INF            EPS         
-29         -INF            0.3652        +INF            EPS         
-30         -INF             .            +INF            EPS         
-31         -INF             .            +INF            EPS         
-32         -INF             .            +INF            EPS         
-33         -INF             .            +INF            EPS         
-34         -INF      3.579359E-13        +INF            EPS         
-35         -INF      3.0087815E-5        +INF            EPS         
-36         -INF             .            +INF            EPS         
-37         -INF             .            +INF            EPS         
-38         -INF             .            +INF            EPS         
-39         -INF             .            +INF            EPS         
-40         -INF             .            +INF            EPS         
-41         -INF             .            +INF            EPS         
-42         -INF             .            +INF            EPS         
-43         -INF             .            +INF            EPS         
-44         -INF             .            +INF            EPS         
-45         -INF            0.0001        +INF            EPS         
-46         -INF             .            +INF            EPS         
-47         -INF             .            +INF            EPS         
-48         -INF             .            +INF            EPS         
-49         -INF             .            +INF            EPS         
-50         -INF             .            +INF            EPS         
-51         -INF             .            +INF            EPS         
-52         -INF             .            +INF            EPS         
-53         -INF             .            +INF            EPS         
-54         -INF             .            +INF            EPS         
-55         -INF             .            +INF            EPS         
-56         -INF             .            +INF            EPS         
-57         -INF             .            +INF            EPS         
-58         -INF             .            +INF            EPS         
-59         -INF             .            +INF            EPS         
-60         -INF             .            +INF            EPS         
-61         -INF             .            +INF            EPS         
-62         -INF             .            +INF            EPS         
-63         -INF             .            +INF            EPS         
-64         -INF             .            +INF            EPS         
-65         -INF            0.2634        +INF            EPS         
-66         -INF             .            +INF            EPS         
-67         -INF             .            +INF            EPS         
-68         -INF             .            +INF            EPS         
-69         -INF             .            +INF            EPS         
-70         -INF             .            +INF            EPS         
-71         -INF             .            +INF            EPS         
-72         -INF             .            +INF            EPS         
-73         -INF             .            +INF            EPS         
-74         -INF             .            +INF            EPS         
-75         -INF             .            +INF            EPS         
-76         -INF             .            +INF            EPS         
-77         -INF             .            +INF            EPS         
-78         -INF             .            +INF            EPS         
-79         -INF             .            +INF            EPS         
-80         -INF             .            +INF            EPS         
-81         -INF             .            +INF            EPS         
-82         -INF             .            +INF            EPS         
-83         -INF             .            +INF            EPS         
-84         -INF             .            +INF            EPS         
-85         -INF             .            +INF            EPS         
-86         -INF      4.440892E-16        +INF            EPS         
-87         -INF             .            +INF            EPS         
-88         -INF             .            +INF            EPS         
-89         -INF             .            +INF            EPS         
-90         -INF             .            +INF            EPS         
-91         -INF             .            +INF            EPS         
-92         -INF             .            +INF            EPS         
-93         -INF             .            +INF            EPS         
-94         -INF             .            +INF            EPS         
-95         -INF             .            +INF            EPS         
-96         -INF             .            +INF            EPS         
-97         -INF             .            +INF            EPS         
-98         -INF             .            +INF            EPS         
-99         -INF             .            +INF            EPS         
-100        -INF             .            +INF            EPS         
+1          -INF             .            +INF             .          
+2          -INF             .            +INF             .          
+3          -INF             .            +INF             .          
+4          -INF             .            +INF             .          
+5          -INF      1.4842261E-5        +INF             .          
+6          -INF           10.8456        +INF             .          
+7          -INF           48.9599        +INF             .          
+8          -INF          119.6850        +INF             .          
+9          -INF          129.8430        +INF             .          
+10         -INF             .            +INF             .          
+11         -INF             .            +INF             .          
+12         -INF             .            +INF             .          
+13         -INF             .            +INF             .          
+14         -INF             .            +INF             .          
+15         -INF             .            +INF             .          
+16         -INF           36.8181        +INF             .          
+17         -INF           81.2973        +INF             .          
+18         -INF          118.3816        +INF             .          
+19         -INF          159.3329        +INF             .          
+20         -INF             .            +INF             .          
+21         -INF             .            +INF             .          
+22         -INF             .            +INF             .          
+23         -INF             .            +INF             .          
+24         -INF             .            +INF             .          
+25         -INF             .            +INF             .          
+26         -INF           70.5642        +INF             .          
+27         -INF          117.5213        +INF             .          
+28         -INF          155.8412        +INF             .          
+29         -INF             .            +INF             .          
+30         -INF             .            +INF             .          
+31         -INF             .            +INF             .          
+32         -INF             .            +INF             .          
+33         -INF             .            +INF             .          
+34         -INF             .            +INF             .          
+35         -INF             .            +INF             .          
+36         -INF             .            +INF             .          
+37         -INF             .            +INF             .          
+38         -INF             .            +INF             .          
+39         -INF             .            +INF             .          
+40         -INF             .            +INF             .          
+41         -INF             .            +INF             .          
+42         -INF             .            +INF             .          
+43         -INF             .            +INF             .          
+44         -INF             .            +INF             .          
+45         -INF      5.334739E-10        +INF             .          
+46         -INF             .            +INF             .          
+47         -INF             .            +INF             .          
+48         -INF             .            +INF             .          
+49         -INF             .            +INF             .          
+50         -INF             .            +INF             .          
+51         -INF             .            +INF             .          
+52         -INF             .            +INF             .          
+53         -INF             .            +INF             .          
+54         -INF             .            +INF             .          
+55         -INF             .            +INF             .          
+56         -INF             .            +INF             .          
+57         -INF             .            +INF             .          
+58         -INF             .            +INF             .          
+59         -INF             .            +INF             .          
+60         -INF             .            +INF             .          
+61         -INF             .            +INF             .          
+62         -INF             .            +INF             .          
+63         -INF             .            +INF             .          
+64         -INF             .            +INF             .          
+65         -INF      1.2582659E-5        +INF             .          
+66         -INF             .            +INF             .          
+67         -INF             .            +INF             .          
+68         -INF             .            +INF             .          
+69         -INF             .            +INF             .          
+70         -INF             .            +INF             .          
+71         -INF             .            +INF             .          
+72         -INF             .            +INF             .          
+73         -INF             .            +INF             .          
+74         -INF             .            +INF             .          
+75         -INF      1.0828256E-5        +INF             .          
+76         -INF             .            +INF             .          
+77         -INF             .            +INF             .          
+78         -INF             .            +INF             .          
+79         -INF             .            +INF             .          
+80         -INF             .            +INF             .          
+81         -INF             .            +INF             .          
+82         -INF             .            +INF             .          
+83         -INF             .            +INF             .          
+84         -INF             .            +INF             .          
+85         -INF             .            +INF             .          
+86         -INF      1.638356E-11        +INF             .          
+87         -INF             .            +INF             .          
+88         -INF             .            +INF             .          
+89         -INF             .            +INF             .          
+90         -INF             .            +INF             .          
+91         -INF             .            +INF             .          
+92         -INF             .            +INF             .          
+93         -INF             .            +INF             .          
+94         -INF             .            +INF             .          
+95         -INF             .            +INF             .          
+96         -INF      8.9243052E-7        +INF             .          
+97         -INF             .            +INF             .          
+98         -INF             .            +INF             .          
+99         -INF             .            +INF             .          
+100        -INF             .            +INF             .          
 
 ---- VAR log_l2  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1          -INF          560.1749        +INF            EPS         
-2          -INF          309.4340        +INF            EPS         
-3          -INF          315.1585        +INF            EPS         
-4          -INF           21.6688        +INF            EPS         
-5          -INF            9.1404        +INF            EPS         
-6          -INF           32.0856        +INF            EPS         
-7          -INF           80.4929        +INF            EPS         
-8          -INF          193.5683        +INF            EPS         
-9          -INF          295.5627        +INF            EPS         
-10         -INF         1021.2256        +INF            EPS         
-11         -INF          687.2482        +INF            EPS         
-12         -INF          402.6157        +INF            EPS         
-13         -INF          270.6920        +INF            EPS         
-14         -INF          103.3574        +INF            EPS         
-15         -INF           10.1484        +INF            EPS         
-16         -INF            5.7536        +INF            EPS         
-17         -INF           74.6283        +INF            EPS         
-18         -INF          147.6965        +INF            EPS         
-19         -INF          150.6057        +INF            EPS         
-20         -INF         1091.0390        +INF            EPS         
-21         -INF          901.6001        +INF            EPS         
-22         -INF          518.4879        +INF            EPS         
-23         -INF          277.7075        +INF            EPS         
-24         -INF          115.7471        +INF            EPS         
-25         -INF            2.3075        +INF            EPS         
-26         -INF      3.672840E-11        +INF            EPS         
-27         -INF            5.3723        +INF            EPS         
-28         -INF           42.3116        +INF            EPS         
-29         -INF            3.5806        +INF            EPS         
-30         -INF         1235.9226        +INF            EPS         
-31         -INF          951.1593        +INF            EPS         
-32         -INF          664.0913        +INF            EPS         
-33         -INF          360.5898        +INF            EPS         
-34         -INF           58.7041        +INF            EPS         
-35         -INF           22.2091        +INF            EPS         
-36         -INF          113.5329        +INF            EPS         
-37         -INF          106.5280        +INF            EPS         
-38         -INF           90.2717        +INF            EPS         
-39         -INF          270.0590        +INF            EPS         
-40         -INF         1179.0132        +INF            EPS         
-41         -INF         1058.8086        +INF            EPS         
-42         -INF          739.6845        +INF            EPS         
-43         -INF          387.8183        +INF            EPS         
-44         -INF          221.2814        +INF            EPS         
-45         -INF           19.3911        +INF            EPS         
-46         -INF           96.3624        +INF            EPS         
-47         -INF          274.5167        +INF            EPS         
-48         -INF          270.4617        +INF            EPS         
-49         -INF          373.2712        +INF            EPS         
-50         -INF         1330.5058        +INF            EPS         
-51         -INF         1159.4411        +INF            EPS         
-52         -INF         1039.5899        +INF            EPS         
-53         -INF          408.8074        +INF            EPS         
-54         -INF          245.3362        +INF            EPS         
-55         -INF          193.2112        +INF            EPS         
-56         -INF          166.6474        +INF            EPS         
-57         -INF          290.5677        +INF            EPS         
-58         -INF          464.6768        +INF            EPS         
-59         -INF          561.4948        +INF            EPS         
-60         -INF         1376.9459        +INF            EPS         
-61         -INF         1116.8721        +INF            EPS         
-62         -INF          990.1177        +INF            EPS         
-63         -INF          501.0427        +INF            EPS         
-64         -INF          492.0698        +INF            EPS         
-65         -INF            4.1844        +INF            EPS         
-66         -INF          183.8059        +INF            EPS         
-67         -INF          366.9530        +INF            EPS         
-68         -INF          507.0215        +INF            EPS         
-69         -INF          633.0047        +INF            EPS         
-70         -INF         1307.5138        +INF            EPS         
-71         -INF         1142.1453        +INF            EPS         
-72         -INF          858.2101        +INF            EPS         
-73         -INF          604.9575        +INF            EPS         
-74         -INF          389.1179        +INF            EPS         
-75         -INF           74.9888        +INF            EPS         
-76         -INF          150.9146        +INF            EPS         
-77         -INF          472.8834        +INF            EPS         
-78         -INF          747.0980        +INF            EPS         
-79         -INF          858.0429        +INF            EPS         
-80         -INF         1264.1557        +INF            EPS         
-81         -INF         1139.6459        +INF            EPS         
-82         -INF          971.4984        +INF            EPS         
-83         -INF          764.2953        +INF            EPS         
-84         -INF          461.3398        +INF            EPS         
-85         -INF          242.9194        +INF            EPS         
-86         -INF           72.2171        +INF            EPS         
-87         -INF          515.9497        +INF            EPS         
-88         -INF          784.7301        +INF            EPS         
-89         -INF         1031.0425        +INF            EPS         
-90         -INF         1224.9008        +INF            EPS         
-91         -INF         1053.5078        +INF            EPS         
-92         -INF          937.0857        +INF            EPS         
-93         -INF          734.5891        +INF            EPS         
-94         -INF          512.1640        +INF            EPS         
-95         -INF          343.5941        +INF            EPS         
-96         -INF           89.1753        +INF            EPS         
-97         -INF          448.0333        +INF            EPS         
-98         -INF          756.7413        +INF            EPS         
-99         -INF         1220.8912        +INF            EPS         
-100        -INF         1127.8666        +INF            EPS         
+1          -INF          213.3846        +INF             .          
+2          -INF          180.2506        +INF             .          
+3          -INF          181.7133        +INF             .          
+4          -INF           80.9397        +INF             .          
+5          -INF           11.1180        +INF             .          
+6          -INF      1.9490977E-5        +INF             .          
+7          -INF             .            +INF             .          
+8          -INF             .            +INF             .          
+9          -INF             .            +INF             .          
+10         -INF          241.3927        +INF             .          
+11         -INF          240.4973        +INF             .          
+12         -INF          205.8338        +INF             .          
+13         -INF          176.6898        +INF             .          
+14         -INF          124.9272        +INF             .          
+15         -INF           65.9161        +INF             .          
+16         -INF             .            +INF             .          
+17         -INF             .            +INF             .          
+18         -INF             .            +INF             .          
+19         -INF             .            +INF             .          
+20         -INF          279.4645        +INF             .          
+21         -INF          275.3617        +INF             .          
+22         -INF          231.6116        +INF             .          
+23         -INF          174.9424        +INF             .          
+24         -INF          123.8808        +INF             .          
+25         -INF           57.2454        +INF             .          
+26         -INF             .            +INF             .          
+27         -INF             .            +INF             .          
+28         -INF             .            +INF             .          
+29         -INF          198.9404        +INF             .          
+30         -INF          307.9086        +INF             .          
+31         -INF          300.4420        +INF             .          
+32         -INF          257.5002        +INF             .          
+33         -INF          191.0349        +INF             .          
+34         -INF           79.8077        +INF             .          
+35         -INF           51.9728        +INF             .          
+36         -INF          115.8800        +INF             .          
+37         -INF          112.6181        +INF             .          
+38         -INF          171.8895        +INF             .          
+39         -INF          224.5266        +INF             .          
+40         -INF          318.6632        +INF             .          
+41         -INF          314.3222        +INF             .          
+42         -INF          267.1074        +INF             .          
+43         -INF          172.6944        +INF             .          
+44         -INF          110.1611        +INF             .          
+45         -INF           21.3516        +INF             .          
+46         -INF           48.3436        +INF             .          
+47         -INF          144.8297        +INF             .          
+48         -INF          166.2983        +INF             .          
+49         -INF          233.8108        +INF             .          
+50         -INF          338.0534        +INF             .          
+51         -INF          323.5666        +INF             .          
+52         -INF          303.1391        +INF             .          
+53         -INF          168.5285        +INF             .          
+54         -INF          114.6766        +INF             .          
+55         -INF           87.4489        +INF             .          
+56         -INF           82.5344        +INF             .          
+57         -INF          144.5118        +INF             .          
+58         -INF          191.0340        +INF             .          
+59         -INF          241.9544        +INF             .          
+60         -INF          340.6469        +INF             .          
+61         -INF          311.2006        +INF             .          
+62         -INF          287.6265        +INF             .          
+63         -INF          173.5329        +INF             .          
+64         -INF          156.6481        +INF             .          
+65         -INF           11.2832        +INF             .          
+66         -INF           76.6856        +INF             .          
+67         -INF          147.2338        +INF             .          
+68         -INF          193.3597        +INF             .          
+69         -INF          211.0207        +INF             .          
+70         -INF          337.3991        +INF             .          
+71         -INF          306.3768        +INF             .          
+72         -INF          231.0581        +INF             .          
+73         -INF          169.1850        +INF             .          
+74         -INF          102.1025        +INF             .          
+75         -INF           11.4334        +INF             .          
+76         -INF           52.5841        +INF             .          
+77         -INF          143.1456        +INF             .          
+78         -INF          193.5472        +INF             .          
+79         -INF          239.3571        +INF             .          
+80         -INF          324.6126        +INF             .          
+81         -INF          293.8077        +INF             .          
+82         -INF          257.1252        +INF             .          
+83         -INF          200.4961        +INF             .          
+84         -INF          119.5776        +INF             .          
+85         -INF           58.3676        +INF             .          
+86         -INF           24.8347        +INF             .          
+87         -INF          130.2125        +INF             .          
+88         -INF          181.7284        +INF             .          
+89         -INF          208.6082        +INF             .          
+90         -INF          313.5557        +INF             .          
+91         -INF          271.4506        +INF             .          
+92         -INF          240.2242        +INF             .          
+93         -INF          186.4425        +INF             .          
+94         -INF          129.4350        +INF             .          
+95         -INF           87.3225        +INF             .          
+96         -INF           13.9293        +INF             .          
+97         -INF           85.3230        +INF             .          
+98         -INF          126.1067        +INF             .          
+99         -INF          182.0303        +INF             .          
+100        -INF          292.8258        +INF             .          
 
 ---- VAR log_l3  
 
          LOWER          LEVEL          UPPER         MARGINAL
 
-1        -INF      1.3538224E-9        +INF            EPS         
-2        -INF            0.0002        +INF            EPS         
+1        -INF             .            +INF             .          
+2        -INF             .            +INF             .          
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR obj2              -INF            0.2298        +INF            EPS         
+---- VAR obj2              -INF            0.1100        +INF             .          
 
 
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-                             1     ERRORS ( ****)
-                             5  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 13:36:26 Page 12
+                             0     ERRORS
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:31:04 Page 12
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    183 PARAMETER ranking  
+----    187 PARAMETER ranking  
 
 1   41.000,    2   41.000,    3   41.000,    4   41.000,    5   41.000,    6   41.000,    7   41.000,    8   41.000,    9   41.000,    10  41.000,    11  41.000,    12  41.000,    13  41.000,    14  41.000,    15  41.000,    16  41.000,    17  41.000
 18  41.000,    19  41.000,    20  41.000,    21  41.000,    22  41.000,    23  41.000,    24  41.000,    25  41.000,    26  41.000,    27  41.000,    28  41.000,    29  41.000,    30  41.000,    31  41.000,    32  41.000,    33  41.000,    34  41.000
@@ -4199,7 +4200,7 @@ E x e c u t i o n
 
 
 
-EXECUTION TIME       =        0.234 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.203 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN

@@ -1,8 +1,8 @@
 {
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
-		"trust_data":	{
-			"alias":	"trust_data",
+		"trust_info":	{
+			"alias":	"Information of Trusted Item",
 			"symtype":	"parameter",
 			"headers":	{
 				"header":	{
@@ -16,20 +16,10 @@
 				"education":	{
 					"type":	"numeric",
 					"alias":	"education"
-				}
-			}
-		},
-		"trust_label":	{
-			"alias":	"trust_label",
-			"symtype":	"parameter",
-			"headers":	{
-				"header":	{
-					"type":	"string",
-					"alias":	"header"
 				},
-				"value":	{
+				"label":	{
 					"type":	"numeric",
-					"alias":	"trust_label"
+					"alias":	"label"
 				}
 			}
 		}
@@ -59,6 +49,10 @@
 					"type":	"numeric",
 					"alias":	"education"
 				},
+				"label":	{
+					"type":	"numeric",
+					"alias":	"label of trust data"
+				},
 				"val":	{
 					"type":	"numeric",
 					"alias":	"label of training data"
@@ -78,10 +72,6 @@
 				"education_t":	{
 					"type":	"numeric",
 					"alias":	"education_t"
-				},
-				"label":	{
-					"type":	"numeric",
-					"alias":	"label of trust data"
 				},
 				"ranking":	{
 					"type":	"numeric",

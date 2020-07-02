@@ -84,6 +84,16 @@ In each lab, there are 4 rounds of operation in total in each lab. Each operatio
 
 As the pictures shows, in lab l2, there are 2 operations. The first operation is to test kits of batch size 8. This test will cost 2 rounds out of 4. And we will repeat this operation once. The prevalence of the kits included in this operation is 0.04. There will be 62.5 batches in this operation. Note that the batch size is 8, so we have 62.5*8 =500 kits. The lab can test with 62 batches of size 8 and 1 of size 4. Moreover, since the run size of this lab is larger than the number of batches, there are still 33 extra position left. So we can actually do some test for some single kits in these positions. The number of extra kits transported to lab is listed in the output "kitsinl". The second operation is to do some extra round for single kits. These kits could have any prevalence. And they could be either the kits  not tested yet or the kits tested with unknown result. We repeat this operation for 2 times. Each time we will just test as many single kits as possible.
 
+
+
+<h2>
+    GAMS Model
+</h2>
+
+The GAMS model can be downloaded <a href="static_allocate_miro3/allocate_miro3.gms" target="_blank">here</a>.
+
+
+
 ## Limitation
 
 •In this model we have a fixed common running time for each round in each lab, which is 5 hours. In reality the running time for each round may vary for different prevalence and labs. If the total number of round changes, then the embedding GAMS model should be modified. Generalization for different round time could be realized，but this will lead to worse relaxation, which may make the model harder to solve.

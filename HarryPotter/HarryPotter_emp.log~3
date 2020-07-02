@@ -1,35 +1,194 @@
+--- Job HarryPotter_emp.gms Start 07/01/20 22:23:41 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter_emp.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCGenerateJSON conf_HarryPotter_emp/HarryPotter_emp_io.json
+    IDCGenerateGDX data_HarryPotter_emp/default.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 22 days ago
+Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- HarryPotter_emp.gms(187) 3 Mb
+--- Starting execution: elapsed 0:00:00.012
+--- HarryPotter_emp.gms(87) 4 Mb
+--- Generating NLP model submodel
+--- HarryPotter_emp.gms(89) 8 Mb
+---   201 rows  302 columns  20,601 non-zeroes
+---   81,104 nl-code  20,300 nl-non-zeroes
+--- HarryPotter_emp.gms(89) 6 Mb
+--- Executing CONOPT: elapsed 0:00:00.094
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        1.3862943611E+02 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  201
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.693147180560
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      6   4        1.7057990721E-01 5.2E-02   101 1.0E+00    6 F  T
+     11   4        1.5284752573E-01 3.3E-07   101 1.0E+00   14 F  T
+     12   4        1.5284752573E-01 6.3E-08   101
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- HarryPotter_emp.gms(89) 2 Mb
+--- Reading solution for model submodel
+--- Executing after solve: elapsed 0:00:00.327
+--- HarryPotter_emp.gms(150) 37 Mb
+--- Generating EMP model Kernel_duti
+--- HarryPotter_emp.gms(152) 40 Mb
+---   204 rows  405 columns  21,308 non-zeroes
+---   83,121 nl-code  21,102 nl-non-zeroes
+--- HarryPotter_emp.gms(152) 38 Mb
+--- Executing JAMS: elapsed 0:00:01.443
 
-TRACE [2020-07-01 13:54:17] Logging facility initialised.
-DEBUG [2020-07-01 13:54:18] Database connection established.
-DEBUG [2020-07-01 13:54:18] Access Control initialised.
-INFO [2020-07-01 13:54:18] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-01 13:54:19] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 13:54:19] Db: 10006 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-01 13:54:19] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-01 13:54:19] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-01 13:54:19] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
-DEBUG [2020-07-01 13:54:19] Db: Data was added to table: 'harrypotteremp_trust_data' (Db.exportScenDataset).
-DEBUG [2020-07-01 13:54:19] Db: Data was added to table: 'harrypotteremp_trust_label' (Db.exportScenDataset).
-DEBUG [2020-07-01 13:54:19] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 13:54:19] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-01 13:54:19] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-01 13:54:19] Scenario: '1' unlocked.
-DEBUG [2020-07-01 13:54:19] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
-INFO [2020-07-01 13:54:23] Session started (model: 'harrypotter_emp', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter').
-DEBUG [2020-07-01 13:54:23] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter'.
-DEBUG [2020-07-01 13:54:23] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 13:54:25] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-01 13:54:25] Loading and rendering scenarios: '1'.
-DEBUG [2020-07-01 13:54:25] Db: Data was imported from table: 'harrypotteremp_output1' (Db.importDataset).
-DEBUG [2020-07-01 13:54:25] Db: Data was imported from table: 'harrypotteremp_trust_data' (Db.importDataset).
-DEBUG [2020-07-01 13:54:25] Db: Data was imported from table: 'harrypotteremp_trust_label' (Db.importDataset).
-DEBUG [2020-07-01 13:54:25] Db: A table named: '_sys_scripts_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-01 13:54:25] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-01 13:54:25] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 13:54:26] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-01 13:54:26] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-01 13:54:26] Dataset: trust_data loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-01 13:54:26] Dataset: trust_label loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-01 13:54:26] Scenario: '1' was loaded into UI
-DEBUG [2020-07-01 13:54:27] Sidebar menu item: 'outputData' selected.
-INFO [2020-07-01 13:56:18] Session ended (model: 'harrypotter_emp', user: 'hasee').
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+
+*** Problems reading EMP info file: C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat
+*** Error code = 2 when opening file: C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat
+
+---
+--- No reformulations requested
+--- Generating unchanged scalar model
+---
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/01/20 22:23:43 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\HARRYP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+*** License has expired 22 days ago
+Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
+          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(13754) 4 Mb
+--- Starting execution: elapsed 0:00:00.064
+--- emp.dat(13753) 5 Mb
+--- Generating DNLP model m
+--- emp.dat(13754) 9 Mb
+---   204 rows  405 columns  21,308 non-zeroes
+---   83,121 nl-code  21,102 nl-non-zeroes
+--- emp.dat(13754) 7 Mb
+--- Executing CONOPT: elapsed 0:00:00.139
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.3145012696E+00 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  204
+ 
+      1   0        0.0000000000E+00 (After pre-processing)
+      2   0        0.0000000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =    103.176066738
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      6   3        8.9057801873E+01 3.9E+01   173 1.0E+00   18 T  T
+     11   3        1.6161315802E+00 2.2E+01   104 4.6E-03      F  T
+     21   4        3.9932978724E-01 1.0E-01   108 5.7E-01      T  T
+     31   4        1.4229371749E-01 1.1E-02   102 2.8E+01      F  T
+     36   4        1.1178426295E-01 5.2E-04   101 1.0E+00    3 F  T
+     41   4        1.1001177825E-01 4.0E-06   101 1.0E+00    2 F  T
+     45   4        1.1000058637E-01 7.3E-08   101
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- emp.dat(13754) 3 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/01/20 22:23:43 elapsed 0:00:00.459
+--- Returning from GAMS step
+---
+--- Equations skipped = 0  Equations added = 0
+--- Variables skipped = 0  Variables added = 0
+---
+--- Restarting execution
+--- HarryPotter_emp.gms(152) 36 Mb
+--- Reading solution for model Kernel_duti
+--- Executing after solve: elapsed 0:00:02.352
+--- HarryPotter_emp.gms(187) 38 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\data_HarryPotter_emp/default.gdx
+*** Status: Normal completion
+--- Job HarryPotter_emp.gms Stop 07/01/20 22:23:43 elapsed 0:00:02.578
+
+TRACE [2020-07-01 22:23:48] Logging facility initialised.
+DEBUG [2020-07-01 22:23:49] Database connection established.
+DEBUG [2020-07-01 22:23:49] Access Control initialised.
+INFO [2020-07-01 22:23:49] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-01 22:23:50] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 22:23:50] Db: 10004 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
+DEBUG [2020-07-01 22:23:50] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-01 22:23:50] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-01 22:23:50] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
+DEBUG [2020-07-01 22:23:50] Db: Data was added to table: 'harrypotteremp_trust_info' (Db.exportScenDataset).
+DEBUG [2020-07-01 22:23:50] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 22:23:50] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-01 22:23:56] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
+DEBUG [2020-07-01 22:25:14] Scenario: '1' unlocked.

@@ -10,3 +10,15 @@ E 1172 x
 E 1194 obj
 E 1201 u
 B 1494 Model Statistics    SOLVE tsp Using MIP From line 108
+B 1510 Solution Report     SOLVE tsp Using MIP From line 108
+F 1540 defobj
+F 1542 assign1
+F 1595 assign2
+F 1648 mtz
+G 3862 x
+G 6172 obj
+G 6174 u
+B 6232 E x e c u t i o n
+I 6234 obj
+I 6235 tour
+I 6287 u
