@@ -59,7 +59,8 @@
   "defaultScenName": "default",
   "readme": {
     "tabTitle": "readme",
-    "filename": "FacLoc.md"
+    "filename": "FacLoc.md",
+    "enableMath": true
   },
   "handsontable": {
     "stretchH": "none",

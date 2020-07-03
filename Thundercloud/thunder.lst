@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 1
 airplane
 C o m p i l a t i o n
 
@@ -189,8 +189,8 @@ C o m p i l a t i o n
  191  display FlowOP;
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 2
+COMPILATION TIME     =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 2
 airplane
 E x e c u t i o n
 
@@ -6165,7 +6165,7 @@ start                                                                           
 
 start   1.000,    finish -1.000
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 3
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -6615,7 +6615,7 @@ objective..  - 10.2*flow(1,206) - 10.2*flow(2,207) - 10.2*flow(3,208) - 10.2*flo
      
       - 11.8*flow(1296,1106) - 1.25*flow(1296,1297) - 11.8*flow(1297,1107) - 1.25*flow(1297,1298) - 11.8*flow(1298,1108) - 1.25*flow(1298,1299) - 11.8*flow(1299,1109) + totalcost =E= 0 ; (LHS = 0)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 4
 airplane
 Column Listing      SOLVE airplane Using LP From line 173
 
@@ -6648,7 +6648,7 @@ totalcost
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       objective
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 5
 airplane
 Model Statistics    SOLVE airplane Using LP From line 173
 
@@ -6663,8 +6663,8 @@ NON ZERO ELEMENTS         8,055
 GENERATION TIME      =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        5.781 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 6
+EXECUTION TIME       =        5.797 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 6
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -6679,7 +6679,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE              144.8200
 
- RESOURCE USAGE, LIMIT          0.032      1000.000
+ RESOURCE USAGE, LIMIT          0.016      1000.000
  ITERATION COUNT, LIMIT       262    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -10843,7 +10843,7 @@ start.801             .             1.0000        +INF             .
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 06/25/20 20:18:16 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:33:08 Page 7
 airplane
 E x e c u t i o n
 
@@ -12268,7 +12268,7 @@ c3    .c3           6.000      12.000                              72.000       
 
 
 
-EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN

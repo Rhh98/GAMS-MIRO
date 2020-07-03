@@ -1,4 +1,4 @@
---- Job thunder.gms Start 06/25/20 20:17:30 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job thunder.gms Start 06/25/20 20:18:16 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -22,12 +22,11 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- thunder.gms(191) 3 Mb
---- Starting execution: elapsed 0:00:00.015
 --- thunder.gms(155) 4 Mb
 --- Generating LP model airplane
 --- thunder.gms(173) 5 Mb
 ---   1,281 rows  2,848 columns  8,055 non-zeroes
---- Executing CPLEX: elapsed 0:00:05.981
+--- Executing CPLEX: elapsed 0:00:05.796
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -48,7 +47,7 @@ Tried aggregator 1 time.
 LP Presolve eliminated 485 rows and 907 columns.
 Aggregator did 42 substitutions.
 Reduced LP has 754 rows, 1899 columns, and 3787 nonzeros.
-Presolve time = 0.02 sec. (3.92 ticks)
+Presolve time = 0.00 sec. (3.92 ticks)
 Initializing dual steep norms . . .
 
 Iteration log . . .
@@ -64,12 +63,12 @@ Objective :         144.820000
 --- Restarting execution
 --- thunder.gms(173) 3 Mb
 --- Reading solution for model airplane
---- Executing after solve: elapsed 0:00:06.134
+--- Executing after solve: elapsed 0:00:05.945
 --- thunder.gms(191) 4 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\data_thunder/default.gdx
 *** Status: Normal completion
---- Job thunder.gms Stop 06/25/20 20:17:36 elapsed 0:00:06.184
+--- Job thunder.gms Stop 06/25/20 20:18:22 elapsed 0:00:05.982
 
 Warning in eval(ei, envir) :
   The alias of symbol: 'xcoordcloud' was selected to be overwritten. However, this symbol could not be found.
@@ -81,26 +80,72 @@ Warning in eval(ei, envir) :
   The alias of symbol: 'flowoutput' was selected to be overwritten. However, this symbol could not be found.
 Warning in eval(ei, envir) :
   The alias of symbol: 'minheight' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-06-25 20:17:41] Logging facility initialised.
-DEBUG [2020-06-25 20:17:41] Database connection established.
-DEBUG [2020-06-25 20:17:41] Access Control initialised.
-WARN [2020-06-25 20:17:41] There are orphaned tables in your database: 'thunder_xcoordcloud', 'thunder_lowcloud', 'thunder_highcloud', 'thunder_flowoutput', 'thunder_minheight'.
+TRACE [2020-06-25 20:18:26] Logging facility initialised.
+DEBUG [2020-06-25 20:18:26] Database connection established.
+DEBUG [2020-06-25 20:18:26] Access Control initialised.
+WARN [2020-06-25 20:18:26] There are orphaned tables in your database: 'thunder_xcoordcloud', 'thunder_lowcloud', 'thunder_highcloud', 'thunder_flowoutput', 'thunder_minheight'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-ERROR [2020-06-25 20:17:41] There are tables in your database that do not match the current database schema of your model.
-
-Those tables are: 'cloudsinfo'.
-Error message: ' Database table headers ('clouds', 'cloudinf', 'value') are different from those in current configuration ('clouds', 'xc', 'low', 'high').
-Please fix the database schema or change your GAMS model!
-'.
-FATAL [2020-06-25 20:17:41] 
- There are tables in your database that do not match the current database schema of your model.
-
-Those tables are: 'cloudsinfo'.
-Error message: ' Database table headers ('clouds', 'cloudinf', 'value') are different from those in current configuration ('clouds', 'xc', 'low', 'high').
-Please fix the database schema or change your GAMS model!
-'.
-INFO [2020-06-25 20:17:51] Database table: 'thunder_cloudsinfo' deleted.
-INFO [2020-06-25 20:18:03] Database table: 'thunder_cloudsinfo' deleted.
-DEBUG [2020-06-25 20:18:04] Db: Database connection ended as Db object was gced.
+INFO [2020-06-25 20:18:27] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-25 20:18:27] Db: Data was imported from table: '_sys_metadata_thunder' (Db.importDataset).
+DEBUG [2020-06-25 20:18:27] Db: 1382 rows in table: '_sys_metadata_thunder' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:18:27] Db: Metadata (table: '_sys_metadata_thunder') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-25 20:18:27] Db: Metadata (table: '_sys_metadata_thunder') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-25 20:18:27] Db: Data was added to table: 'thunder_flowop' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder__scalars_out' (Db.exportScenDataset).
+TRACE [2020-06-25 20:18:28] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-06-25 20:18:28] Db: A database table named: 'thunder_cloudsinfo' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-25 20:18:28] Db: First data was written to table: 'thunder_cloudsinfo' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder_crcost' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder_climbdis' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder_upcost' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder_downcost' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder_offsetcr' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder_descenddis' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was added to table: 'thunder__scalars' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:18:28] Db: Data was imported from table: '_sys_scenlocks_thunder' (Db.importDataset).
+DEBUG [2020-06-25 20:18:28] Db: 1 rows in table: '_sys_scenlocks_thunder' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:18:28] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-25 20:18:30] Scenario: '1' unlocked.
+DEBUG [2020-06-25 20:18:30] Db: 1 rows in table: '_sys_scenlocks_thunder' were deleted. (Db.deleteRows)
+INFO [2020-06-25 20:18:34] Session started (model: 'thunder', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Thundercloud').
+DEBUG [2020-06-25 20:18:34] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Thundercloud'.
+DEBUG [2020-06-25 20:18:34] Db: Data was imported from table: '_sys_metadata_thunder' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 20:18:35] Loading and rendering scenarios: '1'.
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_flowop' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder__scalars_out' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_cloudsinfo' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_crcost' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_climbdis' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_upcost' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_downcost' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_offsetcr' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder_descenddis' (Db.importDataset).
+DEBUG [2020-06-25 20:18:35] Db: Data was imported from table: 'thunder__scalars' (Db.importDataset).
+DEBUG [2020-06-25 20:18:36] Db: A table named: '_sys_scripts_thunder' does not exist in the database (Db.importDataset).
+DEBUG [2020-06-25 20:18:36] Scenario: 'New Scenario' closed.
+DEBUG [2020-06-25 20:18:36] Db: Data was imported from table: '_sys_metadata_thunder' (Db.importDataset).
+DEBUG [2020-06-25 20:18:36] Db: Data was imported from table: '_sys_scenlocks_thunder' (Db.importDataset).
+DEBUG [2020-06-25 20:18:36] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-06-25 20:18:36] Dataset: cloudsinfo loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: crcost loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: climbdis loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: upcost loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: downcost loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: _scalars loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: offsetcr loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:36] Dataset: descenddis loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-06-25 20:18:37] Scenario: '1' was loaded into UI
+DEBUG [2020-06-25 20:18:43] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 20:18:45] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 20:18:56] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 20:18:57] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 20:18:57] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-06-25 20:18:58] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-06-25 20:18:58] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-06-25 20:18:58] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-06-25 20:18:59] Sidebar menu item: 'outputData' selected.
+INFO [2020-06-25 20:19:03] Session ended (model: 'thunder', user: 'hasee').

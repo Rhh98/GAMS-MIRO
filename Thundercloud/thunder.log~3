@@ -1,4 +1,4 @@
---- Job thunder.gms Start 06/25/20 20:15:50 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job thunder.gms Start 06/25/20 20:17:15 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -19,28 +19,51 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- thunder.gms(32) 3 Mb 1 Error
-*** Error 326 in C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\thunder.gms
-    An empty table statement is not followed by a legal statement
---- thunder.gms(169) 3 Mb 2 Errors
-*** Error 257 in C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\thunder.gms
-    Solve statement not checked because of previous errors
---- thunder.gms(173) 3 Mb 3 Errors
-*** Error 141 in C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\thunder.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- thunder.gms(180) 3 Mb 4 Errors
-*** Error 141 in C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\thunder.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- thunder.gms(187) 3 Mb
+--- thunder.gms(191) 3 Mb
+--- Starting execution: elapsed 0:00:00.007
+--- thunder.gms(155) 4 Mb
+--- Generating LP model airplane
+--- thunder.gms(173) 5 Mb
+---   1,281 rows  2,848 columns  8,055 non-zeroes
+--- Executing CPLEX: elapsed 0:00:05.897
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.09 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+Tried aggregator 1 time.
+LP Presolve eliminated 485 rows and 907 columns.
+Aggregator did 42 substitutions.
+Reduced LP has 754 rows, 1899 columns, and 3787 nonzeros.
+Presolve time = 0.02 sec. (3.92 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =             1.290000
+Iteration:   100   Dual objective     =            86.700000
+Iteration:   185   Dual objective     =           121.780000
+LP status(1): optimal
+Cplex Time: 0.02sec (det. 7.46 ticks)
+
+Optimal solution found.
+Objective :         144.820000
+
+--- Restarting execution
+--- thunder.gms(173) 3 Mb
+--- Reading solution for model airplane
+--- Executing after solve: elapsed 0:00:06.065
+--- thunder.gms(191) 4 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Thundercloud\res.gdx
---- thunder.gms(187) 3 Mb 4 Errors
-*** Status: Compilation error(s)
---- Job thunder.gms Stop 06/25/20 20:15:50 elapsed 0:00:00.351
+*** Status: Normal completion
+--- Job thunder.gms Stop 06/25/20 20:17:21 elapsed 0:00:06.108

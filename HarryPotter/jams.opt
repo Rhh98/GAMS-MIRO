@@ -1,1 +1,1 @@
-subsolver mosek
+subsolveropt 1

@@ -71,21 +71,10 @@
     }
   },
   "defaultScenName": "default",
-  "inputGroups": [
-    {
-      "name": "Cournot and Stackelberg model",
-      "members": ["i", "lead", "fdata"]
-    }
-  ],
-  "outputGroups": [
-    {
-      "name": "Stackelberg model",
-      "members": ["resultstac", "linfo_stac", "ninfo_stac"]
-    }
-  ],
   "readme": {
     "tabTitle": "readme",
-    "filename": "oligopoly.md"
+    "filename": "oligopoly.md",
+    "enableMath": true
   },
   "handsontable": {
     "stretchH": "none",
@@ -102,5 +91,17 @@
     },
     "height": 700,
     "colWidths": 150
-  }
+  },
+  "inputGroups": [
+    {
+      "name": "Cournot and Stackelberg model",
+      "members": ["i", "lead", "fdata"]
+    }
+  ],
+  "outputGroups": [
+    {
+      "name": "Stackelberg model",
+      "members": ["resultstac", "linfo_stac", "ninfo_stac"]
+    }
+  ]
 }

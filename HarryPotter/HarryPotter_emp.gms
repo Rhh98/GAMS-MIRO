@@ -67,25 +67,22 @@ K(n,n1)=exp(K(n,n1)/(2*sigma*sigma));
 
 
 *Lower level problem
-variables alpha(*),obj,log_l(n),log_l2(n),obj_sub;
-equations defobj,deflog_l(n),deflog_l2(n),defobj_sub;
+variables alpha(*),log_l(n),obj_sub,obj_In;
+equations deflog_l(n),defobj_sub,defobj_In;
 
 defobj_sub..
 obj_sub =e= lam/2*sum(n,sum(n1,K(n,n1)*alpha(n)*alpha(n1)))
-    + 1/card(n)*sum(n,(1-w.l(n))*log_l(n)+w.l(n)*log_l2(n));
+    + 1/card(n)*sum(n,(1-w.l(n))*log(1+exp(log_l(n)))+w.l(n)*log(1+exp(-log_l(n))));
 
 deflog_l(n)..
-log_l(n) =e=  log(1+exp(-y_Con(n)*(sum(n1,K(n,n1)*alpha(n1))+alpha('0'))));
+log_l(n) =e=  -y_Con(n)*(sum(n1,K(n,n1)*alpha(n1))+alpha('0'));
 
-deflog_l2(n)..
-log_l2(n) =e= log(1+exp(y_Con(n)*(sum(n1,K(n,n1)*alpha(n1))+alpha('0'))));
-
-defobj..
-obj =e= lam/2*sum(n,sum(n1,K(n,n1)*alpha(n)*alpha(n1)))
-    + 1/card(n)*sum(n,(1-w(n))*log_l(n)+w(n)*log_l2(n));
+defobj_In..
+obj_In =e= lam/2*sum(n,sum(n1,K(n,n1)*alpha(n)*alpha(n1)))
+    + 1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n)))+w(n)*log(1+exp(-log_l(n))));
 
 alpha.l(n)=0;
-model submodel /defobj_sub,deflog_l,deflog_l2/;
+model submodel /defobj_sub,deflog_l/;
 solve submodel using nlp minimizing obj_sub;
 
 *generated trusted data--------------------
@@ -129,28 +126,38 @@ K_tilde(Header,n)=-sum(aspect,sqr(trust_data(Header,aspect)))-(sqr(X_Train(n,'He
 K_tilde(Header,n)=exp(K_tilde(Header,n)/(2*sigma*sigma));
 
 *outter level problem
-variables log_l3(Header),obj2;
-equations defobj2,deflog_l3(Header);
+variables log_l2(Header),obj;
+equations defobj,deflog_l2(Header);
 
-deflog_l3(Header)..
-log_l3(Header) =e= log(1+exp(-Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'))));
-defobj2..
-obj2 =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log_l3(Header))+1/card(n)*sum(n,(1-w(n))*log_l(n)+w(n)*log_l2(n));
+deflog_l2(Header)..
+log_l2(Header) =e= exp(-Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0')));
+defobj..
+obj =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
     
-model Kernel_duti /defobj,deflog_l,deflog_l2,defobj2,deflog_l3/;
-File myinfo /'%emp.info%'/;
-$onecho > '%empinfo%'
-bilevel w 
-min obj log_l log_l2 alpha deflog_l deflog_l2 defobj 
-$offecho
+model Kernel_duti /defobj_In,deflog_l,deflog_l2,defobj/;
+File myinfo / '%emp.info%' /;
+put myinfo "bilevel w" /;
+putclose "min obj_In log_l  alpha deflog_l  defobj_In"/;
+
 $ontext
-$echo subsolver mosek>jams.opt
+$echo subsolver knitro>jams.opt
 Kernel_duti.optcr=1e-1;
 Kernel_duti.optfile=1;
 $offtext
-w.l(n)=1-1e-5;
-
-solve Kernel_duti using emp minimizing obj2;
+$onecho > jams.opt
+subsolveropt 1
+$offecho
+$onecho > nlpec.opt
+aggregate none
+constraint inequality
+initmu 1e-2
+finalmu 1e-4
+$offecho
+w.l(n)=1e-5;
+option mpec = knitro;
+*Kernel_duti.optfile=1;
+solve submodel using nlp minimizing obj_sub;
+solve Kernel_duti using emp minimizing obj;
 
 set g /g1*g40/;
 parameter ranking(n);

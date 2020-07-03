@@ -156,6 +156,16 @@
     "filename": "readme.md",
     "enableMath": true
   },
+  "inputGroups": [
+    {
+      "name": "Story Imfo",
+      "members": ["bigs", "height", "width2", "sponsored", "valc", "time"]
+    },
+    {
+      "name": "Scenarios Info",
+      "members": ["c", "cscore"]
+    }
+  ],
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -171,15 +181,5 @@
     },
     "height": 700,
     "colWidths": 150
-  },
-  "inputGroups": [
-    {
-      "name": "Story Imfo",
-      "members": ["bigs", "height", "width2", "sponsored", "valc", "time"]
-    },
-    {
-      "name": "Scenarios Info",
-      "members": ["c", "cscore"]
-    }
-  ]
+  }
 }

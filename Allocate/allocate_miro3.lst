@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -307,8 +307,8 @@ C o m p i l a t i o n
  328  display unmet;
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 2
+COMPILATION TIME     =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -546,7 +546,7 @@ INDEX 1 = l2
 16.20                     YES
 32.20         YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE vivak Using MIP From line 283
 
@@ -679,7 +679,7 @@ defobj..  - numBat(prv1,l1,1) - 1.9208*numBat(prv1,l1,2) - 3.68947264*numBat(prv
      
       - 8*numBat(prv3,l1,2) - 16*numBat(prv3,l1,4) - 32*numBat(prv3,l1,8) - 4*numBat(prv3,l2,1) - 8*numBat(prv3,l2,2) - 16*numBat(prv3,l2,4) - 32*numBat(prv3,l2,8) - extras(l1) - extras(l2) + obj =E= 0 ; (LHS = 0)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE vivak Using MIP From line 283
 
@@ -809,7 +809,7 @@ obj
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE vivak Using MIP From line 283
 
@@ -821,11 +821,11 @@ BLOCKS OF VARIABLES           7     SINGLE VARIABLES          167
 NON ZERO ELEMENTS           433     DISCRETE VARIABLES         34
 
 
-GENERATION TIME      =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 6
+EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE vivak Using MIP From line 283
 
@@ -840,7 +840,7 @@ Solution Report     SOLVE vivak Using MIP From line 283
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE             6144.0000
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.656      1000.000
  ITERATION COUNT, LIMIT       143    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -850,10 +850,10 @@ Cplex 12.10.0.0
 Space for names approximately 0.01 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.02sec (det. 3.41 ticks)
+Cplex Time: 0.61sec (det. 3.41 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.18 ticks)
+Cplex Time: 0.05sec (det. 0.18 ticks)
 Proven optimal solution.
 
 MIP Solution:         6144.000000    (143 iterations, 0 nodes)
@@ -1244,7 +1244,7 @@ l2          .              .           384.0000         1.0000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/01/20 22:30:00 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:16:21 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 

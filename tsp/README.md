@@ -56,34 +56,22 @@ Notice that the distance from capital city $i$ to capital city $j$ is the same a
 ### Decision Variables
 $x_{i, j} \in \{0, 1\}$: This variable is equal to 1, if we decide to connect city $i$ with city $j$. Otherwise, the decision variable is equal to zero.
 
-### Objective Function
-- **Shortest Route**. Minimize the total distance of a route. A route is a sequence of capital cities where the salesperson visits each city only once and returns to the starting capital city.
+<h3>Objective Function</h3>
+<p>- **Shortest Route**. Minimize the total distance of a route. A route is a sequence of capital cities where the salesperson visits each city only once and returns to the starting capital city.</p>
 
-$$
-\text{Min} \quad Z = \sum_{(i,j) \in \text{Pairings}}d_{i,j} \cdot x_{i,j}
-\tag{0}
-$$
+$$\text{Min} \quad Z = \sum_{(i,j) \in \text{Pairings}}d_{i,j} \cdot x_{i,j}$$
 
 ### Constraints 
 - **Entering a capital city**. For each capital city $i$, ensure that this city is connected to two other cities. 
 
-$$
-\sum_{(j,i) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals
-\tag{1}
-$$
+$$\sum_{(j,i) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals$$
 - **leaving a capital city**. For each capital city $i$, ensure that this city is connected to two other cities. 
 
-$$
-\sum_{(i,j) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals
-\tag{2}
-$$
+$$\sum_{(i,j) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals$$
 
 - **Position constraints**. Although not intuitive enough, these constraints ensure that for any subset of cities $S$ of the set of $Capitals$, there is no cycle. That is, there is no route that visits all the cities in the subset and returns to the origin city.
 
-$$
-u_i+u_j+1\leq (n-1)(1-x_{ij}) \quad \forall  (i,j) \subset  S \quad and \quad i,j\neq 1
-\tag{3}
-$$
+$$u_i+u_j+1\leq (n-1)(1-x_{ij}) \quad \forall  (i,j) \subset  S \quad and \quad i,j\neq 1$$
 Here $u_i$ represent the position of city $i\ge 2$ in the Hamilton cycle.
 
 - **Remark**. Another constraints have the same function is the subtour elimination constraint. Although more intuitive, 

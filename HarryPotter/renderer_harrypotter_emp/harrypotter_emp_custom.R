@@ -7,8 +7,8 @@ outputOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here
-    plotOutput(ns('plott'),height=height),
-    dataTableOutput(ns('tabletest'),height=height)
+    plotOutput(ns('plott'),height=height)
+    #dataTableOutput(ns('tabletest'),height=height)
   ) 
 }
 
@@ -83,5 +83,5 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   legend(0.8,1,legend=c("True Pos","True Neg","False Pos","False Neg"),pch=c(3,21,3,21)
          ,col=c("blue","blue","black","black"),pt.bg=c("blue","blue","black","black"))
  })
-  output$tabletest<-DT::renderDataTable(datatable(cbind(newZ)))
+  #output$tabletest<-DT::renderDataTable(datatable(cbind(newZ)))
 }

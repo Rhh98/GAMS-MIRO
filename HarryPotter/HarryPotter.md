@@ -25,7 +25,7 @@ trusted items correctly.
     Input and Output of the Model
 </h2>
 
-For the machine learning example, we will use a simple but typical one, namely "Harry Potter " example.  Suppose we have datas of several Hogwarts students. The training set data included their magical heritage ranging from 0(muggle-born) to 1(pure-blood) and their education level ranging from 0(failed school) to 1(Hermione level).  The label for these datas are whether '+1':Hired by Ministry of Magic after graduation) or -1--Not Hired.
+For the machine learning example, we will use a simple but typical one, namely "Harry Potter " example.  Suppose we have datas of several Hogwarts students. The training set data included their magical heritage ranging from 0(muggle-born) to 1(pure-blood) and their education level ranging from 0(failed school) to 1(Hermione level).  The label for these datas are whether '+1':Hired by Ministry of Magic after graduation) or -1-Not Hired.
 
 <h3>
     Input data
@@ -54,6 +54,7 @@ For the machine learning example, we will use a simple but typical one, namely "
     Variables:
 </h3>
 $X$: training set data
+
 $Y$: training set label
 
 $n$: size of training set
@@ -86,9 +87,9 @@ $\gamma$: coefficient of weight parameter limiting change of label when debuggin
 
 The problem could be formulated as a bilevel optimation as:
 
-​               $$min \quad Distance \left(Y^{\prime}, Y\right) $$
-$$\quad s.t.  \quad Predictor =\mathcal{A}\left(X, Y^{\prime}\right)$$
-$$\quad  Predictor (\tilde{X})=\tilde{Y} \wedge \operatorname{Predictor}(X)=Y^{\prime}$$
+​ $$\begin{aligned}min \quad&Distance \left(Y^{\prime}, Y\right) \\\ 
+   s.t.  \quad   &Predictor =\mathcal{A}\left(X, Y^{\prime}\right)\\\ 
+ &Predictor (\tilde{X})=\tilde{Y} \wedge \operatorname{Predictor}(X)=Y^{\prime}\end{aligned}$$
 This is a discontinous combinatorial optimization, which is hard to solve. We relax it to a nice continous continous bilevel optimization:
 
 $\begin{aligned} \min _{\omega \in [0,1]^n, \theta} & \frac{1}{m} \sum_{i=1}^{m} c_{i} \ell\left(\tilde{x}_{i}, \tilde{y}_{i}, \theta\right) \\ &+\frac{1}{n} \sum_{i=1}^{n}[(1-\omega) \ell\left(x_{i},y_j, \theta\right)+\omega \cdot \ell\left(x_{i},-y_j, \theta\right)]+\frac{\gamma}{n} \sum_{i=1}^{n}\omega \\ \text { s.t. } & \theta=\underset{\beta}{\operatorname{argmin}} \frac{1}{n} \sum_{i=1}^{n}  [(1-\omega) \ell\left(x_{i},y_j, \theta\right)+\omega \cdot \ell\left(x_{i},-y_j, \theta\right)]+\lambda \Omega(\beta) \end{aligned}$

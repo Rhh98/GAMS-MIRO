@@ -1,0 +1,109 @@
+=C
+=CJAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+=C
+=CJAMS - Solver for Extended Mathematical Programs (EMP)
+=C------------------------------------------------------
+=C
+=C--- Using Option File
+=CReading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+=C>>  subsolver knitro
+=CFinished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+=C
+=C
+=C*** Problems reading EMP info file: C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225d\empinfo.dat
+=C*** Error code = 2 when opening file: C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225d\empinfo.dat
+=C
+=C---
+=C--- No reformulations requested
+=C--- Generating unchanged scalar model
+=C---
+=C--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225d\emp.dat will be solved by GAMS
+=C---
+=C--- Returning from GAMS step
+=C
+=CKNITRO           31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+=C
+=1
+=2
+=CArtelys Knitro Optimizer 11.1.1
+=9?
+?C
+?C=======================================
+?C          Commercial License
+?C         Artelys Knitro 11.1.1
+?C=======================================
+?C
+?CKnitro presolve eliminated 3 variables 
+?Cand 3 constraints.
+?C
+?Cdatacheck:               0
+?Chessian_no_f:            1
+?Cmaxtime_real:            1000
+?Cnewpoint:                3
+?Cpar_concurrent_evals:    0
+?CKnitro changing algorithm from AUTO to 1.
+?CKnitro changing bar_initpt from AUTO to 3.
+?CKnitro changing bar_murule from AUTO to 4.
+?CKnitro changing bar_penaltycons from AUTO to 0.
+?CKnitro changing bar_penaltyrule from AUTO to 2.
+?CKnitro changing bar_switchrule from AUTO to 2.
+?CKnitro changing linesearch from AUTO to 1.
+?CKnitro changing linsolver from AUTO to 2.
+?CKnitro shifted start point further inside presolved bounds (100 variables).
+?CKnitro reinitializing 3 variables eliminated from the presolve.
+?C
+?CProblem Characteristics                                 (   Presolved)
+?C-----------------------
+?CObjective goal:  Minimize
+?CObjective type:  general
+?CNumber of variables:                                404 (         401)
+?C    bounded below only:                               0 (           0)
+?C    bounded above only:                               0 (           0)
+?C    bounded below and above:                        100 (         100)
+?C    fixed:                                            0 (           0)
+?C    free:                                           304 (         301)
+?CNumber of constraints:                              203 (         200)
+?C    linear equalities:                                0 (           0)
+?C    quadratic equalities:                             0 (           0)
+?C    gen. nonlinear equalities:                      203 (         200)
+?C    linear one-sided inequalities:                    0 (           0)
+?C    quadratic one-sided inequalities:                 0 (           0)
+?C    gen. nonlinear one-sided inequalities:            0 (           0)
+?C    linear two-sided inequalities:                    0 (           0)
+?C    quadratic two-sided inequalities:                 0 (           0)
+?C    gen. nonlinear two-sided inequalities:            0 (           0)
+?CNumber of nonzeros in Jacobian:                   21005 (       20400)
+?CNumber of nonzeros in Hessian:                     5351 (        5351)
+?C
+?C  Iter      Objective      FeasError   OptError    ||Step||    CGits 
+?C--------  --------------  ----------  ----------  ----------  -------
+?C       0    1.079365e+02   2.043e-14
+?C      10    4.069227e+00   6.909e-02   4.962e-01   9.063e+00        0
+?C      20    4.091154e-01   9.419e-02   2.870e-04   4.472e+01        0
+?C      30    4.000020e-01   1.124e-04   8.985e-08   8.826e+01        0
+?C      36    4.000006e-01   2.632e-07   1.351e-09   1.493e+01        0
+?C
+?CEXIT: Locally optimal solution found.
+?C
+?CFinal Statistics
+?C----------------
+?CFinal objective value               =   4.00000607691360e-01
+?CFinal feasibility error (abs / rel) =   2.63e-07 / 2.63e-07
+?CFinal optimality error  (abs / rel) =   1.35e-09 / 4.85e-10
+?C# of iterations                     =         36 
+?C# of CG iterations                  =          8 
+?C# of function evaluations           =         45
+?C# of gradient evaluations           =         38
+?C# of Hessian evaluations            =         36
+?CTotal program time (secs)           =       1.338 (     0.953 CPU time)
+?CTime spent in evaluations (secs)    =       0.660
+?C
+?C===============================================================================
+?C
+?9=
+=CSolve finished: status = optimal
+ 
+=C---
+=C--- Equations skipped = 0  Equations added = 0
+=C--- Variables skipped = 0  Variables added = 0
+=C---

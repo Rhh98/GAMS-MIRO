@@ -84,23 +84,10 @@
       "pageLength": 15
     }
   },
-  "inputGroups": [
-    {
-      "name": "cruise",
-      "members": ["offsetcr", "crcost"]
-    },
-    {
-      "name": "Ascend",
-      "members": ["climbdis", "upcost"]
-    },
-    {
-      "name": "Descend",
-      "members": ["descenddis", "downcost"]
-    }
-  ],
   "readme": {
     "tabTitle": "Readme",
-    "filename": "readme.md"
+    "filename": "readme.md",
+    "enableMath": true
   },
   "handsontable": {
     "stretchH": "none",
@@ -117,5 +104,19 @@
     },
     "height": 700,
     "colWidths": 150
-  }
+  },
+  "inputGroups": [
+    {
+      "name": "cruise",
+      "members": ["offsetcr", "crcost"]
+    },
+    {
+      "name": "Ascend",
+      "members": ["climbdis", "upcost"]
+    },
+    {
+      "name": "Descend",
+      "members": ["descenddis", "downcost"]
+    }
+  ]
 }

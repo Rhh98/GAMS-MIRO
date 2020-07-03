@@ -50,69 +50,70 @@ Punch </img>
 <li><b>Minimum Distance Constraint:</b>  In a manufacturing setting due to quality reasons, specific work centers should not be adjacent to one another. Thus a minimum distance between two work centers can be specified by the user and used as a constraint in redesigning the layout. </li>
 <li><b>Location Constraint:</b> Each work center has a constraint for its location and movement in the floor space which is defined by rectangular region. </li>
 </oL>
-
 <p><a href="#top">Back to the top</a></p>
-<hr>
+
 <a id="math"></a>
+
 <h2> Mathematical Model </h2>
-<h3><i><b> Sets:</b></i><h3>
-<p>
-$P:$ Set of products
-$M:$ Set of machines
-$S:$ Set of Shipping and Receiving 
-$N=M\cup S$ 
-</p>
-<h3><i> <b>Parameters:</b></i><h3>
-<p>
-$a_{p,n_1,n_2}:$ Binary variable representing routing of product $p$ between $n_1$ and $n_2$, $p \in P, n_1,n_2 \in N$
-$xo_{n_1}$ Initial x-coordinate of $n_1$, $n_1 \in N$
-$yo_{n_1}$ Initial y-coordinate of $n_1$, $n_1 \in N$
-$CM_m:$ Cost of moving machine $m$ per unit distance, $m \in M$
-$CH_p:$ Cost of material handling per unit distance for product $p$, $p \in P$
-$MD_{m_1,m_2}:$ Minimum distance between machine $m_1$ and $m_2$, $m_1,m_2 \in M$
-$c:$ Constant distance maintained between any machines
-$x1_m:$ Lower x-coordinate for machine $m$ location, $m \in M$
-$y1_m:$ Lower y-coordinate for machine $m$ location, $m \in M$
-$x2_m:$ Upper x-coordinate for machine $m$ location, $m \in M$
-$y2_m:$ Upper y-coordinate for machine $m$ location, $m \in M$
-</p>
+<h3><i><b> Sets:</b></i></h3>
+<ul>
+<li>$P:$ Set of products</li>
+<li>$M:$ Set of machines</li>
+<li>$S:$ Set of Shipping and Receiving </li>
+<li>$N=M\cup S$ </li>
+</ul>
+<h3><i> <b>Parameters:</b></i></h3>
+<ul>
+    <li>$a_{p,n_1,n_2}:$ Binary variable representing routing of product $p$ between $n_1$ and $n_2$, $p \in P, n_1,n_2 \in N$</li>
+<li>$xo_{n_1}:$ Initial x-coordinate of $n_1$, $n_1 \in N$</li>
+<li>$yo_{n_1}:$ Initial y-coordinate of $n_1$, $n_1 \in N$</li>
+<li>$CM_m:$ Cost of moving machine $m$ per unit distance, $m \in M$</li>
+<li>$CH_p:$ Cost of material handling per unit distance for product $p$, $p \in P$</li>
+<li>$MD_{m_1,m_2}:$ Minimum distance between machine $m_1$ and $m_2$, $m_1,m_2 \in M$</li>
+<li>$c:$ Constant distance maintained between any machines</li>
+<li>$x1_m:$ Lower x-coordinate for machine $m$ location, $m \in M$</li>
+<li>$y1_m:$ Lower y-coordinate for machine $m$ location, $m \in M$</li>
+<li>$x2_m:$ Upper x-coordinate for machine $m$ location, $m \in M$</li>
+<li>$y2_m:$ Upper y-coordinate for machine $m$ location, $m \in M$</li>
+</ul>
 
-<h3><i> <b>Decision Variables:</b></i><h3>
-<p>
-$x_m:$ Final x-coordinate of machine $m$, $m \in M$
-$y_m:$ Final y-coordinate of machine $m$, $m \in M$
-</p>
+<h3><i> <b>Decision Variables:</b></i></h3>
+<ul>
+<li>$x_m:$ Final x-coordinate of machine $m$, $m \in M$</li>
+<li>$y_m:$ Final y-coordinate of machine $m$, $m \in M$</li>
+</ul>
 <hr>
-<h3><i><b> Objective Function:</b></i><h3>
+<h3><i><b> Objective Function:</b></i></h3>
 <p>
-\begin{equation*}
+$$\begin{aligned}
 TC = min\{\sum_{m \in M}CM_m\sqrt{(x_m-xo_m)^2+(y_m-yo_m)^2} + \sum_{p \in P} \sum_{n_1 \in N} \sum_{n_2 \in N}a_{p,n_1,n_2}CH_p\sqrt{(x_{n_1}-x_{n_2})^2+(y_{n_1}-y_{n_2})^2}\}
-\end{equation*}
+\end{aligned}$$
 </p>
 
-<h3><i><b> Shipping and Receiving Constraint:</b></i><h3>
+
+<h3><i><b> Shipping and Receiving Constraint:</b></i></h3>
 <p>
-\begin{eqnarray*}
+$$\begin{aligned}
 x_{s} &=& xo_s; \forall s \in S \\
 y_{s} &=& yo_s; \forall s \in S \\
-\end{eqnarray*}
+\end{aligned}$$
 </p>
 
-<h3><i> <b>Minimum Distance Constraint:</b></i><h3>
+<h3><i> <b>Minimum Distance Constraint:</b></i></h3>
 <p>
-\begin{equation*}
+$$\begin{aligned}
 \sqrt{(x_{m_1}-x_{m_2})^2+(y_{m_1}-y_{m_2})^2} \geq MD_{m_1,m_2} +c; \forall m_1,m_2 \in M, m_1 \neq m_2
-\end{equation*}
+\end{aligned}$$
 </p>
 
-<h3><i><b> Location Constraint:</b></i><h3>
+<h3><i><b> Location Constraint:</b></i></h3>
 <p>
-\begin{eqnarray*}
+$$\begin{aligned}
 x_m &\geq& x1_m; \forall m \in M \\
 y_m &\geq& y1_m; \forall m \in M \\
 x_m &\leq& x2_m; \forall m \in M \\
 y_m &\leq& y2_m; \forall m \in M \\
-\end{eqnarray*}
+\end{aligned}$$
 </p>
 <p><a href="#top">Back to the top</a></p>
 <hr>

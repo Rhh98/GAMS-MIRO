@@ -1,4 +1,4 @@
---- Job AirAmbulance.gms Start 06/25/20 20:24:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job AirAmbulance.gms Start 06/25/20 20:24:15 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -22,12 +22,12 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- AirAmbulance.gms(68) 3 Mb
---- Starting execution: elapsed 0:00:00.012
+--- Starting execution: elapsed 0:00:00.008
 --- AirAmbulance.gms(55) 4 Mb
 --- Generating LP model AirAmbulance2
 --- AirAmbulance.gms(56) 4 Mb
 ---   6 rows  21 columns  61 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.034
+--- Executing CPLEX: elapsed 0:00:00.032
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -64,17 +64,38 @@ Objective :        7161.869060
 --- Restarting execution
 --- AirAmbulance.gms(56) 2 Mb
 --- Reading solution for model AirAmbulance2
---- Executing after solve: elapsed 0:00:00.143
+--- Executing after solve: elapsed 0:00:00.134
 --- AirAmbulance.gms(68) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\data_AirAmbulance/default.gdx
 *** Status: Normal completion
---- Job AirAmbulance.gms Stop 06/25/20 20:24:07 elapsed 0:00:00.163
+--- Job AirAmbulance.gms Stop 06/25/20 20:24:15 elapsed 0:00:00.147
 
-Warning in eval(ei, envir) :
-  The alias of symbol: 'x' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'y' was selected to be overwritten. However, this symbol could not be found.
-Warning in ..stacktraceon..({ :
-  
-Some of the input elements in the 'overwriteSheetOrder' option are not defined in the data model!
+TRACE [2020-06-25 20:24:20] Logging facility initialised.
+DEBUG [2020-06-25 20:24:20] Database connection established.
+DEBUG [2020-06-25 20:24:20] Access Control initialised.
+WARN [2020-06-25 20:24:20] There are orphaned tables in your database: 'airambulance_x', 'airambulance_y'.
+
+This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
+Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
+INFO [2020-06-25 20:24:20] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-06-25 20:24:21] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-25 20:24:21] Db: 51 rows in table: '_sys_metadata_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:24:21] Db: Metadata (table: '_sys_metadata_airambulance') was written to database. (Db.writeMetadata).
+DEBUG [2020-06-25 20:24:21] Db: Metadata (table: '_sys_metadata_airambulance') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-06-25 20:24:21] Db: Data was added to table: 'airambulance_assign' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:24:22] Db: Data was added to table: 'airambulance_numofheli' (Db.exportScenDataset).
+TRACE [2020-06-25 20:24:22] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-06-25 20:24:22] Db: A database table named: 'airambulance_locinfo' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-06-25 20:24:22] Db: First data was written to table: 'airambulance_locinfo' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:24:22] Db: Data was added to table: 'airambulance_d' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:24:22] Db: Data was added to table: 'airambulance_s' (Db.exportScenDataset).
+DEBUG [2020-06-25 20:24:22] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
+DEBUG [2020-06-25 20:24:22] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:24:22] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+INFO [2020-06-25 20:24:22] Invalid input symbol(s) in 'overwriteSheetOrder' found. Resetting to original sheet order.
+DEBUG [2020-06-25 20:24:27] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-06-25 20:24:28] Scenario: '1' unlocked.
+DEBUG [2020-06-25 20:24:28] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-06-25 20:25:49] Db: Database connection ended as Db object was gced.

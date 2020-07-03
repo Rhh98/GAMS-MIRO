@@ -47,11 +47,14 @@ x.fx(select,select) = 0;
 u.lo(select) = 2; u.up(select) = card(i);
 u.fx(select)$(OrderVal(select) eq 1) = 1;
 
-option optcr = 1e-3;
-option mip=mosek;
-$onecho > mosek.opt
+option optcr = 0.05;
+option mip=cplex;
+
+$onecho > cplex.opt
 lpmethod 4
+thread 4
 $offecho
+
 tsp.optfile = 1;
 solve tsp using mip minimizing obj ;
 display obj.l;

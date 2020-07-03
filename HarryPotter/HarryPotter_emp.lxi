@@ -1,53 +1,59 @@
 B 3 C o m p i l a t i o n
-B 183 E x e c u t i o n
-I 183 X_Train
-B 293 Equation Listing    SOLVE submodel Using NLP From line 89
-D 296 defobj_sub
-D 327 deflog_l
-D 422 deflog_l2
-B 518 Column Listing      SOLVE submodel Using NLP From line 89
-E 521 alpha
-E 1137 log_l
-E 1156 log_l2
-E 1172 obj_sub
-B 1180 Model Statistics    SOLVE submodel Using NLP From line 89
-B 1198 Solution Report     SOLVE submodel Using NLP From line 89
-F 1244 defobj_sub
-F 1246 deflog_l
-F 1351 deflog_l2
-G 1456 alpha
-G 1562 log_l
-G 1667 log_l2
-G 1774 obj_sub
-B 1783 E x e c u t i o n
-I 1783 Z
-B 2305 Equation Listing    SOLVE Kernel_duti Using EMP From line 153
-D 2308 defobj
-D 2415 deflog_l
-D 2510 deflog_l2
-D 2605 defobj2
-D 2684 deflog_l3
-B 2748 Column Listing      SOLVE Kernel_duti Using EMP From line 153
-E 2751 w
-E 2770 alpha
-E 3392 obj
-E 3399 log_l
-E 3421 log_l2
-E 3443 log_l3
-E 3456 obj2
-B 3464 Model Statistics    SOLVE Kernel_duti Using EMP From line 153
-B 3482 Solution Report     SOLVE Kernel_duti Using EMP From line 153
-F 3548 defobj
-F 3550 deflog_l
-F 3655 deflog_l2
-F 3762 defobj2
-F 3764 deflog_l3
-G 3771 w
-G 3876 alpha
-G 3984 obj
-G 3986 log_l
-G 4091 log_l2
-G 4196 log_l3
-G 4205 obj2
-B 4214 E x e c u t i o n
-I 4214 ranking
+B 185 E x e c u t i o n
+I 185 X_Train
+B 295 Equation Listing    SOLVE submodel Using NLP From line 86
+D 298 defobj_sub
+D 333 deflog_l
+B 417 Column Listing      SOLVE submodel Using NLP From line 86
+E 420 alpha
+E 736 log_l
+E 755 obj_sub
+B 763 Model Statistics    SOLVE submodel Using NLP From line 86
+B 781 Solution Report     SOLVE submodel Using NLP From line 86
+F 827 defobj_sub
+F 829 deflog_l
+G 934 alpha
+G 1040 log_l
+G 1147 obj_sub
+B 1156 E x e c u t i o n
+I 1156 Z
+B 1678 Equation Listing    SOLVE submodel Using NLP From line 159
+D 1681 defobj_sub
+D 1742 deflog_l
+B 1826 Column Listing      SOLVE submodel Using NLP From line 159
+E 1829 alpha
+E 2145 log_l
+E 2164 obj_sub
+B 2172 Model Statistics    SOLVE submodel Using NLP From line 159
+B 2190 Solution Report     SOLVE submodel Using NLP From line 159
+F 2235 defobj_sub
+F 2237 deflog_l
+G 2342 alpha
+G 2448 log_l
+G 2555 obj_sub
+B 2564 Equation Listing    SOLVE Kernel_duti Using EMP From line 160
+D 2567 defobj_In
+D 2654 deflog_l
+D 2737 deflog_l2
+D 2796 defobj
+B 2856 Column Listing      SOLVE Kernel_duti Using EMP From line 160
+E 2859 w
+E 2878 alpha
+E 3200 log_l
+E 3222 obj_In
+E 3229 log_l2
+E 3242 obj
+B 3250 Model Statistics    SOLVE Kernel_duti Using EMP From line 160
+B 3268 Solution Report     SOLVE Kernel_duti Using EMP From line 160
+F 3393 defobj_In
+F 3395 deflog_l
+F 3500 deflog_l2
+F 3509 defobj
+G 3511 w
+G 3616 alpha
+G 3722 log_l
+G 3829 obj_In
+G 3831 log_l2
+G 3840 obj
+B 3850 E x e c u t i o n
+I 3850 ranking
