@@ -1,6 +1,6 @@
 ,l_lat,l_long,select
-Montgomery_AL,32.361538,-86.279118,0
-Juneau_AK,58.301935,-134.41974,1
+Montgomery_AL,32.361538,-86.279118,1
+Juneau_AK,58.301935,-134.41974,0
 Phoenix_AZ,33.448457,-112.073844,1
 Little-Rock_AR,34.736009,-92.331122,1
 Sacramento_CA,38.555605,-121.468926,1

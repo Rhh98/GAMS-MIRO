@@ -22,9 +22,9 @@ loop(select,count=count+1;OrderVal(select)=count;);
 
 alias(select,k)
 table  dist(i,j)  "distances" ;
-dist(i,j)$(not sameas(i,j))=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_lat')*pi/180)
-+cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_lat')*pi/180)*
-cos((cityInfo(j,'l_long')-cityInfo(i,'l_long'))*pi/180))*6371.004;
+dist(i,j)=arccos(sin(cityInfo(i,'l_lat')*pi/180)*sin(cityInfo(j,'l_long')*pi/180)
++cos(cityInfo(i,'l_lat')*pi/180)*cos(cityInfo(j,'l_long')*pi/180)*
+cos((cityInfo(i,'l_long')-cityInfo(j,'l_lat'))*pi/180))*6371.004;
 binary variables x(i,j);
 free variable obj;
 positive variables u(i) ;
@@ -47,9 +47,8 @@ x.fx(select,select) = 0;
 u.lo(select) = 2; u.up(select) = card(i);
 u.fx(select)$(OrderVal(select) eq 1) = 1;
 
-option optcr = 1e-3;
-option mip=mosek;
-$onecho > mosek.opt
+option optcr = 1e-4;
+$onecho > cplex.opt
 lpmethod 4
 $offecho
 tsp.optfile = 1;
