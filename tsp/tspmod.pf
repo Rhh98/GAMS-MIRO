@@ -1,8 +1,8 @@
-curdir="/Users/ferris/Projects/GAMS-MIRO/tsp"
+curdir="C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp"
 lo=3
 execMode=0
 IDCGDXOutput="_miro_gdxout_.gdx"
-idir1="/Users/ferris/Projects/GAMS-MIRO/tsp"
+idir1="C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp"
 IDCGDXInput="_miro_gdxin_.gdx"
 LstTitleLeftAligned=1
 trace="_sys_trace_tspmod.trc"

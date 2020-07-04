@@ -1,4 +1,4 @@
---- Job tspmod.gms Start 07/02/20 13:45:34 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job tspmod.gms Start 07/03/20 20:29:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -10,12 +10,11 @@
     ErrMsg 1
     ErrorLog 99
     IDE 1
-    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\res.gdx
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_tspmod/tspmod_io.json
     IDCGenerateGDX data_tspmod/default.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 23 days ago
+*** License has expired 24 days ago
 Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
           E:\31.1\gamslice.txt
@@ -25,349 +24,317 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
 --- . set.csv(1) 3 Mb
 --- tspmod.gms(13) 3 Mb
 --- . capitals.csv(51) 3 Mb
---- tspmod.gms(79) 3 Mb
---- Starting execution: elapsed 0:00:00.060
---- tspmod.gms(107) 4 Mb
+--- tspmod.gms(78) 3 Mb
+--- Starting execution: elapsed 0:00:00.014
+--- tspmod.gms(106) 4 Mb
 --- Generating MIP model tsp
---- tspmod.gms(108) 5 Mb
----   2,306 rows  2,351 columns  13,302 non-zeroes
+--- tspmod.gms(107) 5 Mb
+---   2,259 rows  2,352 columns  13,303 non-zeroes
 ---   2,256 discrete-columns
---- Executing MOSEK: elapsed 0:00:00.133
+--- Executing CPLEX: elapsed 0:00:00.060
 
-MOSEK            31.1.0 r55b6ce3 Released May  1, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
 
-	M O S E K       version 9.2.4 (Build date: 2020-4-2 00:57:32)
-	Copyright (C)   MOSEK ApS, Fruebjergvej 3, Box 16
-	                DK-2100 Copenhagen, Denmark
-	                https://www.mosek.com
-
-Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\mosek.opt"
+Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
 >>  lpmethod 4
-*** Error line 1: Unknown option "lpmethod"
-Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\mosek.opt"
+Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\cplex.opt"
+Reading data...
+Starting Cplex...
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_LPMethod                                4
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Barrier_Limits_Iteration                2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 49 columns.
+Reduced MIP has 2258 rows, 2303 columns, and 10998 nonzeros.
+Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.73 ticks)
+Found incumbent of value 682947.439140 after 0.03 sec. (16.85 ticks)
+Probing time = 0.00 sec. (3.21 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 2258 rows, 2303 columns, and 10998 nonzeros.
+Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (7.27 ticks)
+Probing time = 0.02 sec. (3.20 ticks)
+Clique table members: 1149.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (1.36 ticks)
+Initializing dual steep norms . . .
 
-Setting up initial integer solution.
-Problem
-  Name                   :                 
-  Objective sense        : min             
-  Type                   : LO (linear optimization problem)
-  Constraints            : 2305            
-  Cones                  : 0               
-  Scalar variables       : 2350            
-  Matrix variables       : 0               
-  Integer variables      : 2303            
+Iteration log . . .
+Iteration:     1   Dual objective     =        554396.475475
+Iteration:   166   Dual objective     =        657517.005516
+Iteration:   355   Dual objective     =        665320.778103
+Iteration:   557   Dual objective     =        667982.219165
+Iteration:   619   Dual objective     =        667991.575799
+Root relaxation solution time = 0.02 sec. (17.75 ticks)
 
-Optimizer started.
-Mixed integer optimizer started.
-Threads used: 1
-Presolve started.
-Presolve terminated. Time = 0.97
-Presolved problem: 2303 variables, 2258 constraints, 10998 non-zeros
-Presolved problem: 0 general integer, 2256 binary, 47 continuous
-Clique table size: 96
-BRANCHES RELAXS   ACT_NDS  DEPTH    BEST_INT_OBJ         BEST_RELAX_OBJ       REL_GAP(%)  TIME  
-0        1        1        0        NA                   1.6525145095e+04     NA          1.7   
-0        1        1        0        3.0399946679e+04     1.6525145095e+04     45.64       2.0   
-Cut generation started.
-0        1        1        0        3.0399946679e+04     1.6525145095e+04     45.64       2.0   
-0        2        1        0        3.0399946679e+04     1.7352097997e+04     42.92       2.1   
-0        3        1        0        3.0399946679e+04     1.7570728659e+04     42.20       2.3   
-0        4        1        0        3.0399946679e+04     1.8369327905e+04     39.57       2.4   
-0        5        1        0        3.0399946679e+04     1.8466283190e+04     39.26       2.6   
-0        6        1        0        3.0399946679e+04     1.8529949846e+04     39.05       2.8   
-Cut generation terminated. Time = 0.44
-0        12       1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.1   
-7        25       1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.2   
-31       48       1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.3   
-52       67       1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.5   
-72       86       1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.6   
-90       103      1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.7   
-104      117      1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.8   
-127      139      1        0        3.0399946679e+04     1.8531794321e+04     39.04       3.9   
-146      154      1        0        3.0399946679e+04     1.8531794321e+04     39.04       4.1   
-166      171      1        0        3.0399946679e+04     1.8531794321e+04     39.04       4.2   
-188      191      1        0        3.0399946679e+04     1.8531794321e+04     39.04       4.3   
-210      209      1        0        3.0399946679e+04     1.8531794321e+04     39.04       4.4   
-230      226      1        0        3.0399946679e+04     1.8531794321e+04     39.04       4.5   
-250      245      1        0        2.8885121351e+04     1.8531794321e+04     35.84       4.6   
-266      260      1        0        2.8885121351e+04     1.8531794321e+04     35.84       4.8   
-289      279      1        0        2.8885121351e+04     1.8531794321e+04     35.84       4.9   
-307      296      1        0        2.7494804197e+04     1.8531794321e+04     32.60       5.0   
-330      314      1        0        2.7494804197e+04     1.8531794321e+04     32.60       5.1   
-348      331      1        0        2.7494804197e+04     1.8531794321e+04     32.60       5.2   
-364      346      1        0        2.6254926712e+04     1.8531794321e+04     29.42       5.3   
-378      359      1        0        2.6254926712e+04     1.8531794321e+04     29.42       5.4   
-411      389      1        0        2.6254926712e+04     1.8531794321e+04     29.42       5.7   
-434      408      1        0        2.6254926712e+04     1.8531794321e+04     29.42       5.8   
-457      425      1        0        2.6254926712e+04     1.8531794321e+04     29.42       5.9   
-479      446      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.0   
-503      468      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.2   
-523      485      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.3   
-543      503      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.4   
-564      522      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.5   
-584      541      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.6   
-608      560      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.7   
-628      578      1        0        2.6254926712e+04     1.8531794321e+04     29.42       6.8   
-645      592      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.0   
-668      612      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.1   
-689      631      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.2   
-707      646      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.3   
-720      657      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.4   
-741      676      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.6   
-766      696      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.7   
-788      711      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.8   
-811      731      1        0        2.6254926712e+04     1.8531794321e+04     29.42       7.9   
-833      748      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.0   
-857      767      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.1   
-885      786      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.3   
-916      808      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.4   
-946      826      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.5   
-974      848      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.6   
-999      871      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.7   
-1023     890      1        0        2.6254926712e+04     1.8531794321e+04     29.42       8.9   
-1038     905      16       10       2.6254926712e+04     1.8532057393e+04     29.41       9.4   
-1054     920      30       25       2.6254926712e+04     1.8532057393e+04     29.41       9.5   
-1081     943      47       3        2.6254926712e+04     1.8532057393e+04     29.41       9.7   
-1098     960      64       10       2.6254926712e+04     1.8534923971e+04     29.40       10.0  
-1115     977      81       5        2.6254926712e+04     1.8535608877e+04     29.40       10.1  
-1135     997      101      22       2.6254926712e+04     1.8535608877e+04     29.40       10.4  
-1167     1025     123      50       2.6254926712e+04     1.8535608877e+04     29.40       10.6  
-1186     1042     138      7        2.6254926712e+04     1.8536635618e+04     29.40       10.8  
-1199     1055     151      9        2.6254926712e+04     1.8536944961e+04     29.40       11.0  
-1211     1067     163      8        2.6254926712e+04     1.8537350365e+04     29.39       11.2  
-1228     1084     180      11       2.6254926712e+04     1.8537478692e+04     29.39       11.4  
-1241     1097     193      13       2.6254926712e+04     1.8538505433e+04     29.39       11.6  
-1259     1114     209      10       2.6254926712e+04     1.8539061183e+04     29.39       11.9  
-1275     1130     225      17       2.6254926712e+04     1.8539220180e+04     29.39       12.1  
-1304     1157     246      9        2.6254926712e+04     1.8539220180e+04     29.39       12.3  
-1316     1169     258      12       2.6254926712e+04     1.8539292549e+04     29.39       12.5  
-1333     1185     273      5        2.6254926712e+04     1.8540844333e+04     29.38       12.7  
-1354     1206     294      16       2.6254926712e+04     1.8541678778e+04     29.38       12.9  
-1386     1237     324      31       2.6254926712e+04     1.8541806013e+04     29.38       13.3  
-1407     1257     333      13       2.6254926712e+04     1.8542117224e+04     29.38       13.5  
-1423     1272     347      12       2.6254926712e+04     1.8542276483e+04     29.38       13.8  
-1435     1284     359      10       2.6254926712e+04     1.8542520759e+04     29.38       14.0  
-1456     1305     380      5        2.6254926712e+04     1.8545471106e+04     29.36       14.4  
-1470     1319     394      21       2.6254926712e+04     1.8545471106e+04     29.36       14.6  
-1494     1340     410      13       2.6254926712e+04     1.8545471106e+04     29.36       14.8  
-1508     1353     422      7        2.6254926712e+04     1.8545904563e+04     29.36       15.0  
-1520     1365     434      10       2.6254926712e+04     1.8545997809e+04     29.36       15.2  
-1534     1379     448      16       2.6254926712e+04     1.8546450507e+04     29.36       15.3  
-1555     1399     467      33       2.6254926712e+04     1.8546450507e+04     29.36       15.5  
-1583     1423     483      12       2.6254926712e+04     1.8546450507e+04     29.36       15.8  
-1605     1445     505      9        2.6254926712e+04     1.8546831210e+04     29.36       16.1  
-1625     1465     525      7        2.6254926712e+04     1.8547212594e+04     29.36       16.5  
-1648     1485     542      33       2.6254926712e+04     1.8547212594e+04     29.36       16.7  
-1674     1510     560      55       2.6254926712e+04     1.8547212594e+04     29.36       16.9  
-1691     1525     571      9        2.6254926712e+04     1.8547412114e+04     29.36       17.1  
-1703     1537     583      4        2.6254926712e+04     1.8548124585e+04     29.35       17.3  
-1721     1555     601      14       2.6254926712e+04     1.8548841237e+04     29.35       17.5  
-1742     1575     620      26       2.6254926712e+04     1.8548841237e+04     29.35       17.7  
-1770     1599     638      17       2.6254926712e+04     1.8548841237e+04     29.35       17.9  
-1784     1613     652      22       2.6254926712e+04     1.8549126002e+04     29.35       18.1  
-1799     1628     667      14       2.6254926712e+04     1.8549422355e+04     29.35       18.3  
-1813     1642     681      31       2.6254926712e+04     1.8550259512e+04     29.35       18.5  
-1838     1665     702      54       2.6254926712e+04     1.8550259512e+04     29.35       18.7  
-1858     1682     716      28       2.6254926712e+04     1.8550259512e+04     29.35       18.9  
-1878     1702     736      14       2.6254926712e+04     1.8550575094e+04     29.34       19.3  
-1890     1714     748      10       2.6254926712e+04     1.8550875632e+04     29.34       19.5  
-1910     1733     766      29       2.6254926712e+04     1.8550875632e+04     29.34       19.7  
-1927     1749     779      33       2.6254926712e+04     1.8551635991e+04     29.34       19.9  
-1941     1763     793      19       2.6254926712e+04     1.8551723934e+04     29.34       20.0  
-1952     1774     804      10       2.6254926712e+04     1.8552316582e+04     29.34       20.3  
-1964     1786     816      35       2.6254926712e+04     1.8552953770e+04     29.34       20.4  
-1989     1808     835      56       2.6254926712e+04     1.8552953770e+04     29.34       20.6  
-2008     1825     846      8        2.6254926712e+04     1.8553586092e+04     29.33       20.8  
-2022     1839     860      39       2.6254926712e+04     1.8553668517e+04     29.33       21.0  
-2034     1851     872      20       2.6254926712e+04     1.8554819389e+04     29.33       21.2  
-2051     1867     887      33       2.6254926712e+04     1.8554891031e+04     29.33       21.4  
-2079     1890     903      7        2.6254926712e+04     1.8554891031e+04     29.33       21.6  
-2093     1904     917      24       2.6254926712e+04     1.8554891031e+04     29.33       21.8  
-2104     1915     928      9        2.6254926712e+04     1.8556130839e+04     29.32       22.0  
-2133     1943     955      47       2.6254926712e+04     1.8556643492e+04     29.32       22.4  
-2160     1966     972      7        2.6254926712e+04     1.8556760846e+04     29.32       22.6  
-2174     1979     984      14       2.6254926712e+04     1.8557034124e+04     29.32       22.8  
-2187     1992     997      35       2.6254926712e+04     1.8558400613e+04     29.31       23.0  
-2204     2008     1012     44       2.6254926712e+04     1.8558400613e+04     29.31       23.2  
-2228     2030     1030     37       2.6254926712e+04     1.8559055529e+04     29.31       23.4  
-2251     2053     1053     12       2.6254926712e+04     1.8560543983e+04     29.31       23.7  
-2266     2068     1068     19       2.6254926712e+04     1.8560793229e+04     29.31       23.9  
-2289     2089     1085     40       2.6254926712e+04     1.8560793229e+04     29.31       24.1  
-2307     2106     1099     12       2.6254926712e+04     1.8562214503e+04     29.30       24.4  
-2318     2117     1110     7        2.6254926712e+04     1.8563454733e+04     29.30       24.5  
-2333     2131     1123     12       2.6254926712e+04     1.8563551528e+04     29.29       24.7  
-2357     2154     1145     35       2.6254926712e+04     1.8563551528e+04     29.29       25.0  
-2375     2169     1155     31       2.6254926712e+04     1.8563969779e+04     29.29       25.2  
-2387     2181     1167     8        2.6254926712e+04     1.8564086960e+04     29.29       25.3  
-2399     2193     1179     12       2.6254926712e+04     1.8564295816e+04     29.29       25.5  
-2410     2204     1190     22       2.6254926712e+04     1.8564782528e+04     29.29       25.7  
-2435     2227     1211     45       2.6254926712e+04     1.8564782528e+04     29.29       25.9  
-2452     2242     1222     13       2.6254926712e+04     1.8565086726e+04     29.29       26.1  
-2464     2254     1234     18       2.6254926712e+04     1.8565086726e+04     29.29       26.3  
-2478     2268     1248     9        2.6254926712e+04     1.8565140641e+04     29.29       26.6  
-2500     2288     1266     31       2.6254926712e+04     1.8565140641e+04     29.29       26.7  
-2527     2310     1277     9        2.6254926712e+04     1.8565140641e+04     29.29       26.9  
-2538     2321     1288     43       2.6254926712e+04     1.8565192553e+04     29.29       27.1  
-2562     2344     1310     8        2.6254926712e+04     1.8565486938e+04     29.29       27.5  
-2576     2358     1324     22       2.6254926712e+04     1.8565486938e+04     29.29       27.7  
-2606     2384     1346     49       2.6254926712e+04     1.8565486938e+04     29.29       27.9  
-2619     2397     1359     7        2.6254926712e+04     1.8565658960e+04     29.29       28.1  
-2632     2410     1372     55       2.6254926712e+04     1.8566107243e+04     29.29       28.3  
-2648     2426     1388     64       2.6254926712e+04     1.8566261393e+04     29.28       28.5  
-2676     2450     1406     9        2.6254926712e+04     1.8566858927e+04     29.28       28.7  
-2688     2462     1418     11       2.6254926712e+04     1.8566956541e+04     29.28       28.9  
-2701     2475     1431     40       2.6254926712e+04     1.8567671287e+04     29.28       29.1  
-2716     2490     1446     29       2.6254926712e+04     1.8568153181e+04     29.28       29.3  
-2741     2510     1461     49       2.6254926712e+04     1.8568153181e+04     29.28       29.5  
-2762     2528     1472     9        2.6254926712e+04     1.8568153553e+04     29.28       29.7  
-2773     2539     1483     32       2.6254926712e+04     1.8568534690e+04     29.28       29.9  
-2786     2552     1496     21       2.6254926712e+04     1.8568655848e+04     29.28       30.0  
-2810     2574     1516     43       2.6254926712e+04     1.8568655848e+04     29.28       30.2  
-2830     2590     1528     12       2.6254926712e+04     1.8568752909e+04     29.28       30.4  
-2844     2604     1542     10       2.6254926712e+04     1.8569060564e+04     29.27       30.6  
-2856     2616     1554     30       2.6254926712e+04     1.8569239217e+04     29.27       30.8  
-2874     2632     1568     19       2.6254926712e+04     1.8569385960e+04     29.27       31.0  
-2908     2659     1588     12       2.6254926712e+04     1.8569385960e+04     29.27       31.2  
-2931     2681     1609     14       2.6254926712e+04     1.8569410290e+04     29.27       31.6  
-2947     2697     1625     19       2.6254926712e+04     1.8569912227e+04     29.27       31.8  
-2975     2722     1647     44       2.6254926712e+04     1.8569912227e+04     29.27       32.0  
-2993     2739     1659     9        2.6254926712e+04     1.8569945112e+04     29.27       32.2  
-3009     2755     1675     12       2.6254926712e+04     1.8570213178e+04     29.27       32.4  
-3021     2767     1687     12       2.6254926712e+04     1.8570222849e+04     29.27       32.6  
-3050     2792     1708     37       2.6254926712e+04     1.8570222849e+04     29.27       32.8  
-3069     2807     1717     16       2.3169540744e+04     1.8570230606e+04     19.85       33.0  
-3083     2821     1731     10       2.3169540744e+04     1.8570541988e+04     19.85       33.3  
-3094     2832     1742     12       2.3169540744e+04     1.8571025707e+04     19.85       33.5  
-3111     2849     1759     28       2.3169540744e+04     1.8571025707e+04     19.85       33.6  
-3136     2874     1762     42       2.3169540744e+04     1.8571025707e+04     19.85       33.8  
-3153     2891     1769     13       2.3169540744e+04     1.8571323469e+04     19.85       34.0  
-3164     2902     1780     10       2.3169540744e+04     1.8571739523e+04     19.84       34.2  
-3180     2917     1794     7        2.3169540744e+04     1.8572667955e+04     19.84       34.4  
-3199     2935     1811     25       2.3169540744e+04     1.8572806423e+04     19.84       34.6  
-3221     2954     1823     14       2.3169540744e+04     1.8572812611e+04     19.84       34.8  
-3234     2967     1836     9        2.3169540744e+04     1.8573312162e+04     19.84       35.0  
-3251     2983     1851     13       2.3169540744e+04     1.8573347847e+04     19.84       35.2  
-3274     3004     1870     34       2.3169540744e+04     1.8573347847e+04     19.84       35.4  
-Ctrl-C has been pressed.
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-Objective of best integer solution : 2.316954074407e+04      
-Best objective bound               : 1.857334784727e+04      
-Construct solution objective       : Unsuccessful
-User objective cut value           : Not employed
-Number of cuts generated           : 316
-  Number of Gomory cuts            : 136
-  Number of CMIR cuts              : 180
-Number of branches                 : 3274
-Number of relaxations solved       : 3004
-Number of interior point iterations: 12
-Number of simplex iterations       : 129047
-Time spend presolving the root     : 0.97
-Time spend optimizing the root     : 0.64
-Mixed integer optimizer terminated. Time: 35.42
+*     0+    0                       682947.4391        0.0000           100.00%
+Found incumbent of value 682947.439140 after 0.08 sec. (55.69 ticks)
+      0     0   667991.7560    47   682947.4391   667991.7560      631    2.19%
+      0     0   667999.1936    47   682947.4391     Cuts: 124      705    2.19%
+      0     0   668000.8721    47   682947.4391     Cuts: 117      769    2.19%
+      0     0   668002.3655    47   682947.4391      Cuts: 99      827    2.19%
+      0     0   668002.8063    47   682947.4391      Cuts: 44      851    2.19%
+      0     0   668002.8425    47   682947.4391      Cuts: 22      872    2.19%
+Detecting symmetries...
+*     0+    0                       672390.9624   668002.8425             0.65%
+Found incumbent of value 672390.962363 after 0.61 sec. (461.06 ticks)
+*     0+    0                       671297.1506   668002.8425             0.49%
+Found incumbent of value 671297.150571 after 0.64 sec. (491.22 ticks)
+*     0+    0                       670876.1462   668002.8425             0.43%
+Found incumbent of value 670876.146201 after 0.67 sec. (521.14 ticks)
+*     0+    0                       670875.0754   668002.8425             0.43%
+Found incumbent of value 670875.075392 after 0.69 sec. (526.98 ticks)
+      0     0  -1.00000e+75     0   670875.0754   668002.8425      872    0.43%
+Detecting symmetries...
+      0     2   668002.8425    56   670875.0754   668002.8749      872    0.43%
+Elapsed time = 0.81 sec. (639.51 ticks, tree = 0.01 MB, solutions = 5)
+*    90+   86                       668486.8355   668003.0993             0.07%
+Found incumbent of value 668486.835457 after 0.95 sec. (782.78 ticks)
+*   107   102      integral     0   668439.4037   668003.0993     1752    0.07%
+Found incumbent of value 668439.403722 after 0.98 sec. (805.18 ticks)
+    142   137   668036.9779    37   668439.4037   668003.1786     2071    0.07%
+                                                  Impl Bds: 2                  
+*   218   208      integral     0   668400.2497   668003.1786     3003    0.06%
+Found incumbent of value 668400.249654 after 1.19 sec. (1006.52 ticks)
+*   280+  264                       668356.2135   668003.5341             0.05%
+                                                      Cuts: 5                  
+Found incumbent of value 668356.213459 after 1.27 sec. (1080.31 ticks)
+    305   287   668039.9543    42   668356.2135   668003.6134     3984    0.05%
+                                                      Cuts: 7                  
+*   347   321      integral     0   668290.1335   668003.6134     4455    0.04%
+Found incumbent of value 668290.133549 after 1.36 sec. (1169.85 ticks)
+*   447+  407                       668282.5434   668003.9044             0.04%
+                                                      Cuts: 5                  
+Found incumbent of value 668282.543382 after 1.55 sec. (1342.44 ticks)
+    460   418   668153.7872    49   668282.5434   668003.9044     5701    0.04%
+    642   573   668230.5148    36   668282.5434   668004.0303     8200    0.04%
+                                                     Cuts: 12                  
+    812   728   668157.0446    18   668282.5434   668004.1633    10878    0.04%
+                                                      Cuts: 9                  
+*  1000+  871                       668273.9535   668004.3129             0.04%
+                                                      Cuts: 5                  
+Found incumbent of value 668273.953537 after 2.31 sec. (2086.30 ticks)
+   1000   873   668152.7518    61   668273.9535   668004.3129    13120    0.04%
+*  1110+  965                       668270.3851   668004.3224             0.04%
+                                                   MIRcuts: 1                  
+Found incumbent of value 668270.385058 after 2.45 sec. (2229.88 ticks)
+   1111   968   668005.1700    64   668270.3851   668004.3910    14851    0.04%
 
-Ctrl-C has been pressed.
-Optimizer terminated. Time: 35.44   
+Performing restart 1
 
-Ctrl-C has been pressed.
+Repeating presolve.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 821 columns.
+Reduced MIP has 2258 rows, 1482 columns, and 8555 nonzeros.
+Reduced MIP has 1435 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (4.77 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 25 rows and 0 columns.
+Reduced MIP has 2233 rows, 1482 columns, and 8505 nonzeros.
+Reduced MIP has 1435 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (5.58 ticks)
+Represolve time = 0.05 sec. (27.72 ticks)
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (1.39 ticks)
+Initializing dual steep norms . . .
 
-Integer solution solution summary
-  Problem status  : PRIMAL_FEASIBLE
-  Solution status : PRIMAL_FEASIBLE
-  Primal.  obj: 2.3169540744e+04    nrm: 5e+01    Viol.  con: 0e+00    var: 0e+00    itg: 0e+00  
+Iteration log . . .
+Iteration:     1   Dual objective     =        377519.550117
+Iteration:   171   Dual objective     =        591778.908798
+Iteration:   309   Dual objective     =        667934.995841
+Iteration:   449   Dual objective     =        668003.441799
+   1220     0   668004.9712    64   668270.3851      Cuts: 81    16994    0.04%
+   1220     0   668006.5440    64   668270.3851      Cuts: 72    17075    0.04%
+   1220     0   668007.3223    64   668270.3851     Cuts: 108    17137    0.04%
+   1220     0   668007.6026    64   668270.3851      Cuts: 72    17186    0.04%
+   1220     0   668007.8113    64   668270.3851      Cuts: 82    17234    0.04%
+   1220     0   668007.9023    64   668270.3851      Cuts: 81    17272    0.04%
+   1220     0   668007.9802    64   668270.3851      Cuts: 72    17305    0.04%
+   1220     0   668008.0353    64   668270.3851      Cuts: 63    17335    0.04%
+   1220     0   668008.0675    64   668270.3851      Cuts: 34    17364    0.04%
+   1220     0   668008.2225    64   668270.3851      Cuts: 60    17406    0.04%
+   1220     0   668008.2278    64   668270.3851      Cuts: 49    17423    0.04%
+   1220     0   668008.2341    64   668270.3851      Cuts: 22    17439    0.04%
+   1220     0   668008.2405    64   668270.3851       Cuts: 9    17450    0.04%
+   1220     0   668008.2405    64   668270.3851       Cuts: 3    17452    0.04%
+   1220     2   668008.2405    94   668270.3851   668008.2820    17452    0.04%
+   1224     5   668008.6100    91   668270.3851   668008.6150    17602    0.04%
+   1318    84   668224.5989    37   668270.3851   668008.6900    18449    0.04%
+Elapsed time = 8.95 sec. (7304.16 ticks, tree = 0.09 MB, solutions = 16)
+   1465   211   668056.6507    81   668270.3851   668008.7595    19187    0.04%
+   1770   484   668024.1131    75   668270.3851   668008.9799    20800    0.04%
+                                                      Cuts: 8                  
+   2099   768   668009.7451    82   668270.3851   668009.4509    22975    0.04%
+   2608  1232   668010.1880    80   668270.3851   668009.8694    25318    0.04%
+   3267  1844   668010.2184    70   668270.3851   668010.1769    28399    0.04%
+   4052  2583   668011.8836    87   668270.3851   668010.5647    32671    0.04%
+   4819  3285   668033.8327    61   668270.3851   668010.7816    36914    0.04%
+   5388  3815   668041.7597    88   668270.3851   668010.8924    39772    0.04%
+   5952  4324   668011.8529    74   668270.3851   668010.9495    42931    0.04%
+   6664  4999   668012.1176    84   668270.3851   668011.1741    46230    0.04%
+Elapsed time = 19.69 sec. (17132.68 ticks, tree = 5.05 MB, solutions = 16)
+*  7068  5006      integral     0   668237.1209   668011.2298    48556    0.03%
+Found incumbent of value 668237.120922 after 20.44 sec. (17940.97 ticks)
+   7195  5126   668195.1784    40   668237.1209   668011.2412    49666    0.03%
+*  7476  5355      integral     0   668233.4327   668011.2828    51103    0.03%
+Found incumbent of value 668233.432674 after 21.27 sec. (18676.97 ticks)
+*  7576+ 5448                       668233.3950   668011.2836             0.03%
+Found incumbent of value 668233.394958 after 21.41 sec. (18809.39 ticks)
+*  7576+ 5438                       668231.0432   668011.2836             0.03%
+Found incumbent of value 668231.043186 after 21.42 sec. (18816.18 ticks)
+   7850  5696   668026.5790    64   668231.0432   668011.4227    53174    0.03%
+   8641  6415   668016.0532    65   668231.0432   668011.6085    58185    0.03%
+   9672  7384   668014.6349    80   668231.0432   668011.7999    63790    0.03%
 
-Return code - 10007 [MSK_RES_TRM_USER_CALLBACK]: The user-defined progress callback function terminated the optimization.
+Clique cuts applied:  3
+Cover cuts applied:  6
+Implied bound cuts applied:  1
+Flow cuts applied:  3
+Mixed integer rounding cuts applied:  27
+Zero-half cuts applied:  10
+Multi commodity flow cuts applied:  1
+Lift and project cuts applied:  19
+Gomory fractional cuts applied:  19
 
-Solving fixed problem...
+Root node processing (before b&c):
+  Real time             =    0.83 sec. (639.84 ticks)
+Sequential b&c:
+  Real time             =   23.09 sec. (20472.53 ticks)
+                          ------------
+Total (root+branch&cut) =   23.92 sec. (21112.37 ticks)
+MIP status(113): aborted
+Cplex Time: 23.92sec (det. 21112.37 ticks)
+Fixing integer variables, and solving final LP...
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 2
+CPXPARAM_LPMethod                                4
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Barrier_Limits_Iteration                2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+Tried aggregator 1 time.
+DUAL formed by presolve
+LP Presolve eliminated 97 rows and 2305 columns.
+Reduced LP has 47 rows, 2256 columns, and 4418 nonzeros.
+Presolve time = 0.00 sec. (4.06 ticks)
+Parallel mode: none, using 1 thread for barrier
+Number of nonzeros in lower triangle of A*A' = 1081
+Using Approximate Minimum Degree ordering
+Total time for automatic ordering = 0.00 sec. (0.04 ticks)
+Summary statistics for Cholesky factor:
+  Rows in Factor            = 47
+  Integer space required    = 47
+  Total non-zeros in factor = 1128
+  Total FP ops to factor    = 35720
+ Itn      Primal Obj        Dual Obj  Prim Inf Upper Inf  Dual Inf Inf Ratio
+   0   5.6868504e+05   6.6823104e+05  0.00e+00  0.00e+00  2.80e+02  1.00e+00
+   1   6.4006461e+05   6.6823104e+05  7.67e-13  0.00e+00  1.40e+02  1.57e+00
+   2   6.4053079e+05   6.6823104e+05  7.66e-09  0.00e+00  1.15e+02  6.45e-01
+   3   6.6583653e+05   6.6823104e+05  6.61e-10  0.00e+00  3.59e+01  2.00e+00
+   4   6.6802856e+05   6.6823104e+05  1.61e-09  0.00e+00  1.99e+01  3.74e+00
+   5   6.6822417e+05   6.6823104e+05  9.73e-11  0.00e+00  2.07e+00  3.95e+01
+   6   6.6823103e+05   6.6823104e+05  2.40e-12  0.00e+00  1.75e-03  4.26e+04
+   7   6.6823104e+05   6.6823104e+05  1.35e-11  0.00e+00  2.23e-07  8.52e+08
+   8   6.6823104e+05   6.6823104e+05  9.30e-12  0.00e+00  3.47e-11  8.39e+12
+   9   6.6823104e+05   6.6823104e+05  1.31e-13  0.00e+00  1.23e-11  1.55e+16
+Barrier time = 0.00 sec. (6.55 ticks)
 
-MOSEK            31.1.0 r55b6ce3 Released May  1, 2020 WEI x86 64bit/MS Window
+Primal crossover.
+  Primal:  Fixing 1 variable.
+        0 PMoves:  Infeasibility  0.00000000e+00  Objective  6.68231043e+05
+  Primal:  Pushed 1, exchanged 0.
+  Dual:  Fixing 1 variable.
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective  6.68231043e+05
+  Dual:  Pushed 0, exchanged 1.
+Total crossover time = 0.00 sec. (1.42 ticks)
 
-	M O S E K       version 9.2.4 (Build date: 2020-4-2 00:57:32)
-	Copyright (C)   MOSEK ApS, Fruebjergvej 3, Box 16
-	                DK-2100 Copenhagen, Denmark
-	                https://www.mosek.com
+Total time on 1 threads = 0.00 sec. (12.12 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 12.12 ticks)
 
+Problem aborted.
 
-Problem
-  Name                   :                 
-  Objective sense        : min             
-  Type                   : LO (linear optimization problem)
-  Constraints            : 2305            
-  Cones                  : 0               
-  Scalar variables       : 2350            
-  Matrix variables       : 0               
-  Integer variables      : 0               
+MIP Solution:       668231.043186    (63957 iterations, 9704 nodes)
+Final Solve:        668231.043186    (0 iterations)
 
-Optimizer started.
-Simplex optimizer started.
-Presolve started.
-Linear dependency checker started.
-Linear dependency checker terminated.
-Eliminator started.
-Freed constraints in eliminator : 20
-Eliminator terminated.
-Eliminator - tries                  : 1                 time                   : 0.00            
-Lin. dep.  - tries                  : 1                 time                   : 0.00            
-Lin. dep.  - number                 : 0               
-Presolve terminated. Time: 0.00    
-Dual simplex optimizer started.
-Dual simplex optimizer setup started.
-Dual simplex optimizer setup terminated.
-Optimizer  - solved problem         : the primal      
-Optimizer  - Constraints            : 1061            
-Optimizer  - Scalar variables       : 47                conic                  : 0               
-Optimizer  - hotstart               : no              
-ITER      DEGITER(%)  PFEAS       DFEAS       POBJ                  DOBJ                  TIME      TOTTIME 
-0         0.00        NA          0.00e+00    NA                    2.3169540770e+04      0.00      0.00    
-49        92.00       NA          0.00e+00    NA                    2.3169540989e+04      0.00      0.00    
-Dual simplex optimizer terminated.
-Simplex optimizer terminated. Time: 0.01. 
+Best possible:      668011.799913
+Absolute gap:          219.243272
+Relative gap:            0.000328
 
-Optimizer terminated. Time: 0.01    
-
-
-Basic solution summary
-  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
-  Solution status : OPTIMAL
-  Primal.  obj: 2.3169540744e+04    nrm: 5e+01    Viol.  con: 7e-15    var: 0e+00  
-  Dual.    obj: 2.3169540744e+04    nrm: 5e+03    Viol.  con: 5e-24    var: 0e+00  
-
-Return code - 0 [MSK_RES_OK]: No error occurred.
-
-MIP Solution:        23169.540744   (129059 iterations, 3274 nodes)
-Final Solve:         23169.540744   (49 iterations)
-
-Best possible:       18573.347847
-Absolute gap:         4596.192897
-Relative gap:            0.198372
 Terminate batch job (Y/N)? 
 --- Restarting execution
---- tspmod.gms(108) 2 Mb
+--- tspmod.gms(107) 2 Mb
 --- Reading solution for model tsp
---- Executing after solve: elapsed 0:00:37.016
---- tspmod.gms(131) 4 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\res.gdx
+--- Executing after solve: elapsed 0:00:24.160
+--- tspmod.gms(130) 4 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\data_tspmod/default.gdx
 *** Status: Normal completion
---- Job tspmod.gms Stop 07/02/20 13:46:11 elapsed 0:00:37.054
+--- Job tspmod.gms Stop 07/03/20 20:29:32 elapsed 0:00:24.180
 
-TRACE [2020-07-02 13:46:15] Logging facility initialised.
-DEBUG [2020-07-02 13:46:16] Database connection established.
-DEBUG [2020-07-02 13:46:16] Access Control initialised.
-WARN [2020-07-02 13:46:16] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'stateinfo' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'tour' was selected to be overwritten. However, this symbol could not be found.
+TRACE [2020-07-03 20:29:37] Logging facility initialised.
+DEBUG [2020-07-03 20:29:37] Database connection established.
+DEBUG [2020-07-03 20:29:37] Access Control initialised.
+WARN [2020-07-03 20:29:37] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-02 13:46:16] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-02 13:46:17] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-02 13:46:17] Db: 2552 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-02 13:46:17] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-02 13:46:17] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-02 13:46:17] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
-DEBUG [2020-07-02 13:46:17] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-02 13:46:17] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
-DEBUG [2020-07-02 13:46:17] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-07-02 13:46:17] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-02 13:46:23] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-02 15:15:13] Scenario: '1' unlocked.
-DEBUG [2020-07-02 15:15:13] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-02 15:15:13] Db: Database connection ended as Db object was gced.
+INFO [2020-07-03 20:29:37] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-03 20:29:38] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-03 20:29:38] Db: 2552 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-03 20:29:38] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-03 20:29:38] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-03 20:29:38] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
+DEBUG [2020-07-03 20:29:38] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-07-03 20:29:38] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
+DEBUG [2020-07-03 20:29:38] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
+DEBUG [2020-07-03 20:29:38] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-03 20:29:38] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+INFO [2020-07-03 20:29:43] Session started (model: 'tspmod', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp').
+DEBUG [2020-07-03 20:29:43] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp'.
+DEBUG [2020-07-03 20:29:43] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-03 20:29:44] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-03 20:29:44] Loading and rendering scenarios: '1'.
+DEBUG [2020-07-03 20:29:44] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
+DEBUG [2020-07-03 20:29:44] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
+DEBUG [2020-07-03 20:29:44] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
+DEBUG [2020-07-03 20:29:44] Db: A table named: '_sys_scripts_tspmod' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-03 20:29:44] Scenario: 'New Scenario' closed.
+DEBUG [2020-07-03 20:29:45] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-03 20:29:45] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
+DEBUG [2020-07-03 20:29:45] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-03 20:29:45] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-03 20:29:45] Dataset: cityinfo loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-03 20:29:45] Scenario: '1' was loaded into UI
+DEBUG [2020-07-03 20:29:47] Sidebar menu item: 'outputData' selected.
+INFO [2020-07-03 20:29:53] Session ended (model: 'tspmod', user: 'hasee').
+DEBUG [2020-07-03 20:29:54] Db: 2 attachments in table: '_sys_attach_tspmod' were deleted due to surpassing the expiration date (Db.removeExpiredAttachments).

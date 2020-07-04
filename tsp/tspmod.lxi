@@ -1,24 +1,24 @@
 B 3 C o m p i l a t i o n
-B 132 Include File Summary
-B 145 Equation Listing    SOLVE tsp Using MIP From line 111
-D 148 defobj
-D 1073 assign1
+B 130 Include File Summary
+B 143 Equation Listing    SOLVE tsp Using MIP From line 108
+D 146 defobj
+D 1071 assign1
 D 1116 assign2
-D 1159 mtz
-B 1171 Column Listing      SOLVE tsp Using MIP From line 111
-E 1174 x
-E 1196 obj
-E 1203 u
-B 1496 Model Statistics    SOLVE tsp Using MIP From line 111
-B 1512 Solution Report     SOLVE tsp Using MIP From line 111
+D 1161 mtz
+B 1173 Column Listing      SOLVE tsp Using MIP From line 108
+E 1176 x
+E 1198 obj
+E 1205 u
+B 1498 Model Statistics    SOLVE tsp Using MIP From line 108
+B 1514 Solution Report     SOLVE tsp Using MIP From line 108
 F 1556 defobj
 F 1558 assign1
 F 1611 assign2
 F 1664 mtz
-G 3878 x
-G 6188 obj
-G 6190 u
-B 6248 E x e c u t i o n
-I 6250 obj
-I 6251 tour
-I 6303 u
+G 3831 x
+G 6094 obj
+G 6096 u
+B 6154 E x e c u t i o n
+I 6156 obj
+I 6157 tour
+I 6209 u
