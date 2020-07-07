@@ -1,4 +1,4 @@
---- Job HarryPotter_emp.gms Start 07/07/20 13:43:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job HarryPotter_emp.gms Start 07/07/20 17:02:41 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -11,23 +11,21 @@
     ErrorLog 99
     IDE 1
     LstTitleLeftAligned 1
-    IDCGenerateJSON conf_HarryPotter_emp/HarryPotter_emp_io.json
-    IDCGenerateGDX data_HarryPotter_emp/default.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
 Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
           UW-Madison Computer Sciences Dept.                         DCE244
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- HarryPotter_emp.gms(195) 3 Mb
---- Starting execution: elapsed 0:00:00.020
+--- HarryPotter_emp.gms(196) 3 Mb
+--- Starting execution: elapsed 0:00:00.018
 --- HarryPotter_emp.gms(84) 4 Mb
 --- Generating NLP model submodel
 --- HarryPotter_emp.gms(86) 7 Mb
 ---   101 rows  202 columns  10,401 non-zeroes
 ---   40,403 nl-code  200 nl-non-zeroes
 --- HarryPotter_emp.gms(86) 5 Mb
---- Executing CONOPT: elapsed 0:00:00.075
+--- Executing CONOPT: elapsed 0:00:00.106
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -58,14 +56,14 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter_emp.gms(86) 2 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:00.212
---- HarryPotter_emp.gms(157) 37 Mb
+--- Executing after solve: elapsed 0:00:00.261
+--- HarryPotter_emp.gms(159) 37 Mb
 --- Generating NLP model submodel
---- HarryPotter_emp.gms(159) 39 Mb
+--- HarryPotter_emp.gms(160) 39 Mb
 ---   101 rows  202 columns  10,401 non-zeroes
 ---   41,003 nl-code  200 nl-non-zeroes
---- HarryPotter_emp.gms(159) 37 Mb
---- Executing CONOPT: elapsed 0:00:01.261
+--- HarryPotter_emp.gms(160) 37 Mb
+--- Executing CONOPT: elapsed 0:00:01.380
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -94,20 +92,26 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
 --- Restarting execution
---- HarryPotter_emp.gms(159) 36 Mb
+--- HarryPotter_emp.gms(160) 36 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:01.589
+--- Executing after solve: elapsed 0:00:01.724
 --- Generating EMP model Kernel_duti
---- HarryPotter_emp.gms(160) 39 Mb
+--- HarryPotter_emp.gms(161) 39 Mb
 ---   104 rows  305 columns  10,908 non-zeroes
----   43,328 nl-code  704 nl-non-zeroes
---- HarryPotter_emp.gms(160) 37 Mb
---- Executing JAMS: elapsed 0:00:01.645
+---   42,918 nl-code  502 nl-non-zeroes
+--- HarryPotter_emp.gms(161) 37 Mb
+--- Executing JAMS: elapsed 0:00:01.783
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
+
+--- Using Option File
+Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+>>  subsolveropt 1
+Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+
 --- EMP Summary
     Logical Constraints = 0
     Disjunctions        = 0
@@ -122,7 +126,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 07/07/20 13:43:46 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 07/07/20 17:02:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -151,6 +155,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empmatr.dat
     SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empstat.dat
     SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empsolu.dat
+    OptFile 1
     ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
 Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
@@ -158,18 +163,20 @@ Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- emp.dat(18676) 4 Mb
---- Starting execution: elapsed 0:00:00.071
---- emp.dat(18675) 5 Mb
+--- emp.dat(18698) 4 Mb
+--- Starting execution: elapsed 0:00:00.075
+--- emp.dat(18697) 5 Mb
 --- Generating MPEC model m
---- emp.dat(18676) 8 Mb
+--- emp.dat(18698) 8 Mb
 ---   304 rows  404 columns  31,008 non-zeroes
----   4,225 nl-code  604 nl-non-zeroes
---- emp.dat(18676) 6 Mb
---- Executing KNITRO: elapsed 0:00:00.128
+---   3,815 nl-code  402 nl-non-zeroes
+--- emp.dat(18698) 6 Mb
+--- Executing KNITRO: elapsed 0:00:00.145
 
 KNITRO           31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
+*** Error Cannot open parameter file "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\knitro.opt"
+*** Error Error code = 2; No such file or directory
 Artelys Knitro Optimizer 11.1.1
 
 =======================================
@@ -205,9 +212,9 @@ Number of variables:                                403 (         403)
     fixed:                                            0 (           0)
     free:                                           303 (         303)
 Number of constraints:                              303 (         303)
-    linear equalities:                              201 (         201)
+    linear equalities:                              203 (         203)
     quadratic equalities:                             0 (           0)
-    gen. nonlinear equalities:                      102 (         102)
+    gen. nonlinear equalities:                      100 (         100)
     linear one-sided inequalities:                    0 (           0)
     quadratic one-sided inequalities:                 0 (           0)
     gen. nonlinear one-sided inequalities:            0 (           0)
@@ -215,68 +222,248 @@ Number of constraints:                              303 (         303)
     quadratic two-sided inequalities:                 0 (           0)
     gen. nonlinear two-sided inequalities:            0 (           0)
 Number of nonzeros in Jacobian:                   30805 (       30805)
-Number of nonzeros in Hessian:                     5453 (        5453)
+Number of nonzeros in Hessian:                      302 (         302)
 
   Iter      Objective      FeasError   OptError    ||Step||    CGits 
 --------  --------------  ----------  ----------  ----------  -------
-       0    7.724120e+01   1.000e+00
-      10    7.853702e+01   6.494e-06   1.949e-03   2.932e+01        0
-      18    7.853157e+01   1.994e-07   1.010e-06   7.969e+00        0
+       0    5.069741e+03   1.844e-05
+      10    6.418485e+03   6.286e-03   1.000e+02   1.010e+01        0
+      20    5.094198e+03   7.935e-03   1.000e+02   2.089e+02        0
+      30    5.074012e+03   7.856e-03   1.000e+02   5.410e+02        0
+      40    5.047172e+03   7.229e-03   1.000e+02   1.001e+03        0
+      50    5.060525e+03   7.353e-03   1.000e+02   1.957e+03        0
+      60    5.057200e+03   6.933e-03   1.000e+02   5.044e+02        0
+      70    5.069273e+03   7.440e-03   1.000e+02   1.650e+03        0
+      80    5.139422e+03   8.087e-03   1.000e+02   4.844e+02        0
+      90    5.257830e+03   8.042e-03   1.000e+02   2.890e+01        0
+     100    5.275068e+03   8.037e-03   1.001e+02   8.352e+00        0
+     110    5.229190e+03   8.031e-03   1.001e+02   7.817e-01        0
+     120    5.231003e+03   8.023e-03   1.001e+02   1.069e+02        0
+     130    5.279356e+03   7.604e-03   1.001e+02   1.569e+01        0
+     140    5.277527e+03   7.196e-03   1.001e+02   5.704e+02        0
+     150    5.281472e+03   6.133e-03   1.000e+02   4.175e+03        0
+     160    5.368526e+03   5.549e-03   1.000e+02   3.842e+02        0
+     170    5.298955e+03   5.533e-03   1.000e+02   1.392e+00        0
+     180    5.298655e+03   5.281e-03   1.000e+02   1.139e-01        0
+     190    5.473821e+03   5.010e-03   1.000e+02   7.850e+00        0
+     200    5.502677e+03   5.004e-03   1.000e+02   4.029e-01        0
+     210    5.446570e+03   4.999e-03   1.000e+02   2.229e+01        0
+     220    5.482910e+03   4.994e-03   1.000e+02   7.725e+00        0
+     230    5.484282e+03   4.891e-03   1.000e+02   1.981e+02        0
+     240    5.483916e+03   4.791e-03   1.000e+02   3.668e+01        0
+     250    5.483938e+03   4.766e-03   1.000e+02   4.145e+02        0
+     260    5.525988e+03   4.652e-03   1.000e+02   1.383e+02        0
+     270    5.472851e+03   4.553e-03   1.000e+02   2.329e+02        0
+     280    5.472982e+03   4.499e-03   1.000e+02   4.370e+01        0
+     290    5.402215e+03   4.426e-03   1.000e+02   1.332e+00        0
+     300    5.543406e+03   4.424e-03   1.000e+02   2.181e+01        0
+     310    5.651761e+03   4.415e-03   1.000e+02   1.976e-01        0
+     320    5.682761e+03   4.388e-03   1.000e+02   1.083e+01        0
+     330    5.682935e+03   4.195e-03   1.000e+02   9.429e+02        0
+     340    5.543135e+03   3.692e-03   1.000e+02   1.961e+02        0
+     350    5.489123e+03   3.678e-03   1.000e+02   9.105e-03        0
+     360    5.476648e+03   3.551e-03   1.000e+02   9.793e+00        0
+     370    5.476886e+03   3.482e-03   1.000e+02   4.394e+02        0
+     380    5.476745e+03   3.264e-03   1.000e+02   2.699e+01        0
+     390    5.477187e+03   2.774e-03   1.000e+02   3.228e+03        0
+     400    5.477443e+03   2.747e-03   1.000e+02   3.526e+00        0
+     410    5.478092e+03   2.658e-03   1.000e+02   6.323e-01        0
+     420    5.583538e+03   2.094e-03   1.000e+02   9.529e+01        0
+     430    5.581969e+03   1.956e-03   1.000e+02   9.253e+02        0
+     440    5.847422e+03   1.863e-03   1.000e+02   6.508e+02        0
+     450    5.860270e+03   1.669e-03   1.000e+02   2.801e+03        0
+     460    5.912689e+03   1.531e-03   1.000e+02   6.292e+03        0
+     470    5.859133e+03   1.461e-03   1.000e+02   8.367e+02        0
+     480    5.858356e+03   1.467e-03   1.000e+02   1.442e+00        0
+     490    5.869501e+03   1.423e-03   1.000e+02   2.297e+01        0
+     500    5.919466e+03   1.408e-03   1.000e+02   3.750e+02        0
+     510    5.956834e+03   1.414e-03   1.000e+02   4.059e+02        0
+     520    5.864655e+03   1.254e-03   1.000e+02   1.180e+03        0
+     530    5.855481e+03   1.189e-03   1.000e+02   1.284e+01        0
+     540    5.851047e+03   1.099e-03   1.000e+02   1.661e+03        0
+     550    5.872368e+03   9.966e-04   1.000e+02   2.807e+03        0
+     560    5.870524e+03   9.705e-04   1.000e+02   4.471e-02        0
+     570    5.772148e+03   9.513e-04   1.000e+02   6.074e+00        0
+     580    5.672304e+03   9.358e-04   1.000e+02   3.565e+01        0
+     590    5.573272e+03   9.190e-04   1.000e+02   6.563e+00        0
+     600    5.573390e+03   8.616e-04   1.000e+02   5.870e+03        0
+     610    5.519027e+03   7.465e-04   1.000e+02   3.090e-02        0
+     620    5.518490e+03   6.787e-04   1.000e+02   5.559e+00        0
+     630    5.528116e+03   6.404e-04   1.000e+02   1.530e+02        0
+     640    5.640245e+03   6.049e-04   1.000e+02   1.499e+02        0
+     650    5.672638e+03   6.016e-04   1.000e+02   4.766e+01        0
+     660    5.574755e+03   5.818e-04   1.000e+02   8.524e+01        0
+     670    5.574920e+03   5.865e-04   1.000e+02   2.726e+02        0
+     680    5.578982e+03   5.492e-04   1.000e+02   1.199e+03        0
+     690    5.586719e+03   5.187e-04   1.000e+02   5.165e+02        0
+     700    5.573711e+03   4.899e-04   1.000e+02   9.567e+01        0
+     710    5.573582e+03   2.512e-04   1.000e+02   1.003e+00        0
+     720    5.575609e+03   2.383e-04   1.000e+02   2.490e+02        0
+     730    5.572837e+03   2.380e-04   1.000e+02   7.924e+00        0
+     740    5.578335e+03   2.445e-04   1.000e+02   1.390e+03        0
+     750    5.578084e+03   2.416e-04   1.000e+02   2.808e+03        0
+     760    5.487575e+03   2.270e-04   1.000e+02   3.134e+01        0
+     770    5.490523e+03   2.237e-04   1.000e+02   1.718e+03        0
+     780    5.493196e+03   2.199e-04   1.000e+02   1.908e+02        0
+     790    5.310096e+03   2.144e-04   1.000e+02   4.082e+02        0
+     800    5.120991e+03   2.082e-04   1.000e+02   8.743e+02        0
+     810    5.187123e+03   2.071e-04   1.000e+02   3.316e+01        0
+     820    5.186426e+03   1.927e-04   1.000e+02   1.653e+01        0
+     830    5.083909e+03   1.700e-04   1.000e+02   6.902e+03        0
+     840    5.181860e+03   1.548e-04   1.000e+02   3.894e+00        0
+     850    5.191793e+03   1.470e-04   1.000e+02   3.974e+02        0
+     860    5.468684e+03   1.307e-04   1.000e+02   4.292e+02        0
+     870    5.476715e+03   1.237e-04   1.000e+02   8.537e+00        0
+     880    5.439170e+03   9.606e-05   1.000e+02   4.354e+02        0
+     890    5.472099e+03   1.391e-04   1.000e+02   1.879e+03        0
+     900    5.384056e+03   7.744e-05   1.000e+02   1.227e+04        0
+     910    5.235729e+03   7.180e-05   1.000e+02   2.477e+01        1
+     920    5.089311e+03   6.197e-05   1.000e+02   4.490e+00        0
+     930    4.853996e+03   6.083e-05   1.000e+02   1.253e+01        0
+     940    4.792823e+03   5.916e-05   1.000e+02   1.508e+03        0
+     950    4.876292e+03   5.511e-05   1.000e+02   1.787e+03        0
+     960    4.869861e+03   5.320e-05   1.000e+02   2.688e+02        0
+     970    4.957161e+03   4.968e-05   1.000e+02   1.309e+01        0
+     980    4.993938e+03   4.387e-05   1.000e+02   1.226e+01        0
+     990    4.908352e+03   6.981e-05   1.000e+02   9.867e+01        0
+    1000    4.711819e+03   5.955e-05   1.000e+02   1.771e+03        0
+    1010    4.908499e+03   5.619e-05   1.000e+02   1.942e+01        0
+    1020    5.072527e+03   9.497e-05   1.000e+02   6.433e+02        0
+    1030    4.963456e+03   6.597e-05   1.000e+02   7.784e+02        0
+    1040    4.842985e+03   6.086e-05   1.000e+02   3.970e+02        0
+    1050    4.731308e+03   3.052e-05   1.000e+02   9.580e+02        0
+    1060    4.747424e+03   2.738e-05   1.000e+02   3.372e+02        0
+    1070    4.764591e+03   2.401e-05   1.000e+02   1.652e+03        0
+    1080    4.783070e+03   1.878e-05   1.000e+02   4.889e+02        0
+    1090    4.792904e+03   1.822e-05   1.000e+02   8.034e+02        0
+    1100    4.912804e+03   1.826e-05   1.000e+02   4.430e+00        0
+    1110    5.000103e+03   1.316e-05   1.000e+02   1.217e+03        0
+    1120    5.010330e+03   9.435e-06   1.000e+02   7.293e+02        0
+    1130    5.085939e+03   1.407e-05   1.000e+02   5.148e+02        0
+    1140    5.029015e+03   1.952e-05   1.000e+02   2.556e+02        0
+    1150    4.884719e+03   5.242e-05   1.000e+02   1.564e+03        0
+    1160    4.869723e+03   4.368e-05   1.000e+02   8.490e+01        0
+    1170    4.980100e+03   3.758e-05   1.000e+02   1.454e+02        0
+    1180    5.156719e+03   3.363e-05   1.000e+02   5.070e+01        0
+    1190    5.182164e+03   2.201e-05   1.000e+02   4.722e-01        0
+    1200    5.071467e+03   1.748e-05   1.000e+02   2.283e+02        0
+    1210    5.040250e+03   1.619e-05   1.000e+02   2.281e+01        0
+    1220    5.048794e+03   1.373e-05   1.000e+02   2.850e+00        0
+    1230    5.185108e+03   1.429e-05   1.000e+02   2.846e+02        0
+    1240    5.495144e+03   1.633e-05   1.000e+02   1.933e+02        0
+    1250    5.432508e+03   1.393e-05   1.000e+02   3.562e+00        0
+    1260    5.400421e+03   1.070e-05   1.000e+02   3.403e+01        0
+    1270    5.452866e+03   9.925e-06   1.000e+02   2.946e+02        0
+    1280    5.365484e+03   3.626e-05   1.000e+02   6.263e+02        0
+    1290    5.413402e+03   2.949e-05   1.000e+02   7.597e+01        0
+    1300    5.357063e+03   3.011e-05   1.000e+02   1.219e+03        0
+    1310    5.393265e+03   3.126e-05   1.000e+02   4.228e+01        0
+    1320    5.459402e+03   3.578e-05   1.000e+02   2.298e+02        0
+    1330    5.513481e+03   2.798e-05   1.000e+02   2.179e+01        0
+    1340    5.558010e+03   6.185e-05   1.000e+02   1.285e+02        0
+    1350    5.545526e+03   2.999e-05   1.000e+02   5.464e+02        0
+    1360    5.480963e+03   2.215e-05   1.000e+02   7.827e+01        0
+    1370    5.441207e+03   1.891e-05   1.000e+02   9.052e+02        0
+    1380    5.553107e+03   1.266e-05   1.000e+02   2.152e+02        0
+    1390    5.502378e+03   1.310e-05   1.000e+02   4.803e+00        0
+    1400    5.296049e+03   1.334e-05   1.000e+02   1.047e+02        0
+    1410    5.231578e+03   9.744e-06   1.000e+02   4.028e+01        0
+    1420    5.086254e+03   2.203e-06   1.000e+02   3.413e+01        0
+    1430    4.946045e+03   1.103e-05   1.000e+02   4.666e+01        0
+    1440    4.927258e+03   4.654e-05   1.000e+02   7.513e+01        0
+    1450    4.788601e+03   1.040e-06   1.000e+02   8.822e+01        0
+    1460    6.955852e+03   2.537e-02   1.000e+02   5.470e+01        0
+    1470    5.228457e+03   4.190e-02   1.000e+02   4.273e+02        0
+    1480    5.140973e+03   4.019e-02   1.000e+02   6.275e+03        0
+    1490    5.148502e+03   3.384e-02   1.000e+02   8.426e+03        0
+    1500    5.142511e+03   3.065e-02   1.000e+02   1.246e+04        0
+    1510    5.053153e+03   3.115e-02   1.001e+02   7.586e+00        0
+    1520    5.231569e+03   3.116e-02   1.001e+02   8.168e+01        0
+    1530    5.125340e+03   3.114e-02   1.001e+02   1.150e+03        0
+    1540    5.219395e+03   3.108e-02   1.001e+02   1.146e+01        0
+    1550    5.222612e+03   3.098e-02   1.001e+02   1.707e+03        0
+    1560    5.323764e+03   2.909e-02   1.001e+02   1.694e+04        0
+    1570    5.517720e+03   2.725e-02   1.001e+02   1.155e+02        0
+    1580    5.612279e+03   2.700e-02   1.001e+02   2.067e+01        0
+    1590    5.600856e+03   2.544e-02   1.001e+02   1.367e+02        0
+    1600    5.494976e+03   2.396e-02   1.001e+02   9.261e-01        0
+    1610    5.493112e+03   2.340e-02   1.001e+02   2.718e+01        1
+    1620    5.289914e+03   2.283e-02   1.001e+02   7.237e+02        0
+    1630    5.286334e+03   2.147e-02   1.001e+02   4.224e+03        0
+    1640    5.286241e+03   1.967e-02   1.001e+02   4.310e+00        0
+    1650    5.281884e+03   1.854e-02   1.001e+02   4.336e+03        0
+    1660    5.274824e+03   1.716e-02   1.000e+02   9.710e+03        0
+    1670    5.285595e+03   1.542e-02   1.000e+02   2.278e+01        0
+    1680    5.175827e+03   1.510e-02   1.000e+02   2.635e+00        0
+    1690    4.875215e+03   1.508e-02   1.001e+02   7.718e+00        0
+    1700    4.837477e+03   1.542e-02   1.001e+02   6.000e+00        0
+    1710    4.691247e+03   1.551e-02   1.001e+02   1.050e+02        0
+    1720    4.689739e+03   1.535e-02   1.000e+02   3.217e+03        0
+    1730    4.689439e+03   1.362e-02   1.000e+02   5.992e+01        0
+    1740    4.591938e+03   1.326e-02   1.000e+02   5.167e+03        0
+    1750    4.604812e+03   1.277e-02   1.000e+02   2.248e+01        0
+    1760    4.675800e+03   1.182e-02   1.000e+02   7.148e+02        0
+    1770    4.583191e+03   1.118e-02   1.000e+02   2.530e+03        0
+    1780    4.594588e+03   1.038e-02   1.000e+02   1.045e+00        0
+    1790    4.658247e+03   9.656e-03   1.000e+02   2.282e+01        0
+    1800    4.654421e+03   9.521e-03   1.000e+02   3.708e+00        0
+    1810    4.586844e+03   9.550e-03   1.000e+02   1.251e+02        0
+    1820    4.585778e+03   9.127e-03   1.000e+02   9.172e-01        0
+    1830    4.638527e+03   7.884e-03   1.000e+02   6.703e+01        0
+    1840    4.571338e+03   7.126e-03   1.000e+02   3.560e+01        2
+    1850    4.585394e+03   7.654e-03   1.000e+02   5.403e+02        0
+    1860    4.677298e+03   7.702e-03   1.000e+02   2.231e+02        0
+    1870    4.663339e+03   8.138e-03   1.000e+02   8.942e+00        0
+    1880    4.501214e+03   7.741e-03   1.000e+02   2.263e+00        0
+    1890    4.584713e+03   7.516e-03   1.000e+02   2.450e+00        0
+    1900    4.680726e+03   7.319e-03   1.000e+02   1.548e+03        0
+    1910    4.676458e+03   7.031e-03   1.000e+02   1.262e+01        0
+    1920    4.572832e+03   6.454e-03   1.000e+02   4.096e+00        0
+    1930    4.613283e+03   6.058e-03   1.000e+02   3.457e+01        0
+    1940    4.638201e+03   5.590e-03   1.000e+02   2.912e+00        0
+    1950    4.368396e+03   5.579e-03   1.000e+02   1.858e+01        0
+    1960    4.365230e+03   5.319e-03   1.000e+02   5.179e-01        0
+    1970    4.318860e+03   5.070e-03   1.000e+02   2.872e+01        0
+    1980    4.372370e+03   4.725e-03   1.000e+02   1.423e+00        0
 
-EXIT: Locally optimal solution found.
+EXIT: Termination by user.
 
 Final Statistics
 ----------------
-Final objective value               =   7.85315733628117e+01
-Final feasibility error (abs / rel) =   1.99e-07 / 1.99e-07
-Final optimality error  (abs / rel) =   1.01e-06 / 3.81e-08
-# of iterations                     =         18 
-# of CG iterations                  =          7 
-# of function evaluations           =         24
-# of gradient evaluations           =         19
-# of Hessian evaluations            =         18
-Total program time (secs)           =       0.595 (     0.594 CPU time)
-Time spent in evaluations (secs)    =       0.045
+Final objective value               =   4.36352484270309e+03
+Final feasibility error (abs / rel) =   4.55e-03 / 4.55e-03
+Final optimality error  (abs / rel) =   1.00e+02 / 1.00e+00
+# of iterations                     =       1984 
+# of CG iterations                  =        113 
+# of function evaluations           =       2014
+# of gradient evaluations           =       1985
+# of Hessian evaluations            =       1987
+Total program time (secs)           =      58.293 (    58.094 CPU time)
+Time spent in evaluations (secs)    =       4.326
 
 ===============================================================================
 
-Solve finished: status = optimal
+
+Solver aborted due to user request
+Terminate batch job (Y/N)? 
 --- Restarting execution
---- emp.dat(18676) 3 Mb
+--- emp.dat(18698) 3 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 07/07/20 13:43:46 elapsed 0:00:00.877
+--- Job emp.dat Stop 07/07/20 17:03:42 elapsed 0:00:58.632
 --- Returning from GAMS step
 ---
 --- Equations skipped = 1  Equations added = 201
 --- Variables skipped = 1  Variables added = 100
 ---
+***
+*** Handled Ctrl+C Event
+***
+Terminate batch job (Y/N)? 
 --- Restarting execution
---- HarryPotter_emp.gms(160) 36 Mb
+--- HarryPotter_emp.gms(161) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:03.021
---- HarryPotter_emp.gms(195) 38 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\data_HarryPotter_emp/default.gdx
+--- Executing after solve: elapsed 0:01:00.974
+--- HarryPotter_emp.gms(196) 38 Mb
 *** Status: Normal completion
---- Job HarryPotter_emp.gms Stop 07/07/20 13:43:47 elapsed 0:00:03.243
-
-TRACE [2020-07-07 13:43:52] Logging facility initialised.
-DEBUG [2020-07-07 13:43:52] Database connection established.
-DEBUG [2020-07-07 13:43:52] Access Control initialised.
-WARN [2020-07-07 13:43:52] There are orphaned tables in your database: 'harrypotteremp_trust_data', 'harrypotteremp_trust_label'.
-
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-07 13:43:52] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-07 13:43:53] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 13:43:53] Db: 10005 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-07 13:43:53] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-07 13:43:53] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-07 13:43:53] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
-DEBUG [2020-07-07 13:43:54] Db: Data was added to table: 'harrypotteremp_trust_info' (Db.exportScenDataset).
-DEBUG [2020-07-07 13:43:54] Db: Data was added to table: 'harrypotteremp__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-07 13:43:54] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 13:43:54] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-07 13:43:59] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 13:44:00] Scenario: '1' unlocked.
-DEBUG [2020-07-07 13:44:00] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
+--- Job HarryPotter_emp.gms Stop 07/07/20 17:03:43 elapsed 0:01:01.210

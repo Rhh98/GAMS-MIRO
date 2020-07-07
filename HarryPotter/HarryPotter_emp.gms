@@ -95,7 +95,7 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
-scalar gamma  debug parameter /15/
+scalar gamma  debug parameter /25/
 
 $offexternalInput
 parameter Trust_data(Header,aspect),Trust_label(Header);
@@ -130,7 +130,7 @@ variables log_l2(Header),obj;
 equations defobj,deflog_l2(Header);
 
 deflog_l2(Header)..
-log_l2(Header) =e= exp(-Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0')));
+log_l2(Header) =e= -Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'));
 defobj..
 obj =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
     
@@ -150,12 +150,13 @@ $offecho
 $onecho > nlpec.opt
 aggregate none
 constraint inequality
-initmu 1e-2
-finalmu 1e-4
+*initmu 1e-2
+*finalmu 1e-4
 $offecho
 w.l(n)=0.5;
 option mpec = knitro;
-*Kernel_duti.optfile=1;
+*option dnlp=conopt;
+Kernel_duti.optfile=1;
 solve submodel using nlp minimizing obj_sub;
 solve Kernel_duti using emp minimizing obj;
 

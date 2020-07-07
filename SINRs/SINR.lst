@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -78,7 +78,7 @@ C o m p i l a t i o n
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 2
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE MaxWorst Using NLP From line 50
 
@@ -164,7 +164,7 @@ defv3(n3)..  - q(n3) + v3(n3) =E= 0.693147180559945 ; (LHS = 0, INFES = 0.693147
      
 REMAINING 2 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE MaxWorst Using NLP From line 50
 
@@ -342,7 +342,7 @@ v3(n3)
         1       defv3(n3)
 
 REMAINING 2 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE MaxWorst Using NLP From line 50
 
@@ -356,11 +356,11 @@ DERIVATIVE POOL              20     CONSTANT POOL              16
 CODE LENGTH                 208
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 5
+EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE MaxWorst Using NLP From line 50
 
@@ -375,7 +375,7 @@ Solution Report     SOLVE MaxWorst Using NLP From line 50
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE                0.7765
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.016      1000.000
  ITERATION COUNT, LIMIT         9    2000000000
  EVALUATION ERRORS             NA             0
 
@@ -603,7 +603,7 @@ n5        -INF           -1.7409        +INF            EPS
                              0  UNBOUNDED
                              0     ERRORS
                             35  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 6
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE Average Using NLP From line 74
 
@@ -694,7 +694,7 @@ REMAINING 2 ENTRIES SKIPPED
 
 defobj..  - zz(n1) - zz(n2) - zz(n3) - zz(n4) - zz(n5) + obj =E= 0 ; (LHS = 0)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE Average Using NLP From line 74
 
@@ -881,7 +881,7 @@ obj
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 8
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE Average Using NLP From line 74
 
@@ -895,11 +895,11 @@ DERIVATIVE POOL              20     CONSTANT POOL              16
 CODE LENGTH                 208
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.046 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 9
+EXECUTION TIME       =        0.046 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE Average Using NLP From line 74
 
@@ -914,7 +914,7 @@ Solution Report     SOLVE Average Using NLP From line 74
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE                4.3649
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.031      1000.000
  ITERATION COUNT, LIMIT         8    2000000000
  EVALUATION ERRORS             NA             0
 
@@ -1156,7 +1156,7 @@ n5        -INF            1.7751        +INF            EPS
                              0  UNBOUNDED
                              0     ERRORS
                             35  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 14:42:46 Page 10
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:09:24 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 

@@ -1,4 +1,4 @@
---- Job HarryPotter_emp.gms Start 07/07/20 15:32:48 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job HarryPotter_emp.gms Start 07/07/20 17:04:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -11,23 +11,21 @@
     ErrorLog 99
     IDE 1
     LstTitleLeftAligned 1
-    IDCGenerateJSON conf_HarryPotter_emp/HarryPotter_emp_io.json
-    IDCGenerateGDX data_HarryPotter_emp/default.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
 Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
           UW-Madison Computer Sciences Dept.                         DCE244
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- HarryPotter_emp.gms(195) 3 Mb
---- Starting execution: elapsed 0:00:00.016
+--- HarryPotter_emp.gms(196) 3 Mb
+--- Starting execution: elapsed 0:00:00.022
 --- HarryPotter_emp.gms(84) 4 Mb
 --- Generating NLP model submodel
 --- HarryPotter_emp.gms(86) 7 Mb
 ---   101 rows  202 columns  10,401 non-zeroes
 ---   40,403 nl-code  200 nl-non-zeroes
 --- HarryPotter_emp.gms(86) 5 Mb
---- Executing CONOPT: elapsed 0:00:00.069
+--- Executing CONOPT: elapsed 0:00:00.110
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -58,14 +56,14 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter_emp.gms(86) 2 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:00.210
---- HarryPotter_emp.gms(157) 37 Mb
+--- Executing after solve: elapsed 0:00:00.379
+--- HarryPotter_emp.gms(159) 37 Mb
 --- Generating NLP model submodel
---- HarryPotter_emp.gms(159) 39 Mb
+--- HarryPotter_emp.gms(160) 39 Mb
 ---   101 rows  202 columns  10,401 non-zeroes
 ---   41,003 nl-code  200 nl-non-zeroes
---- HarryPotter_emp.gms(159) 37 Mb
---- Executing CONOPT: elapsed 0:00:01.244
+--- HarryPotter_emp.gms(160) 37 Mb
+--- Executing CONOPT: elapsed 0:00:01.553
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -94,20 +92,26 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
 --- Restarting execution
---- HarryPotter_emp.gms(159) 36 Mb
+--- HarryPotter_emp.gms(160) 36 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:01.568
+--- Executing after solve: elapsed 0:00:01.913
 --- Generating EMP model Kernel_duti
---- HarryPotter_emp.gms(160) 39 Mb
+--- HarryPotter_emp.gms(161) 39 Mb
 ---   104 rows  305 columns  10,908 non-zeroes
----   43,328 nl-code  704 nl-non-zeroes
---- HarryPotter_emp.gms(160) 37 Mb
---- Executing JAMS: elapsed 0:00:01.626
+---   42,918 nl-code  502 nl-non-zeroes
+--- HarryPotter_emp.gms(161) 37 Mb
+--- Executing JAMS: elapsed 0:00:01.975
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
+
+--- Using Option File
+Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+>>  subsolveropt 1
+Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+
 --- EMP Summary
     Logical Constraints = 0
     Disjunctions        = 0
@@ -122,7 +126,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 --- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 07/07/20 15:32:50 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 07/07/20 17:04:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -151,6 +155,7 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empmatr.dat
     SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empstat.dat
     SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empsolu.dat
+    OptFile 1
     ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
 Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
@@ -158,18 +163,20 @@ Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- emp.dat(18676) 4 Mb
---- Starting execution: elapsed 0:00:00.071
---- emp.dat(18675) 5 Mb
+--- emp.dat(18700) 4 Mb
+--- Starting execution: elapsed 0:00:00.077
+--- emp.dat(18699) 5 Mb
 --- Generating MPEC model m
---- emp.dat(18676) 8 Mb
+--- emp.dat(18700) 8 Mb
 ---   304 rows  404 columns  31,008 non-zeroes
----   4,225 nl-code  604 nl-non-zeroes
---- emp.dat(18676) 6 Mb
---- Executing KNITRO: elapsed 0:00:00.130
+---   3,815 nl-code  402 nl-non-zeroes
+--- emp.dat(18700) 6 Mb
+--- Executing KNITRO: elapsed 0:00:00.141
 
 KNITRO           31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
+*** Error Cannot open parameter file "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\knitro.opt"
+*** Error Error code = 2; No such file or directory
 Artelys Knitro Optimizer 11.1.1
 
 =======================================
@@ -205,9 +212,9 @@ Number of variables:                                403 (         403)
     fixed:                                            0 (           0)
     free:                                           303 (         303)
 Number of constraints:                              303 (         303)
-    linear equalities:                              201 (         201)
+    linear equalities:                              203 (         203)
     quadratic equalities:                             0 (           0)
-    gen. nonlinear equalities:                      102 (         102)
+    gen. nonlinear equalities:                      100 (         100)
     linear one-sided inequalities:                    0 (           0)
     quadratic one-sided inequalities:                 0 (           0)
     gen. nonlinear one-sided inequalities:            0 (           0)
@@ -215,111 +222,57 @@ Number of constraints:                              303 (         303)
     quadratic two-sided inequalities:                 0 (           0)
     gen. nonlinear two-sided inequalities:            0 (           0)
 Number of nonzeros in Jacobian:                   30805 (       30805)
-Number of nonzeros in Hessian:                     5453 (        5453)
+Number of nonzeros in Hessian:                      302 (         302)
 
   Iter      Objective      FeasError   OptError    ||Step||    CGits 
 --------  --------------  ----------  ----------  ----------  -------
-       0    7.724120e+01   1.000e+00
-      10    7.853702e+01   6.494e-06   1.949e-03   2.932e+01        0
-      18    7.853157e+01   1.994e-07   1.010e-06   7.969e+00        0
+       0    8.224120e+01   1.844e-05
+      10    1.635818e+01   3.202e-05   2.331e-03   1.756e+03        0
+      20    1.642358e+01   3.036e-05   5.382e+00   4.630e-01        0
+      30    1.643305e+01   2.512e-05   5.366e+00   1.837e+01        0
+      40    1.642757e+01   2.105e-05   5.361e+00   3.540e+01        0
+      50    1.638357e+01   1.368e-05   5.332e+00   5.778e+02        0
+      60    1.636440e+01   8.978e-06   5.318e+00   1.114e+02        0
+      70    1.635259e+01   4.662e-06   5.308e+00   4.883e+01        0
+      80    1.634958e+01   3.579e-06   5.306e+00   3.385e+00        0
+      90    1.634891e+01   2.732e-06   5.306e+00   2.927e+01        0
+     100    1.635290e+01   1.367e-06   5.311e+00   2.415e+01        0
+     110    1.635968e+01   1.318e-06   5.323e+00   2.737e+01        0
+     120    1.636233e+01   1.059e-06   5.328e+00   3.966e+01        0
+     130    1.633719e+01   1.606e-08   3.521e-07   3.991e-03       14
 
 EXIT: Locally optimal solution found.
 
 Final Statistics
 ----------------
-Final objective value               =   7.85315733628117e+01
-Final feasibility error (abs / rel) =   1.99e-07 / 1.99e-07
-Final optimality error  (abs / rel) =   1.01e-06 / 3.81e-08
-# of iterations                     =         18 
-# of CG iterations                  =          7 
-# of function evaluations           =         24
-# of gradient evaluations           =         19
-# of Hessian evaluations            =         18
-Total program time (secs)           =       0.612 (     0.609 CPU time)
-Time spent in evaluations (secs)    =       0.043
+Final objective value               =   1.63371923728922e+01
+Final feasibility error (abs / rel) =   1.61e-08 / 1.61e-08
+Final optimality error  (abs / rel) =   3.52e-07 / 6.60e-08
+# of iterations                     =        130 
+# of CG iterations                  =         23 
+# of function evaluations           =        152
+# of gradient evaluations           =        131
+# of Hessian evaluations            =        131
+Total program time (secs)           =       4.272 (     4.219 CPU time)
+Time spent in evaluations (secs)    =       0.299
 
 ===============================================================================
 
 Solve finished: status = optimal
 --- Restarting execution
---- emp.dat(18676) 3 Mb
+--- emp.dat(18700) 3 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 07/07/20 15:32:51 elapsed 0:00:00.905
+--- Job emp.dat Stop 07/07/20 17:04:18 elapsed 0:00:04.595
 --- Returning from GAMS step
 ---
 --- Equations skipped = 1  Equations added = 201
 --- Variables skipped = 1  Variables added = 100
 ---
 --- Restarting execution
---- HarryPotter_emp.gms(160) 36 Mb
+--- HarryPotter_emp.gms(161) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:03.038
---- HarryPotter_emp.gms(195) 38 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\data_HarryPotter_emp/default.gdx
+--- Executing after solve: elapsed 0:00:07.119
+--- HarryPotter_emp.gms(196) 38 Mb
 *** Status: Normal completion
---- Job HarryPotter_emp.gms Stop 07/07/20 15:32:51 elapsed 0:00:03.261
-
-TRACE [2020-07-07 15:32:57] Logging facility initialised.
-DEBUG [2020-07-07 15:32:57] Database connection established.
-DEBUG [2020-07-07 15:32:57] Access Control initialised.
-WARN [2020-07-07 15:32:57] There are orphaned tables in your database: 'harrypotteremp_trust_data', 'harrypotteremp_trust_label'.
-
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-07 15:32:57] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-07 15:32:58] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 15:32:58] Db: 10005 rows in table: '_sys_metadata_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-07 15:32:58] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-07 15:32:58] Db: Metadata (table: '_sys_metadata_harrypotter_emp') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-07 15:32:58] Db: Data was added to table: 'harrypotteremp_output1' (Db.exportScenDataset).
-DEBUG [2020-07-07 15:32:58] Db: Data was added to table: 'harrypotteremp_trust_info' (Db.exportScenDataset).
-DEBUG [2020-07-07 15:32:58] Db: Data was added to table: 'harrypotteremp__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-07 15:32:58] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 15:32:59] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-INFO [2020-07-07 15:33:04] Session started (model: 'harrypotter_emp', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter').
-DEBUG [2020-07-07 15:33:04] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/HarryPotter'.
-DEBUG [2020-07-07 15:33:04] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 15:33:05] Scenario: '1' unlocked.
-DEBUG [2020-07-07 15:33:05] Db: 1 rows in table: '_sys_scenlocks_harrypotter_emp' were deleted. (Db.deleteRows)
-DEBUG [2020-07-07 15:33:06] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-07 15:33:06] Loading and rendering scenarios: '1'.
-DEBUG [2020-07-07 15:33:06] Db: Data was imported from table: 'harrypotteremp_output1' (Db.importDataset).
-DEBUG [2020-07-07 15:33:06] Db: Data was imported from table: 'harrypotteremp_trust_info' (Db.importDataset).
-DEBUG [2020-07-07 15:33:06] Db: Data was imported from table: 'harrypotteremp__scalars' (Db.importDataset).
-DEBUG [2020-07-07 15:33:06] Db: A table named: '_sys_scripts_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:33:06] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-07 15:33:06] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 15:33:06] Db: Data was imported from table: '_sys_scenlocks_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 15:33:06] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-07 15:33:06] Dataset: trust_info loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-07 15:33:07] Scenario: '1' was loaded into UI
-DEBUG [2020-07-07 15:34:54] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-07 15:34:59] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-07 15:35:00] hasee: Import input data button clicked.
-DEBUG [2020-07-07 15:35:00] Db: Data was imported from table: '_sys_metadata_harrypotter_emp' (Db.importDataset).
-DEBUG [2020-07-07 15:35:06] Solve button clicked (model: 'harrypotter_emp').
-TRACE [2020-07-07 15:35:07] Dataset: Information of Trusted Item saved in dataTmp.
-TRACE [2020-07-07 15:35:07] Dataset: debug parameter saved in dataTmp.
-DEBUG [2020-07-07 15:35:07] Db: A table named: '_sys_attach_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:35:08] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-07 15:35:13] Db: A table named: '_sys_attach_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:35:13] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-07 15:35:19] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-07 15:35:23] Solve button clicked (model: 'harrypotter_emp').
-TRACE [2020-07-07 15:35:24] Dataset: Information of Trusted Item saved in dataTmp.
-TRACE [2020-07-07 15:35:24] Dataset: debug parameter saved in dataTmp.
-DEBUG [2020-07-07 15:35:24] Db: A table named: '_sys_attach_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:35:24] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-07 15:35:33] Db: A table named: '_sys_attach_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:35:34] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-07 15:35:40] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-07 15:35:42] Solve button clicked (model: 'harrypotter_emp').
-TRACE [2020-07-07 15:35:42] Dataset: Information of Trusted Item saved in dataTmp.
-TRACE [2020-07-07 15:35:42] Dataset: debug parameter saved in dataTmp.
-DEBUG [2020-07-07 15:35:42] Db: A table named: '_sys_attach_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:35:42] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-07 15:35:49] Db: A table named: '_sys_attach_harrypotter_emp' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-07 15:35:49] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-07 15:36:30] Sidebar menu item: 'inputData' selected.
-INFO [2020-07-07 15:36:34] Session ended (model: 'harrypotter_emp', user: 'hasee').
+--- Job HarryPotter_emp.gms Stop 07/07/20 17:04:18 elapsed 0:00:07.360

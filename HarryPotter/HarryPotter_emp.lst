@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -56,11 +56,6 @@ C o m p i l a t i o n
   55  w.lo(n)=0;
   56  w.up(n)=1;
   57  w_true(n)=0;
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 2
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
   58  w_true(n)$(y_Con(n) ne y_E(n))=1;
   59   
   60  *alpha's are the dual parameters in kernel logistic regression to be learned.
@@ -95,16 +90,12 @@ C o m p i l a t i o n
   89  set Header;
   90  ;
   91  Set T_column /heritage,education,label/;
-GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\_miro_gdxin_.gdx
   93  table Trust_info(Header<,T_column) Information of Trusted Item
   94        heritage   education  label
   95  1     0.3        0.4        -1
   96  2     0.2        0.6        1
---- LOAD  Header = 1:trust_info
---- LOAD  Trust_info = 1:trust_info
   97  ;
---- LOAD  gamma = 2:gamma
-  98  scalar gamma  debug parameter /15/
+  98  scalar gamma  debug parameter /25/
   99   
  101  parameter Trust_data(Header,aspect),Trust_label(Header);
  102  Trust_data(Header,'heritage')=Trust_info(Header,'heritage');
@@ -114,11 +105,6 @@ GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\_miro_gdxin_.gdx
  106   
  107  *Generating contour by kernel logistic regression
  108  parameter Z(n,n) 'label of testing data (0.01:0.01:1,0.01:0.01,1)',
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 3
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
  109  temp(n,n,n)  'temporary value',
  110  e(n,n), d(n,n)  'mesh grid'
  111  ;
@@ -143,7 +129,7 @@ C o m p i l a t i o n
  130  equations defobj,deflog_l2(Header);
  131   
  132  deflog_l2(Header)..
- 133  log_l2(Header) =e= exp(-Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0')));
+ 133  log_l2(Header) =e= -Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'));
  134  defobj..
  135  obj =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
  136   
@@ -157,58 +143,45 @@ C o m p i l a t i o n
       Kernel_duti.optfile=1;
  156  w.l(n)=0.5;
  157  option mpec = knitro;
- 158  *Kernel_duti.optfile=1;
- 159  solve submodel using nlp minimizing obj_sub;
- 160  solve Kernel_duti using emp minimizing obj;
- 161   
- 162  set g /g1*g40/;
- 163  parameter ranking(n);
- 164  scalar num /0/,
- 165  threshold /0.5/;
- 166  ranking(n)=card(g)+1;
- 167  ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=w.l(n);
- 168  num=sum(n$(ranking(n) ne card(g)+1) ,1);
- 169   
+ 158  *option dnlp=conopt;
+ 159  Kernel_duti.optfile=1;
+ 160  solve submodel using nlp minimizing obj_sub;
+ 161  solve Kernel_duti using emp minimizing obj;
+ 162   
+ 163  set g /g1*g40/;
+ 164  parameter ranking(n);
+ 165  scalar num /0/,
+ 166  threshold /0.5/;
+ 167  ranking(n)=card(g)+1;
+ 168  ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=w.l(n);
+ 169  num=sum(n$(ranking(n) ne card(g)+1) ,1);
+ 170   
       loop(g$(num < budget),
       gamma=gamma/2;
       if(ord(g)eq card(g),gamma=0;);
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 4
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
       solve Kernel_duti using emp minimizing obj2;
       ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=ord(g)+1-w.l(n);
       num=sum(n$(ranking(n) ne card(g)+1) ,1);
       );
- 179   
  180   
- 181  *boundary and debug output
- 182  set output1Header /heritage,education,val label of training data,Zval,newz,heritage_T,education_T,label label of trust data,ranking/;
- 184  table Output1(n,n1,Header,output1Header);
- 185  Output1(n,n1,Header,'heritage')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'heritage');
- 186  Output1(n,n1,Header,'education')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'education');
- 187  Output1(n,n1,Header,'val')$(ord(n1)=1 and ord(Header)=1)=y_Con(n);
- 188  Output1(n,n1,Header,'zval')$(ord(Header)=1)=Z(n,n1);
- 189  Output1(n,n1,Header,'heritage_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'heritage');
- 190  Output1(n,n1,Header,'education_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'education');
- 191  Output1(n,n1,Header,'label')$(ord(n1)=1 and ord(n)=1)=Trust_label(Header);
- 192  Output1(n,n1,Header,'ranking')$(ord(n1)=1 and ord(Header)=1)=ranking(n);
- 193  Output1(n,n1,Header,'newz')$(ord(Header)=1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
- 195  display ranking;
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 5
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Include File Summary
+ 181   
+ 182  *boundary and debug output
+ 183  set output1Header /heritage,education,val label of training data,Zval,newz,heritage_T,education_T,label label of trust data,ranking/;
+ 185  table Output1(n,n1,Header,output1Header);
+ 186  Output1(n,n1,Header,'heritage')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'heritage');
+ 187  Output1(n,n1,Header,'education')$(ord(n1)=1 and ord(Header)=1)=X_Train(n,'education');
+ 188  Output1(n,n1,Header,'val')$(ord(n1)=1 and ord(Header)=1)=y_Con(n);
+ 189  Output1(n,n1,Header,'zval')$(ord(Header)=1)=Z(n,n1);
+ 190  Output1(n,n1,Header,'heritage_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'heritage');
+ 191  Output1(n,n1,Header,'education_T')$(ord(n1)=1 and ord(n)=1)=Trust_data(Header,'education');
+ 192  Output1(n,n1,Header,'label')$(ord(n1)=1 and ord(n)=1)=Trust_label(Header);
+ 193  Output1(n,n1,Header,'ranking')$(ord(n1)=1 and ord(Header)=1)=ranking(n);
+ 194  Output1(n,n1,Header,'newz')$(ord(Header)=1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
+ 196  display ranking;
 
 
-   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
-
-     1        1 INPUT          0       0  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter_emp.gms
-     2       92 GDXIN          1      92  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\_miro_gdxin_.gdx
-
-
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 6
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -266,15 +239,6 @@ E x e c u t i o n
 47        0.450       0.650
 48        0.450       0.750
 49        0.450       0.850
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 7
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-         26 PARAMETER X_Train  training data
-
-       Heritage   education
-
 50        0.450      -0.050
 51        0.550       0.050
 52        0.550       0.150
@@ -324,19 +288,10 @@ E x e c u t i o n
 96        0.950       0.550
 97        0.950       0.650
 98        0.950       0.750
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 8
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-         26 PARAMETER X_Train  training data
-
-       Heritage   education
-
 99        0.950       0.850
 100       0.950      -0.050
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 9
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE submodel Using NLP From line 86
 
@@ -394,13 +349,6 @@ deflog_l(1)..  - alpha(1) - 0.977450955172295*alpha(2) - 0.97778894765803*alpha(
      
       - 0.235992378728142*alpha(58) - 0.180775770993192*alpha(59) - 0.573255198410819*alpha(60) - 0.472112206510203*alpha(61) - 0.479723218065101*alpha(62) - 0.499545947075308*alpha(63) - 0.434064459798237*alpha(64) - 0.34968005417297*alpha(65)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 10
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE submodel Using NLP From line 86
-
-
-     deflog_l  =E=       
-     
       - 0.303957075039371*alpha(66) - 0.26425011479332*alpha(67) - 0.219626849276256*alpha(68) - 0.180349970521718*alpha(69) - 0.451150110520771*alpha(70) - 0.38344110895634*alpha(71) - 0.31927382563258*alpha(72) - 0.343720328346138*alpha(73)
      
       - 0.291973301017036*alpha(74) - 0.28467654540985*alpha(75) - 0.229839776697151*alpha(76) - 0.193403973805897*alpha(77) - 0.140851003121406*alpha(78) - 0.126552797955845*alpha(79) - 0.338480053589389*alpha(80) - 0.252126467646394*alpha(81)
@@ -452,12 +400,6 @@ deflog_l(3)..  - 0.97778894765803*alpha(1) - 0.999961244303999*alpha(2) - alpha(
       - 0.30471144636797*alpha(49) - 0.586086367287716*alpha(50) - 0.543483589192508*alpha(51) - 0.542891075981528*alpha(52) - 0.657066668510934*alpha(53) - 0.648068919868755*alpha(54) - 0.607754756772881*alpha(55) - 0.485029879424406*alpha(56)
      
       - 0.414541541102953*alpha(57) - 0.317660409991871*alpha(58) - 0.255562994108136*alpha(59) - 0.540008289461477*alpha(60) - 0.481470234480376*alpha(61) - 0.500336843834274*alpha(62) - 0.55720241222102*alpha(63) - 0.490874133809564*alpha(64)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 11
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE submodel Using NLP From line 86
-
-
-     deflog_l  =E=       
      
       - 0.427812870215351*alpha(65) - 0.384050649388165*alpha(66) - 0.346256393784729*alpha(67) - 0.297082608801512*alpha(68) - 0.249062853059996*alpha(69) - 0.439801829707415*alpha(70) - 0.393635884902886*alpha(71) - 0.349584369121514*alpha(72)
      
@@ -471,7 +413,7 @@ Equation Listing    SOLVE submodel Using NLP From line 86
      
 REMAINING 97 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 12
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE submodel Using NLP From line 86
 
@@ -529,13 +471,6 @@ alpha(1)
         0.5088  deflog_l(46)
         0.3319  deflog_l(47)
         0.3285  deflog_l(48)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 13
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 86
-
-
-     alpha  
-
         0.2183  deflog_l(49)
        -0.6174  deflog_l(50)
        -0.5438  deflog_l(51)
@@ -587,13 +522,6 @@ Column Listing      SOLVE submodel Using NLP From line 86
         0.117   deflog_l(97)
         0.0841  deflog_l(98)
         0.0542  deflog_l(99)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 14
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 86
-
-
-     alpha  
-
        -0.1948  deflog_l(100)
 
 alpha(2)
@@ -645,13 +573,6 @@ alpha(2)
        -0.6604  deflog_l(44)
        -0.6174  deflog_l(45)
         0.6183  deflog_l(46)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 15
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 86
-
-
-     alpha  
-
         0.4279  deflog_l(47)
         0.4289  deflog_l(48)
         0.3041  deflog_l(49)
@@ -703,13 +624,6 @@ Column Listing      SOLVE submodel Using NLP From line 86
        -0.2022  deflog_l(95)
         0.1832  deflog_l(96)
         0.1538  deflog_l(97)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 16
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 86
-
-
-     alpha  
-
         0.1149  deflog_l(98)
         0.0793  deflog_l(99)
        -0.1911  deflog_l(100)
@@ -761,13 +675,6 @@ alpha(3)
        -0.7622  deflog_l(42)
        -0.7054  deflog_l(43)
        -0.6643  deflog_l(44)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 17
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 86
-
-
-     alpha  
-
        -0.6205  deflog_l(45)
         0.6204  deflog_l(46)
         0.4298  deflog_l(47)
@@ -819,13 +726,6 @@ Column Listing      SOLVE submodel Using NLP From line 86
        -0.2257  deflog_l(93)
        -0.2057  deflog_l(94)
        -0.2048  deflog_l(95)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 18
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 86
-
-
-     alpha  
-
         0.1854  deflog_l(96)
         0.1555  deflog_l(97)
         0.1162  deflog_l(98)
@@ -859,7 +759,7 @@ obj_sub
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj_sub
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 19
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE submodel Using NLP From line 86
 
@@ -873,11 +773,11 @@ DERIVATIVE POOL              20     CONSTANT POOL           4,968
 CODE LENGTH              40,403
 
 
-GENERATION TIME      =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.078 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.062 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 20
+EXECUTION TIME       =        0.078 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE submodel Using NLP From line 86
 
@@ -892,7 +792,7 @@ Solution Report     SOLVE submodel Using NLP From line 86
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE                0.1528
 
- RESOURCE USAGE, LIMIT          0.031      1000.000
+ RESOURCE USAGE, LIMIT          0.063      1000.000
  ITERATION COUNT, LIMIT        12    2000000000
  EVALUATION ERRORS              0             0
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -916,11 +816,11 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.030 seconds
-   of which: Function evaluations             0.003 = 10.0%
-             1st Derivative evaluations       0.005 = 16.7%
-             2nd Derivative evaluations       0.005 = 16.7%
-             Directional 2nd Derivative       0.008 = 26.7%
+ CONOPT time Total                            0.061 seconds
+   of which: Function evaluations             0.013 = 21.3%
+             1st Derivative evaluations       0.005 =  8.2%
+             2nd Derivative evaluations       0.011 = 18.0%
+             Directional 2nd Derivative       0.014 = 23.0%
  
 
                            LOWER          LEVEL          UPPER         MARGINAL
@@ -935,15 +835,6 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 2            .              .              .       3.2621042E-5      
 3            .              .              .       3.2655317E-5      
 4            .              .              .       5.3816593E-5      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 21
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
-
-     EQU deflog_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 5            .              .              .             0.0001      
 6            .              .              .             0.0002      
 7            .              .              .             0.0003      
@@ -993,15 +884,6 @@ Solution Report     SOLVE submodel Using NLP From line 86
 51           .              .              .       2.1394052E-5      
 52           .              .              .       3.1540411E-5      
 53           .              .              .             0.0003      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 22
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
-
-     EQU deflog_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 54           .              .              .             0.0008      
 55           .              .              .             0.0013      
 56           .              .              .             0.0021      
@@ -1049,10 +931,6 @@ Solution Report     SOLVE submodel Using NLP From line 86
 98           .              .              .             0.0005      
 99           .              .              .             0.0002      
 100          .              .              .       2.2712159E-5      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 23
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
 
 ---- VAR alpha  
 
@@ -1107,15 +985,6 @@ Solution Report     SOLVE submodel Using NLP From line 86
 47         -INF            1.7480        +INF      -1.797247E-8      
 48         -INF            1.8913        +INF      -9.194696E-9      
 49         -INF            1.2057        +INF      1.3066845E-8      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 24
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
-
-     VAR alpha  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 50         -INF           -0.0844        +INF      1.3286122E-8      
 51         -INF            0.2613        +INF      -1.945182E-8      
 52         -INF            0.0640        +INF      -3.313219E-8      
@@ -1165,15 +1034,6 @@ Solution Report     SOLVE submodel Using NLP From line 86
 96         -INF            0.8306        +INF      -2.377104E-8      
 97         -INF            1.5574        +INF      2.3266155E-9      
 98         -INF            1.1259        +INF      4.3008173E-8      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 25
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
-
-     VAR alpha  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 99         -INF            0.0565        +INF      -2.072744E-8      
 100        -INF           -0.3428        +INF      -3.074357E-8      
 0          -INF           -2.7666        +INF            EPS         
@@ -1223,15 +1083,6 @@ Solution Report     SOLVE submodel Using NLP From line 86
 39         -INF           -2.7546        +INF             .          
 40         -INF           -6.3056        +INF             .          
 41         -INF           -6.0882        +INF             .          
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 26
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
-
-     VAR log_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 42         -INF           -5.4364        +INF             .          
 43         -INF           -3.6618        +INF             .          
 44         -INF           -2.4734        +INF             .          
@@ -1281,15 +1132,6 @@ Solution Report     SOLVE submodel Using NLP From line 86
 88         -INF           -4.1617        +INF             .          
 89         -INF           -4.5655        +INF             .          
 90         -INF           -6.2255        +INF             .          
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 27
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 86
-
-
-     VAR log_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 91         -INF           -5.5865        +INF             .          
 92         -INF           -4.9626        +INF             .          
 93         -INF           -3.7339        +INF             .          
@@ -1310,7 +1152,7 @@ Solution Report     SOLVE submodel Using NLP From line 86
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 28
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1368,15 +1210,6 @@ E x e c u t i o n
 47       -4.725      -4.656      -4.585      -4.511      -4.436      -4.359      -4.279      -4.199      -4.116      -4.032      -3.947      -3.860      -3.772      -3.683      -3.592      -3.501      -3.409      -3.316      -3.223      -3.129      -3.035
 48       -4.672      -4.601      -4.527      -4.451      -4.373      -4.294      -4.212      -4.129      -4.044      -3.958      -3.870      -3.781      -3.690      -3.598      -3.506      -3.412      -3.317      -3.222      -3.126      -3.030      -2.933
 49       -4.618      -4.545      -4.469      -4.391      -4.311      -4.229      -4.145      -4.059      -3.972      -3.883      -3.793      -3.701      -3.608      -3.514      -3.419      -3.323      -3.225      -3.128      -3.029      -2.930      -2.831
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 29
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-              1           2           3           4           5           6           7           8           9          10          11          12          13          14          15          16          17          18          19          20          21
-
 50       -4.564      -4.488      -4.410      -4.330      -4.248      -4.163      -4.077      -3.989      -3.900      -3.809      -3.716      -3.622      -3.526      -3.430      -3.332      -3.233      -3.134      -3.033      -2.933      -2.831      -2.729
 51       -4.510      -4.431      -4.351      -4.269      -4.184      -4.098      -4.009      -3.919      -3.827      -3.734      -3.639      -3.542      -3.444      -3.345      -3.245      -3.144      -3.042      -2.939      -2.836      -2.732      -2.628
 52       -4.455      -4.375      -4.292      -4.207      -4.121      -4.032      -3.941      -3.849      -3.755      -3.659      -3.561      -3.463      -3.362      -3.261      -3.159      -3.055      -2.951      -2.846      -2.740      -2.634      -2.527
@@ -1426,15 +1259,6 @@ E x e c u t i o n
 96       -2.536      -2.418      -2.296      -2.173      -2.047      -1.919      -1.789      -1.657      -1.523      -1.387      -1.250      -1.111      -0.971      -0.829      -0.687      -0.543      -0.399      -0.254      -0.108       0.038       0.185
 97       -2.515      -2.397      -2.276      -2.154      -2.029      -1.901      -1.772      -1.640      -1.507      -1.372      -1.236      -1.097      -0.958      -0.817      -0.675      -0.532      -0.389      -0.244      -0.100       0.046       0.191
 98       -2.495      -2.377      -2.258      -2.136      -2.011      -1.885      -1.756      -1.625      -1.493      -1.359      -1.223      -1.085      -0.947      -0.807      -0.666      -0.524      -0.381      -0.238      -0.094       0.051       0.195
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 30
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-              1           2           3           4           5           6           7           8           9          10          11          12          13          14          15          16          17          18          19          20          21
-
 99       -2.476      -2.359      -2.240      -2.119      -1.995      -1.869      -1.742      -1.612      -1.480      -1.347      -1.212      -1.075      -0.938      -0.799      -0.658      -0.517      -0.376      -0.233      -0.090       0.053       0.197
 100      -2.458      -2.342      -2.224      -2.103      -1.981      -1.856      -1.729      -1.600      -1.469      -1.337      -1.203      -1.067      -0.930      -0.792      -0.653      -0.513      -0.372      -0.231      -0.089       0.054       0.197
 
@@ -1484,15 +1308,6 @@ E x e c u t i o n
 42       -3.459      -3.377      -3.295      -3.213      -3.131      -3.049      -2.968      -2.887      -2.806      -2.727      -2.647      -2.569      -2.492      -2.415      -2.340      -2.266      -2.193      -2.121      -2.051      -1.983      -1.916
 43       -3.356      -3.271      -3.187      -3.102      -3.018      -2.933      -2.849      -2.766      -2.683      -2.601      -2.519      -2.438      -2.359      -2.280      -2.202      -2.126      -2.051      -1.977      -1.905      -1.834      -1.765
 44       -3.252      -3.165      -3.078      -2.991      -2.904      -2.817      -2.730      -2.645      -2.559      -2.474      -2.390      -2.307      -2.225      -2.144      -2.064      -1.986      -1.908      -1.832      -1.758      -1.685      -1.614
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 31
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          22          23          24          25          26          27          28          29          30          31          32          33          34          35          36          37          38          39          40          41          42
-
 45       -3.148      -3.059      -2.969      -2.879      -2.790      -2.700      -2.611      -2.523      -2.435      -2.348      -2.261      -2.176      -2.092      -2.008      -1.926      -1.845      -1.766      -1.688      -1.611      -1.536      -1.463
 46       -3.044      -2.952      -2.860      -2.767      -2.675      -2.583      -2.492      -2.401      -2.311      -2.221      -2.132      -2.045      -1.958      -1.872      -1.788      -1.705      -1.623      -1.543      -1.464      -1.388      -1.313
 47       -2.940      -2.845      -2.750      -2.656      -2.561      -2.467      -2.373      -2.279      -2.187      -2.095      -2.004      -1.913      -1.824      -1.736      -1.650      -1.564      -1.481      -1.398      -1.318      -1.239      -1.162
@@ -1542,15 +1357,6 @@ E x e c u t i o n
 91        0.263       0.413       0.562       0.711       0.859       1.007       1.153       1.299       1.444       1.587       1.729       1.869       2.008       2.145       2.279       2.412       2.542       2.669       2.794       2.916       3.036
 92        0.282       0.431       0.580       0.728       0.876       1.023       1.170       1.315       1.459       1.602       1.744       1.883       2.021       2.158       2.292       2.424       2.553       2.681       2.805       2.927       3.046
 93        0.298       0.447       0.595       0.743       0.890       1.037       1.183       1.327       1.471       1.613       1.754       1.894       2.031       2.167       2.301       2.432       2.561       2.688       2.812       2.934       3.052
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 32
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          22          23          24          25          26          27          28          29          30          31          32          33          34          35          36          37          38          39          40          41          42
-
 94        0.312       0.460       0.607       0.754       0.901       1.047       1.192       1.337       1.480       1.622       1.762       1.901       2.038       2.173       2.306       2.437       2.566       2.692       2.815       2.936       3.054
 95        0.323       0.470       0.617       0.763       0.909       1.055       1.199       1.343       1.485       1.626       1.766       1.904       2.041       2.175       2.308       2.438       2.566       2.692       2.815       2.935       3.053
 96        0.331       0.477       0.624       0.769       0.915       1.059       1.203       1.346       1.488       1.628       1.767       1.905       2.040       2.174       2.306       2.436       2.563       2.688       2.810       2.930       3.047
@@ -1600,15 +1406,6 @@ E x e c u t i o n
 37       -2.604      -2.550      -2.497      -2.446      -2.397      -2.349      -2.303      -2.259      -2.216      -2.175      -2.136      -2.099      -2.063      -2.030      -1.998      -1.968      -1.941      -1.915      -1.890      -1.868      -1.848
 38       -2.455      -2.399      -2.345      -2.292      -2.241      -2.191      -2.143      -2.097      -2.053      -2.011      -1.971      -1.932      -1.895      -1.861      -1.828      -1.797      -1.769      -1.742      -1.717      -1.694      -1.673
 39       -2.305      -2.247      -2.191      -2.136      -2.083      -2.032      -1.983      -1.935      -1.890      -1.846      -1.804      -1.764      -1.727      -1.691      -1.657      -1.625      -1.595      -1.568      -1.542      -1.519      -1.497
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 33
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          43          44          45          46          47          48          49          50          51          52          53          54          55          56          57          58          59          60          61          62          63
-
 40       -2.154      -2.094      -2.036      -1.980      -1.925      -1.872      -1.821      -1.772      -1.725      -1.680      -1.637      -1.596      -1.557      -1.520      -1.485      -1.452      -1.421      -1.393      -1.367      -1.342      -1.320
 41       -2.003      -1.941      -1.881      -1.822      -1.766      -1.712      -1.659      -1.608      -1.560      -1.513      -1.469      -1.426      -1.386      -1.348      -1.312      -1.278      -1.247      -1.218      -1.190      -1.165      -1.143
 42       -1.850      -1.787      -1.725      -1.665      -1.607      -1.550      -1.496      -1.444      -1.394      -1.346      -1.300      -1.256      -1.215      -1.176      -1.139      -1.104      -1.072      -1.042      -1.014      -0.988      -0.965
@@ -1658,15 +1455,6 @@ E x e c u t i o n
 86        3.039       3.153       3.264       3.372       3.476       3.576       3.673       3.766       3.855       3.941       4.022       4.100       4.173       4.243       4.308       4.369       4.425       4.477       4.526       4.569       4.609
 87        3.070       3.184       3.295       3.403       3.507       3.607       3.704       3.797       3.886       3.972       4.053       4.131       4.204       4.273       4.338       4.399       4.456       4.508       4.556       4.600       4.639
 88        3.097       3.211       3.322       3.429       3.533       3.633       3.730       3.823       3.912       3.998       4.079       4.156       4.230       4.299       4.364       4.425       4.481       4.534       4.582       4.625       4.665
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 34
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          43          44          45          46          47          48          49          50          51          52          53          54          55          56          57          58          59          60          61          62          63
-
 89        3.120       3.233       3.344       3.451       3.555       3.655       3.752       3.845       3.934       4.019       4.100       4.178       4.251       4.320       4.385       4.446       4.502       4.554       4.602       4.646       4.685
 90        3.138       3.251       3.362       3.469       3.572       3.672       3.769       3.862       3.950       4.036       4.117       4.194       4.267       4.336       4.401       4.461       4.518       4.570       4.618       4.661       4.701
 91        3.152       3.265       3.375       3.482       3.585       3.685       3.781       3.874       3.963       4.047       4.128       4.205       4.278       4.347       4.412       4.472       4.528       4.581       4.628       4.672       4.711
@@ -1716,15 +1504,6 @@ E x e c u t i o n
 32       -2.684      -2.669      -2.656      -2.644      -2.634      -2.625      -2.618      -2.611      -2.606      -2.603      -2.600      -2.599      -2.598      -2.599      -2.601      -2.604      -2.608      -2.613      -2.618      -2.625      -2.632
 33       -2.516      -2.501      -2.488      -2.476      -2.466      -2.457      -2.449      -2.443      -2.438      -2.434      -2.432      -2.431      -2.431      -2.432      -2.435      -2.438      -2.443      -2.448      -2.455      -2.462      -2.470
 34       -2.347      -2.332      -2.318      -2.306      -2.295      -2.286      -2.278      -2.272      -2.267      -2.264      -2.262      -2.261      -2.262      -2.263      -2.266      -2.270      -2.276      -2.282      -2.289      -2.297      -2.306
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 35
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          64          65          66          67          68          69          70          71          72          73          74          75          76          77          78          79          80          81          82          83          84
-
 35       -2.176      -2.160      -2.146      -2.134      -2.123      -2.113      -2.106      -2.100      -2.095      -2.092      -2.090      -2.090      -2.090      -2.093      -2.096      -2.101      -2.107      -2.114      -2.122      -2.131      -2.141
 36       -2.003      -1.987      -1.973      -1.960      -1.949      -1.939      -1.932      -1.925      -1.921      -1.918      -1.916      -1.916      -1.918      -1.920      -1.924      -1.930      -1.936      -1.944      -1.953      -1.963      -1.974
 37       -1.829      -1.813      -1.798      -1.785      -1.773      -1.764      -1.756      -1.750      -1.745      -1.743      -1.741      -1.742      -1.743      -1.747      -1.751      -1.757      -1.764      -1.773      -1.783      -1.793      -1.805
@@ -1774,15 +1553,6 @@ E x e c u t i o n
 81        4.413       4.444       4.470       4.492       4.510       4.524       4.533       4.538       4.540       4.537       4.530       4.519       4.504       4.486       4.463       4.438       4.408       4.375       4.338       4.299       4.256
 82        4.470       4.501       4.527       4.549       4.567       4.580       4.590       4.595       4.596       4.593       4.586       4.575       4.561       4.542       4.520       4.494       4.464       4.431       4.394       4.354       4.311
 83        4.521       4.552       4.578       4.600       4.618       4.632       4.641       4.646       4.648       4.645       4.638       4.627       4.612       4.593       4.571       4.544       4.515       4.481       4.444       4.404       4.361
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 36
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          64          65          66          67          68          69          70          71          72          73          74          75          76          77          78          79          80          81          82          83          84
-
 84        4.567       4.598       4.624       4.646       4.664       4.678       4.687       4.693       4.694       4.691       4.684       4.673       4.658       4.639       4.616       4.590       4.560       4.527       4.490       4.450       4.406
 85        4.608       4.639       4.665       4.687       4.705       4.719       4.728       4.734       4.735       4.732       4.725       4.713       4.699       4.680       4.657       4.631       4.601       4.567       4.530       4.490       4.446
 86        4.644       4.675       4.701       4.723       4.741       4.755       4.764       4.769       4.770       4.767       4.760       4.749       4.734       4.715       4.693       4.666       4.636       4.603       4.565       4.525       4.481
@@ -1832,15 +1602,6 @@ E x e c u t i o n
 27       -3.409      -3.413      -3.416      -3.420      -3.425      -3.429      -3.434      -3.439      -3.444      -3.449      -3.454      -3.460      -3.465      -3.470      -3.475      -3.480
 28       -3.260      -3.265      -3.270      -3.275      -3.280      -3.286      -3.292      -3.298      -3.305      -3.311      -3.318      -3.325      -3.331      -3.338      -3.345      -3.351
 29       -3.109      -3.114      -3.120      -3.127      -3.133      -3.140      -3.148      -3.155      -3.163      -3.171      -3.179      -3.187      -3.195      -3.204      -3.212      -3.220
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 37
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          85          86          87          88          89          90          91          92          93          94          95          96          97          98          99         100
-
 30       -2.955      -2.961      -2.968      -2.976      -2.984      -2.992      -3.001      -3.009      -3.019      -3.028      -3.037      -3.047      -3.057      -3.067      -3.077      -3.086
 31       -2.798      -2.806      -2.814      -2.823      -2.832      -2.841      -2.851      -2.861      -2.872      -2.883      -2.894      -2.905      -2.916      -2.928      -2.939      -2.951
 32       -2.640      -2.648      -2.657      -2.667      -2.678      -2.688      -2.700      -2.711      -2.723      -2.735      -2.748      -2.761      -2.774      -2.787      -2.800      -2.813
@@ -1890,15 +1651,6 @@ E x e c u t i o n
 76        3.860       3.813       3.762       3.709       3.653       3.594       3.533       3.470       3.405       3.337       3.267       3.196       3.122       3.047       2.971       2.893
 77        3.940       3.892       3.841       3.787       3.731       3.672       3.610       3.547       3.481       3.412       3.342       3.270       3.196       3.120       3.043       2.964
 78        4.015       3.966       3.915       3.861       3.804       3.745       3.683       3.618       3.552       3.483       3.412       3.340       3.265       3.189       3.111       3.031
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 38
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        118 PARAMETER Z  label of testing data (0.01:0.01:1,0.01:0.01,1)
-
-  +          85          86          87          88          89          90          91          92          93          94          95          96          97          98          99         100
-
 79        4.084       4.036       3.984       3.930       3.872       3.813       3.750       3.686       3.619       3.549       3.478       3.405       3.330       3.253       3.174       3.094
 80        4.149       4.100       4.048       3.994       3.936       3.876       3.813       3.748       3.681       3.611       3.539       3.465       3.390       3.313       3.233       3.153
 81        4.209       4.160       4.108       4.053       3.995       3.934       3.871       3.806       3.738       3.668       3.596       3.522       3.446       3.368       3.288       3.207
@@ -1922,9 +1674,9 @@ E x e c u t i o n
 99        4.452       4.403       4.352       4.297       4.240       4.180       4.118       4.053       3.985       3.916       3.844       3.770       3.695       3.617       3.538       3.457
 100       4.422       4.373       4.322       4.268       4.211       4.151       4.089       4.025       3.958       3.889       3.818       3.744       3.669       3.592       3.513       3.433
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 39
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE submodel Using NLP From line 159
+Equation Listing    SOLVE submodel Using NLP From line 160
 
 
 ---- defobj_sub  =E=  
@@ -1980,12 +1732,6 @@ defobj_sub..  (0.00314678650905636)*alpha(1) + (0.00295547952317951)*alpha(2) + 
       + (0.00486989908868021)*log_l(69) + (0.00498384951014573)*log_l(70) + (0.00497181666042831)*log_l(71) + (0.00487745905652279)*log_l(72) + (0.00455066128538697)*log_l(73) + (0.00339938721939442)*log_l(74) - (0.000580002356937363)*log_l(75)
      
       + (0.00330495332199661)*log_l(76) + (0.00466639574905131)*log_l(77) + (0.00486977697895119)*log_l(78) + (0.00491896864245916)*log_l(79) + (0.00498180236219332)*log_l(80) + (0.00497234477599015)*log_l(81) + (0.00493135704437375)*log_l(82)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 40
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE submodel Using NLP From line 159
-
-
-     defobj_sub  =E=       
      
       + (0.00478314208334547)*log_l(83) + (0.0038590687393433)*log_l(84) + (0.00185455182880181)*log_l(85) + (0.00235356896580562)*log_l(86) + (0.0046067532980903)*log_l(87) + (0.00484658210534751)*log_l(88) + (0.00489702154649353)*log_l(89)
      
@@ -2038,13 +1784,6 @@ deflog_l(2)..  - 0.977450955172295*alpha(1) - alpha(2) - 0.999961244303999*alpha
      
       - 0.412645194034133*alpha(57) - 0.316087602439671*alpha(58) - 0.254724349448856*alpha(59) - 0.534831183500929*alpha(60) - 0.47641400565763*alpha(61) - 0.495312341614494*alpha(62) - 0.552685750265497*alpha(63) - 0.486545413440305*alpha(64)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 41
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE submodel Using NLP From line 159
-
-
-     deflog_l  =E=       
-     
       - 0.424647974772655*alpha(65) - 0.381402728542034*alpha(66) - 0.344224269638482*alpha(67) - 0.295504527106063*alpha(68) - 0.247667804381944*alpha(69) - 0.434850231657879*alpha(70) - 0.388990890503802*alpha(71) - 0.345466652879871*alpha(72)
      
       - 0.3853192890485*alpha(73) - 0.339698643615387*alpha(74) - 0.345116210215904*alpha(75) - 0.288770261553625*alpha(76) - 0.255137761310456*alpha(77) - 0.194109715831291*alpha(78) - 0.181325328738565*alpha(79) - 0.331205731685454*alpha(80)
@@ -2083,9 +1822,9 @@ deflog_l(3)..  - 0.97778894765803*alpha(1) - 0.999961244303999*alpha(2) - alpha(
      
 REMAINING 97 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 42
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
+Column Listing      SOLVE submodel Using NLP From line 160
 
 
 ---- alpha  
@@ -2141,13 +1880,6 @@ alpha(1)
         0.5088  deflog_l(46)
         0.3319  deflog_l(47)
         0.3285  deflog_l(48)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 43
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
-
-
-     alpha  
-
         0.2183  deflog_l(49)
        -0.6174  deflog_l(50)
        -0.5438  deflog_l(51)
@@ -2199,13 +1931,6 @@ Column Listing      SOLVE submodel Using NLP From line 159
         0.117   deflog_l(97)
         0.0841  deflog_l(98)
         0.0542  deflog_l(99)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 44
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
-
-
-     alpha  
-
        -0.1948  deflog_l(100)
 
 alpha(2)
@@ -2257,13 +1982,6 @@ alpha(2)
        -0.6604  deflog_l(44)
        -0.6174  deflog_l(45)
         0.6183  deflog_l(46)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 45
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
-
-
-     alpha  
-
         0.4279  deflog_l(47)
         0.4289  deflog_l(48)
         0.3041  deflog_l(49)
@@ -2315,13 +2033,6 @@ Column Listing      SOLVE submodel Using NLP From line 159
        -0.2022  deflog_l(95)
         0.1832  deflog_l(96)
         0.1538  deflog_l(97)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 46
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
-
-
-     alpha  
-
         0.1149  deflog_l(98)
         0.0793  deflog_l(99)
        -0.1911  deflog_l(100)
@@ -2373,13 +2084,6 @@ alpha(3)
        -0.7622  deflog_l(42)
        -0.7054  deflog_l(43)
        -0.6643  deflog_l(44)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 47
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
-
-
-     alpha  
-
        -0.6205  deflog_l(45)
         0.6204  deflog_l(46)
         0.4298  deflog_l(47)
@@ -2431,13 +2135,6 @@ Column Listing      SOLVE submodel Using NLP From line 159
        -0.2257  deflog_l(93)
        -0.2057  deflog_l(94)
        -0.2048  deflog_l(95)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 48
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE submodel Using NLP From line 159
-
-
-     alpha  
-
         0.1854  deflog_l(96)
         0.1555  deflog_l(97)
         0.1162  deflog_l(98)
@@ -2471,9 +2168,9 @@ obj_sub
                 (.LO, .L, .UP, .M = -INF, 0.152847525731637, +INF, 0)
         1       defobj_sub
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 49
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE submodel Using NLP From line 159
+Model Statistics    SOLVE submodel Using NLP From line 160
 
 
 MODEL STATISTICS
@@ -2488,17 +2185,17 @@ CODE LENGTH              41,003
 GENERATION TIME      =        0.047 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        1.203 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 50
+EXECUTION TIME       =        1.188 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 11
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
+Solution Report     SOLVE submodel Using NLP From line 160
 
 
                S O L V E      S U M M A R Y
 
      MODEL   submodel            OBJECTIVE  obj_sub
      TYPE    NLP                 DIRECTION  MINIMIZE
-     SOLVER  CONOPT              FROM LINE  159
+     SOLVER  CONOPT              FROM LINE  160
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
@@ -2528,11 +2225,11 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.029 seconds
-   of which: Function evaluations             0.003 = 10.3%
-             1st Derivative evaluations       0.007 = 24.1%
-             2nd Derivative evaluations       0.004 = 13.8%
-             Directional 2nd Derivative       0.007 = 24.1%
+ CONOPT time Total                            0.032 seconds
+   of which: Function evaluations             0.004 = 12.5%
+             1st Derivative evaluations       0.005 = 15.6%
+             2nd Derivative evaluations       0.006 = 18.8%
+             Directional 2nd Derivative       0.007 = 21.9%
  
 
                            LOWER          LEVEL          UPPER         MARGINAL
@@ -2547,15 +2244,6 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 2            .              .              .             EPS         
 3            .              .              .             EPS         
 4            .              .              .       -2.161885E-7      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 51
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
-
-     EQU deflog_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 5            .              .              .             EPS         
 6            .              .              .             EPS         
 7            .              .              .       2.0075618E-7      
@@ -2605,15 +2293,6 @@ Solution Report     SOLVE submodel Using NLP From line 159
 51           .              .              .             EPS         
 52           .              .              .             EPS         
 53           .              .              .             EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 52
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
-
-     EQU deflog_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 54           .              .              .             EPS         
 55           .              .              .             EPS         
 56           .              .              .             EPS         
@@ -2661,10 +2340,6 @@ Solution Report     SOLVE submodel Using NLP From line 159
 98           .              .              .             EPS         
 99           .              .              .             EPS         
 100          .              .              .             EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 53
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
 
 ---- VAR alpha  
 
@@ -2719,15 +2394,6 @@ Solution Report     SOLVE submodel Using NLP From line 159
 47         -INF            0.0991        +INF      7.8340793E-9      
 48         -INF            0.1617        +INF      2.7244591E-8      
 49         -INF            0.1210        +INF      3.7950058E-8      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 54
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
-
-     VAR alpha  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 50         -INF            0.1073        +INF      9.0435711E-9      
 51         -INF           -0.0232        +INF      -1.510146E-8      
 52         -INF            0.1138        +INF      -1.409429E-8      
@@ -2777,15 +2443,6 @@ Solution Report     SOLVE submodel Using NLP From line 159
 96         -INF            0.1007        +INF      4.8729751E-9      
 97         -INF            0.1945        +INF      1.7650431E-8      
 98         -INF           -0.2329        +INF      1.3529665E-8      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 55
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
-
-     VAR alpha  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 99         -INF           -0.1535        +INF      -1.118365E-8      
 100        -INF            0.1849        +INF      6.3930516E-9      
 0          -INF      -9.481057E-9        +INF            EPS         
@@ -2835,15 +2492,6 @@ Solution Report     SOLVE submodel Using NLP From line 159
 39         -INF      -3.457536E-5        +INF             .          
 40         -INF      -4.293817E-5        +INF             .          
 41         -INF      -3.163961E-5        +INF             .          
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 56
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
-
-     VAR log_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 42         -INF      -8.057978E-6        +INF             .          
 43         -INF      7.1816276E-6        +INF             .          
 44         -INF      3.3226052E-6        +INF             .          
@@ -2893,15 +2541,6 @@ Solution Report     SOLVE submodel Using NLP From line 159
 88         -INF      -5.093875E-6        +INF             .          
 89         -INF      -6.127938E-6        +INF             .          
 90         -INF      -4.981906E-7        +INF             .          
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 57
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE submodel Using NLP From line 159
-
-
-     VAR log_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
 91         -INF      -1.405763E-5        +INF             .          
 92         -INF      -8.245337E-6        +INF             .          
 93         -INF      -1.230858E-6        +INF             .          
@@ -2922,9 +2561,9 @@ Solution Report     SOLVE submodel Using NLP From line 159
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 58
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 12
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 160
+Equation Listing    SOLVE Kernel_duti Using EMP From line 161
 
 
 ---- defobj_In  =E=  
@@ -2980,12 +2619,6 @@ defobj_In..  (1.51507190432332E-7)*w(1) - (1.51285825391589E-7)*w(2) - (1.092714
       + (1.83926166652526E-8)*alpha(81) + (7.47875056397729E-10)*alpha(82) - (1.25987203669631E-8)*alpha(83) - (1.53599762846013E-8)*alpha(84) - (1.11801068353318E-8)*alpha(85) - (4.14189396138326E-9)*alpha(86) - (3.58931620672923E-9)*alpha(87)
      
       - (5.1033563698219E-9)*alpha(88) - (6.13741906464391E-9)*alpha(89) + (4.88709562582179E-10)*alpha(90) + (1.4048149590884E-8)*alpha(91) + (8.23585566980811E-9)*alpha(92) + (1.221377364094E-9)*alpha(93) + (8.67565841791706E-9)*alpha(94)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 59
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 160
-
-
-     defobj_In  =E=       
      
       + (6.05997599635588E-9)*alpha(95) - (4.29112846771218E-9)*alpha(96) - (1.69384895112035E-8)*alpha(97) - (1.27380040044305E-8)*alpha(98) + (1.17361083712374E-8)*alpha(99) - (8.03092961626506E-9)*alpha(100) - (3.78767976072503E-8)*log_l(1)
      
@@ -3038,13 +2671,6 @@ deflog_l(1)..  - alpha(1) - 0.977450955172295*alpha(2) - 0.97778894765803*alpha(
      
       - 0.235992378728142*alpha(58) - 0.180775770993192*alpha(59) - 0.573255198410819*alpha(60) - 0.472112206510203*alpha(61) - 0.479723218065101*alpha(62) - 0.499545947075308*alpha(63) - 0.434064459798237*alpha(64) - 0.34968005417297*alpha(65)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 60
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 160
-
-
-     deflog_l  =E=       
-     
       - 0.303957075039371*alpha(66) - 0.26425011479332*alpha(67) - 0.219626849276256*alpha(68) - 0.180349970521718*alpha(69) - 0.451150110520771*alpha(70) - 0.38344110895634*alpha(71) - 0.31927382563258*alpha(72) - 0.343720328346138*alpha(73)
      
       - 0.291973301017036*alpha(74) - 0.28467654540985*alpha(75) - 0.229839776697151*alpha(76) - 0.193403973805897*alpha(77) - 0.140851003121406*alpha(78) - 0.126552797955845*alpha(79) - 0.338480053589389*alpha(80) - 0.252126467646394*alpha(81)
@@ -3096,12 +2722,6 @@ deflog_l(3)..  - 0.97778894765803*alpha(1) - 0.999961244303999*alpha(2) - alpha(
       - 0.30471144636797*alpha(49) - 0.586086367287716*alpha(50) - 0.543483589192508*alpha(51) - 0.542891075981528*alpha(52) - 0.657066668510934*alpha(53) - 0.648068919868755*alpha(54) - 0.607754756772881*alpha(55) - 0.485029879424406*alpha(56)
      
       - 0.414541541102953*alpha(57) - 0.317660409991871*alpha(58) - 0.255562994108136*alpha(59) - 0.540008289461477*alpha(60) - 0.481470234480376*alpha(61) - 0.500336843834274*alpha(62) - 0.55720241222102*alpha(63) - 0.490874133809564*alpha(64)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 61
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 160
-
-
-     deflog_l  =E=       
      
       - 0.427812870215351*alpha(65) - 0.384050649388165*alpha(66) - 0.346256393784729*alpha(67) - 0.297082608801512*alpha(68) - 0.249062853059996*alpha(69) - 0.439801829707415*alpha(70) - 0.393635884902886*alpha(71) - 0.349584369121514*alpha(72)
      
@@ -3118,108 +2738,86 @@ REMAINING 97 ENTRIES SKIPPED
 
 ---- deflog_l2  =E=  
 
-deflog_l2(1)..  - (0.725428959604543)*alpha(1) - (0.822364960419161)*alpha(2) - (0.824461928733037)*alpha(3) - (0.829982100191961)*alpha(4) - (0.84165389243626)*alpha(5) - (0.816935862136657)*alpha(6) - (0.790890671540506)*alpha(7)
+deflog_l2(1)..  - 0.725433028387155*alpha(1) - 0.822369572895969*alpha(2) - 0.824466552971311*alpha(3) - 0.829986755391748*alpha(4) - 0.841658613100742*alpha(5) - 0.816940444162764*alpha(6) - 0.790895107484468*alpha(7) - 0.695775226846387*alpha(8)
      
-      - (0.695771324407382)*alpha(8) - (0.572648810029202)*alpha(9) - (0.554617669090664)*alpha(10) - (0.756176546544338)*alpha(11) - (0.875219846635837)*alpha(12) - (0.891642002066335)*alpha(13) - (0.935794864040887)*alpha(14)
+      - 0.572652021899215*alpha(9) - 0.554620779827696*alpha(10) - 0.756180787783875*alpha(11) - 0.875224755564888*alpha(12) - 0.891647003103896*alpha(13) - 0.935800112722817*alpha(14) - 0.982386519390967*alpha(15) - 0.888663634776577*alpha(16)
      
-      - (0.982381009416879)*alpha(15) - (0.888658650472024)*alpha(16) - (0.816280427766142)*alpha(17) - (0.739037946565667)*alpha(18) - (0.680525521999719)*alpha(19) - (0.642163558223092)*alpha(20) - (0.740375197490371)*alpha(21)
+      - 0.816285006116051*alpha(17) - 0.739042091678303*alpha(18) - 0.680529338928138*alpha(19) - 0.642167159987104*alpha(20) - 0.740379350103374*alpha(21) - 0.8960013564323*alpha(22) - 0.962787905785473*alpha(23) - 0.9806628864392*alpha(24)
      
-      - (0.895996330972199)*alpha(22) - (0.962782505735382)*alpha(23) - (0.980657386132563)*alpha(24) - (0.986186685685137)*alpha(25) - (0.920937519229787)*alpha(26) - (0.841974691519529)*alpha(27) - (0.76198131288242)*alpha(28)
+      - 0.986192217004485*alpha(25) - 0.92094268457991*alpha(26) - 0.841979413983307*alpha(27) - 0.761985586679704*alpha(28) - 0.661619633436602*alpha(29) - 0.628409296614933*alpha(30) - 0.772220166110275*alpha(31) - 0.866073054226261*alpha(32)
      
-      - (0.661615922568258)*alpha(29) - (0.628405772015529)*alpha(30) - (0.772215834909651)*alpha(31) - (0.866068196626942)*alpha(32) - (0.951405602721343)*alpha(33) - (0.999015133801903)*alpha(34) - (0.994137403958653)*alpha(35)
+      - 0.951410938960713*alpha(33) - 0.999020737073392*alpha(34) - 0.994142979871952*alpha(35) - 0.883328142290125*alpha(36) - 0.887307020142595*alpha(37) - 0.781370141852925*alpha(38) - 0.652714976923741*alpha(39) - 0.674602416156457*alpha(40)
      
-      - (0.883323187911091)*alpha(36) - (0.887302043446974)*alpha(37) - (0.781365759332247)*alpha(38) - (0.652711315999513)*alpha(39) - (0.674598632470749)*alpha(40) - (0.721510446516889)*alpha(41) - (0.843552863981995)*alpha(42)
+      - 0.721514493321364*alpha(41) - 0.84355759529742*alpha(42) - 0.917175368497207*alpha(43) - 0.930210881175061*alpha(44) - 0.933310498461578*alpha(45) - 0.936635144543121*alpha(46) - 0.791275723805856*alpha(47) - 0.783848639633168*alpha(48)
      
-      - (0.91717022427707)*alpha(43) - (0.930205663841811)*alpha(44) - (0.933305263743307)*alpha(45) - (0.936629891177695)*alpha(46) - (0.791271285727107)*alpha(47) - (0.783844243211181)*alpha(48) - (0.621542848249267)*alpha(49)
+      - 0.621546334355936*alpha(49) - 0.582341339569803*alpha(50) - 0.638843010774996*alpha(51) - 0.678621457959108*alpha(52) - 0.892292716290217*alpha(53) - 0.917864692135249*alpha(54) - 0.902905089561676*alpha(55) - 0.844333298624852*alpha(56)
      
-      - (0.582338073354695)*alpha(50) - (0.638839427655352)*alpha(51) - (0.678617651731544)*alpha(52) - (0.892287711631003)*alpha(53) - (0.917859544048859)*alpha(54) - (0.902900025380166)*alpha(55) - (0.84432856295869)*alpha(56)
+      - 0.77765382923488*alpha(57) - 0.668079351289333*alpha(58) - 0.569411401458256*alpha(59) - 0.540356636644789*alpha(60) - 0.618121322808322*alpha(61) - 0.668160559922468*alpha(62) - 0.817203560536033*alpha(63) - 0.769905591671564*alpha(64)
      
-      - (0.777649467558123)*alpha(57) - (0.668075604189956)*alpha(58) - (0.569408207764118)*alpha(59) - (0.540353605911969)*alpha(60) - (0.618117855911734)*alpha(61) - (0.668156812367611)*alpha(62) - (0.817198977034169)*alpha(63)
+      - 0.776842145304469*alpha(65) - 0.743025095012767*alpha(66) - 0.705606202651084*alpha(67) - 0.642836863524208*alpha(68) - 0.576386904033639*alpha(69) - 0.517913192467458*alpha(70) - 0.544004375753703*alpha(71) - 0.572258023231342*alpha(72)
      
-      - (0.769901273452842)*alpha(64) - (0.776837788180255)*alpha(65) - (0.743020927560406)*alpha(66) - (0.705602245072456)*alpha(67) - (0.642833258003986)*alpha(68) - (0.576383671215555)*alpha(69) - (0.517910287614619)*alpha(70)
+      - 0.658454696090166*alpha(73) - 0.638069529153536*alpha(74) - 0.67847597526514*alpha(75) - 0.621486584184817*alpha(76) - 0.588309106733233*alpha(77) - 0.495356065887881*alpha(78) - 0.467816137148995*alpha(79) - 0.444209666306697*alpha(80)
      
-      - (0.544001324561575)*alpha(71) - (0.572254813571175)*alpha(72) - (0.658451002973208)*alpha(73) - (0.638065950372168)*alpha(74) - (0.678472169853554)*alpha(75) - (0.621483098413273)*alpha(76) - (0.588305807046328)*alpha(77)
+      - 0.398676598831851*alpha(81) - 0.522523213378666*alpha(82) - 0.543806033526844*alpha(83) - 0.598750939265675*alpha(84) - 0.55314442182531*alpha(85) - 0.564295250730809*alpha(86) - 0.51081915179635*alpha(87) - 0.454224860005568*alpha(88)
      
-      - (0.49535328755264)*alpha(78) - (0.467813513278713)*alpha(79) - (0.444207174839537)*alpha(80) - (0.398674362748919)*alpha(81) - (0.522520282669308)*alpha(82) - (0.543802983447171)*alpha(83) - (0.598747581012996)*alpha(84)
+      - 0.377157182243918*alpha(89) - 0.387380265592032*alpha(90) - 0.361805095342565*alpha(91) - 0.379847122506033*alpha(92) - 0.437153732190454*alpha(93) - 0.433845316638525*alpha(94) - 0.449185687277284*alpha(95) - 0.448562737293634*alpha(96)
      
-      - (0.553141319368821)*alpha(85) - (0.564292085731954)*alpha(86) - (0.51081628673231)*alpha(87) - (0.454222312365551)*alpha(88) - (0.377155066858313)*alpha(89) - (0.387378092867566)*alpha(90) - (0.361803066063192)*alpha(91)
+      - 0.411484245808606*alpha(97) - 0.34110587633446*alpha(98) - 0.266229249485298*alpha(99) - 0.294768090921492*alpha(100) - alpha(0) + log_l2(1) =E= 0 ; (LHS = 5.60877967232131E-6, INFES = 5.60877967232131E-6 ****)
      
-      - (0.379844992033188)*alpha(92) - (0.437151280298363)*alpha(93) - (0.433842883302556)*alpha(94) - (0.449183167900797)*alpha(95) - (0.448560221411127)*alpha(96) - (0.411481937890605)*alpha(97) - (0.34110396315212)*alpha(98)
+deflog_l2(2)..  0.570374547659124*alpha(1) + 0.697885860979554*alpha(2) + 0.697597665377449*alpha(3) + 0.838642017538305*alpha(4) + 0.927637935019055*alpha(5) + 0.933556485078704*alpha(6) + 0.948158020423573*alpha(7) + 0.920183211049422*alpha(8)
      
-      - (0.266227756268283)*alpha(99) - (0.294766437636852)*alpha(100) - (0.999994391236057)*alpha(0) + log_l2(1) =E= 0 ; (LHS = -0.999994391236057, INFES = 0.999994391236057 ****)
+      + 0.829657510290992*alpha(9) + 0.377190041857737*alpha(10) + 0.564476735623124*alpha(11) + 0.703935512155346*alpha(12) + 0.75445353551365*alpha(13) + 0.849639316123485*alpha(14) + 0.931676734308214*alpha(15) + 0.988235422220521*alpha(16)
      
-deflog_l2(2)..  (0.570385064161133)*alpha(1) + (0.697898728520873)*alpha(2) + (0.697610527605049)*alpha(3) + (0.838657480325869)*alpha(4) + (0.927655038703374)*alpha(5) + (0.933573697888586)*alpha(6) + (0.948175502454928)*alpha(7)
+      + 0.978031704540286*alpha(17) + 0.946435707932229*alpha(18) + 0.9082490115351*alpha(19) + 0.422177268438388*alpha(20) + 0.512003092889559*alpha(21) + 0.680872880153258*alpha(22) + 0.787272176266507*alpha(23) + 0.864841150877053*alpha(24)
      
-      + (0.920200177284376)*alpha(8) + (0.829672807423217)*alpha(9) + (0.377196996445471)*alpha(10) + (0.564487143381935)*alpha(11) + (0.703948491239455)*alpha(12) + (0.754467446043414)*alpha(13) + (0.849654981678007)*alpha(14)
+      + 0.938881512688138*alpha(25) + 0.994954416817593*alpha(26) + 0.985781773690628*alpha(27) + 0.948804307961877*alpha(28) + 0.870880944841183*alpha(29) + 0.387138202815921*alpha(30) + 0.508059882051091*alpha(31) + 0.625421692950168*alpha(32)
      
-      + (0.931693912459462)*alpha(15) + (0.988253643194521)*alpha(16) + (0.978049737379282)*alpha(17) + (0.94645315820778)*alpha(18) + (0.90826575772862)*alpha(19) + (0.422185052495566)*alpha(20) + (0.512012533145224)*alpha(21)
+      + 0.749341807193191*alpha(33) + 0.891644485776369*alpha(34) + 0.90241419464184*alpha(35) + 0.956444931986338*alpha(36) + 0.961207607125144*alpha(37) + 0.928953523501352*alpha(38) + 0.809414183947054*alpha(39) + 0.417538493917632*alpha(40)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 62
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 160
-
-
-     deflog_l2  =E=       
+      + 0.454873987586778*alpha(41) + 0.588031068237923*alpha(42) + 0.705978556127961*alpha(43) + 0.756946304210523*alpha(44) + 0.82697759588615*alpha(45) + 0.912435288144934*alpha(46) + 0.814571443374754*alpha(47) + 0.845426643745038*alpha(48)
      
-      + (0.680885434011142)*alpha(22) + (0.787286691902692)*alpha(23) + (0.864857096721302)*alpha(24) + (0.938898823680283)*alpha(25) + (0.994972761675663)*alpha(26) + (0.985799949424531)*alpha(27) + (0.94882180190941)*alpha(28)
+      + 0.765115831881716*alpha(49) + 0.331336426771306*alpha(50) + 0.381440364731616*alpha(51) + 0.42146477329939*alpha(52) + 0.679845064139384*alpha(53) + 0.739237036232865*alpha(54) + 0.738938048644126*alpha(55) + 0.808114115023319*alpha(56)
      
-      + (0.870897002046476)*alpha(29) + (0.387145340826732)*alpha(30) + (0.508069249602277)*alpha(31) + (0.625433224405274)*alpha(32) + (0.749355623473481)*alpha(33) + (0.891660925817504)*alpha(34) + (0.90243083325366)*alpha(35)
+      + 0.793262081210734*alpha(57) + 0.709349255831538*alpha(58) + 0.684275937965447*alpha(59) + 0.297796256796252*alpha(60) + 0.369713601472919*alpha(61) + 0.418788731560566*alpha(62) + 0.600139416494674*alpha(63) + 0.56314704925595*alpha(64)
      
-      + (0.956462566810841)*alpha(36) + (0.961225329763317)*alpha(37) + (0.928970651442345)*alpha(38) + (0.809429107835096)*alpha(39) + (0.417546192445605)*alpha(40) + (0.4548823745024)*alpha(41) + (0.58804191028888)*alpha(42)
+      + 0.66526212311458*alpha(65) + 0.676984048496744*alpha(66) + 0.699926382700567*alpha(67) + 0.679204254233603*alpha(68) + 0.621147364227503*alpha(69) + 0.283517088171748*alpha(70) + 0.314669553988694*alpha(71) + 0.362777839698395*alpha(72)
      
-      + (0.705991572881486)*alpha(43) + (0.756960260701676)*alpha(44) + (0.826992843606414)*alpha(45) + (0.912452111524554)*alpha(46) + (0.814586462351768)*alpha(47) + (0.845442231626779)*alpha(48) + (0.765129939001706)*alpha(49)
+      + 0.45755416052189*alpha(73) + 0.46836636311781*alpha(74) + 0.550599309806012*alpha(75) + 0.531784800011152*alpha(76) + 0.561361071293005*alpha(77) + 0.507472227030206*alpha(78) + 0.538502301402007*alpha(79) + 0.235575890079535*alpha(80)
      
-      + (0.331342535915222)*alpha(50) + (0.381447397686327)*alpha(51) + (0.421472544219662)*alpha(52) + (0.679857599046511)*alpha(53) + (0.73925066620252)*alpha(54) + (0.738951673101082)*alpha(55) + (0.808129014940836)*alpha(56)
+      + 0.213726746873617*alpha(81) + 0.31529261373199*alpha(82) + 0.350967755614992*alpha(83) + 0.426650835591229*alpha(84) + 0.41256977125432*alpha(85) + 0.461273553681719*alpha(86) + 0.471506588008932*alpha(87) + 0.453597938333841*alpha(88)
      
-      + (0.793276707288115)*alpha(57) + (0.709362334733646)*alpha(58) + (0.684288554568529)*alpha(59) + (0.297801747530271)*alpha(60) + (0.369720418210882)*alpha(61) + (0.41879645314028)*alpha(62) + (0.600150481797999)*alpha(63)
+      + 0.401072866270354*alpha(89) + 0.199720036455669*alpha(90) + 0.194496179217572*alpha(91) + 0.21555732355786*alpha(92) + 0.272873683700414*alpha(93) + 0.287856074663141*alpha(94) + 0.313981785305398*alpha(95) + 0.351760904769808*alpha(96)
      
-      + (0.563157432498153)*alpha(64) + (0.665274389143075)*alpha(65) + (0.676996530652785)*alpha(66) + (0.699939287864796)*alpha(67) + (0.679216777325549)*alpha(68) + (0.621158816873015)*alpha(69) + (0.283522315628056)*alpha(70)
-     
-      + (0.314675355830677)*alpha(71) + (0.36278452855556)*alpha(72) + (0.45756259685424)*alpha(73) + (0.468374998804341)*alpha(74) + (0.5506094616944)*alpha(75) + (0.531794604999717)*alpha(76) + (0.561371421605546)*alpha(77)
-     
-      + (0.507481583746274)*alpha(78) + (0.538512230247109)*alpha(79) + (0.235580233601404)*alpha(80) + (0.213730687543432)*alpha(81) + (0.315298427061879)*alpha(82) + (0.350974226719149)*alpha(83) + (0.426658702131536)*alpha(84)
-     
-      + (0.412577378169541)*alpha(85) + (0.461282058591824)*alpha(86) + (0.471515281594577)*alpha(87) + (0.453606301721809)*alpha(88) + (0.401080261206928)*alpha(89) + (0.199723718871326)*alpha(90) + (0.194499765316334)*alpha(91)
-     
-      + (0.215561297979642)*alpha(92) + (0.272878714914823)*alpha(93) + (0.287861382121196)*alpha(94) + (0.313987574466379)*alpha(95) + (0.351767390497962)*alpha(96) + (0.351120834539866)*alpha(97) + (0.308060053298881)*alpha(98)
-     
-      + (0.274502849646877)*alpha(99) + (0.143356553816373)*alpha(100) + (1.00001843788797)*alpha(0) + log_l2(2) =E= 0 ; (LHS = -1.00001843788797, INFES = 1.00001843788797 ****)
+      + 0.35111436073262*alpha(97) + 0.308054373426856*alpha(98) + 0.274497788487406*alpha(99) + 0.143353910673028*alpha(100) + alpha(0) + log_l2(2) =E= 0 ; (LHS = -1.84377179907541E-5, INFES = 1.84377179907541E-5 ****)
      
 
 ---- defobj  =E=  
 
-defobj..  - (0.192947300782597)*w(1) - (0.192947444112187)*w(2) - (0.192947424224494)*w(3) - (0.192947781827588)*w(4) - (0.192947370499198)*w(5) - (0.192947143611791)*w(6) - (0.192946992372143)*w(7) - (0.19294727825621)*w(8) - (0.192947323892292)*w(9)
+defobj..  - (0.242947300782597)*w(1) - (0.242947444112187)*w(2) - (0.242947424224494)*w(3) - (0.242947781827588)*w(4) - (0.242947370499198)*w(5) - (0.242947143611791)*w(6) - (0.242946992372143)*w(7) - (0.24294727825621)*w(8) - (0.242947323892292)*w(9)
      
-      - (0.192947404845206)*w(10) - (0.192947108294977)*w(11) - (0.192947188045241)*w(12) - (0.192947324163806)*w(13) - (0.192947513632421)*w(14) - (0.192947517719127)*w(15) - (0.192947480230349)*w(16) - (0.192947331880919)*w(17)
+      - (0.242947404845206)*w(10) - (0.242947108294977)*w(11) - (0.242947188045241)*w(12) - (0.242947324163806)*w(13) - (0.242947513632421)*w(14) - (0.242947517719127)*w(15) - (0.242947480230349)*w(16) - (0.242947331880919)*w(17)
      
-      - (0.192947372874641)*w(18) - (0.19294775156171)*w(19) - (0.192947397777608)*w(20) - (0.192947269326632)*w(21) - (0.192947222895217)*w(22) - (0.192947280465658)*w(23) - (0.192947395204077)*w(24) - (0.192947506345626)*w(25)
+      - (0.242947372874641)*w(18) - (0.24294775156171)*w(19) - (0.242947397777608)*w(20) - (0.242947269326632)*w(21) - (0.242947222895217)*w(22) - (0.242947280465658)*w(23) - (0.242947395204077)*w(24) - (0.242947506345626)*w(25)
      
-      - (0.192947410010042)*w(26) - (0.19294740602139)*w(27) - (0.19294748324928)*w(28) - (0.192947113103483)*w(29) - (0.192947586648039)*w(30) - (0.192947503912623)*w(31) - (0.192947319307818)*w(32) - (0.192947291107777)*w(33) - (0.192947379903252)*w(34)
+      - (0.242947410010042)*w(26) - (0.24294740602139)*w(27) - (0.24294748324928)*w(28) - (0.242947113103483)*w(29) - (0.242947586648039)*w(30) - (0.242947503912623)*w(31) - (0.242947319307818)*w(32) - (0.242947291107777)*w(33) - (0.242947379903252)*w(34)
      
-      - (0.192947378654582)*w(35) - (0.192947479509094)*w(36) - (0.192947470199095)*w(37) - (0.192947479475936)*w(38) - (0.192947536163699)*w(39) - (0.19294757574879)*w(40) - (0.192947522267369)*w(41) - (0.192947410643137)*w(42)
+      - (0.242947378654582)*w(35) - (0.242947479509094)*w(36) - (0.242947470199095)*w(37) - (0.242947479475936)*w(38) - (0.242947536163699)*w(39) - (0.24294757574879)*w(40) - (0.242947522267369)*w(41) - (0.242947410643137)*w(42)
      
-      - (0.192947338505217)*w(43) - (0.192947356772281)*w(44) - (0.192947384684242)*w(45) - (0.192947408506602)*w(46) - (0.192947408687281)*w(47) - (0.192947501105847)*w(48) - (0.192947553408089)*w(49) - (0.19294732971548)*w(50)
+      - (0.242947338505217)*w(43) - (0.242947356772281)*w(44) - (0.242947384684242)*w(45) - (0.242947408506602)*w(46) - (0.242947408687281)*w(47) - (0.242947501105847)*w(48) - (0.242947553408089)*w(49) - (0.24294732971548)*w(50)
      
-      - (0.192947442701528)*w(51) - (0.192947438088182)*w(52) - (0.192947344427878)*w(53) - (0.192947358343148)*w(54) - (0.192947377204237)*w(55) - (0.192947336070608)*w(56) - (0.192947376008232)*w(57) - (0.192947346472109)*w(58)
+      - (0.242947442701528)*w(51) - (0.242947438088182)*w(52) - (0.242947344427878)*w(53) - (0.242947358343148)*w(54) - (0.242947377204237)*w(55) - (0.242947336070608)*w(56) - (0.242947376008232)*w(57) - (0.242947346472109)*w(58)
      
-      - (0.19294749119917)*w(59) - (0.19294713197409)*w(60) - (0.192947420629461)*w(61) - (0.192947403917152)*w(62) - (0.192947339854265)*w(63) - (0.192947332083195)*w(64) - (0.192947275114929)*w(65) - (0.192947242596046)*w(66) - (0.19294727050923)*w(67)
+      - (0.24294749119917)*w(59) - (0.24294713197409)*w(60) - (0.242947420629461)*w(61) - (0.242947403917152)*w(62) - (0.242947339854265)*w(63) - (0.242947332083195)*w(64) - (0.242947275114929)*w(65) - (0.242947242596046)*w(66) - (0.24294727050923)*w(67)
      
-      - (0.192947316762882)*w(68) - (0.192947305727939)*w(69) - (0.192947231803044)*w(70) - (0.192947414117152)*w(71) - (0.192947329197291)*w(72) - (0.192947298679166)*w(73) - (0.192947316245964)*w(74) - (0.19294741146067)*w(75)
+      - (0.242947316762882)*w(68) - (0.242947305727939)*w(69) - (0.242947231803044)*w(70) - (0.242947414117152)*w(71) - (0.242947329197291)*w(72) - (0.242947298679166)*w(73) - (0.242947316245964)*w(74) - (0.24294741146067)*w(75)
      
-      - (0.192947319858727)*w(76) - (0.192947278463392)*w(77) - (0.192947325087813)*w(78) - (0.192947327041542)*w(79) - (0.192947319795356)*w(80) - (0.192947459607481)*w(81) - (0.192947376085132)*w(82) - (0.192947312907679)*w(83)
+      - (0.242947319858727)*w(76) - (0.242947278463392)*w(77) - (0.242947325087813)*w(78) - (0.242947327041542)*w(79) - (0.242947319795356)*w(80) - (0.242947459607481)*w(81) - (0.242947376085132)*w(82) - (0.242947312907679)*w(83)
      
-      - (0.192947299836931)*w(84) - (0.192947319622854)*w(85) - (0.192947392061219)*w(86) - (0.192947389445553)*w(87) - (0.192947396612368)*w(88) - (0.192947401507172)*w(89) - (0.192947374858351)*w(90) - (0.192947439042794)*w(91)
+      - (0.242947299836931)*w(84) - (0.242947319622854)*w(85) - (0.242947392061219)*w(86) - (0.242947389445552)*w(87) - (0.242947396612368)*w(88) - (0.242947401507172)*w(89) - (0.242947374858351)*w(90) - (0.242947439042794)*w(91)
      
-      - (0.19294741153001)*w(92) - (0.192947378326493)*w(93) - (0.192947413611842)*w(94) - (0.192947401230349)*w(95) - (0.192947392767631)*w(96) - (0.192947452634567)*w(97) - (0.192947432751405)*w(98) - (0.192947316901197)*w(99)
+      - (0.24294741153001)*w(92) - (0.242947378326493)*w(93) - (0.242947413611842)*w(94) - (0.242947401230349)*w(95) - (0.242947392767631)*w(96) - (0.242947452634567)*w(97) - (0.242947432751405)*w(98) - (0.242947316901197)*w(99)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 63
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Kernel_duti Using EMP From line 160
-
-
-     defobj  =E=       
-     
-      - (0.192947334529836)*w(100) - (0.00159810332792666)*log_l(1) - (0.00159804621076161)*log_l(2) - (0.00159805413610846)*log_l(3) - (0.00159791162670425)*log_l(4) - (0.0015980755458211)*log_l(5) - (0.0015981659597696)*log_l(6)
+      - (0.242947334529836)*w(100) - (0.00159810332792666)*log_l(1) - (0.00159804621076161)*log_l(2) - (0.00159805413610846)*log_l(3) - (0.00159791162670425)*log_l(4) - (0.0015980755458211)*log_l(5) - (0.0015981659597696)*log_l(6)
      
       - (0.00159822622700851)*log_l(7) - (0.00159811230465728)*log_l(8) - (0.00159809411872445)*log_l(9) - (0.0015980618588354)*log_l(10) - (0.00159818003320209)*log_l(11) - (0.00159814825335842)*log_l(12) - (0.00159809401052597)*log_l(13)
      
@@ -3247,11 +2845,11 @@ Equation Listing    SOLVE Kernel_duti Using EMP From line 160
      
       - (0.00159804823094231)*log_l(91) - (0.00159805919491512)*log_l(92) - (0.0015980724266257)*log_l(93) - (0.00159805836529664)*log_l(94) - (0.00159806329936922)*log_l(95) - (0.00159806667179092)*log_l(96) - (0.00159804281454439)*log_l(97)
      
-      - (0.00159805073809321)*log_l(98) - (0.00159809690467513)*log_l(99) - (0.00159808987966021)*log_l(100) - (25)*log_l2(1) - (25)*log_l2(2) + obj =E= 0 ; (LHS = -79.741196056916, INFES = 79.741196056916 ****)
+      - (0.00159805073809321)*log_l(98) - (0.00159809690467513)*log_l(99) - (0.00159808987966021)*log_l(100) - (25)*log_l2(1) - (25)*log_l2(2) + obj =E= 0 ; (LHS = -82.241196056916, INFES = 82.241196056916 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 64
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 13
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
+Column Listing      SOLVE Kernel_duti Using EMP From line 161
 
 
 ---- w  
@@ -3259,17 +2857,17 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
 w(1)
                 (.LO, .L, .UP, .M = 0, 0.5, 1, 0)
  (1.5150719E-7) defobj_In
-      (-0.1929) defobj
+      (-0.2429) defobj
 
 w(2)
                 (.LO, .L, .UP, .M = 0, 0.5, 1, 0)
  (-1.512858E-7) defobj_In
-      (-0.1929) defobj
+      (-0.2429) defobj
 
 w(3)
                 (.LO, .L, .UP, .M = 0, 0.5, 1, 0)
  (-1.092714E-7) defobj_In
-      (-0.1929) defobj
+      (-0.2429) defobj
 
 REMAINING 97 ENTRIES SKIPPED
 
@@ -3307,13 +2905,6 @@ alpha(1)
        -0.4701  deflog_l(27)
        -0.3856  deflog_l(28)
         0.2846  deflog_l(29)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 65
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     alpha  
-
        -0.8236  deflog_l(30)
        -0.7521  deflog_l(31)
        -0.842   deflog_l(32)
@@ -3365,13 +2956,6 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
         0.1409  deflog_l(78)
         0.1266  deflog_l(79)
        -0.3385  deflog_l(80)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 66
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     alpha  
-
        -0.2521  deflog_l(81)
        -0.3028  deflog_l(82)
        -0.2764  deflog_l(83)
@@ -3392,8 +2976,8 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
         0.0841  deflog_l(98)
         0.0542  deflog_l(99)
        -0.1948  deflog_l(100)
-      (-0.7254) deflog_l2(1)
-       (0.5704) deflog_l2(2)
+       -0.7254  deflog_l2(1)
+        0.5704  deflog_l2(2)
 
 alpha(2)
                 (.LO, .L, .UP, .M = -INF, -0.0234810527912438, +INF, -1.25266891680981E-8)
@@ -3423,13 +3007,6 @@ alpha(2)
        -0.8998  deflog_l(23)
        -0.9123  deflog_l(24)
        -0.8594  deflog_l(25)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 67
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     alpha  
-
        -0.6787  deflog_l(26)
        -0.5964  deflog_l(27)
        -0.5056  deflog_l(28)
@@ -3481,13 +3058,6 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
        -0.3397  deflog_l(74)
        -0.3451  deflog_l(75)
         0.2888  deflog_l(76)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 68
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     alpha  
-
         0.2551  deflog_l(77)
         0.1941  deflog_l(78)
         0.1813  deflog_l(79)
@@ -3512,8 +3082,8 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
         0.1149  deflog_l(98)
         0.0793  deflog_l(99)
        -0.1911  deflog_l(100)
-      (-0.8224) deflog_l2(1)
-       (0.6979) deflog_l2(2)
+       -0.8224  deflog_l2(1)
+        0.6979  deflog_l2(2)
 
 alpha(3)
                 (.LO, .L, .UP, .M = -INF, 0.0098289568713721, +INF, -8.31966026816957E-9)
@@ -3539,13 +3109,6 @@ alpha(3)
        -0.458   deflog_l(19)
        -0.8528  deflog_l(20)
        -0.8975  deflog_l(21)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 69
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     alpha  
-
        -0.9159  deflog_l(22)
        -0.9026  deflog_l(23)
        -0.914   deflog_l(24)
@@ -3597,13 +3160,6 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
        -0.4398  deflog_l(70)
        -0.3936  deflog_l(71)
        -0.3496  deflog_l(72)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 70
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     alpha  
-
        -0.3894  deflog_l(73)
        -0.3433  deflog_l(74)
        -0.3483  deflog_l(75)
@@ -3632,8 +3188,8 @@ Column Listing      SOLVE Kernel_duti Using EMP From line 160
         0.1162  deflog_l(98)
         0.08    deflog_l(99)
        -0.1941  deflog_l(100)
-      (-0.8245) deflog_l2(1)
-       (0.6976) deflog_l2(2)
+       -0.8245  deflog_l2(1)
+        0.6976  deflog_l2(2)
 
 REMAINING 98 ENTRIES SKIPPED
 
@@ -3655,13 +3211,6 @@ log_l(3)
                 (.LO, .L, .UP, .M = -INF, -1.09271444833679E-5, +INF, 0)
  (2.7317861E-8) defobj_In
         1       deflog_l(3)
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 71
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Kernel_duti Using EMP From line 160
-
-
-     log_l  
-
       (-0.0016) defobj
 
 REMAINING 97 ENTRIES SKIPPED
@@ -3692,40 +3241,40 @@ obj
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 72
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 14
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE Kernel_duti Using EMP From line 160
+Model Statistics    SOLVE Kernel_duti Using EMP From line 161
 
 
 MODEL STATISTICS
 
 BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          104
 BLOCKS OF VARIABLES           6     SINGLE VARIABLES          305
-NON ZERO ELEMENTS        10,908     NON LINEAR N-Z            704
-DERIVATIVE POOL              20     CONSTANT POOL           5,170
-CODE LENGTH              43,328
+NON ZERO ELEMENTS        10,908     NON LINEAR N-Z            502
+DERIVATIVE POOL              20     CONSTANT POOL           4,969
+CODE LENGTH              42,918
 
 
 GENERATION TIME      =        0.047 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 EXECUTION TIME       =        0.078 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 73
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 15
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
+Solution Report     SOLVE Kernel_duti Using EMP From line 161
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Kernel_duti         OBJECTIVE  obj
      TYPE    EMP                 DIRECTION  MINIMIZE
-     SOLVER  JAMS                FROM LINE  160
+     SOLVER  JAMS                FROM LINE  161
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
-**** OBJECTIVE VALUE               79.4055
+**** OBJECTIVE VALUE               16.3372
 
- RESOURCE USAGE, LIMIT          2.563      1000.000
+ RESOURCE USAGE, LIMIT          4.282      1000.000
  ITERATION COUNT, LIMIT         0    2000000000
  EVALUATION ERRORS              0             0
 
@@ -3733,6 +3282,12 @@ JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
+
+--- Using Option File
+Reading parameter(s) from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+>>  subsolveropt 1
+Finished reading from "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\jams.opt"
+
 --- EMP Summary
     Logical Constraints = 0
     Disjunctions        = 0
@@ -3751,6 +3306,8 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
 
 KNITRO           31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
+*** Error Cannot open parameter file "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\knitro.opt"
+*** Error Error code = 2; No such file or directory
 Artelys Knitro Optimizer 11.1.1
 
 =======================================
@@ -3768,11 +3325,6 @@ newpoint:                3
 par_concurrent_evals:    0
 Knitro changing algorithm from AUTO to 1.
 Knitro changing bar_initpt from AUTO to 3.
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 74
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
 Knitro changing bar_murule from AUTO to 4.
 Knitro changing bar_penaltycons from AUTO to 0.
 Knitro changing bar_penaltyrule from AUTO to 2.
@@ -3791,9 +3343,9 @@ Number of variables:                                403 (         403)
     fixed:                                            0 (           0)
     free:                                           303 (         303)
 Number of constraints:                              303 (         303)
-    linear equalities:                              201 (         201)
+    linear equalities:                              203 (         203)
     quadratic equalities:                             0 (           0)
-    gen. nonlinear equalities:                      102 (         102)
+    gen. nonlinear equalities:                      100 (         100)
     linear one-sided inequalities:                    0 (           0)
     quadratic one-sided inequalities:                 0 (           0)
     gen. nonlinear one-sided inequalities:            0 (           0)
@@ -3801,39 +3353,39 @@ Number of constraints:                              303 (         303)
     quadratic two-sided inequalities:                 0 (           0)
     gen. nonlinear two-sided inequalities:            0 (           0)
 Number of nonzeros in Jacobian:                   30805 (       30805)
-Number of nonzeros in Hessian:                     5453 (        5453)
+Number of nonzeros in Hessian:                      302 (         302)
 
   Iter      Objective      FeasError   OptError    ||Step||    CGits 
 --------  --------------  ----------  ----------  ----------  -------
-       0    7.974120e+01   1.000e+00
-      10    7.954570e+01   5.373e-03   7.999e-02   9.874e+00        0
-      20    8.508005e+01   4.764e-03   2.788e+01   1.714e+00        0
-      30    1.146341e+02   3.000e-05   3.301e+01   3.254e+00        0
-      40    1.417061e+02   4.474e-05   3.655e+01   4.081e+02        0
-      50    7.933704e+01   1.609e-02   1.705e-01   1.102e+04        0
-      60    7.964307e+01   8.287e-04   6.837e-02   3.728e+04        0
-      70    7.940541e+01   1.333e-06   3.105e-05   4.544e+03        0
-      73    7.940552e+01   9.919e-07   1.389e-05   3.308e+03        0
+       0    8.224120e+01   1.844e-05
+      10    1.635818e+01   3.202e-05   2.331e-03   1.756e+03        0
+      20    1.642358e+01   3.036e-05   5.382e+00   4.630e-01        0
+      30    1.643305e+01   2.512e-05   5.366e+00   1.837e+01        0
+      40    1.642757e+01   2.105e-05   5.361e+00   3.540e+01        0
+      50    1.638357e+01   1.368e-05   5.332e+00   5.778e+02        0
+      60    1.636440e+01   8.978e-06   5.318e+00   1.114e+02        0
+      70    1.635259e+01   4.662e-06   5.308e+00   4.883e+01        0
+      80    1.634958e+01   3.579e-06   5.306e+00   3.385e+00        0
+      90    1.634891e+01   2.732e-06   5.306e+00   2.927e+01        0
+     100    1.635290e+01   1.367e-06   5.311e+00   2.415e+01        0
+     110    1.635968e+01   1.318e-06   5.323e+00   2.737e+01        0
+     120    1.636233e+01   1.059e-06   5.328e+00   3.966e+01        0
+     130    1.633719e+01   1.606e-08   3.521e-07   3.991e-03       14
 
 EXIT: Locally optimal solution found.
 
 Final Statistics
 ----------------
-Final objective value               =   7.94055238335741e+01
-Final feasibility error (abs / rel) =   9.92e-07 / 9.92e-07
-Final optimality error  (abs / rel) =   1.39e-05 / 5.17e-07
-# of iterations                     =         73 
-# of CG iterations                  =         53 
-# of function evaluations           =        238
-# of gradient evaluations           =         74
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 75
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-# of Hessian evaluations            =         74
-Total program time (secs)           =       2.553 (     2.547 CPU time)
-Time spent in evaluations (secs)    =       0.242
+Final objective value               =   1.63371923728922e+01
+Final feasibility error (abs / rel) =   1.61e-08 / 1.61e-08
+Final optimality error  (abs / rel) =   3.52e-07 / 6.60e-08
+# of iterations                     =        130 
+# of CG iterations                  =         23 
+# of function evaluations           =        152
+# of gradient evaluations           =        131
+# of Hessian evaluations            =        131
+Total program time (secs)           =       4.272 (     4.219 CPU time)
+Time spent in evaluations (secs)    =       0.299
 
 ===============================================================================
 
@@ -3851,131 +3403,113 @@ Solve finished: status = optimal
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1            .              .              .            -0.0507      
-2            .              .              .            -0.0758      
-3            .              .              .            -0.0742      
-4            .              .              .             0.0600      
-5            .              .              .             0.1517      
-6            .              .              .             0.1300      
-7            .              .              .             0.0843      
-8            .              .              .             0.0277      
-9            .              .              .             0.0165      
-10           .              .              .            -0.0282      
-11           .              .              .            -0.0307      
-12           .              .              .            -0.0428      
-13           .              .              .            -0.0682      
-14           .              .              .            -0.1111      
-15           .              .              .            -0.1263      
-16           .              .              .             0.1275      
-17           .              .              .             0.0698      
-18           .              .              .             0.0341      
-19           .              .              .             0.0185      
-20           .              .              .            -0.0181      
-21           .              .              .            -0.0167      
-22           .              .              .            -0.0215      
-23           .              .              .            -0.0428      
-24           .              .              .            -0.0950      
-25           .              .              .            -0.1257      
-26           .              .              .             0.1033      
-27           .              .              .             0.0598      
-28           .              .              .             0.0285      
-29           .              .              .            -0.0127      
-30           .              .              .            -0.0129      
-31           .              .              .            -0.0092      
-32           .              .              .            -0.0139      
-33           .              .              .            -0.0290      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 76
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     EQU deflog_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-34           .              .              .            -0.1207      
-35           .              .              .            -0.1441      
-36           .              .              .            -0.0718      
-37           .              .              .            -0.0742      
-38           .              .              .            -0.0298      
-39           .              .              .            -0.0109      
-40           .              .              .            -0.0102      
-41           .              .              .            -0.0088      
-42           .              .              .            -0.0110      
-43           .              .              .            -0.0296      
-44           .              .              .            -0.0654      
-45           .              .              .            -0.1586      
-46           .              .              .             0.0477      
-47           .              .              .            -0.0407      
-48           .              .              .            -0.0370      
-49           .              .              .            -0.0091      
-50           .              .              .            -0.0114      
-51           .              .              .            -0.0103      
-52           .              .              .            -0.0105      
-53           .              .              .            -0.0307      
-54           .              .              .            -0.0610      
-55           .              .              .            -0.0841      
-56           .              .              .             0.0198      
-57           .              .              .            -0.0381      
-58           .              .              .            -0.0207      
-59           .              .              .            -0.0073      
-60           .              .              .            -0.0128      
-61           .              .              .            -0.0117      
-62           .              .              .            -0.0121      
-63           .              .              .            -0.0298      
-64           .              .              .            -0.0377      
-65           .              .              .             0.1389      
-66           .              .              .             0.0314      
-67           .              .              .            -0.0296      
-68           .              .              .            -0.0187      
-69           .              .              .            -0.0122      
-70           .              .              .            -0.0136      
-71           .              .              .            -0.0138      
-72           .              .              .            -0.0202      
-73           .              .              .            -0.0349      
-74           .              .              .            -0.0622      
-75           .              .              .            -0.1018      
-76           .              .              .             0.0185      
-77           .              .              .            -0.0245      
-78           .              .              .            -0.0118      
-79           .              .              .            -0.0056      
-80           .              .              .            -0.0125      
-81           .              .              .            -0.0011      
-82           .              .              .            -0.0162      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 77
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     EQU deflog_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-83           .              .              .            -0.0229      
-84           .              .              .            -0.0487      
-85           .              .              .            -0.0410      
-86           .              .              .             0.0120      
-87           .              .              .            -0.0252      
-88           .              .              .            -0.0122      
-89           .              .              .            -0.0063      
-90           .              .              .            -0.0019      
-91           .              .              .             0.0191      
-92           .              .              .             0.0173      
-93           .              .              .             0.0019      
-94           .              .              .             0.0182      
-95           .              .              .             0.0234      
-96           .              .              .            -0.0525      
-97           .              .              .            -0.0400      
-98           .              .              .            -0.0208      
-99           .              .              .            -0.0063      
-100          .              .              .             0.0658      
+1            .              .              .            -0.0736      
+2            .              .              .            -0.1024      
+3            .              .              .            -0.1008      
+4            .              .              .             0.2068      
+5            .              .              .             0.2445      
+6            .              .              .             0.1822      
+7            .              .              .             0.1048      
+8            .              .              .             0.0293      
+9            .              .              .             0.0147      
+10           .              .              .            -0.0422      
+11           .              .              .            -0.0454      
+12           .              .              .            -0.0601      
+13           .              .              .            -0.0920      
+14           .              .              .            -0.1261      
+15           .              .              .            -0.1077      
+16           .              .              .             0.2116      
+17           .              .              .             0.0922      
+18           .              .              .             0.0393      
+19           .              .              .             0.0209      
+20           .              .              .            -0.0275      
+21           .              .              .            -0.0251      
+22           .              .              .            -0.0295      
+23           .              .              .            -0.0527      
+24           .              .              .            -0.1108      
+25           .              .              .            -0.1033      
+26           .              .              .             0.2123      
+27           .              .              .             0.0967      
+28           .              .              .             0.0409      
+29           .              .              .            -0.0175      
+30           .              .              .            -0.0205      
+31           .              .              .            -0.0147      
+32           .              .              .            -0.0196      
+33           .              .              .            -0.0348      
+34           .              .              .            -0.1219      
+35           .              .              .            -0.1384      
+36           .              .              .            -0.1639      
+37           .              .              .            -0.1674      
+38           .              .              .            -0.0566      
+39           .              .              .            -0.0225      
+40           .              .              .            -0.0171      
+41           .              .              .            -0.0158      
+42           .              .              .            -0.0158      
+43           .              .              .            -0.0312      
+44           .              .              .            -0.0580      
+45           .              .              .            -0.1385      
+46           .              .              .             0.0476      
+47           .              .              .            -0.1021      
+48           .              .              .            -0.1024      
+49           .              .              .            -0.0206      
+50           .              .              .            -0.0233      
+51           .              .              .            -0.0231      
+52           .              .              .            -0.0219      
+53           .              .              .            -0.0316      
+54           .              .              .            -0.0541      
+55           .              .              .            -0.0700      
+56           .              .              .             0.0602      
+57           .              .              .            -0.0913      
+58           .              .              .            -0.0643      
+59           .              .              .            -0.0194      
+60           .              .              .            -0.0279      
+61           .              .              .            -0.0290      
+62           .              .              .            -0.0257      
+63           .              .              .            -0.0326      
+64           .              .              .            -0.0411      
+65           .              .              .             0.1489      
+66           .              .              .             0.1131      
+67           .              .              .            -0.0562      
+68           .              .              .            -0.0585      
+69           .              .              .            -0.0398      
+70           .              .              .            -0.0391      
+71           .              .              .            -0.0430      
+72           .              .              .            -0.0480      
+73           .              .              .            -0.0500      
+74           .              .              .            -0.0747      
+75           .              .              .            -0.1229      
+76           .              .              .             0.0995      
+77           .              .              .            -0.0345      
+78           .              .              .            -0.0352      
+79           .              .              .            -0.0166      
+80           .              .              .            -0.0448      
+81           .              .              .            -0.0005      
+82           .              .              .            -0.0493      
+83           .              .              .            -0.0527      
+84           .              .              .            -0.0690      
+85           .              .              .            -0.0744      
+86           .              .              .             0.0779      
+87           .              .              .            -0.0345      
+88           .              .              .            -0.0337      
+89           .              .              .            -0.0179      
+90           .              .              .            -0.0009      
+91           .              .              .             0.0698      
+92           .              .              .             0.0561      
+93           .              .              .            -0.0020      
+94           .              .              .             0.0162      
+95           .              .              .             0.0069      
+96           .              .              .            -0.0240      
+97           .              .              .            -0.0571      
+98           .              .              .            -0.0455      
+99           .              .              .            -0.0146      
+100          .              .              .             0.1611      
 
 ---- EQU deflog_l2  
 
          LOWER          LEVEL          UPPER         MARGINAL
 
-1          .              .              .            26.8532      
-2          .              .              .            26.4855      
+1          .              .              .             5.3315      
+2          .              .              .             5.1099      
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
@@ -3985,390 +3519,332 @@ Solution Report     SOLVE Kernel_duti Using EMP From line 160
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1            .              .             1.0000         1.3473      
-2            .              .             1.0000         1.3366      
-3            .              .             1.0000         1.3652      
-4            .             1.0000         1.0000        -0.0517      
-5            .             1.0000         1.0000        -0.9418      
-6            .             1.0000         1.0000        -1.3703      
-7            .             1.0000         1.0000        -1.9446      
-8            .             1.0000         1.0000        -3.0266      
-9            .             1.0000         1.0000        -3.7039      
-10           .              .             1.0000         0.9844      
-11           .              .             1.0000         1.7567      
-12           .              .             1.0000         1.9176      
-13           .              .             1.0000         1.6373      
-14           .              .             1.0000         1.2182      
-15           .              .             1.0000         0.9065      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 78
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     VAR w  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-16           .             1.0000         1.0000        -1.0426      
-17           .             1.0000         1.0000        -1.9715      
-18           .             1.0000         1.0000        -2.7204      
-19           .             1.0000         1.0000        -3.1072      
-20           .              .             1.0000         1.6020      
-21           .              .             1.0000         1.9970      
-22           .              .             1.0000         2.3440      
-23           .              .             1.0000         2.1432      
-24           .              .             1.0000         1.6049      
-25           .              .             1.0000         0.8694      
-26           .             1.0000         1.0000        -0.7091      
-27           .             1.0000         1.0000        -1.7199      
-28           .             1.0000         1.0000        -2.4216      
-29           .              .             1.0000         3.2878      
-30           .              .             1.0000         1.6902      
-31           .              .             1.0000         2.2952      
-32           .              .             1.0000         2.4493      
-33           .              .             1.0000         2.3272      
-34           .              .             1.0000         1.4961      
-35           .              .             1.0000         1.2956      
-36           .              .             1.0000         1.2027      
-37           .              .             1.0000         1.2018      
-38           .              .             1.0000         2.2927      
-39           .              .             1.0000         2.6024      
-40           .              .             1.0000         1.9400      
-41           .              .             1.0000         2.1012      
-42           .              .             1.0000         2.4362      
-43           .              .             1.0000         2.2010      
-44           .              .             1.0000         1.8595      
-45           .              .             1.0000         1.2086      
-46           .             0.5162         1.0000         EPS         
-47           .              .             1.0000         0.8429      
-48           .              .             1.0000         1.2728      
-49           .              .             1.0000         2.4728      
-50           .              .             1.0000         1.5095      
-51           .              .             1.0000         1.6731      
-52           .              .             1.0000         1.7788      
-53           .              .             1.0000         2.1045      
-54           .              .             1.0000         1.8643      
-55           .              .             1.0000         1.6645      
-56           .              .             1.0000         0.1217      
-57           .              .             1.0000         0.7874      
-58           .              .             1.0000         1.2292      
-59           .              .             1.0000         2.1708      
-60           .              .             1.0000         1.2906      
-61           .              .             1.0000         1.4827      
-62           .              .             1.0000         1.6452      
-63           .              .             1.0000         1.8558      
-64           .              .             1.0000         1.5900      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 79
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     VAR w  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-65           .             1.0000         1.0000        -0.4127      
-66           .              .             1.0000         0.0673      
-67           .              .             1.0000         0.6986      
-68           .              .             1.0000         1.2110      
-69           .              .             1.0000         1.3736      
-70           .              .             1.0000         1.0756      
-71           .              .             1.0000         1.0525      
-72           .              .             1.0000         0.9467      
-73           .              .             1.0000         1.1621      
-74           .              .             1.0000         0.8649      
-75           .              .             1.0000         0.6771      
-76           .              .             1.0000         0.1336      
-77           .              .             1.0000         0.6863      
-78           .              .             1.0000         1.1337      
-79           .              .             1.0000         1.7380      
-80           .              .             1.0000         0.6007      
-81           .              .             1.0000         0.2535      
-82           .              .             1.0000         0.7733      
-83           .              .             1.0000         0.7281      
-84           .              .             1.0000         0.7606      
-85           .              .             1.0000         0.4273      
-86           .              .             1.0000         0.1669      
-87           .              .             1.0000         0.6976      
-88           .              .             1.0000         1.0600      
-89           .              .             1.0000         1.3176      
-90           .              .             1.0000         0.2652      
-91           .              .             1.0000         0.0177      
-92           .              .             1.0000         0.0404      
-93           .              .             1.0000         0.2106      
-94           .              .             1.0000         0.1080      
-95           .              .             1.0000         0.1052      
-96           .              .             1.0000         0.4604      
-97           .              .             1.0000         0.7088      
-98           .              .             1.0000         0.9407      
-99           .              .             1.0000         1.2293      
-100          .             1.0000         1.0000        -0.2565      
+1            .              .             1.0000         1.7194      
+2            .              .             1.0000         1.5995      
+3            .              .             1.0000         1.6425      
+4            .             1.0000         1.0000        -0.6269      
+5            .             1.0000         1.0000        -2.0467      
+6            .             1.0000         1.0000        -2.7079      
+7            .             1.0000         1.0000        -3.5721      
+8            .             1.0000         1.0000        -5.1155      
+9            .             1.0000         1.0000        -6.1359      
+10           .              .             1.0000         1.3039      
+11           .              .             1.0000         2.3128      
+12           .              .             1.0000         2.4618      
+13           .              .             1.0000         2.0096      
+14           .              .             1.0000         1.3224      
+15           .              .             1.0000         0.8613      
+16           .             1.0000         1.0000        -2.1420      
+17           .             1.0000         1.0000        -3.5387      
+18           .             1.0000         1.0000        -4.6291      
+19           .             1.0000         1.0000        -5.0735      
+20           .              .             1.0000         2.1412      
+21           .              .             1.0000         2.6763      
+22           .              .             1.0000         3.1189      
+23           .              .             1.0000         2.7920      
+24           .              .             1.0000         1.9387      
+25           .              .             1.0000         0.8171      
+26           .             1.0000         1.0000        -1.4645      
+27           .             1.0000         1.0000        -2.9805      
+28           .             1.0000         1.0000        -3.9684      
+29           .              .             1.0000         4.9828      
+30           .              .             1.0000         2.2539      
+31           .              .             1.0000         3.1167      
+32           .              .             1.0000         3.3044      
+33           .              .             1.0000         3.1088      
+34           .              .             1.0000         1.8604      
+35           .              .             1.0000         1.6040      
+36           .              .             1.0000         1.8963      
+37           .              .             1.0000         1.9141      
+38           .              .             1.0000         3.4789      
+39           .              .             1.0000         3.6393      
+40           .              .             1.0000         2.6048      
+41           .              .             1.0000         2.8518      
+42           .              .             1.0000         3.3237      
+43           .              .             1.0000         3.0343      
+44           .              .             1.0000         2.5819      
+45           .              .             1.0000         1.6792      
+46           .              .             1.0000         0.0740      
+47           .              .             1.0000         0.9982      
+48           .              .             1.0000         1.6761      
+49           .              .             1.0000         3.3329      
+50           .              .             1.0000         1.9941      
+51           .              .             1.0000         2.2596      
+52           .              .             1.0000         2.4304      
+53           .              .             1.0000         2.9307      
+54           .              .             1.0000         2.6036      
+55           .              .             1.0000         2.3570      
+56           .             0.9207         1.0000         EPS         
+57           .              .             1.0000         0.8813      
+58           .              .             1.0000         1.3602      
+59           .              .             1.0000         2.7101      
+60           .              .             1.0000         1.6813      
+61           .              .             1.0000         2.0101      
+62           .              .             1.0000         2.2611      
+63           .              .             1.0000         2.6303      
+64           .              .             1.0000         2.2906      
+65           .             1.0000         1.0000        -0.8266      
+66           .             1.0000         1.0000        -0.2237      
+67           .              .             1.0000         0.6218      
+68           .              .             1.0000         1.2923      
+69           .              .             1.0000         1.4469      
+70           .              .             1.0000         1.4010      
+71           .              .             1.0000         1.4083      
+72           .              .             1.0000         1.3247      
+73           .              .             1.0000         1.6921      
+74           .              .             1.0000         1.3406      
+75           .              .             1.0000         1.1710      
+76           .             1.0000         1.0000        -0.1762      
+77           .              .             1.0000         0.4942      
+78           .              .             1.0000         1.0316      
+79           .              .             1.0000         1.8770      
+80           .              .             1.0000         0.7451      
+81           .              .             1.0000         0.2744      
+82           .              .             1.0000         1.0515      
+83           .              .             1.0000         1.0366      
+84           .              .             1.0000         1.1711      
+85           .              .             1.0000         0.7621      
+86           .             1.0000         1.0000        -0.0972      
+87           .              .             1.0000         0.4979      
+88           .              .             1.0000         0.9228      
+89           .              .             1.0000         1.2272      
+90           .              .             1.0000         0.2770      
+91           .             1.0000         1.0000        -0.0651      
+92           .             1.0000         1.0000        -0.0199      
+93           .              .             1.0000         0.2848      
+94           .              .             1.0000         0.1876      
+95           .              .             1.0000         0.2360      
+96           .              .             1.0000         0.3626      
+97           .              .             1.0000         0.6014      
+98           .              .             1.0000         0.8669      
+99           .              .             1.0000         1.1493      
+100          .             1.0000         1.0000        -0.4217      
 
 ---- VAR alpha  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1          -INF        17274.8927        +INF            EPS         
-2          -INF         2907.0009        +INF            EPS         
-3          -INF         1648.2123        +INF            EPS         
-4          -INF       -16572.4282        +INF            EPS         
-5          -INF        16126.7220        +INF            EPS         
-6          -INF        -7899.1951        +INF            EPS         
-7          -INF        12452.3390        +INF            EPS         
-8          -INF        -7506.7965        +INF            EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 80
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     VAR alpha  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-9          -INF         2004.1810        +INF            EPS         
-10         -INF         -689.4749        +INF            EPS         
-11         -INF       -46426.3904        +INF            EPS         
-12         -INF       -25902.2847        +INF            EPS         
-13         -INF         1315.4918        +INF            EPS         
-14         -INF        52132.6055        +INF            EPS         
-15         -INF       -16725.1350        +INF            EPS         
-16         -INF        -5040.4514        +INF            EPS         
-17         -INF        -2575.6188        +INF            EPS         
-18         -INF        -9497.4039        +INF            EPS         
-19         -INF        -1639.8732        +INF            EPS         
-20         -INF        -7682.8149        +INF            EPS         
-21         -INF        57744.8770        +INF            EPS         
-22         -INF        -3168.3916        +INF            EPS         
-23         -INF        -4817.9262        +INF            EPS         
-24         -INF       -19378.6329        +INF            EPS         
-25         -INF       -18926.4276        +INF            EPS         
-26         -INF       -14344.5889        +INF            EPS         
-27         -INF         4074.3921        +INF            EPS         
-28         -INF        19602.2512        +INF            EPS         
-29         -INF         5524.1413        +INF            EPS         
-30         -INF         7849.4387        +INF            EPS         
-31         -INF       -16021.2942        +INF            EPS         
-32         -INF         7949.4344        +INF            EPS         
-33         -INF        18482.5081        +INF            EPS         
-34         -INF         3579.5281        +INF            EPS         
-35         -INF        19657.6248        +INF            EPS         
-36         -INF         1063.0604        +INF            EPS         
-37         -INF         3486.7633        +INF            EPS         
-38         -INF         6416.8570        +INF            EPS         
-39         -INF       -26866.4293        +INF            EPS         
-40         -INF       -29070.2524        +INF            EPS         
-41         -INF        -6524.0000        +INF            EPS         
-42         -INF         2036.3947        +INF            EPS         
-43         -INF         6882.1773        +INF            EPS         
-44         -INF        -1120.4862        +INF            EPS         
-45         -INF        11222.6618        +INF            EPS         
-46         -INF        15821.7030        +INF            EPS         
-47         -INF       -11746.2016        +INF            EPS         
-48         -INF        -9533.2082        +INF            EPS         
-49         -INF        -7911.1554        +INF            EPS         
-50         -INF        -7632.1722        +INF            EPS         
-51         -INF        29619.7027        +INF            EPS         
-52         -INF        10495.2146        +INF            EPS         
-53         -INF        -2131.5824        +INF            EPS         
-54         -INF        -7537.4041        +INF            EPS         
-55         -INF       -22294.2979        +INF            EPS         
-56         -INF         8220.0449        +INF            EPS         
-57         -INF        -9118.1952        +INF            EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 81
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     VAR alpha  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-58         -INF         8518.1537        +INF            EPS         
-59         -INF        33171.4325        +INF            EPS         
-60         -INF         7753.7343        +INF            EPS         
-61         -INF         1248.7832        +INF            EPS         
-62         -INF         1906.2058        +INF            EPS         
-63         -INF       -17171.1804        +INF            EPS         
-64         -INF        -8167.7683        +INF            EPS         
-65         -INF         2475.9195        +INF            EPS         
-66         -INF        -5724.0847        +INF            EPS         
-67         -INF       -10287.8249        +INF            EPS         
-68         -INF         5524.3802        +INF            EPS         
-69         -INF        19651.4681        +INF            EPS         
-70         -INF        15701.3778        +INF            EPS         
-71         -INF       -28851.9570        +INF            EPS         
-72         -INF         6546.4008        +INF            EPS         
-73         -INF        24832.2653        +INF            EPS         
-74         -INF        22956.9086        +INF            EPS         
-75         -INF        10798.4092        +INF            EPS         
-76         -INF        18566.6035        +INF            EPS         
-77         -INF        -4389.9419        +INF            EPS         
-78         -INF       -21984.4706        +INF            EPS         
-79         -INF       -20056.9778        +INF            EPS         
-80         -INF       -40006.9904        +INF            EPS         
-81         -INF        33335.7319        +INF            EPS         
-82         -INF       -17118.7917        +INF            EPS         
-83         -INF         4833.4810        +INF            EPS         
-84         -INF         -393.1079        +INF            EPS         
-85         -INF       -44737.8620        +INF            EPS         
-86         -INF        -9233.5079        +INF            EPS         
-87         -INF         5576.2748        +INF            EPS         
-88         -INF         -650.4049        +INF            EPS         
-89         -INF        10461.2920        +INF            EPS         
-90         -INF        17380.1628        +INF            EPS         
-91         -INF         2104.4659        +INF            EPS         
-92         -INF       -15971.3785        +INF            EPS         
-93         -INF        -9107.9721        +INF            EPS         
-94         -INF        30605.9807        +INF            EPS         
-95         -INF        -7315.8474        +INF            EPS         
-96         -INF       -13677.8578        +INF            EPS         
-97         -INF        29408.4856        +INF            EPS         
-98         -INF       -13173.0960        +INF            EPS         
-99         -INF          910.6230        +INF            EPS         
-100        -INF        -5540.0067        +INF            EPS         
-0          -INF            2.1055        +INF            EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 82
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
+1          -INF            7.9668        +INF            EPS         
+2          -INF        -4113.5362        +INF            EPS         
+3          -INF         4690.1402        +INF            EPS         
+4          -INF           24.7808        +INF            EPS         
+5          -INF         -903.9013        +INF            EPS         
+6          -INF         1124.4940        +INF            EPS         
+7          -INF         -771.8266        +INF            EPS         
+8          -INF           37.4850        +INF            EPS         
+9          -INF           10.5925        +INF            EPS         
+10         -INF            1.9315        +INF            EPS         
+11         -INF         -133.3886        +INF            EPS         
+12         -INF          770.5994        +INF            EPS         
+13         -INF        -2676.4762        +INF            EPS         
+14         -INF         2575.3588        +INF            EPS         
+15         -INF        -3755.2755        +INF            EPS         
+16         -INF         -526.4512        +INF            EPS         
+17         -INF         1259.1208        +INF            EPS         
+18         -INF            1.8382        +INF            EPS         
+19         -INF         -298.4774        +INF            EPS         
+20         -INF          -74.7228        +INF            EPS         
+21         -INF          266.3173        +INF            EPS         
+22         -INF         -587.8687        +INF            EPS         
+23         -INF         7069.9718        +INF            EPS         
+24         -INF        -3808.7019        +INF            EPS         
+25         -INF         4132.6667        +INF            EPS         
+26         -INF         2318.9190        +INF            EPS         
+27         -INF        -2470.2362        +INF            EPS         
+28         -INF          117.7675        +INF            EPS         
+29         -INF          553.3858        +INF            EPS         
+30         -INF          175.2828        +INF            EPS         
+31         -INF         1363.7827        +INF            EPS         
+32         -INF        -1130.3597        +INF            EPS         
+33         -INF        -3530.8744        +INF            EPS         
+34         -INF        -4673.6391        +INF            EPS         
+35         -INF         4330.4418        +INF            EPS         
+36         -INF        -2290.0290        +INF            EPS         
+37         -INF        -1347.8722        +INF            EPS         
+38         -INF         3300.9703        +INF            EPS         
+39         -INF        -7041.5403        +INF            EPS         
+40         -INF         -765.9824        +INF            EPS         
+41         -INF          887.3748        +INF            EPS         
+42         -INF         -148.7992        +INF            EPS         
+43         -INF         -864.4708        +INF            EPS         
+44         -INF         4720.2940        +INF            EPS         
+45         -INF        -5631.7829        +INF            EPS         
+46         -INF         1893.7864        +INF            EPS         
+47         -INF        -4377.3836        +INF            EPS         
+48         -INF         2023.0684        +INF            EPS         
+49         -INF         7633.4448        +INF            EPS         
+50         -INF          324.0454        +INF            EPS         
+51         -INF         -639.7273        +INF            EPS         
+52         -INF        -5288.1886        +INF            EPS         
+53         -INF         1011.3386        +INF            EPS         
+54         -INF         2553.5102        +INF            EPS         
+55         -INF        -3920.5411        +INF            EPS         
+56         -INF         1536.8754        +INF            EPS         
+57         -INF         4200.7174        +INF            EPS         
+58         -INF        -3639.7759        +INF            EPS         
+59         -INF        -2838.4535        +INF            EPS         
+60         -INF         -133.1695        +INF            EPS         
+61         -INF         2438.2710        +INF            EPS         
+62         -INF         5275.4627        +INF            EPS         
+63         -INF        -1575.0454        +INF            EPS         
+64         -INF        -1609.3331        +INF            EPS         
+65         -INF         8454.5230        +INF            EPS         
+66         -INF        -5018.2554        +INF            EPS         
+67         -INF          292.8266        +INF            EPS         
+68         -INF          309.6006        +INF            EPS         
+69         -INF         2954.8609        +INF            EPS         
+70         -INF         -130.0384        +INF            EPS         
+71         -INF        -2437.7885        +INF            EPS         
+72         -INF        -1781.9923        +INF            EPS         
+73         -INF          -90.0913        +INF            EPS         
+74         -INF         5908.9457        +INF            EPS         
+75         -INF        -8041.9467        +INF            EPS         
+76         -INF         1372.9327        +INF            EPS         
+77         -INF         2275.0540        +INF            EPS         
+78         -INF        -2548.0672        +INF            EPS         
+79         -INF          306.0541        +INF            EPS         
+80         -INF         1201.0571        +INF            EPS         
+81         -INF         2024.0787        +INF            EPS         
+82         -INF         -331.9614        +INF            EPS         
+83         -INF         1290.0740        +INF            EPS         
+84         -INF        -1000.6462        +INF            EPS         
+85         -INF        -3415.8344        +INF            EPS         
+86         -INF         3909.6243        +INF            EPS         
+87         -INF        -2174.3885        +INF            EPS         
+88         -INF         1529.2839        +INF            EPS         
+89         -INF          -68.0475        +INF            EPS         
+90         -INF        -1359.0153        +INF            EPS         
+91         -INF        -1629.1480        +INF            EPS         
+92         -INF         1317.0071        +INF            EPS         
+93         -INF         -490.4714        +INF            EPS         
+94         -INF        -2052.5482        +INF            EPS         
+95         -INF         3250.0003        +INF            EPS         
+96         -INF        -1663.9386        +INF            EPS         
+97         -INF          679.8429        +INF            EPS         
+98         -INF          -84.2499        +INF            EPS         
+99         -INF            0.1078        +INF            EPS         
+100        -INF          178.4005        +INF            EPS         
+0          -INF            2.6595        +INF            EPS         
 
 ---- VAR log_l  
 
            LOWER          LEVEL          UPPER         MARGINAL
 
-1          -INF           -2.9858        +INF            EPS         
-2          -INF           -2.5225        +INF            EPS         
-3          -INF           -2.5773        +INF            EPS         
-4          -INF            0.1615        +INF            EPS         
-5          -INF            1.6513        +INF            EPS         
-6          -INF            2.2813        +INF            EPS         
-7          -INF            3.1360        +INF            EPS         
-8          -INF            4.7250        +INF            EPS         
-9          -INF            5.4466        +INF            EPS         
-10         -INF           -3.1929        +INF            EPS         
-11         -INF           -3.8538        +INF            EPS         
-12         -INF           -3.6121        +INF            EPS         
-13         -INF           -2.9162        +INF            EPS         
-14         -INF           -1.9120        +INF            EPS         
-15         -INF           -1.1323        +INF            EPS         
-16         -INF            2.0073        +INF            EPS         
-17         -INF            3.3526        +INF            EPS         
-18         -INF            4.4099        +INF            EPS         
-19         -INF            5.1616        +INF            EPS         
-20         -INF           -4.2830        +INF            EPS         
-21         -INF           -4.6287        +INF            EPS         
-22         -INF           -4.5551        +INF            EPS         
-23         -INF           -3.7441        +INF            EPS         
-24         -INF           -2.5142        +INF            EPS         
-25         -INF           -1.0326        +INF            EPS         
-26         -INF            1.8639        +INF            EPS         
-27         -INF            3.3847        +INF            EPS         
-28         -INF            4.4802        +INF            EPS         
-29         -INF           -5.4672        +INF            EPS         
-30         -INF           -4.6931        +INF            EPS         
-31         -INF           -5.3907        +INF            EPS         
-32         -INF           -5.0455        +INF            EPS         
-33         -INF           -4.2433        +INF            EPS         
-34         -INF           -2.1243        +INF            EPS         
-35         -INF           -1.6557        +INF            EPS         
-36         -INF           -2.4344        +INF            EPS         
-37         -INF           -2.3948        +INF            EPS         
-38         -INF           -4.1963        +INF            EPS         
-39         -INF           -5.3566        +INF            EPS         
-40         -INF           -5.0899        +INF            EPS         
-41         -INF           -5.3269        +INF            EPS         
-42         -INF           -5.2728        +INF            EPS         
-43         -INF           -4.1552        +INF            EPS         
-44         -INF           -3.1235        +INF            EPS         
-45         -INF           -1.3764        +INF            EPS         
-46         -INF           -0.3800        +INF            EPS         
-47         -INF           -2.5560        +INF            EPS         
-48         -INF           -3.2519        +INF            EPS         
-49         -INF           -5.4786        +INF            EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 83
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     VAR log_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-50         -INF           -4.6807        +INF            EPS         
-51         -INF           -4.9078        +INF            EPS         
-52         -INF           -4.9577        +INF            EPS         
-53         -INF           -4.0676        +INF            EPS         
-54         -INF           -3.2020        +INF            EPS         
-55         -INF           -2.7022        +INF            EPS         
-56         -INF           -0.9381        +INF            EPS         
-57         -INF           -2.5214        +INF            EPS         
-58         -INF           -3.8178        +INF            EPS         
-59         -INF           -5.5523        +INF            EPS         
-60         -INF           -4.3665        +INF            EPS         
-61         -INF           -4.6337        +INF            EPS         
-62         -INF           -4.7240        +INF            EPS         
-63         -INF           -3.9490        +INF            EPS         
-64         -INF           -3.5150        +INF            EPS         
-65         -INF            0.5657        +INF            EPS         
-66         -INF           -0.8887        +INF            EPS         
-67         -INF           -2.6081        +INF            EPS         
-68         -INF           -3.9037        +INF            EPS         
-69         -INF           -4.4993        +INF            EPS         
-70         -INF           -4.0731        +INF            EPS         
-71         -INF           -4.0290        +INF            EPS         
-72         -INF           -3.4907        +INF            EPS         
-73         -INF           -3.1935        +INF            EPS         
-74         -INF           -2.0910        +INF            EPS         
-75         -INF           -0.6974        +INF            EPS         
-76         -INF           -0.7484        +INF            EPS         
-77         -INF           -2.7921        +INF            EPS         
-78         -INF           -4.2845        +INF            EPS         
-79         -INF           -5.5729        +INF            EPS         
-80         -INF           -3.2799        +INF            EPS         
-81         -INF           -2.6705        +INF            EPS         
-82         -INF           -3.4260        +INF            EPS         
-83         -INF           -2.9598        +INF            EPS         
-84         -INF           -2.1715        +INF            EPS         
-85         -INF           -0.9859        +INF            EPS         
-86         -INF           -0.4355        +INF            EPS         
-87         -INF           -2.7851        +INF            EPS         
-88         -INF           -4.1610        +INF            EPS         
-89         -INF           -5.1138        +INF            EPS         
-90         -INF           -2.6415        +INF            EPS         
-91         -INF           -2.2058        +INF            EPS         
-92         -INF           -2.1832        +INF            EPS         
-93         -INF           -2.1176        +INF            EPS         
-94         -INF           -1.4108        +INF            EPS         
-95         -INF           -0.9087        +INF            EPS         
-96         -INF           -0.7582        +INF            EPS         
-97         -INF           -2.2857        +INF            EPS         
-98         -INF           -3.4500        +INF            EPS         
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 84
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Kernel_duti Using EMP From line 160
-
-
-     VAR log_l  
-
-           LOWER          LEVEL          UPPER         MARGINAL
-
-99         -INF           -5.0285        +INF            EPS         
-100        -INF           -1.5168        +INF            EPS         
+1          -INF           -2.8567        +INF            EPS         
+2          -INF           -2.3765        +INF            EPS         
+3          -INF           -2.4338        +INF            EPS         
+4          -INF            0.4292        +INF            EPS         
+5          -INF            1.9694        +INF            EPS         
+6          -INF            2.6400        +INF            EPS         
+7          -INF            3.5294        +INF            EPS         
+8          -INF            5.1904        +INF            EPS         
+9          -INF            6.0628        +INF            EPS         
+10         -INF           -3.0914        +INF            EPS         
+11         -INF           -3.7461        +INF            EPS         
+12         -INF           -3.5281        +INF            EPS         
+13         -INF           -2.8136        +INF            EPS         
+14         -INF           -1.8132        +INF            EPS         
+15         -INF           -1.1521        +INF            EPS         
+16         -INF            2.2064        +INF            EPS         
+17         -INF            3.6547        +INF            EPS         
+18         -INF            4.7951        +INF            EPS         
+19         -INF            5.5219        +INF            EPS         
+20         -INF           -4.1728        +INF            EPS         
+21         -INF           -4.5256        +INF            EPS         
+22         -INF           -4.5363        +INF            EPS         
+23         -INF           -3.8141        +INF            EPS         
+24         -INF           -2.5531        +INF            EPS         
+25         -INF           -1.0822        +INF            EPS         
+26         -INF            1.7596        +INF            EPS         
+27         -INF            3.4346        +INF            EPS         
+28         -INF            4.6062        +INF            EPS         
+29         -INF           -5.5796        +INF            EPS         
+30         -INF           -4.5316        +INF            EPS         
+31         -INF           -5.2394        +INF            EPS         
+32         -INF           -5.0164        +INF            EPS         
+33         -INF           -4.3656        +INF            EPS         
+34         -INF           -2.3846        +INF            EPS         
+35         -INF           -2.0073        +INF            EPS         
+36         -INF           -2.0463        +INF            EPS         
+37         -INF           -2.0330        +INF            EPS         
+38         -INF           -3.9923        +INF            EPS         
+39         -INF           -4.9851        +INF            EPS         
+40         -INF           -4.8821        +INF            EPS         
+41         -INF           -5.0706        +INF            EPS         
+42         -INF           -5.2381        +INF            EPS         
+43         -INF           -4.4488        +INF            EPS         
+44         -INF           -3.6220        +INF            EPS         
+45         -INF           -2.0769        +INF            EPS         
+46         -INF            0.2346        +INF            EPS         
+47         -INF           -1.5848        +INF            EPS         
+48         -INF           -2.4432        +INF            EPS         
+49         -INF           -4.9746        +INF            EPS         
+50         -INF           -4.2549        +INF            EPS         
+51         -INF           -4.4144        +INF            EPS         
+52         -INF           -4.5540        +INF            EPS         
+53         -INF           -4.3950        +INF            EPS         
+54         -INF           -3.7045        +INF            EPS         
+55         -INF           -3.3134        +INF            EPS         
+56         -INF            0.0477        +INF            EPS         
+57         -INF           -1.4879        +INF            EPS         
+58         -INF           -2.6838        +INF            EPS         
+59         -INF           -4.8004        +INF            EPS         
+60         -INF           -3.8625        +INF            EPS         
+61         -INF           -4.0438        +INF            EPS         
+62         -INF           -4.3083        +INF            EPS         
+63         -INF           -4.2409        +INF            EPS         
+64         -INF           -3.8375        +INF            EPS         
+65         -INF            1.5903        +INF            EPS         
+66         -INF            0.3070        +INF            EPS         
+67         -INF           -1.3731        +INF            EPS         
+68         -INF           -2.7167        +INF            EPS         
+69         -INF           -3.2961        +INF            EPS         
+70         -INF           -3.2708        +INF            EPS         
+71         -INF           -3.1761        +INF            EPS         
+72         -INF           -2.9715        +INF            EPS         
+73         -INF           -3.2562        +INF            EPS         
+74         -INF           -2.4896        +INF            EPS         
+75         -INF           -1.6275        +INF            EPS         
+76         -INF            0.4128        +INF            EPS         
+77         -INF           -1.4249        +INF            EPS         
+78         -INF           -2.9464        +INF            EPS         
+79         -INF           -4.5276        +INF            EPS         
+80         -INF           -2.1105        +INF            EPS         
+81         -INF           -1.2224        +INF            EPS         
+82         -INF           -2.6015        +INF            EPS         
+83         -INF           -2.5026        +INF            EPS         
+84         -INF           -2.3777        +INF            EPS         
+85         -INF           -1.4663        +INF            EPS         
+86         -INF            0.5476        +INF            EPS         
+87         -INF           -1.4511        +INF            EPS         
+88         -INF           -2.8206        +INF            EPS         
+89         -INF           -3.9108        +INF            EPS         
+90         -INF           -1.2107        +INF            EPS         
+91         -INF           -0.6037        +INF            EPS         
+92         -INF           -0.7781        +INF            EPS         
+93         -INF           -1.3146        +INF            EPS         
+94         -INF           -1.0081        +INF            EPS         
+95         -INF           -0.8850        +INF            EPS         
+96         -INF           -0.0581        +INF            EPS         
+97         -INF           -1.2487        +INF            EPS         
+98         -INF           -2.3743        +INF            EPS         
+99         -INF           -4.0265        +INF            EPS         
+100        -INF            0.3186        +INF            EPS         
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR obj_In            -INF            0.3401        +INF             .          
+---- VAR obj_In            -INF            0.2031        +INF             .          
 
 ---- VAR log_l2  
 
          LOWER          LEVEL          UPPER         MARGINAL
 
-1        -INF            0.1485        +INF            EPS         
-2        -INF            0.1190        +INF            EPS         
+1        -INF           -2.1256        +INF            EPS         
+2        -INF           -2.1730        +INF            EPS         
 
                            LOWER          LEVEL          UPPER         MARGINAL
 
----- VAR obj               -INF           79.4055        +INF             .          
+---- VAR obj               -INF           16.3372        +INF             .          
 
 
 **** REPORT SUMMARY :        0     NONOPT
@@ -4376,19 +3852,19 @@ Solution Report     SOLVE Kernel_duti Using EMP From line 160
                              0  UNBOUNDED
                              0     ERRORS
                            201  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 15:35:42 Page 85
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/07/20 17:04:11 Page 16
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    195 PARAMETER ranking  
+----    196 PARAMETER ranking  
 
 1   41.000,    2   41.000,    3   41.000,    4    1.000,    5    1.000,    6    1.000,    7    1.000,    8    1.000,    9    1.000,    10  41.000,    11  41.000,    12  41.000,    13  41.000,    14  41.000,    15  41.000,    16   1.000,    17   1.000
 18   1.000,    19   1.000,    20  41.000,    21  41.000,    22  41.000,    23  41.000,    24  41.000,    25  41.000,    26   1.000,    27   1.000,    28   1.000,    29  41.000,    30  41.000,    31  41.000,    32  41.000,    33  41.000,    34  41.000
-35  41.000,    36  41.000,    37  41.000,    38  41.000,    39  41.000,    40  41.000,    41  41.000,    42  41.000,    43  41.000,    44  41.000,    45  41.000,    46   0.516,    47  41.000,    48  41.000,    49  41.000,    50  41.000,    51  41.000
-52  41.000,    53  41.000,    54  41.000,    55  41.000,    56  41.000,    57  41.000,    58  41.000,    59  41.000,    60  41.000,    61  41.000,    62  41.000,    63  41.000,    64  41.000,    65   1.000,    66  41.000,    67  41.000,    68  41.000
-69  41.000,    70  41.000,    71  41.000,    72  41.000,    73  41.000,    74  41.000,    75  41.000,    76  41.000,    77  41.000,    78  41.000,    79  41.000,    80  41.000,    81  41.000,    82  41.000,    83  41.000,    84  41.000,    85  41.000
-86  41.000,    87  41.000,    88  41.000,    89  41.000,    90  41.000,    91  41.000,    92  41.000,    93  41.000,    94  41.000,    95  41.000,    96  41.000,    97  41.000,    98  41.000,    99  41.000,    100  1.000
+35  41.000,    36  41.000,    37  41.000,    38  41.000,    39  41.000,    40  41.000,    41  41.000,    42  41.000,    43  41.000,    44  41.000,    45  41.000,    46  41.000,    47  41.000,    48  41.000,    49  41.000,    50  41.000,    51  41.000
+52  41.000,    53  41.000,    54  41.000,    55  41.000,    56   0.921,    57  41.000,    58  41.000,    59  41.000,    60  41.000,    61  41.000,    62  41.000,    63  41.000,    64  41.000,    65   1.000,    66   1.000,    67  41.000,    68  41.000
+69  41.000,    70  41.000,    71  41.000,    72  41.000,    73  41.000,    74  41.000,    75  41.000,    76   1.000,    77  41.000,    78  41.000,    79  41.000,    80  41.000,    81  41.000,    82  41.000,    83  41.000,    84  41.000,    85  41.000
+86   1.000,    87  41.000,    88  41.000,    89  41.000,    90  41.000,    91   1.000,    92   1.000,    93  41.000,    94  41.000,    95  41.000,    96  41.000,    97  41.000,    98  41.000,    99  41.000,    100  1.000
 
 
 **** REPORT FILE SUMMARY
@@ -4396,7 +3872,7 @@ E x e c u t i o n
 myinfo C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat
 
 
-EXECUTION TIME       =        0.234 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.235 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN

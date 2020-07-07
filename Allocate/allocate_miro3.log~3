@@ -1,4 +1,4 @@
---- Job allocate_miro3.gms Start 07/04/20 23:25:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job allocate_miro3.gms Start 07/04/20 23:27:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -21,13 +21,13 @@ Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- allocate_miro3.gms(328) 3 Mb
---- Starting execution: elapsed 0:00:00.013
+--- Starting execution: elapsed 0:00:00.012
 --- allocate_miro3.gms(282) 4 Mb
 --- Generating MIP model vivak
 --- allocate_miro3.gms(283) 4 Mb
 ---   113 rows  167 columns  433 non-zeroes
 ---   34 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.041
+--- Executing CPLEX: elapsed 0:00:00.038
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -78,16 +78,16 @@ Iteration log . . .
 Iteration:     1   Dual objective     =         49521.376279
 Iteration:    62   Dual objective     =          8085.023113
 Initializing dual steep norms . . .
-Root relaxation solution time = 0.02 sec. (0.81 ticks)
+Root relaxation solution time = 0.00 sec. (0.81 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
 *     0+    0                            0.0000    56565.1164              --- 
-Found incumbent of value 0.000000 after 0.02 sec. (1.89 ticks)
+Found incumbent of value 0.000000 after 0.00 sec. (1.89 ticks)
       0     0     7627.2103     4        0.0000     7627.2103      112     --- 
 *     0+    0                         4548.3787     7627.2103            67.69%
-Found incumbent of value 4548.378747 after 0.02 sec. (2.15 ticks)
+Found incumbent of value 4548.378747 after 0.00 sec. (2.15 ticks)
       0     0     6784.2442     4     4548.3787       Cuts: 9      138   49.16%
 *     0+    0                         5376.0000     6784.2442            26.20%
 Found incumbent of value 5376.000000 after 0.02 sec. (3.00 ticks)
@@ -149,11 +149,11 @@ Relative gap:            0.000000
 --- Restarting execution
 --- allocate_miro3.gms(283) 2 Mb
 --- Reading solution for model vivak
---- Executing after solve: elapsed 0:00:00.254
+--- Executing after solve: elapsed 0:00:00.191
 --- allocate_miro3.gms(328) 3 Mb
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\data_allocate_miro3/default.gdx
 *** Status: Normal completion
---- Job allocate_miro3.gms Stop 07/04/20 23:25:44 elapsed 0:00:00.265
+--- Job allocate_miro3.gms Stop 07/04/20 23:27:12 elapsed 0:00:00.207
 
 Warning in eval(ei, envir) :
   The alias of symbol: 'c' was selected to be overwritten. However, this symbol could not be found.
@@ -161,66 +161,65 @@ Warning in eval(ei, envir) :
   The alias of symbol: 'l' was selected to be overwritten. However, this symbol could not be found.
 Warning in eval(ei, envir) :
   The alias of symbol: 'locdata' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-07-04 23:25:50] Logging facility initialised.
-DEBUG [2020-07-04 23:25:50] Database connection established.
-DEBUG [2020-07-04 23:25:50] Access Control initialised.
-WARN [2020-07-04 23:25:50] There are orphaned tables in your database: 'allocatemiro3_c', 'allocatemiro3_l', 'allocatemiro3_locdata', 'allocatemiro3_prv'.
+TRACE [2020-07-04 23:27:18] Logging facility initialised.
+DEBUG [2020-07-04 23:27:18] Database connection established.
+DEBUG [2020-07-04 23:27:18] Access Control initialised.
+WARN [2020-07-04 23:27:18] There are orphaned tables in your database: 'allocatemiro3_c', 'allocatemiro3_l', 'allocatemiro3_locdata', 'allocatemiro3_prv'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-04 23:25:51] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-04 23:25:52] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:25:52] Db: 176 rows in table: '_sys_metadata_allocate_miro3' were deleted. (Db.deleteRows)
-DEBUG [2020-07-04 23:25:52] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-04 23:25:52] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_operation' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:52] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:25:53] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:25:53] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-INFO [2020-07-04 23:26:08] Session started (model: 'allocate_miro3', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate').
-DEBUG [2020-07-04 23:26:08] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate'.
-DEBUG [2020-07-04 23:26:08] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-04 23:26:10] Loading and rendering scenarios: '2'.
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_allocate' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_kitinl' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_operation' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_unmet' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3__scalars_out' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_prv_val' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_effic' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Db: Data was imported from table: 'allocatemiro3_prv_weight' (Db.importDataset).
-DEBUG [2020-07-04 23:26:10] Scenario: '1' unlocked.
-DEBUG [2020-07-04 23:26:11] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: 'allocatemiro3_lablocdata' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: 'allocatemiro3_centerlocdata' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: 'allocatemiro3_centerdata' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: 'allocatemiro3_runsize' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: 'allocatemiro3__scalars' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: A table named: '_sys_scripts_allocate_miro3' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:26:11] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
-DEBUG [2020-07-04 23:26:11] Db: hasee: Lock was added for scenario: '2' (Scenario.lock).
-DEBUG [2020-07-04 23:26:11] Dataset: prv_val loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:12] Dataset: effic loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:12] Dataset: prv_weight loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:12] Dataset: lablocdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:12] Dataset: centerlocdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:12] Dataset: centerdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:12] Dataset: runsize loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:26:13] Scenario: '2' was loaded into UI
-DEBUG [2020-07-04 23:26:14] Sidebar menu item: 'outputData' selected.
-INFO [2020-07-04 23:27:11] Session ended (model: 'allocate_miro3', user: 'hasee').
+INFO [2020-07-04 23:27:19] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-04 23:27:20] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-07-04 23:27:20] Db: 176 rows in table: '_sys_metadata_allocate_miro3' were deleted. (Db.deleteRows)
+DEBUG [2020-07-04 23:27:20] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-04 23:27:20] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_operation' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
+DEBUG [2020-07-04 23:27:21] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-07-04 23:27:21] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+INFO [2020-07-04 23:27:34] Session started (model: 'allocate_miro3', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate').
+DEBUG [2020-07-04 23:27:34] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate'.
+DEBUG [2020-07-04 23:27:34] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-04 23:27:36] Loading and rendering scenarios: '2'.
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_allocate' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_kitinl' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_operation' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_unmet' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3__scalars_out' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_prv_val' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_effic' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_prv_weight' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Scenario: '1' unlocked.
+DEBUG [2020-07-04 23:27:36] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_lablocdata' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_centerlocdata' (Db.importDataset).
+DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_centerdata' (Db.importDataset).
+DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: 'allocatemiro3_runsize' (Db.importDataset).
+DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: 'allocatemiro3__scalars' (Db.importDataset).
+DEBUG [2020-07-04 23:27:37] Db: A table named: '_sys_scripts_allocate_miro3' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-04 23:27:37] Scenario: 'New Scenario' closed.
+DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-07-04 23:27:37] Db: hasee: Lock was added for scenario: '2' (Scenario.lock).
+DEBUG [2020-07-04 23:27:37] Dataset: prv_val loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:38] Dataset: effic loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:38] Dataset: prv_weight loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:38] Dataset: lablocdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:38] Dataset: centerlocdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:38] Dataset: centerdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:38] Dataset: runsize loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-04 23:27:39] Scenario: '2' was loaded into UI
+DEBUG [2020-07-04 23:27:40] Sidebar menu item: 'outputData' selected.
+INFO [2020-07-05 12:57:47] Session ended (model: 'allocate_miro3', user: 'hasee').
