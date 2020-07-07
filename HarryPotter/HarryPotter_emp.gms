@@ -95,7 +95,7 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
-scalar gamma  debug parameter /5/
+scalar gamma  debug parameter /15/
 
 $offexternalInput
 parameter Trust_data(Header,aspect),Trust_label(Header);
@@ -153,7 +153,7 @@ constraint inequality
 initmu 1e-2
 finalmu 1e-4
 $offecho
-w.l(n)=1e-5;
+w.l(n)=0.5;
 option mpec = knitro;
 *Kernel_duti.optfile=1;
 solve submodel using nlp minimizing obj_sub;

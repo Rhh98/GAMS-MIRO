@@ -1,32 +1,36 @@
---- Job HarryPotter_emp.gms Start 07/03/20 16:33:39 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job HarryPotter_emp.gms Start 07/07/20 15:35:42 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter_emp.gms
-    PageSize 0
-    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\
     SysDir E:\31.1\
+    CurDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\
     LogOption 3
-    ErrMsg 1
-    ErrorLog 99
-    IDE 1
+    Trace C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\_sys_trace_harrypotter_emp.trc
+    InputDir1 C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\
+    TraceOpt 3
+    ExecMode 0
     LstTitleLeftAligned 1
+    IDCGDXInput _miro_gdxin_.gdx
+    IDCGDXOutput _miro_gdxout_.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 24 days ago
-Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
+--- HarryPotter_emp.gms(92) 3 Mb
+--- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\_miro_gdxin_.gdx
 --- HarryPotter_emp.gms(195) 3 Mb
---- Starting execution: elapsed 0:00:00.017
+--- Starting execution: elapsed 0:00:00.014
 --- HarryPotter_emp.gms(84) 4 Mb
 --- Generating NLP model submodel
 --- HarryPotter_emp.gms(86) 7 Mb
 ---   101 rows  202 columns  10,401 non-zeroes
 ---   40,403 nl-code  200 nl-non-zeroes
 --- HarryPotter_emp.gms(86) 5 Mb
---- Executing CONOPT: elapsed 0:00:00.076
+--- Executing CONOPT: elapsed 0:00:00.079
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -57,14 +61,13 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- Restarting execution
 --- HarryPotter_emp.gms(86) 2 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:00.216
---- HarryPotter_emp.gms(157) 37 Mb
+--- HarryPotter_emp.gms(114) 13 Mb--- HarryPotter_emp.gms(114) 16 Mb--- HarryPotter_emp.gms(114) 25 Mb--- HarryPotter_emp.gms(114) 27 Mb--- HarryPotter_emp.gms(114) 36 Mb--- HarryPotter_emp.gms(116) 36 Mb--- HarryPotter_emp.gms(117) 36 Mb--- HarryPotter_emp.gms(157) 37 Mb
 --- Generating NLP model submodel
 --- HarryPotter_emp.gms(159) 39 Mb
 ---   101 rows  202 columns  10,401 non-zeroes
 ---   41,003 nl-code  200 nl-non-zeroes
---- HarryPotter_emp.gms(159) 37 Mb
---- Executing CONOPT: elapsed 0:00:01.260
+--- HarryPotter_emp.gms(159) 39 Mb--- HarryPotter_emp.gms(159) 37 Mb
+--- Executing CONOPT: elapsed 0:00:01.425
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
@@ -75,7 +78,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
    Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
-      0   0        3.6553618903E-05 (Input point)
+      0   0        1.8276809451E+00 (Input point)
  
                    Pre-triangular equations:   0
                    Post-triangular equations:  101
@@ -83,24 +86,24 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
       1   0        0.0000000000E+00 (After pre-processing)
       2   0        0.0000000000E+00 (After scaling)
  
- ** Feasible solution. Value of objective =   0.152884079351
+ ** Feasible solution. Value of objective =    1.98052847087
  
    Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
-      6   4        1.5288407677E-01 4.9E-06   101 1.0E+00    5 F  T
-      8   4        1.5288407672E-01 5.9E-08   101
+      6   4        7.2216701462E-01 2.2E-02   101 1.0E+00    6 F  T
+     11   4        6.9314731225E-01 6.0E-07   101 1.0E+00    7 F  T
+     12   4        6.9314731225E-01 8.5E-08   101
  
  ** Optimal solution. Reduced gradient less than tolerance.
  
 --- Restarting execution
 --- HarryPotter_emp.gms(159) 36 Mb
 --- Reading solution for model submodel
---- Executing after solve: elapsed 0:00:01.580
 --- Generating EMP model Kernel_duti
 --- HarryPotter_emp.gms(160) 39 Mb
 ---   104 rows  305 columns  10,908 non-zeroes
 ---   43,328 nl-code  704 nl-non-zeroes
---- HarryPotter_emp.gms(160) 37 Mb
---- Executing JAMS: elapsed 0:00:01.636
+--- HarryPotter_emp.gms(160) 39 Mb--- HarryPotter_emp.gms(160) 37 Mb
+--- Executing JAMS: elapsed 0:00:01.822
 
 JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -118,9 +121,9 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 1
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\emp.dat will be solved by GAMS
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat will be solved by GAMS
 ---
---- Job emp.dat Start 07/03/20 16:33:40 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job emp.dat Start 07/07/20 15:35:44 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -138,34 +141,33 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     QCP CONOPT
     MIQCP SBB
     RMIQCP CONOPT
-    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\emp.dat
-    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\emplst.dat
-    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\HARRYP~1\225i\
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\HARRYP~1\225b\
     SysDir E:\31.1\
     LogOption 3
     AppendLog 1
     Suppress 1
-    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\empcntr.dat
-    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\empmatr.dat
-    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\empstat.dat
-    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225h\empsolu.dat
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empsolu.dat
     ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 24 days ago
-Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- emp.dat(18773) 4 Mb
---- Starting execution: elapsed 0:00:00.070
---- emp.dat(18772) 5 Mb
+--- emp.dat(18674) 4 Mb
+--- Starting execution: elapsed 0:00:00.075
+--- emp.dat(18673) 5 Mb
 --- Generating MPEC model m
---- emp.dat(18773) 8 Mb
+--- emp.dat(18674) 8 Mb
 ---   304 rows  404 columns  31,008 non-zeroes
 ---   4,225 nl-code  604 nl-non-zeroes
---- emp.dat(18773) 6 Mb
---- Executing KNITRO: elapsed 0:00:00.126
+--- emp.dat(18674) 6 Mb
+--- Executing KNITRO: elapsed 0:00:00.169
 
 KNITRO           31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
@@ -192,7 +194,6 @@ Knitro changing bar_penaltyrule from AUTO to 2.
 Knitro changing bar_switchrule from AUTO to 2.
 Knitro changing linesearch from AUTO to 1.
 Knitro changing linsolver from AUTO to 2.
-Knitro shifted start point further inside presolved bounds (100 variables).
 
 Problem Characteristics                                 (   Presolved)
 -----------------------
@@ -219,40 +220,39 @@ Number of nonzeros in Hessian:                     5453 (        5453)
 
   Iter      Objective      FeasError   OptError    ||Step||    CGits 
 --------  --------------  ----------  ----------  ----------  -------
-       0    7.211874e+01   6.502e+00
-      10    7.588835e+01   2.322e-01   1.781e+00   3.543e+00        0
-      20    7.761840e+01   4.173e-04   2.359e-01   7.668e+00        0
-      30    7.725904e+01   1.530e-04   1.020e-01   1.689e+01        2
-      40    7.677467e+01   1.524e-04   7.641e-02   5.749e-01        0
-      50    1.048706e+02   2.721e-04   3.219e+01   3.767e-01        0
-      60    1.194185e+02   1.022e-03   3.447e+01   4.409e-01        0
-      70    7.697760e+01   4.474e-02   5.521e-01   6.497e+02        0
-      80    7.646063e+01   3.014e-05   4.363e-04   5.542e+04        0
-      82    7.639755e+01   3.888e-06   9.642e-06   1.003e+04        0
+       0    7.974120e+01   1.000e+00
+      10    7.954570e+01   5.373e-03   7.999e-02   9.874e+00        0
+      20    8.508005e+01   4.764e-03   2.788e+01   1.714e+00        0
+      30    1.146341e+02   3.000e-05   3.301e+01   3.254e+00        0
+      40    1.417061e+02   4.474e-05   3.655e+01   4.081e+02        0
+      50    7.933704e+01   1.609e-02   1.705e-01   1.102e+04        0
+      60    7.964307e+01   8.287e-04   6.837e-02   3.728e+04        0
+      70    7.940541e+01   1.333e-06   3.105e-05   4.544e+03        0
+      73    7.940552e+01   9.919e-07   1.389e-05   3.308e+03        0
 
 EXIT: Locally optimal solution found.
 
 Final Statistics
 ----------------
-Final objective value               =   7.63975491816147e+01
-Final feasibility error (abs / rel) =   3.89e-06 / 5.98e-07
-Final optimality error  (abs / rel) =   9.64e-06 / 3.65e-07
-# of iterations                     =         82 
-# of CG iterations                  =         45 
-# of function evaluations           =        159
-# of gradient evaluations           =         84
-# of Hessian evaluations            =         83
-Total program time (secs)           =       2.259 (     2.266 CPU time)
-Time spent in evaluations (secs)    =       0.214
+Final objective value               =   7.94055238335741e+01
+Final feasibility error (abs / rel) =   9.92e-07 / 9.92e-07
+Final optimality error  (abs / rel) =   1.39e-05 / 5.17e-07
+# of iterations                     =         73 
+# of CG iterations                  =         53 
+# of function evaluations           =        238
+# of gradient evaluations           =         74
+# of Hessian evaluations            =         74
+Total program time (secs)           =       2.553 (     2.547 CPU time)
+Time spent in evaluations (secs)    =       0.242
 
 ===============================================================================
 
 Solve finished: status = optimal
 --- Restarting execution
---- emp.dat(18773) 3 Mb
+--- emp.dat(18674) 3 Mb
 --- Reading solution for model m
 *** Status: Normal completion
---- Job emp.dat Stop 07/03/20 16:33:43 elapsed 0:00:02.537
+--- Job emp.dat Stop 07/07/20 15:35:47 elapsed 0:00:02.881
 --- Returning from GAMS step
 ---
 --- Equations skipped = 1  Equations added = 201
@@ -261,7 +261,7 @@ Solve finished: status = optimal
 --- Restarting execution
 --- HarryPotter_emp.gms(160) 36 Mb
 --- Reading solution for model Kernel_duti
---- Executing after solve: elapsed 0:00:04.680
---- HarryPotter_emp.gms(195) 38 Mb
+--- HarryPotter_emp.gms(193) 37 Mb--- HarryPotter_emp.gms(195) 38 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\_miro_gdxout_.gdx
 *** Status: Normal completion
---- Job HarryPotter_emp.gms Stop 07/03/20 16:33:43 elapsed 0:00:04.898
+--- Job HarryPotter_emp.gms Stop 07/07/20 15:35:48 elapsed 0:00:05.441

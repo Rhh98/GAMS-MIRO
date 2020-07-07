@@ -7,7 +7,8 @@ outputOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here
-    plotOutput(ns('plott'),height=height)
+    fluidRow(column(6,plotlyOutput(ns('plot1'),height=height)),
+              column(6,plotlyOutput(ns('plot2'),height=height)))
     #dataTableOutput(ns('tabletest'),height=height)
   ) 
 }
@@ -22,66 +23,94 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   T_edu<-data$education_t[-which(is.na(data$education_t))]
   T_label<-data$label[-which(is.na(data$label))]
   Z<-matrix(data$zval[-which(is.na(data$zval))],nrow = 100)
+  Z<-t(Z)
   newZ<-matrix(data$newz[-which(is.na(data$newz))],nrow = 100)
+  newZ<-t(newZ)
   rank<-data$ranking[-which(is.na(data$ranking))]
-   output$plott<-renderPlot({
-     # plot(c(),c(),xlim = c(0,1),ylim=c(0,1))
-     par(mfrow=c(1,2))
-     contour(Z,levels = c(0,0),lwd = 2,main = "Training and Trusted item", xlab="Magic Heritage", ylab="Education")
-     for (i in 1:length(Posind)){
-     points(X_heri[Posind[i]],X_edu[Posind[i]],bg='blue',col='blue',pch=3,cex=1.5)
-     }
-     X_temp<-X_heri[-Posind]
-     X_temp2<-X_edu[-Posind]
-     for (i in 1:100-length(Posind))
-     {
-     points(X_temp[i],X_temp2[i],bg='blue',col='blue',pch=21,cex=1.5)
-     }
+  # plot(c(),c(),xlim = c(0,1),ylim=c(0,1))
+  
+  # fig1<-plot_ly(z=Z,type = "contour",contours=list(start=0,end=0,coloring='lines'))
+  # fig1<-layout(fig1,title="Training and Trusted item" ,xaxis=list(title="Magic Heritage")
+  #              , yaxis=list(title="Education"))        
+  
+  fig1<- plot_ly()
+  fig1<-add_trace(fig1,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "Train Pos"
+  ,mode = "markers",marker=list(size=10,symbol='cross',color='blue'))
+  
+  X_temp<-X_heri[-Posind]
+  X_temp2<-X_edu[-Posind]
+  
+  
+  fig1<-add_trace(fig1,type='scatter',x=X_temp,y=X_temp2,name="Train Neg",mode="markers"
+                  ,marker=list(size=10,symbol='o',color='blue'))
+  
   Posind<-which(T_label>0)
-  for (i in 1:length(Posind)){
-    points(T_heri[Posind[i]],T_edu[Posind[i]],bg='red',col='red',pch=3,cex=1.5)
-  }
+  
+  fig1<-add_trace(fig1,type='scatter',x=T_heri[Posind],y=T_edu[Posind],mode='markers'
+                  ,marker=list(size=10,symbol='cross',color='orange',name="Trust Pos"))
+  
   T_temp<-T_heri[-Posind]
   T_temp2<-T_edu[-Posind]
-  for (i in 1:100-length(Posind))
-  {
-    points(T_temp[i],T_temp2[i],col='red',bg='red',pch=21,cex=1.5)
-  }
-  legend(0.8,1,legend=c("Train Pos","Train Neg","Trust Pos","Trust Neg"),pch=c(3,21,3,21)
-          ,col=c("blue","blue","red","red"),pt.bg=c("blue","blue","red","red"))
-#debug output
+  fig1<-add_trace(fig1,type='scatter',x=T_temp,y=T_temp2,name="Trust Neg",mode="markers"
+                  ,marker=list(size=10,symbol='o',color='orange'))
+  
+  Contour1<-contourLines(x=1:100/100,y=1:100/100,z=t(Z),levels = c(0))
+  conx<-Contour1[[1]]$x
+  cony<-Contour1[[1]]$y
+  fig1<-add_trace(fig1,x=conx,y=cony,type='scatter',mode='lines',name="Classfier")
+  # fig1<-add_trace(fig1,type="contour",x=1:100/100,y=1:100/100,z=Z
+  #                 ,contours=list(start=0,end=0,coloring='lines')
+  #                 ,name="Classifier",showscale = FALSE,
+  #                 line=list(width=2),hoverinfo='none',hoverongaps=FALSE)
+  fig1<-layout(fig1,title='Learning without Trusted item',xaxis=list(title='Magical Heritage')
+               ,yaxis=list(title='Education'))
+  
+  #debug output
   Posind<-which(X_label > 0)
   Newind<-which(rank<41)
   NewPos<-setdiff(Newind,Posind)
   Posind<-setdiff(Posind,Newind)
-  contour(newZ,levels = c(0,0),lwd = 2,main = "Debugging", xlab="Magic Heritage", ylab="Education")
-  if(length(Posind)){
-  for (i in 1:length(Posind)){
-    points(X_heri[Posind[i]],X_edu[Posind[i]],bg='blue',col='blue',pch=3,cex=1.5)
-  }
+  
+    if(length(Posind)){
+    
+    fig2<- plot_ly()
+    fig2<-add_trace(fig2,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "True Pos"
+                   ,mode = "markers",marker=list(size=10,symbol='cross',color='blue'))
+    
   }
   X_temp<-X_heri[-c(Posind,Newind)]
   X_temp2<-X_edu[-c(Posind,Newind)]
   if(length(X_temp))
   {
-  for (i in 1:length(X_temp))
-  {
-    points(X_temp[i],X_temp2[i],bg='blue',col='blue',pch=21,cex=1.5)
-  }
+    fig2<-add_trace(fig2,type='scatter',x=X_temp,y=X_temp2,name="True Neg",mode="markers"
+                    ,marker=list(size=10,symbol='o',color='blue'))
   }
   if(length(NewPos))
-  {for (i in 1:length(NewPos)){
-    points(X_heri[NewPos[i]],X_edu[NewPos[i]],bg='black',col='black',pch=21,cex=1.5)
-  }}
+  {
+    fig2<-add_trace(fig2,type='scatter',x=X_heri[NewPos],y=X_edu[NewPos],name="False Neg",mode="markers"
+                    ,marker=list(size=10,symbol='cross',color='black'))
+  }
   X_temp<-X_heri[setdiff(Newind,NewPos)]
   X_temp2<-X_edu[setdiff(Newind,NewPos)]
   if(length(X_temp))
-  {for (i in 1:length(X_temp))
   {
-    points(X_temp[i],X_temp2[i],bg='black',col='black',pch=3,cex=1.5)
-  }}
-  legend(0.8,1,legend=c("True Pos","True Neg","False Pos","False Neg"),pch=c(3,21,3,21)
-         ,col=c("blue","blue","black","black"),pt.bg=c("blue","blue","black","black"))
- })
+    fig2<-add_trace(fig2,type='scatter',x=X_temp,y=X_temp2,name="False Pos",mode="markers"
+                    ,marker=list(size=10,symbol='o',color='black'))
+
+  }
+  
+  fig2<-layout(fig2,title='Debug using DUTI',xaxis=list(title='Magical Heritage')
+               ,yaxis=list(title='Education'))
+  
+  x <- c(1:100)
+  random_y <- rnorm(100, mean = 0)
+  data <- data.frame(x, random_y)
+  Contour2<-contourLines(x=1:100/100,y=1:100/100,z=t(newZ),levels = c(0))
+  conx<-Contour2[[1]]$x
+  cony<-Contour2[[1]]$y
+  fig2<-add_trace(fig2,x=conx,y=cony,type='scatter',mode='lines',name="Classfier" )
+  
+  output$plot1<-renderPlotly(fig1)
+  output$plot2<-renderPlotly(fig2)
   #output$tabletest<-DT::renderDataTable(datatable(cbind(newZ)))
 }
