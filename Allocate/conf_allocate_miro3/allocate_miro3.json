@@ -124,6 +124,11 @@
     }
   },
   "defaultScenName": "default scenario",
+  "readme": {
+    "tabTitle": "Allocate",
+    "filename": "Allocate.md",
+    "enableMath": false
+  },
   "inputGroups": [
     {
       "name": "prevalence",
@@ -144,10 +149,6 @@
       "members": ["kitinl", "operation"]
     }
   ],
-  "readme": {
-    "tabTitle": "Allocate",
-    "filename": "Allocate.md"
-  },
   "handsontable": {
     "stretchH": "none",
     "readonly": false,

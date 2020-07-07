@@ -50,7 +50,9 @@ allocateOutput <- function(id,height=NULL,options = NULL, path=NULL){
         
         dataTableOutput(ns('dataT'),height=height)
       ),
-      mainPanel(leafletOutput(ns('map'),height=height)
+      mainPanel(
+        leafletOutput(ns('map'),height=height),
+        verbatimTextOutput(ns('text'))
       ) 
     )
   )
@@ -80,8 +82,8 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
    }
   output$map<-renderLeaflet({map<-leaflet(data) 
                             map<-addTiles(map) 
-                            map<-addMarkers(map,~lonl[lind],~latl[lind] , label = l)
-                            map<-addCircleMarkers(map,~lonc[cind], ~latc[cind], label = c)
+                            map<-addMarkers(map,~lonl[lind],~latl[lind] , label = l,layerId = paste('lab:',l))
+                            map<-addCircleMarkers(map,~lonc[cind], ~latc[cind], label = c,layerId =paste('center:',c) )
                             for (i in 1:length(l))
                             {
                               ind<-data$l==l[i] & !is.na(data$val)
@@ -122,10 +124,21 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                               
                             }
                             map<-addLayersControl(map,
-                              baseGroups =c( 'all',paste('lab:',l),paste('center:',c)),
+                              overlayGroups = 'all',
                               options = layersControlOptions(collapsed = FALSE)
                             )
                             })
+  
+  idlayer<-c(paste('center:',c),paste('lab:',l),'all')
+  observeEvent(input$map_marker_click,{
+    click<-input$map_marker_click
+    map<-leafletProxy("map")
+   hideGroup(map,idlayer)
+   showGroup(map,idlayer[idlayer==click$id])
+   output$text<-renderText(paste("You select",click$id))
+  })
+  
+  
   
   
 }
