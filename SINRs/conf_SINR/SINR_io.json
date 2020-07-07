@@ -1,0 +1,95 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"g":	{
+			"alias":	"G_ij: gain from transmitter j to receiver i",
+			"symtype":	"parameter",
+			"headers":	{
+				"n":	{
+					"type":	"string",
+					"alias":	"input and output size"
+				},
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"G_ij: gain from transmitter j to receiver i"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["p"],
+			"symtext":	["transmitter power"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"sigma":	{
+			"alias":	"sigma",
+			"symtype":	"parameter",
+			"headers":	{
+				"n":	{
+					"type":	"string",
+					"alias":	"input and output size"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"sigma"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"power":	{
+			"alias":	"power",
+			"symtype":	"parameter",
+			"headers":	{
+				"n":	{
+					"type":	"string",
+					"alias":	"input and output size"
+				},
+				"maxworst":	{
+					"type":	"numeric",
+					"alias":	"maxworst"
+				},
+				"maxaverage":	{
+					"type":	"numeric",
+					"alias":	"maxaverage"
+				}
+			}
+		},
+		"s":	{
+			"alias":	"SINR",
+			"symtype":	"parameter",
+			"headers":	{
+				"n":	{
+					"type":	"string",
+					"alias":	"input and output size"
+				},
+				"maxworst":	{
+					"type":	"numeric",
+					"alias":	"maxworst"
+				},
+				"maxaverage":	{
+					"type":	"numeric",
+					"alias":	"maxaverage"
+				}
+			}
+		}
+	}
+}

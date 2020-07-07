@@ -1,0 +1,9 @@
+curdir="C:/Users/hasee/Documents/GitHub/GAMS-MIRO/SINRs"
+lo=3
+execMode=0
+IDCGDXOutput="_miro_gdxout_.gdx"
+idir1="C:\Users\hasee\Documents\GitHub\GAMS-MIRO\SINRs"
+IDCGDXInput="_miro_gdxin_.gdx"
+LstTitleLeftAligned=1
+trace="_sys_trace_sinr.trc"
+traceopt=3

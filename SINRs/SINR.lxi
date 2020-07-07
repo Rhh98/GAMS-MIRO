@@ -1,0 +1,78 @@
+B 3 C o m p i l a t i o n
+B 83 Equation Listing    SOLVE MaxWorst Using NLP From line 50
+D 86 SmallestS
+D 97 TransPower
+D 102 ConeSU
+D 113 ConeDU
+D 124 ConeV
+D 135 defSu3
+D 146 defDu3
+D 157 defv3
+B 169 Column Listing      SOLVE MaxWorst Using NLP From line 50
+E 172 z
+E 199 q
+E 238 FixU
+E 254 u
+E 273 u3
+E 292 FixV
+E 308 v
+E 327 v3
+B 347 Model Statistics    SOLVE MaxWorst Using NLP From line 50
+B 365 Solution Report     SOLVE MaxWorst Using NLP From line 50
+F 382 SmallestS
+F 394 TransPower
+F 396 ConeSU
+F 417 ConeDU
+F 427 ConeV
+F 437 defSu3
+F 458 defDu3
+F 468 defv3
+G 480 z
+G 482 q
+G 492 FixU
+G 518 u
+G 544 u3
+G 570 FixV
+G 580 v
+G 590 v3
+B 608 Equation Listing    SOLVE Average Using NLP From line 74
+D 611 SmallestS
+D 622 TransPower
+D 627 ConeSU
+D 638 ConeDU
+D 649 ConeV
+D 660 defSU2
+D 671 defDU2
+D 682 defv3
+D 693 defobj
+B 699 Column Listing      SOLVE Average Using NLP From line 74
+E 702 q
+E 741 FixU
+E 757 u
+E 776 u3
+E 795 FixV
+E 811 v
+E 830 v3
+E 849 zz
+E 878 obj
+B 886 Model Statistics    SOLVE Average Using NLP From line 74
+B 904 Solution Report     SOLVE Average Using NLP From line 74
+F 921 SmallestS
+F 933 TransPower
+F 935 ConeSU
+F 956 ConeDU
+F 966 ConeV
+F 976 defSU2
+F 997 defDU2
+F 1007 defv3
+F 1019 defobj
+G 1021 q
+G 1031 FixU
+G 1057 u
+G 1083 u3
+G 1109 FixV
+G 1119 v
+G 1129 v3
+G 1139 zz
+G 1151 obj
+B 1161 E x e c u t i o n

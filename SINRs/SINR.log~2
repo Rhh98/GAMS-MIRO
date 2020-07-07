@@ -1,0 +1,200 @@
+--- Job SINR.gms Start 07/07/20 14:40:34 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\SINRs\SINR.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\SINRs\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCGenerateJSON conf_SINR/SINR_io.json
+    IDCGenerateGDX data_SINR/default.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- SINR.gms(76) 3 Mb
+--- Resetting Table request for g due to last domain is universe.
+--- Starting execution: elapsed 0:00:00.013
+--- SINR.gms(49) 4 Mb
+--- Generating NLP model MaxWorst
+--- SINR.gms(50) 6 Mb
+---   58 rows  84 columns  193 non-zeroes
+---   208 nl-code  52 nl-non-zeroes
+--- SINR.gms(50) 4 Mb
+--- Executing MOSEK: elapsed 0:00:00.053
+
+MOSEK            31.1.0 r55b6ce3 Released May  1, 2020 WEI x86 64bit/MS Window
+
+	M O S E K       version 9.2.4 (Build date: 2020-4-2 00:57:32)
+	Copyright (C)   MOSEK ApS, Fruebjergvej 3, Box 16
+	                DK-2100 Copenhagen, Denmark
+	                https://www.mosek.com
+
+
+Problem
+  Name                   :                 
+  Objective sense        : max             
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 58              
+  Cones                  : 26              
+  Scalar variables       : 84              
+  Matrix variables       : 0               
+  Integer variables      : 0               
+
+Optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator started.
+Freed constraints in eliminator : 1
+Eliminator terminated.
+Eliminator - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - number                 : 0               
+Presolve terminated. Time: 0.00    
+Problem
+  Name                   :                 
+  Objective sense        : max             
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 58              
+  Cones                  : 26              
+  Scalar variables       : 84              
+  Matrix variables       : 0               
+  Integer variables      : 0               
+
+Optimizer  - threads                : 1               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 26
+Optimizer  - Cones                  : 26
+Optimizer  - Scalar variables       : 84                conic                  : 78              
+Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
+Factor     - setup time             : 0.00              dense det. time        : 0.00            
+Factor     - ML order time          : 0.00              GP order time          : 0.00            
+Factor     - nonzeros before factor : 273               after factor           : 274             
+Factor     - dense dim.             : 0                 flops                  : 6.44e+03        
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   5.5e+00  1.3e+00  2.4e+01  0.00e+00   2.256346207e+00   2.484467505e+01   1.0e+00  0.01  
+1   6.5e-01  1.5e-01  1.6e+00  2.84e-01   1.209641286e-01   3.870121564e+00   1.2e-01  0.01  
+2   1.3e-01  3.1e-02  6.3e-02  1.53e+00   1.990473252e-01   7.785315448e-01   2.4e-02  0.01  
+3   3.3e-02  7.7e-03  7.3e-03  1.43e+00   6.685315709e-01   7.871089011e-01   6.0e-03  0.01  
+4   6.0e-03  1.4e-03  6.1e-04  1.10e+00   7.570032813e-01   7.776695667e-01   1.1e-03  0.01  
+5   4.4e-04  1.0e-04  1.2e-05  1.02e+00   7.751417617e-01   7.766579408e-01   8.1e-05  0.01  
+6   1.0e-05  2.4e-06  4.2e-08  1.00e+00   7.765076644e-01   7.765421642e-01   1.9e-06  0.01  
+7   1.5e-06  3.5e-07  2.4e-09  1.00e+00   7.765307840e-01   7.765358684e-01   2.7e-07  0.01  
+8   1.1e-07  2.5e-08  4.6e-11  1.00e+00   7.765341634e-01   7.765345269e-01   2.0e-08  0.01  
+9   7.4e-09  1.7e-09  7.9e-13  1.00e+00   7.765343871e-01   7.765344110e-01   1.3e-09  0.01  
+Optimizer terminated. Time: 0.01    
+
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 7.7653438706e-01    nrm: 5e+00    Viol.  con: 6e-09    var: 0e+00    cones: 0e+00  
+  Dual.    obj: 7.7653441098e-01    nrm: 3e-01    Viol.  con: 6e-17    var: 1e-09    cones: 0e+00  
+
+Return code - 0 [MSK_RES_OK]: No error occurred.
+--- Restarting execution
+--- SINR.gms(50) 2 Mb
+--- Reading solution for model MaxWorst
+--- Executing after solve: elapsed 0:00:00.178
+--- SINR.gms(58) 3 Mb
+--- Generating NLP model Average
+--- SINR.gms(74) 5 Mb
+---   59 rows  89 columns  199 non-zeroes
+---   208 nl-code  52 nl-non-zeroes
+--- SINR.gms(74) 3 Mb
+--- Executing MOSEK: elapsed 0:00:00.200
+
+MOSEK            31.1.0 r55b6ce3 Released May  1, 2020 WEI x86 64bit/MS Window
+
+	M O S E K       version 9.2.4 (Build date: 2020-4-2 00:57:32)
+	Copyright (C)   MOSEK ApS, Fruebjergvej 3, Box 16
+	                DK-2100 Copenhagen, Denmark
+	                https://www.mosek.com
+
+
+Setting up initial basis solution.
+26 basis variables are expected but only 58 basis variables are specified. (400)
+Problem
+  Name                   :                 
+  Objective sense        : max             
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 58              
+  Cones                  : 26              
+  Scalar variables       : 88              
+  Matrix variables       : 0               
+  Integer variables      : 0               
+
+Optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator started.
+Freed constraints in eliminator : 5
+Eliminator terminated.
+Eliminator - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - number                 : 0               
+Presolve terminated. Time: 0.00    
+Problem
+  Name                   :                 
+  Objective sense        : max             
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 58              
+  Cones                  : 26              
+  Scalar variables       : 88              
+  Matrix variables       : 0               
+  Integer variables      : 0               
+
+Optimizer  - threads                : 1               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 22
+Optimizer  - Cones                  : 26
+Optimizer  - Scalar variables       : 84                conic                  : 78              
+Optimizer  - Semi-definite variables: 0                 scalarized             : 0               
+Factor     - setup time             : 0.00              dense det. time        : 0.00            
+Factor     - ML order time          : 0.00              GP order time          : 0.00            
+Factor     - nonzeros before factor : 92                after factor           : 124             
+Factor     - dense dim.             : 0                 flops                  : 1.46e+03        
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   5.5e+00  1.3e+00  3.0e+01  0.00e+00   1.197487822e+01   4.118591425e+01   1.0e+00  0.02  
+1   6.2e-01  1.5e-01  1.7e+00  4.16e-01   4.202740963e+00   8.533914915e+00   1.1e-01  0.02  
+2   5.2e-02  1.2e-02  2.7e-02  1.19e+00   4.358532128e+00   4.685733896e+00   9.5e-03  0.02  
+3   1.6e-03  3.8e-04  1.4e-04  1.03e+00   4.364036167e+00   4.374104606e+00   3.0e-04  0.02  
+4   7.2e-05  1.7e-05  1.3e-06  1.00e+00   4.364855504e+00   4.365297481e+00   1.3e-05  0.02  
+5   8.3e-06  2.0e-06  5.1e-08  1.00e+00   4.364883673e+00   4.364934632e+00   1.5e-06  0.02  
+6   8.4e-07  2.0e-07  1.7e-09  1.00e+00   4.364886626e+00   4.364891824e+00   1.5e-07  0.02  
+7   1.8e-07  4.3e-08  1.7e-10  1.00e+00   4.364886887e+00   4.364888003e+00   3.3e-08  0.02  
+8   2.0e-08  4.1e-09  6.0e-12  1.00e+00   4.364886967e+00   4.364887073e+00   3.1e-09  0.02  
+Optimizer terminated. Time: 0.02    
+
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 4.3648869666e+00    nrm: 5e+00    Viol.  con: 2e-08    var: 0e+00    cones: 0e+00  
+  Dual.    obj: 4.3648870733e+00    nrm: 1e+00    Viol.  con: 4e-16    var: 5e-09    cones: 0e+00  
+
+Basic solution summary
+  Problem status  : UNKNOWN
+  Solution status : UNKNOWN
+  Primal.  obj: 0.0000000000e+00    nrm: 5e+00    Viol.  con: 8e-01    var: 0e+00    cones: 0e+00  
+  Dual.    obj: -3.0318169921e+00   nrm: 3e-01    Viol.  con: 3e-01    var: 1e+00    cones: 0e+00  
+
+Return code - 0 [MSK_RES_OK]: No error occurred.
+--- Restarting execution
+--- SINR.gms(74) 2 Mb
+--- Reading solution for model Average
+--- Executing after solve: elapsed 0:00:00.321
+--- SINR.gms(76) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\SINRs\data_SINR/default.gdx
+*** Status: Normal completion
+--- Job SINR.gms Stop 07/07/20 14:40:34 elapsed 0:00:00.341
+
