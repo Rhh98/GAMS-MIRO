@@ -7,7 +7,8 @@ resOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here 
-     plotOutput(ns('feed'),height=height)
+     plotOutput(ns('feed'),height=height),
+    
   ) 
 }
 

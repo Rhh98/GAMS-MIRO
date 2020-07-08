@@ -1,35 +1,19 @@
---- Job tspmod.gms Start 07/04/20 13:30:54 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
---- Applying:
-    E:\31.1\gmsprmNT.txt
---- GAMS Parameters defined
-    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
-    PageSize 0
-    Action C
-    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\
-    SysDir E:\31.1\
-    LogOption 3
-    ErrMsg 1
-    ErrorLog 99
-    IDE 1
-    LstTitleLeftAligned 1
-    IDCJSON conf_tspmod/tspmod_io.json
-GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 25 days ago
-Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
-          E:\31.1\gamslice.txt
-          Evaluation license: Not for commercial or production use
---- Starting compilation
---- tspmod.gms(5) 2 Mb
---- . set.csv(1) 3 Mb
---- tspmod.gms(13) 3 Mb
---- . capitals.csv(51) 3 Mb
---- tspmod.gms(79) 3 Mb
-*** Status: Normal completion
---- Job tspmod.gms Stop 07/04/20 13:30:54 elapsed 0:00:00.031
 
-Warning in eval(ei, envir) :
-  The alias of symbol: 'stateinfo' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'tour' was selected to be overwritten. However, this symbol could not be found.
-tspmod.miroapp successfully deployed to location C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp
+TRACE [2020-07-04 13:33:49] Logging facility initialised.
+DEBUG [2020-07-04 13:33:50] Database connection established.
+DEBUG [2020-07-04 13:33:50] Access Control initialised.
+WARN [2020-07-04 13:33:50] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
+
+This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
+Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
+INFO [2020-07-04 13:33:50] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-04 13:33:51] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-04 13:33:51] Db: 2552 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-04 13:33:51] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-04 13:33:51] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-04 13:33:51] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
+DEBUG [2020-07-04 13:33:51] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-07-04 13:33:51] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
+DEBUG [2020-07-04 13:33:51] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
+DEBUG [2020-07-04 13:33:51] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-04 13:33:57] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).

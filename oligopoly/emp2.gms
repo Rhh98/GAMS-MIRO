@@ -18,11 +18,11 @@ $offtext
 
 *-------------------------------------------------------------------------------------------
 * CES - COURNOT & STACKELBERG MODEL - 2 or more
-$onExternalInput
+
 SETS
 i                "Cournot & Stackelberg firms"    / 1*3 /
 lead(i) /1/;
-$offexternalInput
+
 set
 leader(i)        "Stackelberg-leader"
 ;
@@ -105,6 +105,7 @@ display q.l, p.l ;
 set CourHeader / quantity, price ,profit, gamma, dbar,cost,beta,l/;
 $onexternaloutput
 table resultCour(i,CourHeader);
+table resultCour2(i,CourHeader);
 $offexternaloutput
 resultCour(i,'quantity')=q.l(i);
 resultCour(i,'price')=p.l;
@@ -114,7 +115,7 @@ resultCour(i,'dbar')=dbar;
 resultCour(i,'cost')=c(i);
 resultCour(i,'beta')=beta(i);
 resultCour(i,'l')=L(i);
-
+resultCour2(i,CourHeader)=resultCour(i,CourHeader)
 *-------------------------------------------------------------------------------------------
 * Model solve and display for Stackelberg Case
 *   NOTE
