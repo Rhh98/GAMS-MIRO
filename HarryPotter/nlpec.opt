@@ -1,4 +1,2 @@
 aggregate none
 constraint inequality
-*initmu 1e-2
-*finalmu 1e-4
