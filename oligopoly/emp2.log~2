@@ -1,38 +1,27 @@
 
-Warning in eval(ei, envir) :
-  The alias of symbol: 'i' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'lead' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'd' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'ninfo_stac' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-07-08 22:58:44] Logging facility initialised.
-DEBUG [2020-07-08 22:58:45] Database connection established.
-DEBUG [2020-07-08 22:58:45] Access Control initialised.
-WARN [2020-07-08 22:58:45] There are orphaned tables in your database: 'emp2_i', 'emp2_lead', 'emp2_d', 'emp2_ninfo_stac'.
+TRACE [2020-07-08 23:00:21] Logging facility initialised.
+DEBUG [2020-07-08 23:00:22] Database connection established.
+DEBUG [2020-07-08 23:00:22] Access Control initialised.
+WARN [2020-07-08 23:00:22] There are orphaned tables in your database: 'emp2_i', 'emp2_lead', 'emp2_d', 'emp2_ninfo_stac'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-08 22:58:45] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-08 22:58:46] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-07-08 22:58:46] Db: 123 rows in table: '_sys_metadata_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-07-08 22:58:46] Db: Metadata (table: '_sys_metadata_emp2') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-08 22:58:46] Db: Metadata (table: '_sys_metadata_emp2') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_resultcour' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_resultcour2' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_resultstac' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_linfo_stac' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_resultbert' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_fdata' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2_jdata' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was added to table: 'emp2__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-08 22:58:46] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
-DEBUG [2020-07-08 22:58:46] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-07-08 22:58:46] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-08 22:58:50] Scenario: '1' unlocked.
-DEBUG [2020-07-08 22:58:50] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
-INFO [2020-07-08 22:58:54] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
-DEBUG [2020-07-08 22:58:54] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
-DEBUG [2020-07-08 22:58:54] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-07-08 22:58:56] Sidebar menu item: 'inputData' selected.
+INFO [2020-07-08 23:00:22] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-08 23:00:23] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-07-08 23:00:23] Db: 123 rows in table: '_sys_metadata_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-07-08 23:00:23] Db: Metadata (table: '_sys_metadata_emp2') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-08 23:00:23] Db: Metadata (table: '_sys_metadata_emp2') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-08 23:00:23] Db: Data was added to table: 'emp2_resultcour' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:23] Db: Data was added to table: 'emp2_resultcour2' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was added to table: 'emp2_resultstac' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was added to table: 'emp2_linfo_stac' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was added to table: 'emp2_resultbert' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was added to table: 'emp2_fdata' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was added to table: 'emp2_jdata' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was added to table: 'emp2__scalars' (Db.exportScenDataset).
+DEBUG [2020-07-08 23:00:24] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-07-08 23:00:24] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-07-08 23:00:24] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-08 23:00:30] Scenario: '1' unlocked.
+DEBUG [2020-07-08 23:00:30] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-07-08 23:00:31] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).

@@ -113,12 +113,12 @@
     {
       "name": "Cournot model",
       "members": ["resultcour", "resultcour2"],
-      "sameTab": true
+      "sameTab": false
     },
     {
       "name": "Stackelberg model",
       "members": ["linfo_stac", "resultstac"],
-      "sameTab": true
+      "sameTab": false
     }
   ]
 }
