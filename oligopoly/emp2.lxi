@@ -1,297 +1,307 @@
 B 3 C o m p i l a t i o n
-B 267 Equation Listing    SOLVE Cournot Using EMP From line 102
-D 270 defobj_Cour
-D 279 prod_def
-B 285 Column Listing      SOLVE Cournot Using EMP From line 102
-E 288 q
-E 306 obj
-E 321 p
-B 332 Model Statistics    SOLVE Cournot Using EMP From line 102
-B 350 Solution Report     SOLVE Cournot Using EMP From line 102
-F 421 defobj_Cour
-F 431 prod_def
-G 435 q
-G 443 obj
-G 453 p
-B 464 E x e c u t i o n
-I 464 q
-I 471 p
-B 475 Equation Listing    SOLVE Stackelberg Using EMP From line 157
-D 478 defobj_Stac
-D 485 obj_eq
-D 490 prod_def
-B 496 Column Listing      SOLVE Stackelberg Using EMP From line 157
-E 499 q
-E 521 obj
-E 532 p
-E 540 z
-B 548 Model Statistics    SOLVE Stackelberg Using EMP From line 157
-B 571 Solution Report     SOLVE Stackelberg Using EMP From line 157
-F 660 defobj_Stac
-F 669 obj_eq
-F 670 prod_def
-G 675 q
-G 683 obj
-G 692 p
-G 693 z
-B 705 Equation Listing    SOLVE Stackelberg Using EMP From line 157
-D 708 defobj_Stac
-D 715 obj_eq
-D 720 prod_def
-B 726 Column Listing      SOLVE Stackelberg Using EMP From line 157
-E 729 q
-E 751 obj
-E 762 p
-E 770 z
-B 778 Model Statistics    SOLVE Stackelberg Using EMP From line 157
-B 801 Solution Report     SOLVE Stackelberg Using EMP From line 157
-F 890 defobj_Stac
-F 899 obj_eq
-F 900 prod_def
-G 905 q
-G 913 obj
-G 922 p
-G 923 z
-B 935 Equation Listing    SOLVE Stackelberg Using EMP From line 157
-D 938 defobj_Stac
-D 945 obj_eq
-D 950 prod_def
-B 956 Column Listing      SOLVE Stackelberg Using EMP From line 157
-E 959 q
-E 981 obj
-E 992 p
-E 1000 z
-B 1008 Model Statistics    SOLVE Stackelberg Using EMP From line 157
-B 1031 Solution Report     SOLVE Stackelberg Using EMP From line 157
-F 1120 defobj_Stac
-F 1129 obj_eq
-F 1130 prod_def
-G 1135 q
-G 1143 obj
-G 1152 p
-G 1153 z
-B 1165 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 1168 obj_subStac
-B 1176 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 1179 q
-E 1197 obj
-B 1209 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 1232 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 1303 obj_subStac
-G 1310 q
-G 1318 obj
-B 1333 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 1336 obj_subStac
-B 1344 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 1347 q
-E 1365 obj
-B 1377 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 1400 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 1471 obj_subStac
-G 1478 q
-G 1486 obj
-B 1501 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 1504 obj_subStac
-B 1512 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 1515 q
-E 1533 obj
-B 1545 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 1568 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 1639 obj_subStac
-G 1646 q
-G 1654 obj
-B 1669 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 1672 obj_subStac
-B 1680 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 1683 q
-E 1701 obj
-B 1713 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 1736 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 1807 obj_subStac
-G 1814 q
-G 1822 obj
-B 1837 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 1840 obj_subStac
-B 1848 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 1851 q
-E 1869 obj
-B 1881 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 1904 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 1975 obj_subStac
-G 1982 q
-G 1990 obj
-B 2005 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 2008 obj_subStac
-B 2016 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 2019 q
-E 2037 obj
-B 2049 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 2072 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 2143 obj_subStac
-G 2150 q
-G 2158 obj
-B 2173 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 2176 obj_subStac
-B 2184 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 2187 q
-E 2205 obj
-B 2217 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 2240 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 2311 obj_subStac
-G 2318 q
-G 2326 obj
-B 2341 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 2344 obj_subStac
-B 2352 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 2355 q
-E 2373 obj
-B 2385 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 2408 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 2479 obj_subStac
-G 2486 q
-G 2494 obj
-B 2509 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 2512 obj_subStac
-B 2520 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 2523 q
-E 2541 obj
-B 2553 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 2576 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 2647 obj_subStac
-G 2654 q
-G 2662 obj
-B 2676 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 2679 obj_subStac
-B 2687 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 2690 q
-E 2708 obj
-B 2720 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 2743 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 2814 obj_subStac
-G 2821 q
-G 2829 obj
-B 2844 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 2847 obj_subStac
-B 2855 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 2858 q
-E 2876 obj
-B 2888 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 2911 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 2982 obj_subStac
-G 2989 q
-G 2997 obj
-B 3012 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 3015 obj_subStac
-B 3023 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 3026 q
-E 3044 obj
-B 3056 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 3079 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 3150 obj_subStac
-G 3157 q
-G 3165 obj
-B 3180 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 3183 obj_subStac
-B 3191 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 3194 q
-E 3212 obj
-B 3224 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 3247 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 3318 obj_subStac
-G 3325 q
-G 3333 obj
-B 3348 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 3351 obj_subStac
-B 3359 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 3362 q
-E 3380 obj
-B 3392 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 3415 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 3486 obj_subStac
-G 3493 q
-G 3501 obj
-B 3516 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 3519 obj_subStac
-B 3527 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 3530 q
-E 3548 obj
-B 3560 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 3583 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 3654 obj_subStac
-G 3661 q
-G 3669 obj
-B 3684 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 3687 obj_subStac
-B 3695 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 3698 q
-E 3716 obj
-B 3728 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 3751 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 3822 obj_subStac
-G 3829 q
-G 3837 obj
-B 3852 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 3855 obj_subStac
-B 3863 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 3866 q
-E 3884 obj
-B 3896 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 3919 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 3990 obj_subStac
-G 3997 q
-G 4005 obj
-B 4020 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 4023 obj_subStac
-B 4031 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 4034 q
-E 4052 obj
-B 4064 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 4087 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 4158 obj_subStac
-G 4165 q
-G 4173 obj
-B 4187 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 4190 obj_subStac
-B 4198 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 4201 q
-E 4219 obj
-B 4231 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 4254 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 4325 obj_subStac
-G 4332 q
-G 4340 obj
-B 4355 Equation Listing    SOLVE subStackelberg Using EMP From line 191
-D 4358 obj_subStac
-B 4366 Column Listing      SOLVE subStackelberg Using EMP From line 191
-E 4369 q
-E 4387 obj
-B 4399 Model Statistics    SOLVE subStackelberg Using EMP From line 191
-B 4422 Solution Report     SOLVE subStackelberg Using EMP From line 191
-F 4493 obj_subStac
-G 4500 q
-G 4508 obj
-B 4523 Equation Listing    SOLVE BertrandMCP Using EMP From line 262
-D 4526 quan1_eq
-D 4531 quan2_eq
-D 4536 prof1_eq
-D 4541 prof2_eq
-B 4547 Column Listing      SOLVE BertrandMCP Using EMP From line 262
-E 4550 p1
-E 4559 p2
-E 4568 q1
-E 4576 q2
-E 4584 prof1
-E 4591 prof2
-B 4599 Model Statistics    SOLVE BertrandMCP Using EMP From line 262
-B 4617 Solution Report     SOLVE BertrandMCP Using EMP From line 262
-F 4690 quan1_eq
-F 4691 quan2_eq
-F 4692 prof1_eq
-F 4693 prof2_eq
-G 4702 p1
-G 4703 p2
-G 4704 q1
-G 4705 q2
-G 4706 prof1
-G 4707 prof2
-B 4724 E x e c u t i o n
+B 270 Equation Listing    SOLVE Cournot Using EMP From line 102
+D 273 defobj_Cour
+D 282 prod_def
+B 288 Column Listing      SOLVE Cournot Using EMP From line 102
+E 291 q
+E 309 obj
+E 324 p
+B 335 Model Statistics    SOLVE Cournot Using EMP From line 102
+B 353 Solution Report     SOLVE Cournot Using EMP From line 102
+F 424 defobj_Cour
+F 434 prod_def
+G 438 q
+G 446 obj
+G 456 p
+B 468 E x e c u t i o n
+I 468 q
+I 475 p
+B 479 Equation Listing    SOLVE Stackelberg Using EMP From line 158
+D 482 defobj_Stac
+D 489 obj_eq
+D 494 prod_def
+B 500 Column Listing      SOLVE Stackelberg Using EMP From line 158
+E 503 q
+E 525 obj
+E 536 p
+E 544 z
+B 552 Model Statistics    SOLVE Stackelberg Using EMP From line 158
+B 575 Solution Report     SOLVE Stackelberg Using EMP From line 158
+F 664 defobj_Stac
+F 673 obj_eq
+F 674 prod_def
+G 679 q
+G 687 obj
+G 696 p
+G 697 z
+B 709 Equation Listing    SOLVE Stackelberg Using EMP From line 158
+D 712 defobj_Stac
+D 719 obj_eq
+D 724 prod_def
+B 730 Column Listing      SOLVE Stackelberg Using EMP From line 158
+E 733 q
+E 755 obj
+E 766 p
+E 774 z
+B 782 Model Statistics    SOLVE Stackelberg Using EMP From line 158
+B 805 Solution Report     SOLVE Stackelberg Using EMP From line 158
+F 894 defobj_Stac
+F 903 obj_eq
+F 904 prod_def
+G 909 q
+G 917 obj
+G 926 p
+G 927 z
+B 939 Equation Listing    SOLVE Stackelberg Using EMP From line 158
+D 942 defobj_Stac
+D 949 obj_eq
+D 954 prod_def
+B 960 Column Listing      SOLVE Stackelberg Using EMP From line 158
+E 963 q
+E 985 obj
+E 996 p
+E 1004 z
+B 1012 Model Statistics    SOLVE Stackelberg Using EMP From line 158
+B 1035 Solution Report     SOLVE Stackelberg Using EMP From line 158
+F 1123 defobj_Stac
+F 1132 obj_eq
+F 1133 prod_def
+G 1138 q
+G 1146 obj
+G 1155 p
+G 1156 z
+B 1168 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 1171 obj_subStac
+B 1179 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 1182 q
+E 1200 obj
+B 1212 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 1235 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 1306 obj_subStac
+G 1313 q
+G 1321 obj
+B 1336 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 1339 obj_subStac
+B 1347 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 1350 q
+E 1368 obj
+B 1380 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 1403 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 1474 obj_subStac
+G 1481 q
+G 1489 obj
+B 1504 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 1507 obj_subStac
+B 1515 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 1518 q
+E 1536 obj
+B 1548 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 1571 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 1642 obj_subStac
+G 1649 q
+G 1657 obj
+B 1672 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 1675 obj_subStac
+B 1683 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 1686 q
+E 1704 obj
+B 1716 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 1739 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 1810 obj_subStac
+G 1817 q
+G 1825 obj
+B 1840 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 1843 obj_subStac
+B 1851 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 1854 q
+E 1872 obj
+B 1884 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 1907 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 1978 obj_subStac
+G 1985 q
+G 1993 obj
+B 2008 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 2011 obj_subStac
+B 2019 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 2022 q
+E 2040 obj
+B 2052 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 2075 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 2146 obj_subStac
+G 2153 q
+G 2161 obj
+B 2176 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 2179 obj_subStac
+B 2187 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 2190 q
+E 2208 obj
+B 2220 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 2243 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 2314 obj_subStac
+G 2321 q
+G 2329 obj
+B 2344 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 2347 obj_subStac
+B 2355 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 2358 q
+E 2376 obj
+B 2388 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 2411 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 2482 obj_subStac
+G 2489 q
+G 2497 obj
+B 2512 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 2515 obj_subStac
+B 2523 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 2526 q
+E 2544 obj
+B 2556 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 2579 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 2650 obj_subStac
+G 2657 q
+G 2665 obj
+B 2680 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 2683 obj_subStac
+B 2691 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 2694 q
+E 2712 obj
+B 2724 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 2747 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 2818 obj_subStac
+G 2825 q
+G 2833 obj
+B 2848 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 2851 obj_subStac
+B 2859 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 2862 q
+E 2880 obj
+B 2892 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 2915 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 2986 obj_subStac
+G 2993 q
+G 3001 obj
+B 3016 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 3019 obj_subStac
+B 3027 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 3030 q
+E 3048 obj
+B 3060 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 3083 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 3154 obj_subStac
+G 3161 q
+G 3169 obj
+B 3184 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 3187 obj_subStac
+B 3195 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 3198 q
+E 3216 obj
+B 3228 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 3251 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 3322 obj_subStac
+G 3329 q
+G 3337 obj
+B 3352 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 3355 obj_subStac
+B 3363 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 3366 q
+E 3384 obj
+B 3396 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 3419 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 3490 obj_subStac
+G 3497 q
+G 3505 obj
+B 3520 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 3523 obj_subStac
+B 3531 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 3534 q
+E 3552 obj
+B 3564 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 3587 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 3658 obj_subStac
+G 3665 q
+G 3673 obj
+B 3688 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 3691 obj_subStac
+B 3699 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 3702 q
+E 3720 obj
+B 3732 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 3755 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 3826 obj_subStac
+G 3833 q
+G 3841 obj
+B 3856 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 3859 obj_subStac
+B 3867 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 3870 q
+E 3888 obj
+B 3900 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 3923 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 3994 obj_subStac
+G 4001 q
+G 4009 obj
+B 4024 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 4027 obj_subStac
+B 4035 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 4038 q
+E 4056 obj
+B 4068 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 4091 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 4162 obj_subStac
+G 4169 q
+G 4177 obj
+B 4192 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 4195 obj_subStac
+B 4203 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 4206 q
+E 4224 obj
+B 4236 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 4259 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 4330 obj_subStac
+G 4337 q
+G 4345 obj
+B 4360 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 4363 obj_subStac
+B 4371 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 4374 q
+E 4392 obj
+B 4404 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 4427 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 4498 obj_subStac
+G 4505 q
+G 4513 obj
+B 4528 Equation Listing    SOLVE subStackelberg Using EMP From line 192
+D 4531 obj_subStac
+B 4539 Column Listing      SOLVE subStackelberg Using EMP From line 192
+E 4542 q
+E 4560 obj
+B 4572 Model Statistics    SOLVE subStackelberg Using EMP From line 192
+B 4595 Solution Report     SOLVE subStackelberg Using EMP From line 192
+F 4666 obj_subStac
+G 4673 q
+G 4681 obj
+B 4696 Equation Listing    SOLVE BertrandMCP Using EMP From line 263
+D 4699 quan1_eq
+D 4704 quan2_eq
+D 4709 prof1_eq
+D 4714 prof2_eq
+B 4720 Column Listing      SOLVE BertrandMCP Using EMP From line 263
+E 4723 p1
+E 4732 p2
+E 4741 q1
+E 4749 q2
+E 4757 prof1
+E 4764 prof2
+B 4772 Model Statistics    SOLVE BertrandMCP Using EMP From line 263
+B 4790 Solution Report     SOLVE BertrandMCP Using EMP From line 263
+F 4863 quan1_eq
+F 4864 quan2_eq
+F 4865 prof1_eq
+F 4866 prof2_eq
+G 4875 p1
+G 4876 p2
+G 4877 q1
+G 4878 q2
+G 4879 prof1
+G 4880 prof2
+B 4897 E x e c u t i o n

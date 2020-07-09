@@ -30,9 +30,9 @@ set CESHeader /c ,L,beta/;
 $onExternalInput
 TABLE fData(i,CESHeader) "CES data for firms"
    c L  beta
-1  5 5  1.1
-2  5 10  1.2
-3  5 15  1.3
+1  5 5  1.5
+2  5 10 1.2
+3  5 15 1
 ;
 SCALARS
 * gamma > 1
@@ -169,21 +169,21 @@ obj_subStac(i)$(not lead(i))..
 obj(i) =e= q(i) *(dbar/sum(j, q(j)))**(1/gamma)-c(i)*q(i) -((beta(i)/(1+beta(i)))*L(i)**(1/beta(i)))*q(i)**((1+beta(i))/beta(i));
 
 model subStackelberg /obj_subStac/;
-set linfoHeader /lquantity,lprofit,nprofit/
-    ninfoHeader /lquantity,lprofit,nprofit,nquantity/;
+set linfoHeader /lquantity,lprofit,nprofit/;
+*    ninfoHeader /lquantity,lprofit,nprofit,nquantity/;
     
-set grid /1*20/
+set grid /1*21/
  nonlead(i);
  nonlead(i)$(not lead(i))=yes;
 $onexternalOutput
-table linfo_stac(lead,grid,linfoheader) lead firm info;
-table ninfo_stac(i,grid,ninfoheader) Nonleader firm info;
+table linfo_stac(i,grid,linfoheader) lead firm info;
+*table ninfo_stac(i,grid,ninfoheader) Nonleader firm info;
 $offexternalOutput
-ninfo_stac(nonlead,grid,'nquantity')=resultCour(nonlead,'quantity');
+*ninfo_stac(nonlead,grid,'nquantity')=resultCour(nonlead,'quantity');
 loop(grid,
 p.l=1;
 q.l(i)=1;
-q.fx(lead)=resultStac(lead,'StacQuantity')*(1/2+grid.val/20);
+q.fx(lead)=resultCour(lead,'Quantity')*(0.45+grid.val/20);
 put myinfo 'equilibrium';
 loop(i$(not lead(i)),
 put /'max', obj(i),q(i),obj_subStac(i);
@@ -195,9 +195,9 @@ linfo_stac(lead,grid,'lprofit')=q.l(lead) *(dbar/sum(j, q.l(j)))**(1/gamma) -c(l
 ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
 linfo_stac(lead,grid,'nprofit')=q.l(lead) *(dbar/(q.l(lead)+sum(j$(not lead(j)), resultCour(j,'quantity'))))**(1/gamma) -c(lead)*q.l(lead) -
 ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
-ninfo_stac(nonlead,grid,'lquantity')=sum(lead,q.l(lead));
-ninfo_stac(nonlead,grid,'lprofit')=obj.l(nonlead);
-ninfo_stac(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(lead,q.l(lead))+sum(j$(nonlead(j)), resultCour(j,'quantity'))))**(1/gamma)  -c(nonlead)*resultCour(nonlead,'quantity') -
+*ninfo_stac(nonlead,grid,'lquantity')=sum(lead,q.l(lead));
+linfo_stac(nonlead,grid,'lprofit')=obj.l(nonlead);
+linfo_stac(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(lead,q.l(lead))+sum(j$(nonlead(j)), resultCour(j,'quantity'))))**(1/gamma)  -c(nonlead)*resultCour(nonlead,'quantity') -
 ((beta(nonlead)/(1+beta(nonlead)))*L(nonlead)**(1/beta(nonlead)))*resultCour(nonlead,'quantity')**((1+beta(nonlead))/beta(nonlead));
 );
 

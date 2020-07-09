@@ -6,21 +6,70 @@ CournotOutput <- function(id, height = NULL, options = NULL, path = NULL){
     height <- 700
   } 
   tagList( 
-    textOutput(ns('cour1text')),
-    plotOutput(ns('cour1'),height=height),
-    textOutput(ns('cour2text')),
-    plotOutput(ns('cour2'),height=height),
     #define rendererOutput function here 
+    
+    sidebarLayout(
+      sidebarPanel (textOutput(ns('cour1text')),
+        sliderInput(inputId = ns("firm1"),
+                                label = 'Firm 1 Quantity (*NE)',
+                                min = 0.5,
+                                max= 1.5,
+                                value = 1,
+                                step=0.1),
+        sliderInput(inputId = ns("firm2"),
+                    label = 'firm 2 Quantity (*NE)',
+                    min = 0.5,
+                    max= 1.5,
+                    value = 1,
+                    step = 0.1),
+        sliderInput(inputId = ns("firm3"),
+                    label = 'firm 3 Quantity (*NE)',
+                    min = 0.5,
+                    max= 1.5,
+                    value = 1,
+                    step = 0.1)
+
+      ),
+      mainPanel(
+                plotlyOutput(ns('cour1'),height=height),)
+     ),
+    sidebarLayout(
+      sidebarPanel (textOutput(ns('cour11text')),
+                    sliderInput(inputId = ns("firm11"),
+                                label = 'Firm 1 Quantity (*NE)',
+                                min = 0.5,
+                                max= 1.5,
+                                value = 1,
+                                step=0.1),
+                    sliderInput(inputId = ns("firm21"),
+                                label = 'firm 2 Quantity (*NE)',
+                                min = 0.5,
+                                max= 1.5,
+                                value = 1,
+                                step = 0.1),
+                    sliderInput(inputId = ns("firm31"),
+                                label = 'firm 3 Quantity (*NE)',
+                                min = 0.5,
+                                max= 1.5,
+                                value = 1,
+                                step = 0.1)
+                    
+      ),
+      mainPanel(
+        plotlyOutput(ns('cour11'),height=height))
+    )
   ) 
 }
 
+
 renderCournot <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer
-  output$cour1text<-renderText("The picture below shows the relationship between the profits and the quantities 
-                               of firms. While a firm changes its quantity and the other firms' quantities are 
-                               set to the solution of the Nash Equilibrium. 
-                               \n The three marked points in the figure is exact the solution 
-                               to the Nash Equilibrium.")
+  output$cour1text<-renderText("The picture shows the relationship between the profits and the quantities
+                               of firms. While a firm changes its quantity and the other firms' quantities are
+                               set to the solution of the Nash Equilibrium. ")
+  output$cour11text<-renderText("The picture shows the relationship between the profits and the quantities
+                               of firms. While a firm changes its quantity and the other firms' quantities are
+                               set to the solution of the Nash Equilibrium. ")
   ind<-data$i
   l<-length(ind)
   quantity<-data$quantity
@@ -31,73 +80,220 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
   gamma<-unique(data$gamma)
   dbar<-unique(data$dbar)
   L<-data$l
-  x<-rep(1,l)
-  x<-t(t(x)) %*% rep(1,100)
-  y<-x
-  p<-x
-  for (i in 1:l){
-    for (j in 1:100)
-    {
-      x[i,j]<-quantity[i]/2+j*quantity[i]/100
-      p[i,j]<-(dbar/(rep(1,l)%*%quantity-quantity[i]+x[i,j]))^(1/gamma)
-      y[i,j]<-x[i,j]*p[i,j]-cost[i]*x[i,j]-
-        ((beta[i]/(beta[i]+1))*L[i]^(1/beta[i]))*x[i,j]^((1+beta[i])/beta[i])
-    }
-  }
-  output$cour1<-renderPlot({
-    #par(mfrow=c(1,1),oma=c(3,3,8,3))
-    plot(c(),c(),type='l',xlim=c(min(x),max(x)),ylim=c(min(y),max(y)+20),xlab='quantities',ylab='profit',
-         main = 'Profits with respect to quantities of each firm')
-    for (i in 1:l)
-    {
-      lines(x[i,],y[i,],lty=i,col=i,lwd=2)
-      text(quantity[i],profit[i]+5,paste('quantity:',round(quantity[i],2),'\nprofit:',round(profit[i],2)))
-      points(quantity[i],profit[i],col=i,cex=3,pch=16)
-    }
-    legend(min(x),max(y)+20,legend = paste(rep('firm ',l),ind),lty=1:l,col=1:l)
-    
-  })
-  output$cour2text<-renderText(paste("The picture below shows when one of the firm change quantities and the other
-                               firms remain the same, how the profit of each firm will change. The below picture 
-                               gives an example when the firm ",ind[1]," change quantities and others remain the same.
-                                     The 3 points represent the profits at the solution to the Nash Equilibrium."))
-  xx<-rep(1,l)
-  xx<-t(t(xx)) %*% rep(1,100)
-  yy<-xx
-  pp<-xx
   
-  for (j in 1:100)
-  {
-    xx[1,j]<-quantity[1]/2+j*quantity[1]/100
-    pp[1,j]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+x[1,j]))^(1/gamma)
-    yy[1,j]<-xx[1,j]*pp[1,j]-cost[1]*xx[1,j]-
-      ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*xx[1,j]^((1+beta[1])/beta[1])
-  }
-  for (i in 2:l){
-    for (j in 1:100)
-    {
-      xx[i,j]<-quantity[1]/2+j*quantity[1]/100
-      pp[i,j]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1,j]))^(1/gamma)
-      yy[i,j]<-quantity[i]*pp[i,j]-cost[i]*quantity[i]-
+
+  output$cour1<-renderPlotly({
+    x<-rep(1,l)
+    y<-x
+    p<-x
+    x[1]<-quantity[1]*input$firm1
+    p[1]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+x[1]))^(1/gamma)
+    y[1]<-x[1]*p[1]-cost[1]*x[1]-
+      ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*x[1]^((1+beta[1])/beta[1])
+    x[2]<-quantity[2]*input$firm2
+    p[2]<-(dbar/(rep(1,l)%*%quantity-quantity[2]+x[2]))^(1/gamma)
+    y[2]<-x[2]*p[2]-cost[2]*x[2]-
+      ((beta[2]/(beta[2]+1))*L[2]^(1/beta[2]))*x[2]^((1+beta[2])/beta[2])
+    x[3]<-quantity[3]*input$firm3
+    p[3]<-(dbar/(rep(1,l)%*%quantity-quantity[3]+x[3]))^(1/gamma)
+    y[3]<-x[3]*p[3]-cost[3]*x[3]-
+      ((beta[3]/(beta[3]+1))*L[3]^(1/beta[3]))*x[3]^((1+beta[3])/beta[3])
+    fig1<-plot_ly(type = 'bar',x=c('firm 1','firm 2','firm 3')
+            ,y=y)
+    fig1<-layout(fig1,title = "Profits with respect to quantities of each firm",
+                 xaxis=list(title='Firm'),yaxis=list(title="Profits"))
+
+
+
+  })
+  
+  output$cour11<-renderPlotly({
+    x<-rep(1,l)
+    x<-t(t(x)) %*% rep(1,100)
+    y<-x
+    p<-x
+    for (i in 1:l){
+      for (j in 1:100)
+      {
+        x[i,j]<-quantity[i]/2+j*quantity[i]/100
+        p[i,j]<-(dbar/(rep(1,l)%*%quantity-quantity[i]+x[i,j]))^(1/gamma)
+        y[i,j]<-x[i,j]*p[i,j]-cost[i]*x[i,j]-
+          ((beta[i]/(beta[i]+1))*L[i]^(1/beta[i]))*x[i,j]^((1+beta[i])/beta[i])
+      }
+    }
+    fig2<-plot_ly()
+    cols=c('green','blue','red')
+    fig2<-add_trace(fig2,type='scatter',mode='lines',x=x[1,],y=y[1,],name='firm 1'
+                    ,line=list(width=2,color='green'))
+    fig2<-add_trace(fig2,type='scatter',mode='lines',x=x[2,],y=y[2,],name = 'firm 2'
+                    ,line=list(width=2,color='blue'))
+    fig2<-add_trace(fig2,type='scatter',mode='lines',x=x[3,],y=y[3,],name= 'firm 3'
+                    ,line=list(width=2,color='red'))
+    x<-rep(1,3)
+    y<-x
+    p<-x
+    
+    x[1]<-quantity[1]*input$firm11
+    p[1]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+x[1]))^(1/gamma)
+    y[1]<-x[1]*p[1]-cost[1]*x[1]-
+      ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*x[1]^((1+beta[1])/beta[1])
+    x[2]<-quantity[2]*input$firm21
+    p[2]<-(dbar/(rep(1,l)%*%quantity-quantity[2]+x[2]))^(1/gamma)
+    y[2]<-x[2]*p[2]-cost[2]*x[2]-
+      ((beta[2]/(beta[2]+1))*L[2]^(1/beta[2]))*x[2]^((1+beta[2])/beta[2])
+    x[3]<-quantity[3]*input$firm31
+    p[3]<-(dbar/(rep(1,l)%*%quantity-quantity[3]+x[3]))^(1/gamma)
+    y[3]<-x[3]*p[3]-cost[3]*x[3]-
+      ((beta[3]/(beta[3]+1))*L[3]^(1/beta[3]))*x[3]^((1+beta[3])/beta[3])
+    fig2
+      fig2<-add_trace(fig2,type='scatter',mode='marker',x=x[1],y=y[1],
+                      marker=list(size=15,symbol='o',color=cols[1]),showlegend=FALSE)
+      fig2<-add_trace(fig2,type='scatter',mode='marker',x=x[2],y=y[2],
+                      marker=list(size=15,symbol='o',color=cols[2]),showlegend=FALSE)
+      fig2<-add_trace(fig2,type='scatter',mode='marker',x=x[3],y=y[3],
+                      marker=list(size=15,symbol='o',color=cols[3]),showlegend=FALSE)
+      fig2<-layout(fig2,title = "Profits with respect to quantities of each firm",
+                   xaxis=list(title='Firm'),yaxis=list(title="Profits"))
+      
+      })
+}  
+cour2Output <- function(id, height = NULL, options = NULL, path = NULL){
+  ns <- NS(id)
+  
+  # set default height
+  if(is.null(height)){
+    height <- 700
+  } 
+  tagList( 
+    #define rendererOutput function here
+    sidebarLayout(
+      sidebarPanel (textOutput(ns('cour2text')),
+        sliderInput(
+          inputId = ns("firm11"),
+                    label = 'Firm 1 Quantity (*NE)',
+                    min = 0.5,
+                    max= 1.5,
+                    value = 1,
+                    step=0.1),
+        
+        
+      ),
+      mainPanel(
+                plotlyOutput(ns('cour2'),height=height))
+    ),
+  
+  sidebarLayout(
+    sidebarPanel (textOutput(ns('cour22text')),
+                  sliderInput(
+                    inputId = ns("firm1"),
+                    label = 'Firm 1 Quantity (*NE)',
+                    min = 0.5,
+                    max= 1.5,
+                    value = 1,
+                    step=0.1),
+                  
+                  
+    ),
+    mainPanel(
+      plotlyOutput(ns('cour22'),height=height))
+  )
+  )
+}
+
+renderCour2 <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
+  #renderer 
+  output$cour2text<-renderText(paste("The picture shows when one of the firm change quantities and the other
+                               firms remain the same, how the profit of each firm will change. The below picture
+                               gives an example when the firm 1 change quantities and others remain the same.
+                                     The 3 points represent the profits at the solution to the Nash Equilibrium."))
+  ind<-data$i
+  l<-length(ind)
+  quantity<-data$quantity
+  price<-unique(data$price)
+  cost<-data$cost
+  beta<-data$beta
+  profit<-data$profit
+  gamma<-unique(data$gamma)
+  dbar<-unique(data$dbar)
+  L<-data$l
+  output$cour2<-renderPlotly({
+    
+    xx<-rep(quantity[1]*input$firm11,l)
+    yy<-xx
+    pp<-xx
+    pp[1]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1]))^(1/gamma)
+    yy[1]<-xx[1]*pp[1]-cost[1]*xx[1]-
+      ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*xx[1]^((1+beta[1])/beta[1])
+    for (i in 2:l){
+      pp[i]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1]))^(1/gamma)
+      yy[i]<-quantity[i]*pp[i]-cost[i]*quantity[i]-
         ((beta[i]/(beta[i]+1))*L[i]^(1/beta[i]))*quantity[i]^((1+beta[i])/beta[i])
     }
-  }
-  output$cour2<-renderPlot({
-    plot(c(),c(),type='l',xlim=c(min(xx),max(xx)),ylim=c(min(yy),max(yy)+20),xlab='quantities',ylab='profit',
-         main = paste('Profits with respect to quantities of firm', ind[1]))
-    for (i in 1:l)
-    {
-      lines(xx[i,],yy[i,],lty=i,col=i,lwd=2)
-      points(xx[i,50],profit[i],col=i,cex=3,pch=16)
-      text(xx[i,50],profit[i]+5,paste('profit:',round(profit[i],2)))
-    }
-    lines(rep(xx[i,50],2),c(0,max(yy[,50])+10),col='grey',lty=2,lwd=1.5)
-    text(xx[i,50],max(yy[,50])+12,paste('quantity:',round(quantity[1],2)),cex=1.2)
-    legend(min(x),max(yy)+20,legend = paste(rep('firm ',l),ind),lty=1:l,col=1:l)
+    fig2<-plot_ly(type = 'bar',x=c('firm 1','firm 2','firm 3')
+                  ,y=yy)
+    fig2<-layout(fig2,title = "Profits with respect to quantities of firm 1",
+                 xaxis=list(title='Firm'),yaxis=list(title="Profits"))
+    
     
   })
-}  
+  output$cour22text<-renderText(paste("The picture shows when one of the firm change quantities and the other
+                               firms remain the same, how the profit of each firm will change. The below picture
+                               gives an example when the firm 1 change quantities and others remain the same.
+                                     The 3 points represent the profits at the solution to the Nash Equilibrium."))
+  
+  output$cour22<-renderPlotly({
+    
+    xx<-rep(1,l)
+    xx<-t(t(xx)) %*% rep(1,100)
+    yy<-xx
+    pp<-xx
 
+    for (j in 1:100)
+    {
+      xx[1,j]<-quantity[1]/2+j*quantity[1]/100
+      pp[1,j]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1,j]))^(1/gamma)
+      yy[1,j]<-xx[1,j]*pp[1,j]-cost[1]*xx[1,j]-
+        ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*xx[1,j]^((1+beta[1])/beta[1])
+    }
+    for (i in 2:l){
+      for (j in 1:100)
+      {
+        xx[i,j]<-quantity[1]/2+j*quantity[1]/100
+        pp[i,j]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1,j]))^(1/gamma)
+        yy[i,j]<-quantity[i]*pp[i,j]-cost[i]*quantity[i]-
+          ((beta[i]/(beta[i]+1))*L[i]^(1/beta[i]))*quantity[i]^((1+beta[i])/beta[i])
+      }
+    }
+    cols=c('green','blue','red')
+    fig2<-plot_ly()
+    for (i in 1:l)
+   { fig2<-add_trace(fig2,type='scatter',mode='lines',x=xx[i,],y=yy[i,],
+                    line=list(width=2,color=cols[i]),name=paste('firm',i))}
+    fig2
+    xx<-rep(quantity[1]*input$firm1,l)
+    yy<-xx
+    pp<-xx
+    pp[1]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1]))^(1/gamma)
+    yy[1]<-xx[1]*pp[1]-cost[1]*xx[1]-
+      ((beta[1]/(beta[1]+1))*L[1]^(1/beta[1]))*xx[1]^((1+beta[1])/beta[1])
+    for (i in 2:l){
+      pp[i]<-(dbar/(rep(1,l)%*%quantity-quantity[1]+xx[1]))^(1/gamma)
+      yy[i]<-quantity[i]*pp[i]-cost[i]*quantity[i]-
+        ((beta[i]/(beta[i]+1))*L[i]^(1/beta[i]))*quantity[i]^((1+beta[i])/beta[i])
+    }
+    for (i in 1:l)
+    {
+      fig2<-add_trace(fig2,type='scatter',mode='markers',x=xx[i],y=yy[i],
+                      marker=list(size=15,symbol='o',color=cols[i]),showlegend=FALSE)
+    }
+    
+    
+    fig2<-layout(fig2,title = "Profits with respect to quantities of firm 1",
+                 xaxis=list(title='Firm'),yaxis=list(title="Profits"))
+    
+    
+  })
+}
 leadOutput <- function(id, height = NULL, options = NULL, path = NULL){
   ns <- NS(id)
   
@@ -107,81 +303,60 @@ leadOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here
-    textOutput(ns('leadtext')),
-    plotOutput(ns('lead'),height=height)
+    sidebarLayout(
+      sidebarPanel(sliderInput(ns('lquantity'),
+                               label='Quantity of Firm 1 (*NE)',
+                               value = 1,
+                               min = 0.5,
+                               max = 1.5,
+                               step = 0.05)
+                   ),
+      mainPanel(textOutput(ns('leadtext')),
+                plotlyOutput(ns('lead'),height=height))
+    )
+    
   ) 
 }
 
 renderLead <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
-  output$leadtext<-renderText(paste('The picture below shows the profits of firm ',unique(data$lead), 
-                                    ' as a leader firm or not as a leader firm.'))
-  x<-data$lquantity
-  yl<-data$lprofit
-  yn<-data$nprofit
-  output$lead<-renderPlot({
-    plot(x,yl,ylim = c(min(cbind(yl,yn)),max(cbind(yl,yn))+10),type='l',xlab = 'quantity',ylab = 'profit',lty=1,col=1,
-         main=paste('Profit of firm ',unique(data$lead),' as leader and non-leader firm w.r.t quantity'),lwd=2)
-    lines(x,yn,lty=2,col=2)
-    legend(min(x),max(cbind(yl,yn))+5,legend = c('As leader firm','Not leader firm'),lty=1:2,col=1:2)
-    points(c(x[10],x[yn==max(yn)]),c(yl[10],max(yn)),cex=2,col=1:2)
-    text(c(x[10],x[yn==max(yn)]),c(yl[10]+1,max(yn)-1),c('Solution as leader firm','Nash Equilibrium'),col=1:2)
-  })
-}
-
-
-
-nonleadOutput <- function(id, height = NULL, options = NULL, path = NULL){
-  ns <- NS(id)
+  output$leadtext<-renderText(paste('The picture below shows the profits of the 3 firms when ',unique(data$lead), 
+                                    ' is a leader firm or not a leader firm.'))
+  cols=c('green','blue','red')
   
-  # set default height
-  if(is.null(height)){
-    height <- 700
-  } 
-  tagList( 
-    #define rendererOutput function here 
-    textOutput(ns('nonleadtext')),
-    plotOutput(ns('nonlead'),height=height)
-  ) 
-}
-
-renderNonlead <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
-  #renderer 
-  ind<-unique(data$i)
-  x<-unique(data$lquantity)
-  len<-length(ind)
-  y<-rep(1,len)
-  y<-t(t(y)) %*% rep(1,20)
-  y2<-y
-  for (ii in 1:len)
-  {
-    templ<-data$lprofit[data$i==ind[ii]]
-    tempn<-data$nprofit[data$i==ind[ii]]
-    for (j in 1:20)
+  output$lead<-renderPlotly({
+    ind<-which(is.na(data$lquantity))
+    x<-data$lquantity[-ind]
+    yl<-data$lprofit[-ind]
+    yn<-data$nprofit[-ind]
+    xind<-(input$lquantity-0.45)/0.05
+    fig<-plot_ly()
+    fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yl,
+                   line=list(width=2,color=cols[1]),name='Firm 1 L')
+    fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
+                   line=list(width=2,dash='dash',color=cols[1]),name='Firm 1 N')
+    fig<-add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yl[xind],
+                   marker=list(size=15,color=cols[1]),showlegend=FALSE)
+    fig<-add_trace(fig,type='scatter',symbol='x',mode='markers',x=x[xind],y=yn[xind],
+                   marker=list(size=15,color=cols[1]),showlegend=FALSE)
+    for(i in 2:3)
     {
-      y[ii,j]=templ[j]
-      y2[ii,j]=tempn[j]
-      
+      ind<-data$i == i
+      yl<-data$lprofit[ind]
+      yn<-data$nprofit[ind]
+      fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yl,
+                     line=list(width=2,color=cols[i]),name=paste('Firm',i,'L'))
+      fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
+                     line=list(width=2,dash='dash',color=cols[i]),name=paste('Firm',i,'N'))
+      fig<-add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yl[xind],
+                     marker=list(size=15,color=cols[i]),showlegend=FALSE)
+      fig<-add_trace(fig,type='scatter',symbol='x',mode='markers',x=x[xind],y=yn[xind],
+                     marker=list(size=15,color=cols[i]),showlegend=FALSE)
     }
-  }
-  output$nonleadtext<-renderText(paste("This output shows the effect of the leader firm on other firms. When there is
-                                       a leader firm, other firm will make decision based on the decision(production quantity) 
-                                       made by the leader firm, while if there is no leader firm other firms will make the 'best possible decision',
-                                       which is the result to the equilibrium problem before as the Cournot model. The picture below shows the profits of those are not 
-                                       the leader firm when the leader firm choose different production quantity."))
-  output$nonlead<-renderPlot({
-    
-    par(mfrow=c(floor(sqrt(len)),ceiling(len/floor(sqrt(len)))))
-    for (i in 1:len)
-    {
-      plot(x,y[i,],col=1,lwd=2,ylim=c(min(cbind(y[i,],y2[i,])),max(cbind(y[i,],y2[i,]))),main = paste("Firm ",ind[i],
-                                                                                                      "'s profit w.r.t quantity of the leader firm"),type='l',lty=1,xlab='quantity',ylab = 'profit')
-      lines(x,y2[i,],col=2,lwd=2,lty=2)
-      legend(min(x)+(max(x)-min(x))*0.65,max(cbind(y[i,],y2[i,])),legend=c('When leader firm exists','none leader firm exists'),lty=1:2,col=1:2)
-      
-    }
+    fig<-layout(fig,xaxis=list(title='quantity of lead firm'),yaxis=list(title='profits'))
   })
 }
+
 
 
 BertOutput <- function(id, height = NULL, options = NULL, path = NULL){
@@ -238,4 +413,57 @@ renderBert <- function(input, output, session, data, options = NULL, path = NULL
   })
 }
 
+
+
+nonleadOutput <- function(id, height = NULL, options = NULL, path = NULL){
+  ns <- NS(id)
+  
+  # set default height
+  if(is.null(height)){
+    height <- 700
+  } 
+  tagList( 
+    #define rendererOutput function here 
+    textOutput(ns('nonleadtext')),
+    plotOutput(ns('nonlead'),height=height)
+  ) 
+}
+
+renderNonlead <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
+  #renderer 
+  ind<-unique(data$i)
+  x<-unique(data$lquantity)
+  len<-length(ind)
+  y<-rep(1,len)
+  y<-t(t(y)) %*% rep(1,20)
+  y2<-y
+  for (ii in 1:len)
+  {
+    templ<-data$lprofit[data$i==ind[ii]]
+    tempn<-data$nprofit[data$i==ind[ii]]
+    for (j in 1:20)
+    {
+      y[ii,j]=templ[j]
+      y2[ii,j]=tempn[j]
+      
+    }
+  }
+  output$nonleadtext<-renderText(paste("This output shows the effect of the leader firm on other firms. When there is
+                                       a leader firm, other firm will make decision based on the decision(production quantity) 
+                                       made by the leader firm, while if there is no leader firm other firms will make the 'best possible decision',
+                                       which is the result to the equilibrium problem before as the Cournot model. The picture below shows the profits of those are not 
+                                       the leader firm when the leader firm choose different production quantity."))
+  output$nonlead<-renderPlot({
+    
+    par(mfrow=c(floor(sqrt(len)),ceiling(len/floor(sqrt(len)))))
+    for (i in 1:len)
+    {
+      plot(x,y[i,],col=1,lwd=2,ylim=c(min(cbind(y[i,],y2[i,])),max(cbind(y[i,],y2[i,]))),main = paste("Firm ",ind[i],
+                                                                                                      "'s profit w.r.t quantity of the leader firm"),type='l',lty=1,xlab='quantity',ylab = 'profit')
+      lines(x,y2[i,],col=2,lwd=2,lty=2)
+      legend(min(x)+(max(x)-min(x))*0.65,max(cbind(y[i,],y2[i,])),legend=c('When leader firm exists','none leader firm exists'),lty=1:2,col=1:2)
+      
+    }
+  })
+}
 
