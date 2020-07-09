@@ -8,13 +8,16 @@ $include set.csv
 ;
 alias(city,i,j);
 set Header /l_lat,l_long,select/;
+set Constraints /'Dynamic SEC', 'Positional Constraints'/;
 $onexternalInput
 table CityInfo(city,Header)
 $onDelim
 $include capitals.csv
 $offDelim
 ;
+Singleton Set Constraint(Constraints) 'selected model Constraint type' / 'Dynamic SEC' /;
 $offexternalInput
+
 set select(city) Selected capitals;
 select(city)$(CityInfo(city,'select') eq 1)=yes;
 scalar count /0/;
@@ -29,8 +32,8 @@ cos((CityInfo(j,'l_long')-CityInfo(i,'l_long'))*pi/180))*6371.004;
 variables x(i,j);
 binary variables x;
 free variable obj;
-*positive variables u(i) ;
-equations defobj, assign1(j), assign2(i);// mtz(i,j)
+equations defobj, assign1(j), assign2(i);
+
 defobj..
 obj =e= sum((select,k)$(not sameas(select,k)), dist(select,k) * x(select,k));
 
@@ -41,8 +44,10 @@ assign2(select)..
 sum(k$(not sameas(select,k)), x(k,select)) =e= 1;
 x.fx(select,select) = 0;
 
-*mtz(select,k)$(OrderVal(select) > 1 and OrderVal(k) > 1 )..
-*  u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
+positive variables u(i) ;
+equations mtz(i,j);
+mtz(select,k)$(OrderVal(select) > 1 and OrderVal(k) > 1 )..
+  u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
 
 
 Set cc    Subtour elimination cuts /c1*c500/
@@ -57,13 +62,15 @@ Equations cut(cc) dynamic subtour elimination cuts;
 
 cut(c).. sum((select,k), cutcoeff(c,select,k)*x(select,k)) =l= rhs(c);
 
-
-model tsp /all/;
-
+model tspPC /defobj,assign1,assign2,mtz/;
+model tspSEC /defobj,assign1,assign2,cut/;
 option optcr=0, limrow=0, limcol=0, solprint=off;
 
 * Solve without subtour elimination constraints
-solve tsp min obj using mip;
+if( sameAs(constraint,'Positional Constraints'),
+solve tspPC min obj using mip;
+else
+solve tspSEC min obj using mip);
 
 
 set t            tours /t1*t25/
@@ -122,7 +129,7 @@ while(goon=1,
       goon = card(curc) and not tt(t+1);
     );
     abort$(card(curc)=0) 'set cc too small';
-    solve tsp using mip minimizing obj;
+    solve tspSEC using mip minimizing obj;
     if (card(curc),goon=1;);
   );
 );

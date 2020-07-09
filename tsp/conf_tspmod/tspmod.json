@@ -36,6 +36,9 @@
     },
     "cityinfo": {
       "newAlias": "cityinfo"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
     }
   },
   "dataRendering": {
@@ -49,6 +52,18 @@
     "tabTitle": "readme",
     "filename": "README.md",
     "enableMath": true
+  },
+  "inputWidgets": {
+    "constraint": {
+      "widgetType": "dropdown",
+      "alias": "selected model Constraint type",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "selected": "Dynamic SEC",
+      "label": "Select model Constraint type",
+      "choices": ["Dynamic SEC", "Positional Constraints"]
+    }
   },
   "handsontable": {
     "stretchH": "none",

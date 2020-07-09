@@ -22,6 +22,26 @@
 					"alias":	"select"
 				}
 			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["constraint"],
+			"symtext":	["selected model Constraint type"],
+			"symtypes":	["set"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
 		}
 	},
 	"outputSymbols":	{

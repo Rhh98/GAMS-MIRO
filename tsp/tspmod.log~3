@@ -1,19 +1,28 @@
 
-TRACE [2020-07-04 13:33:49] Logging facility initialised.
-DEBUG [2020-07-04 13:33:50] Database connection established.
-DEBUG [2020-07-04 13:33:50] Access Control initialised.
-WARN [2020-07-04 13:33:50] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
+TRACE [2020-07-09 16:07:52] Logging facility initialised.
+DEBUG [2020-07-09 16:07:52] Database connection established.
+DEBUG [2020-07-09 16:07:52] Access Control initialised.
+WARN [2020-07-09 16:07:52] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-04 13:33:50] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-04 13:33:51] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-04 13:33:51] Db: 2552 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-04 13:33:51] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-04 13:33:51] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-04 13:33:51] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
-DEBUG [2020-07-04 13:33:51] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-04 13:33:51] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
-DEBUG [2020-07-04 13:33:51] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-07-04 13:33:51] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-04 13:33:57] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+INFO [2020-07-09 16:07:52] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-09 16:07:53] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-09 16:07:53] Db: 2553 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-09 16:07:53] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-09 16:07:53] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-09 16:07:53] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
+DEBUG [2020-07-09 16:07:54] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-07-09 16:07:54] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
+DEBUG [2020-07-09 16:07:54] Db: Data was added to table: 'tspmod__scalars' (Db.exportScenDataset).
+DEBUG [2020-07-09 16:07:54] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
+DEBUG [2020-07-09 16:07:54] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-09 16:08:00] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-09 16:08:00] Scenario: '1' unlocked.
+DEBUG [2020-07-09 16:08:00] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
+DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
+DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
+DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod__scalars' (Db.importDataset).
+DEBUG [2020-07-09 16:08:04] Dataset: cityinfo loaded successfully (mode: scen, overwrite: TRUE)
+DEBUG [2020-07-09 16:08:18] Db: Database connection ended as Db object was gced.

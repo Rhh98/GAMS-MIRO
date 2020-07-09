@@ -30,8 +30,8 @@ set CESHeader /c ,L,beta/;
 $onExternalInput
 TABLE fData(i,CESHeader) "CES data for firms"
    c L  beta
-1  5 5  1.5
-2  5 10 1.2
+1  5 5  1.3
+2  5 10 1.1
 3  5 15 1
 ;
 SCALARS
