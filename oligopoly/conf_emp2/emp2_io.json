@@ -1,34 +1,6 @@
 {
 	"modelTitle":	"Oligopoly : Cournot, Bertrand and Stackelberg",
 	"inputSymbols":	{
-		"i":	{
-			"alias":	"Cournot & Stackelberg firms",
-			"symtype":	"set",
-			"headers":	{
-				"uni":	{
-					"type":	"string",
-					"alias":	"Universal set"
-				},
-				"text":	{
-					"type":	"string",
-					"alias":	"Set text Cournot & Stackelberg firms"
-				}
-			}
-		},
-		"lead":	{
-			"alias":	"lead",
-			"symtype":	"set",
-			"headers":	{
-				"i":	{
-					"type":	"string",
-					"alias":	"Cournot & Stackelberg firms"
-				},
-				"text":	{
-					"type":	"string",
-					"alias":	"Set text "
-				}
-			}
-		},
 		"fdata":	{
 			"alias":	"CES data for firms",
 			"symtype":	"parameter",
@@ -133,6 +105,48 @@
 				}
 			}
 		},
+		"resultcour2":	{
+			"alias":	"resultcour2",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Cournot & Stackelberg firms"
+				},
+				"l":	{
+					"type":	"numeric",
+					"alias":	"l"
+				},
+				"beta":	{
+					"type":	"numeric",
+					"alias":	"beta"
+				},
+				"quantity":	{
+					"type":	"numeric",
+					"alias":	"quantity"
+				},
+				"price":	{
+					"type":	"numeric",
+					"alias":	"price"
+				},
+				"profit":	{
+					"type":	"numeric",
+					"alias":	"profit"
+				},
+				"gamma":	{
+					"type":	"numeric",
+					"alias":	"gamma"
+				},
+				"dbar":	{
+					"type":	"numeric",
+					"alias":	"dbar"
+				},
+				"cost":	{
+					"type":	"numeric",
+					"alias":	"cost"
+				}
+			}
+		},
 		"resultstac":	{
 			"alias":	"Difference between Cournot and Stackelberg model",
 			"symtype":	"parameter",
@@ -163,32 +177,6 @@
 			"alias":	"lead firm info",
 			"symtype":	"parameter",
 			"headers":	{
-				"lead":	{
-					"type":	"string",
-					"alias":	"lead"
-				},
-				"grid":	{
-					"type":	"string",
-					"alias":	"grid"
-				},
-				"lquantity":	{
-					"type":	"numeric",
-					"alias":	"lquantity"
-				},
-				"lprofit":	{
-					"type":	"numeric",
-					"alias":	"lprofit"
-				},
-				"nprofit":	{
-					"type":	"numeric",
-					"alias":	"nprofit"
-				}
-			}
-		},
-		"ninfo_stac":	{
-			"alias":	"Nonleader firm info",
-			"symtype":	"parameter",
-			"headers":	{
 				"i":	{
 					"type":	"string",
 					"alias":	"Cournot & Stackelberg firms"
@@ -208,10 +196,6 @@
 				"nprofit":	{
 					"type":	"numeric",
 					"alias":	"nprofit"
-				},
-				"nquantity":	{
-					"type":	"numeric",
-					"alias":	"nquantity"
 				}
 			}
 		},

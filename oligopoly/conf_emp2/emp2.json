@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["i", "lead", "fdata", "_scalars", "jdata", "_widgets"]
+    "input": ["fdata", "_scalars", "jdata", "_widgets"]
   },
   "overwriteAliases": {
     "i": {
@@ -18,23 +18,26 @@
     "d": {
       "newAlias": "Bertrand firms"
     },
-    "jdata": {
-      "newAlias": "jdata"
-    },
     "resultcour": {
-      "newAlias": "Cournot model result"
+      "newAlias": "Nash Equilibrium result"
     },
     "resultstac": {
       "newAlias": "Difference between Cournot and Stackelberg model"
-    },
-    "linfo_stac": {
-      "newAlias": "lead firm info"
     },
     "ninfo_stac": {
       "newAlias": "Nonleader firm info"
     },
     "resultbert": {
       "newAlias": "Bertand model result"
+    },
+    "resultcour2": {
+      "newAlias": "Firm Influence"
+    },
+    "jdata": {
+      "newAlias": "Price-Quantity parameter"
+    },
+    "linfo_stac": {
+      "newAlias": "Stackelberg Result"
     }
   },
   "pivottable": {
@@ -57,17 +60,20 @@
   "excelIncludeEmptySheets": true,
   "saveTraceFile": true,
   "dataRendering": {
-    "resultcour": {
-      "outType": "Cournot"
-    },
-    "linfo_stac": {
-      "outType": "lead"
-    },
-    "ninfo_stac": {
-      "outType": "nonlead"
-    },
     "resultbert": {
       "outType": "Bert"
+    },
+    "resultcour": {
+      "outType": "Cournot",
+      "packages": "plotly"
+    },
+    "resultcour2": {
+      "outType": "cour2",
+      "packages": "plotly"
+    },
+    "linfo_stac": {
+      "outType": "lead",
+      "packages": "plotly"
     }
   },
   "defaultScenName": "default",
@@ -75,6 +81,11 @@
     "tabTitle": "readme",
     "filename": "oligopoly.md",
     "enableMath": true
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "none",
+    "rownames": true
   },
   "handsontable": {
     "stretchH": "none",
@@ -100,8 +111,14 @@
   ],
   "outputGroups": [
     {
+      "name": "Cournot model",
+      "members": ["resultcour", "resultcour2"],
+      "sameTab": true
+    },
+    {
       "name": "Stackelberg model",
-      "members": ["resultstac", "linfo_stac", "ninfo_stac"]
+      "members": ["linfo_stac", "resultstac"],
+      "sameTab": true
     }
   ]
 }
