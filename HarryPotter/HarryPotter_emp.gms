@@ -23,15 +23,15 @@ X_Train(n,aspect)  'training data'
 ;
 alias(n,n1,n2,n3);
 X_Train(n,'Heritage')=0.1*ceil(n.val/10)-0.05;
-X_Train(n,'Education')=0.1*(n.val-floor(n.val/10)*10)-0.05;
+X_Train(n,'Education')=0.1*(n.val-floor((n.val-1)/10)*10)-0.05;
 display X_Train;
 *Training data dithered with a Gaussian
-X_Train(n,'Heritage')=X_Train(n,'Heritage')+0.03*normal(0,1);
-X_Train(n,'Education')=X_Train(n,'Education')+0.03*normal(0,1);
-
+X_Train(n,aspect)=X_Train(n,aspect)+0.03*normal(0,1);
+X_Train(n,aspect)$(X_Train(n,aspect) lt 0)=1e-5;
+X_Train(n,aspect)$(X_Train(n,aspect) gt 1)=1;
 *the noiseless 'desired' label obeys y_E=sign(X_E-0.5)
 parameter y_E(n);
-y_E(n)$(X_Train(n,'Education')-0.5 eq 0)=0;
+y_E(n)$(X_Train(n,'Education')-0.5 eq 0)=1;
 y_E(n)$(X_Train(n,'Education')-0.5 gt 0)=1;
 y_E(n)$(X_Train(n,'Education')-0.5 lt 0)=-1;
 *Contamination
@@ -90,7 +90,7 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
-scalar gamma  debug parameter /15/
+scalar gamma  debug parameter /60/;
 
 $offexternalInput
 parameter Trust_data(Header,aspect),Trust_label(Header);
@@ -158,10 +158,12 @@ log_l2.up(Header) = 10;
 option mpec = knitro;
 option dnlp=baron;
 Kernel_duti.optfile=0;
-w.fx(n) = 0.5;
+w.fx(n) = 0;
 solve submodel using nlp minimizing obj_In;
 w.lo(n) = 0;
 w.up(n) = 1;
+*w.fx('91')=0;
+*w.fx('94')=0;
 solve Kernel_duti using emp minimizing obj;
 
 set g /g1*g40/;
@@ -198,3 +200,5 @@ Output1(n,n1,Header,'ranking')$(ord(n1)=1 and ord(Header)=1)=ranking(n);
 Output1(n,n1,Header,'newz')$(ord(Header)=1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
 $offexternalOutput
 display ranking;
+parameter newz(n,n);
+newZ(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
