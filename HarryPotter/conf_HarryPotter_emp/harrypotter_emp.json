@@ -44,11 +44,12 @@
       "widgetType": "slider",
       "alias": "debug parameter",
       "min": 0,
-      "max": 30,
-      "default": 15,
+      "max": 70,
+      "default": 35,
       "step": 1,
       "ticks": false,
-      "noHcube": false
+      "noHcube": false,
+      "label": "Debug parameter"
     }
   },
   "readme": {
