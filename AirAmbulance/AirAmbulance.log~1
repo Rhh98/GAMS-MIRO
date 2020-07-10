@@ -1,48 +1,32 @@
+--- Job AirAmbulance.gms Start 07/09/20 16:31:14 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\AirAmbulance.gms
+    PageSize 0
+    Action C
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
+    LstTitleLeftAligned 1
+    IDCJSON conf_AirAmbulance/AirAmbulance_io.json
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- AirAmbulance.gms(68) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
+*** Status: Normal completion
+--- Job AirAmbulance.gms Stop 07/09/20 16:31:14 elapsed 0:00:00.016
 
 Warning in eval(ei, envir) :
   The alias of symbol: 'x' was selected to be overwritten. However, this symbol could not be found.
 Warning in eval(ei, envir) :
   The alias of symbol: 'y' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-07-09 16:30:47] Logging facility initialised.
-DEBUG [2020-07-09 16:30:48] Database connection established.
-DEBUG [2020-07-09 16:30:48] Access Control initialised.
-WARN [2020-07-09 16:30:48] There are orphaned tables in your database: 'airambulance_x', 'airambulance_y'.
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-09 16:30:48] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-09 16:30:49] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
-DEBUG [2020-07-09 16:30:49] Db: 46 rows in table: '_sys_metadata_airambulance' were deleted. (Db.deleteRows)
-DEBUG [2020-07-09 16:30:49] Db: Metadata (table: '_sys_metadata_airambulance') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-09 16:30:49] Db: Metadata (table: '_sys_metadata_airambulance') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-09 16:30:49] Db: Data was added to table: 'airambulance_assign' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:30:49] Db: Data was added to table: 'airambulance_numofheli' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:30:49] Db: Data was added to table: 'airambulance_locinfo' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:30:49] Db: Data was added to table: 'airambulance_d' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:30:49] Db: Data was added to table: 'airambulance_s' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:30:49] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
-DEBUG [2020-07-09 16:30:50] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
-DEBUG [2020-07-09 16:30:50] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-INFO [2020-07-09 16:30:57] Session started (model: 'airambulance', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/AirAmbulance').
-DEBUG [2020-07-09 16:30:57] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/AirAmbulance'.
-DEBUG [2020-07-09 16:30:57] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
-DEBUG [2020-07-09 16:30:58] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-09 16:30:58] Loading and rendering scenarios: '1'.
-DEBUG [2020-07-09 16:30:58] Db: Data was imported from table: 'airambulance_assign' (Db.importDataset).
-DEBUG [2020-07-09 16:30:58] Db: Data was imported from table: 'airambulance_numofheli' (Db.importDataset).
-DEBUG [2020-07-09 16:30:58] Db: Data was imported from table: 'airambulance_locinfo' (Db.importDataset).
-DEBUG [2020-07-09 16:30:58] Db: Data was imported from table: 'airambulance_d' (Db.importDataset).
-DEBUG [2020-07-09 16:30:58] Db: Data was imported from table: 'airambulance_s' (Db.importDataset).
-DEBUG [2020-07-09 16:30:59] Db: A table named: '_sys_scripts_airambulance' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-09 16:30:59] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-09 16:30:59] Scenario: '1' unlocked.
-DEBUG [2020-07-09 16:30:59] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
-DEBUG [2020-07-09 16:30:59] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
-DEBUG [2020-07-09 16:30:59] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
-DEBUG [2020-07-09 16:30:59] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-09 16:30:59] Dataset: locinfo loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-09 16:30:59] Dataset: d loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-09 16:30:59] Dataset: s loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-09 16:31:00] Scenario: '1' was loaded into UI
-DEBUG [2020-07-09 16:31:00] Sidebar menu item: 'outputData' selected.
-INFO [2020-07-09 16:31:07] Session ended (model: 'airambulance', user: 'hasee').
-DEBUG [2020-07-09 16:31:07] Scenario: '1' unlocked.
+AirAmbulance.miroapp successfully deployed to location C:/Users/hasee/Documents/GitHub/GAMS-MIRO/AirAmbulance

@@ -1,28 +1,238 @@
+--- Job tspmod.gms Start 07/10/20 14:58:53 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\
+    SysDir E:\31.1\
+    CurDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\
+    LogOption 3
+    Trace C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_sys_trace_tspmod.trc
+    InputDir1 C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\
+    TraceOpt 3
+    OptCR 0.1
+    ExecMode 0
+    LstTitleLeftAligned 1
+    IDCGDXInput _miro_gdxin_.gdx
+    IDCGDXOutput _miro_gdxout_.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- tspmod.gms(6) 2 Mb
+--- . set.csv(1) 3 Mb
+--- tspmod.gms(12) 3 Mb
+--- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
+--- tspmod.gms(15) 3 Mb
+--- Ignoring $include in externalInput section
+--- tspmod.gms(167) 3 Mb
+--- Starting execution: elapsed 0:00:00.009
+--- tspmod.gms(71) 4 Mb
+--- Generating MIP model tspPC
+--- tspmod.gms(73) 5 Mb
+---   2,306 rows  2,351 columns  13,302 non-zeroes
+---   2,256 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.054
 
-TRACE [2020-07-09 16:07:52] Logging facility initialised.
-DEBUG [2020-07-09 16:07:52] Database connection established.
-DEBUG [2020-07-09 16:07:52] Access Control initialised.
-WARN [2020-07-09 16:07:52] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
 
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-09 16:07:52] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-09 16:07:53] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-09 16:07:53] Db: 2553 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-09 16:07:53] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-09 16:07:53] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-09 16:07:53] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:07:54] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:07:54] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:07:54] Db: Data was added to table: 'tspmod__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-09 16:07:54] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-07-09 16:07:54] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-09 16:08:00] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-09 16:08:00] Scenario: '1' unlocked.
-DEBUG [2020-07-09 16:08:00] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
-DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
-DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
-DEBUG [2020-07-09 16:08:04] Db: Data was imported from table: 'tspmod__scalars' (Db.importDataset).
-DEBUG [2020-07-09 16:08:04] Dataset: cityinfo loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-09 16:08:18] Db: Database connection ended as Db object was gced.
+Reading data...
+Starting Cplex...
+Space for names approximately 0.16 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+Tried aggregator 1 time.
+MIP Presolve eliminated 48 rows and 48 columns.
+Reduced MIP has 2258 rows, 2303 columns, and 10998 nonzeros.
+Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (5.42 ticks)
+Probing time = 0.00 sec. (3.14 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 2258 rows, 2303 columns, and 10998 nonzeros.
+Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (7.35 ticks)
+Probing time = 0.02 sec. (3.14 ticks)
+Clique table members: 1149.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (1.36 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =         12196.707397
+Iteration:   102   Dual objective     =         13646.018175
+Root relaxation solution time = 0.00 sec. (4.78 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    13650.9356    93                  13650.9356      107         
+      0     0    15950.1695    93                   Cuts: 169      177         
+      0     0    16082.6684    93                   Cuts: 101      241         
+      0     0    16082.6684    93                    Cuts: 96      267         
+      0     0    16082.6684    93                    Cuts: 13      271         
+*     0+    0                        64197.6193    16082.6684            74.95%
+Found incumbent of value 64197.619329 after 1.45 sec. (1360.45 ticks)
+*     0+    0                        29738.8724    16082.6684            45.92%
+Found incumbent of value 29738.872357 after 2.19 sec. (1976.50 ticks)
+      0     0  -1.00000e+75     0    29738.8724    16082.6684      271   45.92%
+Detecting symmetries...
+      0     2    16082.6684    92    29738.8724    16082.6684      271   45.92%
+Elapsed time = 2.83 sec. (2388.68 ticks, tree = 0.01 MB, solutions = 2)
+*    71    65      integral     0    20864.1351    16084.1534     1476   22.91%
+Found incumbent of value 20864.135134 after 3.05 sec. (2589.43 ticks)
+     84    78    16161.6259    48    20864.1351    16084.1534     1686   22.91%
+                                                   MIRcuts: 1                  
+*   149   131      integral     0    20488.9494    16084.1534     2411   21.50%
+Found incumbent of value 20488.949388 after 3.25 sec. (2770.75 ticks)
+    200   176    16235.9633    41    20488.9494    16090.4949     2835   21.47%
+                                                      Cuts: 2                  
+    249   218    16580.5699    46    20488.9494    16090.4949     3170   21.47%
+                                                  Impl Bds: 1                  
+*   277   109      integral     0    18232.7082    16090.4949     3287   11.75%
+Found incumbent of value 18232.708157 after 3.92 sec. (3289.81 ticks)
+    372   177    16824.4879    74    18232.7082    16091.5818     4590   11.74%
+                                                      Cuts: 9                  
+    480   264    16201.4216    84    18232.7082    16095.7949     6050   11.72%
+                                                     Cuts: 16                  
+    600   359    17855.6452    24    18232.7082    16099.9729     7656   11.70%
+                                                      Cuts: 6                  
+    729   461    17697.6101    16    18232.7082    16104.5283     9435   11.67%
+                                                     Cuts: 10                  
+*   742   455      integral     0    18106.2383    16104.5283     9551   11.06%
+Found incumbent of value 18106.238329 after 5.05 sec. (4245.06 ticks)
+    854   540    17895.1976    21    18106.2383    16106.2048    11081   11.05%
+                                                      Cuts: 8                  
+    960   629    16949.3760    57    18106.2383    16108.1173    12789   11.04%
+                                                      Cuts: 7                  
+
+Performing restart 1
+
+Repeating presolve.
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 462 columns.
+Reduced MIP has 2258 rows, 1841 columns, and 9625 nonzeros.
+Reduced MIP has 1794 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (4.92 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 2258 rows, 1841 columns, and 9625 nonzeros.
+Reduced MIP has 1794 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (6.12 ticks)
+Represolve time = 0.05 sec. (30.61 ticks)
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.02 sec. (1.64 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =          6302.282036
+Iteration:    97   Dual objective     =         14718.777694
+Iteration:   214   Dual objective     =         16116.109453
+   1030     0    16186.5680    96    18106.2383      Cuts: 57    14180   10.60%
+   1030     0    16292.3935    96    18106.2383     Cuts: 108    14248   10.02%
+   1030     0    16336.7836    96    18106.2383     Cuts: 107    14303    9.77%
+   1030     0    16345.1120    96    18106.2383      Cuts: 97    14350    9.73%
+   1030     0    16345.1120    96    18106.2383     Cuts: 141    14400    9.73%
+   1030     0    16345.2799    96    18106.2383     Cuts: 154    14436    9.73%
+   1030     0    16349.1564    96    18106.2383     Cuts: 123    14458    9.70%
+   1030     0    16355.5664    96    18106.2383      Cuts: 36    14494    9.67%
+   1030     0    16355.5664    96    18106.2383     Cuts: 116    14535    9.67%
+   1030     0    16355.7621    96    18106.2383      Cuts: 34    14550    9.67%
+   1030     0    16360.9525    96    18106.2383      Cuts: 14    14571    9.64%
+   1030     0    16361.6031    96    18106.2383      Cuts: 25    14585    9.64%
+   1030     0    16362.6105    96    18106.2383      Cuts: 29    14593    9.63%
+   1030     0    16362.6105    96    18106.2383       Cuts: 8    14596    9.63%
+   1030     0    16362.6105    96    18106.2383      Cuts: 15    14600    9.63%
+   1030     2    16362.6105    77    18106.2383    16367.9105    14600    9.60%
+Elapsed time = 10.83 sec. (8364.81 ticks, tree = 0.01 MB, solutions = 6)
+   1085    47    16385.0343    76    18106.2383    16373.7220    15145    9.57%
+   1260   203    16698.5403    68    18106.2383    16373.7220    15860    9.57%
+   1554   458    16632.5485    70    18106.2383    16375.3349    17386    9.56%
+   1940   798    17083.2442    54    18106.2383    16379.5406    20078    9.54%
+                                                     Cuts: 28                  
+   2289  1105    16468.8799    75    18106.2383    16384.0778    23314    9.51%
+                                                     Cuts: 19                  
+   2799  1573    16767.9890    80    18106.2383    16385.7428    26185    9.50%
+   3355  2100    17016.3707    60    18106.2383    16389.7099    29464    9.48%
+                                                     Cuts: 20                  
+   3844  2561    16395.2322    76    18106.2383    16392.0918    32861    9.47%
+                                                     Cuts: 10                  
+   4030  2725    16599.7460    96    18106.2383    16393.8082    33978    9.46%
+   4554  3218    16416.5260    80    18106.2383    16398.6569    37922    9.43%
+                                                     Cuts: 10                  
+Elapsed time = 22.05 sec. (18350.07 ticks, tree = 3.69 MB, solutions = 7)
+
+Clique cuts applied:  18
+Cover cuts applied:  17
+Implied bound cuts applied:  20
+Flow cuts applied:  6
+Mixed integer rounding cuts applied:  59
+Zero-half cuts applied:  8
+Multi commodity flow cuts applied:  5
+Gomory fractional cuts applied:  25
+
+Root node processing (before b&c):
+  Real time             =    2.84 sec. (2388.82 ticks)
+Sequential b&c:
+  Real time             =   19.88 sec. (16554.25 ticks)
+                          ------------
+Total (root+branch&cut) =   22.72 sec. (18943.06 ticks)
+MIP status(113): aborted
+Cplex Time: 22.72sec (det. 18943.07 ticks)
+Fixing integer variables, and solving final LP...
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+Tried aggregator 1 time.
+LP Presolve eliminated 144 rows and 2304 columns.
+Reduced LP has 2162 rows, 47 columns, and 4324 nonzeros.
+Presolve time = 0.00 sec. (2.62 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =         18106.238329
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 5.78 ticks)
+
+Problem aborted.
+
+MIP Solution:        18106.238329    (40316 iterations, 4893 nodes)
+Final Solve:         18106.238329    (46 iterations)
+
+Best possible:       16401.740002
+Absolute gap:         1704.498327
+Relative gap:            0.094139
+
+Terminate batch job (Y/N)? 
+--- Restarting execution
+--- tspmod.gms(73) 2 Mb
+--- Reading solution for model tspPC
+--- tspmod.gms(168) 4 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxout_.gdx
+*** Status: Normal completion
+--- Job tspmod.gms Stop 07/10/20 14:59:16 elapsed 0:00:22.960

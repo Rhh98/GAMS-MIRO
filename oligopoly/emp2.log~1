@@ -1,27 +1,4265 @@
+--- Job emp2.gms Start 07/10/20 14:47:05 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\emp2.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\res.gdx
+    LstTitleLeftAligned 1
+    IDCGenerateJSON conf_emp2/emp2_io.json
+    IDCGenerateGDX data_emp2/default.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp2.gms(275) 3 Mb
+--- Starting execution: elapsed 0:00:00.014
+--- emp2.gms(101) 4 Mb
+--- Generating EMP model Cournot
+--- emp2.gms(102) 6 Mb
+---   4 rows  7 columns  13 non-zeroes
+---   47 nl-code  9 nl-non-zeroes
+--- emp2.gms(102) 4 Mb
+--- Executing JAMS: elapsed 0:00:00.045
 
-TRACE [2020-07-08 23:04:23] Logging facility initialised.
-DEBUG [2020-07-08 23:04:24] Database connection established.
-DEBUG [2020-07-08 23:04:24] Access Control initialised.
-WARN [2020-07-08 23:04:24] There are orphaned tables in your database: 'emp2_i', 'emp2_lead', 'emp2_d', 'emp2_ninfo_stac'.
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 3
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:05 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(54) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(53) 3 Mb
+--- Generating MCP model m
+--- emp.dat(54) 5 Mb
+---   7 rows  7 columns  28 non-zeroes
+---   73 nl-code  15 nl-non-zeroes
+--- emp.dat(54) 3 Mb
+--- Executing PATH: elapsed 0:00:00.023
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+7 row/cols, 28 non-zeros, 57.14% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x7)
+Maximum of F. . . . . . . . . .  1.4767e+02 eqn: (e4)
+Maximum of Grad F . . . . . . .  3.8122e+01 eqn: (dL_dx1)
+                                            var: (u4_4)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  1.1537e+02 eqn: (e4)
+Minimum Row Norm. . . . . . . .  2.0000e+00 eqn: (dL_dx7_4)
+Maximum Column Norm . . . . . .  5.4122e+01 var: (x3)
+Minimum Column Norm . . . . . .  4.0000e+00 var: (x7)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.4769e+02             0.0e+00 (e4)
+    1     1     0     7 1.2105e+02  1.0e+00    0.0e+00 (dL_dx1)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.2105e+02           I 0.0e+00 7.7e+01 (dL_dx1)
+    1     1     3     3 2.9178e+01  1.0e+00 SO 0.0e+00 2.9e+01 (e4)
+    2     1     4     4 7.1445e+00  1.0e+00 SO 0.0e+00 6.5e+00 (e4)
+    3     1     5     5 7.5648e-01  1.0e+00 SO 0.0e+00 5.7e-01 (e4)
+    4     1     6     6 8.7401e-03  1.0e+00 SO 0.0e+00 5.9e-03 (e4)
+    5     1     7     7 1.1464e-06  1.0e+00 SO 0.0e+00 7.2e-07 (e4)
+    6     1     8     8 2.4067e-14  1.0e+00 SO 0.0e+00 2.1e-14 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  8.6504e-14 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  2.1316e-14 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  2.1316e-14 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  2.1316e-14 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  1.1697e-13 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  1.3379e-13
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.2810e+01 var: (x7)
+Maximum of F. . . . . . . . . .  2.1316e-14 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.4440e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 6
+Minor Iterations. . . . 6
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 8
+Gradient Evaluations. . 8
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 2.406701e-14
+
+--- Restarting execution
+--- emp.dat(54) 2 Mb
+--- Reading solution for model m
+--- Putfile implvarfile C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\implvar.dat
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:06 elapsed 0:00:00.142
+--- Returning from GAMS step
+---
+--- Equations skipped = 3  Equations added = 6
+--- Variables skipped = 3  Variables added = 3
+---
+--- Restarting execution
+--- emp2.gms(102) 2 Mb
+--- Reading solution for model Cournot
+--- Executing after solve: elapsed 0:00:00.360
+--- emp2.gms(148) 3 Mb
+--- Generating EMP model Stackelberg
+--- emp2.gms(158) 5 Mb
+--- LOOPS k = 1
+---   4 rows  7 columns  15 non-zeroes
+---   59 nl-code  11 nl-non-zeroes
+--- emp2.gms(158) 3 Mb
+--- Executing JAMS: elapsed 0:00:00.386
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 2
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(36) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(35) 3 Mb
+--- Generating MPEC model m
+--- emp.dat(36) 5 Mb
+---   4 rows  5 columns  13 non-zeroes
+---   83 nl-code  11 nl-non-zeroes
+--- emp.dat(36) 3 Mb
+--- Executing NLPEC: elapsed 0:00:00.023
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\pf.dat"
+
+--- Job gms.dat Start 07/10/20 14:47:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat
+    Output C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\lst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225c\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpeccntr.dat
+    SolverMatr C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecmatr.dat
+    SolverStat C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecstat.dat
+    SolverSolu C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecsolu.dat
+    ProcDirPath C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- gms.dat(103) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- gms.dat(101) 3 Mb
+--- Generating DNLP model m
+--- gms.dat(103) 5 Mb
+---   6 rows  7 columns  19 non-zeroes
+---   91 nl-code  15 nl-non-zeroes
+--- gms.dat(103) 3 Mb
+--- Executing CONOPT: elapsed 0:00:00.025
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        3.4161904251E+02 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  2
+ 
+      1   0        1.8799487074E+02 (After pre-processing)
+      2   0        4.4599476868E+00 (After scaling)
+     10   0     0  5.5107385740E-02               1.0E+00      F  T
+     20   0     0  4.6210597473E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =   -581.094269463
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     26   3        2.4394112850E+02 5.6E+01     1 1.3E-01    1 F  T
+     31   4        2.4458004856E+02 1.7E-07     1 1.0E+00    1 F  T
+     33   4        2.4458004856E+02 3.1E-08     1
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- gms.dat(103) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job gms.dat Stop 07/10/20 14:47:06 elapsed 0:00:00.150
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 2
+--- Additional Mpec Variables = 2
+--- Restarting execution
+--- emp.dat(36) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:06 elapsed 0:00:00.351
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(158) 2 Mb
+--- Reading solution for model Stackelberg
+--- Executing after solve: elapsed 0:00:00.898
+--- emp2.gms(148) 3 Mb
+--- Generating EMP model Stackelberg
+--- emp2.gms(158) 5 Mb
+--- LOOPS k = 2
+---   4 rows  7 columns  15 non-zeroes
+---   59 nl-code  11 nl-non-zeroes
+--- emp2.gms(158) 3 Mb
+--- Executing JAMS: elapsed 0:00:00.939
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 2
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(38) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(37) 3 Mb
+--- Generating MPEC model m
+--- emp.dat(38) 5 Mb
+---   4 rows  5 columns  13 non-zeroes
+---   83 nl-code  11 nl-non-zeroes
+--- emp.dat(38) 3 Mb
+--- Executing NLPEC: elapsed 0:00:00.022
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\pf.dat"
+
+--- Job gms.dat Start 07/10/20 14:47:06 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat
+    Output C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\lst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225c\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpeccntr.dat
+    SolverMatr C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecmatr.dat
+    SolverStat C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecstat.dat
+    SolverSolu C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecsolu.dat
+    ProcDirPath C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- gms.dat(103) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- gms.dat(101) 3 Mb
+--- Generating DNLP model m
+--- gms.dat(103) 5 Mb
+---   6 rows  7 columns  19 non-zeroes
+---   91 nl-code  15 nl-non-zeroes
+--- gms.dat(103) 3 Mb
+--- Executing CONOPT: elapsed 0:00:00.031
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        5.9316104296E+02 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  2
+ 
+      1   0        1.9265736933E+02 (After pre-processing)
+      2   0        4.6056507676E+00 (After scaling)
+     10   0     0  4.8986100030E-02               1.0E+00      F  T
+     20   0     0  3.8918986311E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =   -2857.63615608
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     26   3        9.1815768823E+01 7.4E+02     1 1.7E-01    1 F  T
+     31   4        9.1850857574E+01 3.7E-14     1 0.0E+00    1 F  T
+     33   4        9.1850857574E+01 3.2E-14     1
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- gms.dat(103) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job gms.dat Stop 07/10/20 14:47:07 elapsed 0:00:00.137
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 2
+--- Additional Mpec Variables = 2
+--- Restarting execution
+--- emp.dat(38) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:07 elapsed 0:00:00.320
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(158) 2 Mb
+--- Reading solution for model Stackelberg
+--- Executing after solve: elapsed 0:00:01.432
+--- emp2.gms(148) 3 Mb
+--- Generating EMP model Stackelberg
+--- emp2.gms(158) 5 Mb
+--- LOOPS k = 3
+---   4 rows  7 columns  15 non-zeroes
+---   59 nl-code  11 nl-non-zeroes
+--- emp2.gms(158) 3 Mb
+--- Executing JAMS: elapsed 0:00:01.462
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 2
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(38) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(37) 3 Mb
+--- Generating MPEC model m
+--- emp.dat(38) 5 Mb
+---   4 rows  5 columns  13 non-zeroes
+---   83 nl-code  11 nl-non-zeroes
+--- emp.dat(38) 3 Mb
+--- Executing NLPEC: elapsed 0:00:00.023
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\pf.dat"
+
+--- Job gms.dat Start 07/10/20 14:47:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\gms.dat
+    Output C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\lst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225c\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpeccntr.dat
+    SolverMatr C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecmatr.dat
+    SolverStat C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecstat.dat
+    SolverSolu C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\nlpecsolu.dat
+    ProcDirPath C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- gms.dat(103) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- gms.dat(101) 3 Mb
+--- Generating DNLP model m
+--- gms.dat(103) 5 Mb
+---   6 rows  7 columns  19 non-zeroes
+---   91 nl-code  15 nl-non-zeroes
+--- gms.dat(103) 3 Mb
+--- Executing CONOPT: elapsed 0:00:00.020
+CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+ 
+ 
+    C O N O P T 3   version 3.17L
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        4.5057176312E+02 (Input point)
+ 
+                   Pre-triangular equations:   0
+                   Post-triangular equations:  2
+ 
+      1   0        1.9954606102E+02 (After pre-processing)
+      2   0        6.2358144068E+00 (After scaling)
+     10   0     0  3.6271147728E-02               1.0E+00      F  T
+     20   0     0  2.5544036137E-04               1.0E+00      F  T
+     30   0     0  1.9312279194E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    32.8808418648
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     41   3        4.6894122541E+01 2.8E-05     1 1.0E-03      F  T
+     42   3        4.6894122541E+01 6.2E-12     1
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- gms.dat(103) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job gms.dat Stop 07/10/20 14:47:07 elapsed 0:00:00.131
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 2
+--- Additional Mpec Variables = 2
+--- Restarting execution
+--- emp.dat(38) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:07 elapsed 0:00:00.316
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(158) 2 Mb
+--- Reading solution for model Stackelberg
+--- Executing after solve: elapsed 0:00:01.945
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 1
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:01.964
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:07 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(33) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(32) 3 Mb
+--- Generating MCP model m
+--- emp.dat(33) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(33) 3 Mb
+--- Executing PATH: elapsed 0:00:00.026
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  5.9642e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  3.2030e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.9189e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  3.1563e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  3.9189e+01 var: (x3)
+Minimum Column Norm . . . . . .  3.1563e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.5785e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 3.9597e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 3.9597e+01           I 0.0e+00 3.3e+01 (dL_dx2)
+    1     1     3     3 2.2927e+00  1.0e+00 SO 0.0e+00 2.1e+00 (dL_dx2)
+    2     1     4     4 1.6938e-02  1.0e+00 SO 0.0e+00 1.6e-02 (dL_dx2)
+    3     1     5     5 1.3312e-06  1.0e+00 SO 0.0e+00 1.3e-06 (dL_dx2)
+    4     1     6     6 7.9441e-15  1.0e+00 SO 0.0e+00 7.1e-15 (dL_dx3)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.8331e-14 eqn: (dL_dx3)
+Inf-Norm of Normal Map. . . . .  7.1054e-15 eqn: (dL_dx3)
+Inf-Norm of Minimum Map . . . .  7.1054e-15 eqn: (dL_dx3)
+Inf-Norm of Fischer Function. .  7.1054e-15 eqn: (dL_dx3)
+Inf-Norm of Grad Fischer Fcn. .  1.5058e-13 eqn: (dL_dx3)
+Two-Norm of Grad Fischer Fcn. .  1.6008e-13
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.5100e+00 var: (x2)
+Maximum of F. . . . . . . . . .  7.1054e-15 eqn: (dL_dx3)
+Maximum of Grad F . . . . . . .  2.0650e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 4
+Minor Iterations. . . . 4
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 6
+Gradient Evaluations. . 6
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 7.944109e-15
+
+--- Restarting execution
+--- emp.dat(33) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:07 elapsed 0:00:00.140
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:02.265
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 2
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:02.285
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.024
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  5.6610e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  3.0291e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.6809e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.9183e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  3.6809e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.9183e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.4929e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 3.5221e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 3.5221e+01           I 0.0e+00 2.9e+01 (dL_dx2)
+    1     1     3     3 1.7714e+00  1.0e+00 SO 0.0e+00 1.6e+00 (dL_dx2)
+    2     1     4     4 1.0494e-02  1.0e+00 SO 0.0e+00 9.9e-03 (dL_dx2)
+    3     1     5     5 4.9887e-07  1.0e+00 SO 0.0e+00 4.8e-07 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.7955e-07 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  4.7955e-07 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  4.7955e-07 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  4.7955e-07 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  5.5062e-06 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  6.4408e-06
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.4695e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.7955e-07 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.0410e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 4.988710e-07
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:08 elapsed 0:00:00.134
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:02.581
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 3
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:02.600
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.022
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  5.3844e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.8813e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.4771e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.7145e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  3.4771e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.7145e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.4149e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 3.1360e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 3.1360e+01           I 0.0e+00 2.6e+01 (dL_dx2)
+    1     1     3     3 1.3785e+00  1.0e+00 SO 0.0e+00 1.3e+00 (dL_dx2)
+    2     1     4     4 6.5344e-03  1.0e+00 SO 0.0e+00 6.2e-03 (dL_dx2)
+    3     1     5     5 1.8888e-07  1.0e+00 SO 0.0e+00 1.8e-07 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.8131e-07 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  1.8131e-07 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  1.8131e-07 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  1.8131e-07 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  2.0550e-06 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  2.4186e-06
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.4274e+00 var: (x2)
+Maximum of F. . . . . . . . . .  1.8131e-07 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.0184e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.888766e-07
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:08 elapsed 0:00:00.148
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:02.898
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 4
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:02.917
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.021
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  5.1311e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.7545e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.3012e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.5386e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  3.3012e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.5386e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.3434e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 2.7951e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 2.7951e+01           I 0.0e+00 2.4e+01 (dL_dx2)
+    1     1     3     3 1.0802e+00  1.0e+00 SO 0.0e+00 9.8e-01 (dL_dx2)
+    2     1     4     4 4.0909e-03  1.0e+00 SO 0.0e+00 3.9e-03 (dL_dx2)
+    3     1     5     5 7.2309e-08  1.0e+00 SO 0.0e+00 6.9e-08 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  6.9338e-08 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  6.9338e-08 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  6.9338e-08 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  6.9338e-08 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  7.7592e-07 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  9.1766e-07
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.3839e+00 var: (x2)
+Maximum of F. . . . . . . . . .  6.9338e-08 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9973e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 7.230939e-08
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:08 elapsed 0:00:00.131
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:03.203
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 5
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:03.227
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.025
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.8983e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.6450e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.1484e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.3858e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  3.1484e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.3858e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.2778e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 2.4936e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 2.4936e+01           I 0.0e+00 2.1e+01 (dL_dx2)
+    1     1     3     3 8.5193e-01  1.0e+00 SO 0.0e+00 7.8e-01 (dL_dx2)
+    2     1     4     4 2.5759e-03  1.0e+00 SO 0.0e+00 2.4e-03 (dL_dx2)
+    3     1     5     5 2.8014e-08  1.0e+00 SO 0.0e+00 2.7e-08 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.6844e-08 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  2.6844e-08 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  2.6844e-08 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  2.6844e-08 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  2.9661e-07 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  3.5211e-07
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.3393e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.6844e-08 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9774e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 2.801378e-08
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:09 elapsed 0:00:00.141
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:03.520
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 6
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:03.543
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.023
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.6835e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.5497e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.0148e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.2521e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  3.0148e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.2521e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.2172e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 2.2269e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 2.2269e+01           I 0.0e+00 1.9e+01 (dL_dx2)
+    1     1     3     3 6.7590e-01  1.0e+00 SO 0.0e+00 6.2e-01 (dL_dx2)
+    2     1     4     4 1.6318e-03  1.0e+00 SO 0.0e+00 1.5e-03 (dL_dx2)
+    3     1     5     5 1.0990e-08  1.0e+00 SO 0.0e+00 1.1e-08 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.0527e-08 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  1.0527e-08 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  1.0527e-08 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  1.0527e-08 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  1.1487e-07 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  1.3675e-07
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.2937e+00 var: (x2)
+Maximum of F. . . . . . . . . .  1.0527e-08 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9586e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.099008e-08
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:09 elapsed 0:00:00.140
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:03.840
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 7
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:03.863
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:09 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.029
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.4848e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.4661e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.8972e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.1346e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.8972e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.1346e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.1612e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 1.9907e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.9907e+01           I 0.0e+00 1.7e+01 (dL_dx2)
+    1     1     3     3 5.3922e-01  1.0e+00 SO 0.0e+00 4.9e-01 (dL_dx2)
+    2     1     4     4 1.0403e-03  1.0e+00 SO 0.0e+00 9.8e-04 (dL_dx2)
+    3     1     5     5 4.3685e-09  1.0e+00 SO 0.0e+00 4.2e-09 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.1837e-09 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  4.1837e-09 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  4.1837e-09 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  4.1837e-09 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  4.5098e-08 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  5.3786e-08
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.2475e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.1837e-09 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9409e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 4.368544e-09
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:09 elapsed 0:00:00.137
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:04.155
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 8
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:04.179
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.028
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.3003e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.3925e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.7932e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  2.0306e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.7932e+01 var: (x3)
+Minimum Column Norm . . . . . .  2.0306e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.1092e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 1.7814e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.7814e+01           I 0.0e+00 1.5e+01 (dL_dx2)
+    1     1     3     3 4.3243e-01  1.0e+00 SO 0.0e+00 4.0e-01 (dL_dx2)
+    2     1     4     4 6.6756e-04  1.0e+00 SO 0.0e+00 6.3e-04 (dL_dx2)
+    3     1     5     5 1.7604e-09  1.0e+00 SO 0.0e+00 1.7e-09 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.6860e-09 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  1.6860e-09 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  1.6860e-09 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  1.6860e-09 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  1.7958e-08 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  2.1440e-08
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.2006e+00 var: (x2)
+Maximum of F. . . . . . . . . .  1.6860e-09 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9242e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.760426e-09
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:10 elapsed 0:00:00.137
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:04.477
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 9
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:04.502
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.006
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.029
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.1286e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.3273e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.7008e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.9381e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.7008e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.9381e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.0609e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 1.5959e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.5959e+01           I 0.0e+00 1.4e+01 (dL_dx2)
+    1     1     3     3 3.4849e-01  1.0e+00 SO 0.0e+00 3.2e-01 (dL_dx2)
+    2     1     4     4 4.3132e-04  1.0e+00 SO 0.0e+00 4.1e-04 (dL_dx2)
+    3     1     5     5 7.1955e-10  1.0e+00 SO 0.0e+00 6.9e-10 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  6.8934e-10 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  6.8934e-10 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  6.8934e-10 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  6.8934e-10 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  7.2559e-09 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  8.6660e-09
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.1534e+00 var: (x2)
+Maximum of F. . . . . . . . . .  6.8934e-10 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9083e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 7.195492e-10
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:10 elapsed 0:00:00.143
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:04.797
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 10
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:04.817
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.029
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.9684e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.2692e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.6182e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.8556e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.6182e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.8556e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.0157e+02             0.0e+00 (dL_dx2)
+    1     1     0     2 1.4314e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.4314e+01           I 0.0e+00 1.3e+01 (dL_dx2)
+    1     1     3     3 2.8215e-01  1.0e+00 SO 0.0e+00 2.6e-01 (dL_dx2)
+    2     1     4     4 2.8065e-04  1.0e+00 SO 0.0e+00 2.7e-04 (dL_dx2)
+    3     1     5     5 2.9839e-10  1.0e+00 SO 0.0e+00 2.9e-10 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.8600e-10 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  2.8600e-10 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  2.8600e-10 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  2.8600e-10 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  2.9759e-09 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  3.5531e-09
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.1058e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.8600e-10 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8933e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 2.983914e-10
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:10 elapsed 0:00:00.137
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:05.120
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 11
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:05.138
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.024
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.8185e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.2173e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.5441e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.7815e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.5441e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.7815e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             9.7356e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 1.2854e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.2854e+01           I 0.0e+00 1.1e+01 (dL_dx2)
+    1     1     3     3 2.2948e-01  1.0e+00 SO 0.0e+00 2.1e-01 (dL_dx2)
+    2     1     4     4 1.8393e-04  1.0e+00 SO 0.0e+00 1.7e-04 (dL_dx2)
+    3     1     5     5 1.2563e-10  1.0e+00 SO 0.0e+00 1.2e-10 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.2048e-10 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  1.2048e-10 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  1.2048e-10 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  1.2048e-10 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  1.2396e-09 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  1.4789e-09
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.0581e+00 var: (x2)
+Maximum of F. . . . . . . . . .  1.2048e-10 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8791e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.256281e-10
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:11 elapsed 0:00:00.133
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:05.442
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 12
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:05.461
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.022
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.6779e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.1706e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.4774e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.7148e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.4774e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.7148e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             9.3402e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 1.1559e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.1559e+01           I 0.0e+00 1.0e+01 (dL_dx2)
+    1     1     3     3 1.8745e-01  1.0e+00 SO 0.0e+00 1.7e-01 (dL_dx2)
+    2     1     4     4 1.2144e-04  1.0e+00 SO 0.0e+00 1.2e-04 (dL_dx2)
+    3     1     5     5 5.3665e-11  1.0e+00 SO 0.0e+00 5.2e-11 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  5.1518e-11 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  5.1518e-11 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  5.1518e-11 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  5.1518e-11 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  5.2419e-10 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  6.2407e-10
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.0103e+00 var: (x2)
+Maximum of F. . . . . . . . . .  5.1518e-11 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8657e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 5.366502e-11
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:11 elapsed 0:00:00.135
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:05.744
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 13
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:05.768
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.025
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.5458e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.1285e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.4172e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.6546e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.4172e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.6546e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.9687e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 1.0409e+01  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 1.0409e+01           I 0.0e+00 9.3e+00 (dL_dx2)
+    1     1     3     3 1.5377e-01  1.0e+00 SO 0.0e+00 1.4e-01 (dL_dx2)
+    2     1     4     4 8.0789e-05  1.0e+00 SO 0.0e+00 7.7e-05 (dL_dx2)
+    3     1     5     5 2.3322e-11  1.0e+00 SO 0.0e+00 2.2e-11 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.2403e-11 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  2.2403e-11 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  2.2403e-11 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  2.2403e-11 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  2.2555e-10 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  2.6820e-10
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.9626e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.2403e-11 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8528e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 2.332178e-11
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:11 elapsed 0:00:00.132
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:06.075
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 14
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:06.093
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:11 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.006
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.030
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.4214e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.0904e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.3625e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.5999e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.3625e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.5999e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.6191e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 9.3878e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 9.3878e+00           I 0.0e+00 8.4e+00 (dL_dx2)
+    1     1     3     3 1.2667e-01  1.0e+00 SO 0.0e+00 1.2e-01 (dL_dx2)
+    2     1     4     4 5.4157e-05  1.0e+00 SO 0.0e+00 5.2e-05 (dL_dx2)
+    3     1     5     5 1.0249e-11  1.0e+00 SO 0.0e+00 9.9e-12 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  9.8623e-12 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  9.8623e-12 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  9.8623e-12 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  9.8623e-12 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  9.8222e-11 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  1.1626e-10
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.9149e+00 var: (x2)
+Maximum of F. . . . . . . . . .  9.8623e-12 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8407e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.024907e-11
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:12 elapsed 0:00:00.137
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:06.392
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 15
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:06.413
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.025
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.3040e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.0557e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.3127e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.5501e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.3127e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.5501e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.2894e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 8.4806e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 8.4806e+00           I 0.0e+00 7.6e+00 (dL_dx2)
+    1     1     3     3 1.0477e-01  1.0e+00 SO 0.0e+00 9.8e-02 (dL_dx2)
+    2     1     4     4 3.6588e-05  1.0e+00 SO 0.0e+00 3.5e-05 (dL_dx2)
+    3     1     5     5 4.6233e-12  1.0e+00 SO 0.0e+00 4.4e-12 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.4480e-12 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  4.4480e-12 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  4.4480e-12 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  4.4480e-12 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  4.3883e-11 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  5.2003e-11
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.8674e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.4480e-12 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8291e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 4.623347e-12
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:12 elapsed 0:00:00.146
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:06.726
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 16
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:06.750
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.027
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.1931e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  2.0242e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.2673e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.5047e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.2673e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.5047e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             7.9780e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 7.6742e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 7.6742e+00           I 0.0e+00 7.0e+00 (dL_dx2)
+    1     1     3     3 8.7013e-02  1.0e+00 SO 0.0e+00 8.2e-02 (dL_dx2)
+    2     1     4     4 2.4913e-05  1.0e+00 SO 0.0e+00 2.4e-05 (dL_dx2)
+    3     1     5     5 2.0771e-12  1.0e+00 SO 0.0e+00 2.0e-12 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.0037e-12 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  2.0037e-12 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  2.0037e-12 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  2.0037e-12 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  1.9558e-11 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  2.2994e-11
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.8201e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.0037e-12 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8181e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 2.077083e-12
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:12 elapsed 0:00:00.154
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:07.071
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 17
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:07.093
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.025
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  3.0881e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9953e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.2257e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.4631e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.2257e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.4631e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             7.6834e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 6.9569e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 6.9569e+00           I 0.0e+00 6.3e+00 (dL_dx2)
+    1     1     3     3 7.2553e-02  1.0e+00 SO 0.0e+00 6.9e-02 (dL_dx2)
+    2     1     4     4 1.7099e-05  1.0e+00 SO 0.0e+00 1.6e-05 (dL_dx2)
+    3     1     5     5 9.9945e-13  1.0e+00 SO 0.0e+00 9.6e-13 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  9.5923e-13 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  9.5923e-13 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  9.5923e-13 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  9.5923e-13 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  9.3052e-12 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  1.1117e-11
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.7730e+00 var: (x2)
+Maximum of F. . . . . . . . . .  9.5923e-13 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.8075e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 9.994498e-13
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:13 elapsed 0:00:00.136
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:07.390
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 18
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:07.410
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.021
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.9885e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9689e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.1875e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.4249e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.1875e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.4249e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             7.4041e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 6.3185e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 6.3185e+00           I 0.0e+00 5.8e+00 (dL_dx2)
+    1     1     3     3 6.0735e-02  1.0e+00 SO 0.0e+00 5.8e-02 (dL_dx2)
+    2     1     4     4 1.1830e-05  1.0e+00 SO 0.0e+00 1.1e-05 (dL_dx2)
+    3     1     5     5 4.7487e-13  1.0e+00 SO 0.0e+00 4.6e-13 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.5830e-13 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  4.5830e-13 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  4.5830e-13 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  4.5830e-13 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  4.3946e-12 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  5.1629e-12
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.7263e+00 var: (x2)
+Maximum of F. . . . . . . . . .  4.5830e-13 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.7975e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 4.748691e-13
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:13 elapsed 0:00:00.137
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:07.722
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 19
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:07.744
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.005
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.032
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.8939e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9446e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.1524e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.3898e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.1524e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.3898e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             7.1390e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 5.7498e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 5.7498e+00           I 0.0e+00 5.3e+00 (dL_dx2)
+    1     1     3     3 5.1041e-02  1.0e+00 SO 0.0e+00 4.9e-02 (dL_dx2)
+    2     1     4     4 8.2500e-06  1.0e+00 SO 0.0e+00 7.9e-06 (dL_dx2)
+    3     1     5     5 2.1390e-13  1.0e+00 SO 0.0e+00 2.1e-13 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.0961e-13 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  2.0961e-13 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  2.0961e-13 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  2.0961e-13 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  1.9750e-12 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  2.2028e-12
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.6800e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.0961e-13 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.7880e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 2.139017e-13
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:13 elapsed 0:00:00.144
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:08.055
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 20
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:08.078
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:13 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.028
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.8039e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9222e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.1200e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.3574e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.1200e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.3574e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             6.8871e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 5.2427e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 5.2427e+00           I 0.0e+00 4.9e+00 (dL_dx2)
+    1     1     3     3 4.3062e-02  1.0e+00 SO 0.0e+00 4.1e-02 (dL_dx2)
+    2     1     4     4 5.7999e-06  1.0e+00 SO 0.0e+00 5.6e-06 (dL_dx2)
+    3     1     5     5 1.0563e-13  1.0e+00 SO 0.0e+00 9.9e-14 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  9.9476e-14 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  9.9476e-14 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  9.9476e-14 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  9.9476e-14 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  9.4910e-13 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  1.1982e-12
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.6341e+00 var: (x2)
+Maximum of F. . . . . . . . . .  9.9476e-14 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.7788e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 1.056298e-13
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:14 elapsed 0:00:00.137
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:08.383
+--- emp2.gms(183) 3 Mb
+--- Generating EMP model subStackelberg
+--- emp2.gms(192) 5 Mb
+--- LOOPS grid = 21
+---   2 rows  5 columns  8 non-zeroes
+---   37 nl-code  6 nl-non-zeroes
+--- emp2.gms(192) 3 Mb
+--- Executing JAMS: elapsed 0:00:08.406
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:14 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(34) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(33) 3 Mb
+--- Generating MCP model m
+--- emp.dat(34) 5 Mb
+---   2 rows  3 columns  6 non-zeroes
+---   1 unmatched fixed column(s) will be ignored
+---   61 nl-code  6 nl-non-zeroes
+--- emp.dat(34) 3 Mb
+--- Executing PATH: elapsed 0:00:00.025
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+2 row/cols, 4 non-zeros, 100.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x2)
+Maximum of F. . . . . . . . . .  2.7182e+01 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.9015e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.0900e+01 eqn: (dL_dx3)
+Minimum Row Norm. . . . . . . .  1.3274e+01 eqn: (dL_dx2)
+Maximum Column Norm . . . . . .  2.0900e+01 var: (x3)
+Minimum Column Norm . . . . . .  1.3274e+01 var: (x2)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             6.6474e+01             0.0e+00 (dL_dx2)
+    1     1     0     2 4.7899e+00  1.0e+00    0.0e+00 (dL_dx2)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     2     2 4.7899e+00           I 0.0e+00 4.5e+00 (dL_dx2)
+    1     1     3     3 3.6469e-02  1.0e+00 SO 0.0e+00 3.5e-02 (dL_dx2)
+    2     1     4     4 4.1102e-06  1.0e+00 SO 0.0e+00 4.0e-06 (dL_dx2)
+    3     1     5     5 6.8614e-14  1.0e+00 SO 0.0e+00 6.4e-14 (dL_dx2)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  6.3949e-14 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  6.3949e-14 eqn: (dL_dx2)
+Inf-Norm of Minimum Map . . . .  6.3949e-14 eqn: (dL_dx2)
+Inf-Norm of Fischer Function. .  6.3949e-14 eqn: (dL_dx2)
+Inf-Norm of Grad Fischer Fcn. .  6.0775e-13 eqn: (dL_dx2)
+Two-Norm of Grad Fischer Fcn. .  7.8891e-13
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  3.5886e+00 var: (x2)
+Maximum of F. . . . . . . . . .  6.3949e-14 eqn: (dL_dx2)
+Maximum of Grad F . . . . . . .  1.7701e+01 eqn: (dL_dx3)
+                                            var: (x3)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 3
+Minor Iterations. . . . 3
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 1
+Gradient Steps. . . . . 0
+Function Evaluations. . 5
+Gradient Evaluations. . 5
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.000000
+Residual. . . . . . . . 6.861430e-14
+
+--- Restarting execution
+--- emp.dat(34) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:14 elapsed 0:00:00.136
+--- Returning from GAMS step
+---
+--- Equations skipped = 2  Equations added = 2
+--- Variables skipped = 2  Variables added = 0
+---
+--- Restarting execution
+--- emp2.gms(192) 2 Mb
+--- Reading solution for model subStackelberg
+--- Executing after solve: elapsed 0:00:08.716
+--- emp2.gms(262) 3 Mb
+--- Generating EMP model BertrandMCP
+--- emp2.gms(263) 5 Mb
+---   4 rows  6 columns  12 non-zeroes
+---   15 nl-code  4 nl-non-zeroes
+--- emp2.gms(263) 3 Mb
+--- Executing JAMS: elapsed 0:00:08.741
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 0
+    QVI Parameters      = 0
+    Equilibrium Agent   = 2
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat will be solved by GAMS
+---
+--- Job emp.dat Start 07/10/20 14:47:14 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    LP CPLEX
+    MIP CPLEX
+    RMIP CPLEX
+    NLP CONOPT
+    MCP PATH
+    MPEC NLPEC
+    RMPEC NLPEC
+    CNS CONOPT
+    DNLP CONOPT
+    RMINLP CONOPT
+    MINLP DICOPT
+    QCP CONOPT
+    MIQCP SBB
+    RMIQCP CONOPT
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emp.dat
+    Output C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\emplst.dat
+    ScrDir C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225b\
+    SysDir E:\31.1\
+    LogOption 3
+    AppendLog 1
+    Suppress 1
+    SolverCntr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empcntr.dat
+    SolverMatr C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empmatr.dat
+    SolverStat C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empstat.dat
+    SolverSolu C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225a\empsolu.dat
+    ProcDirPath C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- emp.dat(41) 2 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- emp.dat(40) 3 Mb
+--- Generating MCP model m
+--- emp.dat(41) 5 Mb
+---   10 rows  10 columns  32 non-zeroes
+---   30 nl-code  12 nl-non-zeroes
+--- emp.dat(41) 3 Mb
+--- Executing PATH: elapsed 0:00:00.023
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+10 row/cols, 32 non-zeros, 32.00% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  0.0000e+00 var: (u1)
+Maximum of F. . . . . . . . . .  4.5455e+01 eqn: (e1)
+Maximum of Grad F . . . . . . .  1.2000e+01 eqn: (dL_dx3)
+                                            var: (u3)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  1.3000e+01 eqn: (e3)
+Minimum Row Norm. . . . . . . .  8.5227e-02 eqn: (dL_dx1)
+Maximum Column Norm . . . . . .  1.3000e+01 var: (u3)
+Minimum Column Norm . . . . . .  1.2500e-01 var: (x1)
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             6.4345e+01             0.0e+00 (e1)
+    1    11     6     6 6.4345e+01  3.2e-04    6.4e-01 (e1)
+    2    17     4    10 6.4258e+01  1.7e-01    5.8e-01 (e1)
+    3    25     0    10 6.4205e+01  2.8e-02    5.2e-01 (e1)
+pn_search terminated: no basis change.
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0    26     4 6.4205e+01           I 4.7e-01 4.5e+01 (e1)
+    1     3    34     5 1.1973e+02  5.5e-02 SB 1.9e-01 8.5e+01 (dL_dx4)
+    2     3    35     6 1.1973e+02  1.0e+00 RO 7.5e-02 8.5e+01 (dL_dx4)
+    3     2    45     7 1.1141e+02  9.2e-03 SB 3.0e-02 7.1e+01 (e4)
+    4     1    53     8 1.3277e+02  5.5e-02 SB 1.2e-02 9.4e+01 (e4)
+    5     1    60     9 2.7583e+02  1.3e-01 SB 4.8e-03 2.0e+02 (e4)
+    6     1    61    10 2.4812e+03  1.0e+00 SD 1.9e-03 2.5e+03 (e3)
+    7     1    62    11 3.9964e+02  1.0e+00 SD 7.7e-04 2.7e+02 (dL_dx4)
+    8     1    63    12 1.0731e+03  1.0e+00 SD 3.1e-04 1.1e+03 (e4)
+    9     3    70    13 2.7416e+02  1.3e-01 RW 4.8e-03 2.1e+02 (e3)
+   10     7    71    14 1.9610e+03  1.0e+00 RD 1.9e-03 1.4e+03 (e4)
+   11     3    76    15 5.4648e+01  3.3e-01 SW 4.8e-03 3.2e+01 (e3)
+   12     9    82    16 2.2103e+02  2.1e-01 RB 1.9e-03 2.1e+02 (e3)
+   13     1    83    17 1.3468e+03  1.0e+00 SD 7.7e-04 1.3e+03 (e3)
+   14     1    84    18 2.9760e+02  1.0e+00 SD 3.1e-04 2.9e+02 (e4)
+   15     1    88    19 2.5812e+02  5.1e-01 SW 1.9e-03 2.5e+02 (e3)
+   16     1    89    20 4.9010e+02  1.0e+00 SD 7.7e-04 4.0e+02 (e3)
+   17     1    90    21 3.2318e+02  1.0e+00 SD 3.1e-04 3.2e+02 (e4)
+   18     1    93    22 2.7205e+02  6.4e-01 SW 1.9e-03 2.5e+02 (e3)
+   19     1    94    23 1.1521e+02  1.0e+00 SO 7.7e-04 7.5e+01 (e3)
+   20     1    95    24 5.6169e+02  1.0e+00 SD 3.1e-04 5.5e+02 (e4)
+   21     1    98    25 2.0124e+02  6.4e-01 SW 7.7e-04 2.0e+02 (e4)
+   22     1    99    26 4.7568e+02  1.0e+00 SD 3.1e-04 4.4e+02 (e4)
+
+Restart Log
+proximal_perturbation 0
+crash_method none
+crash_perturb yes
+nms_initial_reference_factor 2
+lemke_start_type slack
+proximal_perturbation 1.0000e-01
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+   22     0   101    27 6.4345e+01           R 1.0e-01 4.5e+01 (e1)
+   23     3   110    28 6.9712e+01  2.3e-02 SB 4.0e-02 4.5e+01 (e1)
+   24     3   118    29 7.7455e+01  5.5e-02 SB 1.6e-02 4.2e+01 (e1)
+   25     1   127    30 7.8605e+01  2.3e-02 SB 6.4e-03 4.1e+01 (e1)
+   26     1   136    31 8.0382e+01  2.3e-02 SB 2.6e-03 4.0e+01 (e1)
+   27     1   145    32 8.2437e+01  2.3e-02 SB 1.0e-03 4.2e+01 (e4)
+   28     1   154    33 8.4589e+01  2.3e-02 SB 4.1e-04 4.5e+01 (e4)
+   29     1   163    34 8.6725e+01  2.3e-02 SB 1.6e-04 4.8e+01 (e4)
+   30     1   172    35 8.8780e+01  2.3e-02 SB 6.6e-05 5.0e+01 (e4)
+   31     1   181    36 9.0718e+01  2.3e-02 SB 2.6e-05 5.3e+01 (e4)
+   32     1   191    37 9.0515e+01  9.2e-03 SB 1.0e-05 5.3e+01 (e4)
+   33     1   201    38 9.0304e+01  9.2e-03 SB 4.2e-06 5.3e+01 (e4)
+   34     1   211    39 9.0086e+01  9.2e-03 SB 1.7e-06 5.3e+01 (e4)
+   35     1   221    40 8.9861e+01  9.2e-03 SB 6.7e-07 5.3e+01 (e4)
+   36     1   231    41 8.9629e+01  9.2e-03 SB 2.7e-07 5.3e+01 (e4)
+   37     1   241    42 8.9391e+01  9.2e-03 SB 1.1e-07 5.3e+01 (e4)
+   38     1   251    43 8.9145e+01  9.2e-03 SB 4.3e-08 5.3e+01 (e4)
+   39     1   261    44 8.8893e+01  9.2e-03 SB 1.7e-08 5.3e+01 (e4)
+   40     1   271    45 8.8634e+01  9.2e-03 SB 6.9e-09 5.3e+01 (e4)
+   41     1   281    46 8.8369e+01  9.2e-03 SB 2.7e-09 5.3e+01 (e4)
+   42     1   291    47 8.8097e+01  9.2e-03 SB 1.1e-09 5.3e+01 (e4)
+   43     1   301    48 8.7820e+01  9.2e-03 SB 4.4e-10 5.3e+01 (e4)
+   44     1   311    49 8.7536e+01  9.2e-03 SB 1.8e-10 5.3e+01 (e4)
+   45     1   321    50 8.7247e+01  9.2e-03 SB 7.0e-11 5.3e+01 (e4)
+   46     1   331    51 8.6952e+01  9.2e-03 SB 2.8e-11 5.3e+01 (e4)
+   47     1   341    52 8.6652e+01  9.2e-03 SB 1.1e-11 5.3e+01 (e4)
+   48     1   351    53 8.6346e+01  9.2e-03 SB 4.5e-12 5.3e+01 (e4)
+   49     1   361    54 8.6036e+01  9.2e-03 SB 1.8e-12 5.2e+01 (e4)
+   50     1   371    55 8.5720e+01  9.2e-03 SB 7.2e-13 5.2e+01 (e4)
+   51     1   380    56 8.6615e+01  2.3e-02 SB 2.9e-13 5.3e+01 (e4)
+   52     1   390    57 8.6270e+01  9.2e-03 SB 1.2e-13 5.3e+01 (e4)
+   53     1   400    58 8.5920e+01  9.2e-03 SB 4.6e-14 5.3e+01 (e4)
+   54     1   410    59 8.5567e+01  9.2e-03 SB 1.8e-14 5.3e+01 (e4)
+   55     1   420    60 8.5209e+01  9.2e-03 SB 7.4e-15 5.3e+01 (e4)
+   56     1   429    61 8.5836e+01  2.3e-02 SB 3.0e-15 5.4e+01 (e4)
+   57     1   439    62 8.5453e+01  9.2e-03 SB 1.2e-15 5.4e+01 (e4)
+   58     1   449    63 8.5067e+01  9.2e-03 SB 0.0e+00 5.3e+01 (e4)
+   59     1   458    64 8.5520e+01  2.3e-02 SB 0.0e+00 5.4e+01 (e4)
+   60     1   468    65 8.5111e+01  9.2e-03 SB 0.0e+00 5.4e+01 (e4)
+   61     1   477    66 8.5434e+01  2.3e-02 SB 0.0e+00 5.4e+01 (e4)
+   62     1   487    67 8.5005e+01  9.2e-03 SB 0.0e+00 5.4e+01 (e4)
+   63     1   496    68 8.5204e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   64     1   506    69 8.4758e+01  9.2e-03 SB 0.0e+00 5.4e+01 (e4)
+   65     1   515    70 8.4844e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   66     1   524    71 8.4848e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   67     1   533    72 8.4774e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   68     1   542    73 8.4626e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   69     1   551    74 8.4410e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   70     1   560    75 8.4128e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   71     1   569    76 8.3785e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   72     1   578    77 8.3384e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   73     1   587    78 8.2930e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   74     1   596    79 8.2426e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   75     1   605    80 8.1875e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   76     1   614    81 8.1281e+01  2.3e-02 SB 0.0e+00 5.4e+01 (e4)
+   77     1   623    82 8.0647e+01  2.3e-02 SB 0.0e+00 5.4e+01 (e4)
+   78     1   632    83 7.9976e+01  2.3e-02 SB 0.0e+00 5.4e+01 (e4)
+   79     1   640    84 8.2138e+01  5.5e-02 SB 0.0e+00 5.5e+01 (e4)
+   80     1   649    85 8.1276e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   81     1   658    86 8.0389e+01  2.3e-02 SB 0.0e+00 5.4e+01 (e4)
+   82     1   666    87 8.1367e+01  5.5e-02 SB 0.0e+00 5.5e+01 (e4)
+   83     1   675    88 8.0345e+01  2.3e-02 SB 0.0e+00 5.5e+01 (e4)
+   84     1   683    89 8.0559e+01  5.5e-02 SB 0.0e+00 5.5e+01 (e4)
+   85     1   691    90 8.0282e+01  5.5e-02 SB 0.0e+00 5.5e+01 (e4)
+   86     1   699    91 7.9587e+01  5.5e-02 SB 0.0e+00 5.5e+01 (e4)
+   87     1   707    92 7.8541e+01  5.5e-02 SB 0.0e+00 5.4e+01 (e4)
+   88     1   715    93 7.7202e+01  5.5e-02 SB 0.0e+00 5.3e+01 (e4)
+   89     1   723    94 7.5622e+01  5.5e-02 SB 0.0e+00 5.2e+01 (e4)
+   90     1   730    95 7.9724e+01  1.3e-01 SB 0.0e+00 5.6e+01 (e4)
+   91     1   731    96 6.0315e+02  1.0e+00 SD 0.0e+00 4.3e+02 (e4)
+   92     1   732    97 6.9700e-05  1.0e+00 SO 0.0e+00 7.0e-05 (e3)
+   93     1   733    98 1.8190e-12  1.0e+00 SO 0.0e+00 1.8e-12 (e3)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  3.7850e-12 eqn: (dL_dx2)
+Inf-Norm of Normal Map. . . . .  1.8190e-12 eqn: (e3)
+Inf-Norm of Minimum Map . . . .  1.8190e-12 eqn: (e3)
+Inf-Norm of Fischer Function. .  1.8190e-12 eqn: (e3)
+Inf-Norm of Grad Fischer Fcn. .  6.2487e-10 eqn: (dL_dx3)
+Two-Norm of Grad Fischer Fcn. .  6.2714e-10
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0093e+04 var: (x6)
+Maximum of F. . . . . . . . . .  1.8190e-12 eqn: (e3)
+Maximum of Grad F . . . . . . .  3.4412e+02 eqn: (dL_dx4)
+                                            var: (u4)
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 93
+Minor Iterations. . . . 121
+Restarts. . . . . . . . 1
+Crash Iterations. . . . 3
+Gradient Steps. . . . . 0
+Function Evaluations. . 733
+Gradient Evaluations. . 98
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.125000
+Residual. . . . . . . . 1.819048e-12
+
+--- Restarting execution
+--- emp.dat(41) 2 Mb
+--- Reading solution for model m
+*** Status: Normal completion
+--- Job emp.dat Stop 07/10/20 14:47:14 elapsed 0:00:00.267
+--- Returning from GAMS step
+---
+--- Equations skipped = 0  Equations added = 6
+--- Variables skipped = 0  Variables added = 4
+---
+--- Restarting execution
+--- emp2.gms(263) 2 Mb
+--- Reading solution for model BertrandMCP
+--- Executing after solve: elapsed 0:00:09.188
+--- emp2.gms(268) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\res.gdx
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\data_emp2/default.gdx
+*** Status: Normal completion
+--- Job emp2.gms Stop 07/10/20 14:47:14 elapsed 0:00:09.217
+
+Warning in eval(ei, envir) :
+  The alias of symbol: 'i' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'lead' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'd' was selected to be overwritten. However, this symbol could not be found.
+Warning in eval(ei, envir) :
+  The alias of symbol: 'ninfo_stac' was selected to be overwritten. However, this symbol could not be found.
+TRACE [2020-07-10 14:47:20] Logging facility initialised.
+DEBUG [2020-07-10 14:47:20] Database connection established.
+DEBUG [2020-07-10 14:47:20] Access Control initialised.
+WARN [2020-07-10 14:47:20] There are orphaned tables in your database: 'emp2_i', 'emp2_lead', 'emp2_d', 'emp2_ninfo_stac'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-08 23:04:24] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-08 23:04:25] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
-DEBUG [2020-07-08 23:04:25] Db: 123 rows in table: '_sys_metadata_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-07-08 23:04:25] Db: Metadata (table: '_sys_metadata_emp2') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-08 23:04:25] Db: Metadata (table: '_sys_metadata_emp2') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_resultcour' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_resultcour2' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_resultstac' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_linfo_stac' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_resultbert' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_fdata' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2_jdata' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was added to table: 'emp2__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-08 23:04:25] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
-DEBUG [2020-07-08 23:04:26] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-07-08 23:04:26] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-08 23:04:32] Scenario: '1' unlocked.
-DEBUG [2020-07-08 23:04:32] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
-DEBUG [2020-07-08 23:04:32] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+INFO [2020-07-10 14:47:20] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-10 14:47:21] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-07-10 14:47:21] Db: 123 rows in table: '_sys_metadata_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-07-10 14:47:21] Db: Metadata (table: '_sys_metadata_emp2') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-10 14:47:21] Db: Metadata (table: '_sys_metadata_emp2') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-10 14:47:21] Db: Data was added to table: 'emp2_resultcour' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2_resultcour2' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2_resultstac' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2_linfo_stac' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2_resultbert' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2_fdata' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2_jdata' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was added to table: 'emp2__scalars' (Db.exportScenDataset).
+DEBUG [2020-07-10 14:47:22] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-07-10 14:47:22] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+DEBUG [2020-07-10 14:47:22] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-10 14:47:25] Scenario: '1' unlocked.
+DEBUG [2020-07-10 14:47:25] Db: 1 rows in table: '_sys_scenlocks_emp2' were deleted. (Db.deleteRows)
+INFO [2020-07-10 14:47:30] Session started (model: 'emp2', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly').
+DEBUG [2020-07-10 14:47:30] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/oligopoly'.
+DEBUG [2020-07-10 14:47:30] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-07-10 14:47:31] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-10 14:47:31] Loading and rendering scenarios: '1'.
+DEBUG [2020-07-10 14:47:31] Db: Data was imported from table: 'emp2_resultcour' (Db.importDataset).
+DEBUG [2020-07-10 14:47:31] Db: Data was imported from table: 'emp2_resultcour2' (Db.importDataset).
+DEBUG [2020-07-10 14:47:31] Db: Data was imported from table: 'emp2_resultstac' (Db.importDataset).
+DEBUG [2020-07-10 14:47:31] Db: Data was imported from table: 'emp2_linfo_stac' (Db.importDataset).
+DEBUG [2020-07-10 14:47:31] Db: Data was imported from table: 'emp2_resultbert' (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Db: Data was imported from table: 'emp2_fdata' (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Db: Data was imported from table: 'emp2_jdata' (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Db: Data was imported from table: 'emp2__scalars' (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Db: A table named: '_sys_scripts_emp2' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Scenario: 'New Scenario' closed.
+DEBUG [2020-07-10 14:47:32] Db: Data was imported from table: '_sys_metadata_emp2' (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Db: Data was imported from table: '_sys_scenlocks_emp2' (Db.importDataset).
+DEBUG [2020-07-10 14:47:32] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-10 14:47:32] Dataset: fdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-10 14:47:32] Dataset: _scalars loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-10 14:47:32] Dataset: jdata loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-10 14:47:34] Scenario: '1' was loaded into UI
+DEBUG [2020-07-10 14:47:35] Sidebar menu item: 'outputData' selected.
+Warning: Error in xy.coords: 'x' and 'y' lengths differ
+  173: stop
+  172: xy.coords
+  171: plot.default
+  169: renderPlot
+  167: func
+  127: drawPlot
+  113: <reactive:plotObj>
+   97: drawReactive
+   84: origRenderFunc
+   83: output$tab_5-custom-bert
+    3: shiny::runApp
+DEBUG [2020-07-10 14:47:56] Table view for model output in sheet(s): 3 activated.
+DEBUG [2020-07-10 14:48:14] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-10 14:48:24] Solve button clicked (model: 'emp2').
+TRACE [2020-07-10 14:48:24] Dataset: CES data for firms saved in dataTmp.
+TRACE [2020-07-10 14:48:24] Dataset: Scalars saved in dataTmp.
+TRACE [2020-07-10 14:48:24] Dataset: Price-Quantity parameter saved in dataTmp.
+DEBUG [2020-07-10 14:48:24] Db: A table named: '_sys_attach_emp2' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-10 14:48:25] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-07-10 14:48:37] Db: A table named: '_sys_attach_emp2' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-10 14:48:37] Sidebar menu item: 'outputData' selected.
+Warning: Error in xy.coords: 'x' and 'y' lengths differ
+  173: stop
+  172: xy.coords
+  171: plot.default
+  169: renderPlot
+  167: func
+  127: drawPlot
+  113: <reactive:plotObj>
+   97: drawReactive
+   84: origRenderFunc
+   83: output$tab_5-custom-bert
+    3: shiny::runApp
+DEBUG [2020-07-10 14:49:53] Table view for model output in sheet(s): 5 activated.
+INFO [2020-07-10 14:54:37] Session ended (model: 'emp2', user: 'hasee').

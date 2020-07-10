@@ -7,9 +7,10 @@ resOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here 
-     plotOutput(ns('feed'),height=height),
-    
-  ) 
+   selectInput(ns('ScenarioSelect'), label="Scenario", 
+                                  choice=c('c1','c2','c3')),
+  plotOutput(ns('feed'),height=height))
+  
 }
 
 renderRes <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
@@ -18,11 +19,11 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
   C<-unique(data$c)
   k<-floor(sqrt(l))
   output$feed<-renderPlot({
-    par(mfrow=c(k,ceiling(l/k)),mar=c(1,1,1,1),oma=c(3,3,10,3))
-    for (i in 1:length(C))
-    {
+     par(mfrow=c(1,1),mar=c(1,1,1,1),oma=c(3,3,8,3))
+    # for (i in 1:length(C))
+    # {
       
-      z<-data$c==C[i] &  !is.na(data$z)  &data$z >=1 & data$z!=3 
+      z<-data$c==input$ScenarioSelect &  !is.na(data$z)  &data$z >=1 & data$z!=3 
       areacover<-data$areacover[z]
       areacover<-areacover[1]
       type<-data$type[z]
@@ -41,14 +42,14 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
       plot(1:data$totalwidth[1],1:data$totalheight[1]
            ,xlab='width',ylab='height',type='n',cex=1.2,font = 2)
       bigM<-max(val)
-      mtext(paste('Feed at scenario',C[i]),line = 1,side = 3,cex=1.5)
+      mtext(paste('Feed at scenario',input$ScenarioSelect),line = 1,side = 3,cex=1.5)
       mtext(paste('Area covered ratio:',round(areacover),'%'),side=3,line=-2,cex=1)
        Color<-heat.colors(bigM+1)
        heatcol<-Color[length(Color)-floor(val)]
         rect(xl,yb,xr,yt,col = heatcol)
         text((xl+xr)/2,(yb+yt)/2,paste(S,': ',type,'\n','Update time:',Time,'\n','value:',round(val,2)),cex=1.2,font = 2,col='black')
-    }
-     mtext(paste('Feed at all ',l,' scenarios'),side=3,line=6,outer=TRUE,cex=3,font=3)
+    # }
+     mtext(paste('Feed at  scenario',input$ScenarioSelect),side=3,line=6,outer=TRUE,cex=3,font=3)
      mtext(paste('Time window:',data$window[1]),side = 3,line=3,outer=TRUE,cex=1.2)
      mtext(paste('Check time:',data$checkat[1]),side = 3,line=3,outer=TRUE,cex=1.2,adj=1)
      mtext(paste('Total value:',round(data$totalval[1])),side=3,line=3,outer=TRUE,cex=1.2,adj=0)

@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -14,205 +14,172 @@ INCLUDE    C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
   10  alias(city,i,j);
   11  set Header /l_lat,l_long,select/;
   12  set Constraints /'Dynamic SEC', 'Positional Constraints'/;
+GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
   14  table CityInfo(city,Header)
-INCLUDE    C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\capitals.csv
-  17  ,l_lat,l_long,select
-  18  Montgomery_AL,32.361538,-86.279118,1
-  19  Juneau_AK,58.301935,-134.41974,0
-  20  Phoenix_AZ,33.448457,-112.073844,1
-  21  Little-Rock_AR,34.736009,-92.331122,1
-  22  Sacramento_CA,38.555605,-121.468926,1
-  23  Denver_CO,39.7391667,-104.984167,1
-  24  Hartford_CT,41.767,-72.677,1
-  25  Dover_DE,39.161921,-75.526755,1
-  26  Tallahassee_FL,30.4518,-84.27277,1
-  27  Atlanta_GA,33.76,-84.39,1
-  28  Honolulu_HI,21.30895,-157.826182,0
-  29  Boise_ID,43.613739,-116.237651,1
-  30  Springfield_IL,39.78325,-89.650373,1
-  31  Indianapolis_IN,39.790942,-86.147685,1
-  32  Des-Moines_IA,41.590939,-93.620866,1
-  33  Topeka_KS,39.04,-95.69,1
-  34  Frankfort_KY,38.197274,-84.86311,1
-  35  Baton-Rouge_LA,30.45809,-91.140229,1
-  36  Augusta_ME,44.323535,-69.765261,1
-  37  Annapolis_MD,38.972945,-76.501157,1
-  38  Boston_MA,42.2352,-71.0275,1
-  39  Lansing_MI,42.7335,-84.5467,1
-  40  Saint-Paul_MN,44.95,-93.094,1
-  41  Jackson_MS,32.32,-90.207,1
-  42  Jefferson-City_MO,38.572954,-92.189283,1
-  43  Helana_MT,46.595805,-112.027031,1
-  44  Lincoln_NE,40.809868,-96.675345,1
-  45  Carson-City_NV,39.160949,-119.753877,1
-  46  Concord_NH,43.220093,-71.549127,1
-  47  Trenton_NJ,40.221741,-74.756138,1
-  48  Santa-Fe_NM,35.667231,-105.964575,1
-  49  Albany_NY,42.659829,-73.781339,1
-  50  Raleigh_NC,35.771,-78.638,1
-  51  Bismarck_ND,46.813343,-100.779004,1
-  52  Columbus_OH,39.962245,-83.000647,1
-  53  Oklahoma-City_OK,35.482309,-97.534994,1
-  54  Salem_OR,44.931109,-123.029159,1
-  55  Harrisburg_PA,40.269789,-76.875613,1
-  56  Providence_RI,41.82355,-71.422132,1
-  57  Columbia_SC,34,-81.035,1
-  58  Pierre_SD,44.367966,-100.336378,1
-  59  Nashville_TN,36.165,-86.784,1
-  60  Austin_TX,30.266667,-97.75,1
-  61  Salt-Lake-City_UT,40.7547,-111.892622,1
-  62  Montpelier_VT,44.26639,-72.57194,1
-  63  Richmond_VA,37.54,-77.46,1
-  64  Olympia_WA,47.042418,-122.893077,1
-  65  Charleston_WV,38.349497,-81.633294,1
-  66  Madison_WI,43.074722,-89.384444,1
-  67  Cheyenne_WY,41.145548,-104.802042,1
-  69  ;
-  70  Singleton Set Constraint(Constraints) 'selected model Constraint type' / 'Dynamic SEC' /;
-  72   
-  73  set select(city) Selected capitals;
-  74  select(city)$(CityInfo(city,'select') eq 1)=yes;
-  75  scalar count /0/;
-  76  parameter OrderVal(i);
-  77  loop(select,count=count+1;OrderVal(select)=count;);
-  78   
-  79  alias(select,k)
-  80  table  dist(i,j)  "distances" ;
-  81  dist(i,j)$(not sameas(i,j))=arccos(sin(CityInfo(i,'l_lat')*pi/180)*sin(CityInfo(j,'l_lat')*pi/180)
-  82  +cos(CityInfo(i,'l_lat')*pi/180)*cos(CityInfo(j,'l_lat')*pi/180)*
-  83  cos((CityInfo(j,'l_long')-CityInfo(i,'l_long'))*pi/180))*6371.004;
-  84  variables x(i,j);
-  85  binary variables x;
-  86  free variable obj;
-  87  equations defobj, assign1(j), assign2(i);
+--- LOAD  CityInfo = 1:cityinfo
+  18  ;
+--- LOAD  Constraint = 2:constraint
+  19  Singleton Set Constraint(Constraints) 'selected model Constraint type' / 'Dynamic SEC' /;
+  21   
+  22  set select(city) Selected capitals;
+  23  select(city)$(CityInfo(city,'select') eq 1)=yes;
+  24  scalar count /0/;
+  25  parameter OrderVal(i);
+  26  loop(select,count=count+1;OrderVal(select)=count;);
+  27   
+  28  alias(select,k)
+  29  table  dist(i,j)  "distances" ;
+  30  dist(i,j)$(not sameas(i,j))=arccos(sin(CityInfo(i,'l_lat')*pi/180)*sin(CityInfo(j,'l_lat')*pi/180)
+  31  +cos(CityInfo(i,'l_lat')*pi/180)*cos(CityInfo(j,'l_lat')*pi/180)*
+  32  cos((CityInfo(j,'l_long')-CityInfo(i,'l_long'))*pi/180))*6371.004;
+  33  variables x(i,j);
+  34  binary variables x;
+  35  free variable obj;
+  36  equations defobj, assign1(j), assign2(i);
+  37   
+  38  defobj..
+  39  obj =e= sum((select,k)$(not sameas(select,k)), dist(select,k) * x(select,k));
+  40   
+  41  assign1(select)..
+  42  sum(k$(not sameas(select,k)), x(select,k)) =e= 1;
+  43   
+  44  assign2(select)..
+  45  sum(k$(not sameas(select,k)), x(k,select)) =e= 1;
+  46  x.fx(select,select) = 0;
+  47   
+  48  positive variables u(i) ;
+  49  equations mtz(i,j);
+  50  mtz(select,k)$(OrderVal(select) > 1 and OrderVal(k) > 1 )..
+  51    u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
+  52   
+  53   
+  54  Set cc    Subtour elimination cuts /c1*c500/
+  55      c(cc) Active cuts; c(cc)=no;
+  56   
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+  57  Parameters
+  58      cutcoeff(cc,i,j) coeffients for the subtour elimination cuts
+  59      rhs(cc)          right hand side for the subtour elimination cuts;
+  60  cutcoeff(c,i,j)=0; rhs(c)=0;
+  61   
+  62  Equations cut(cc) dynamic subtour elimination cuts;
+  63   
+  64  cut(c).. sum((select,k), cutcoeff(c,select,k)*x(select,k)) =l= rhs(c);
+  65   
+  66  model tspPC /defobj,assign1,assign2,mtz/;
+  67  model tspSEC /defobj,assign1,assign2,cut/;
+  68  option optcr=0, limrow=0, limcol=0, solprint=off;
+  69   
+  70  * Solve without subtour elimination constraints
+  71  if( sameAs(constraint,'Positional Constraints'),
+  72  option optcr=0.05;
+  73  solve tspPC min obj using mip;
+  74  else
+  75  solve tspSEC min obj using mip);
+  76   
+  77   
+  78  set t            tours /t1*t25/
+  79      ttour(i,j,t)  subtours
+  80      from(i)      contains always one element: the from swath
+  81      next(j)      contains always one element: the to swath
+  82      visited(i)   flag whether a swath is already visited
+  83      tt(t)        contains always one element: the current subtour
+  84      curc(cc)     contains always one element: the current SE cut /c1/;
+  85  scalar goon      go on flag used to control loop /1/;
+  86   
+  87   
   88   
-  89  defobj..
-  90  obj =e= sum((select,k)$(not sameas(select,k)), dist(select,k) * x(select,k));
-  91   
-  92  assign1(select)..
-  93  sum(k$(not sameas(select,k)), x(select,k)) =e= 1;
-  94   
-  95  assign2(select)..
-  96  sum(k$(not sameas(select,k)), x(k,select)) =e= 1;
-  97  x.fx(select,select) = 0;
+  89   
+  90  while(goon=1 and sameAs(constraint,'Dynamic SEC'),
+  91    // Start tour in first swath
+  92    from(select) = no; tt(t) = no; ttour(i,j,t)=no; visited(i)=no;
+  93    from(select)$(OrderVal(select) eq 1) = yes; tt('t1') = yes; x.l(i,j) = round(x.l(i,j));
+  94    while (card(from),
+  95       // find swath visited after swath 'from'
+  96       next(i)=no; loop((from,select)$x.l(from,select), next(select) = yes);
+  97       ttour(from,next,tt) = yes;   // store in table
   98   
-  99  positive variables u(i) ;
- 100  equations mtz(i,j);
- 101  mtz(select,k)$(OrderVal(select) > 1 and OrderVal(k) > 1 )..
- 102    u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
- 103   
- 104   
- 105  Set cc    Subtour elimination cuts /c1*c500/
- 106      c(cc) Active cuts; c(cc)=no;
- 107   
- 108  Parameters
- 109      cutcoeff(cc,i,j) coeffients for the subtour elimination cuts
- 110      rhs(cc)          right hand side for the subtour elimination cuts;
- 111  cutcoeff(c,i,j)=0; rhs(c)=0;
- 112   
- 113  Equations cut(cc) dynamic subtour elimination cuts;
- 114   
- 115  cut(c).. sum((select,k), cutcoeff(c,select,k)*x(select,k)) =l= rhs(c);
- 116   
- 117  model tspPC /defobj,assign1,assign2,mtz/;
- 118  model tspSEC /defobj,assign1,assign2,cut/;
- 119  option optcr=0, limrow=0, limcol=0, solprint=off;
- 120   
- 121  * Solve without subtour elimination constraints
- 122  if( sameAs(constraint,'Positional Constraints'),
- 123  solve tspPC min obj using mip;
- 124  else
- 125  solve tspSEC min obj using mip);
+  99       visited(from) = yes;        // mark swath 'from' as visited
+ 100       from(select) = next(select);
+ 101       if (sum(visited(next),1)>0, // if we are back at the start of the tour
+ 102         // find starting point of new subtour
+ 103         tt(t) = tt(t-1); from(select) = no;
+ 104         goon=1; loop(select$(not visited(select) and goon), from(select) = yes; goon=0);
+ 105       )
+ 106    );
+ 107    display ttour;
+ 108   
+ 109    if (tt('t2'), goon = 0; // just one tour -> stop
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+ 110    else                    // else: introduce cut(s)
+ 111      // in case of two tours, we get complement cuts so eliminate the long tour
+ 112      if (tt('t3'),
+ 113        if (sum(ttour(select,k,'t1'),1) < sum(ttour(select,k,'t2'),1),
+ 114          ttour(select,k,'t2') = no;
+ 115        else
+ 116          ttour(select,k,'t1') = ttour(select,k,'t2');
+ 117          ttour(select,k,'t2') = no;
+ 118        );
+ 119        tt('t2') = yes;
+ 120      );
+ 121      goon = 1; loop(t$goon,
+ 122        rhs(curc)=-1;
+ 123        visited(select) = sum(ttour(select,k,t),1);
+ 124        loop(ttour(select,k,t),
+ 125          cutcoeff(curc,select,visited) = 1;
  126   
- 127   
- 128  set t            tours /t1*t25/
- 129      ttour(i,j,t)  subtours
- 130      from(i)      contains always one element: the from swath
- 131      next(j)      contains always one element: the to swath
- 132      visited(i)   flag whether a swath is already visited
- 133      tt(t)        contains always one element: the current subtour
- 134      curc(cc)     contains always one element: the current SE cut /c1/;
- 135  scalar goon      go on flag used to control loop /1/;
- 136   
- 137   
+ 127          rhs(curc) = rhs(curc) + 1;
+ 128        );
+ 129        c(curc) = yes;
+ 130        curc(cc) = curc(cc-1);
+ 131        goon = card(curc) and not tt(t+1);
+ 132      );
+ 133      abort$(card(curc)=0) 'set cc too small';
+ 134      solve tspSEC using mip minimizing obj;
+ 135      if (card(curc),goon=1;);
+ 136    );
+ 137  );
  138   
- 139   
- 140  while(goon=1,
- 141    // Start tour in first swath
- 142    from(select) = no; tt(t) = no; ttour(i,j,t)=no; visited(i)=no;
- 143    from(select)$(OrderVal(select) eq 1) = yes; tt('t1') = yes; x.l(i,j) = round(x.l(i,j));
- 144    while (card(from),
- 145       // find swath visited after swath 'from'
- 146       next(i)=no; loop((from,select)$x.l(from,select), next(select) = yes);
- 147       ttour(from,next,tt) = yes;   // store in table
- 148   
- 149       visited(from) = yes;        // mark swath 'from' as visited
- 150       from(select) = next(select);
- 151       if (sum(visited(next),1)>0, // if we are back at the start of the tour
- 152         // find starting point of new subtour
- 153         tt(t) = tt(t-1); from(select) = no;
- 154         goon=1; loop(select$(not visited(select) and goon), from(select) = yes; goon=0);
- 155       )
- 156    );
- 157    display ttour;
- 158   
- 159    if (tt('t2'), goon = 0; // just one tour -> stop
- 160    else                    // else: introduce cut(s)
- 161      // in case of two tours, we get complement cuts so eliminate the long tour
- 162      if (tt('t3'),
- 163        if (sum(ttour(select,k,'t1'),1) < sum(ttour(select,k,'t2'),1),
- 164          ttour(select,k,'t2') = no;
- 165        else
- 166          ttour(select,k,'t1') = ttour(select,k,'t2');
- 167          ttour(select,k,'t2') = no;
- 168        );
- 169        tt('t2') = yes;
- 170      );
- 171      goon = 1; loop(t$goon,
- 172        rhs(curc)=-1;
- 173        visited(select) = sum(ttour(select,k,t),1);
- 174        loop(ttour(select,k,t),
- 175          cutcoeff(curc,select,visited) = 1;
- 176   
- 177          rhs(curc) = rhs(curc) + 1;
- 178        );
- 179        c(curc) = yes;
- 180        curc(cc) = curc(cc-1);
- 181        goon = card(curc) and not tt(t+1);
- 182      );
- 183      abort$(card(curc)=0) 'set cc too small';
- 184      solve tspSEC using mip minimizing obj;
- 185      if (card(curc),goon=1;);
- 186    );
- 187  );
- 188   
- 189  *u.fx(select)$(OrderVal(select) eq 1) = 0;
+ 139  *u.fx(select)$(OrderVal(select) eq 1) = 0;
       option optcr = 1e-3;
       $onecho > cplex.opt
       lpmethod 4
       $offecho
       tsp.optfile = 1;
- 197  display obj.l;
- 198  set tour(i,j) ;
- 199   
- 200  tour(select,select) = no;
- 201  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
- 202  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
- 204  table TourT(i,j,TourHeader);
- 205  TourT(select,k,'status')$tour(select,k)=1;
- 206  TourT(i,j,'status')$(not tour(i,j))=-1;
- 207  TourT(i,j,'dist')=dist(i,j);
- 208  TourT(i,j,'lat1')=CityInfo(i,'l_lat');
- 209  TourT(i,j,'long1')=CityInfo(i,'l_long');
- 210  TourT(i,j,'lat2')=CityInfo(j,'l_lat');
- 211  TourT(i,j,'long2')=CityInfo(j,'l_long');
- 212  scalar TotalCost Total Cost;
- 213  TotalCost=obj.l;
- 215  * Just print the tour in a simple way
- 216  option tour:0:0:1 ;
- 217   
- 218  display tour;
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 2
+ 147  display obj.l;
+ 148  set tour(i,j) ;
+ 149   
+ 150  tour(select,select) = no;
+ 151  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
+ 152  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
+ 154  table TourT(i,j,TourHeader);
+ 155  TourT(select,k,'status')$tour(select,k)=1;
+ 156  TourT(i,j,'status')$(not tour(i,j))=-1;
+ 157  TourT(i,j,'dist')=dist(i,j);
+ 158  TourT(i,j,'lat1')=CityInfo(i,'l_lat');
+ 159  TourT(i,j,'long1')=CityInfo(i,'l_long');
+ 160  TourT(i,j,'lat2')=CityInfo(j,'l_lat');
+ 161  TourT(i,j,'long2')=CityInfo(j,'l_long');
+ 162  scalar TotalCost Total Cost;
+ 163  TotalCost=obj.l;
+ 165  * Just print the tour in a simple way
+ 166  option tour:0:0:1 ;
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+ 167   
+ 168  display tour;
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -221,13 +188,13 @@ Include File Summary
 
      1        1 INPUT          0       0  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
      2        6 INCLUDE        1       6  .C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
-     3       16 INCLUDE        1      15  .C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\capitals.csv
+     3       13 GDXIN          1      12  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 3
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 125
+Model Statistics    SOLVE tspSEC Using MIP From line 75
 
 
 MODEL STATISTICS
@@ -241,22 +208,22 @@ GENERATION TIME      =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 EXECUTION TIME       =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 125
+Solution Report     SOLVE tspSEC Using MIP From line 75
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  125
+     SOLVER  CPLEX               FROM LINE  75
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            13550.5719
 
- RESOURCE USAGE, LIMIT          0.031      1000.000
+ RESOURCE USAGE, LIMIT          0.047      1000.000
  ITERATION COUNT, LIMIT        39    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -266,10 +233,10 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.02sec (det. 13.85 ticks)
+Cplex Time: 0.03sec (det. 13.85 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.84 ticks)
+Cplex Time: 0.02sec (det. 0.84 ticks)
 Proven optimal solution.
 
 MIP Solution:        13550.571935    (39 iterations, 0 nodes)
@@ -284,12 +251,12 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1          t2          t3          t4          t5          t6          t7          t8          t9         t10         t11         t12         t13         t14         t15         t16         t17         t18
 
@@ -342,12 +309,21 @@ Oklahoma-City_OK .Austin_TX                                         YES
 Salem_OR         .Olympia_WA                                                    YES
 Pierre_SD        .Bismarck_ND               YES
 Austin_TX        .Oklahoma-City_OK                                  YES
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 9
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+        107 SET ttour  subtours
+
+                                  +         t19         t20         t21         t22
+
 Olympia_WA       .Salem_OR                                                      YES
 Charleston_WV    .Columbus_OH                           YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 6
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 184
+Model Statistics    SOLVE tspSEC Using MIP From line 134
 
 
 LOOPS                            FOR/WHILE   1
@@ -360,28 +336,28 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
 NON ZERO ELEMENTS         6,877     DISCRETE VARIABLES      2,256
 
 
-GENERATION TIME      =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
                L O O P S          FOR/WHILE 1
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 11
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 184
+Solution Report     SOLVE tspSEC Using MIP From line 134
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  184
+     SOLVER  CPLEX               FROM LINE  134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            16175.1037
 
- RESOURCE USAGE, LIMIT          0.063      1000.000
+ RESOURCE USAGE, LIMIT          0.094      1000.000
  ITERATION COUNT, LIMIT        97    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -391,7 +367,7 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.05sec (det. 27.03 ticks)
+Cplex Time: 0.08sec (det. 27.03 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.84 ticks)
@@ -409,12 +385,12 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 8
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 12
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1          t2          t3          t4          t5          t6          t7          t8          t9         t10
 
@@ -467,9 +443,9 @@ Charleston_WV    .Columbus_OH                                                   
 Madison_WI       .Saint-Paul_MN                                                                         YES
 Cheyenne_WY      .Denver_CO                             YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 9
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 13
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 184
+Model Statistics    SOLVE tspSEC Using MIP From line 134
 
 
 LOOPS                            FOR/WHILE   2
@@ -482,28 +458,28 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
 NON ZERO ELEMENTS         7,259     DISCRETE VARIABLES      2,256
 
 
-GENERATION TIME      =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.046 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
                L O O P S          FOR/WHILE 2
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 10
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 14
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 184
+Solution Report     SOLVE tspSEC Using MIP From line 134
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  184
+     SOLVER  CPLEX               FROM LINE  134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            16591.1473
 
- RESOURCE USAGE, LIMIT          0.063      1000.000
+ RESOURCE USAGE, LIMIT          0.141      1000.000
  ITERATION COUNT, LIMIT        99    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -513,10 +489,10 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.05sec (det. 26.89 ticks)
+Cplex Time: 0.08sec (det. 26.89 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.89 ticks)
+Cplex Time: 0.05sec (det. 0.89 ticks)
 Proven optimal solution.
 
 MIP Solution:        16591.147336    (99 iterations, 0 nodes)
@@ -531,12 +507,12 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 11
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 15
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1          t2          t3          t4          t5          t6          t7          t8
 
@@ -589,9 +565,9 @@ Charleston_WV    .Columbus_OH               YES
 Madison_WI       .Des-Moines_IA             YES
 Cheyenne_WY      .Salt-Lake-City_UT                     YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 12
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 16
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 184
+Model Statistics    SOLVE tspSEC Using MIP From line 134
 
 
 LOOPS                            FOR/WHILE   3
@@ -604,28 +580,28 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
 NON ZERO ELEMENTS         7,735     DISCRETE VARIABLES      2,256
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.078 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
                L O O P S          FOR/WHILE 3
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 13
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 17
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 184
+Solution Report     SOLVE tspSEC Using MIP From line 134
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  184
+     SOLVER  CPLEX               FROM LINE  134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            16764.9112
 
- RESOURCE USAGE, LIMIT          0.078      1000.000
+ RESOURCE USAGE, LIMIT          0.203      1000.000
  ITERATION COUNT, LIMIT       122    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -635,7 +611,7 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.06sec (det. 37.84 ticks)
+Cplex Time: 0.20sec (det. 37.84 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.92 ticks)
@@ -653,12 +629,12 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 14
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 18
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1          t2          t3
 
@@ -711,9 +687,9 @@ Charleston_WV    .Columbus_OH               YES
 Madison_WI       .Saint-Paul_MN             YES
 Cheyenne_WY      .Salt-Lake-City_UT                     YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 15
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 19
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 184
+Model Statistics    SOLVE tspSEC Using MIP From line 134
 
 
 LOOPS                            FOR/WHILE   4
@@ -726,28 +702,28 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
 NON ZERO ELEMENTS         8,653     DISCRETE VARIABLES      2,256
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
                L O O P S          FOR/WHILE 4
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 16
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 20
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 184
+Solution Report     SOLVE tspSEC Using MIP From line 134
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  184
+     SOLVER  CPLEX               FROM LINE  134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            17049.2265
 
- RESOURCE USAGE, LIMIT          0.109      1000.000
+ RESOURCE USAGE, LIMIT          0.125      1000.000
  ITERATION COUNT, LIMIT       143    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -757,7 +733,7 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.09sec (det. 50.15 ticks)
+Cplex Time: 0.13sec (det. 50.15 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.96 ticks)
@@ -775,12 +751,12 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 17
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 21
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1          t2          t3          t4          t5
 
@@ -833,9 +809,9 @@ Charleston_WV    .Columbus_OH               YES
 Madison_WI       .Springfield_IL            YES
 Cheyenne_WY      .Denver_CO                 YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 18
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 22
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 184
+Model Statistics    SOLVE tspSEC Using MIP From line 134
 
 
 LOOPS                            FOR/WHILE   5
@@ -848,28 +824,28 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
 NON ZERO ELEMENTS         9,567     DISCRETE VARIABLES      2,256
 
 
-GENERATION TIME      =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.046 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
                L O O P S          FOR/WHILE 5
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 19
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 23
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 184
+Solution Report     SOLVE tspSEC Using MIP From line 134
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  184
+     SOLVER  CPLEX               FROM LINE  134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            17081.7302
 
- RESOURCE USAGE, LIMIT          0.156      1000.000
+ RESOURCE USAGE, LIMIT          0.187      1000.000
  ITERATION COUNT, LIMIT       288    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -879,7 +855,7 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.13sec (det. 70.14 ticks)
+Cplex Time: 0.17sec (det. 70.14 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 1.01 ticks)
@@ -898,12 +874,12 @@ Relative gap:            0.000000
                              0 INFEASIBLE
                              0  UNBOUNDED
                             46  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 20
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 24
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1          t2
 
@@ -956,9 +932,9 @@ Charleston_WV    .Harrisburg_PA             YES
 Madison_WI       .Lansing_MI                YES
 Cheyenne_WY      .Denver_CO                             YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 21
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 25
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE tspSEC Using MIP From line 184
+Model Statistics    SOLVE tspSEC Using MIP From line 134
 
 
 LOOPS                            FOR/WHILE   6
@@ -971,28 +947,28 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
 NON ZERO ELEMENTS        10,096     DISCRETE VARIABLES      2,256
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.046 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
                L O O P S          FOR/WHILE 6
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 22
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 26
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE tspSEC Using MIP From line 184
+Solution Report     SOLVE tspSEC Using MIP From line 134
 
 
                S O L V E      S U M M A R Y
 
      MODEL   tspSEC              OBJECTIVE  obj
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  184
+     SOLVER  CPLEX               FROM LINE  134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE            17092.1013
 
- RESOURCE USAGE, LIMIT          0.203      1000.000
+ RESOURCE USAGE, LIMIT          0.234      1000.000
  ITERATION COUNT, LIMIT       465    2000000000
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -1002,7 +978,7 @@ Cplex 12.10.0.0
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.17sec (det. 91.64 ticks)
+Cplex Time: 0.23sec (det. 91.64 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 1.04 ticks)
@@ -1020,12 +996,12 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:06:46 Page 23
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 27
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    157 SET ttour  subtours
+----    107 SET ttour  subtours
 
                                              t1
 
@@ -1078,10 +1054,14 @@ Charleston_WV    .Harrisburg_PA             YES
 Madison_WI       .Lansing_MI                YES
 Cheyenne_WY      .Pierre_SD                 YES
 
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 28
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
 
-----    197 VARIABLE obj.L                 =    17092.101  
 
-----    218 SET tour  
+----    147 VARIABLE obj.L                 =    17092.101  
+
+----    168 SET tour  
 
 Montgomery_AL    .Atlanta_GA       
 Phoenix_AZ       .Carson-City_NV   
@@ -1132,9 +1112,12 @@ Charleston_WV    .Harrisburg_PA
 Madison_WI       .Lansing_MI       
 Cheyenne_WY      .Pierre_SD        
 
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 29
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
 
 
-EXECUTION TIME       =        0.000 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN

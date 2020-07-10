@@ -1,32 +1,32 @@
 B 3 C o m p i l a t i o n
-B 217 Include File Summary
-B 230 Model Statistics    SOLVE tspSEC Using MIP From line 125
-B 246 Solution Report     SOLVE tspSEC Using MIP From line 125
-B 289 E x e c u t i o n
-I 289 ttour
-B 350 Model Statistics    SOLVE tspSEC Using MIP From line 184
-B 371 Solution Report     SOLVE tspSEC Using MIP From line 184
-B 414 E x e c u t i o n
-I 414 ttour
-B 472 Model Statistics    SOLVE tspSEC Using MIP From line 184
-B 493 Solution Report     SOLVE tspSEC Using MIP From line 184
-B 536 E x e c u t i o n
-I 536 ttour
-B 594 Model Statistics    SOLVE tspSEC Using MIP From line 184
-B 615 Solution Report     SOLVE tspSEC Using MIP From line 184
-B 658 E x e c u t i o n
-I 658 ttour
-B 716 Model Statistics    SOLVE tspSEC Using MIP From line 184
-B 737 Solution Report     SOLVE tspSEC Using MIP From line 184
-B 780 E x e c u t i o n
-I 780 ttour
-B 838 Model Statistics    SOLVE tspSEC Using MIP From line 184
-B 859 Solution Report     SOLVE tspSEC Using MIP From line 184
-B 903 E x e c u t i o n
-I 903 ttour
-B 961 Model Statistics    SOLVE tspSEC Using MIP From line 184
-B 982 Solution Report     SOLVE tspSEC Using MIP From line 184
-B 1025 E x e c u t i o n
-I 1025 ttour
-I 1081 obj
-I 1082 tour
+B 218 Include File Summary
+B 231 Model Statistics    SOLVE tspSEC Using MIP From line 126
+B 247 Solution Report     SOLVE tspSEC Using MIP From line 126
+B 290 E x e c u t i o n
+I 290 ttour
+B 351 Model Statistics    SOLVE tspSEC Using MIP From line 185
+B 372 Solution Report     SOLVE tspSEC Using MIP From line 185
+B 415 E x e c u t i o n
+I 415 ttour
+B 473 Model Statistics    SOLVE tspSEC Using MIP From line 185
+B 494 Solution Report     SOLVE tspSEC Using MIP From line 185
+B 537 E x e c u t i o n
+I 537 ttour
+B 595 Model Statistics    SOLVE tspSEC Using MIP From line 185
+B 616 Solution Report     SOLVE tspSEC Using MIP From line 185
+B 659 E x e c u t i o n
+I 659 ttour
+B 717 Model Statistics    SOLVE tspSEC Using MIP From line 185
+B 738 Solution Report     SOLVE tspSEC Using MIP From line 185
+B 781 E x e c u t i o n
+I 781 ttour
+B 839 Model Statistics    SOLVE tspSEC Using MIP From line 185
+B 860 Solution Report     SOLVE tspSEC Using MIP From line 185
+B 904 E x e c u t i o n
+I 904 ttour
+B 962 Model Statistics    SOLVE tspSEC Using MIP From line 185
+B 983 Solution Report     SOLVE tspSEC Using MIP From line 185
+B 1026 E x e c u t i o n
+I 1026 ttour
+I 1082 obj
+I 1083 tour

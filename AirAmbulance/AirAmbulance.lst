@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/09/20 16:31:14 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -70,6 +70,162 @@ C o m p i l a t i o n
 
 
 COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE AirAmbulance2 Using LP From line 56
+
+
+---- objective  =E=  
+
+objective..  - obj + 1640.12194668567*z(1,2) + 3827.53184180093*z(1,3) + 2647.64045897475*z(1,4) + 3443.83507154451*z(1,5) + 1640.12194668567*z(2,1) + 2600*z(2,3) + 1984.94332412792*z(2,4) + 3080.58436014987*z(2,5) + 3827.53184180093*z(3,1) + 2600*z(3,2)
+     
+      + 4301.16263352131*z(3,4) + 5408.32691319598*z(3,5) + 2647.64045897475*z(4,1) + 1984.94332412792*z(4,2) + 4301.16263352131*z(4,3) + 1118.03398874989*z(4,5) + 3443.83507154451*z(5,1) + 3080.58436014987*z(5,2) + 5408.32691319598*z(5,3)
+     
+      + 1118.03398874989*z(5,4) =E= 0 ; (LHS = 0)
+     
+
+---- balance2  =L=  
+
+balance2(1)..  - z(1,2) - z(1,3) - z(1,4) - z(1,5) + z(2,1) + z(3,1) + z(4,1) + z(5,1) =L= 1 ; (LHS = 0)
+     
+balance2(2)..  z(1,2) - z(2,1) - z(2,3) - z(2,4) - z(2,5) + z(3,2) + z(4,2) + z(5,2) =L= 1 ; (LHS = 0)
+     
+balance2(3)..  z(1,3) + z(2,3) - z(3,1) - z(3,2) - z(3,4) - z(3,5) + z(4,3) + z(5,3) =L= -1 ; (LHS = 0, INFES = 1 ****)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE AirAmbulance2 Using LP From line 56
+
+
+---- obj  
+
+obj
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       objective
+
+
+---- z  
+
+z(1,2)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     1640.1219  objective
+       -1       balance2(1)
+        1       balance2(2)
+
+z(1,3)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     3827.5318  objective
+       -1       balance2(1)
+        1       balance2(3)
+
+z(1,4)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     2647.6405  objective
+       -1       balance2(1)
+        1       balance2(4)
+
+REMAINING 17 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE AirAmbulance2 Using LP From line 56
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS            6
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            61
+
+
+GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE AirAmbulance2 Using LP From line 56
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   AirAmbulance2       OBJECTIVE  obj
+     TYPE    LP                  DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  56
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE             7161.8691
+
+ RESOURCE USAGE, LIMIT          0.015      1000.000
+ ITERATION COUNT, LIMIT         4    2000000000
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.02sec (det. 0.02 ticks)
+Optimal solution found.
+Objective :        7161.869060
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU objective           .              .              .            -1.0000      
+
+---- EQU balance2  
+
+         LOWER          LEVEL          UPPER         MARGINAL
+
+1        -INF            1.0000         1.0000          .          
+2        -INF            1.0000         1.0000      -363.2507      
+3        -INF           -1.0000        -1.0000     -2963.2507      
+4        -INF            1.0000         1.0000     -2325.8011      
+5        -INF           -2.0000        -2.0000     -3443.8351      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR obj               -INF         7161.8691        +INF             .          
+
+---- VAR z  
+
+           LOWER          LEVEL          UPPER         MARGINAL
+
+1.2          .              .            +INF         2003.3727      
+1.3          .              .            +INF         6790.7826      
+1.4          .              .            +INF         4973.4415      
+1.5          .              .            +INF         6887.6701      
+2.1          .              .            +INF         1276.8712      
+2.3          .              .            +INF         5200.0000      
+2.4          .              .            +INF         3947.4937      
+2.5          .              .            +INF         6161.1687      
+3.1          .              .            +INF          864.2811      
+3.2          .             1.0000        +INF             .          
+3.4          .              .            +INF         3663.7130      
+3.5          .              .            +INF         5888.9113      
+4.1          .              .            +INF          321.8394      
+4.2          .              .            +INF           22.3930      
+4.3          .              .            +INF         4938.6123      
+4.5          .              .            +INF         2236.0680      
+5.1          .             1.0000        +INF             .          
+5.2          .              .            +INF             .          
+5.3          .              .            +INF         4927.7426      
+5.4          .             1.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN

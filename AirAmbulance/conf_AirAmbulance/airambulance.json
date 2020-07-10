@@ -56,7 +56,8 @@
   "defaultScenName": "default",
   "readme": {
     "tabTitle": "readme",
-    "filename": "readme.md"
+    "filename": "readme.md",
+    "enableMath": false
   },
   "handsontable": {
     "stretchH": "none",

@@ -320,8 +320,7 @@ leadOutput <- function(id, height = NULL, options = NULL, path = NULL){
 
 renderLead <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
-  output$leadtext<-renderText(paste('The picture below shows the profits of the 3 firms when ',unique(data$lead), 
-                                    ' is a leader firm or not a leader firm.'))
+  output$leadtext<-renderText(paste('The picture below shows the profits of the 3 firms when firm 1 is a leader firm or not a leader firm.'))
   cols=c('green','blue','red')
   
   output$lead<-renderPlotly({

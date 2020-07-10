@@ -68,6 +68,7 @@ option optcr=0, limrow=0, limcol=0, solprint=off;
 
 * Solve without subtour elimination constraints
 if( sameAs(constraint,'Positional Constraints'),
+option optcr=0.05;
 solve tspPC min obj using mip;
 else
 solve tspSEC min obj using mip);
@@ -85,7 +86,7 @@ scalar goon      go on flag used to control loop /1/;
 
 
 
-while(goon=1,
+while(goon=1 and sameAs(constraint,'Dynamic SEC'),
   // Start tour in first swath
   from(select) = no; tt(t) = no; ttour(i,j,t)=no; visited(i)=no;
   from(select)$(OrderVal(select) eq 1) = yes; tt('t1') = yes; x.l(i,j) = round(x.l(i,j));

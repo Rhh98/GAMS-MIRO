@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:27:13 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -124,7 +124,7 @@ C o m p i l a t i o n
 
 
 COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:27:13 Page 2
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE Facility_Layout Using NLP From line 93
 
@@ -145,7 +145,7 @@ Min_Dist(CNC,Punch)..  - (1)*X_new(CNC) + (1)*X_new(Punch) + (0)*Y_new(CNC) + (0
      
 REMAINING 9 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:27:13 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE Facility_Layout Using NLP From line 93
 
@@ -230,7 +230,7 @@ Y_new(Drill)
         0       (OLD LEVEL ****)
 
 REMAINING ENTRY SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:27:13 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE Facility_Layout Using NLP From line 93
 
@@ -244,11 +244,11 @@ DERIVATIVE POOL              20     CONSTANT POOL              26
 CODE LENGTH                 251
 
 
-GENERATION TIME      =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.015 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:27:13 Page 5
+EXECUTION TIME       =        0.015 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE Facility_Layout Using NLP From line 93
 
@@ -263,7 +263,7 @@ Solution Report     SOLVE Facility_Layout Using NLP From line 93
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE           -10986.3105
 
- RESOURCE USAGE, LIMIT          0.950      1000.000
+ RESOURCE USAGE, LIMIT          1.140      1000.000
  ITERATION COUNT, LIMIT         0    2000000000
  EVALUATION ERRORS              0             0
 
@@ -348,7 +348,7 @@ Punch       100.0000       220.6958       293.0000          .
                              0  UNBOUNDED
                              0     ERRORS
                              5  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/02/20 15:27:13 Page 6
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -356,8 +356,8 @@ E x e c u t i o n
 EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-USER: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-      Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+      UW-Madison Computer Sciences Dept.                         DCE244
       License for teaching and research at degree granting institutions
 
 
