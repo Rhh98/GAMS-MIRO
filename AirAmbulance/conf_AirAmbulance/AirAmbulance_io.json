@@ -50,7 +50,7 @@
 	},
 	"outputSymbols":	{
 		"assign":	{
-			"alias":	"helicoptpers assignment",
+			"alias":	"helicoptpers reassignment",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
@@ -72,6 +72,14 @@
 				"value":	{
 					"type":	"numeric",
 					"alias":	"value"
+				},
+				"tox":	{
+					"type":	"numeric",
+					"alias":	"tox"
+				},
+				"toy":	{
+					"type":	"numeric",
+					"alias":	"toy"
 				}
 			}
 		},

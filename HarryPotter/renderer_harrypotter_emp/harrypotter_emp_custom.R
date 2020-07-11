@@ -27,11 +27,6 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   newZ<-matrix(data$newz[-which(is.na(data$newz))],nrow = 100)
   newZ<-t(newZ)
   rank<-data$ranking[-which(is.na(data$ranking))]
-  # plot(c(),c(),xlim = c(0,1),ylim=c(0,1))
-  
-  # fig1<-plot_ly(z=Z,type = "contour",contours=list(start=0,end=0,coloring='lines'))
-  # fig1<-layout(fig1,title="Training and Trusted item" ,xaxis=list(title="Magic Heritage")
-  #              , yaxis=list(title="Education"))        
   
   fig1<- plot_ly()
   fig1<-add_trace(fig1,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "Train Pos"
@@ -47,7 +42,7 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   Posind<-which(T_label>0)
   
   fig1<-add_trace(fig1,type='scatter',x=T_heri[Posind],y=T_edu[Posind],mode='markers'
-                  ,marker=list(size=10,symbol='cross',color='orange',name="Trust Pos"))
+                  ,marker=list(size=10,symbol='cross',color='orange'),name="Trust Pos")
   
   T_temp<-T_heri[-Posind]
   T_temp2<-T_edu[-Posind]
@@ -58,10 +53,6 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   conx<-Contour1[[1]]$x
   cony<-Contour1[[1]]$y
   fig1<-add_trace(fig1,x=conx,y=cony,type='scatter',mode='lines',name="Classfier")
-  # fig1<-add_trace(fig1,type="contour",x=1:100/100,y=1:100/100,z=Z
-  #                 ,contours=list(start=0,end=0,coloring='lines')
-  #                 ,name="Classifier",showscale = FALSE,
-  #                 line=list(width=2),hoverinfo='none',hoverongaps=FALSE)
   fig1<-layout(fig1,title='Learning without Trusted item',xaxis=list(title='Magical Heritage')
                ,yaxis=list(title='Education'))
   

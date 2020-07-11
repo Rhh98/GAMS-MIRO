@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/11/20 14:44:56 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -58,19 +58,21 @@ C o m p i l a t i o n
   55  if (sum(L,s(L)) > sum(L,d(L)),  Solve AirAmbulance1 using lp minimizing obj;
   56  else solve  AirAmbulance2 using lp minimizing obj);
   57  set HeliHeader /old,new,demand/
-  58  assignHeader/x,y,value/;
-  60  table assign(L,nL,assignHeader) helicoptpers assignment;
+  58  assignHeader/x,y,value,tox,toy/;
+  60  table assign(L,nL,assignHeader) helicoptpers reassignment;
   61  table  numofHeli(L,HeliHeader) number of helicopters in L;
   63  assign(L,nL,'value')=z.l(L,nL);
-  64  assign(L,nL,'x')=LocInfo(nL,'x');
-  65  assign(L,nL,'y')=LocInfo(nL,'y');
-  66  numofHeli(L,'old')=s(L);
-  67  numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
-  68  numofHeli(L,'demand')=d(L);
+  64  assign(L,nL,'tox')=LocInfo(nL,'x');
+  65  assign(L,nL,'toy')=LocInfo(nL,'y');
+  66  assign(L,nL,'x')=LocInfo(L,'x');
+  67  assign(L,nL,'y')=LocInfo(L,'y');
+  68  numofHeli(L,'old')=s(L);
+  69  numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
+  70  numofHeli(L,'demand')=d(L);
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 2
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/11/20 14:44:56 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE AirAmbulance2 Using LP From line 56
 
@@ -94,7 +96,7 @@ balance2(3)..  z(1,3) + z(2,3) - z(3,1) - z(3,2) - z(3,4) - z(3,5) + z(4,3) + z(
      
 REMAINING 2 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/11/20 14:44:56 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE AirAmbulance2 Using LP From line 56
 
@@ -127,7 +129,7 @@ z(1,4)
         1       balance2(4)
 
 REMAINING 17 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/11/20 14:44:56 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE AirAmbulance2 Using LP From line 56
 
@@ -139,11 +141,11 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES           21
 NON ZERO ELEMENTS            61
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.015 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/11/20 14:44:56 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE AirAmbulance2 Using LP From line 56
 
@@ -220,7 +222,7 @@ Objective :        7161.869060
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:39:18 Page 6
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/11/20 14:44:56 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 

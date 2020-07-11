@@ -1,4 +1,4 @@
---- Job AirAmbulance.gms Start 07/10/20 15:39:18 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job AirAmbulance.gms Start 07/11/20 14:44:25 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -10,6 +10,7 @@
     ErrMsg 1
     ErrorLog 99
     IDE 1
+    GDX C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_AirAmbulance/AirAmbulance_io.json
     IDCGenerateGDX data_AirAmbulance/default.gdx
@@ -19,13 +20,13 @@ Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- AirAmbulance.gms(68) 3 Mb
---- Starting execution: elapsed 0:00:00.014
+--- AirAmbulance.gms(70) 3 Mb
+--- Starting execution: elapsed 0:00:00.008
 --- AirAmbulance.gms(55) 4 Mb
 --- Generating LP model AirAmbulance2
 --- AirAmbulance.gms(56) 4 Mb
 ---   6 rows  21 columns  61 non-zeroes
---- Executing CPLEX: elapsed 0:00:00.048
+--- Executing CPLEX: elapsed 0:00:00.028
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -54,7 +55,7 @@ Iteration      Dual Objective            In Variable           Out Variable
      3            6798.618349                 z(5.2)      balance2(4) slack
      4            7161.869060                 z(5.1)      balance2(2) slack
 LP status(1): optimal
-Cplex Time: 0.02sec (det. 0.02 ticks)
+Cplex Time: 0.00sec (det. 0.02 ticks)
 
 Optimal solution found.
 Objective :        7161.869060
@@ -62,40 +63,33 @@ Objective :        7161.869060
 --- Restarting execution
 --- AirAmbulance.gms(56) 2 Mb
 --- Reading solution for model AirAmbulance2
---- Executing after solve: elapsed 0:00:00.199
---- AirAmbulance.gms(68) 3 Mb
+--- Executing after solve: elapsed 0:00:00.161
+--- AirAmbulance.gms(70) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\res.gdx
 --- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\AirAmbulance\data_AirAmbulance/default.gdx
 *** Status: Normal completion
---- Job AirAmbulance.gms Stop 07/10/20 15:39:18 elapsed 0:00:00.220
+--- Job AirAmbulance.gms Stop 07/11/20 14:44:25 elapsed 0:00:00.195
 
-TRACE [2020-07-10 15:39:24] Logging facility initialised.
-DEBUG [2020-07-10 15:39:24] Database connection established.
-DEBUG [2020-07-10 15:39:24] Access Control initialised.
-WARN [2020-07-10 15:39:24] There are orphaned tables in your database: 'airambulance_x', 'airambulance_y'.
+TRACE [2020-07-11 14:44:30] Logging facility initialised.
+DEBUG [2020-07-11 14:44:31] Database connection established.
+DEBUG [2020-07-11 14:44:31] Access Control initialised.
+WARN [2020-07-11 14:44:31] There are orphaned tables in your database: 'airambulance_x', 'airambulance_y'.
 
 This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
 Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-10 15:39:25] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-10 15:39:26] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
-DEBUG [2020-07-10 15:39:26] Db: 46 rows in table: '_sys_metadata_airambulance' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:39:26] Db: Metadata (table: '_sys_metadata_airambulance') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-10 15:39:26] Db: Metadata (table: '_sys_metadata_airambulance') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-10 15:39:26] Db: Data was added to table: 'airambulance_assign' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:39:26] Db: Data was added to table: 'airambulance_numofheli' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:39:26] Db: Data was added to table: 'airambulance_locinfo' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:39:26] Db: Data was added to table: 'airambulance_d' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:39:26] Db: Data was added to table: 'airambulance_s' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:39:26] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
-DEBUG [2020-07-10 15:39:26] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:39:26] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-10 15:39:33] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
-DEBUG [2020-07-10 15:39:33] Scenario: '1' unlocked.
-DEBUG [2020-07-10 15:39:33] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:39:35] Db: Data was imported from table: 'airambulance_assign' (Db.importDataset).
-DEBUG [2020-07-10 15:39:36] Db: Data was imported from table: 'airambulance_numofheli' (Db.importDataset).
-DEBUG [2020-07-10 15:39:36] Db: Data was imported from table: 'airambulance_locinfo' (Db.importDataset).
-DEBUG [2020-07-10 15:39:36] Db: Data was imported from table: 'airambulance_d' (Db.importDataset).
-DEBUG [2020-07-10 15:39:36] Db: Data was imported from table: 'airambulance_s' (Db.importDataset).
-DEBUG [2020-07-10 15:39:36] Dataset: locinfo loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:36] Dataset: d loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:36] Dataset: s loaded successfully (mode: scen, overwrite: TRUE)
+INFO [2020-07-11 14:44:31] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-11 14:44:32] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-07-11 14:44:32] Db: 46 rows in table: '_sys_metadata_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-07-11 14:44:32] Db: Metadata (table: '_sys_metadata_airambulance') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-11 14:44:32] Db: Metadata (table: '_sys_metadata_airambulance') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-11 14:44:32] Db: Data was added to table: 'airambulance_assign' (Db.exportScenDataset).
+DEBUG [2020-07-11 14:44:32] Db: Data was added to table: 'airambulance_numofheli' (Db.exportScenDataset).
+DEBUG [2020-07-11 14:44:32] Db: Data was added to table: 'airambulance_locinfo' (Db.exportScenDataset).
+DEBUG [2020-07-11 14:44:32] Db: Data was added to table: 'airambulance_d' (Db.exportScenDataset).
+DEBUG [2020-07-11 14:44:32] Db: Data was added to table: 'airambulance_s' (Db.exportScenDataset).
+DEBUG [2020-07-11 14:44:32] Db: Data was imported from table: '_sys_scenlocks_airambulance' (Db.importDataset).
+DEBUG [2020-07-11 14:44:32] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)
+DEBUG [2020-07-11 14:44:32] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-11 14:44:38] Db: Data was imported from table: '_sys_metadata_airambulance' (Db.importDataset).
+DEBUG [2020-07-11 14:44:38] Scenario: '1' unlocked.
+DEBUG [2020-07-11 14:44:38] Db: 1 rows in table: '_sys_scenlocks_airambulance' were deleted. (Db.deleteRows)

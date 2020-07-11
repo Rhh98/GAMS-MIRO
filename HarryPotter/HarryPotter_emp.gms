@@ -155,9 +155,9 @@ log_l.up(n) = 10;
 log_l2.lo(Header) = -10;
 log_l2.up(Header) = 10;
 
-option mpec = knitro;
 option dnlp=baron;
 Kernel_duti.optfile=0;
+option mpec = knitro;
 w.fx(n) = 0;
 solve submodel using nlp minimizing obj_In;
 w.lo(n) = 0;

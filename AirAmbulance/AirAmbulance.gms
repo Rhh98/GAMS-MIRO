@@ -55,14 +55,16 @@ Model AirAmbulance2 /objective,balance2/ ;
 if (sum(L,s(L)) > sum(L,d(L)),  Solve AirAmbulance1 using lp minimizing obj;
 else solve  AirAmbulance2 using lp minimizing obj);
 set HeliHeader /old,new,demand/
-assignHeader/x,y,value/;
+assignHeader/x,y,value,tox,toy/;
 $onExternalOutput
-table assign(L,nL,assignHeader) helicoptpers assignment;
+table assign(L,nL,assignHeader) helicoptpers reassignment;
 table  numofHeli(L,HeliHeader) number of helicopters in L;
 $offExternalOutput
 assign(L,nL,'value')=z.l(L,nL);
-assign(L,nL,'x')=LocInfo(nL,'x');
-assign(L,nL,'y')=LocInfo(nL,'y');
+assign(L,nL,'tox')=LocInfo(nL,'x');
+assign(L,nL,'toy')=LocInfo(nL,'y');
+assign(L,nL,'x')=LocInfo(L,'x');
+assign(L,nL,'y')=LocInfo(L,'y');
 numofHeli(L,'old')=s(L);
 numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
 numofHeli(L,'demand')=d(L);

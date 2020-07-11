@@ -16,7 +16,7 @@
       "newAlias": "units currently assigned"
     },
     "assign": {
-      "newAlias": "helicoptpers assignment"
+      "newAlias": "helicoptpers reassignment"
     },
     "numofheli": {
       "newAlias": "number of helicopters in L"
@@ -45,12 +45,12 @@
   "excelIncludeEmptySheets": true,
   "saveTraceFile": true,
   "dataRendering": {
-    "assign": {
-      "outType": "assign",
-      "packages": "igraph"
-    },
     "numofheli": {
       "outType": "heli"
+    },
+    "assign": {
+      "outType": "assign",
+      "packages": ["leaflet", "leaflet.minicharts"]
     }
   },
   "defaultScenName": "default",

@@ -6,7 +6,7 @@ assignOutput <- function(id, height = NULL, options = NULL, path = NULL){
     height <- 700
   } 
   tagList( 
-    plotOutput(ns('net'),height=height)
+    leafletOutput(ns('net'),height=height)
     )
     #define rendererOutput function here 
    
@@ -15,17 +15,29 @@ assignOutput <- function(id, height = NULL, options = NULL, path = NULL){
 renderAssign <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
   
-   output$net<-renderPlot({
-     weight<-data$value[-which(is.na(data$value))]
-     from<-data$l[-which(is.na(data$value))]
-     to<-data$nl[-which(is.na(data$value))]
+   output$net<-renderLeaflet({
+     ind<-which(is.na(data$value))
+     weight<-data$value[-ind]
+     fromlng<-data$x[-ind]
+     fromlat<-data$y[-ind]
+     tolng<-data$tox[-ind]
+     tolat<-data$toy[-ind]
      node<-unique(data$l)
-     x<-data$x[1:length(node)]
-     y<-data$y[1:length(node)]
-     Ver<-data.frame(node,x,y)
-     edges<-data.frame(from,to)
-      network<-graph_from_data_frame(d=edges,vertices=Ver,)
-       plot(network,edge.label=weight,main = 'Helicopter Reassignment')
+     x<-data$tox[1:length(node)]
+     y<-data$toy[1:length(node)]
+     fromlng=(fromlng-min(x))/(max(x)-min(x))
+     fromlat=(fromlat-min(y))/(max(y)-min(y))
+     tolng=(tolng-min(x))/(max(x)-min(x))
+     tolat=(tolat-min(y))/(max(y)-min(y))
+     x=(x-min(x))/(max(x)-min(x))
+     y=(y-min(y))/(max(y)-min(y))
+     map<-leaflet()
+     map<-addMarkers(map,lng=x,lat=y,label = node)
+     map<-addFlows(map,fromlng,fromlat,tolng,tolat,flow = weight,maxThickness = 5)
+     # Ver<-data.frame(node,x,y)
+     # edges<-data.frame(from,to)
+     #  network<-graph_from_data_frame(d=edges,vertices=Ver,)
+     #   plot(network,edge.label=weight,main = 'Helicopter Reassignment')
       #plot(c(1,2,3,4,5,6),c(length(from),length(to),length(weight),length(x),length(y),length(Ver)))
      }
   )
