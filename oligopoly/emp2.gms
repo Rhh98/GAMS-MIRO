@@ -145,6 +145,7 @@ $onexternalOutput
 table resultStac(i,Stacheader) 'Difference between Cournot and Stackelberg model';
 $offExternalOutput
 leader(k) = no;
+$ontext
 loop(k,
      leader(k) = yes ;
      p.l=1;
@@ -160,6 +161,7 @@ resultStac(k,'StacQuantity')=q.l(k);
 resultStac(k,'StacProfit')=z.l;
 leader(k) = no ;
 );
+$offtext
 
 resultStac(i,'CourQuantity')=resultCour(i,'quantity');
 resultStac(i,'CourProfit')=resultCour(i,'profit');

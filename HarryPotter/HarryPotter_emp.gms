@@ -90,9 +90,12 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
-scalar gamma  debug parameter /60/;
+scalar gamma  debug parameter /6000/;
 
 $offexternalInput
+
+scalar gamma2;
+gamma2=gamma;
 parameter Trust_data(Header,aspect),Trust_label(Header);
 Trust_data(Header,'heritage')=Trust_info(Header,'heritage');
 Trust_data(Header,'education')=Trust_info(Header,'education');
@@ -113,7 +116,7 @@ Z(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
 display Z;
 
 
-scalar budget /100/;
+scalar budget /20/;
 parameter K_tilde(Header,n);
 alias(Header,Header2);
 K_tilde(Header,n)=-sum(aspect,sqr(trust_data(Header,aspect)))-(sqr(X_Train(n,'Heritage'))+sqr(X_Train(n,'Education')))
@@ -127,7 +130,7 @@ equations defobj,deflog_l2(Header);
 deflog_l2(Header)..
 log_l2(Header) =e= -Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'));
 defobj..
-obj =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
+obj =e= gamma2/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
     
 model Kernel_duti /submodel,deflog_l2,defobj/;
 File myinfo / '%emp.info%' /;
@@ -155,9 +158,12 @@ log_l.up(n) = 10;
 log_l2.lo(Header) = -10;
 log_l2.up(Header) = 10;
 
-option dnlp=baron;
-Kernel_duti.optfile=0;
+*option dnlp=baron;
+*$echo subsolver nlpec>jams.opt
+
 option mpec = knitro;
+*Kernel_duti.optfile=1;
+
 w.fx(n) = 0;
 solve submodel using nlp minimizing obj_In;
 w.lo(n) = 0;
@@ -174,15 +180,14 @@ ranking(n)=card(g)+1;
 ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=w.l(n);
 num=sum(n$(ranking(n) ne card(g)+1) ,1);
 
-$ontext
 loop(g$(num < budget),
-gamma=gamma/2;
-if(ord(g)eq card(g),gamma=0;);
-solve Kernel_duti using emp minimizing obj2;
+gamma2=gamma2/2;
+if(ord(g)eq card(g),gamma2=0;);
+solve Kernel_duti using emp minimizing obj;
 ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=ord(g)+1-w.l(n);
 num=sum(n$(ranking(n) ne card(g)+1) ,1);
 );
-$offtext
+
 
 
 *boundary and debug output

@@ -39,19 +39,7 @@
     }
   },
   "defaultScenName": "default",
-  "inputWidgets": {
-    "gamma": {
-      "widgetType": "slider",
-      "alias": "debug parameter",
-      "min": 0,
-      "max": 70,
-      "default": 35,
-      "step": 1,
-      "ticks": false,
-      "noHcube": false,
-      "label": "Debug parameter"
-    }
-  },
+  "inputWidgets": {},
   "readme": {
     "tabTitle": "Readme",
     "filename": "HarryPotter.md",

@@ -72,10 +72,12 @@ for s = 2:(g+1)
     if num>budget
         break;
     end
-    gamma = gamma*1/2;
+   % gamma = gamma*1/2;
+   gamma=30;
     % At the last interation, set gamma = 0 to get the most dense solution.
     if s == g+1
-        gamma = 0;
+       % gamma = 0;
+gamma = 30;
     end
     gammas(s-1) = gamma;
     % Solve for the optimization
