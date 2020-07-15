@@ -2,7 +2,7 @@
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
 		"locinfo":	{
-			"alias":	"Coordinates of loctions",
+			"alias":	"Coordinates of locations",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
@@ -20,7 +20,7 @@
 			}
 		},
 		"d":	{
-			"alias":	"projected demand",
+			"alias":	"Projected demand",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
@@ -29,12 +29,12 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"projected demand"
+					"alias":	"Projected demand"
 				}
 			}
 		},
 		"s":	{
-			"alias":	"units currently assigned",
+			"alias":	"Units currently assigned",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
@@ -43,14 +43,14 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"units currently assigned"
+					"alias":	"Units currently assigned"
 				}
 			}
 		}
 	},
 	"outputSymbols":	{
 		"assign":	{
-			"alias":	"helicoptpers reassignment",
+			"alias":	"Helicopters reassignment",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
@@ -84,7 +84,7 @@
 			}
 		},
 		"numofheli":	{
-			"alias":	"number of helicopters in L",
+			"alias":	"Number of helicopters in L",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{

@@ -87,11 +87,11 @@ Minimize ∑<sub>(i,j)∈L×L</sub>dist<sub>ij</sub>∗c∗z<sub>ij</sub>
 There are two cases when building the model:
 
 <ul> 
-    <li>Case1:the total demand number of helicopters is larger than the total number of current assigned helicopters:
-    <br>When this is the case, the flow balance constrain will be:
+    <li>Case 1: the total demand number of helicopters is larger than the total number of current assigned helicopters:
+    <br>When this is the case, the flow balance constraint will be:
     <br>∑<sub>j∈L</sub> z<sub>ji</sub>+s<sub>i</sub>>=d<sub>i</sub>+∑<sub>j∈L</sub>z<sub>ij</sub>,∀i∈L </li>
-    <li>Case2:the total demand number of helicopters is smaller than or wequal to the total number of current assigned helicopters.
-    <br>When this is the case, the flow balance constrain will be:
+    <li>Case 2: the total demand number of helicopters is smaller than or equal to the total number of current assigned helicopters.
+    <br>When this is the case, the flow balance constraint will be:
     <br>∑<sub>j∈L</sub> z<sub>ji</sub>+s<sub>i</sub><=d<sub>i</sub>+∑<sub>j∈L</sub>z<sub>ij</sub>,∀i∈L </li></li>
     </ul>
 
