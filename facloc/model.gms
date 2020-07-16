@@ -9,20 +9,19 @@ Set Products /P1,P2,P3/;
 
 Alias(Machines,m1,m2);
 
-
-*Initial Co-ordinates of Machines
+*Initial coordinates of Machines
 set coord /X,Y/
-    RS recieving and shipping /R,S/;
+    RS 'Receiving and shipping' /R,S/;
 $onexternalInput
-table Mcoord (machines,coord) 'Machine co-coordinates'
+table Mcoord (machines,coord) 'Machine coordinates'
       X    Y
 CNC   100  200
 Drill 200  100
 Mill  300  100
 Punch 100  300;
 
-* Co-ordinates of Shipping and Receiving
-table RScoord(RS,coord) 'Recieving and Shipping co-coordinates'
+* Coordinates of Shipping and Receiving
+table RScoord(RS,coord) 'Receiving and Shipping coordinates'
    X    Y
 R  500  125
 S  715  450;
@@ -36,7 +35,7 @@ Parameter
 /;
 
 *Costing Data
-Parameters CM(Machines) 'Cost of moving machines per distance unit'/set.Machines 300/, CH(Products) 'Cost of moving products per distance unit' /set.Products 100/;
+Parameters CM(Machines) 'Cost of moving machines per distance unit' /set.Machines 300/, CH(Products) 'Cost of moving products per distance unit' /set.Products 100/;
 $offexternalInput
 Set Arcs(Products, Machines, Machines);
 Arcs('P1','CNC', 'Drill')=yes;
@@ -49,7 +48,7 @@ Arcs('P3','Mill', 'Punch')=yes;
 *Area for Machine movement restriction
 set lucoord /Xlow,Xup,Ylow,Yup/;
 $onExternalInput
-table LowUpCoord(Machines,lucoord) "lower and upper bound of the co-coordinats of machines"
+table LowUpCoord(Machines,lucoord) 'Lower and upper bound of the coordinates of machines'
        Xlow    Xup  Ylow  Yup
 CNC    155     300  100   300
 Drill  100     300  100   300

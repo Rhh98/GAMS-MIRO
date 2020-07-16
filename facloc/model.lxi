@@ -1,16 +1,16 @@
 B 3 C o m p i l a t i o n
-B 129 Equation Listing    SOLVE Facility_Layout Using NLP From line 93
-D 132 Objective
-D 138 Min_Dist
-B 150 Column Listing      SOLVE Facility_Layout Using NLP From line 93
-E 153 cost
-E 160 X_new
-E 197 Y_new
-B 235 Model Statistics    SOLVE Facility_Layout Using NLP From line 93
-B 253 Solution Report     SOLVE Facility_Layout Using NLP From line 93
-F 304 Objective
-F 306 Min_Dist
-G 325 cost
-G 327 X_new
-G 336 Y_new
-B 353 E x e c u t i o n
+B 128 Equation Listing    SOLVE Facility_Layout Using NLP From line 92
+D 131 Objective
+D 137 Min_Dist
+B 149 Column Listing      SOLVE Facility_Layout Using NLP From line 92
+E 152 cost
+E 159 X_new
+E 196 Y_new
+B 234 Model Statistics    SOLVE Facility_Layout Using NLP From line 92
+B 252 Solution Report     SOLVE Facility_Layout Using NLP From line 92
+F 303 Objective
+F 305 Min_Dist
+G 324 cost
+G 326 X_new
+G 335 Y_new
+B 352 E x e c u t i o n

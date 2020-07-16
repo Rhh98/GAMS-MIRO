@@ -1,11 +1,12 @@
---- Job model.gms Start 07/10/20 15:38:39 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job model.gms Start 07/16/20 10:47:09 31.2.0 r8ba6aed DEX-DEG x86 64bit/Mac OS X
 --- Applying:
-    E:\31.1\gmsprmNT.txt
+    /Applications/GAMS31.2/GAMS Terminal.app/Contents/MacOS/gmsprmun.txt
+    /Users/ferris/Library/Preferences/GAMS/gamsconfig.yaml
 --- GAMS Parameters defined
-    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\model.gms
+    Input /Users/ferris/Projects/GAMS-MIRO/facloc/model.gms
     PageSize 0
-    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\225a\
-    SysDir E:\31.1\
+    ScrDir /Users/ferris/Projects/GAMS-MIRO/facloc/225a/
+    SysDir /Applications/GAMS31.2/GAMS Terminal.app/Contents/MacOS/
     LogOption 3
     ErrMsg 1
     ErrorLog 99
@@ -13,33 +14,28 @@
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_model/model_io.json
     IDCGenerateGDX data_model/default.gdx
-GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
-          UW-Madison Computer Sciences Dept.                         DCE244
-          E:\31.1\gamslice.txt
+GAMS 31.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael C. Ferris                              S200127/0001AN-GEN
+          University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
+          /Users/ferris/Library/Application Support/GAMS/gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- model.gms(124) 3 Mb
---- Starting execution: elapsed 0:00:00.009
---- model.gms(91) 4 Mb
+--- model.gms(123) 3 Mb
+--- Starting execution: elapsed 0:00:00.007
+--- model.gms(90) 4 Mb
 --- Generating NLP model Facility_Layout
---- model.gms(93) 6 Mb
+--- model.gms(92) 6 Mb
 ---   13 rows  9 columns  57 non-zeroes
 ---   251 nl-code  56 nl-non-zeroes
---- model.gms(93) 4 Mb
---- Executing BARON: elapsed 0:00:00.034
-
-GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
-
+--- model.gms(92) 4 Mb
+--- Executing BARON: elapsed 0:00:00.014
+GAMS/BARON       31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 ===========================================================================
- BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
-
+ BARON version 20.4.14. Built: OSX-64 Tue Apr 14 21:11:20 EDT 2020
  BARON is a product of The Optimization Firm.
  For information on BARON, see https://minlp.com/about-baron
-
  If you use this software, please cite publications from
  https://minlp.com/baron-publications, such as: 
-
  Khajavirad, A. and N. V. Sahinidis,
  A hybrid LP/NLP paradigm for global optimization relaxations,
  Mathematical Programming Computation, 10, 383-421, 2018.
@@ -55,76 +51,48 @@ GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  Done with local search
 ===========================================================================
   Iteration    Open nodes         Time (s)    Lower bound      Upper bound
-          1             1             0.25    -11235.0         -10986.3    
-         11             0             0.95    -10987.4         -10986.3    
-
+          1             1             0.14    -11000.8         -10986.3    
+          7             0             0.29    -10987.4         -10986.3    
  Cleaning up
-
                          *** Normal completion ***            
-
- Wall clock time:                     1.16
- Total CPU time used:                 0.97
-
- Total no. of BaR iterations:      11
+ Wall clock time:                     0.30
+ Total CPU time used:                 0.29
+ Total no. of BaR iterations:       7
  Best solution found at node:      -1
  Max. no. of nodes in memory:       3
  
  All done
 ===========================================================================
-
 Solution      = -10986.3105324263  best solution found during preprocessing
 Best possible = -10987.4092734
 Absolute gap  = 1.09874097371357  optca = 1E-9
 Relative gap  = 0.00010000000422061  optcr = 0.0001
   (Note that BARON uses a different formula to compute the relative gap as
    was used for the above reported value.)
-
 --- Restarting execution
---- model.gms(93) 2 Mb
+--- model.gms(92) 2 Mb
 --- Reading solution for model Facility_Layout
---- Executing after solve: elapsed 0:00:01.415
---- model.gms(122) 3 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\data_model/default.gdx
+--- Executing after solve: elapsed 0:00:00.609
+--- model.gms(121) 3 Mb
+--- GDX File /Users/ferris/Projects/GAMS-MIRO/facloc/data_model/default.gdx
 *** Status: Normal completion
---- Job model.gms Stop 07/10/20 15:38:40 elapsed 0:00:01.433
-
-TRACE [2020-07-10 15:38:46] Logging facility initialised.
-DEBUG [2020-07-10 15:38:47] Database connection established.
-DEBUG [2020-07-10 15:38:47] Access Control initialised.
-WARN [2020-07-10 15:38:47] There are orphaned tables in your database: 'model_x', 'model_y', 'model_x1', 'model_y1', 'model_x2', 'model_y2', 'model__scalars', 'model_result2'.
-
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-10 15:38:47] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-10 15:38:48] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
-DEBUG [2020-07-10 15:38:48] Db: 36 rows in table: '_sys_metadata_model' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:38:48] Db: Metadata (table: '_sys_metadata_model') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-10 15:38:48] Db: Metadata (table: '_sys_metadata_model') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_result' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_mcoord' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_rscoord' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_min_distance' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_cm' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_ch' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was added to table: 'model_lowupcoord' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:38:49] Db: Data was imported from table: '_sys_scenlocks_model' (Db.importDataset).
-DEBUG [2020-07-10 15:38:49] Db: 1 rows in table: '_sys_scenlocks_model' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:38:49] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-DEBUG [2020-07-10 15:38:57] Scenario: '1' unlocked.
-DEBUG [2020-07-10 15:38:57] Db: 1 rows in table: '_sys_scenlocks_model' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:38:57] Db: Data was imported from table: '_sys_metadata_model' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_result' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model__scalars_out' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_mcoord' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_rscoord' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_min_distance' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_cm' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_ch' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Db: Data was imported from table: 'model_lowupcoord' (Db.importDataset).
-DEBUG [2020-07-10 15:38:59] Dataset: mcoord loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:00] Dataset: rscoord loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:00] Dataset: min_distance loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:00] Dataset: cm loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:00] Dataset: ch loaded successfully (mode: scen, overwrite: TRUE)
-DEBUG [2020-07-10 15:39:00] Dataset: lowupcoord loaded successfully (mode: scen, overwrite: TRUE)
+--- Job model.gms Stop 07/16/20 10:47:10 elapsed 0:00:00.611
+========================
+========================Warning in eval(ei, envir) :
+  The alias of symbol: 'result2' was selected to be overwritten. However, this symbol could not be found.
+TRACE [2020-07-16 10:47:12] Logging facility initialised.
+FATAL [2020-07-16 10:47:12] Problems loading required R packages. Error message: package or namespace load failed for 'igraph' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/Applications/GAMS MIRO.app/Contents/Resources/r/library/igraph/libs/igraph.so':
+  dlopen(/Applications/GAMS MIRO.app/Contents/Resources/r/library/igraph/libs/igraph.so, 6): Library not loaded: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+  Referenced from: /Applications/GAMS MIRO.app/Contents/Resources/r/library/igraph/libs/igraph.so
+  Reason: image not found.
+DEBUG [2020-07-16 10:47:13] Database connection established.
+DEBUG [2020-07-16 10:47:13] Access Control initialised.
+FATAL [2020-07-16 10:47:13] 
+Not all the required packages are installed. Error message: Error: package or namespace load failed for 'igraph' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/Applications/GAMS MIRO.app/Contents/Resources/r/library/igraph/libs/igraph.so':
+  dlopen(/Applications/GAMS MIRO.app/Contents/Resources/r/library/igraph/libs/igraph.so, 6): Library not loaded: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+  Referenced from: /Applications/GAMS MIRO.app/Contents/Resources/r/library/igraph/libs/igraph.so
+  Reason: image not found
+========================================================
+DEBUG [2020-07-16 10:47:41] Db: Database connection ended as Db object was gced.

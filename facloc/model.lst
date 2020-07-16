@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:47:09 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -14,119 +14,118 @@ C o m p i l a t i o n
    9   
   10  Alias(Machines,m1,m2);
   11   
-  12   
-  13  *Initial Co-ordinates of Machines
-  14  set coord /X,Y/
-  15      RS recieving and shipping /R,S/;
-  17  table Mcoord (machines,coord) 'Machine co-coordinates'
-  18        X    Y
-  19  CNC   100  200
-  20  Drill 200  100
-  21  Mill  300  100
-  22  Punch 100  300;
-  23   
-  24  * Co-ordinates of Shipping and Receiving
-  25  table RScoord(RS,coord) 'Recieving and Shipping co-coordinates'
-  26     X    Y
-  27  R  500  125
-  28  S  715  450;
-  29   
-  30  *Minimum Distance
-  31  Parameter
-  32    Min_Distance(Machines,Machines) 'Minimum distance between different machines' /
-  33     CNC.Mill 50,
-  34     CNC.Drill 50,
-  35     CNC.Punch 50
-  36  /;
-  37   
-  38  *Costing Data
-  39  Parameters CM(Machines) 'Cost of moving machines per distance unit'/set.Machines 300/, CH(Products) 'Cost of moving products per distance unit' /set.Products 100/;
-  41  Set Arcs(Products, Machines, Machines);
-  42  Arcs('P1','CNC', 'Drill')=yes;
-  43  Arcs('P1','Drill', 'Punch')=yes;
-  44  Arcs('P2','Mill', 'Drill')=yes;
-  45  Arcs('P2','Drill', 'Punch')=yes;
-  46  Arcs('P3','CNC', 'Drill')=yes;
-  47  Arcs('P3','Drill', 'Mill')=yes;
-  48  Arcs('P3','Mill', 'Punch')=yes;
-  49  *Area for Machine movement restriction
-  50  set lucoord /Xlow,Xup,Ylow,Yup/;
-  52  table LowUpCoord(Machines,lucoord) "lower and upper bound of the co-coordinats of machines"
-  53         Xlow    Xup  Ylow  Yup
-  54  CNC    155     300  100   300
-  55  Drill  100     300  100   300
-  56  Punch  221     300  100   293
-  57  Mill   100     228  100   300
-  58  ;
-  60   
-  61  *Initial Distance Matrix
-  62  Parameter Distances(Machines,Machines);
-  63  alias(m1,m2,Machines);
-  64  Distances(m1,m2)=sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')));
-  65   
-  66  free variable cost;
-  67  variable X_new(Machines), Y_new(Machines);
-  68   
-  69  Equations
-  70  Objective,
-  71  Min_Dist(Machines,Machines);
-  72   
-  73  Objective..
-  74  cost =E= sum(Machines,CM(Machines)*sqrt(sqr(X_new(Machines)-Mcoord(Machines,'X'))+  sqr(Y_new(Machines)-Mcoord(Machines,'Y'))))
-  75         + sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*(sqrt(sqr(X_new(m1)-X_new(m2))+  sqr(Y_new(m1)-Y_new(m2)))- sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')))))
-  76         + (CH('P1')+CH('P3'))*(sqrt(sqr(X_new('CNC')-RScoord('R','X'))+ sqr(Y_new('CNC')-RScoord('R','Y')))-sqrt(sqr(Mcoord('CNC','X')-RScoord('R','X'))+ sqr(Mcoord('CNC','Y')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(X_new('Mill')-RScoord('R','X'))+
-  77         sqr(Y_new('Mill')-RScoord('R','Y')))-sqrt(sqr(Mcoord('Mill','X')-RScoord('R','X'))+ sqr(Mcoord('Mill','y')-RScoord('R','Y'))))
-  78         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(X_new('Punch')-RScoord('S','X'))+ sqr(Y_new('Punch')-RScoord('S','Y')))-sqrt(sqr(Mcoord('Punch','X')-RScoord('S','X'))+ sqr(Mcoord('Punch','Y')-RScoord('S','Y'))));
-  79   
-  80  Min_Dist(m1,m2)$(ord(m1) <> ord(m2))..
-  81  sqrt(sqr(X_new(m1)-X_new(m2))+  sqr(Y_new(m1)-Y_new(m2))) =G= Min_Distance(m1,m2)+30;
-  82   
-  83  model Facility_Layout /all/;
-  84   
-  85  option nlp=baron;
-  86  Facility_Layout.optcr = 1e-4;
-  87   
-  88  X_new.lo(Machines) = LowUpcoord(Machines,'xlow');
-  89  Y_new.lo(Machines) = LowUpcoord(Machines,'ylow');
-  90  X_new.up(Machines) = LowUpcoord(Machines,'xup');
-  91  Y_new.up(Machines) = LowUpcoord(Machines,'yup');
-  92   
-  93  solve Facility_Layout using nlp minimizing cost;
-  94  Set resultHeader /x,y,newx,newy,CH,CM,XR,YR,XS,YS,status/;
-  95   
-  97  table result  (machines,products,resultHeader)'result for old layout';
-  98  scalar Mcost Total cost of moving machines to new location
-  99  POldcost Total cost of moving 3 products in old layout
- 100  PNewcost Total cost of moving 3 products in new layout;
- 101  Mcost=sum(Machines,CM(Machines)*sqrt(sqr(X_new.l(Machines)-Mcoord(Machines,'X'))+  sqr(Y_new.l(Machines)-Mcoord(Machines,'Y'))));
- 102  POldcost =sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*( sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')))))
- 103         + (CH('P1')+CH('P3'))*(sqrt(sqr(Mcoord('CNC','X')-RScoord('R','X'))+ sqr(Mcoord('CNC','Y')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(Mcoord('Mill','X')-RScoord('R','X'))+ sqr(Mcoord('Mill','y')-RScoord('R','Y'))))
- 104         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(Mcoord('Punch','X')-RScoord('S','X'))+ sqr(Mcoord('Punch','Y')-RScoord('S','Y'))));
- 105  PNewcost=sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*(sqrt(sqr(X_new.l(m1)-X_new.l(m2))+  sqr(Y_new.l(m1)-Y_new.l(m2)))))
- 106         + (CH('P1')+CH('P3'))*(sqrt(sqr(X_new.l('CNC')-RScoord('R','X'))+ sqr(Y_new.l('CNC')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(X_new.l('Mill')-RScoord('R','X'))+
- 107         sqr(Y_new.l('Mill')-RScoord('R','Y'))))
- 108         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(X_new.l('Punch')-RScoord('S','X'))+ sqr(Y_new.l('Punch')-RScoord('S','Y'))));
- 109   
- 111   
- 112  result(machines,products,'newx')=x_new.l(Machines);
- 113  result(machines,products,'newy')=y_new.l(Machines);
- 114  result(machines,products,'x')=mcoord(Machines,'x');
- 115  result(machines,products,'y')=mcoord(Machines,'y');
- 116  result(machines,products,'CH')=CH(products);
- 117  result(machines,products,'CM')=CM(machines);
- 118  result(machines,products,'XR')=RScoord('R','X');
- 119  result(machines,products,'XS')=RScoord('S','X');
- 120  result(machines,products,'YR')=RScoord('R','Y');
- 121  result(machines,products,'YS')=RScoord('S','Y');
- 122  result(machines,products,'status')=facility_layout.suminfes+1;
+  12  *Initial coordinates of Machines
+  13  set coord /X,Y/
+  14      RS 'Receiving and shipping' /R,S/;
+  16  table Mcoord (machines,coord) 'Machine coordinates'
+  17        X    Y
+  18  CNC   100  200
+  19  Drill 200  100
+  20  Mill  300  100
+  21  Punch 100  300;
+  22   
+  23  * Coordinates of Shipping and Receiving
+  24  table RScoord(RS,coord) 'Receiving and Shipping coordinates'
+  25     X    Y
+  26  R  500  125
+  27  S  715  450;
+  28   
+  29  *Minimum Distance
+  30  Parameter
+  31    Min_Distance(Machines,Machines) 'Minimum distance between different machines' /
+  32     CNC.Mill 50,
+  33     CNC.Drill 50,
+  34     CNC.Punch 50
+  35  /;
+  36   
+  37  *Costing Data
+  38  Parameters CM(Machines) 'Cost of moving machines per distance unit' /set.Machines 300/, CH(Products) 'Cost of moving products per distance unit' /set.Products 100/;
+  40  Set Arcs(Products, Machines, Machines);
+  41  Arcs('P1','CNC', 'Drill')=yes;
+  42  Arcs('P1','Drill', 'Punch')=yes;
+  43  Arcs('P2','Mill', 'Drill')=yes;
+  44  Arcs('P2','Drill', 'Punch')=yes;
+  45  Arcs('P3','CNC', 'Drill')=yes;
+  46  Arcs('P3','Drill', 'Mill')=yes;
+  47  Arcs('P3','Mill', 'Punch')=yes;
+  48  *Area for Machine movement restriction
+  49  set lucoord /Xlow,Xup,Ylow,Yup/;
+  51  table LowUpCoord(Machines,lucoord) 'Lower and upper bound of the coordinates of machines'
+  52         Xlow    Xup  Ylow  Yup
+  53  CNC    155     300  100   300
+  54  Drill  100     300  100   300
+  55  Punch  221     300  100   293
+  56  Mill   100     228  100   300
+  57  ;
+  59   
+  60  *Initial Distance Matrix
+  61  Parameter Distances(Machines,Machines);
+  62  alias(m1,m2,Machines);
+  63  Distances(m1,m2)=sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')));
+  64   
+  65  free variable cost;
+  66  variable X_new(Machines), Y_new(Machines);
+  67   
+  68  Equations
+  69  Objective,
+  70  Min_Dist(Machines,Machines);
+  71   
+  72  Objective..
+  73  cost =E= sum(Machines,CM(Machines)*sqrt(sqr(X_new(Machines)-Mcoord(Machines,'X'))+  sqr(Y_new(Machines)-Mcoord(Machines,'Y'))))
+  74         + sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*(sqrt(sqr(X_new(m1)-X_new(m2))+  sqr(Y_new(m1)-Y_new(m2)))- sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')))))
+  75         + (CH('P1')+CH('P3'))*(sqrt(sqr(X_new('CNC')-RScoord('R','X'))+ sqr(Y_new('CNC')-RScoord('R','Y')))-sqrt(sqr(Mcoord('CNC','X')-RScoord('R','X'))+ sqr(Mcoord('CNC','Y')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(X_new('Mill')-RScoord('R','X'))+
+  76         sqr(Y_new('Mill')-RScoord('R','Y')))-sqrt(sqr(Mcoord('Mill','X')-RScoord('R','X'))+ sqr(Mcoord('Mill','y')-RScoord('R','Y'))))
+  77         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(X_new('Punch')-RScoord('S','X'))+ sqr(Y_new('Punch')-RScoord('S','Y')))-sqrt(sqr(Mcoord('Punch','X')-RScoord('S','X'))+ sqr(Mcoord('Punch','Y')-RScoord('S','Y'))));
+  78   
+  79  Min_Dist(m1,m2)$(ord(m1) <> ord(m2))..
+  80  sqrt(sqr(X_new(m1)-X_new(m2))+  sqr(Y_new(m1)-Y_new(m2))) =G= Min_Distance(m1,m2)+30;
+  81   
+  82  model Facility_Layout /all/;
+  83   
+  84  option nlp=baron;
+  85  Facility_Layout.optcr = 1e-4;
+  86   
+  87  X_new.lo(Machines) = LowUpcoord(Machines,'xlow');
+  88  Y_new.lo(Machines) = LowUpcoord(Machines,'ylow');
+  89  X_new.up(Machines) = LowUpcoord(Machines,'xup');
+  90  Y_new.up(Machines) = LowUpcoord(Machines,'yup');
+  91   
+  92  solve Facility_Layout using nlp minimizing cost;
+  93  Set resultHeader /x,y,newx,newy,CH,CM,XR,YR,XS,YS,status/;
+  94   
+  96  table result  (machines,products,resultHeader)'result for old layout';
+  97  scalar Mcost Total cost of moving machines to new location
+  98  POldcost Total cost of moving 3 products in old layout
+  99  PNewcost Total cost of moving 3 products in new layout;
+ 100  Mcost=sum(Machines,CM(Machines)*sqrt(sqr(X_new.l(Machines)-Mcoord(Machines,'X'))+  sqr(Y_new.l(Machines)-Mcoord(Machines,'Y'))));
+ 101  POldcost =sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*( sqrt(sqr(Mcoord(m1,'X')-Mcoord(m2,'X'))+  sqr(Mcoord(m1,'Y')-Mcoord(m2,'Y')))))
+ 102         + (CH('P1')+CH('P3'))*(sqrt(sqr(Mcoord('CNC','X')-RScoord('R','X'))+ sqr(Mcoord('CNC','Y')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(Mcoord('Mill','X')-RScoord('R','X'))+ sqr(Mcoord('Mill','y')-RScoord('R','Y'))))
+ 103         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(Mcoord('Punch','X')-RScoord('S','X'))+ sqr(Mcoord('Punch','Y')-RScoord('S','Y'))));
+ 104  PNewcost=sum((Products,m1,m2)$Arcs(Products,m1,m2), CH(Products)*(sqrt(sqr(X_new.l(m1)-X_new.l(m2))+  sqr(Y_new.l(m1)-Y_new.l(m2)))))
+ 105         + (CH('P1')+CH('P3'))*(sqrt(sqr(X_new.l('CNC')-RScoord('R','X'))+ sqr(Y_new.l('CNC')-RScoord('R','Y')))) + CH('P2')*(sqrt(sqr(X_new.l('Mill')-RScoord('R','X'))+
+ 106         sqr(Y_new.l('Mill')-RScoord('R','Y'))))
+ 107         + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(X_new.l('Punch')-RScoord('S','X'))+ sqr(Y_new.l('Punch')-RScoord('S','Y'))));
+ 108   
+ 110   
+ 111  result(machines,products,'newx')=x_new.l(Machines);
+ 112  result(machines,products,'newy')=y_new.l(Machines);
+ 113  result(machines,products,'x')=mcoord(Machines,'x');
+ 114  result(machines,products,'y')=mcoord(Machines,'y');
+ 115  result(machines,products,'CH')=CH(products);
+ 116  result(machines,products,'CM')=CM(machines);
+ 117  result(machines,products,'XR')=RScoord('R','X');
+ 118  result(machines,products,'XS')=RScoord('S','X');
+ 119  result(machines,products,'YR')=RScoord('R','Y');
+ 120  result(machines,products,'YS')=RScoord('S','Y');
+ 121  result(machines,products,'status')=facility_layout.suminfes+1;
+ 122   
  123   
- 124   
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 2
+COMPILATION TIME     =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:47:09 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Facility_Layout Using NLP From line 93
+Equation Listing    SOLVE Facility_Layout Using NLP From line 92
 
 
 ---- Objective  =E=  
@@ -145,9 +144,9 @@ Min_Dist(CNC,Punch)..  - (1)*X_new(CNC) + (1)*X_new(Punch) + (0)*Y_new(CNC) + (0
      
 REMAINING 9 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 3
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:47:09 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Facility_Layout Using NLP From line 93
+Column Listing      SOLVE Facility_Layout Using NLP From line 92
 
 
 ---- cost  
@@ -230,9 +229,9 @@ Y_new(Drill)
         0       (OLD LEVEL ****)
 
 REMAINING ENTRY SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 4
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:47:09 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE Facility_Layout Using NLP From line 93
+Model Statistics    SOLVE Facility_Layout Using NLP From line 92
 
 
 MODEL STATISTICS
@@ -244,30 +243,30 @@ DERIVATIVE POOL              20     CONSTANT POOL              26
 CODE LENGTH                 251
 
 
-GENERATION TIME      =        0.015 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.007 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.015 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 5
+EXECUTION TIME       =        0.007 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:47:09 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Facility_Layout Using NLP From line 93
+Solution Report     SOLVE Facility_Layout Using NLP From line 92
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Facility_Layout     OBJECTIVE  cost
      TYPE    NLP                 DIRECTION  MINIMIZE
-     SOLVER  BARON               FROM LINE  93
+     SOLVER  BARON               FROM LINE  92
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE           -10986.3105
 
- RESOURCE USAGE, LIMIT          1.140      1000.000
+ RESOURCE USAGE, LIMIT          0.290      1000.000
  ITERATION COUNT, LIMIT         0    2000000000
  EVALUATION ERRORS              0             0
 
-GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+GAMS/BARON       31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
 Parts of the BARON software were created at the
@@ -275,7 +274,7 @@ University of Illinois at Urbana-Champaign.
 
 
 ===========================================================================
- BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+ BARON version 20.4.14. Built: OSX-64 Tue Apr 14 21:11:20 EDT 2020
 
  BARON is a product of The Optimization Firm.
  For information on BARON, see https://minlp.com/about-baron
@@ -348,20 +347,20 @@ Punch       100.0000       220.6958       293.0000          .
                              0  UNBOUNDED
                              0     ERRORS
                              5  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:38:39 Page 6
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:47:09 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.001 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
-      UW-Madison Computer Sciences Dept.                         DCE244
+USER: Michael C. Ferris                              S200127/0001AN-GEN
+      University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
       License for teaching and research at degree granting institutions
 
 
 **** FILE SUMMARY
 
-Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\model.gms
-Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\facloc\model.lst
+Input      /Users/ferris/Projects/GAMS-MIRO/facloc/model.gms
+Output     /Users/ferris/Projects/GAMS-MIRO/facloc/model.lst
