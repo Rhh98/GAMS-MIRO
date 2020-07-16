@@ -1,11 +1,11 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
 
       TSP with Pataki modifications
    5  set city /
-INCLUDE    C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
+INCLUDE    /Users/ferris/Projects/GAMS-MIRO/tsp/set.csv
    7  Montgomery_AL,Juneau_AK,Phoenix_AZ,Little-Rock_AR,Sacramento_CA,Denver_CO,Hartford_CT,Dover_DE,Tallahassee_FL,Atlanta_GA,Honolulu_HI,Boise_ID,Springfield_IL,Indianapolis_IN,Des-Moines_IA,Topeka_KS,Frankfort_KY,Baton-Rouge_LA,Augusta_ME,Annapolis_MD,
       Boston_MA,Lansing_MI,Saint-Paul_MN,Jackson_MS,Jefferson-City_MO,Helana_MT,Lincoln_NE,Carson-City_NV,Concord_NH,Trenton_NJ,Santa-Fe_NM,Albany_NY,Raleigh_NC,Bismarck_ND,Columbus_OH,Oklahoma-City_OK,Salem_OR,Harrisburg_PA,Providence_RI,Columbia_SC,Pier
       re_SD,Nashville_TN,Austin_TX,Salt-Lake-City_UT,Montpelier_VT,Richmond_VA,Olympia_WA,Charleston_WV,Madison_WI,Cheyenne_WY
@@ -14,21 +14,21 @@ INCLUDE    C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
   10  alias(city,i,j);
   11  set Header /l_lat,l_long,select/;
   12  set Constraints /'Dynamic SEC', 'Positional Constraints'/;
-GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
-  14  table CityInfo(city,Header)
+GDXIN   /Users/ferris/Projects/GAMS-MIRO/tsp/_miro_gdxin_.gdx
+  14  table CityInfo(city,Header) 'City Info'
 --- LOAD  CityInfo = 1:cityinfo
   18  ;
 --- LOAD  Constraint = 2:constraint
-  19  Singleton Set Constraint(Constraints) 'selected model Constraint type' / 'Dynamic SEC' /;
+  19  Singleton Set Constraint(Constraints) 'Selected model constraint type' / 'Dynamic SEC' /;
   21   
-  22  set select(city) Selected capitals;
+  22  set select(city) 'Selected capitals';
   23  select(city)$(CityInfo(city,'select') eq 1)=yes;
   24  scalar count /0/;
   25  parameter OrderVal(i);
   26  loop(select,count=count+1;OrderVal(select)=count;);
   27   
   28  alias(select,k)
-  29  table  dist(i,j)  "distances" ;
+  29  table  dist(i,j)  'Distances';
   30  dist(i,j)$(not sameas(i,j))=arccos(sin(CityInfo(i,'l_lat')*pi/180)*sin(CityInfo(j,'l_lat')*pi/180)
   31  +cos(CityInfo(i,'l_lat')*pi/180)*cos(CityInfo(j,'l_lat')*pi/180)*
   32  cos((CityInfo(j,'l_long')-CityInfo(i,'l_long'))*pi/180))*6371.004;
@@ -53,20 +53,20 @@ GDXIN   C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
   51    u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
   52   
   53   
-  54  Set cc    Subtour elimination cuts /c1*c500/
-  55      c(cc) Active cuts; c(cc)=no;
+  54  Set cc    'Subtour elimination cuts' /c1*c500/
+  55      c(cc) 'Active cuts'; c(cc)=no;
   56   
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 2
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
 
   57  Parameters
-  58      cutcoeff(cc,i,j) coeffients for the subtour elimination cuts
-  59      rhs(cc)          right hand side for the subtour elimination cuts;
+  58      cutcoeff(cc,i,j) 'Coefficients for the subtour elimination cuts'
+  59      rhs(cc)          'Right hand side for the subtour elimination cuts';
   60  cutcoeff(c,i,j)=0; rhs(c)=0;
   61   
-  62  Equations cut(cc) dynamic subtour elimination cuts;
+  62  Equations cut(cc) 'Dynamic subtour elimination cuts';
   63   
   64  cut(c).. sum((select,k), cutcoeff(c,select,k)*x(select,k)) =l= rhs(c);
   65   
@@ -114,7 +114,7 @@ C o m p i l a t i o n
  107    display ttour;
  108   
  109    if (tt('t2'), goon = 0; // just one tour -> stop
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 3
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -148,67 +148,56 @@ C o m p i l a t i o n
  136    );
  137  );
  138   
- 139  *u.fx(select)$(OrderVal(select) eq 1) = 0;
-      option optcr = 1e-3;
-      $onecho > cplex.opt
-      lpmethod 4
-      $offecho
-      tsp.optfile = 1;
- 147  display obj.l;
- 148  set tour(i,j) ;
- 149   
- 150  tour(select,select) = no;
- 151  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
- 152  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
- 154  table TourT(i,j,TourHeader);
- 155  TourT(select,k,'status')$tour(select,k)=1;
- 156  TourT(i,j,'status')$(not tour(i,j))=-1;
- 157  TourT(i,j,'dist')=dist(i,j);
- 158  TourT(i,j,'lat1')=CityInfo(i,'l_lat');
- 159  TourT(i,j,'long1')=CityInfo(i,'l_long');
- 160  TourT(i,j,'lat2')=CityInfo(j,'l_lat');
- 161  TourT(i,j,'long2')=CityInfo(j,'l_long');
- 162  scalar TotalCost Total Cost;
- 163  TotalCost=obj.l;
- 165  * Just print the tour in a simple way
- 166  option tour:0:0:1 ;
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 4
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
- 167   
- 168  display tour;
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 5
+ 139  display obj.l;
+ 140  set tour(i,j) ;
+ 141   
+ 142  tour(select,select) = no;
+ 143  tour(select,k)$(x.l(select,k) > 0.01) = yes ;
+ 144  set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
+ 146  table TourT(i,j,TourHeader) 'Tour Itinerary';
+ 147  TourT(select,k,'status')$tour(select,k)=1;
+ 148  TourT(i,j,'status')$(not tour(i,j))=-1;
+ 149  TourT(i,j,'dist')=dist(i,j);
+ 150  TourT(i,j,'lat1')=CityInfo(i,'l_lat');
+ 151  TourT(i,j,'long1')=CityInfo(i,'l_long');
+ 152  TourT(i,j,'lat2')=CityInfo(j,'l_lat');
+ 153  TourT(i,j,'long2')=CityInfo(j,'l_long');
+ 154  scalar TotalCost 'Total Cost';
+ 155  TotalCost=obj.l;
+ 157  * Just print the tour in a simple way
+ 158  option tour:0:0:1 ;
+ 159   
+ 160  display tour;
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
 
    SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
 
-     1        1 INPUT          0       0  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
-     2        6 INCLUDE        1       6  .C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\set.csv
-     3       13 GDXIN          1      12  C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\_miro_gdxin_.gdx
+     1        1 INPUT          0       0  /Users/ferris/Projects/GAMS-MIRO/tsp/tspmod.gms
+     2        6 INCLUDE        1       6  ./Users/ferris/Projects/GAMS-MIRO/tsp/set.csv
+     3       13 GDXIN          1      12  /Users/ferris/Projects/GAMS-MIRO/tsp/_miro_gdxin_.gdx
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 6
+COMPILATION TIME     =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 75
 
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS           97
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,257
-NON ZERO ELEMENTS         6,769     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS           95
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,163
+NON ZERO ELEMENTS         6,487     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.008 SECONDS      5 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 7
+EXECUTION TIME       =        0.009 SECONDS      5 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 75
 
@@ -221,28 +210,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 75
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            13550.5719
+**** OBJECTIVE VALUE            13281.0886
 
- RESOURCE USAGE, LIMIT          0.047      1000.000
- ITERATION COUNT, LIMIT        39    2000000000
+ RESOURCE USAGE, LIMIT          0.030      1000.000
+ ITERATION COUNT, LIMIT        42    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.03sec (det. 13.85 ticks)
+Cplex Time: 0.02sec (det. 17.02 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.02sec (det. 0.84 ticks)
+Cplex Time: 0.00sec (det. 0.80 ticks)
 Proven optimal solution.
 
-MIP Solution:        13550.571935    (39 iterations, 0 nodes)
-Final Solve:         13550.571935    (0 iterations)
+MIP Solution:        13281.088622    (42 iterations, 0 nodes)
+Final Solve:         13281.088622    (0 iterations)
 
-Best possible:       13550.571935
+Best possible:       13281.088622
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -251,7 +240,7 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 8
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -260,68 +249,67 @@ E x e c u t i o n
 
                                              t1          t2          t3          t4          t5          t6          t7          t8          t9         t10         t11         t12         t13         t14         t15         t16         t17         t18
 
-Montgomery_AL    .Tallahassee_FL            YES
+Montgomery_AL    .Atlanta_GA                YES
 Phoenix_AZ       .Santa-Fe_NM                           YES
 Little-Rock_AR   .Baton-Rouge_LA                                    YES
 Sacramento_CA    .Carson-City_NV                                                YES
 Denver_CO        .Cheyenne_WY                                                               YES
 Hartford_CT      .Albany_NY                                                                             YES
-Dover_DE         .Annapolis_MD                                                                                      YES
-Tallahassee_FL   .Montgomery_AL             YES
-Atlanta_GA       .Columbia_SC                                                                                                   YES
-Boise_ID         .Salt-Lake-City_UT                                                                                                         YES
-Springfield_IL   .Jefferson-City_MO                                                                                                                     YES
-Indianapolis_IN  .Lansing_MI                                                                                                                                        YES
-Des-Moines_IA    .Topeka_KS                                                                                                                                                     YES
-Topeka_KS        .Lincoln_NE                                                                                                                                                    YES
-Frankfort_KY     .Nashville_TN                                                                                                                                                              YES
+Dover_DE         .Trenton_NJ                                                                                        YES
+Atlanta_GA       .Montgomery_AL             YES
+Boise_ID         .Salt-Lake-City_UT                                                                                             YES
+Springfield_IL   .Jefferson-City_MO                                                                                                         YES
+Indianapolis_IN  .Lansing_MI                                                                                                                            YES
+Des-Moines_IA    .Topeka_KS                                                                                                                                         YES
+Topeka_KS        .Lincoln_NE                                                                                                                                        YES
+Frankfort_KY     .Nashville_TN                                                                                                                                                  YES
 Baton-Rouge_LA   .Jackson_MS                                        YES
-Augusta_ME       .Concord_NH                                                                                                                                                                            YES
-Annapolis_MD     .Dover_DE                                                                                          YES
+Augusta_ME       .Concord_NH                                                                                                                                                                YES
+Annapolis_MD     .Richmond_VA                                                                                                                                                                           YES
 Boston_MA        .Providence_RI                                                                                                                                                                                     YES
-Lansing_MI       .Indianapolis_IN                                                                                                                                   YES
+Lansing_MI       .Indianapolis_IN                                                                                                                       YES
 Saint-Paul_MN    .Madison_WI                                                                                                                                                                                                    YES
 Jackson_MS       .Little-Rock_AR                                    YES
-Jefferson-City_MO.Springfield_IL                                                                                                                        YES
-Helana_MT        .Boise_ID                                                                                                                  YES
-Lincoln_NE       .Des-Moines_IA                                                                                                                                                 YES
+Jefferson-City_MO.Springfield_IL                                                                                                            YES
+Helana_MT        .Boise_ID                                                                                                      YES
+Lincoln_NE       .Des-Moines_IA                                                                                                                                     YES
 Carson-City_NV   .Sacramento_CA                                                 YES
-Concord_NH       .Montpelier_VT                                                                                                                                                                         YES
-Trenton_NJ       .Harrisburg_PA                                                                                                                                                                                                             YES
+Concord_NH       .Montpelier_VT                                                                                                                                                             YES
+Trenton_NJ       .Harrisburg_PA                                                                                     YES
 Santa-Fe_NM      .Phoenix_AZ                            YES
 Albany_NY        .Hartford_CT                                                                           YES
-Raleigh_NC       .Richmond_VA                                                                                                                                                                                                                           YES
-Harrisburg_PA    .Trenton_NJ                                                                                                                                                                                                                YES
+Raleigh_NC       .Columbia_SC                                                                                                                                                                                                               YES
+Bismarck_ND      .Pierre_SD                                                                                                                                                                                                                             YES
+Harrisburg_PA    .Dover_DE                                                                                          YES
 Providence_RI    .Boston_MA                                                                                                                                                                                         YES
-Columbia_SC      .Atlanta_GA                                                                                                    YES
-Nashville_TN     .Frankfort_KY                                                                                                                                                              YES
-Salt-Lake-City_UT.Helana_MT                                                                                                                 YES
-Montpelier_VT    .Augusta_ME                                                                                                                                                                            YES
-Richmond_VA      .Raleigh_NC                                                                                                                                                                                                                            YES
+Columbia_SC      .Raleigh_NC                                                                                                                                                                                                                YES
+Pierre_SD        .Bismarck_ND                                                                                                                                                                                                                           YES
+Nashville_TN     .Frankfort_KY                                                                                                                                                  YES
+Salt-Lake-City_UT.Helana_MT                                                                                                     YES
+Montpelier_VT    .Augusta_ME                                                                                                                                                                YES
+Richmond_VA      .Annapolis_MD                                                                                                                                                                          YES
 Madison_WI       .Saint-Paul_MN                                                                                                                                                                                                 YES
 Cheyenne_WY      .Denver_CO                                                                 YES
 
-                                  +         t19         t20         t21         t22
+                                  +         t19         t20         t21
 
-Bismarck_ND      .Pierre_SD                 YES
-Columbus_OH      .Charleston_WV                         YES
-Oklahoma-City_OK .Austin_TX                                         YES
-Salem_OR         .Olympia_WA                                                    YES
-Pierre_SD        .Bismarck_ND               YES
-Austin_TX        .Oklahoma-City_OK                                  YES
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 9
+Columbus_OH      .Charleston_WV             YES
+Oklahoma-City_OK .Austin_TX                             YES
+Salem_OR         .Olympia_WA                                        YES
+Austin_TX        .Oklahoma-City_OK                      YES
+Olympia_WA       .Salem_OR                                          YES
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
         107 SET ttour  subtours
 
-                                  +         t19         t20         t21         t22
+                                  +         t19         t20         t21
 
-Olympia_WA       .Salem_OR                                                      YES
-Charleston_WV    .Columbus_OH                           YES
+Charleston_WV    .Columbus_OH               YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 10
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 134
 
@@ -331,18 +319,18 @@ LOOPS                            FOR/WHILE   1
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          119
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
-NON ZERO ELEMENTS         6,877     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          116
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,210
+NON ZERO ELEMENTS         6,596     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.006 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.008 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S          FOR/WHILE 1
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 11
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 134
 
@@ -355,28 +343,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            16175.1037
+**** OBJECTIVE VALUE            15773.0125
 
- RESOURCE USAGE, LIMIT          0.094      1000.000
- ITERATION COUNT, LIMIT        97    2000000000
+ RESOURCE USAGE, LIMIT          0.054      1000.000
+ ITERATION COUNT, LIMIT        87    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.08sec (det. 27.03 ticks)
+Cplex Time: 0.05sec (det. 36.85 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.84 ticks)
+Cplex Time: 0.00sec (det. 0.81 ticks)
 Proven optimal solution.
 
-MIP Solution:        16175.103736    (97 iterations, 0 nodes)
-Final Solve:         16175.103736    (0 iterations)
+MIP Solution:        15773.012541    (87 iterations, 0 nodes)
+Final Solve:         15773.012541    (0 iterations)
 
-Best possible:       16175.103736
+Best possible:       15773.012541
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -385,65 +373,64 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 12
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 11
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
 ----    107 SET ttour  subtours
 
-                                             t1          t2          t3          t4          t5          t6          t7          t8          t9         t10
+                                             t1          t2          t3          t4          t5          t6          t7          t8
 
-Montgomery_AL    .Atlanta_GA                YES
-Phoenix_AZ       .Salt-Lake-City_UT                     YES
+Montgomery_AL    .Nashville_TN              YES
+Phoenix_AZ       .Santa-Fe_NM                           YES
 Little-Rock_AR   .Oklahoma-City_OK                                  YES
-Sacramento_CA    .Salem_OR                              YES
-Denver_CO        .Santa-Fe_NM                           YES
+Sacramento_CA    .Carson-City_NV                        YES
+Denver_CO        .Cheyenne_WY                           YES
 Hartford_CT      .Providence_RI                                                 YES
-Dover_DE         .Trenton_NJ                                                                YES
-Tallahassee_FL   .Montgomery_AL             YES
-Atlanta_GA       .Tallahassee_FL            YES
-Boise_ID         .Helana_MT                             YES
-Springfield_IL   .Indianapolis_IN                                                                       YES
-Indianapolis_IN  .Nashville_TN                                                                          YES
-Des-Moines_IA    .Jefferson-City_MO                                                                     YES
-Topeka_KS        .Lincoln_NE                                                                                        YES
-Frankfort_KY     .Charleston_WV                                                                         YES
-Baton-Rouge_LA   .Jackson_MS                                                                                                    YES
+Dover_DE         .Annapolis_MD                                                              YES
+Atlanta_GA       .Montgomery_AL             YES
+Boise_ID         .Olympia_WA                            YES
+Springfield_IL   .Jefferson-City_MO         YES
+Indianapolis_IN  .Springfield_IL            YES
+Des-Moines_IA    .Saint-Paul_MN             YES
+Topeka_KS        .Lincoln_NE                                                                            YES
+Frankfort_KY     .Indianapolis_IN           YES
+Baton-Rouge_LA   .Jackson_MS                                                                                        YES
 Augusta_ME       .Montpelier_VT                                                 YES
-Annapolis_MD     .Richmond_VA                                                                                                               YES
+Annapolis_MD     .Dover_DE                                                                  YES
 Boston_MA        .Concord_NH                                                    YES
-Lansing_MI       .Madison_WI                                                                            YES
-Saint-Paul_MN    .Des-Moines_IA                                                                         YES
-Jackson_MS       .Baton-Rouge_LA                                                                                                YES
-Jefferson-City_MO.Springfield_IL                                                                        YES
-Helana_MT        .Bismarck_ND                           YES
-Lincoln_NE       .Topeka_KS                                                                                         YES
-Carson-City_NV   .Sacramento_CA                         YES
+Lansing_MI       .Columbus_OH               YES
+Saint-Paul_MN    .Madison_WI                YES
+Jackson_MS       .Baton-Rouge_LA                                                                                    YES
+Jefferson-City_MO.Des-Moines_IA             YES
+Helana_MT        .Boise_ID                              YES
+Lincoln_NE       .Topeka_KS                                                                             YES
+Carson-City_NV   .Salt-Lake-City_UT                     YES
 Concord_NH       .Augusta_ME                                                    YES
-Trenton_NJ       .Harrisburg_PA                                                             YES
-Santa-Fe_NM      .Phoenix_AZ                            YES
+Trenton_NJ       .Harrisburg_PA                                                                                                 YES
+Santa-Fe_NM      .Denver_CO                             YES
 Albany_NY        .Hartford_CT                                                   YES
-Raleigh_NC       .Columbia_SC                                                                                                                           YES
-Bismarck_ND      .Pierre_SD                             YES
-Columbus_OH      .Lansing_MI                                                                            YES
+Raleigh_NC       .Columbia_SC               YES
+Bismarck_ND      .Helana_MT                             YES
+Columbus_OH      .Charleston_WV             YES
 Oklahoma-City_OK .Austin_TX                                         YES
-Salem_OR         .Olympia_WA                            YES
-Harrisburg_PA    .Dover_DE                                                                  YES
+Salem_OR         .Sacramento_CA                         YES
+Harrisburg_PA    .Trenton_NJ                                                                                                    YES
 Providence_RI    .Boston_MA                                                     YES
-Columbia_SC      .Raleigh_NC                                                                                                                            YES
-Pierre_SD        .Cheyenne_WY                           YES
-Nashville_TN     .Frankfort_KY                                                                          YES
+Columbia_SC      .Atlanta_GA                YES
+Pierre_SD        .Bismarck_ND                           YES
+Nashville_TN     .Frankfort_KY              YES
 Austin_TX        .Little-Rock_AR                                    YES
-Salt-Lake-City_UT.Carson-City_NV                        YES
+Salt-Lake-City_UT.Phoenix_AZ                            YES
 Montpelier_VT    .Albany_NY                                                     YES
-Richmond_VA      .Annapolis_MD                                                                                                              YES
-Olympia_WA       .Boise_ID                              YES
-Charleston_WV    .Columbus_OH                                                                           YES
-Madison_WI       .Saint-Paul_MN                                                                         YES
-Cheyenne_WY      .Denver_CO                             YES
+Richmond_VA      .Raleigh_NC                YES
+Olympia_WA       .Salem_OR                              YES
+Charleston_WV    .Richmond_VA               YES
+Madison_WI       .Lansing_MI                YES
+Cheyenne_WY      .Pierre_SD                             YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 13
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 12
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 134
 
@@ -453,18 +440,18 @@ LOOPS                            FOR/WHILE   2
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          129
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
-NON ZERO ELEMENTS         7,259     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          124
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,210
+NON ZERO ELEMENTS         7,095     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.007 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.046 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.009 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S          FOR/WHILE 2
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 14
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 13
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 134
 
@@ -477,28 +464,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            16591.1473
+**** OBJECTIVE VALUE            16198.8128
 
- RESOURCE USAGE, LIMIT          0.141      1000.000
- ITERATION COUNT, LIMIT        99    2000000000
+ RESOURCE USAGE, LIMIT          0.333      1000.000
+ ITERATION COUNT, LIMIT       101    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.08sec (det. 26.89 ticks)
+Cplex Time: 0.04sec (det. 43.57 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.05sec (det. 0.89 ticks)
+Cplex Time: 0.28sec (det. 0.86 ticks)
 Proven optimal solution.
 
-MIP Solution:        16591.147336    (99 iterations, 0 nodes)
-Final Solve:         16591.147336    (0 iterations)
+MIP Solution:        16198.812815    (101 iterations, 0 nodes)
+Final Solve:         16198.812815    (0 iterations)
 
-Best possible:       16591.147336
+Best possible:       16198.812815
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -507,7 +494,7 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 15
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 14
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -516,56 +503,55 @@ E x e c u t i o n
 
                                              t1          t2          t3          t4          t5          t6          t7          t8
 
-Montgomery_AL    .Tallahassee_FL            YES
+Montgomery_AL    .Nashville_TN              YES
 Phoenix_AZ       .Santa-Fe_NM                           YES
 Little-Rock_AR   .Oklahoma-City_OK                                  YES
 Sacramento_CA    .Carson-City_NV                                                YES
 Denver_CO        .Cheyenne_WY                           YES
 Hartford_CT      .Providence_RI                                                             YES
-Dover_DE         .Annapolis_MD                                                                          YES
-Tallahassee_FL   .Columbia_SC               YES
+Dover_DE         .Harrisburg_PA                                                                         YES
 Atlanta_GA       .Montgomery_AL             YES
 Boise_ID         .Helana_MT                                                                                         YES
-Springfield_IL   .Indianapolis_IN           YES
-Indianapolis_IN  .Frankfort_KY              YES
-Des-Moines_IA    .Lincoln_NE                YES
-Topeka_KS        .Jefferson-City_MO         YES
-Frankfort_KY     .Nashville_TN              YES
+Springfield_IL   .Jefferson-City_MO         YES
+Indianapolis_IN  .Springfield_IL            YES
+Des-Moines_IA    .Madison_WI                YES
+Topeka_KS        .Lincoln_NE                YES
+Frankfort_KY     .Indianapolis_IN           YES
 Baton-Rouge_LA   .Jackson_MS                                        YES
 Augusta_ME       .Montpelier_VT                                                             YES
-Annapolis_MD     .Harrisburg_PA                                                                         YES
+Annapolis_MD     .Dover_DE                                                                              YES
 Boston_MA        .Concord_NH                                                                YES
-Lansing_MI       .Madison_WI                YES
+Lansing_MI       .Columbus_OH               YES
 Saint-Paul_MN    .Bismarck_ND                                                                                                   YES
 Jackson_MS       .Little-Rock_AR                                    YES
-Jefferson-City_MO.Springfield_IL            YES
+Jefferson-City_MO.Topeka_KS                 YES
 Helana_MT        .Boise_ID                                                                                          YES
-Lincoln_NE       .Topeka_KS                 YES
+Lincoln_NE       .Des-Moines_IA             YES
 Carson-City_NV   .Olympia_WA                                                    YES
 Concord_NH       .Augusta_ME                                                                YES
 Trenton_NJ       .Hartford_CT                                                               YES
 Santa-Fe_NM      .Denver_CO                             YES
 Albany_NY        .Trenton_NJ                                                                YES
-Raleigh_NC       .Richmond_VA               YES
+Raleigh_NC       .Columbia_SC               YES
 Bismarck_ND      .Pierre_SD                                                                                                     YES
-Columbus_OH      .Lansing_MI                YES
+Columbus_OH      .Charleston_WV             YES
 Oklahoma-City_OK .Austin_TX                                         YES
 Salem_OR         .Sacramento_CA                                                 YES
-Harrisburg_PA    .Dover_DE                                                                              YES
+Harrisburg_PA    .Annapolis_MD                                                                          YES
 Providence_RI    .Boston_MA                                                                 YES
-Columbia_SC      .Raleigh_NC                YES
+Columbia_SC      .Atlanta_GA                YES
 Pierre_SD        .Saint-Paul_MN                                                                                                 YES
-Nashville_TN     .Atlanta_GA                YES
+Nashville_TN     .Frankfort_KY              YES
 Austin_TX        .Baton-Rouge_LA                                    YES
 Salt-Lake-City_UT.Phoenix_AZ                            YES
 Montpelier_VT    .Albany_NY                                                                 YES
-Richmond_VA      .Charleston_WV             YES
+Richmond_VA      .Raleigh_NC                YES
 Olympia_WA       .Salem_OR                                                      YES
-Charleston_WV    .Columbus_OH               YES
-Madison_WI       .Des-Moines_IA             YES
+Charleston_WV    .Richmond_VA               YES
+Madison_WI       .Lansing_MI                YES
 Cheyenne_WY      .Salt-Lake-City_UT                     YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 16
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 15
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 134
 
@@ -575,18 +561,18 @@ LOOPS                            FOR/WHILE   3
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          137
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
-NON ZERO ELEMENTS         7,735     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          132
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,210
+NON ZERO ELEMENTS         7,536     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.008 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.078 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.011 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S          FOR/WHILE 3
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 17
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 16
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 134
 
@@ -599,28 +585,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            16764.9112
+**** OBJECTIVE VALUE            16372.5767
 
- RESOURCE USAGE, LIMIT          0.203      1000.000
- ITERATION COUNT, LIMIT       122    2000000000
+ RESOURCE USAGE, LIMIT          0.051      1000.000
+ ITERATION COUNT, LIMIT       127    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.20sec (det. 37.84 ticks)
+Cplex Time: 0.04sec (det. 38.43 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.92 ticks)
+Cplex Time: 0.00sec (det. 0.88 ticks)
 Proven optimal solution.
 
-MIP Solution:        16764.911207    (122 iterations, 0 nodes)
-Final Solve:         16764.911207    (0 iterations)
+MIP Solution:        16372.576686    (127 iterations, 0 nodes)
+Final Solve:         16372.576686    (0 iterations)
 
-Best possible:       16764.911207
+Best possible:       16372.576686
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -629,7 +615,7 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 18
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 17
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -638,56 +624,55 @@ E x e c u t i o n
 
                                              t1          t2          t3
 
-Montgomery_AL    .Tallahassee_FL            YES
+Montgomery_AL    .Nashville_TN              YES
 Phoenix_AZ       .Santa-Fe_NM                           YES
-Little-Rock_AR   .Jefferson-City_MO         YES
+Little-Rock_AR   .Jackson_MS                YES
 Sacramento_CA    .Carson-City_NV                        YES
 Denver_CO        .Cheyenne_WY                           YES
 Hartford_CT      .Trenton_NJ                                        YES
 Dover_DE         .Annapolis_MD                                      YES
-Tallahassee_FL   .Columbia_SC               YES
 Atlanta_GA       .Montgomery_AL             YES
 Boise_ID         .Olympia_WA                            YES
-Springfield_IL   .Indianapolis_IN           YES
-Indianapolis_IN  .Frankfort_KY              YES
-Des-Moines_IA    .Topeka_KS                 YES
-Topeka_KS        .Oklahoma-City_OK          YES
-Frankfort_KY     .Nashville_TN              YES
-Baton-Rouge_LA   .Jackson_MS                YES
+Springfield_IL   .Jefferson-City_MO         YES
+Indianapolis_IN  .Springfield_IL            YES
+Des-Moines_IA    .Lincoln_NE                YES
+Topeka_KS        .Des-Moines_IA             YES
+Frankfort_KY     .Indianapolis_IN           YES
+Baton-Rouge_LA   .Austin_TX                 YES
 Augusta_ME       .Concord_NH                                        YES
 Annapolis_MD     .Harrisburg_PA                                     YES
 Boston_MA        .Providence_RI                                     YES
-Lansing_MI       .Madison_WI                YES
-Saint-Paul_MN    .Bismarck_ND               YES
-Jackson_MS       .Little-Rock_AR            YES
-Jefferson-City_MO.Springfield_IL            YES
+Lansing_MI       .Columbus_OH               YES
+Saint-Paul_MN    .Madison_WI                YES
+Jackson_MS       .Baton-Rouge_LA            YES
+Jefferson-City_MO.Little-Rock_AR            YES
 Helana_MT        .Boise_ID                              YES
-Lincoln_NE       .Des-Moines_IA             YES
+Lincoln_NE       .Pierre_SD                 YES
 Carson-City_NV   .Phoenix_AZ                            YES
 Concord_NH       .Boston_MA                                         YES
 Trenton_NJ       .Dover_DE                                          YES
 Santa-Fe_NM      .Denver_CO                             YES
 Albany_NY        .Montpelier_VT                                     YES
-Raleigh_NC       .Richmond_VA               YES
-Bismarck_ND      .Pierre_SD                 YES
-Columbus_OH      .Lansing_MI                YES
-Oklahoma-City_OK .Austin_TX                 YES
+Raleigh_NC       .Columbia_SC               YES
+Bismarck_ND      .Saint-Paul_MN             YES
+Columbus_OH      .Charleston_WV             YES
+Oklahoma-City_OK .Topeka_KS                 YES
 Salem_OR         .Sacramento_CA                         YES
 Harrisburg_PA    .Albany_NY                                         YES
 Providence_RI    .Hartford_CT                                       YES
-Columbia_SC      .Raleigh_NC                YES
-Pierre_SD        .Lincoln_NE                YES
-Nashville_TN     .Atlanta_GA                YES
-Austin_TX        .Baton-Rouge_LA            YES
+Columbia_SC      .Atlanta_GA                YES
+Pierre_SD        .Bismarck_ND               YES
+Nashville_TN     .Frankfort_KY              YES
+Austin_TX        .Oklahoma-City_OK          YES
 Salt-Lake-City_UT.Helana_MT                             YES
 Montpelier_VT    .Augusta_ME                                        YES
-Richmond_VA      .Charleston_WV             YES
+Richmond_VA      .Raleigh_NC                YES
 Olympia_WA       .Salem_OR                              YES
-Charleston_WV    .Columbus_OH               YES
-Madison_WI       .Saint-Paul_MN             YES
+Charleston_WV    .Richmond_VA               YES
+Madison_WI       .Lansing_MI                YES
 Cheyenne_WY      .Salt-Lake-City_UT                     YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 19
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 18
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 134
 
@@ -697,18 +682,18 @@ LOOPS                            FOR/WHILE   4
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          140
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
-NON ZERO ELEMENTS         8,653     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          135
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,210
+NON ZERO ELEMENTS         8,403     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.047 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.007 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.009 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S          FOR/WHILE 4
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 20
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 19
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 134
 
@@ -721,28 +706,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            17049.2265
+**** OBJECTIVE VALUE            16656.8920
 
- RESOURCE USAGE, LIMIT          0.125      1000.000
- ITERATION COUNT, LIMIT       143    2000000000
+ RESOURCE USAGE, LIMIT          0.366      1000.000
+ ITERATION COUNT, LIMIT       156    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.13sec (det. 50.15 ticks)
+Cplex Time: 0.36sec (det. 53.35 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.96 ticks)
+Cplex Time: 0.00sec (det. 0.93 ticks)
 Proven optimal solution.
 
-MIP Solution:        17049.226498    (143 iterations, 0 nodes)
-Final Solve:         17049.226498    (0 iterations)
+MIP Solution:        16656.891977    (156 iterations, 0 nodes)
+Final Solve:         16656.891977    (0 iterations)
 
-Best possible:       17049.226498
+Best possible:       16656.891977
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -751,7 +736,7 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 21
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 20
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -760,56 +745,55 @@ E x e c u t i o n
 
                                              t1          t2          t3          t4          t5
 
-Montgomery_AL    .Tallahassee_FL            YES
-Phoenix_AZ       .Santa-Fe_NM               YES
-Little-Rock_AR   .Nashville_TN              YES
+Montgomery_AL    .Nashville_TN              YES
+Phoenix_AZ       .Salt-Lake-City_UT         YES
+Little-Rock_AR   .Jackson_MS                YES
 Sacramento_CA    .Salem_OR                              YES
-Denver_CO        .Salt-Lake-City_UT         YES
-Hartford_CT      .Trenton_NJ                                        YES
+Denver_CO        .Cheyenne_WY               YES
+Hartford_CT      .Providence_RI                                     YES
 Dover_DE         .Richmond_VA                                                   YES
-Tallahassee_FL   .Columbia_SC               YES
 Atlanta_GA       .Montgomery_AL             YES
 Boise_ID         .Carson-City_NV                        YES
-Springfield_IL   .Jefferson-City_MO         YES
+Springfield_IL   .Madison_WI                YES
 Indianapolis_IN  .Frankfort_KY                                                              YES
-Des-Moines_IA    .Saint-Paul_MN             YES
-Topeka_KS        .Lincoln_NE                YES
+Des-Moines_IA    .Lincoln_NE                YES
+Topeka_KS        .Jefferson-City_MO         YES
 Frankfort_KY     .Indianapolis_IN                                                           YES
-Baton-Rouge_LA   .Jackson_MS                YES
-Augusta_ME       .Concord_NH                                        YES
+Baton-Rouge_LA   .Austin_TX                 YES
+Augusta_ME       .Montpelier_VT                                     YES
 Annapolis_MD     .Dover_DE                                                      YES
-Boston_MA        .Providence_RI                                     YES
-Lansing_MI       .Madison_WI                YES
-Saint-Paul_MN    .Bismarck_ND               YES
-Jackson_MS       .Little-Rock_AR            YES
-Jefferson-City_MO.Topeka_KS                 YES
+Boston_MA        .Concord_NH                                        YES
+Lansing_MI       .Columbus_OH               YES
+Saint-Paul_MN    .Des-Moines_IA             YES
+Jackson_MS       .Baton-Rouge_LA            YES
+Jefferson-City_MO.Springfield_IL            YES
 Helana_MT        .Boise_ID                              YES
-Lincoln_NE       .Des-Moines_IA             YES
+Lincoln_NE       .Topeka_KS                 YES
 Carson-City_NV   .Sacramento_CA                         YES
-Concord_NH       .Boston_MA                                         YES
-Trenton_NJ       .Harrisburg_PA                                     YES
-Santa-Fe_NM      .Oklahoma-City_OK          YES
-Albany_NY        .Montpelier_VT                                     YES
-Raleigh_NC       .Charleston_WV             YES
-Bismarck_ND      .Pierre_SD                 YES
-Columbus_OH      .Lansing_MI                YES
-Oklahoma-City_OK .Austin_TX                 YES
+Concord_NH       .Augusta_ME                                        YES
+Trenton_NJ       .Hartford_CT                                       YES
+Santa-Fe_NM      .Phoenix_AZ                YES
+Albany_NY        .Harrisburg_PA                                     YES
+Raleigh_NC       .Columbia_SC               YES
+Bismarck_ND      .Saint-Paul_MN             YES
+Columbus_OH      .Charleston_WV             YES
+Oklahoma-City_OK .Santa-Fe_NM               YES
 Salem_OR         .Olympia_WA                            YES
-Harrisburg_PA    .Albany_NY                                         YES
-Providence_RI    .Hartford_CT                                       YES
-Columbia_SC      .Raleigh_NC                YES
-Pierre_SD        .Cheyenne_WY               YES
-Nashville_TN     .Atlanta_GA                YES
-Austin_TX        .Baton-Rouge_LA            YES
-Salt-Lake-City_UT.Phoenix_AZ                YES
-Montpelier_VT    .Augusta_ME                                        YES
+Harrisburg_PA    .Trenton_NJ                                        YES
+Providence_RI    .Boston_MA                                         YES
+Columbia_SC      .Atlanta_GA                YES
+Pierre_SD        .Bismarck_ND               YES
+Nashville_TN     .Little-Rock_AR            YES
+Austin_TX        .Oklahoma-City_OK          YES
+Salt-Lake-City_UT.Denver_CO                 YES
+Montpelier_VT    .Albany_NY                                         YES
 Richmond_VA      .Annapolis_MD                                                  YES
 Olympia_WA       .Helana_MT                             YES
-Charleston_WV    .Columbus_OH               YES
-Madison_WI       .Springfield_IL            YES
-Cheyenne_WY      .Denver_CO                 YES
+Charleston_WV    .Raleigh_NC                YES
+Madison_WI       .Lansing_MI                YES
+Cheyenne_WY      .Pierre_SD                 YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 22
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 21
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 134
 
@@ -819,18 +803,18 @@ LOOPS                            FOR/WHILE   5
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          145
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
-NON ZERO ELEMENTS         9,567     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          140
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,210
+NON ZERO ELEMENTS         9,262     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.046 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.009 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.012 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S          FOR/WHILE 5
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 23
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 22
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 134
 
@@ -843,28 +827,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            17081.7302
+**** OBJECTIVE VALUE            16689.3957
 
- RESOURCE USAGE, LIMIT          0.187      1000.000
- ITERATION COUNT, LIMIT       288    2000000000
+ RESOURCE USAGE, LIMIT          0.441      1000.000
+ ITERATION COUNT, LIMIT       296    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.17sec (det. 70.14 ticks)
+Cplex Time: 0.08sec (det. 72.67 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 1.01 ticks)
+Cplex Time: 0.35sec (det. 0.98 ticks)
 Proven optimal solution.
 
-MIP Solution:        17081.730191    (288 iterations, 0 nodes)
-Final Solve:         17081.730191    (0 iterations)
+MIP Solution:        16689.395670    (296 iterations, 0 nodes)
+Final Solve:         16689.395670    (0 iterations)
 
-Best possible:       17081.730191
+Best possible:       16689.395670
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -873,8 +857,8 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-                            46  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 24
+                            14  PROJECTED
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 23
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -883,56 +867,55 @@ E x e c u t i o n
 
                                              t1          t2
 
-Montgomery_AL    .Atlanta_GA                YES
-Phoenix_AZ       .Santa-Fe_NM                           YES
-Little-Rock_AR   .Jefferson-City_MO                     YES
-Sacramento_CA    .Carson-City_NV                        YES
-Denver_CO        .Salt-Lake-City_UT                     YES
+Montgomery_AL    .Nashville_TN              YES
+Phoenix_AZ       .Carson-City_NV                        YES
+Little-Rock_AR   .Jackson_MS                            YES
+Sacramento_CA    .Salem_OR                              YES
+Denver_CO        .Cheyenne_WY                           YES
 Hartford_CT      .Trenton_NJ                YES
 Dover_DE         .Annapolis_MD              YES
-Tallahassee_FL   .Montgomery_AL             YES
-Atlanta_GA       .Nashville_TN              YES
-Boise_ID         .Olympia_WA                            YES
+Atlanta_GA       .Montgomery_AL             YES
+Boise_ID         .Helana_MT                             YES
 Springfield_IL   .Madison_WI                YES
 Indianapolis_IN  .Springfield_IL            YES
-Des-Moines_IA    .Saint-Paul_MN                         YES
-Topeka_KS        .Lincoln_NE                            YES
+Des-Moines_IA    .Lincoln_NE                            YES
+Topeka_KS        .Jefferson-City_MO                     YES
 Frankfort_KY     .Indianapolis_IN           YES
-Baton-Rouge_LA   .Jackson_MS                            YES
+Baton-Rouge_LA   .Austin_TX                             YES
 Augusta_ME       .Concord_NH                YES
 Annapolis_MD     .Richmond_VA               YES
 Boston_MA        .Providence_RI             YES
 Lansing_MI       .Columbus_OH               YES
-Saint-Paul_MN    .Bismarck_ND                           YES
-Jackson_MS       .Little-Rock_AR                        YES
-Jefferson-City_MO.Topeka_KS                             YES
-Helana_MT        .Boise_ID                              YES
-Lincoln_NE       .Des-Moines_IA                         YES
-Carson-City_NV   .Phoenix_AZ                            YES
+Saint-Paul_MN    .Des-Moines_IA                         YES
+Jackson_MS       .Baton-Rouge_LA                        YES
+Jefferson-City_MO.Little-Rock_AR                        YES
+Helana_MT        .Salt-Lake-City_UT                     YES
+Lincoln_NE       .Topeka_KS                             YES
+Carson-City_NV   .Sacramento_CA                         YES
 Concord_NH       .Boston_MA                 YES
 Trenton_NJ       .Dover_DE                  YES
-Santa-Fe_NM      .Oklahoma-City_OK                      YES
+Santa-Fe_NM      .Phoenix_AZ                            YES
 Albany_NY        .Montpelier_VT             YES
 Raleigh_NC       .Columbia_SC               YES
-Bismarck_ND      .Pierre_SD                             YES
+Bismarck_ND      .Saint-Paul_MN                         YES
 Columbus_OH      .Charleston_WV             YES
-Oklahoma-City_OK .Austin_TX                             YES
-Salem_OR         .Sacramento_CA                         YES
+Oklahoma-City_OK .Santa-Fe_NM                           YES
+Salem_OR         .Olympia_WA                            YES
 Harrisburg_PA    .Albany_NY                 YES
 Providence_RI    .Hartford_CT               YES
-Columbia_SC      .Tallahassee_FL            YES
-Pierre_SD        .Cheyenne_WY                           YES
+Columbia_SC      .Atlanta_GA                YES
+Pierre_SD        .Bismarck_ND                           YES
 Nashville_TN     .Frankfort_KY              YES
-Austin_TX        .Baton-Rouge_LA                        YES
-Salt-Lake-City_UT.Helana_MT                             YES
+Austin_TX        .Oklahoma-City_OK                      YES
+Salt-Lake-City_UT.Denver_CO                             YES
 Montpelier_VT    .Augusta_ME                YES
 Richmond_VA      .Raleigh_NC                YES
-Olympia_WA       .Salem_OR                              YES
+Olympia_WA       .Boise_ID                              YES
 Charleston_WV    .Harrisburg_PA             YES
 Madison_WI       .Lansing_MI                YES
-Cheyenne_WY      .Denver_CO                             YES
+Cheyenne_WY      .Pierre_SD                             YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 25
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 24
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE tspSEC Using MIP From line 134
 
@@ -942,18 +925,18 @@ LOOPS                            FOR/WHILE   6
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          146
-BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,305
-NON ZERO ELEMENTS        10,096     DISCRETE VARIABLES      2,256
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS          141
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES        2,210
+NON ZERO ELEMENTS         9,791     DISCRETE VARIABLES      2,162
 
 
-GENERATION TIME      =        0.046 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.009 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.062 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.011 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S          FOR/WHILE 6
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 26
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 25
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE tspSEC Using MIP From line 134
 
@@ -966,28 +949,28 @@ Solution Report     SOLVE tspSEC Using MIP From line 134
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
-**** OBJECTIVE VALUE            17092.1013
+**** OBJECTIVE VALUE            16699.7668
 
- RESOURCE USAGE, LIMIT          0.234      1000.000
- ITERATION COUNT, LIMIT       465    2000000000
+ RESOURCE USAGE, LIMIT          0.098      1000.000
+ ITERATION COUNT, LIMIT       336    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.23sec (det. 91.64 ticks)
+Cplex Time: 0.09sec (det. 86.11 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 1.04 ticks)
+Cplex Time: 0.00sec (det. 1.01 ticks)
 Proven optimal solution.
 
-MIP Solution:        17092.101327    (465 iterations, 0 nodes)
-Final Solve:         17092.101327    (0 iterations)
+MIP Solution:        16699.766806    (336 iterations, 0 nodes)
+Final Solve:         16699.766806    (0 iterations)
 
-Best possible:       17092.101327
+Best possible:       16699.766806
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
@@ -996,7 +979,8 @@ Relative gap:            0.000000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 27
+                            19  PROJECTED
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 26
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1005,15 +989,14 @@ E x e c u t i o n
 
                                              t1
 
-Montgomery_AL    .Atlanta_GA                YES
+Montgomery_AL    .Nashville_TN              YES
 Phoenix_AZ       .Carson-City_NV            YES
 Little-Rock_AR   .Jackson_MS                YES
 Sacramento_CA    .Salem_OR                  YES
 Denver_CO        .Cheyenne_WY               YES
 Hartford_CT      .Trenton_NJ                YES
 Dover_DE         .Annapolis_MD              YES
-Tallahassee_FL   .Montgomery_AL             YES
-Atlanta_GA       .Nashville_TN              YES
+Atlanta_GA       .Montgomery_AL             YES
 Boise_ID         .Helana_MT                 YES
 Springfield_IL   .Des-Moines_IA             YES
 Indianapolis_IN  .Springfield_IL            YES
@@ -1042,7 +1025,7 @@ Oklahoma-City_OK .Santa-Fe_NM               YES
 Salem_OR         .Olympia_WA                YES
 Harrisburg_PA    .Albany_NY                 YES
 Providence_RI    .Hartford_CT               YES
-Columbia_SC      .Tallahassee_FL            YES
+Columbia_SC      .Atlanta_GA                YES
 Pierre_SD        .Bismarck_ND               YES
 Nashville_TN     .Frankfort_KY              YES
 Austin_TX        .Oklahoma-City_OK          YES
@@ -1054,24 +1037,23 @@ Charleston_WV    .Harrisburg_PA             YES
 Madison_WI       .Lansing_MI                YES
 Cheyenne_WY      .Pierre_SD                 YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 28
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 27
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-----    147 VARIABLE obj.L                 =    17092.101  
+----    139 VARIABLE obj.L                 =    16699.767  
 
-----    168 SET tour  
+----    160 SET tour  
 
-Montgomery_AL    .Atlanta_GA       
+Montgomery_AL    .Nashville_TN     
 Phoenix_AZ       .Carson-City_NV   
 Little-Rock_AR   .Jackson_MS       
 Sacramento_CA    .Salem_OR         
 Denver_CO        .Cheyenne_WY      
 Hartford_CT      .Trenton_NJ       
 Dover_DE         .Annapolis_MD     
-Tallahassee_FL   .Montgomery_AL    
-Atlanta_GA       .Nashville_TN     
+Atlanta_GA       .Montgomery_AL    
 Boise_ID         .Helana_MT        
 Springfield_IL   .Des-Moines_IA    
 Indianapolis_IN  .Springfield_IL   
@@ -1100,7 +1082,7 @@ Oklahoma-City_OK .Santa-Fe_NM
 Salem_OR         .Olympia_WA       
 Harrisburg_PA    .Albany_NY        
 Providence_RI    .Hartford_CT      
-Columbia_SC      .Tallahassee_FL   
+Columbia_SC      .Atlanta_GA       
 Pierre_SD        .Bismarck_ND      
 Nashville_TN     .Frankfort_KY     
 Austin_TX        .Oklahoma-City_OK 
@@ -1112,20 +1094,20 @@ Charleston_WV    .Harrisburg_PA
 Madison_WI       .Lansing_MI       
 Cheyenne_WY      .Pierre_SD        
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/10/20 15:44:36 Page 29
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:18:51 Page 28
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-EXECUTION TIME       =        0.016 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.004 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
-      UW-Madison Computer Sciences Dept.                         DCE244
+USER: Michael C. Ferris                              S200127/0001AN-GEN
+      University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
       License for teaching and research at degree granting institutions
 
 
 **** FILE SUMMARY
 
-Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
-Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.lst
+Input      /Users/ferris/Projects/GAMS-MIRO/tsp/tspmod.gms
+Output     /Users/ferris/Projects/GAMS-MIRO/tsp/tspmod.lst

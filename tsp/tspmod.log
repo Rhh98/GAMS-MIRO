@@ -1,11 +1,12 @@
---- Job tspmod.gms Start 07/10/20 15:44:08 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job tspmod.gms Start 07/16/20 11:15:24 31.2.0 r8ba6aed DEX-DEG x86 64bit/Mac OS X
 --- Applying:
-    E:\31.1\gmsprmNT.txt
+    /Applications/GAMS31.2/GAMS Terminal.app/Contents/MacOS/gmsprmun.txt
+    /Users/ferris/Library/Preferences/GAMS/gamsconfig.yaml
 --- GAMS Parameters defined
-    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\tspmod.gms
+    Input /Users/ferris/Projects/GAMS-MIRO/tsp/tspmod.gms
     PageSize 0
-    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\
-    SysDir E:\31.1\
+    ScrDir /Users/ferris/Projects/GAMS-MIRO/tsp/225a/
+    SysDir /Applications/GAMS31.2/GAMS Terminal.app/Contents/MacOS/
     LogOption 3
     ErrMsg 1
     ErrorLog 99
@@ -13,34 +14,32 @@
     LstTitleLeftAligned 1
     IDCGenerateJSON conf_tspmod/tspmod_io.json
     IDCGenerateGDX data_tspmod/default.gdx
-GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
-          UW-Madison Computer Sciences Dept.                         DCE244
-          E:\31.1\gamslice.txt
+GAMS 31.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael C. Ferris                              S200127/0001AN-GEN
+          University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
+          /Users/ferris/Library/Application Support/GAMS/gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- tspmod.gms(6) 2 Mb
 --- . set.csv(1) 3 Mb
 --- tspmod.gms(15) 3 Mb
 --- . capitals.csv(51) 3 Mb
---- tspmod.gms(167) 3 Mb
---- Starting execution: elapsed 0:00:00.015
+--- tspmod.gms(159) 3 Mb
+--- Starting execution: elapsed 0:00:00.006
 --- tspmod.gms(122) 4 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(126) 5 Mb
 ---   97 rows  2,257 columns  6,769 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.052
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.015
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -50,8 +49,8 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
-Found incumbent of value 82831.879659 after 0.02 sec. (0.13 ticks)
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
+Found incumbent of value 82831.879659 after 0.00 sec. (0.13 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 1 columns.
 Reduced MIP has 96 rows, 2256 columns, and 4512 nonzeros.
@@ -61,7 +60,7 @@ Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 96 rows, 2256 columns, and 4512 nonzeros.
 Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (3.76 ticks)
+Presolve time = 0.00 sec. (3.76 ticks)
 Dual steepest-edge pricing selected.
 Probing time = 0.00 sec. (2.88 ticks)
 Clique table members: 96.
@@ -70,32 +69,28 @@ MIP search method: dynamic search.
 Parallel mode: none, using 1 thread.
 Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
-Presolve time = 0.01 sec. (0.70 ticks)
+Presolve time = 0.00 sec. (0.70 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12196.707397
-Root relaxation solution time = 0.01 sec. (1.23 ticks)
-
+Root relaxation solution time = 0.00 sec. (1.23 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.05 sec. (13.61 ticks)
+Found incumbent of value 82831.879659 after 0.02 sec. (13.61 ticks)
 *     0     0      integral     0    13550.5719    13550.5719       39    0.00%
-Elapsed time = 0.05 sec. (13.76 ticks, tree = 0.00 MB, solutions = 2)
-Found incumbent of value 13550.571935 after 0.05 sec. (13.76 ticks)
-
+Elapsed time = 0.02 sec. (13.76 ticks, tree = 0.00 MB, solutions = 2)
+Found incumbent of value 13550.571935 after 0.02 sec. (13.76 ticks)
 Root node processing (before b&c):
-  Real time             =    0.05 sec. (13.85 ticks)
+  Real time             =    0.02 sec. (13.85 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.05 sec. (13.85 ticks)
+Total (root+branch&cut) =    0.02 sec. (13.85 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.05sec (det. 13.85 ticks)
+Cplex Time: 0.02sec (det. 13.85 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -105,44 +100,38 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 97 rows and 2257 columns.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.64 ticks)
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.84 ticks)
-
 Proven optimal solution.
-
 MIP Solution:        13550.571935    (39 iterations, 0 nodes)
 Final Solve:         13550.571935    (0 iterations)
-
 Best possible:       13550.571935
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(126) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:00.318
+--- Executing after solve: elapsed 0:00:00.270
 --- tspmod.gms(141) 3 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(185) 4 Mb
 --- LOOPS FOR/WHILE = 1
 ---   119 rows  2,305 columns  6,877 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.360
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.277
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -152,7 +141,7 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Found incumbent of value 82831.879659 after 0.00 sec. (0.14 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 49 columns.
@@ -163,9 +152,9 @@ Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 118 rows, 2256 columns, and 4572 nonzeros.
 Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (4.47 ticks)
+Presolve time = 0.00 sec. (4.47 ticks)
 Dual steepest-edge pricing selected.
-Probing time = 0.02 sec. (2.87 ticks)
+Probing time = 0.00 sec. (2.87 ticks)
 Clique table members: 114.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -174,36 +163,31 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (0.70 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12350.104220
 Iteration:    64   Dual objective     =         15818.205246
-Root relaxation solution time = 0.00 sec. (2.05 ticks)
-
+Root relaxation solution time = 0.00 sec. (2.01 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.03 sec. (15.87 ticks)
-      0     0    16089.9480    62    82831.8797    16089.9480       89   80.58%
-*     0     0      integral     0    16175.1037       Cuts: 7       97    0.00%
-Found incumbent of value 16175.103736 after 0.06 sec. (26.93 ticks)
-      0     0        cutoff          16175.1037    16175.1037       97    0.00%
-Elapsed time = 0.06 sec. (26.93 ticks, tree = 0.01 MB, solutions = 2)
-
+Found incumbent of value 82831.879659 after 0.02 sec. (15.84 ticks)
+      0     0    16089.9480    62    82831.8797    16089.9480       88   80.58%
+*     0     0      integral     0    16175.1037       Cuts: 7       96    0.00%
+Found incumbent of value 16175.103736 after 0.03 sec. (26.86 ticks)
+      0     0        cutoff          16175.1037    16175.1037       96    0.00%
+Elapsed time = 0.03 sec. (26.86 ticks, tree = 0.01 MB, solutions = 2)
 Zero-half cuts applied:  3
 Gomory fractional cuts applied:  4
-
 Root node processing (before b&c):
-  Real time             =    0.06 sec. (27.02 ticks)
+  Real time             =    0.03 sec. (26.94 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.06 sec. (27.02 ticks)
+Total (root+branch&cut) =    0.03 sec. (26.94 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.06sec (det. 27.03 ticks)
+Cplex Time: 0.03sec (det. 26.95 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -213,44 +197,38 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 119 rows and 2305 columns.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.63 ticks)
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.84 ticks)
-
 Proven optimal solution.
-
-MIP Solution:        16175.103736    (97 iterations, 0 nodes)
+MIP Solution:        16175.103736    (96 iterations, 0 nodes)
 Final Solve:         16175.103736    (0 iterations)
-
 Best possible:       16175.103736
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(185) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:00.568
+--- Executing after solve: elapsed 0:00:00.601
 --- tspmod.gms(141) 3 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(185) 4 Mb
 --- LOOPS FOR/WHILE = 2
 ---   129 rows  2,305 columns  7,259 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.612
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.609
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -260,7 +238,7 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Found incumbent of value 82831.879659 after 0.00 sec. (0.14 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 49 columns.
@@ -273,7 +251,7 @@ Reduced MIP has 128 rows, 2256 columns, and 4906 nonzeros.
 Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
 Presolve time = 0.00 sec. (4.55 ticks)
 Dual steepest-edge pricing selected.
-Probing time = 0.02 sec. (2.86 ticks)
+Probing time = 0.00 sec. (2.86 ticks)
 Clique table members: 118.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -282,36 +260,32 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (0.71 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12350.104220
 Iteration:    66   Dual objective     =         16087.505590
-Root relaxation solution time = 0.01 sec. (2.26 ticks)
-
+Root relaxation solution time = 0.00 sec. (2.20 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.05 sec. (16.25 ticks)
-      0     0    16576.8368    52    82831.8797    16576.8368       97   79.99%
-*     0     0      integral     0    16591.1473       Cuts: 8       99    0.00%
-Found incumbent of value 16591.147336 after 0.06 sec. (26.79 ticks)
-      0     0        cutoff          16591.1473    16591.1473       99    0.00%
-Elapsed time = 0.06 sec. (26.79 ticks, tree = 0.01 MB, solutions = 2)
-
-Zero-half cuts applied:  5
+Found incumbent of value 82831.879659 after 0.02 sec. (16.19 ticks)
+      0     0    16576.8368    38    82831.8797    16576.8368       94   79.99%
+*     0     0      integral     0    16591.1473       Cuts: 9       98    0.00%
+Found incumbent of value 16591.147336 after 0.04 sec. (39.93 ticks)
+      0     0        cutoff          16591.1473    16591.1473       98    0.00%
+Elapsed time = 0.04 sec. (39.93 ticks, tree = 0.01 MB, solutions = 2)
+Cover cuts applied:  1
+Zero-half cuts applied:  3
 Gomory fractional cuts applied:  3
-
 Root node processing (before b&c):
-  Real time             =    0.06 sec. (26.88 ticks)
+  Real time             =    0.04 sec. (40.02 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.06 sec. (26.88 ticks)
+Total (root+branch&cut) =    0.04 sec. (40.02 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.06sec (det. 26.89 ticks)
+Cplex Time: 0.04sec (det. 40.03 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -321,44 +295,38 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 129 rows and 2305 columns.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.67 ticks)
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.89 ticks)
-
 Proven optimal solution.
-
-MIP Solution:        16591.147336    (99 iterations, 0 nodes)
+MIP Solution:        16591.147336    (98 iterations, 0 nodes)
 Final Solve:         16591.147336    (0 iterations)
-
 Best possible:       16591.147336
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(185) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:00.836
+--- Executing after solve: elapsed 0:00:00.697
 --- tspmod.gms(141) 3 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(185) 4 Mb
 --- LOOPS FOR/WHILE = 3
 ---   137 rows  2,305 columns  7,735 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.879
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.705
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -368,7 +336,7 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Found incumbent of value 82831.879659 after 0.00 sec. (0.14 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 49 columns.
@@ -379,9 +347,9 @@ Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 136 rows, 2256 columns, and 5334 nonzeros.
 Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (4.66 ticks)
+Presolve time = 0.00 sec. (4.66 ticks)
 Dual steepest-edge pricing selected.
-Probing time = 0.01 sec. (2.84 ticks)
+Probing time = 0.00 sec. (2.84 ticks)
 Clique table members: 119.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -390,37 +358,32 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (0.73 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12350.104220
 Iteration:    62   Dual objective     =         15881.230129
-Root relaxation solution time = 0.00 sec. (2.80 ticks)
-
+Root relaxation solution time = 0.00 sec. (2.77 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.03 sec. (17.05 ticks)
-      0     0    16744.8548    28    82831.8797    16744.8548      116   79.78%
+Found incumbent of value 82831.879659 after 0.02 sec. (17.02 ticks)
+      0     0    16744.8548    28    82831.8797    16744.8548      115   79.78%
 *     0     0      integral     0    16764.9112       Cuts: 6      122    0.00%
-Found incumbent of value 16764.911207 after 0.09 sec. (37.75 ticks)
+Found incumbent of value 16764.911207 after 0.04 sec. (37.47 ticks)
       0     0        cutoff          16764.9112    16764.9112      122    0.00%
-Elapsed time = 0.09 sec. (37.75 ticks, tree = 0.01 MB, solutions = 2)
-
+Elapsed time = 0.04 sec. (37.47 ticks, tree = 0.01 MB, solutions = 2)
 Cover cuts applied:  1
 Zero-half cuts applied:  4
 Gomory fractional cuts applied:  1
-
 Root node processing (before b&c):
-  Real time             =    0.09 sec. (37.84 ticks)
+  Real time             =    0.04 sec. (37.56 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.09 sec. (37.84 ticks)
+Total (root+branch&cut) =    0.04 sec. (37.56 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.09sec (det. 37.84 ticks)
+Cplex Time: 0.04sec (det. 37.56 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -430,44 +393,38 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 137 rows and 2305 columns.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.70 ticks)
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.92 ticks)
-
 Proven optimal solution.
-
 MIP Solution:        16764.911207    (122 iterations, 0 nodes)
 Final Solve:         16764.911207    (0 iterations)
-
 Best possible:       16764.911207
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(185) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:01.149
+--- Executing after solve: elapsed 0:00:00.786
 --- tspmod.gms(141) 3 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(185) 4 Mb
 --- LOOPS FOR/WHILE = 4
 ---   140 rows  2,305 columns  8,653 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:01.186
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.794
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -477,7 +434,7 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Found incumbent of value 82831.879659 after 0.00 sec. (0.14 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 49 columns.
@@ -488,9 +445,9 @@ Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 139 rows, 2256 columns, and 6204 nonzeros.
 Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (5.01 ticks)
+Presolve time = 0.00 sec. (5.01 ticks)
 Dual steepest-edge pricing selected.
-Probing time = 0.02 sec. (2.82 ticks)
+Probing time = 0.00 sec. (2.82 ticks)
 Clique table members: 119.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -499,40 +456,34 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (0.75 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12350.104220
 Iteration:    62   Dual objective     =         15881.230129
-Root relaxation solution time = 0.00 sec. (3.20 ticks)
-
+Root relaxation solution time = 0.00 sec. (2.96 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.03 sec. (18.23 ticks)
-      0     0    16981.1510    22    82831.8797    16981.1510      122   79.50%
-      0     0    17039.6495    22    82831.8797       Cuts: 6      135   79.43%
-*     0+    0                        18502.1073    17039.6495             7.90%
-Found incumbent of value 18502.107307 after 0.08 sec. (39.90 ticks)
-*     0     0      integral     0    17049.2265       Cuts: 6      143    0.00%
-Found incumbent of value 17049.226498 after 0.09 sec. (50.04 ticks)
-      0     0        cutoff          17049.2265    17049.2265      143    0.00%
-Elapsed time = 0.09 sec. (50.04 ticks, tree = 0.01 MB, solutions = 3)
-
-Cover cuts applied:  1
-Zero-half cuts applied:  5
+Found incumbent of value 82831.879659 after 0.02 sec. (17.99 ticks)
+      0     0    16981.1510    20    82831.8797    16981.1510      115   79.50%
+      0     0    17039.6495    20    82831.8797       Cuts: 5      125   79.43%
+*     0+    0                        17685.4830    17039.6495             3.65%
+Found incumbent of value 17685.482958 after 0.04 sec. (39.72 ticks)
+*     0     0      integral     0    17049.2265       Cuts: 3      131    0.00%
+Found incumbent of value 17049.226498 after 0.04 sec. (45.55 ticks)
+      0     0        cutoff          17049.2265    17049.2265      131    0.00%
+Elapsed time = 0.04 sec. (45.55 ticks, tree = 0.01 MB, solutions = 3)
+Zero-half cuts applied:  1
 Gomory fractional cuts applied:  3
-
 Root node processing (before b&c):
-  Real time             =    0.09 sec. (50.14 ticks)
+  Real time             =    0.04 sec. (45.65 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.09 sec. (50.14 ticks)
+Total (root+branch&cut) =    0.04 sec. (45.65 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.09sec (det. 50.15 ticks)
+Cplex Time: 0.04sec (det. 45.66 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -542,44 +493,38 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 140 rows and 2305 columns.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.74 ticks)
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.96 ticks)
-
 Proven optimal solution.
-
-MIP Solution:        17049.226498    (143 iterations, 0 nodes)
+MIP Solution:        17049.226498    (131 iterations, 0 nodes)
 Final Solve:         17049.226498    (0 iterations)
-
 Best possible:       17049.226498
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(185) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:01.462
+--- Executing after solve: elapsed 0:00:00.881
 --- tspmod.gms(141) 3 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(185) 4 Mb
 --- LOOPS FOR/WHILE = 5
 ---   145 rows  2,305 columns  9,567 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:01.497
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:00.888
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -589,7 +534,7 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Found incumbent of value 82831.879659 after 0.00 sec. (0.15 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 49 columns.
@@ -600,7 +545,7 @@ Tried aggregator 1 time.
 Detecting symmetries...
 Reduced MIP has 144 rows, 2256 columns, and 7070 nonzeros.
 Reduced MIP has 2256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.01 sec. (5.37 ticks)
+Presolve time = 0.00 sec. (5.37 ticks)
 Dual steepest-edge pricing selected.
 Probing time = 0.00 sec. (2.81 ticks)
 Clique table members: 120.
@@ -611,88 +556,81 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (0.79 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12350.104220
 Iteration:    70   Dual objective     =         16140.293939
-Root relaxation solution time = 0.00 sec. (3.20 ticks)
-
+Root relaxation solution time = 0.00 sec. (3.08 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.03 sec. (19.07 ticks)
-      0     0    16990.3119    14    82831.8797    16990.3119      118   79.49%
-*     0+    0                        17944.9007    16990.3119             5.32%
-Found incumbent of value 17944.900689 after 0.05 sec. (20.45 ticks)
-      0     0    17054.3200    14    17944.9007       Cuts: 9      128    4.96%
-      0     0    17072.5058    14    17944.9007       Cuts: 7      135    4.86%
-*     0+    0                        17506.5431    17072.5058             2.48%
-Found incumbent of value 17506.543072 after 0.11 sec. (52.12 ticks)
-*     0+    0                        17126.3237    17072.5058             0.31%
-Found incumbent of value 17126.323657 after 0.14 sec. (56.01 ticks)
-      0     0  -1.00000e+75     0    17126.3237    17072.5058      135    0.31%
-
+Found incumbent of value 82831.879659 after 0.02 sec. (18.96 ticks)
+      0     0    16990.3119    16    82831.8797    16990.3119      115   79.49%
+      0     0    17048.0495    16    82831.8797       Cuts: 5      129   79.42%
+*     0+    0                        17369.2399    17048.0495             1.85%
+Found incumbent of value 17369.239930 after 0.04 sec. (42.85 ticks)
+      0     0    17072.5058    16    17369.2399      Cuts: 11      140    1.71%
+*     0+    0                        17081.7302    17072.5058             0.05%
+Found incumbent of value 17081.730191 after 0.06 sec. (74.04 ticks)
+      0     0  -1.00000e+75     0    17081.7302    17072.5058      140    0.05%
 Repeating presolve.
 Tried aggregator 3 times.
-MIP Presolve eliminated 11 rows and 2061 columns.
-MIP Presolve modified 303 coefficients.
-Aggregator did 8 substitutions.
-Reduced MIP has 125 rows, 187 columns, and 634 nonzeros.
-Reduced MIP has 187 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (2.21 ticks)
-Probing fixed 2 vars, tightened 0 bounds.
-Probing changed sense of 2 constraints.
-Probing time = 0.00 sec. (0.22 ticks)
+MIP Presolve eliminated 22 rows and 2109 columns.
+MIP Presolve modified 221 coefficients.
+Aggregator did 25 substitutions.
+Reduced MIP has 97 rows, 122 columns, and 406 nonzeros.
+Reduced MIP has 122 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.51 ticks)
+Probing fixed 8 vars, tightened 0 bounds.
+Probing changed sense of 3 constraints.
+Probing time = 0.00 sec. (0.13 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 14 rows and 17 columns.
+MIP Presolve modified 6 coefficients.
+Reduced MIP has 83 rows, 105 columns, and 344 nonzeros.
+Reduced MIP has 105 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.31 ticks)
+Probing time = 0.00 sec. (0.10 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
-MIP Presolve eliminated 3 rows and 3 columns.
-Reduced MIP has 122 rows, 184 columns, and 615 nonzeros.
-Reduced MIP has 184 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.62 ticks)
-Represolve time = 0.02 sec. (4.14 ticks)
-Probing time = 0.00 sec. (0.22 ticks)
-Clique table members: 275.
+Reduced MIP has 83 rows, 105 columns, and 344 nonzeros.
+Reduced MIP has 105 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.23 ticks)
+Represolve time = 0.01 sec. (4.51 ticks)
+Probing time = 0.00 sec. (0.10 ticks)
+Clique table members: 144.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: none, using 1 thread.
 Tried aggregator 1 time.
-LP Presolve eliminated 0 rows and 1 columns.
-Reduced LP has 128 rows, 183 columns, and 916 nonzeros.
-Presolve time = 0.00 sec. (0.12 ticks)
+LP Presolve eliminated 1 rows and 2 columns.
+Reduced LP has 94 rows, 103 columns, and 561 nonzeros.
+Presolve time = 0.00 sec. (0.08 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
-Iteration:     1   Dual objective     =          8945.687028
-Iteration:    62   Dual objective     =         15337.709202
-Iteration:   124   Dual objective     =         17065.649635
+Iteration:     1   Dual objective     =         11150.583013
+Iteration:    62   Dual objective     =         16955.161149
 Initializing dual steep norms . . .
-Root relaxation solution time = 0.00 sec. (1.28 ticks)
-
+Root relaxation solution time = 0.00 sec. (0.65 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
-*     0+    0                        17126.3237    17072.5058             0.31%
-Found incumbent of value 17126.323657 after 0.16 sec. (64.36 ticks)
-      0     0    17072.5058    24    17126.3237    17072.5058      273    0.31%
-*     0     0      integral     0    17081.7302       Cuts: 6      288    0.00%
-Found incumbent of value 17081.730191 after 0.17 sec. (70.00 ticks)
-      0     0        cutoff          17081.7302    17081.7302      288    0.00%
-Elapsed time = 0.17 sec. (70.00 ticks, tree = 0.01 MB, solutions = 5)
-
-Zero-half cuts applied:  2
-Gomory fractional cuts applied:  5
-
+*     0+    0                        17081.7302    17072.5058             0.05%
+Found incumbent of value 17081.730191 after 0.07 sec. (81.68 ticks)
+      0     0    17072.5058    18    17081.7302    17072.5058      221    0.05%
+      0     0        cutoff          17081.7302                    227    0.00%
+Elapsed time = 0.08 sec. (84.05 ticks, tree = 0.01 MB, solutions = 3)
+Cover cuts applied:  3
+Zero-half cuts applied:  5
+Gomory fractional cuts applied:  4
 Root node processing (before b&c):
-  Real time             =    0.17 sec. (70.13 ticks)
+  Real time             =    0.08 sec. (84.12 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.17 sec. (70.13 ticks)
+Total (root+branch&cut) =    0.08 sec. (84.12 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.17sec (det. 70.14 ticks)
+Cplex Time: 0.08sec (det. 84.13 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -702,44 +640,38 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 145 rows and 2305 columns.
 All rows and columns eliminated.
-Presolve time = 0.02 sec. (0.78 ticks)
+Presolve time = 0.00 sec. (0.78 ticks)
 Fixed MIP status(1): optimal
-Cplex Time: 0.02sec (det. 1.01 ticks)
-
+Cplex Time: 0.00sec (det. 1.01 ticks)
 Proven optimal solution.
-
-MIP Solution:        17081.730191    (288 iterations, 0 nodes)
+MIP Solution:        17081.730191    (227 iterations, 0 nodes)
 Final Solve:         17081.730191    (0 iterations)
-
 Best possible:       17081.730191
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(185) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:01.856
+--- Executing after solve: elapsed 0:00:01.015
 --- tspmod.gms(141) 3 Mb
 --- Generating MIP model tspSEC
 --- tspmod.gms(185) 4 Mb
 --- LOOPS FOR/WHILE = 6
 ---   146 rows  2,305 columns  10,096 non-zeroes
 ---   2,256 discrete-columns
---- Executing CPLEX: elapsed 0:00:01.895
-
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- Executing CPLEX: elapsed 0:00:01.023
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
-
 Reading data...
 Starting Cplex...
 Space for names approximately 0.08 Mb
 Use option 'names no' to turn use of names off
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -749,7 +681,7 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Found incumbent of value 82831.879659 after 0.00 sec. (0.15 ticks)
 Tried aggregator 1 time.
 MIP Presolve eliminated 1 rows and 49 columns.
@@ -769,46 +701,42 @@ MIP search method: dynamic search.
 Parallel mode: none, using 1 thread.
 Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
-Presolve time = 0.02 sec. (0.81 ticks)
+Presolve time = 0.00 sec. (0.81 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
 Iteration:     1   Dual objective     =         12350.104220
 Iteration:    70   Dual objective     =         16140.293939
-Root relaxation solution time = 0.02 sec. (3.04 ticks)
-
+Root relaxation solution time = 0.00 sec. (2.95 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
 *     0+    0                        82831.8797        0.0000           100.00%
-Found incumbent of value 82831.879659 after 0.05 sec. (19.43 ticks)
-      0     0    16990.3119    16    82831.8797    16990.3119      112   79.49%
-      0     0    17048.0495    16    82831.8797       Cuts: 5      125   79.42%
+Found incumbent of value 82831.879659 after 0.02 sec. (19.35 ticks)
+      0     0    16990.3119    16    82831.8797    16990.3119      109   79.49%
+      0     0    17048.0495    16    82831.8797       Cuts: 5      126   79.42%
 *     0+    0                        17503.3178    17048.0495             2.60%
-Found incumbent of value 17503.317776 after 0.09 sec. (42.83 ticks)
-      0     0    17059.9648    16    17503.3178       Cuts: 6      134    2.53%
+Found incumbent of value 17503.317776 after 0.04 sec. (42.98 ticks)
+      0     0    17059.9648    16    17503.3178       Cuts: 6      135    2.53%
 *     0+    0                        17177.5831    17059.9648             0.68%
-Found incumbent of value 17177.583074 after 0.11 sec. (50.65 ticks)
-*     0+    0                        17170.9345    17059.9648             0.65%
-Found incumbent of value 17170.934476 after 0.13 sec. (54.11 ticks)
-      0     0  -1.00000e+75     0    17170.9345    17059.9648      134    0.65%
-
+Found incumbent of value 17177.583074 after 0.05 sec. (50.80 ticks)
+*     0+    0                        17145.8296    17059.9648             0.50%
+Found incumbent of value 17145.829605 after 0.05 sec. (54.43 ticks)
+      0     0  -1.00000e+75     0    17145.8296    17059.9648      135    0.50%
 Repeating presolve.
 Tried aggregator 1 time.
-MIP Presolve eliminated 2 rows and 2000 columns.
-MIP Presolve modified 514 coefficients.
-Reduced MIP has 143 rows, 256 columns, and 878 nonzeros.
-Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (1.95 ticks)
-Probing time = 0.00 sec. (0.30 ticks)
+MIP Presolve eliminated 4 rows and 2018 columns.
+MIP Presolve modified 502 coefficients.
+Reduced MIP has 141 rows, 238 columns, and 804 nonzeros.
+Reduced MIP has 238 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.87 ticks)
+Probing time = 0.00 sec. (0.26 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
-Reduced MIP has 143 rows, 256 columns, and 878 nonzeros.
-Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.60 ticks)
-Represolve time = 0.02 sec. (4.16 ticks)
-Probing time = 0.00 sec. (0.30 ticks)
-Clique table members: 120.
+Reduced MIP has 141 rows, 238 columns, and 804 nonzeros.
+Reduced MIP has 238 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.55 ticks)
+Represolve time = 0.00 sec. (3.97 ticks)
+Probing time = 0.00 sec. (0.26 ticks)
+Clique table members: 133.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: none, using 1 thread.
@@ -816,92 +744,35 @@ Tried aggregator 1 time.
 No LP presolve or aggregator reductions.
 Presolve time = 0.00 sec. (0.12 ticks)
 Initializing dual steep norms . . .
-
 Iteration log . . .
-Iteration:     1   Dual objective     =          6919.471712
-Iteration:    62   Dual objective     =         13671.004937
-Iteration:   124   Dual objective     =         16194.185619
-Root relaxation solution time = 0.00 sec. (1.27 ticks)
-
+Iteration:     1   Dual objective     =          7708.856139
+Iteration:    62   Dual objective     =         14043.794047
+Iteration:   124   Dual objective     =         16421.837888
+Root relaxation solution time = 0.00 sec. (1.31 ticks)
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
-*     0+    0                        17170.9345    17059.9648             0.65%
-Found incumbent of value 17170.934476 after 0.14 sec. (62.60 ticks)
-      0     0    17059.9648    60    17170.9345    17059.9648      307    0.65%
-      0     0    17072.5058    60    17170.9345      Fract: 1      313    0.57%
-      0     0    17072.5058    60    17170.9345       Cuts: 3      318    0.57%
-      0     0    17072.5058    60    17170.9345   ZeroHalf: 1      324    0.57%
-*     0+    0                        17170.1257    17072.5058             0.57%
-Found incumbent of value 17170.125700 after 0.19 sec. (80.34 ticks)
+*     0+    0                        17145.8296    17059.9648             0.50%
+Found incumbent of value 17145.829605 after 0.06 sec. (62.69 ticks)
+      0     0    17059.9648    66    17145.8296    17059.9648      301    0.50%
+      0     0    17072.5058    66    17145.8296       Cuts: 5      307    0.43%
 *     0+    0                        17117.1832    17072.5058             0.26%
-Found incumbent of value 17117.183158 after 0.19 sec. (80.78 ticks)
-Detecting symmetries...
-
-Repeating presolve.
-Tried aggregator 3 times.
-MIP Presolve eliminated 6 rows and 83 columns.
-MIP Presolve modified 42 coefficients.
-Aggregator did 17 substitutions.
-Reduced MIP has 120 rows, 156 columns, and 539 nonzeros.
-Reduced MIP has 156 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.74 ticks)
-Probing fixed 2 vars, tightened 0 bounds.
-Probing changed sense of 2 constraints.
-Probing time = 0.00 sec. (0.20 ticks)
-Tried aggregator 1 time.
-MIP Presolve eliminated 2 rows and 3 columns.
-Reduced MIP has 118 rows, 153 columns, and 523 nonzeros.
-Reduced MIP has 153 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.45 ticks)
-Probing time = 0.00 sec. (0.19 ticks)
-Tried aggregator 1 time.
-Detecting symmetries...
-Reduced MIP has 118 rows, 153 columns, and 523 nonzeros.
-Reduced MIP has 153 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.36 ticks)
-Represolve time = 0.00 sec. (3.75 ticks)
-Probing time = 0.00 sec. (0.19 ticks)
-Clique table members: 322.
-MIP emphasis: balance optimality and feasibility.
-MIP search method: dynamic search.
-Parallel mode: none, using 1 thread.
-Tried aggregator 1 time.
-No LP presolve or aggregator reductions.
-Presolve time = 0.00 sec. (0.08 ticks)
-Initializing dual steep norms . . .
-
-Iteration log . . .
-Iteration:     1   Dual objective     =          9693.632609
-Iteration:    62   Dual objective     =         15654.435806
-Iteration:   124   Dual objective     =         17072.505757
-Root relaxation solution time = 0.00 sec. (1.04 ticks)
-
-        Nodes                                         Cuts/
-   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
-*     0+    0                        17117.1832    17072.5058             0.26%
-Found incumbent of value 17117.183158 after 0.22 sec. (88.49 ticks)
-      0     0    17072.5058    43    17117.1832    17072.5058      456    0.26%
-*     0     0      integral     0    17092.1013       Cuts: 2      465    0.00%
-Found incumbent of value 17092.101327 after 0.22 sec. (91.48 ticks)
-      0     0        cutoff          17092.1013    17092.1013      465    0.00%
-Elapsed time = 0.22 sec. (91.48 ticks, tree = 0.01 MB, solutions = 7)
-
-Cover cuts applied:  1
+Found incumbent of value 17117.183158 after 0.06 sec. (66.82 ticks)
+*     0     0      integral     0    17092.1013      Cuts: 11      333    0.00%
+Found incumbent of value 17092.101327 after 0.07 sec. (68.94 ticks)
+      0     0        cutoff          17092.1013    17092.1013      333    0.00%
+Elapsed time = 0.07 sec. (68.94 ticks, tree = 0.01 MB, solutions = 6)
 Zero-half cuts applied:  4
-Gomory fractional cuts applied:  5
-
+Gomory fractional cuts applied:  6
 Root node processing (before b&c):
-  Real time             =    0.22 sec. (91.64 ticks)
+  Real time             =    0.07 sec. (69.08 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.22 sec. (91.64 ticks)
+Total (root+branch&cut) =    0.07 sec. (69.08 ticks)
 MIP status(101): integer optimal solution
-Cplex Time: 0.22sec (det. 91.64 ticks)
+Cplex Time: 0.07sec (det. 69.09 ticks)
 Fixing integer variables, and solving final LP...
-Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_Parallel                                1
@@ -911,101 +782,81 @@ CPXPARAM_TimeLimit                               1000
 CPXPARAM_Tune_TimeLimit                          200
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0
-CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\225a\"
+CPXPARAM_WorkDir                                 "/Users/ferris/Projects/GAMS-MIRO/tsp/225a/"
 Tried aggregator 1 time.
 LP Presolve eliminated 146 rows and 2305 columns.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.80 ticks)
 Fixed MIP status(1): optimal
-Cplex Time: 0.02sec (det. 1.04 ticks)
-
+Cplex Time: 0.00sec (det. 1.04 ticks)
 Proven optimal solution.
-
-MIP Solution:        17092.101327    (465 iterations, 0 nodes)
+MIP Solution:        17092.101327    (333 iterations, 0 nodes)
 Final Solve:         17092.101327    (0 iterations)
-
 Best possible:       17092.101327
 Absolute gap:            0.000000
 Relative gap:            0.000000
-
 --- Restarting execution
 --- tspmod.gms(185) 2 Mb
 --- Reading solution for model tspSEC
---- Executing after solve: elapsed 0:00:02.294
---- tspmod.gms(219) 4 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\tsp\data_tspmod/default.gdx
+--- Executing after solve: elapsed 0:00:01.135
+--- tspmod.gms(211) 4 Mb
+--- GDX File /Users/ferris/Projects/GAMS-MIRO/tsp/data_tspmod/default.gdx
 *** Status: Normal completion
---- Job tspmod.gms Stop 07/10/20 15:44:11 elapsed 0:00:02.318
-
-Warning in eval(ei, envir) :
-  The alias of symbol: 'stateinfo' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'tour' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-07-10 15:44:17] Logging facility initialised.
-DEBUG [2020-07-10 15:44:17] Database connection established.
-DEBUG [2020-07-10 15:44:17] Access Control initialised.
-WARN [2020-07-10 15:44:17] There are orphaned tables in your database: 'tspmod_stateinfo', 'tspmod_tour'.
-
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-10 15:44:17] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-10 15:44:18] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:18] Db: 2553 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:44:18] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-10 15:44:18] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-10 15:44:19] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:44:19] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:44:19] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:44:19] Db: Data was added to table: 'tspmod__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-10 15:44:19] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:19] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-INFO [2020-07-10 15:44:25] Session started (model: 'tspmod', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp').
-DEBUG [2020-07-10 15:44:25] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/tsp'.
-DEBUG [2020-07-10 15:44:25] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:27] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:44:27] Loading and rendering scenarios: '3'.
-DEBUG [2020-07-10 15:44:27] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
-DEBUG [2020-07-10 15:44:27] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
-DEBUG [2020-07-10 15:44:27] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
-DEBUG [2020-07-10 15:44:27] Db: Data was imported from table: 'tspmod__scalars' (Db.importDataset).
-DEBUG [2020-07-10 15:44:27] Db: A table named: '_sys_scripts_tspmod' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-10 15:44:27] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-10 15:44:28] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:28] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:28] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:44:28] Db: hasee: Lock was added for scenario: '3' (Scenario.lock).
-DEBUG [2020-07-10 15:44:28] Dataset: cityinfo loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-10 15:44:28] Scenario: '3' was loaded into UI
-DEBUG [2020-07-10 15:44:29] hasee: Import input data button clicked.
-DEBUG [2020-07-10 15:44:29] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:32] Confirm load scenario button clicked.
-DEBUG [2020-07-10 15:44:35] Solve button clicked (model: 'tspmod').
-TRACE [2020-07-10 15:44:35] Dataset: cityinfo saved in dataTmp.
-TRACE [2020-07-10 15:44:36] Dataset: selected model Constraint type saved in dataTmp.
-DEBUG [2020-07-10 15:44:36] Db: Data was imported from table: '_sys_attach_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:36] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-10 15:44:41] Db: Data was imported from table: '_sys_attach_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:44:41] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-10 15:44:43] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:44:43] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-10 15:44:48] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:45:07] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-10 15:45:08] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-10 15:45:16] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:45:17] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-10 15:45:17] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-10 15:45:18] Sidebar menu item: 'scenarios' selected.
-DEBUG [2020-07-10 15:45:18] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:49:04] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-10 15:49:05] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:51:29] hasee: Import input data button clicked.
-DEBUG [2020-07-10 15:51:29] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:51:30] Scenario: '1' unlocked.
-DEBUG [2020-07-10 15:51:30] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
-DEBUG [2020-07-10 15:51:40] hasee: Import input data button clicked.
-DEBUG [2020-07-10 15:51:40] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
-DEBUG [2020-07-10 15:51:57] Sidebar menu item: 'outputData' selected.
-DEBUG [2020-07-10 15:51:58] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-10 15:52:00] Sidebar menu item: 'gamsinter' selected.
-DEBUG [2020-07-10 15:52:21] Sidebar menu item: 'outputData' selected.
-INFO [2020-07-10 15:57:07] Session ended (model: 'tspmod', user: 'hasee').
+--- Job tspmod.gms Stop 07/16/20 11:15:25 elapsed 0:00:01.140
+========================
+========================TRACE [2020-07-16 11:15:27] Logging facility initialised.
+DEBUG [2020-07-16 11:15:27] Database connection established.
+DEBUG [2020-07-16 11:15:27] Access Control initialised.
+INFO [2020-07-16 11:15:27] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-07-16 11:15:28] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-16 11:15:28] Db: 2553 rows in table: '_sys_metadata_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-16 11:15:28] Db: Metadata (table: '_sys_metadata_tspmod') was written to database. (Db.writeMetadata).
+DEBUG [2020-07-16 11:15:28] Db: Metadata (table: '_sys_metadata_tspmod') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-07-16 11:15:28] Db: Data was added to table: 'tspmod_tourt' (Db.exportScenDataset).
+DEBUG [2020-07-16 11:15:28] Db: Data was added to table: 'tspmod__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-07-16 11:15:28] Db: Data was added to table: 'tspmod_cityinfo' (Db.exportScenDataset).
+DEBUG [2020-07-16 11:15:28] Db: Data was added to table: 'tspmod__scalars' (Db.exportScenDataset).
+DEBUG [2020-07-16 11:15:28] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
+DEBUG [2020-07-16 11:15:28] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
+DEBUG [2020-07-16 11:15:28] Db: ferris: Lock was added for scenario: '1' (Scenario.lock).
+========================================================
+DEBUG [2020-07-16 11:15:29] Scenario: '1' unlocked.
+DEBUG [2020-07-16 11:15:29] Db: 1 rows in table: '_sys_scenlocks_tspmod' were deleted. (Db.deleteRows)
+INFO [2020-07-16 11:15:30] Session started (model: 'tspmod', user: 'ferris', workdir: '/Users/ferris/Projects/GAMS-MIRO/tsp').
+DEBUG [2020-07-16 11:15:30] Working directory was created: '/Users/ferris/Projects/GAMS-MIRO/tsp'.
+DEBUG [2020-07-16 11:15:30] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-16 11:15:31] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-16 11:15:42] ferris: Import input data button clicked.
+DEBUG [2020-07-16 11:15:42] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-16 11:15:43] Confirm load scenario button clicked.
+DEBUG [2020-07-16 11:15:43] Loading and rendering scenarios: '1'.
+DEBUG [2020-07-16 11:15:43] Db: Data was imported from table: 'tspmod_tourt' (Db.importDataset).
+DEBUG [2020-07-16 11:15:43] Db: Data was imported from table: 'tspmod__scalars_out' (Db.importDataset).
+DEBUG [2020-07-16 11:15:43] Db: Data was imported from table: 'tspmod_cityinfo' (Db.importDataset).
+DEBUG [2020-07-16 11:15:43] Db: Data was imported from table: 'tspmod__scalars' (Db.importDataset).
+DEBUG [2020-07-16 11:15:44] Db: A table named: '_sys_scripts_tspmod' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-16 11:15:44] Scenario: 'New Scenario' closed.
+DEBUG [2020-07-16 11:15:44] Db: Data was imported from table: '_sys_metadata_tspmod' (Db.importDataset).
+DEBUG [2020-07-16 11:15:44] Db: Data was imported from table: '_sys_scenlocks_tspmod' (Db.importDataset).
+DEBUG [2020-07-16 11:15:44] Db: ferris: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-07-16 11:15:44] Dataset: cityinfo loaded successfully (mode: scen, overwrite: FALSE)
+DEBUG [2020-07-16 11:15:44] Scenario: '1' was loaded into UI
+DEBUG [2020-07-16 11:16:06] Solve button clicked (model: 'tspmod').
+TRACE [2020-07-16 11:16:06] Dataset: City Info saved in dataTmp.
+TRACE [2020-07-16 11:16:06] Dataset: Selected model constraint type saved in dataTmp.
+DEBUG [2020-07-16 11:16:06] Db: A table named: '_sys_attach_tspmod' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-16 11:16:06] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-07-16 11:17:16] Db: A table named: '_sys_attach_tspmod' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-16 11:17:16] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-07-16 11:17:21] Button to download files from temp folder clicked.
+DEBUG [2020-07-16 11:17:28] Table view for model output in sheet(s): 1 activated.
+DEBUG [2020-07-16 11:17:38] Sidebar menu item: 'scenarios' selected.
+DEBUG [2020-07-16 11:17:45] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-07-16 11:18:51] Solve button clicked (model: 'tspmod').
+TRACE [2020-07-16 11:18:51] Dataset: City Info saved in dataTmp.
+TRACE [2020-07-16 11:18:51] Dataset: Selected model constraint type saved in dataTmp.
+DEBUG [2020-07-16 11:18:51] Db: A table named: '_sys_attach_tspmod' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-16 11:18:51] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-07-16 11:18:55] Db: A table named: '_sys_attach_tspmod' does not exist in the database (Db.importDataset).
+DEBUG [2020-07-16 11:18:55] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-07-16 11:19:03] Table view for model output in sheet(s): 1 activated.

@@ -10,22 +10,22 @@ alias(city,i,j);
 set Header /l_lat,l_long,select/;
 set Constraints /'Dynamic SEC', 'Positional Constraints'/;
 $onexternalInput
-table CityInfo(city,Header)
+table CityInfo(city,Header) 'City Info'
 $onDelim
 $include capitals.csv
 $offDelim
 ;
-Singleton Set Constraint(Constraints) 'selected model Constraint type' / 'Dynamic SEC' /;
+Singleton Set Constraint(Constraints) 'Selected model constraint type' / 'Dynamic SEC' /;
 $offexternalInput
 
-set select(city) Selected capitals;
+set select(city) 'Selected capitals';
 select(city)$(CityInfo(city,'select') eq 1)=yes;
 scalar count /0/;
 parameter OrderVal(i);
 loop(select,count=count+1;OrderVal(select)=count;);
 
 alias(select,k)
-table  dist(i,j)  "distances" ;
+table  dist(i,j)  'Distances';
 dist(i,j)$(not sameas(i,j))=arccos(sin(CityInfo(i,'l_lat')*pi/180)*sin(CityInfo(j,'l_lat')*pi/180)
 +cos(CityInfo(i,'l_lat')*pi/180)*cos(CityInfo(j,'l_lat')*pi/180)*
 cos((CityInfo(j,'l_long')-CityInfo(i,'l_long'))*pi/180))*6371.004;
@@ -50,15 +50,15 @@ mtz(select,k)$(OrderVal(select) > 1 and OrderVal(k) > 1 )..
   u(select) - u(k) + 1 =L= (card(select) - 1) * (1 - x(select,k)) ;
 
 
-Set cc    Subtour elimination cuts /c1*c500/
-    c(cc) Active cuts; c(cc)=no;
+Set cc    'Subtour elimination cuts' /c1*c500/
+    c(cc) 'Active cuts'; c(cc)=no;
 
 Parameters
-    cutcoeff(cc,i,j) coeffients for the subtour elimination cuts
-    rhs(cc)          right hand side for the subtour elimination cuts;
+    cutcoeff(cc,i,j) 'Coefficients for the subtour elimination cuts'
+    rhs(cc)          'Right hand side for the subtour elimination cuts';
 cutcoeff(c,i,j)=0; rhs(c)=0;
 
-Equations cut(cc) dynamic subtour elimination cuts;
+Equations cut(cc) 'Dynamic subtour elimination cuts';
 
 cut(c).. sum((select,k), cutcoeff(c,select,k)*x(select,k)) =l= rhs(c);
 
@@ -135,14 +135,6 @@ while(goon=1 and sameAs(constraint,'Dynamic SEC'),
   );
 );
 
-*u.fx(select)$(OrderVal(select) eq 1) = 0;
-$ontext
-option optcr = 1e-3;
-$onecho > cplex.opt
-lpmethod 4
-$offecho
-tsp.optfile = 1;
-$offtext
 display obj.l;
 set tour(i,j) ;
 
@@ -150,7 +142,7 @@ tour(select,select) = no;
 tour(select,k)$(x.l(select,k) > 0.01) = yes ;
 set TourHeader /status 'whether selected',dist 'distance',lat1 'latitude1',long1 'longitude1',lat2 'latitude2',long2 'longitude2'/;
 $OnexternalOutput
-table TourT(i,j,TourHeader);
+table TourT(i,j,TourHeader) 'Tour Itinerary';
 TourT(select,k,'status')$tour(select,k)=1;
 TourT(i,j,'status')$(not tour(i,j))=-1;
 TourT(i,j,'dist')=dist(i,j);
@@ -158,7 +150,7 @@ TourT(i,j,'lat1')=CityInfo(i,'l_lat');
 TourT(i,j,'long1')=CityInfo(i,'l_long');
 TourT(i,j,'lat2')=CityInfo(j,'l_lat');
 TourT(i,j,'long2')=CityInfo(j,'l_long');
-scalar TotalCost Total Cost;
+scalar TotalCost 'Total Cost';
 TotalCost=obj.l;
 $offExternalOutput
 * Just print the tour in a simple way

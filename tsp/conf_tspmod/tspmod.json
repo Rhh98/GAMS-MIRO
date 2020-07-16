@@ -22,20 +22,14 @@
   "excelIncludeEmptySheets": true,
   "saveTraceFile": true,
   "overwriteAliases": {
-    "stateinfo": {
-      "newAlias": "Select capitals"
-    },
-    "tour": {
-      "newAlias": "tour"
-    },
     "_scalars_out": {
       "newAlias": "Output Scalars"
     },
     "tourt": {
-      "newAlias": "tourt"
+      "newAlias": "Tour Itinerary"
     },
     "cityinfo": {
-      "newAlias": "cityinfo"
+      "newAlias": "City Info"
     },
     "_scalars": {
       "newAlias": "Scalars"
@@ -49,14 +43,14 @@
   },
   "defaultScenName": "Best Tour",
   "readme": {
-    "tabTitle": "readme",
+    "tabTitle": "Readme",
     "filename": "README.md",
     "enableMath": true
   },
   "inputWidgets": {
     "constraint": {
       "widgetType": "dropdown",
-      "alias": "selected model Constraint type",
+      "alias": "Selected model constraint type",
       "noHcube": false,
       "clearValue": false,
       "multiple": false,
