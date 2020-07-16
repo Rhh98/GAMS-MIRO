@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_scalars", "offsetcr", "descenddis", "_widgets"]
+    "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_scalars", "_widgets"]
   },
   "overwriteAliases": {
     "_scalars_out": {
@@ -26,12 +26,6 @@
     },
     "downcost": {
       "newAlias": "Cost of going down 2k feet at downheight"
-    },
-    "offsetcr": {
-      "newAlias": "Decision made frequency"
-    },
-    "descenddis": {
-      "newAlias": "Nautical distance to descend 2k feet"
     }
   },
   "pivottable": {
