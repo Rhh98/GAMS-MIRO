@@ -54,7 +54,7 @@ Model AirAmbulance1 /objective,balance1/ ;
 Model AirAmbulance2 /objective,balance2/ ;
 if (sum(L,s(L)) > sum(L,d(L)),  Solve AirAmbulance1 using lp minimizing obj;
 else solve  AirAmbulance2 using lp minimizing obj);
-set HeliHeader /old,new,demand/
+set HeliHeader /old,demand,new/
 assignHeader/x,y,value,tox,toy/;
 $onExternalOutput
 table assign(L,nL,assignHeader) helicoptpers reassignment;
