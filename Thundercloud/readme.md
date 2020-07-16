@@ -98,14 +98,8 @@ The default data comes from the Pilot's Operation Handbook(POH) for a Cessna 182
 <p>For this problem, a start and end node is introduced. This gives a starting point and a finish point of the problem. The end is really important in the model as it is cheaper to descent, and the model will assume that the plane will continue flying at 8,000 feet (only at 8 or 10, 12 too) after finishing the route thru the thunderstorms. The plane will start at 8,000 feet which is the minimum cost of flying given the ascending cost from starting at ground level at the airport. All the arcs in the mathematical formulation below will be called A. B will be zero for all nodes but the start node will be 1 and -1 for the finish node. The cost will be in parameter C<sub>ij</sub> which will be the cost of traveling on node i to node j. X<sub>ij</sub> is a decision variable for which arcs from i to j should be travelled for minimum cost route. To ensure that all only positive distances are travelled, X<sub>ij</sub> must be positive</p>
 
 <p>The goal or objective function is to:</p>
-<p>Min ∑<sub>j:(i,j)</sub> <sub>&isin; A </sub>C<sub>ij</sub>X<sub>ij</sub></p>
-<p>Subject to:</p>
-<p>Model what goes in = what goes out, also referred to as flow balance.</p>
-<p>∑<sub>j:(i,j)</sub> <sub>&isin; A </sub>X<sub>ij </sub>- ∑<sub>j:(j,i)</sub> <sub>&isin; A </sub>X<sub>ji</sub> = b</p>
+<p>$$ \begin{aligned}&Min &\sum_{j:(i,j)\in A}C_{ij}X_{ij} \\ &s.t. & \sum_{j:(i,j)\in A}X_{ij}=\sum_{j:(j,i)\in A}X_{ji}\\&&X_{ij} \ge0 \quad \forall(i,j)\in A\end{aligned}$$
 
-<p>The decision variables must be positive.</p>
-
-X<sub>ij</sub> &gt;= 0 &forall; (I,J) &isin; A
 
 
 

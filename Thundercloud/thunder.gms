@@ -43,7 +43,7 @@ downcost(downheight) 'Cost of going down 2k feet at downheight' /4 12.3, 6 12.5,
 
 *this is how far about crusing decisions are made at and costs above should same distance in offsetcr
 parameter
-minheight /200/,
+minheight /2/,
 offsetcr 'Cruise distance' /1/
 descendDis 'Nautical distance to descend 2k feet' /10/
 ;
@@ -92,7 +92,7 @@ Arcs('899','finish')=yes;
 C('finish','899')=0;
 
 *Put arcs for cruise @ cost crcost
-Arcs(N1,N) $((ord(N) = (ord(N1)+offsetcr)) and ord(N) gt minheight) =yes;
+Arcs(N1,N) $((ord(N) = (ord(N1)+offsetcr)) and ord(N) gt minheight*100) =yes;
 *c(N1,N) $(ord(N) = (ord(N1)+offsetcr)) = crcost;
 c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 200) AND(ord(N) le 299)) = crcost('2');
 c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 400) AND(ord(N) le 499)) = crcost('4');
@@ -121,8 +121,8 @@ Arcs(N1,N)$((ord(N) = (ord(N1)+offsetup('10'))) AND (ord(N) ge 1000) AND(ord(N) 
 c(N1,N)$((ord(N) = (ord(N1)+offsetup('10'))) AND (ord(N) ge 1000) AND(ord(N) le 1299)) =upcost('10');
 
 *Put arcs for decsent rate descent @ cost downcost
-Arcs(N1,N) $((ord(N) = (ord(N1)+offsetdown)) AND (ord(N) GT minheight  ) ) =yes;
-*c(N1,N) $((ord(N) = (ord(N1)+offsetdown)) AND (ord(N) GT minheight)  ) =downcost;
+Arcs(N1,N) $((ord(N) = (ord(N1)+offsetdown)) AND (ord(N) GT minheight*100  ) ) =yes;
+*c(N1,N) $((ord(N) = (ord(N1)+offsetdown)) AND (ord(N) GT minheight*100)  ) =downcost;
 c(N1,N) $((ord(N) = (ord(N1)+offsetdown))  AND(ord(N) ge 200) AND(ord(N)le 499 )  ) =downcost('4');
 c(N1,N) $((ord(N) = (ord(N1)+offsetdown))  AND(ord(N) ge 500) AND(ord(N)le 699 ) ) =downcost('6');
 c(N1,N) $((ord(N) = (ord(N1)+offsetdown))  AND(ord(N) ge 700) AND(ord(N)le 899 ) ) =downcost('8');
