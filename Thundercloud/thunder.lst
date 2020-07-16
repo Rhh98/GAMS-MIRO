@@ -1,4 +1,4 @@
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 1
 airplane
 C o m p i l a t i o n
 
@@ -56,7 +56,7 @@ GDXIN   /Users/ferris/Projects/GAMS-MIRO/Thundercloud/_miro_gdxin_.gdx
   47    offsetcr(s) 'Cruise distance' /1 1/,
   48   
 --- LOAD  descendDis = 7:descenddis
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 2
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 2
 airplane
 C o m p i l a t i o n
 
@@ -114,7 +114,7 @@ C o m p i l a t i o n
  100  c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 800) AND(ord(N) le 899)) = crcost('8');
  101  c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 1000) AND(ord(N) le 1099)) = crcost('10');
  102  c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 1200) AND(ord(N) le 1299)) = crcost('12');
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 3
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 3
 airplane
 C o m p i l a t i o n
 
@@ -172,7 +172,7 @@ C o m p i l a t i o n
  153  b('start') =1;
  154  b('finish')=-1;
  155  display b;
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 4
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 4
 airplane
 C o m p i l a t i o n
 
@@ -211,7 +211,7 @@ C o m p i l a t i o n
  189  FlowOp(clouds,clouds,'cloudx')=xcoordcloud(clouds);
  190  FlowOP(CandN,CandN, 'status')=airplane.sumInfes+1;
  191  display FlowOP;
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 5
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 5
 airplane
 Include File Summary
 
@@ -222,8 +222,8 @@ Include File Summary
      2       30 GDXIN          1      30  /Users/ferris/Projects/GAMS-MIRO/Thundercloud/_miro_gdxin_.gdx
 
 
-COMPILATION TIME     =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 6
+COMPILATION TIME     =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 6
 airplane
 E x e c u t i o n
 
@@ -281,7 +281,7 @@ E x e c u t i o n
 679    79.000,    680    80.000,    681    81.000,    682    82.000,    683    83.000,    684    84.000,    685    85.000,    686    86.000,    687    87.000,    688    88.000,    689    89.000,    690    90.000,    691    91.000,    692    92.000
 693    93.000,    694    94.000,    695    95.000,    696    96.000,    697    97.000,    698    98.000,    699    99.000,    701     1.000,    702     2.000,    703     3.000,    704     4.000,    705     5.000,    706     6.000,    707     7.000
 708     8.000,    709     9.000,    710    10.000,    711    11.000,    712    12.000,    713    13.000,    714    14.000,    715    15.000,    716    16.000,    717    17.000,    718    18.000,    719    19.000,    720    20.000,    721    21.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 7
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 7
 airplane
 E x e c u t i o n
 
@@ -339,7 +339,7 @@ E x e c u t i o n
 143     1.000,    144     1.000,    145     1.000,    146     1.000,    147     1.000,    148     1.000,    149     1.000,    150     1.000,    151     1.000,    152     1.000,    153     1.000,    154     1.000,    155     1.000,    156     1.000
 157     1.000,    158     1.000,    159     1.000,    160     1.000,    161     1.000,    162     1.000,    163     1.000,    164     1.000,    165     1.000,    166     1.000,    167     1.000,    168     1.000,    169     1.000,    170     1.000
 171     1.000,    172     1.000,    173     1.000,    174     1.000,    175     1.000,    176     1.000,    177     1.000,    178     1.000,    179     1.000,    180     1.000,    181     1.000,    182     1.000,    183     1.000,    184     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 8
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 8
 airplane
 E x e c u t i o n
 
@@ -397,7 +397,7 @@ E x e c u t i o n
 857     8.000,    858     8.000,    859     8.000,    860     8.000,    861     8.000,    862     8.000,    863     8.000,    864     8.000,    865     8.000,    866     8.000,    867     8.000,    868     8.000,    869     8.000,    870     8.000
 871     8.000,    872     8.000,    873     8.000,    874     8.000,    875     8.000,    876     8.000,    877     8.000,    878     8.000,    879     8.000,    880     8.000,    881     8.000,    882     8.000,    883     8.000,    884     8.000
 885     8.000,    886     8.000,    887     8.000,    888     8.000,    889     8.000,    890     8.000,    891     8.000,    892     8.000,    893     8.000,    894     8.000,    895     8.000,    896     8.000,    897     8.000,    898     8.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 9
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 9
 airplane
 E x e c u t i o n
 
@@ -455,7 +455,7 @@ E x e c u t i o n
 14                                                                                                                                                                                                                                    YES
 15                                                                                                                                                                                                                                                YES
 200           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 10
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 10
 airplane
 E x e c u t i o n
 
@@ -513,7 +513,7 @@ E x e c u t i o n
 20                                                            YES
 21                                                                        YES
 22                                                                                    YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 11
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 11
 airplane
 E x e c u t i o n
 
@@ -569,7 +569,7 @@ E x e c u t i o n
 428                                                                                                                                                                                                                       YES
 429                                                                                                                                                                                                                                   YES
 430                                                                                                                                                                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 12
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 12
 airplane
 E x e c u t i o n
 
@@ -627,7 +627,7 @@ E x e c u t i o n
 437                                                                                   YES
 438                                                                                               YES
 439                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 13
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 13
 airplane
 E x e c u t i o n
 
@@ -685,7 +685,7 @@ E x e c u t i o n
 272                                                                                                                                                           YES
 273                                                                                                                                                                       YES
 274                                                                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 14
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 14
 airplane
 E x e c u t i o n
 
@@ -743,7 +743,7 @@ E x e c u t i o n
 94                                                                                                                                                                                                                                    YES
 95                                                                                                                                                                                                                                                YES
 280           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 15
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 15
 airplane
 E x e c u t i o n
 
@@ -801,7 +801,7 @@ E x e c u t i o n
 100                                                           YES
 101                                                                       YES
 102                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 16
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 16
 airplane
 E x e c u t i o n
 
@@ -859,7 +859,7 @@ E x e c u t i o n
 504                                                                                                                                                                       YES
 505                                                                                                                                                                                   YES
 506                                                                                                                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 17
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 17
 airplane
 E x e c u t i o n
 
@@ -917,7 +917,7 @@ E x e c u t i o n
 522                                                                                                                                   YES
 523                                                                                                                                               YES
 524                                                                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 18
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 18
 airplane
 E x e c u t i o n
 
@@ -975,7 +975,7 @@ E x e c u t i o n
 357                                                                                                                                                                                                           YES
 358                                                                                                                                                                                                                       YES
 359                                                                                                                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 19
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 19
 airplane
 E x e c u t i o n
 
@@ -1033,7 +1033,7 @@ E x e c u t i o n
 363                                   YES
 364                                               YES
 365                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 20
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 20
 airplane
 E x e c u t i o n
 
@@ -1091,7 +1091,7 @@ E x e c u t i o n
 185                                                                                                           YES
 186                                                                                                                       YES
 187                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 21
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 21
 airplane
 E x e c u t i o n
 
@@ -1149,7 +1149,7 @@ E x e c u t i o n
 589                                                                                                                                                                                                                       YES
 590                                                                                                                                                                                                                                   YES
 591                                                                                                                                                                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 22
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 22
 airplane
 E x e c u t i o n
 
@@ -1207,7 +1207,7 @@ E x e c u t i o n
 599                                                                                               YES
 600                                                                                                           YES
 601                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 23
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 23
 airplane
 E x e c u t i o n
 
@@ -1265,7 +1265,7 @@ E x e c u t i o n
 437                                                                                                                                                                                   YES
 438                                                                                                                                                                                               YES
 439                                                                                                                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 24
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 24
 airplane
 E x e c u t i o n
 
@@ -1323,7 +1323,7 @@ E x e c u t i o n
 451                                                                                                           YES
 452                                                                                                                       YES
 453                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 25
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 25
 airplane
 E x e c u t i o n
 
@@ -1381,7 +1381,7 @@ E x e c u t i o n
 273                                                                                                                                                                                   YES
 274                                                                                                                                                                                               YES
 275                                                                                                                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 26
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 26
 airplane
 E x e c u t i o n
 
@@ -1439,7 +1439,7 @@ E x e c u t i o n
 281                                   YES
 282                                               YES
 283                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 27
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 27
 airplane
 E x e c u t i o n
 
@@ -1497,7 +1497,7 @@ E x e c u t i o n
 685                                                                                                                                               YES
 686                                                                                                                                                           YES
 687                                                                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 28
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 28
 airplane
 E x e c u t i o n
 
@@ -1555,7 +1555,7 @@ E x e c u t i o n
 694           YES
 695                       YES
 696                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 29
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 29
 airplane
 E x e c u t i o n
 
@@ -1613,7 +1613,7 @@ E x e c u t i o n
 535                                                                                                                                   YES
 536                                                                                                                                               YES
 537                                                                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 30
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 30
 airplane
 E x e c u t i o n
 
@@ -1671,7 +1671,7 @@ E x e c u t i o n
 547                                   YES
 548                                               YES
 549                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 31
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 31
 airplane
 E x e c u t i o n
 
@@ -1729,7 +1729,7 @@ E x e c u t i o n
 369                                                                                                           YES
 370                                                                                                                       YES
 371                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 32
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 32
 airplane
 E x e c u t i o n
 
@@ -1787,7 +1787,7 @@ E x e c u t i o n
 382                       YES
 383                                   YES
 384                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 33
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 33
 airplane
 E x e c u t i o n
 
@@ -1845,7 +1845,7 @@ E x e c u t i o n
 787                                                                                                                                               YES
 788                                                                                                                                                           YES
 789                                                                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 34
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 34
 airplane
 E x e c u t i o n
 
@@ -1903,7 +1903,7 @@ E x e c u t i o n
 798                                   YES
 799                                               YES
 800                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 35
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 35
 airplane
 E x e c u t i o n
 
@@ -1961,7 +1961,7 @@ E x e c u t i o n
 640                                                                                                                                                                       YES
 641                                                                                                                                                                                   YES
 642                                                                                                                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 36
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 36
 airplane
 E x e c u t i o n
 
@@ -2019,7 +2019,7 @@ E x e c u t i o n
 650                                               YES
 651                                                           YES
 652                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 37
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 37
 airplane
 E x e c u t i o n
 
@@ -2077,7 +2077,7 @@ E x e c u t i o n
 473                                                                                                                       YES
 474                                                                                                                                   YES
 475                                                                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 38
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 38
 airplane
 E x e c u t i o n
 
@@ -2135,7 +2135,7 @@ E x e c u t i o n
 490                                                                                   YES
 491                                                                                               YES
 492                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 39
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 39
 airplane
 E x e c u t i o n
 
@@ -2193,7 +2193,7 @@ E x e c u t i o n
 895                                                                                                                                                                                               YES
 896                                                                                                                                                                                                           YES
 897                                                                                                                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 40
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 40
 airplane
 E x e c u t i o n
 
@@ -2251,7 +2251,7 @@ E x e c u t i o n
 906                                                                                   YES
 907                                                                                               YES
 908                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 41
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 41
 airplane
 E x e c u t i o n
 
@@ -2309,7 +2309,7 @@ E x e c u t i o n
 747                                                                                                                                                                                                           YES
 748                                                                                                                                                                                                                       YES
 749                                                                                                                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 42
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 42
 airplane
 E x e c u t i o n
 
@@ -2367,7 +2367,7 @@ E x e c u t i o n
 754                                               YES
 755                                                           YES
 756                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 43
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 43
 airplane
 E x e c u t i o n
 
@@ -2425,7 +2425,7 @@ E x e c u t i o n
 580                                                                                                                                               YES
 581                                                                                                                                                           YES
 582                                                                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 44
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 44
 airplane
 E x e c u t i o n
 
@@ -2483,7 +2483,7 @@ E x e c u t i o n
 594                                                                                   YES
 595                                                                                               YES
 596                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 45
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 45
 airplane
 E x e c u t i o n
 
@@ -2541,7 +2541,7 @@ E x e c u t i o n
 1000                                                                                                                                                                                              YES
 1001                                                                                                                                                                                                          YES
 1002                                                                                                                                                                                                                      YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 46
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 46
 airplane
 E x e c u t i o n
 
@@ -2599,7 +2599,7 @@ start                                                                           
 1014                                                                                                          YES
 1015                                                                                                                      YES
 1016                                                                                                                                  YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 47
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 47
 airplane
 E x e c u t i o n
 
@@ -2657,7 +2657,7 @@ E x e c u t i o n
 849                                                                                                                                                                                   YES
 850                                                                                                                                                                                               YES
 851                                                                                                                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 48
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 48
 airplane
 E x e c u t i o n
 
@@ -2715,7 +2715,7 @@ E x e c u t i o n
 860                                                                       YES
 861                                                                                   YES
 862                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 49
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 49
 airplane
 E x e c u t i o n
 
@@ -2773,7 +2773,7 @@ E x e c u t i o n
 689                                                                                                                                                                                                                       YES
 690                                                                                                                                                                                                                                   YES
 691                                                                                                                                                                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 50
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 50
 airplane
 E x e c u t i o n
 
@@ -2831,7 +2831,7 @@ E x e c u t i o n
 699                                                                                               YES
 700                                                                                                           YES
 701                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 51
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 51
 airplane
 E x e c u t i o n
 
@@ -2889,7 +2889,7 @@ E x e c u t i o n
 1105                                                                                                                                                                                                          YES
 1106                                                                                                                                                                                                                      YES
 1107                                                                                                                                                                                                                                  YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 52
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 52
 airplane
 E x e c u t i o n
 
@@ -2947,7 +2947,7 @@ E x e c u t i o n
 1115                                                                                  YES
 1116                                                                                              YES
 1117                                                                                                          YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 53
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 53
 airplane
 E x e c u t i o n
 
@@ -3005,7 +3005,7 @@ E x e c u t i o n
 950                                                                                                                                                           YES
 951                                                                                                                                                                       YES
 952                                                                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 54
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 54
 airplane
 E x e c u t i o n
 
@@ -3063,7 +3063,7 @@ E x e c u t i o n
 962                                                           YES
 963                                                                       YES
 964                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 55
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 55
 airplane
 E x e c u t i o n
 
@@ -3121,7 +3121,7 @@ E x e c u t i o n
 981           YES
 982                       YES
 983                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 56
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 56
 airplane
 E x e c u t i o n
 
@@ -3179,7 +3179,7 @@ E x e c u t i o n
 799                                                                                               YES
 800                                                                                                           YES
 801                                                                                                                       YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 57
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 57
 airplane
 E x e c u t i o n
 
@@ -3237,7 +3237,7 @@ E x e c u t i o n
 1208                                                                                                                                                                                                          YES
 1209                                                                                                                                                                                                                      YES
 1210                                                                                                                                                                                                                                  YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 58
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 58
 airplane
 E x e c u t i o n
 
@@ -3295,7 +3295,7 @@ E x e c u t i o n
 1215                                              YES
 1216                                                          YES
 1217                                                                      YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 59
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 59
 airplane
 E x e c u t i o n
 
@@ -3353,7 +3353,7 @@ E x e c u t i o n
 1050                                                                                                                      YES
 1051                                                                                                                                  YES
 1052                                                                                                                                              YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 60
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 60
 airplane
 E x e c u t i o n
 
@@ -3411,7 +3411,7 @@ E x e c u t i o n
 1065                                                          YES
 1066                                                                      YES
 1067                                                                                  YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 61
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 61
 airplane
 E x e c u t i o n
 
@@ -3469,7 +3469,7 @@ E x e c u t i o n
 894                                                                                                                                                                                                                                               YES
 1084          YES
 1085                      YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 62
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 62
 airplane
 E x e c u t i o n
 
@@ -3527,7 +3527,7 @@ E x e c u t i o n
 900                                                                       YES
 901                                                                                   YES
 902                                                                                               YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 63
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 63
 airplane
 E x e c u t i o n
 
@@ -3585,7 +3585,7 @@ E x e c u t i o n
 921                                                                                   YES
 922                                                                                               YES
 923                                                                                                           YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 64
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 64
 airplane
 E x e c u t i o n
 
@@ -3643,7 +3643,7 @@ E x e c u t i o n
 947                                                                                                                                                           YES
 948                                                                                                                                                                       YES
 949                                                                                                                                                                                   YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 65
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 65
 airplane
 E x e c u t i o n
 
@@ -3701,7 +3701,7 @@ E x e c u t i o n
 1174                                                                                              YES
 1175                                                                                                          YES
 1176                                                                                                                      YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 66
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 66
 airplane
 E x e c u t i o n
 
@@ -3759,7 +3759,7 @@ E x e c u t i o n
 1200                                                                                                                                                                      YES
 1201                                                                                                                                                                                  YES
 1202                                                                                                                                                                                              YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 67
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 67
 airplane
 E x e c u t i o n
 
@@ -3815,7 +3815,7 @@ E x e c u t i o n
 1224                                                                                                                                                                                                                      YES
 1225                                                                                                                                                                                                                                  YES
 1226                                                                                                                                                                                                                                              YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 68
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 68
 airplane
 E x e c u t i o n
 
@@ -3873,7 +3873,7 @@ E x e c u t i o n
 1041                                              YES
 1042                                                          YES
 1043                                                                      YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 69
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 69
 airplane
 E x e c u t i o n
 
@@ -3931,7 +3931,7 @@ E x e c u t i o n
 1079                                                                                                                                                                                                                                  YES
 1080                                                                                                                                                                                                                                              YES
 1267          YES
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 70
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 70
 airplane
 E x e c u t i o n
 
@@ -3982,7 +3982,7 @@ E x e c u t i o n
 1297                                                                                              YES
 1298                                                                                                          YES
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 71
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 71
 airplane
 E x e c u t i o n
 
@@ -4040,7 +4040,7 @@ E x e c u t i o n
 402                                                                                                                                                       12.300
 403                                                                                                                                                                   12.300
 404                                                                                                                                                                               12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 72
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 72
 airplane
 E x e c u t i o n
 
@@ -4098,7 +4098,7 @@ E x e c u t i o n
 237                                                                                                                                                                                                                                1.360
 238                                                                                                                                                                                                                                            1.360
 410       12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 73
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 73
 airplane
 E x e c u t i o n
 
@@ -4156,7 +4156,7 @@ E x e c u t i o n
 243                                                        1.360
 244                                                                    1.360
 245                                                                                1.360
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 74
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 74
 airplane
 E x e c u t i o n
 
@@ -4214,7 +4214,7 @@ E x e c u t i o n
 65                                                                                                                                10.200
 66                                                                                                                                            10.200
 67                                                                                                                                                        10.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 75
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 75
 airplane
 E x e c u t i o n
 
@@ -4270,7 +4270,7 @@ E x e c u t i o n
 467                                                                                                                                                                                                                   12.300
 468                                                                                                                                                                                                                               12.300
 469                                                                                                                                                                                                                                           12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 76
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 76
 airplane
 E x e c u t i o n
 
@@ -4328,7 +4328,7 @@ E x e c u t i o n
 476                                                                               12.300
 477                                                                                           12.300
 478                                                                                                       12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 77
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 77
 airplane
 E x e c u t i o n
 
@@ -4386,7 +4386,7 @@ E x e c u t i o n
 502                                                                                                                                                       12.300
 503                                                                                                                                                                   12.300
 504                                                                                                                                                                               12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 78
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 78
 airplane
 E x e c u t i o n
 
@@ -4443,7 +4443,7 @@ E x e c u t i o n
 527                                                                                                                                                                                                                   12.300
 528                                                                                                                                                                                                                               12.300
 529                                                                                                                                                                                                                                           12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 79
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 79
 airplane
 E x e c u t i o n
 
@@ -4501,7 +4501,7 @@ E x e c u t i o n
 158                                           10.200
 159                                                       10.200
 160                                                                   10.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 80
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 80
 airplane
 E x e c u t i o n
 
@@ -4559,7 +4559,7 @@ E x e c u t i o n
 184                                                                                                                   10.200
 185                                                                                                                               10.200
 186                                                                                                                                           10.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 81
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 81
 airplane
 E x e c u t i o n
 
@@ -4617,7 +4617,7 @@ E x e c u t i o n
 210                                                                                                                                                                                           11.420
 211                                                                                                                                                                                                       11.420
 212                                                                                                                                                                                                                   11.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 82
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 82
 airplane
 E x e c u t i o n
 
@@ -4675,7 +4675,7 @@ E x e c u t i o n
 216                   11.420
 217                               11.420
 218                                           11.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 83
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 83
 airplane
 E x e c u t i o n
 
@@ -4733,7 +4733,7 @@ E x e c u t i o n
 620                                                                                                                               12.300
 621                                                                                                                                           12.300
 622                                                                                                                                                       12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 84
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 84
 airplane
 E x e c u t i o n
 
@@ -4791,7 +4791,7 @@ E x e c u t i o n
 455                                                                                                                                                                                                        1.340
 456                                                                                                                                                                                                                    1.340
 457                                                                                                                                                                                                                                1.340
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 85
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 85
 airplane
 E x e c u t i o n
 
@@ -4849,7 +4849,7 @@ E x e c u t i o n
 461                                1.340
 462                                            1.340
 463                                                        1.340
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 86
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 86
 airplane
 E x e c u t i o n
 
@@ -4907,7 +4907,7 @@ E x e c u t i o n
 283                                                                                                       11.420
 284                                                                                                                   11.420
 285                                                                                                                               11.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 87
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 87
 airplane
 E x e c u t i o n
 
@@ -4965,7 +4965,7 @@ E x e c u t i o n
 687                                                                                                                                                                                                                   12.300
 688                                                                                                                                                                                                                               12.300
 689                                                                                                                                                                                                                                           12.300
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 88
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 88
 airplane
 E x e c u t i o n
 
@@ -5023,7 +5023,7 @@ E x e c u t i o n
 318                                           11.420
 319                                                       11.420
 320                                                                   11.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 89
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 89
 airplane
 E x e c u t i o n
 
@@ -5081,7 +5081,7 @@ E x e c u t i o n
 344                                                                                                                   11.420
 345                                                                                                                               11.420
 346                                                                                                                                           11.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 90
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 90
 airplane
 E x e c u t i o n
 
@@ -5139,7 +5139,7 @@ E x e c u t i o n
 370                                                                                                                                                                                           11.420
 371                                                                                                                                                                                                       11.420
 372                                                                                                                                                                                                                   11.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 91
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 91
 airplane
 E x e c u t i o n
 
@@ -5197,7 +5197,7 @@ E x e c u t i o n
 771                   12.500
 772                               12.500
 773                                           12.500
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 92
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 92
 airplane
 E x e c u t i o n
 
@@ -5255,7 +5255,7 @@ E x e c u t i o n
 606                                                                                            1.310
 607                                                                                                        1.310
 608                                                                                                                    1.310
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 93
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 93
 airplane
 E x e c u t i o n
 
@@ -5313,7 +5313,7 @@ E x e c u t i o n
 427                                                                                                                                                                   13.420
 428                                                                                                                                                                               13.420
 429                                                                                                                                                                                           13.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 94
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 94
 airplane
 E x e c u t i o n
 
@@ -5366,7 +5366,7 @@ E x e c u t i o n
 827                                                                                                                                                                                                                   12.500
 828                                                                                                                                                                                                                               12.500
 829                                                                                                                                                                                                                                           12.500
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 95
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 95
 airplane
 E x e c u t i o n
 
@@ -5424,7 +5424,7 @@ E x e c u t i o n
 836                                                                               12.500
 837                                                                                           12.500
 838                                                                                                       12.500
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 96
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 96
 airplane
 E x e c u t i o n
 
@@ -5482,7 +5482,7 @@ E x e c u t i o n
 671                                                                                                                                                        1.310
 672                                                                                                                                                                    1.310
 673                                                                                                                                                                                1.310
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 97
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 97
 airplane
 E x e c u t i o n
 
@@ -5540,7 +5540,7 @@ E x e c u t i o n
 492                                                                                                                                                                                                                               13.420
 493                                                                                                                                                                                                                                           13.420
 679        1.310
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 98
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 98
 airplane
 E x e c u t i o n
 
@@ -5598,7 +5598,7 @@ E x e c u t i o n
 498                                                       13.420
 499                                                                   13.420
 500                                                                               13.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 99
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 99
 airplane
 E x e c u t i o n
 
@@ -5656,7 +5656,7 @@ E x e c u t i o n
 524                                                                                                                               13.420
 525                                                                                                                                           13.420
 526                                                                                                                                                       13.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 100
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 100
 airplane
 E x e c u t i o n
 
@@ -5714,7 +5714,7 @@ E x e c u t i o n
 550                                                                                                                                                                                                       13.420
 551                                                                                                                                                                                                                   13.420
 552                                                                                                                                                                                                                               13.420
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 101
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 101
 airplane
 E x e c u t i o n
 
@@ -5772,7 +5772,7 @@ E x e c u t i o n
 952                               12.400
 953                                           12.400
 954                                                       12.400
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 102
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 102
 airplane
 E x e c u t i o n
 
@@ -5830,7 +5830,7 @@ E x e c u t i o n
 978                                                                                                       12.400
 979                                                                                                                   12.400
 980                                                                                                                               12.400
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 103
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 103
 airplane
 E x e c u t i o n
 
@@ -5888,7 +5888,7 @@ E x e c u t i o n
 813                                                                                                                                                                                1.290
 814                                                                                                                                                                                            1.290
 815                                                                                                                                                                                                        1.290
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 104
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 104
 airplane
 E x e c u t i o n
 
@@ -5946,7 +5946,7 @@ E x e c u t i o n
 819        1.290
 820                    1.290
 821                                1.290
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 105
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 105
 airplane
 E x e c u t i o n
 
@@ -6004,7 +6004,7 @@ E x e c u t i o n
 639                                                                               17.230
 640                                                                                           17.230
 641                                                                                                       17.230
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 106
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 106
 airplane
 E x e c u t i o n
 
@@ -6062,7 +6062,7 @@ E x e c u t i o n
 1045                                                                                                                                                                                          12.400
 1046                                                                                                                                                                                                      12.400
 1047                                                                                                                                                                                                                  12.400
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 107
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 107
 airplane
 E x e c u t i o n
 
@@ -6120,7 +6120,7 @@ E x e c u t i o n
 1051                  12.400
 1052                              12.400
 1053                                          12.400
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 108
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 108
 airplane
 E x e c u t i o n
 
@@ -6178,7 +6178,7 @@ E x e c u t i o n
 886                                                                                            1.290
 887                                                                                                        1.290
 888                                                                                                                    1.290
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 109
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 109
 airplane
 E x e c u t i o n
 
@@ -6236,7 +6236,7 @@ E x e c u t i o n
 706                                                                                                                                                                   17.230
 707                                                                                                                                                                               17.230
 708                                                                                                                                                                                           17.230
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 110
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 110
 airplane
 E x e c u t i o n
 
@@ -6294,7 +6294,7 @@ E x e c u t i o n
 732                                                                                                                                                                                                                                           17.230
 1110      12.200
 1111                  12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 111
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 111
 airplane
 E x e c u t i o n
 
@@ -6352,7 +6352,7 @@ E x e c u t i o n
 1135                                                                  12.200
 1136                                                                              12.200
 1137                                                                                          12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 112
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 112
 airplane
 E x e c u t i o n
 
@@ -6410,7 +6410,7 @@ E x e c u t i o n
 1161                                                                                                                                          12.200
 1162                                                                                                                                                      12.200
 1163                                                                                                                                                                  12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 113
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 113
 airplane
 E x e c u t i o n
 
@@ -6468,7 +6468,7 @@ E x e c u t i o n
 1187                                                                                                                                                                                                                  12.200
 1188                                                                                                                                                                                                                              12.200
 1189                                                                                                                                                                                                                                          12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 114
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 114
 airplane
 E x e c u t i o n
 
@@ -6526,7 +6526,7 @@ E x e c u t i o n
 1196                                                                              12.200
 1197                                                                                          12.200
 1198                                                                                                      12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 115
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 115
 airplane
 E x e c u t i o n
 
@@ -6584,7 +6584,7 @@ E x e c u t i o n
 1031                                                                                                                                                       1.270
 1032                                                                                                                                                                   1.270
 1033                                                                                                                                                                               1.270
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 116
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 116
 airplane
 E x e c u t i o n
 
@@ -6642,7 +6642,7 @@ E x e c u t i o n
 848                                                                                                                                                                                                                               19.700
 849                                                                                                                                                                                                                                           19.700
 1039       1.270
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 117
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 117
 airplane
 E x e c u t i o n
 
@@ -6700,7 +6700,7 @@ E x e c u t i o n
 854                                                       19.700
 855                                                                   19.700
 856                                                                               19.700
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 118
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 118
 airplane
 E x e c u t i o n
 
@@ -6758,7 +6758,7 @@ E x e c u t i o n
 1263                                                                                                                                                                  12.200
 1264                                                                                                                                                                              12.200
 1265                                                                                                                                                                                          12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 119
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 119
 airplane
 E x e c u t i o n
 
@@ -6816,7 +6816,7 @@ E x e c u t i o n
 1098                                                                                                                                                                                                                                           1.270
 1270      12.200
 1271                  12.200
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 120
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 120
 airplane
 E x e c u t i o n
 
@@ -6874,7 +6874,7 @@ E x e c u t i o n
 1295                                                                  11.800
 1296                                                                              11.800
 1297                                                                                          11.800
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 121
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 121
 airplane
 E x e c u t i o n
 
@@ -6931,7 +6931,7 @@ E x e c u t i o n
 947                                                                                                                                                                                                                   19.700
 948                                                                                                                                                                                                                               19.700
 949                                                                                                                                                                                                                                           19.700
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 122
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 122
 airplane
 E x e c u t i o n
 
@@ -6989,7 +6989,7 @@ E x e c u t i o n
 990       19.700
 991                   19.700
 992                               19.700
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 123
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 123
 airplane
 E x e c u t i o n
 
@@ -7047,7 +7047,7 @@ E x e c u t i o n
 1016                                                                              19.700
 1017                                                                                          19.700
 1018                                                                                                      19.700
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 124
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 124
 airplane
 E x e c u t i o n
 
@@ -7105,7 +7105,7 @@ E x e c u t i o n
 1042                                                                                                                                                      19.700
 1043                                                                                                                                                                  19.700
 1044                                                                                                                                                                              19.700
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 125
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 125
 airplane
 E x e c u t i o n
 
@@ -7163,7 +7163,7 @@ E x e c u t i o n
 1068                                                                                                                                                                                                                              19.700
 1069                                                                                                                                                                                                                                          19.700
 1259       1.250
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 126
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 126
 airplane
 E x e c u t i o n
 
@@ -7221,7 +7221,7 @@ E x e c u t i o n
 1283                                                       1.250
 1284                                                                   1.250
 1285                                                                               1.250
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 127
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 127
 airplane
 E x e c u t i o n
 
@@ -7249,7 +7249,7 @@ E x e c u t i o n
 
 start   1.000,    finish -1.000
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 128
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 128
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7307,7 +7307,7 @@ objective..  - 10.2*flow(1,206) - 10.2*flow(2,207) - 10.2*flow(3,208) - 10.2*flo
      
       - 1.36*flow(210,211) - 11.42*flow(210,415) - 1.36*flow(211,212) - 11.42*flow(211,416) - 1.36*flow(212,213) - 11.42*flow(212,417) - 1.36*flow(213,214) - 11.42*flow(213,418) - 1.36*flow(214,215) - 11.42*flow(214,419) - 1.36*flow(215,216)
      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 129
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 129
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7365,7 +7365,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 13.42*flow(397,603) - 12.3*flow(398,208) - 13.42*flow(398,604) - 12.3*flow(399,209) - 1.34*flow(399,400) - 13.42*flow(399,605) - 12.3*flow(400,210) - 1.34*flow(400,401) - 13.42*flow(400,606) - 12.3*flow(401,211) - 1.34*flow(401,402)
      
       - 13.42*flow(401,607) - 12.3*flow(402,212) - 1.34*flow(402,403) - 13.42*flow(402,608) - 12.3*flow(403,213) - 1.34*flow(403,404) - 13.42*flow(403,609) - 12.3*flow(404,214) - 1.34*flow(404,405) - 13.42*flow(404,610) - 12.3*flow(405,215)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 130
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 130
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7423,7 +7423,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 12.3*flow(499,309) - 13.42*flow(499,705) - 12.3*flow(500,310) - 13.42*flow(500,706) - 12.3*flow(501,311) - 13.42*flow(501,707) - 12.3*flow(502,312) - 13.42*flow(502,708) - 12.3*flow(503,313) - 13.42*flow(503,709) - 12.3*flow(504,314)
      
       - 13.42*flow(504,710) - 12.3*flow(505,315) - 13.42*flow(505,711) - 12.3*flow(506,316) - 13.42*flow(506,712) - 12.3*flow(507,317) - 13.42*flow(507,713) - 12.3*flow(508,318) - 13.42*flow(508,714) - 12.3*flow(509,319) - 13.42*flow(509,715)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 131
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 131
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7481,7 +7481,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 12.3*flow(642,452) - 1.31*flow(642,643) - 17.23*flow(642,849) - 12.3*flow(643,453) - 1.31*flow(643,644) - 17.23*flow(643,850) - 12.3*flow(644,454) - 1.31*flow(644,645) - 17.23*flow(644,851) - 12.3*flow(645,455) - 1.31*flow(645,646)
      
       - 17.23*flow(645,852) - 12.3*flow(646,456) - 1.31*flow(646,647) - 17.23*flow(646,853) - 12.3*flow(647,457) - 1.31*flow(647,648) - 17.23*flow(647,854) - 12.3*flow(648,458) - 1.31*flow(648,649) - 17.23*flow(648,855) - 12.3*flow(649,459)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 132
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 132
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7539,7 +7539,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 12.5*flow(779,589) - 17.23*flow(779,986) - 12.5*flow(780,590) - 17.23*flow(780,987) - 12.5*flow(781,591) - 17.23*flow(781,988) - 12.5*flow(782,592) - 17.23*flow(782,989) - 12.5*flow(783,593) - 17.23*flow(783,990) - 12.5*flow(784,594)
      
       - 17.23*flow(784,991) - 12.5*flow(785,595) - 17.23*flow(785,992) - 12.5*flow(786,596) - 17.23*flow(786,993) - 12.5*flow(787,597) - 17.23*flow(787,994) - 12.5*flow(788,598) - 17.23*flow(788,995) - 12.5*flow(789,599) - 17.23*flow(789,996)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 133
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 133
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7597,7 +7597,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 19.7*flow(893,1103) - 12.4*flow(894,704) - 1.29*flow(894,895) - 19.7*flow(894,1104) - 12.4*flow(895,705) - 1.29*flow(895,896) - 19.7*flow(895,1105) - 12.4*flow(896,706) - 1.29*flow(896,897) - 19.7*flow(896,1106) - 12.4*flow(897,707)
      
       - 1.29*flow(897,898) - 19.7*flow(897,1107) - 12.4*flow(898,708) - 1.29*flow(898,899) - 19.7*flow(898,1108) - 12.4*flow(899,709) - 19.7*flow(899,1109) - 12.4*flow(900,710) - 19.7*flow(900,1110) - 12.4*flow(901,711) - 19.7*flow(901,1111)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 134
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 134
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7655,7 +7655,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 19.7*flow(1032,1242) - 12.4*flow(1033,843) - 1.27*flow(1033,1034) - 19.7*flow(1033,1243) - 12.4*flow(1034,844) - 1.27*flow(1034,1035) - 19.7*flow(1034,1244) - 12.4*flow(1035,845) - 1.27*flow(1035,1036) - 19.7*flow(1035,1245) - 12.4*flow(1036,846)
      
       - 1.27*flow(1036,1037) - 19.7*flow(1036,1246) - 12.4*flow(1037,847) - 1.27*flow(1037,1038) - 19.7*flow(1037,1247) - 12.4*flow(1038,848) - 1.27*flow(1038,1039) - 19.7*flow(1038,1248) - 12.4*flow(1039,849) - 1.27*flow(1039,1040) - 19.7*flow(1039,1249)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 135
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 135
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7713,7 +7713,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
       - 1.25*flow(1213,1214) - 12.2*flow(1214,1024) - 1.25*flow(1214,1215) - 12.2*flow(1215,1025) - 1.25*flow(1215,1216) - 12.2*flow(1216,1026) - 1.25*flow(1216,1217) - 12.2*flow(1217,1027) - 1.25*flow(1217,1218) - 12.2*flow(1218,1028)
      
       - 1.25*flow(1218,1219) - 12.2*flow(1219,1029) - 1.25*flow(1219,1220) - 12.2*flow(1220,1030) - 1.25*flow(1220,1221) - 12.2*flow(1221,1031) - 1.25*flow(1221,1222) - 12.2*flow(1222,1032) - 1.25*flow(1222,1223) - 12.2*flow(1223,1033)
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 136
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 136
 airplane
 Equation Listing    SOLVE airplane Using LP From line 173
 
@@ -7748,7 +7748,7 @@ Equation Listing    SOLVE airplane Using LP From line 173
      
       - 11.8*flow(1296,1106) - 1.25*flow(1296,1297) - 11.8*flow(1297,1107) - 1.25*flow(1297,1298) - 11.8*flow(1298,1108) - 1.25*flow(1298,1299) - 11.8*flow(1299,1109) + totalcost =E= 0 ; (LHS = 0)
      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 137
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 137
 airplane
 Column Listing      SOLVE airplane Using LP From line 173
 
@@ -7781,7 +7781,7 @@ totalcost
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       objective
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 138
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 138
 airplane
 Model Statistics    SOLVE airplane Using LP From line 173
 
@@ -7796,8 +7796,8 @@ NON ZERO ELEMENTS         8,055
 GENERATION TIME      =        0.012 SECONDS      5 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        3.181 SECONDS      5 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 139
+EXECUTION TIME       =        3.033 SECONDS      5 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 139
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -7812,7 +7812,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE              144.8200
 
- RESOURCE USAGE, LIMIT          0.018      1000.000
+ RESOURCE USAGE, LIMIT          0.014      1000.000
  ITERATION COUNT, LIMIT       262    2000000000
 
 IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
@@ -7855,7 +7855,7 @@ Objective :         144.820000
 22              .              .              .              .          
 23              .              .              .              .          
 24              .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 140
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 140
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -7913,7 +7913,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 71              .              .              .           -18.1400      
 72              .              .              .           -19.4300      
 73              .              .              .           -20.7200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 141
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 141
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -7971,7 +7971,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 121             .              .              .           -27.0000      
 122             .              .              .           -27.0000      
 123             .              .              .           -27.0000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 142
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 142
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8029,7 +8029,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 170             .              .              .              .          
 171             .              .              .              .          
 172             .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 143
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 143
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8087,7 +8087,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 219             .              .              .              .          
 220             .              .              .              .          
 221             .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 144
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 144
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8145,7 +8145,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 268             .              .              .           -18.0200      
 269             .              .              .           -19.3100      
 270             .              .              .           -20.6000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 145
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 145
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8203,7 +8203,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 317             .              .              .            42.0700      
 318             .              .              .            42.0700      
 319             .              .              .            42.0700      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 146
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 146
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8261,7 +8261,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 367             .              .              .             EPS         
 368             .              .              .             EPS         
 369             .              .              .             EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 147
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 147
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8319,7 +8319,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 416             .              .              .            10.9600      
 417             .              .              .             9.6200      
 418             .              .              .             8.2800      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 148
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 148
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8377,7 +8377,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 466             .              .              .           -20.3600      
 467             .              .              .           -21.7000      
 468             .              .              .           -22.9900      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 149
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 149
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8435,7 +8435,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 515             .              .              .            30.6500      
 516             .              .              .            30.6500      
 517             .              .              .            30.6500      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 150
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 150
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8493,7 +8493,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 565             .              .              .             EPS         
 566             .              .              .             EPS         
 567             .              .              .             EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 151
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 151
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8551,7 +8551,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 614             .              .              .            59.7500      
 615             .              .              .            58.4400      
 616             .              .              .            57.1300      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 152
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 152
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8609,7 +8609,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 664             .              .              .           -18.4300      
 665             .              .              .           -19.7200      
 666             .              .              .           -21.0100      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 153
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 153
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8667,7 +8667,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 715             .              .              .             EPS         
 716             .              .              .             EPS         
 717             .              .              .            17.2300      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 154
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 154
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8725,7 +8725,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 765             .              .              .            12.5000      
 766             .              .              .            12.5000      
 767             .              .              .            12.5000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 155
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 155
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8783,7 +8783,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 816             .              .              .            48.6100      
 817             .              .              .            47.3200      
 818             .              .              .            46.0300      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 156
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 156
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8841,7 +8841,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 866             .              .              .              .          
 867             .              .              .              .          
 868             .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 157
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 157
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8899,7 +8899,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 917             .              .              .             EPS         
 918             .              .              .             EPS         
 919             .              .              .             EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 158
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 158
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -8957,7 +8957,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 966             .              .              .            24.9000      
 967             .              .              .            24.9000      
 968             .              .              .            24.9000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 159
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 159
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9015,7 +9015,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1017            .              .              .            40.6400      
 1018            .              .              .            39.3700      
 1019            .              .              .            38.1000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 160
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 160
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9073,7 +9073,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1066            .              .              .              .          
 1067            .              .              .              .          
 1068            .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 161
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 161
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9131,7 +9131,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1117            .              .              .             EPS         
 1118            .              .              .             EPS         
 1119            .              .              .             EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 162
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 162
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9189,7 +9189,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1166            .              .              .            37.1000      
 1167            .              .              .            37.1000      
 1168            .              .              .            37.1000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 163
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 163
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9247,7 +9247,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1217            .              .              .              .          
 1218            .              .              .              .          
 1219            .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 164
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 164
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9305,7 +9305,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1266            .              .              .              .          
 1267            .              .              .              .          
 1268            .              .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 165
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 165
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9363,7 +9363,7 @@ finish        -1.0000        -1.0000        -1.0000       -76.8600
 7    .212             .              .            +INF           19.7200      
 8    .213             .              .            +INF           18.3600      
 9    .214             .              .            +INF           17.0000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 166
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 166
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9421,7 +9421,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 56   .261             .              .            +INF            1.2600      
 57   .262             .              .            +INF             .          
 58   .263             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 167
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 167
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9479,7 +9479,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 105  .310             .              .            +INF           52.2700      
 106  .311             .              .            +INF           52.2700      
 107  .312             .              .            +INF           52.2700      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 168
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 168
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9537,7 +9537,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 155  .360             .              .            +INF           10.2000      
 156  .361             .              .            +INF           10.2000      
 157  .362             .              .            +INF           10.2000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 169
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 169
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9595,7 +9595,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 202  .203             .              .            +INF            1.3600      
 202  .407             .              .            +INF           11.4200      
 203  .204             .              .            +INF            1.3600      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 170
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 170
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9653,7 +9653,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 228  .229             .              .            +INF             .          
 228  .433             .              .            +INF           15.5000      
 229  .230             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 171
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 171
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9711,7 +9711,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 252  .457             .              .            +INF            3.1200      
 253  .254             .              .            +INF            1.3600      
 253  .458             .              .            +INF            1.7800      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 172
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 172
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9769,7 +9769,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 277  .278             .              .            +INF            0.0700      
 277  .482             .              .            +INF             .          
 278  .279             .              .            +INF            0.0700      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 173
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 173
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9827,7 +9827,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 301  .506             .              .            +INF           11.4200      
 302  .303             .              .            +INF             .          
 302  .507             .              .            +INF           11.4200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 174
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 174
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9885,7 +9885,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 330  .331             .              .            +INF             .          
 330  .535             .              .            +INF           23.7200      
 331  .332             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 175
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 175
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -9943,7 +9943,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 354  .559             .              .            +INF           11.4200      
 355  .356             .              .            +INF             .          
 355  .560             .              .            +INF           11.4200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 176
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 176
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10001,7 +10001,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 379  .380             .              .            +INF             .          
 379  .584             .              .            +INF           11.4200      
 380  .381             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 177
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 177
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10059,7 +10059,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 399  .209             .              .            +INF           12.3000      
 399  .400             .              .            +INF            1.3400      
 399  .605             .              .            +INF           13.4200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 178
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 178
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10117,7 +10117,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 415  .416             .              .            +INF             .          
 416  .417             .              .            +INF             .          
 417  .418             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 179
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 179
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10175,7 +10175,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 436  .642             .              .            +INF           22.8100      
 437  .247             .              .            +INF           12.3000      
 437  .438             .              .            +INF            1.3400      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 180
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 180
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10233,7 +10233,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 453  .263             .              .            +INF            3.6700      
 453  .454             .              .            +INF             .          
 453  .659             .              .            +INF            4.3800      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 181
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 181
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10291,7 +10291,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 470  .280             .              .            +INF            4.3700      
 470  .471             .              .            +INF            0.0500      
 470  .676             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 182
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 182
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10349,7 +10349,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 486  .487             .              .            +INF           47.5500      
 486  .692             .              .            +INF             .          
 487  .297             .              .            +INF           12.3000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 183
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 183
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10407,7 +10407,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 502  .708             .              .            +INF           13.4200      
 503  .313             .              .            +INF           54.3700      
 503  .504             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 184
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 184
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10465,7 +10465,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 525  .731             .              .            +INF           38.3200      
 526  .336             .              .            +INF             .          
 526  .527             .              .            +INF            EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 185
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 185
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10523,7 +10523,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 542  .352             .              .            +INF           12.3000      
 542  .543             .              .            +INF             .          
 542  .748             .              .            +INF           13.4200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 186
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 186
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10581,7 +10581,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 558  .559             .              .            +INF             .          
 558  .764             .              .            +INF           13.4200      
 559  .369             .              .            +INF           12.3000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 187
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 187
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10639,7 +10639,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 576  .577             .              .            +INF             .          
 576  .782             .              .            +INF           13.4200      
 577  .387             .              .            +INF           12.3000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 188
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 188
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10697,7 +10697,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 592  .798             .              .            +INF           13.4200      
 593  .403             .              .            +INF           12.3000      
 593  .594             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 189
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 189
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10755,7 +10755,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 608  .815             .              .            +INF           67.1300      
 609  .419             .              .            +INF           19.2400      
 609  .610             .              .            +INF            1.3100      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 190
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 190
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10813,7 +10813,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 632  .442             .              .            +INF             .          
 632  .633             .              .            +INF            0.0400      
 632  .839             .              .            +INF            8.1400      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 191
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 191
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10871,7 +10871,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 648  .649             .              .            +INF            0.0400      
 648  .855             .              .            +INF            8.2400      
 649  .459             .              .            +INF            0.8200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 192
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 192
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10929,7 +10929,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 665  .475             .              .            +INF             .          
 665  .666             .              .            +INF            0.0200      
 666  .476             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 193
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 193
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -10987,7 +10987,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 685  .892             .              .            +INF             .          
 686  .496             .              .            +INF           64.1900      
 686  .687             .              .            +INF            0.0200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 194
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 194
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11045,7 +11045,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 702  .512             .              .            +INF           43.1500      
 702  .703             .              .            +INF             .          
 702  .909             .              .            +INF           17.2300      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 195
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 195
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11103,7 +11103,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 724  .534             .              .            +INF             .          
 724  .725             .              .            +INF            EPS         
 724  .931             .              .            +INF           29.6300      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 196
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 196
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11161,7 +11161,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 740  .741             .              .            +INF             .          
 740  .947             .              .            +INF           17.2300      
 741  .551             .              .            +INF           12.5000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 197
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 197
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11219,7 +11219,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 756  .963             .              .            +INF           42.1300      
 757  .567             .              .            +INF           12.5000      
 757  .758             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 198
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 198
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11277,7 +11277,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 779  .780             .              .            +INF             .          
 779  .986             .              .            +INF           17.2300      
 780  .590             .              .            +INF           12.5000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 199
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 199
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11335,7 +11335,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 794  .1004            .              .            +INF           19.7000      
 795  .605             .              .            +INF           12.5000      
 795  .796             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 200
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 200
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11393,7 +11393,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 811  .812             .              .            +INF             .          
 811  .1021            .              .            +INF            0.2000      
 812  .813             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 201
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 201
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11451,7 +11451,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 832  .642             .              .            +INF             .          
 832  .833             .              .            +INF            0.0200      
 832  .1042            .              .            +INF            6.7000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 202
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 202
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11509,7 +11509,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 848  .849             .              .            +INF            0.0200      
 848  .1058            .              .            +INF           18.1300      
 849  .659             .              .            +INF            0.2200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 203
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 203
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11567,7 +11567,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 873  .1083            .              .            +INF             .          
 874  .684             .              .            +INF            7.9200      
 874  .875             .              .            +INF            0.0200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 204
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 204
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11625,7 +11625,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 890  .700             .              .            +INF           77.6500      
 890  .891             .              .            +INF             .          
 890  .1100            .              .            +INF           84.9500      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 205
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 205
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11683,7 +11683,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 906  .716             .              .            +INF           12.4000      
 906  .907             .              .            +INF             .          
 906  .1116            .              .            +INF           19.7000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 206
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 206
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11741,7 +11741,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 924  .925             .              .            +INF             .          
 924  .1134            .              .            +INF           19.7000      
 925  .735             .              .            +INF           12.4000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 207
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 207
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11799,7 +11799,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 940  .1150            .              .            +INF           56.8000      
 941  .751             .              .            +INF           12.4000      
 941  .942             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 208
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 208
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11857,7 +11857,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 957  .767             .              .            +INF            EPS         
 957  .958             .              .            +INF             .          
 957  .1167            .              .            +INF           31.9000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 209
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 209
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11915,7 +11915,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 982  .983             .              .            +INF             .          
 982  .1192            .              .            +INF            EPS         
 983  .793             .              .            +INF           43.0500      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 210
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 210
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -11973,7 +11973,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 998  .1208            .              .            +INF           19.7000      
 999  .809             .              .            +INF           70.0400      
 999  .1000            .              .            +INF            1.2700      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 211
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 211
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12031,7 +12031,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1015 .1016            .             1.0000        +INF             .          
 1015 .1225            .              .            +INF            0.0800      
 1016 .826             .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 212
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 212
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12089,7 +12089,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1031 .1241            .              .            +INF            6.5200      
 1032 .842             .              .            +INF             .          
 1032 .1033            .             1.0000        +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 213
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 213
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12147,7 +12147,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1048 .858             .              .            +INF            0.0400      
 1048 .1049            .             1.0000        +INF             .          
 1048 .1258            .              .            +INF           18.4300      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 214
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 214
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12205,7 +12205,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1073 .1074            .              .            +INF             .          
 1073 .1283            .              .            +INF           70.1600      
 1074 .884             .              .            +INF            6.6200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 215
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 215
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12263,7 +12263,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1089 .1299            .              .            +INF           90.4800      
 1090 .900             .              .            +INF           84.2500      
 1090 .1091            .              .            +INF           73.3200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 216
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 216
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12321,7 +12321,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1114 .924             .              .            +INF           12.2000      
 1114 .1115            .              .            +INF             .          
 1115 .925             .              .            +INF           12.2000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 217
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 217
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12379,7 +12379,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1138 .1139            .              .            +INF             .          
 1139 .949             .              .            +INF           12.2000      
 1139 .1140            .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 218
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 218
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12437,7 +12437,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1165 .1166            .              .            +INF             .          
 1166 .1167            .              .            +INF             .          
 1167 .1168            .              .            +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 219
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 219
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12495,7 +12495,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1195 .1005            .              .            +INF           12.2000      
 1195 .1196            .              .            +INF             .          
 1196 .1006            .              .            +INF           12.2000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 220
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 220
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12553,7 +12553,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1219 .1220            .              .            +INF            1.2500      
 1220 .1030            .              .            +INF           36.3300      
 1220 .1221            .              .            +INF           29.8100      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 221
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 221
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12611,7 +12611,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1244 .1054            .              .            +INF            6.2700      
 1244 .1245            .              .            +INF             .          
 1245 .1055            .              .            +INF            7.5200      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 222
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 222
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12669,7 +12669,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1276 .1086            .              .            +INF            0.0800      
 1276 .1277            .              .            +INF             .          
 1277 .1087            .              .            +INF            0.0600      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 223
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 223
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12723,7 +12723,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 1298 .1299            .              .            +INF            1.2500      
 1299 .1109            .              .            +INF           11.8000      
 start.801             .             1.0000        +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 224
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 224
 airplane
 Solution Report     SOLVE airplane Using LP From line 173
 
@@ -12736,7 +12736,7 @@ Solution Report     SOLVE airplane Using LP From line 173
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 225
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 225
 airplane
 E x e c u t i o n
 
@@ -12794,7 +12794,7 @@ E x e c u t i o n
 1047 .1048   1
 1048 .1049   1
 1049 .1050   1
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 226
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 226
 airplane
 E x e c u t i o n
 
@@ -12852,7 +12852,7 @@ start.801    1
 41    .41                                                                       1.000
 42    .42                                                                       1.000
 43    .43                                                                       1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 227
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 227
 airplane
 E x e c u t i o n
 
@@ -12910,7 +12910,7 @@ E x e c u t i o n
 90    .90                                                                       1.000
 91    .91                                                                       1.000
 92    .92                                                                       1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 228
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 228
 airplane
 E x e c u t i o n
 
@@ -12968,7 +12968,7 @@ E x e c u t i o n
 139   .139                                                                      1.000
 140   .140                                                                      1.000
 141   .141                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 229
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 229
 airplane
 E x e c u t i o n
 
@@ -13026,7 +13026,7 @@ E x e c u t i o n
 188   .188                                                                      1.000
 189   .189                                                                      1.000
 190   .190                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 230
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 230
 airplane
 E x e c u t i o n
 
@@ -13084,7 +13084,7 @@ E x e c u t i o n
 237   .237                                                                      1.000
 238   .238                                                                      1.000
 239   .239                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 231
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 231
 airplane
 E x e c u t i o n
 
@@ -13142,7 +13142,7 @@ E x e c u t i o n
 286   .286                                                                      1.000
 287   .287                                                                      1.000
 288   .288                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 232
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 232
 airplane
 E x e c u t i o n
 
@@ -13200,7 +13200,7 @@ E x e c u t i o n
 335   .335                                                                      1.000
 336   .336                                                                      1.000
 337   .337                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 233
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 233
 airplane
 E x e c u t i o n
 
@@ -13258,7 +13258,7 @@ E x e c u t i o n
 384   .384                                                                      1.000
 385   .385                                                                      1.000
 386   .386                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 234
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 234
 airplane
 E x e c u t i o n
 
@@ -13316,7 +13316,7 @@ E x e c u t i o n
 433   .433                                                                      1.000
 434   .434                                                                      1.000
 435   .435                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 235
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 235
 airplane
 E x e c u t i o n
 
@@ -13374,7 +13374,7 @@ E x e c u t i o n
 481   .481                                                                      1.000
 482   .482                                                                      1.000
 483   .483                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 236
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 236
 airplane
 E x e c u t i o n
 
@@ -13432,7 +13432,7 @@ E x e c u t i o n
 530   .530                                                                      1.000
 531   .531                                                                      1.000
 532   .532                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 237
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 237
 airplane
 E x e c u t i o n
 
@@ -13490,7 +13490,7 @@ E x e c u t i o n
 579   .579                                                                      1.000
 580   .580                                                                      1.000
 581   .581                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 238
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 238
 airplane
 E x e c u t i o n
 
@@ -13548,7 +13548,7 @@ E x e c u t i o n
 628   .628                                                                      1.000
 629   .629                                                                      1.000
 630   .630                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 239
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 239
 airplane
 E x e c u t i o n
 
@@ -13606,7 +13606,7 @@ E x e c u t i o n
 676   .676                                                                      1.000
 677   .677                                                                      1.000
 678   .678                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 240
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 240
 airplane
 E x e c u t i o n
 
@@ -13664,7 +13664,7 @@ E x e c u t i o n
 724   .724                                                                      1.000
 725   .725                                                                      1.000
 726   .726                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 241
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 241
 airplane
 E x e c u t i o n
 
@@ -13722,7 +13722,7 @@ E x e c u t i o n
 773   .773                                                                      1.000
 774   .774                                                                      1.000
 775   .775                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 242
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 242
 airplane
 E x e c u t i o n
 
@@ -13780,7 +13780,7 @@ E x e c u t i o n
 821   .821                                                                      1.000
 822   .822                                                                      1.000
 823   .823                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 243
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 243
 airplane
 E x e c u t i o n
 
@@ -13838,7 +13838,7 @@ E x e c u t i o n
 869   .869                                                                      1.000
 870   .870                                                                      1.000
 871   .871                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 244
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 244
 airplane
 E x e c u t i o n
 
@@ -13896,7 +13896,7 @@ E x e c u t i o n
 911   .911                                                                      1.000
 912   .912                                                                      1.000
 913   .913                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 245
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 245
 airplane
 E x e c u t i o n
 
@@ -13954,7 +13954,7 @@ E x e c u t i o n
 960   .960                                                                      1.000
 961   .961                                                                      1.000
 962   .962                                                                      1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 246
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 246
 airplane
 E x e c u t i o n
 
@@ -14012,7 +14012,7 @@ E x e c u t i o n
 1009  .1009                                                                     1.000
 1010  .1010                                                                     1.000
 1011  .1011                                                                     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 247
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 247
 airplane
 E x e c u t i o n
 
@@ -14070,7 +14070,7 @@ E x e c u t i o n
 1034  .1035                                34.000      10.000
 1035  .1035                                                                     1.000
 1035  .1036                                35.000      10.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 248
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 248
 airplane
 E x e c u t i o n
 
@@ -14128,7 +14128,7 @@ E x e c u t i o n
 1067  .1067                                                                     1.000
 1068  .1068                                                                     1.000
 1069  .1069                                                                     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 249
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 249
 airplane
 E x e c u t i o n
 
@@ -14186,7 +14186,7 @@ E x e c u t i o n
 1116  .1116                                                                     1.000
 1117  .1117                                                                     1.000
 1118  .1118                                                                     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 250
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 250
 airplane
 E x e c u t i o n
 
@@ -14244,7 +14244,7 @@ E x e c u t i o n
 1165  .1165                                                                     1.000
 1166  .1166                                                                     1.000
 1167  .1167                                                                     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 251
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 251
 airplane
 E x e c u t i o n
 
@@ -14302,7 +14302,7 @@ E x e c u t i o n
 1214  .1214                                                                     1.000
 1215  .1215                                                                     1.000
 1216  .1216                                                                     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 252
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 252
 airplane
 E x e c u t i o n
 
@@ -14360,7 +14360,7 @@ E x e c u t i o n
 1263  .1263                                                                     1.000
 1264  .1264                                                                     1.000
 1265  .1265                                                                     1.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 253
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 253
 airplane
 E x e c u t i o n
 
@@ -14412,7 +14412,7 @@ c3    .c3           6.000      12.000                              72.000       
 
 
 EXECUTION TIME       =        0.039 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 17:42:32 Page 254
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 10:20:00 Page 254
 airplane
 E x e c u t i o n
 

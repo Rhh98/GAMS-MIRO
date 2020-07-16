@@ -3,18 +3,6 @@
     "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_scalars", "offsetcr", "descenddis", "_widgets"]
   },
   "overwriteAliases": {
-    "xcoordcloud": {
-      "newAlias": "horizontal position of clouds"
-    },
-    "lowcloud": {
-      "newAlias": "height of bottom of the cloud (100 feet)"
-    },
-    "highcloud": {
-      "newAlias": "height of top of the cloud (100 feet)"
-    },
-    "flowoutput": {
-      "newAlias": "flowoutput"
-    },
     "_scalars_out": {
       "newAlias": "Output Scalars"
     },
@@ -38,9 +26,6 @@
     },
     "downcost": {
       "newAlias": "Cost of going down 2k feet at downheight"
-    },
-    "minheight": {
-      "newAlias": "minheight"
     },
     "offsetcr": {
       "newAlias": "Decision made frequency"
@@ -89,6 +74,20 @@
     "filename": "readme.md",
     "enableMath": true
   },
+  "inputGroups": [
+    {
+      "name": "Cruise",
+      "members": ["offsetcr", "crcost"]
+    },
+    {
+      "name": "Ascend",
+      "members": ["climbdis", "upcost"]
+    },
+    {
+      "name": "Descend",
+      "members": ["descenddis", "downcost"]
+    }
+  ],
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -104,19 +103,5 @@
     },
     "height": 700,
     "colWidths": 150
-  },
-  "inputGroups": [
-    {
-      "name": "Cruise",
-      "members": ["offsetcr", "crcost"]
-    },
-    {
-      "name": "Ascend",
-      "members": ["climbdis", "upcost"]
-    },
-    {
-      "name": "Descend",
-      "members": ["descenddis", "downcost"]
-    }
-  ]
+  }
 }
