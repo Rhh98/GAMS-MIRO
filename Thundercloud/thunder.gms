@@ -8,11 +8,11 @@ some errors in offset due to missing out 4000 feet data
 $offtext
 
 sets
-    CandN /1*1299,start,finish,c1,c2,c3/
-   Nodes(CandN) /1*1299,start,finish/
-   N(nodes) /1*1299/
-   Arcs(nodes,nodes)
-   clouds(CandN) /c1*c3/
+  CandN /1*1299,start,finish,c1,c2,c3/
+  Nodes(CandN) /1*1299,start,finish/
+  N(nodes) /1*1299/
+  Arcs(nodes,nodes)
+  clouds(CandN) /c1*c3/
 ;
 
 parameters
@@ -21,40 +21,40 @@ parameters
   zcoord(Nodes)
   b(Nodes);
 
-set cloudInf /xc 'x coordinate', low 'lower bound of the cloud', high 'higher bound of the cloud'/
+set cloudInf /xc 'x coordinate', low 'Lower bound of the cloud', high 'Higher bound of the cloud'/
 height /2 ,4 ,6 ,8 ,10 ,12/
 upheight(height)/2 ,4, 6, 8, 10/
 downheight(height)/4,6,8,10,12/;
 scalar  Groundheight /0/;
 set s singular set /1/;
 $onExternalInput
-table cloudsInfo(clouds,cloudInf) Information of thunderstorm
+table cloudsInfo(clouds,cloudInf) 'Information of thunderstorm'
     xc   low   high
 c1  21   3     8
 c2  71   6     12
 c3  72   6     12
 ;
 parameter
-crcost(height) cost to cruise /2 1.36, 4 1.34,6 1.31, 8 1.29,10 1.27,12 1.25/
-climbDis(upheight) nautical distance to climb 2k feet /2 5, 4 5,6 6,8 7, 10 10/
-upcost(upheight) cost of going up 2k feet at 'upheight' /2 10.2,4 11.42, 6 13.42, 8 17.23,10 19.7/
-downcost(downheight) cost of going down 2k feet at 'downheight' /4 12.3, 6 12.5, 8 12.4, 10 12.2, 12 11.8/;
+crcost(height) 'Cost to cruise' /2 1.36, 4 1.34,6 1.31, 8 1.29,10 1.27,12 1.25/
+climbDis(upheight) 'Nautical distance to climb 2k feet' /2 5, 4 5,6 6,8 7, 10 10/
+upcost(upheight) 'Cost of going up 2k feet at upheight' /2 10.2,4 11.42, 6 13.42, 8 17.23,10 19.7/
+downcost(downheight) 'Cost of going down 2k feet at downheight' /4 12.3, 6 12.5, 8 12.4, 10 12.2, 12 11.8/;
 ;
 parameter
- minheight /200/
+ minheight /200/,
 
 *this is how far about crusing decisions are made at and costs above should same distance in offsetcr
-  offsetcr(s) cruise distance /1 1/
+  offsetcr(s) 'Cruise distance' /1 1/,
 
-  descendDis(s) nautical distance to descend 2k feet /1 10/;
+  descendDis(s) 'Nautical distance to descend 2k feet' /1 10/;
 
 $offExternalInput
 *min height of the aircraft (height in thousand of feet)*length of x e.g. 2,000 feet and 100 miles is 2*100=200
 
 parameter
-  xcoordcloud(clouds) horizontal position of clouds  /c1 21,c2 30,c3 72/
-  lowcloud(clouds) height of bottom of the cloud (100 feet) /c1 3, c2 6, c3 6/
-  highcloud(clouds) height of top of the cloud (100 feet) /c1 8, c2 12, c3 12/
+  xcoordcloud(clouds) 'Horizontal position of clouds'  /c1 21,c2 30,c3 72/
+  lowcloud(clouds) 'Height of bottom of the cloud (100 feet)' /c1 3, c2 6, c3 6/
+  highcloud(clouds) 'Height of top of the cloud (100 feet)' /c1 8, c2 12, c3 12/
   ;
   xcoordcloud(clouds)=cloudsInfo(clouds,'xc');
   lowcloud(clouds)=cloudsInfo(clouds,'low');
@@ -63,11 +63,11 @@ parameter
 *up numbers
   
 *this is addition to node that occurs for rise of 2000 feet and forward travel of 6 nautical miles node addn = 2*100 + 6 = 206 
-  offsetup(upheight) how far does it take to go up 2000 feet in nautical miles insert as in 2*length(x)+ distance in nautical miles  
+  offsetup(upheight) 'How far does it take to go up 2000 feet in nautical miles insert as in 2*length(x)+ distance in nautical miles',  
 *down numbers
  
 *this is addition to node that occurs for drop of 2000 feet and forward travel of 10 nautical miles node addn = -2*100 + 10 = -190
-  offsetdown how far does it takes to go down 2000 feet in nautical miles insert as 2*length(x) - distance in nautical miles 
+  offsetdown 'How far does it takes to go down 2000 feet in nautical miles insert as 2*length(x) - distance in nautical miles' 
   ;
  offsetup(upheight)=2*100+climbDis(upheight);
   offsetdown=-2*100+descendDis('1');

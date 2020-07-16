@@ -1,28 +1,23 @@
 {
   "overwriteSheetOrder": {
-    "input": ["locinfo", "d", "s", "_widgets"]
+    "input": ["locinfo", "d", "s", "_widgets"],
+    "output": ["numofheli", "assign"]
   },
   "overwriteAliases": {
-    "x": {
-      "newAlias": "x-coordinates"
-    },
-    "y": {
-      "newAlias": "y-coordinates"
-    },
     "d": {
-      "newAlias": "projected demand"
+      "newAlias": "Projected demand"
     },
     "s": {
-      "newAlias": "units currently assigned"
+      "newAlias": "Units currently assigned"
     },
     "assign": {
-      "newAlias": "helicoptpers reassignment"
+      "newAlias": "Helicopter reassignment"
     },
     "numofheli": {
-      "newAlias": "number of helicopters in L"
+      "newAlias": "Number of helicopters in L"
     },
     "locinfo": {
-      "newAlias": "Coordinates of loctions"
+      "newAlias": "Coordinates of locations"
     }
   },
   "pivottable": {
@@ -55,7 +50,7 @@
   },
   "defaultScenName": "default",
   "readme": {
-    "tabTitle": "readme",
+    "tabTitle": "Readme",
     "filename": "readme.md",
     "enableMath": false
   },

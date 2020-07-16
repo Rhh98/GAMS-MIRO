@@ -28,25 +28,25 @@
       "newAlias": "Scalars"
     },
     "crcost": {
-      "newAlias": "cost to cruise"
+      "newAlias": "Cost to cruise"
     },
     "climbdis": {
-      "newAlias": "nautical distance to climb 2k feet"
+      "newAlias": "Nautical distance to climb 2k feet"
     },
     "upcost": {
-      "newAlias": "cost of going up 2k feet at 'upheight'"
+      "newAlias": "Cost of going up 2k feet at upheight"
     },
     "downcost": {
-      "newAlias": "cost of going down 2k feet at 'downheight'"
+      "newAlias": "Cost of going down 2k feet at downheight"
     },
     "minheight": {
       "newAlias": "minheight"
     },
     "offsetcr": {
-      "newAlias": "decision made frequency"
+      "newAlias": "Decision made frequency"
     },
     "descenddis": {
-      "newAlias": "nautical distance to descend 2k feet"
+      "newAlias": "Nautical distance to descend 2k feet"
     }
   },
   "pivottable": {
@@ -107,7 +107,7 @@
   },
   "inputGroups": [
     {
-      "name": "cruise",
+      "name": "Cruise",
       "members": ["offsetcr", "crcost"]
     },
     {

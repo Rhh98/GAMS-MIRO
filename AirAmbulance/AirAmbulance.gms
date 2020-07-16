@@ -2,7 +2,7 @@ set L 'locations';
 
 set coord 'Coordinates'/x,y/;
 $onexternalInput
-table LocInfo(L<,coord) Coordinates of loctions
+table LocInfo(L<,coord) Coordinates of locations
   x  y
 1 36 20
 2 23 30
@@ -13,14 +13,14 @@ table LocInfo(L<,coord) Coordinates of loctions
 
 Parameters
 
-   d(L) projected demand
+   d(L) Projected demand
    / 1 7
      2 3
      3 2
      4 4
      5 2 /
 
-   s(L) units currently assigned
+   s(L) Units currently assigned
    /  1 6
       2 2
       3 3
@@ -57,8 +57,8 @@ else solve  AirAmbulance2 using lp minimizing obj);
 set HeliHeader /old,demand,new/
 assignHeader/x,y,value,tox,toy/;
 $onExternalOutput
-table assign(L,nL,assignHeader) helicoptpers reassignment;
-table  numofHeli(L,HeliHeader) number of helicopters in L;
+table assign(L,nL,assignHeader) Helicopters reassignment;
+table  numofHeli(L,HeliHeader) Number of helicopters in L;
 $offExternalOutput
 assign(L,nL,'value')=z.l(L,nL);
 assign(L,nL,'tox')=LocInfo(nL,'x');
@@ -66,5 +66,6 @@ assign(L,nL,'toy')=LocInfo(nL,'y');
 assign(L,nL,'x')=LocInfo(L,'x');
 assign(L,nL,'y')=LocInfo(L,'y');
 numofHeli(L,'old')=s(L);
-numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
 numofHeli(L,'demand')=d(L);
+numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
+
