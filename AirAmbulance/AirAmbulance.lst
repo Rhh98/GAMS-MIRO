@@ -1,4 +1,4 @@
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -56,7 +56,7 @@ GDXIN   /Users/ferris/Projects/GAMS-MIRO/AirAmbulance/_miro_gdxin_.gdx
   48   
   49  balance1(L) .. sum(nL, z(nL,L)) + s(L) =g= d(L) + sum(nL, z(L,nL)) ;
   50   
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 2
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -80,7 +80,7 @@ C o m p i l a t i o n
   69  numofHeli(L,'demand')=d(L);
   70  numofHeli(L,'new')=s(L)+sum(nL,z.l(nL,L))-sum(nL,z.L(L,nL));
   71   
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 3
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -92,7 +92,7 @@ Include File Summary
 
 
 COMPILATION TIME     =        0.002 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 4
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE AirAmbulance2 Using LP From line 56
 
@@ -116,7 +116,7 @@ balance2(3)..  z(1,3) + z(2,3) - z(3,1) - z(3,2) - z(3,4) - z(3,5) + z(4,3) + z(
      
 REMAINING 2 ENTRIES SKIPPED
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 5
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE AirAmbulance2 Using LP From line 56
 
@@ -149,7 +149,7 @@ z(1,4)
         1       balance2(4)
 
 REMAINING 17 ENTRIES SKIPPED
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 6
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE AirAmbulance2 Using LP From line 56
 
@@ -161,11 +161,11 @@ BLOCKS OF VARIABLES           2     SINGLE VARIABLES           21
 NON ZERO ELEMENTS            61
 
 
-GENERATION TIME      =        0.004 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
+GENERATION TIME      =        0.003 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
 EXECUTION TIME       =        0.004 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 7
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE AirAmbulance2 Using LP From line 56
 
@@ -223,7 +223,7 @@ Objective :        7161.869060
 1.5          .              .            +INF         6887.6701      
 2.1          .              .            +INF         1276.8712      
 2.3          .              .            +INF         5200.0000      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 8
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE AirAmbulance2 Using LP From line 56
 
@@ -251,7 +251,7 @@ Solution Report     SOLVE AirAmbulance2 Using LP From line 56
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 16:49:15 Page 9
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/15/20 21:02:49 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 

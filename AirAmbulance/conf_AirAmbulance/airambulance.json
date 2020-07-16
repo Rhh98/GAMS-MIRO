@@ -4,12 +4,6 @@
     "output": ["numofheli", "assign"]
   },
   "overwriteAliases": {
-    "x": {
-      "newAlias": "x-coordinates"
-    },
-    "y": {
-      "newAlias": "y-coordinates"
-    },
     "d": {
       "newAlias": "Projected demand"
     },
