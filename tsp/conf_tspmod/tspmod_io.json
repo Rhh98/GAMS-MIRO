@@ -2,7 +2,7 @@
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
 		"cityinfo":	{
-			"alias":	"cityinfo",
+			"alias":	"City Info",
 			"symtype":	"parameter",
 			"headers":	{
 				"city":	{
@@ -26,7 +26,7 @@
 		"_scalars":	{
 			"alias":	"Input Scalars",
 			"symnames":	["constraint"],
-			"symtext":	["selected model Constraint type"],
+			"symtext":	["Selected model constraint type"],
 			"symtypes":	["set"],
 			"headers":	{
 				"scalar":	{
@@ -46,7 +46,7 @@
 	},
 	"outputSymbols":	{
 		"tourt":	{
-			"alias":	"tourt",
+			"alias":	"Tour Itinerary",
 			"symtype":	"parameter",
 			"headers":	{
 				"i":	{

@@ -10,18 +10,18 @@ set   coord location coordinates/ x 'latitude',y 'longititude' /;
 set     prv prevalence ;
 
 set   
-      c centers  ,
-      l labs  ;
+      c 'Centers'  ,
+      l 'Labs'  ;
 
 
 $onExternalInput
-parameter prv_val(prv<) prevalence setting %prev%;
+parameter prv_val(prv<) 'Prevalence setting' %prev%;
 
-parameter effic(prv) efficiency for different prevalences /prv1 0.9, prv2 0.9, prv3 0.95/;
+parameter effic(prv) 'Efficiency for different prevalences' /prv1 0.9, prv2 0.9, prv3 0.95/;
 
-scalar   T Maximal distance for transportation / 400 /;
+scalar   T 'Maximum distance for transportation' / 400 /;
 
-parameter prv_weight(prv) importance of different prevalence to test
+parameter prv_weight(prv) 'Importance of different prevalence to test'
 /prv1 1,prv2 2,prv3 4/;
 
 
@@ -30,13 +30,13 @@ parameter prv_weight(prv)
 /prv1 1,prv2 1,prv3 1,prv4 1,prv5 1/; 
 $offtext
 
-table lablocdata(l<,coord) locations of labs 
+table lablocdata(l<,coord) 'Locations of labs'
     x         y
 l1 46.2803    -88.198933
 l2 45.166269  -90.823687
 ;
 
-table centerlocdata(c<,coord) locations of centers  
+table centerlocdata(c<,coord) 'Locations of centers' 
      x         y
 c1   43.068039 -89.400023
 c2   43.066346 -89.399723
@@ -57,23 +57,23 @@ $offExternalInput
 
 
 $onExternalInput
-parameter centerdata(c,prv) center collection /#c.prv1 500,#c.prv2 250,#c.prv3 125/;
+parameter centerdata(c,prv) 'Collection centers' /#c.prv1 500,#c.prv2 250,#c.prv3 125/;
 $offExternalInput
 
 
 parameter centerdata2(c,*,prv);
 centerdata2(c,'bsz',prv)=1;
 centerdata2(c,'kts',prv) = ceil(centerdata(c,prv)/centerdata2(c,'bsz',prv));
-parameter dist(c,l) euclidean distances;
+parameter dist(c,l) 'Euclidean distances';
 dist(c,l) = arccos(sin(lablocdata(l,'x')*pi/180)*sin(centerlocdata(c,'x')*pi/180)
 +cos(lablocdata(l,'x')*pi/180)*cos(centerlocdata(c,'x')*pi/180)*
 cos((lablocdata(l,'y')-centerlocdata(c,'y'))*pi/180))*6371.004;
 display dist;
 * s is batch size
-set s batch size / 1, 2, 4, 8, 16, 32, 64 /;
-set rnd round time (5 hours a time) / 5, 10, 15, 20 /;
+set s 'Batch size' / 1, 2, 4, 8, 16, 32, 64 /;
+set rnd 'Round time (5 hours a time)' / 5, 10, 15, 20 /;
 $onExternalInput
-parameter runsize(l) runsize of labs / #l 96/;
+parameter runsize(l) 'Runsize at lab' / #l 96/;
 $offExternalInput
 
 scalar offset, actrunsize;
@@ -174,16 +174,16 @@ parameter cap(l)
 cap(l) = 4*5;
 
 positive variables
-  x(prv,c,l) kits moved from c to l of prevalence prv,
-  totinl(prv,l) kits at lab l of prevalences prv,
-  numBat(prv,l,s) number of batches in lab l;
+  x(prv,c,l) 'Kits moved from c to l of prevalence prv',
+  totinl(prv,l) 'Kits at lab l of prevalences prv',
+  numBat(prv,l,s) 'Number of batches in lab l';
   
   
 integer variables
   
-  numofbs(l,s,rnd,prv) number of batches of size in timeslot,
+  numofbs(l,s,rnd,prv) 'Number of batches of size in timeslot',
   useX(l),
-  extras(l) kits left over in lab l of prevalence prv;
+  extras(l) 'Kits left over in lab l of prevalence prv';
   extras.up(l)=runsize(l)*4;;
 variables obj;
 $ontext
@@ -289,29 +289,29 @@ set opr /bs batchsize, rn round number, noto 'number of the operation', p preval
 *kitsClass kits for different round/normal,extra/
 
 
-set numofop 'operation index' /opr1*opr4/;
+set numofop 'Operation index' /opr1*opr4/;
 $onExternalOutput
-table allocate(c,l,prv,allocateHeader) 'allocate strategy';
+table allocate(c,l,prv,allocateHeader) 'Allocate strategy';
 allocate(c,l,prv,'latl')=lablocdata(l,'x');
 allocate(c,l,prv,'lonl')=lablocdata(l,'y');
 allocate(c,l,prv,'latc')=centerlocdata(c,'x');
 allocate(c,l,prv,'lonc')=centerlocdata(c,'y');
 allocate(c,l,prv,'val')=x.l(prv,c,l);
-parameter kitinl(l,prv) Kits to test in labs l;
+parameter kitinl(l,prv) 'Kits to test in lab l';
 kitinl(l,prv)=sum(okslots(l,s,rnd,prv),numBat.l(prv,l,s)*s.val);
 *kitinl(l,'extra','all')=sum(prv,extraTrans.l(prv,l));
 
-table operation(l,numofop,opr) operation in lab l(batch size);
+table operation(l,numofop,opr) 'Operation in lab l (batch size)';
 
 parameter unmet(c)'Kits left in centers';
 unmet(c) = sum(prv,centerdata2(c,'kts',prv) - sum(l, x.l(prv,c,l)));
 
-scalar alltest 'Number of people tested',leftover'Number of samples tested with unknown result', pcplus ' percent of leftover/alltest';
+scalar alltest 'Number of people tested',leftover'Number of samples tested with unknown result', pcplus 'Percent of leftover/alltest';
 alltest = sum((l,prv), totinl.l(prv,l));
 leftover = round(sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv))))));
 pcplus = sum(l, sum(prv, (sum(okslots(l,s,rnd,prv),(simres(l,s,rnd,prv,'unknown'))*numofbs.l(l,s,rnd,prv)))))/max(1e-4,alltest)*100;
 $offExternalOutput
-scalar opt 'count the number of operation';
+scalar opt 'Count the number of operations';
 loop(l, opt=0;
 loop((s,rnd,prv)$(numofbs.l(l,s,rnd,prv) gt 0),
 opt=opt+1;

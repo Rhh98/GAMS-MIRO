@@ -2,7 +2,7 @@
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
 		"prv_val":	{
-			"alias":	"prevalence setting",
+			"alias":	"Prevalence setting",
 			"symtype":	"parameter",
 			"headers":	{
 				"prv":	{
@@ -11,12 +11,12 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"prevalence setting"
+					"alias":	"Prevalence setting"
 				}
 			}
 		},
 		"effic":	{
-			"alias":	"efficiency for different prevalences",
+			"alias":	"Efficiency for different prevalences",
 			"symtype":	"parameter",
 			"headers":	{
 				"prv":	{
@@ -25,14 +25,14 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"efficiency for different prevalences"
+					"alias":	"Efficiency for different prevalences"
 				}
 			}
 		},
 		"_scalars":	{
 			"alias":	"Input Scalars",
 			"symnames":	["t"],
-			"symtext":	["Maximal distance for transportation"],
+			"symtext":	["Maximum distance for transportation"],
 			"symtypes":	["parameter"],
 			"headers":	{
 				"scalar":	{
@@ -50,7 +50,7 @@
 			}
 		},
 		"prv_weight":	{
-			"alias":	"importance of different prevalence to test",
+			"alias":	"Importance of different prevalence to test",
 			"symtype":	"parameter",
 			"headers":	{
 				"prv":	{
@@ -59,17 +59,17 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"importance of different prevalence to test"
+					"alias":	"Importance of different prevalence to test"
 				}
 			}
 		},
 		"lablocdata":	{
-			"alias":	"locations of labs",
+			"alias":	"Locations of labs",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"labs"
+					"alias":	"Labs"
 				},
 				"x":	{
 					"type":	"numeric",
@@ -82,12 +82,12 @@
 			}
 		},
 		"centerlocdata":	{
-			"alias":	"locations of centers",
+			"alias":	"Locations of centers",
 			"symtype":	"parameter",
 			"headers":	{
 				"c":	{
 					"type":	"string",
-					"alias":	"centers"
+					"alias":	"Centers"
 				},
 				"x":	{
 					"type":	"numeric",
@@ -100,12 +100,12 @@
 			}
 		},
 		"centerdata":	{
-			"alias":	"center collection",
+			"alias":	"Collection centers",
 			"symtype":	"parameter",
 			"headers":	{
 				"c":	{
 					"type":	"string",
-					"alias":	"centers"
+					"alias":	"Centers"
 				},
 				"prv":	{
 					"type":	"string",
@@ -113,37 +113,37 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"center collection"
+					"alias":	"Collection centers"
 				}
 			}
 		},
 		"runsize":	{
-			"alias":	"runsize of labs",
+			"alias":	"Runsize at lab",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"labs"
+					"alias":	"Labs"
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"runsize of labs"
+					"alias":	"Runsize at lab"
 				}
 			}
 		}
 	},
 	"outputSymbols":	{
 		"allocate":	{
-			"alias":	"allocate strategy",
+			"alias":	"Allocate strategy",
 			"symtype":	"parameter",
 			"headers":	{
 				"c":	{
 					"type":	"string",
-					"alias":	"centers"
+					"alias":	"Centers"
 				},
 				"l":	{
 					"type":	"string",
-					"alias":	"labs"
+					"alias":	"Labs"
 				},
 				"prv":	{
 					"type":	"string",
@@ -172,12 +172,12 @@
 			}
 		},
 		"kitinl":	{
-			"alias":	"Kits to test in labs l",
+			"alias":	"Kits to test in lab l",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"labs"
+					"alias":	"Labs"
 				},
 				"prv":	{
 					"type":	"string",
@@ -185,21 +185,21 @@
 				},
 				"value":	{
 					"type":	"numeric",
-					"alias":	"Kits to test in labs l"
+					"alias":	"Kits to test in lab l"
 				}
 			}
 		},
 		"operation":	{
-			"alias":	"operation in lab l(batch size)",
+			"alias":	"Operation in lab l (batch size)",
 			"symtype":	"parameter",
 			"headers":	{
 				"l":	{
 					"type":	"string",
-					"alias":	"labs"
+					"alias":	"Labs"
 				},
 				"numofop":	{
 					"type":	"string",
-					"alias":	"operation index"
+					"alias":	"Operation index"
 				},
 				"bs":	{
 					"type":	"numeric",
@@ -237,7 +237,7 @@
 			"headers":	{
 				"c":	{
 					"type":	"string",
-					"alias":	"centers"
+					"alias":	"Centers"
 				},
 				"value":	{
 					"type":	"numeric",
@@ -248,7 +248,7 @@
 		"_scalars_out":	{
 			"alias":	"Output Scalars",
 			"symnames":	["alltest", "leftover", "pcplus"],
-			"symtext":	["Number of people tested", "Number of samples tested with unknown result", " percent of leftover/alltest"],
+			"symtext":	["Number of people tested", "Number of samples tested with unknown result", "Percent of leftover/alltest"],
 			"symtypes":	["parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{

@@ -4,10 +4,10 @@
   },
   "overwriteAliases": {
     "mcoord": {
-      "newAlias": "Machine co-coordinates"
+      "newAlias": "Machine coordinates"
     },
     "rscoord": {
-      "newAlias": "Recieving and Shipping co-coordinates"
+      "newAlias": "Receiving and Shipping coordinates"
     },
     "min_distance": {
       "newAlias": "Minimum distance between different machines"
@@ -19,13 +19,10 @@
       "newAlias": "Cost of moving products per distance unit"
     },
     "lowupcoord": {
-      "newAlias": "lower and upper bound of the co-coordinats of machines"
+      "newAlias": "Lower and upper bound of the coordinates of machines"
     },
     "result": {
       "newAlias": "Layout and Work Flow"
-    },
-    "result2": {
-      "newAlias": "result for new layout"
     },
     "_scalars_out": {
       "newAlias": "Output Scalars"

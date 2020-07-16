@@ -2,7 +2,7 @@
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
 		"mcoord":	{
-			"alias":	"Machine co-coordinates",
+			"alias":	"Machine coordinates",
 			"symtype":	"parameter",
 			"headers":	{
 				"machines":	{
@@ -20,12 +20,12 @@
 			}
 		},
 		"rscoord":	{
-			"alias":	"Recieving and Shipping co-coordinates",
+			"alias":	"Receiving and Shipping coordinates",
 			"symtype":	"parameter",
 			"headers":	{
 				"rs":	{
 					"type":	"string",
-					"alias":	"recieving and shipping"
+					"alias":	"Receiving and shipping"
 				},
 				"x":	{
 					"type":	"numeric",
@@ -84,7 +84,7 @@
 			}
 		},
 		"lowupcoord":	{
-			"alias":	"lower and upper bound of the co-coordinats of machines",
+			"alias":	"Lower and upper bound of the coordinates of machines",
 			"symtype":	"parameter",
 			"headers":	{
 				"machines":	{

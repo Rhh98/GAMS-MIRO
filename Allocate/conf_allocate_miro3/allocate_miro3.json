@@ -3,41 +3,14 @@
     "input": ["prv_val", "effic", "prv_weight", "lablocdata", "centerlocdata", "centerdata", "runsize", "_widgets"]
   },
   "overwriteAliases": {
-    "prv_val": {
-      "newAlias": "prevalence setting"
-    },
-    "effic": {
-      "newAlias": "efficiency for different prevalences"
-    },
     "_scalars": {
       "newAlias": "Scalars"
     },
     "prv_weight": {
-      "newAlias": "importance of different prevalence to test"
-    },
-    "c": {
-      "newAlias": "centers"
-    },
-    "l": {
-      "newAlias": "labs"
-    },
-    "locdata": {
-      "newAlias": "locations of centers and labs"
-    },
-    "centerdata": {
-      "newAlias": "center collection"
-    },
-    "runsize": {
-      "newAlias": "runsize of labs"
-    },
-    "allocate": {
-      "newAlias": "allocate strategy"
+      "newAlias": "Importance of different prevalence to test"
     },
     "kitinl": {
       "newAlias": "Kits to test in labs l"
-    },
-    "operation": {
-      "newAlias": "operation in lab l(batch size)"
     },
     "unmet": {
       "newAlias": "Kits left in centers"
@@ -45,11 +18,29 @@
     "_scalars_out": {
       "newAlias": "Output Scalars"
     },
+    "prv_val": {
+      "newAlias": "Prevalence setting"
+    },
+    "effic": {
+      "newAlias": "Efficiency for different prevalences"
+    },
     "lablocdata": {
-      "newAlias": "locations of labs"
+      "newAlias": "Locations of labs"
     },
     "centerlocdata": {
-      "newAlias": "locations of centers"
+      "newAlias": "Locations of centers"
+    },
+    "centerdata": {
+      "newAlias": "Collection centers"
+    },
+    "runsize": {
+      "newAlias": "Runsize at lab"
+    },
+    "allocate": {
+      "newAlias": "Allocate strategy"
+    },
+    "operation": {
+      "newAlias": "Operation in lab l (batch size)"
     }
   },
   "pivottable": {
@@ -102,18 +93,24 @@
     },
     "effic": {
       "widgetType": "table",
-      "alias": "efficiency for different prevalences",
+      "alias": "Efficiency for different prevalences",
       "readonly": false,
       "heatmap": false,
       "bigData": false
     },
     "prv_val": {
       "widgetType": "table",
-      "alias": "prevalence setting",
+      "alias": "Prevalence setting",
       "readonly": false,
       "heatmap": false,
       "bigData": false
     }
+  },
+  "defaultScenName": "default scenario",
+  "readme": {
+    "tabTitle": "Covid 19 group testing",
+    "filename": "Allocate.md",
+    "enableMath": false
   },
   "datatable": {
     "class": "display",
@@ -123,23 +120,17 @@
       "pageLength": 15
     }
   },
-  "defaultScenName": "default scenario",
-  "readme": {
-    "tabTitle": "Allocate",
-    "filename": "Allocate.md",
-    "enableMath": false
-  },
   "inputGroups": [
     {
-      "name": "prevalence",
+      "name": "Prevalence",
       "members": ["prv_val", "effic", "prv_weight"]
     },
     {
-      "name": "lab information",
+      "name": "Lab information",
       "members": ["lablocdata", "runsize"]
     },
     {
-      "name": "center information",
+      "name": "Center information",
       "members": ["centerlocdata", "centerdata"]
     }
   ],

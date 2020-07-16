@@ -95,13 +95,13 @@
 					"type":	"numeric",
 					"alias":	"old"
 				},
-				"new":	{
-					"type":	"numeric",
-					"alias":	"new"
-				},
 				"demand":	{
 					"type":	"numeric",
 					"alias":	"demand"
+				},
+				"new":	{
+					"type":	"numeric",
+					"alias":	"new"
 				}
 			}
 		}
