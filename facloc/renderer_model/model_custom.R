@@ -29,9 +29,9 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
     x<-data$x[c(1,4,7,10)]
     y<-data$y[c(1,4,7,10)]
     mach<-c('CNC','Mill','Drill','Punch')
-    from<-c('Recieve','CNC','Drill','Punch',
-            'Recieve','Mill','Drill','Punch',
-            'Recieve','CNC','Drill','Mill','Punch')
+    from<-c('Receive','CNC','Drill','Punch',
+            'Receive','Mill','Drill','Punch',
+            'Receive','CNC','Drill','Mill','Punch')
     to<-c('CNC','Drill','Punch','Ship',
           'Mill','Drill','Punch','Ship',
           'CNC','Drill','Mill','Punch','Ship')
@@ -117,7 +117,7 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
        Ver<-data.frame(c(paste(mach,'old'),'Recieve','Ship',paste(mach,'new')),c(x,data$xr[1],data$xs[1],newx),c(y,data$yr[1],data$ys[1],newy))
        edge_all<-data.frame(c(from_old,from_new),c(to_old,to_new))
       
- output$test<-renderText("Rusult of relocating the facilities. The cost of
+ output$test<-renderText("Result of relocating the facilities. The cost of
                          transporting products from one facility to another in original and new layouts.")
  
   output$res2<-renderLeaflet({
@@ -214,6 +214,3 @@ m<-addLayersControl(m,
   
   
 }
-
-
-

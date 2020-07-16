@@ -50,14 +50,19 @@
   "dataRendering": {
     "result": {
       "outType": "res",
-      "packages": ["igraph", "leaflet"]
+      "packages": "leaflet"
     }
   },
   "defaultScenName": "default",
   "readme": {
-    "tabTitle": "readme",
+    "tabTitle": "Readme",
     "filename": "FacLoc.md",
     "enableMath": true
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "none",
+    "rownames": false
   },
   "handsontable": {
     "stretchH": "none",
