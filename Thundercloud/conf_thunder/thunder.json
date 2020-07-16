@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_scalars", "offsetcr", "descenddis", "_widgets"]
+    "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_scalars", "_widgets"]
   },
   "overwriteAliases": {
     "xcoordcloud": {
@@ -106,10 +106,6 @@
     "colWidths": 150
   },
   "inputGroups": [
-    {
-      "name": "Cruise",
-      "members": ["offsetcr", "crcost"]
-    },
     {
       "name": "Ascend",
       "members": ["climbdis", "upcost"]
