@@ -169,23 +169,25 @@
 				}
 			}
 		},
-		"_scalars_out":	{
-			"alias":	"Output Scalars",
-			"symnames":	["mcost", "poldcost", "pnewcost"],
-			"symtext":	["Total cost of moving machines to new location", "Total cost of moving 3 products in old layout", "Total cost of moving 3 products in new layout"],
-			"symtypes":	["parameter", "parameter", "parameter"],
+		"pcost":	{
+			"alias":	"Total cost of moving 3 products in old layout",
+			"symtype":	"parameter",
 			"headers":	{
-				"scalar":	{
+				"products":	{
 					"type":	"string",
-					"alias":	"Scalar Name"
+					"alias":	"products"
 				},
-				"description":	{
-					"type":	"string",
-					"alias":	"Scalar Description"
+				"new":	{
+					"type":	"numeric",
+					"alias":	"new"
 				},
-				"value":	{
-					"type":	"string",
-					"alias":	"Scalar Value"
+				"old":	{
+					"type":	"numeric",
+					"alias":	"old"
+				},
+				"machine":	{
+					"type":	"numeric",
+					"alias":	"machine"
 				}
 			}
 		}

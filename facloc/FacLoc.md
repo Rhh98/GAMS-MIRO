@@ -120,8 +120,7 @@ y_m &\leq& y2_m; \forall m \in M \\
 <a id="applet"></a>
 <h2> MIRO Applet </h2>
 <p> The applet takes the inputs from the user and solves the mixed integer non-linear programing model (MINLP) using baron solver.<p>
-
-<h3><u> User Inputs </u>
+<h3><u> User Inputs </u> </h3>
 <p>
 <ul>
 <li>Initial co-ordinates of each machine</li>
@@ -132,13 +131,16 @@ y_m &\leq& y2_m; \forall m \in M \\
 </UL>
 </p>
 
-<h3><u> Output </u>
+<h3><u> Output </u></h3>
 <p>
 <ul>
     <li>Infeasiblilty information:If the problem is infeasible, infeasibility information will be displayed.</li>
     <li>Comparison of layout: If the problem is feasible, the output will show the initial and current optimized layout, with cost information.</li>
 </UL>
 </p>
+
+The GAMS model can be downloaded <a href='static_model/model.gms' target="_blank">here</a>
+
 
 <applet archive="http://neos-dev-1.neos-server.org/guide/sites/default/files/SignedLayout_0.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Commons-logging-1.1.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Ws-commons-util-1.0.2.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-client-3.1.3.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-common-3.1.3.jar" code="mainGame.Starting" height="610" width="800"></applet>
 

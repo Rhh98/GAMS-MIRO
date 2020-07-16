@@ -26,6 +26,18 @@
     },
     "_scalars_out": {
       "newAlias": "Output Scalars"
+    },
+    "poldcost": {
+      "newAlias": "Total cost of moving 3 products in old layout"
+    },
+    "pnewcost": {
+      "newAlias": "Total cost of moving 3 products in new layout"
+    },
+    "costheader": {
+      "newAlias": "costheader"
+    },
+    "pcost": {
+      "newAlias": "Total cost of moving 3 products in old layout"
     }
   },
   "pivottable": {
@@ -50,7 +62,11 @@
   "dataRendering": {
     "result": {
       "outType": "res",
-      "packages": ["igraph", "leaflet"]
+      "packages": ["leaflet", "plotly"]
+    },
+    "pcost": {
+      "outType": "cost",
+      "packages": "plotly"
     }
   },
   "defaultScenName": "default",
@@ -58,6 +74,9 @@
     "tabTitle": "readme",
     "filename": "FacLoc.md",
     "enableMath": true
+  },
+  "scripts": {
+    "base": []
   },
   "handsontable": {
     "stretchH": "none",

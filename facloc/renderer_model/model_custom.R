@@ -8,9 +8,9 @@ resOutput <- function(id, height = NULL, options = NULL, path = NULL){
   tagList( 
     #define rendererOutput function here
     textOutput(ns('test')),
-    #plotOutput(ns('res1'),height=900,width = 900 ),
-    #plotOutput(ns('res2'),height=900,width = 900 )
-    leafletOutput(ns('res2'),height=height)
+    fluidRow(column(4,selectInput(ns('select'),label='Select Product Flow',choices = 
+                                     c('P1 Old Flow','P2 Old Flow','P3 Old Flow','P1 New Flow','P2 New Flow','P3 New Flow')))),
+    plotlyOutput(ns('fig'),height=height)
   ) 
 }
 
@@ -119,101 +119,68 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
       
  output$test<-renderText("Rusult of relocating the facilities. The cost of
                          transporting products from one facility to another in original and new layouts.")
- 
-  output$res2<-renderLeaflet({
-     m<-leaflet(data)
-
-     lonX<-c(x,data$xr[1],data$xs[1],newx)
-     latY<-c(y,data$yr[1],data$ys[1],newy)
-      m<-addMarkers(m,x/max(abs(lonX)),y/max(abs(latY)),label = paste(mach,'old'),
-                    labelOptions = labelOptions(noHide = T, direction = "bottom",
-                                                style = list(
-                                                   "color" = "grey",
-                                                   "font-family" = "serif",
-                                                   "font-style" = "italic",
-                                                   "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
-                                                   "font-size" = "12px",
-                                                   "border-color" = "rgba(0,0,0,0.5)"
-                                                )),group = 'Layout Old')
-       m<-addMarkers(m,newx/max(abs(lonX)),newy/max(abs(latY)),label = paste(mach,'new'),
-                     labelOptions = labelOptions(noHide = T, direction = "bottom",
-                                                 style = list(
-                                                    "color" = "green",
-                                                    "font-family" = "serif",
-                                                    "font-style" = "italic",
-                                                    "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
-                                                    "font-size" = "12px",
-                                                    "border-color" = "rgba(0,0,0,0.5)"
-                                                 )),group='Layout New')
-      m<-addCircleMarkers(m,data$xr[1]/max(abs(lonX)),data$yr[1]/max(abs(latY)), label = 'Receiving'
-                    ,labelOptions = labelOptions(noHide = T, direction = "bottom",
-                                                 style = list(
-                                                    "color" = "purple",
-                                                    "font-family" = "serif",
-                                                    "font-style" = "italic",
-                                                    "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
-                                                    "font-size" = "12px",
-                                                    "border-color" = "rgba(0,0,0,0.5)"
-                                                 )))
-      m<-addCircleMarkers(m,data$xs[1]/max(abs(lonX)),data$ys[1]/max(abs(latY)), label = 'Shipping',
-                    labelOptions = labelOptions(noHide = T, direction = "bottom",
-                                                style = list(
-                                                   "color" = "red",
-                                                   "font-family" = "serif",
-                                                   "font-style" = "italic",
-                                                   "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
-                                                   "font-size" = "12px",
-                                                   "border-color" = "rgba(0,0,0,0.5)"
-                                                )))
-    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$x[c(1,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
-                    ,c(data$yr[1]/max(abs(latY)),data$y[c(1,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'red',group = 'P1 Flow Old',label = sum(cost_old[1:4]))
-    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$x[c(4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
-                    ,c(data$yr[1]/max(abs(latY)),data$y[c(4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'orange',group = 'P2 Flow Old',label =sum( cost_old[5:8]))
-    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$x[c(1,4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
-                    ,c(data$yr[1]/max(abs(latY)),data$y[c(1,4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'yellow',group = 'P3 Flow Old',label =sum( cost_old[9:13]))
-    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$newx[c(1,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
-                    ,c(data$yr[1]/max(abs(latY)),data$newy[c(1,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'red',group = 'P1 Flow New',label = sum(cost_new[1:4]))
-    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$newx[c(4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
-                    ,c(data$yr[1]/max(abs(latY)),data$newy[c(4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'orange',group = 'P2 Flow New',label = sum(cost_new[5:8]))
-    m<-addPolylines(m,c(data$xr[1]/max(abs(lonX)),data$newx[c(1,4,7,10)]/max(abs(lonX)),data$xs[1]/max(abs(lonX)))
-                    ,c(data$yr[1]/max(abs(latY)),data$newy[c(1,4,7,10)]/max(abs(latY)),data$ys[1]/max(abs(latY))),color = 'yellow',group = 'P3 Flow New',label =sum( cost_new[9:13]))
+ output$fig<-renderPlotly({
+    fig<-plot_ly()
+    fig<-add_trace(fig,type='scatter',mode='markers',x=x,y=y,hovertext=paste(mach,'old'),hoverinfo='x+y+text',
+                   showlegend=FALSE,marker=list(size=30,color='grey'))
+    fig<-add_trace(fig,type='scatter',mode='markers',x=newx,y=newy,hovertext=paste(mach,'new'),hoverinfo='x+y+text',
+                   showlegend=FALSE,marker=list(size=30,color='green'))
+    fig<-add_trace(fig,type='scatter',mode='markers',x=c(data$xr[1],data$xs[1]),y=c(data$yr[1],data$ys[1]),hoverinfo='x+y+text'
+                   ,hovertext=c('receiving','shipping'),showlegend=FALSE,marker=list(size=30,color='yellow',symbol='square')
+                   )
+   if (input$select == 'P1 Old Flow')
+    {fig<-add_trace(fig,type='scatter',mode='lines',
+                   x=c(data$xr[1],data$x[c(1,7,10)],data$xs[1]),hoverinfo='x+y+text'
+                   ,y=c(data$yr[1],data$y[c(1,7,10)],data$ys[1]),line=list(wdth=2,color='orange'),text =paste('P1 total cost:',sum( cost_old[1:4])))}
+   if(input$select == 'P2 Old Flow')
+     {fig<-add_trace(fig,type='scatter',mode='lines',
+                   x=c(data$xr[1],data$x[c(4,7,10)],data$xs[1]),hoverinfo='x+y+text'
+                   ,y=c(data$yr[1],data$y[c(4,7,10)],data$ys[1]),line=list(wdth=2,color='green'),text = paste('P2 total cost:',sum(cost_old[5:8])),name='P2 Old Flow')}
+    if (input$select == 'P3 Old Flow')
+    {fig<-add_trace(fig,type='scatter',mode='lines',
+                   x=c(data$xr[1],data$x[c(1,4,7,10)],data$xs[1]),hoverinfo='x+y+text'
+                   ,y=c(data$yr[1],data$y[c(1,4,7,10)],data$ys[1]),line=list(wdth=2,color='red'),hovertext = paste('P3 total cost:',sum(cost_old[9:13])),name='P3 Old Flow')}
+   if (input$select == 'P1 New Flow')
+     {fig<-add_trace(fig,type='scatter',mode='lines',
+                   x=c(data$xr[1],data$newx[c(1,7,10)],data$xs[1]),hoverinfo='x+y+text'
+                   ,y=c(data$yr[1],data$newy[c(1,7,10)],data$ys[1]),line=list(wdth=2,color='orange'),hovertext = paste('P1 total cost:',sum(cost_new[1:4])),name='P1 New Flow')}
+    if (input$select == 'P2 New Flow')
+    {fig<-add_trace(fig,type='scatter',mode='lines',
+                   x=c(data$xr[1],data$newx[c(4,7,10)],data$xs[1]),hoverinfo='x+y+text'
+                   ,y=c(data$yr[1],data$newy[c(4,7,10)],data$ys[1]),line=list(wdth=2,color='green'),hovertext = paste('P2 total cost:',sum(cost_new[5:8])),name='P2 New Flow')}
+    if (input$select == 'P3 New Flow')
+     {fig<-add_trace(fig,type='scatter',mode='lines',
+                   x=c(data$xr[1],data$newx[c(1,4,7,10)],data$xs[1]),hoverinfo='x+y+text'
+                   ,y=c(data$yr[1],data$newy[c(1,4,7,10)],data$ys[1]),line=list(wdth=2,color='red'),hovertext = paste('P3 total cost:',sum(cost_new[9:13])),name='P3 New Flow')}
+    fig
     
-for (i in 1:4) {
-   m<-addPolylines(m,c(x[i]/max(abs(lonX)),newx[i]/max(abs(lonX))),c(y[i]/max(abs(latY)),newy[i]/max(abs(latY))),color='purple',group = 'Movement Cost'
-                   ,label=paste(round(data$cm[3*i-2]*sqrt((newx[i]-x[i])^2+(newy[i]-y[i])^2))))
-
-}
-m<-addLayersControl(m,
-                          baseGroups =c('P1 Flow Old','P2 Flow Old','P3 Flow Old',
-                                           'P1 Flow New','P2 Flow New','P3 Flow New','Movement Cost'),
-                          options = layersControlOptions(collapsed = TRUE)
-    )
-  })
- # output$res1<-renderPlot({
- #     gra<-graph_from_data_frame(d=data.frame(from_old,to_old),
- #                                vertices=Ver)
- #     par(mfrow=c(1,1),oma=c(1,1,4,1))
- #     # plot(gra,vertex.size=25,vertex.color=c('grey','grey','grey','grey','green','red','yellow','yellow','yellow','yellow')
- #     #      ,edge.width=3,edge.color=c(rep(1,4),rep(2,4),rep(3,5)),
- #     #      main = "Cost of Transporting Products Before Facility Relocation")
- #     plot.igraph(gra,vertex.size=25,vertex.color=c('grey','grey','grey','grey','green','red','yellow','yellow','yellow','yellow')
- #          ,edge.width=3,edge.color=c(rep(1,4),rep(2,4),rep(3,5)),
- #          main = "Cost of Transporting Products Before Facility Relocation",layout=cbind(c(x,data$xr[1],data$xs[1],newx),c(y,data$yr[1],data$ys[1],newy)))
- #    ProdCost<-rep(1,6)
- #    ProdCost[1]<-round(sum(cost_old[1:4]))
- #    ProdCost[2]<-round(sum(cost_old[5:8]))
- #    ProdCost[3]<-round(sum(cost_old[9:13]))
- #    
- #      legend('topright',legend = c(paste('P1 cost:',ProdCost[1]),paste('P2 cost:',ProdCost[2]),paste('P3 cost:',ProdCost[3])),
- #                                   lty=1,pt.bg=1:3,col=categorical_pal(3),lwd=2.2)
- #    mindex<-c(1,4,7,10)
- #    machinecost<-round(sum(data$cm[mindex]*sqrt((data$newx[mindex]-data$x[mindex])^2+(data$newy[mindex]-data$y[mindex])^2)))
- #    mtext(paste('Total cost of moving machines:',machinecost),outer = TRUE,side=3,adj=0,cex=1.5,line = 0)
- #    })
+ })
    }
-  
-  
 }
 
+costOutput <- function(id, height = NULL, options = NULL, path = NULL){
+   ns <- NS(id)
+   
+   # set default height
+   if(is.null(height)){
+      height <- 700
+   } 
+   tagList( 
+      #define rendererOutput function here 
+      plotlyOutput(ns('bar'),height = height)
+   ) 
+}
 
+renderCost <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
+   #renderer 
+   output$bar<-renderPlotly({
+      fig<-plot_ly(type='bar',x=c('Old','New'),showlegend=FALSE)
+    l<-length(data$products)
+    for (i in 1:l) {
+       fig<-add_trace(fig,type='bar',y=c(data$old[i],data$new[i]),name=paste('P',i),showlegend=TRUE)
+    }
+    fig<-add_trace(fig,type='bar',y=c(0,data$machine[1]),name='Cost of Moving Machines',showlegend=TRUE)
+    fig<-layout(fig,yaxis=list(title='Cost'),barmode = 'stack')
+   })
+}
 
