@@ -1,0 +1,3157 @@
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 1
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+C o m p i l a t i o n
+
+
+   2   
+      The original formulation is as a non-cooperative game;
+      a Nash equilibrium is sought.  The Nash game is then extended to a
+      Stackelberg or leader-follower game.  The Stackelberg game differs
+      from the original Nash game in that one firm (the leader)
+      now anticipates the prices set by all the other firms (the followers) and
+      sets its own prices based on this information.
+       
+       
+      References:
+       
+      F.H. Murphy, H.D. Sherali, and A.L. Soyster, "A mathematical
+      programming approach for determining oligopolistic market
+      equilibrium", Mathematical Programming 24 (1982) 92-106
+       
+      P.T. Harker, "Accelerating the Convergence of the Diagonalization and
+      Projection Algorithms for Finite-Dimensional Variational Inequalities",
+      Mathematical Programming 41 (1988) 29-59.
+       
+      S.P. Dirkse and M.C. Ferris, "MCPLIB: A Collection of Nonlinear Mixed
+      Complementarity Problems", Optimization Methods in Software 5 (1995), 319-345.
+       
+       
+      Together with a production quantity vector q(I), the data below define:
+       
+      0. A total quantity TQ = sum{I,q(I)} being produced
+       
+      1. An inverse demand function p(TQ), i.e. the unit price at which consumers
+         will demand (and actually purchase) a quantity TQ.  The inverse demand
+         function p(TQ) is derived from the demand curve
+       
+           TQ(p) = dbar*p**(-gamma)
+       
+         yielding
+       
+           p(TQ) = dbar**(1/gamma)*TQ**(-1/gamma)
+       
+      2. The total production cost TC_i(q_i) for firm i (not the per-unit cost)
+         If we equate the marginal cost with price and assume each firm's supply
+         curve is a constant elasticity function q = L*p**beta for some constant L
+         and supply elasticity beta, we get a price function
+       
+           p = (q/L)**(1/beta)
+       
+         If we add a constant c to the price above (a fixed per/unit cost), the
+         following function TC has the desired marginal cost (i.e. price):
+       
+           TC(I) = c(I)*q(I) +  beta(I)/(1+beta(I))*L(I)**(1/beta(I))
+                                         *q(I)**((1+beta(I))/beta(I))
+       
+       
+      Individual firms that behave in a Nash manner
+      (i.e. they assume the other firms' decisions are fixed) optimize their
+      production q(I) to maximize profit:
+       
+        profit(i) = q(I)*p(TQ) - TC(I)
+       
+      Keywords: mixed complementarity problem, equilibrium constraints, Nash game,
+                Stackelberg game, oligopolistic market equilibrium, general equilibrium
+                model
+  64   
+  65  Set
+  66     I         'firms' / 1*10 /
+  67     leader(I) 'at most one leader firm',
+  68     courn(I)  'cournot or price taker';
+  69   
+  70  Table IData(I,*) 'data for the firms'
+  71          c   L  beta
+  72      1   5  10  1.2
+  73      2   3  10  1
+  74      3   8  10   .9
+  75      4   5  10   .6
+  76      5   1  10  1.5
+  77      6   3  10  1
+  78      7   7  10   .7
+  79      8   4  10  1.1
+  80      9   6  10   .95
+  81     10   3  10   .75;
+  82   
+  83  Scalar
+  84     gamma   'demand elasticity'               /  1.2 /
+  85     dbar    'reference or unit-price demand'  / 5000 /;
+  86   
+  87  Parameter
+  88     c(I)    'unit production cost'
+  89     L(I)    'supply curve scale factor'
+  90     beta(I) 'supply curve elasticity'
+  91     s(I);
+  92   
+  93  c(I)    = IData(I,'c');
+  94  L(I)    = IData(I,'L');
+  95  beta(I) = IData(I,'beta');
+  96  s(I)    = (beta(I)/(1 + beta(I)))*L(I)**(1/beta(I));
+  97   
+  98  Alias (I,J,K);
+  99   
+ 100  Positive Variable
+ 101     q(I) 'production vector';
+ 102   
+ 103  Variables
+ 104     z 'leader profit',
+ 105     p 'price',
+ 106     prof(i);
+ 107   
+ 108  equation defobj_Cour(i), defp;
+ 109   
+ 110  $macro pr(q) ((dbar/sum(J, q(J)))**(1/gamma))
+ 111  $macro TC(i,q) (c(i)*q(i) + s(i)*q(i)**((1+beta(i))/beta(i)))
+ 112   
+ 113  defp..
+ 114    p =e= (dbar/sum(J, q(J)))**(1/gamma);
+ 115   
+ 116  defobj_Cour(i)..
+ 117    z$Leader(i) + prof(i)$(not Leader(i)) =e= q(i)*{((dbar/sum(J, q(J)))**(1/gamma))$courn(i) + p$(not courn(i))}-(c(i)*q(i) + s(i)*q(i)**((1+beta(i))/beta(i)));
+ 118   
+ 119  model Cournot      / defobj_Cour, defp / ;
+ 120   
+ 121  File myinfo /'C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\empinfo.dat'/;
+ 122  put myinfo 'equilibrium';
+ 123  loop(i,
+ 124     put / 'max', prof(i), q(i), defobj_Cour(i);
+ 125  );
+ 126  put / 'vi defp p';
+ 127  putclose myinfo;
+ 128   
+ 129  * allow some domain violations in DNLP subsolvers
+ 130   
+ 131  *option mpec=knitro;
+ 132  option dnlp=baron;
+ 134  *Cournot.optfile=1;
+ 135  option domLim = 50;
+ 137   
+ 138  Parameter report;
+ 139   
+ 140  q.l(I)    =  1;
+ 141  leader(I) = no;
+ 142  courn(I) = no;
+ 143  *courn(I)=yes;
+ 144  *courn('1')=no;
+ 145  solve Cournot using emp;
+ 146   
+ 147  * compute player profits in the Nash case,
+ 148  * i.e. when all players assume nothing about the other players' strategies
+ 149  report(I,'nash') = q.l(I)*((dbar/sum(J, q.l(J)))**(1/gamma)) - (c(I)*q.l(I) + s(I)*q.l(I)**((1+beta(I))/beta(I)));
+ 150  report('price','nash') = ((dbar/sum(J, q.l(J)))**(1/gamma));
+ 151   
+ 152  model Stackelberg / defobj_Cour, defp / ;
+ 153   
+ 154  loop(k,
+ 155    leader(k) = yes ;
+ 156    courn(i) = yes$sameas(i,k);
+ 157    q.l(i)=1;
+ 158    put myinfo 'bilevel', q(k);
+ 159    loop(i$(not Leader(i)),
+ 160      put  / 'max', prof(i), q(i), defobj_Cour(i);
+ 161    );
+ 162    put / 'vi defp p';
+ 163    putclose myinfo;
+ 164   
+ 165    solve Stackelberg using emp maximizing z;
+ 166    report(I,K) = q.l(I)*((dbar/sum(J, q.l(J)))**(1/gamma)) - (c(I)*q.l(I) + s(I)*q.l(I)**((1+beta(I))/beta(I)));
+ 167    report('price',K) = ((dbar/sum(J, q.l(J)))**(1/gamma));
+ 168    leader(k) = no ;
+ 169  );
+ 170   
+ 171  Parameter reprel 'percentage change';
+ 172  reprel(I,J)       = 100*(report(I,J) - report(I,'nash'))/report(I,'nash');
+ 173  reprel('price',J) = 100*(report('price',J) - report('price','nash'))/report('price','nash');
+ 174   
+ 175  display report, reprel;
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 2
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Cournot Using EMP From line 145
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  (11.8129206905796)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 8.71613855849797, INFES = 8.71613855849797 ****)
+     
+defobj_Cour(2)..  (13)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 8, INFES = 8 ****)
+     
+defobj_Cour(3)..  (20.9154966501488)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 14.117866834281, INFES = 14.117866834281 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -177.476832987779, INFES = 177.476832987779 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 3
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Cournot Using EMP From line 145
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+      (11.8129) defobj_Cour(1)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+      (13)      defobj_Cour(2)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+      (20.9155) defobj_Cour(3)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 7 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 4
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Cournot Using EMP From line 145
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            41     NON LINEAR N-Z             30
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 137
+
+
+GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 5
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Cournot Using EMP From line 145
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Cournot             
+     TYPE    EMP                 
+     SOLVER  JAMS                FROM LINE  145
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      2 Locally Optimal           
+
+ RESOURCE USAGE, LIMIT          0.016      1000.000
+ ITERATION COUNT, LIMIT         5    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 11
+    Bilevel Followers   = 0
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+11 row/cols, 31 non-zeros, 25.62% dense.
+
+Path 5.0.02 (Fri May  1 19:28:16 2020)
+Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
+
+INITIAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  1.0000e+00 var: (x1)
+Maximum of F. . . . . . . . . .  1.7748e+02 eqn: (e11)
+Maximum of Grad F . . . . . . .  7.7360e+01 eqn: (dL_dx4)
+                                            var: (x4)
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  1.4890e+02 eqn: (e11)
+Minimum Row Norm. . . . . . . .  4.0944e+00 eqn: (dL_dx5)
+Maximum Column Norm . . . . . .  9.2150e+01 var: (x4)
+Minimum Column Norm . . . . . .  1.1000e+01 var: (x11)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.0517e-09 eqn: (e11)
+Inf-Norm of Normal Map. . . . .  2.0517e-09 eqn: (e11)
+Inf-Norm of Minimum Map . . . .  2.0517e-09 eqn: (e11)
+Inf-Norm of Fischer Function. .  2.0517e-09 eqn: (e11)
+Inf-Norm of Grad Fischer Fcn. .  7.5900e-09 eqn: (dL_dx4)
+Two-Norm of Grad Fischer Fcn. .  9.3135e-09
+
+FINAL POINT STATISTICS
+Maximum of X. . . . . . . . . .  4.2058e+01 var: (x11)
+Maximum of F. . . . . . . . . .  2.0517e-09 eqn: (e11)
+Maximum of Grad F . . . . . . .  7.0697e+01 eqn: (dL_dx4)
+                                            var: (x4)
+
+---
+--- Equations skipped = 10  Equations added = 10
+--- Variables skipped = 10  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+1           .              .              .             1.0000      
+2           .              .              .             1.0000      
+3           .              .              .             1.0000      
+4           .              .              .             1.0000      
+5           .              .              .             1.0000      
+6           .              .              .             1.0000      
+7           .              .              .             1.0000      
+8           .              .              .             1.0000      
+9           .              .              .             1.0000      
+10          .              .              .             1.0000      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU defp                .              .              .            42.0584      
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+1           .             7.6325        +INF             .          
+2           .             3.9058        +INF             .          
+3           .             2.3933        +INF             .          
+4           .             0.8736        +INF             .          
+5           .            26.3090        +INF             .          
+6           .             3.9058        +INF             .          
+7           .             1.2060        +INF             .          
+8           .             5.4764        +INF             .          
+9           .             3.0141        +INF             .          
+10          .             1.5624        +INF             .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR p                 -INF           42.0584        +INF             .          
+
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+1         -INF          128.5669        +INF             .          
+2         -INF           76.2781        +INF             .          
+3         -INF           42.9016        +INF             .          
+4         -INF           20.2348        +INF             .          
+5         -INF          432.0819        +INF             .          
+6         -INF           76.2781        +INF             .          
+7         -INF           24.8713        +INF             .          
+8         -INF           99.2494        +INF             .          
+9         -INF           55.7351        +INF             .          
+10        -INF           34.8709        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             1  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 6
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (150.874176214884)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + z =E= 0 ; (LHS = -168.760694429281, INFES = 168.760694429281 ****)
+     
+defobj_Cour(2)..  - (29.0584402006157)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.2196473446379, INFES = 42.2196473446379 ****)
+     
+defobj_Cour(3)..  - (21.1429435504668)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 14.9610210050327, INFES = 14.9610210050327 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.418392787163, INFES = 135.418392787163 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 7
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+    (-150.8742) defobj_Cour(1)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+      (14.7897) defobj_Cour(1)
+     (-29.0584) defobj_Cour(2)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+      (14.7897) defobj_Cour(1)
+     (-21.1429) defobj_Cour(3)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defobj_Cour(1)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0584402006157, +INF, 0)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.2780875452536, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 42.9015943713674, +INF, 0)
+        1       defobj_Cour(3)
+
+prof(4)
+                (.LO, .L, .UP, .M = -INF, 20.2348241546706, +INF, 0)
+        1       defobj_Cour(4)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 8
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   1
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 1
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 9
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE              129.1993
+
+ RESOURCE USAGE, LIMIT          1.030      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 129.199313345628  best solution found during preprocessing
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.1137        +INF         
+2           .             3.9224        +INF         
+3           .             2.4038        +INF         
+4           .             0.8760        +INF         
+5           .            26.4684        +INF         
+6           .             3.9224        +INF         
+7           .             1.2100        +INF         
+8           .             5.5027        +INF         
+9           .             3.0273        +INF         
+10          .             1.5673        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF          129.1993        +INF         
+---- VAR p                 -INF           42.2242        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+2         -INF           76.9268        +INF         
+3         -INF           43.2991        +INF         
+4         -INF           20.3798        +INF         
+5         -INF          436.4557        +INF         
+6         -INF           76.9268        +INF         
+7         -INF           25.0715        +INF         
+8         -INF          100.1592        +INF         
+9         -INF           56.2358        +INF         
+10        -INF           35.1303        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             2  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 10
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.4112628556778)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.0588093038521, INFES = 95.0588093038521 ****)
+     
+defobj_Cour(2)..  (14.7897360823149)*q(1) - (149.687096905464)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + z =E= 0 ; (LHS = -40.2775196421502, INFES = 40.2775196421502 ****)
+     
+defobj_Cour(3)..  - (21.3086868961085)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 15.1928244456917, INFES = 15.1928244456917 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.252649441521, INFES = 135.252649441521 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 11
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, NA)
+     (-30.4113) defobj_Cour(1)
+      (14.7897) defobj_Cour(2)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+    (-149.6871) defobj_Cour(2)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+      (14.7897) defobj_Cour(2)
+     (-21.3087) defobj_Cour(3)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 129.199313345628, +INF, 0)
+        1       defobj_Cour(2)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.2241835462574, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.566854291612, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 43.2991411576681, +INF, 0)
+        1       defobj_Cour(3)
+
+prof(4)
+                (.LO, .L, .UP, .M = -INF, 20.3798182639275, +INF, 0)
+        1       defobj_Cour(4)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 12
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   2
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 2
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 13
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               76.3448
+
+ RESOURCE USAGE, LIMIT          0.400      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 76.3448353375261  found at node 1
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6409        +INF         
+2           .             3.7936        +INF         
+3           .             2.3955        +INF         
+4           .             0.8741        +INF         
+5           .            26.3418        +INF         
+6           .             3.9093        +INF         
+7           .             1.2068        +INF         
+8           .             5.4818        +INF         
+9           .             3.0168        +INF         
+10          .             1.5634        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           76.3448        +INF         
+---- VAR p                 -INF           42.0926        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          128.8280        +INF         
+3         -INF           42.9835        +INF         
+4         -INF           20.2647        +INF         
+5         -INF          432.9820        +INF         
+6         -INF           76.4117        +INF         
+7         -INF           24.9125        +INF         
+8         -INF           99.4367        +INF         
+9         -INF           55.8382        +INF         
+10        -INF           34.9243        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             1  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 14
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.2797102461805)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.4514658231869, INFES = 95.4514658231869 ****)
+     
+defobj_Cour(2)..  - (29.0926309367601)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.8341978067643, INFES = 42.8341978067643 ****)
+     
+defobj_Cour(3)..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) - (141.771600255315)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + z =E= 0 ; (LHS = -87.0141308159714, INFES = 87.0141308159714 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.384202051019, INFES = 135.384202051019 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 15
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.2797) defobj_Cour(1)
+      (14.7897) defobj_Cour(3)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, NA)
+     (-29.0926) defobj_Cour(2)
+      (14.7897) defobj_Cour(3)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+    (-141.7716) defobj_Cour(3)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 76.3448353375261, +INF, 0)
+        1       defobj_Cour(3)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0926309367601, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.827958201449, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.9268287435244, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(4)
+                (.LO, .L, .UP, .M = -INF, 20.2647028003223, +INF, 0)
+        1       defobj_Cour(4)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 16
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   3
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 3
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 17
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               42.9174
+
+ RESOURCE USAGE, LIMIT          0.480      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 42.9174395669794  best solution found during preprocessing
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6357        +INF         
+2           .             3.9072        +INF         
+3           .             2.3494        +INF         
+4           .             0.8738        +INF         
+5           .            26.3217        +INF         
+6           .             3.9072        +INF         
+7           .             1.2063        +INF         
+8           .             5.4785        +INF         
+9           .             3.0151        +INF         
+10          .             1.5628        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           42.9174        +INF         
+---- VAR p                 -INF           42.0717        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          128.6680        +INF         
+2         -INF           76.3298        +INF         
+4         -INF           20.2464        +INF         
+5         -INF          432.4305        +INF         
+6         -INF           76.3298        +INF         
+7         -INF           24.8873        +INF         
+8         -INF           99.3219        +INF         
+9         -INF           55.7751        +INF         
+10        -INF           34.8916        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             2  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 18
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.2587668689735)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.3124369207184, INFES = 95.3124369207184 ****)
+     
+defobj_Cour(2)..  - (29.0716875595531)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.2581508780138, INFES = 42.2581508780138 ****)
+     
+defobj_Cour(3)..  - (21.1561909094043)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 15.0296402681739, INFES = 15.0296402681739 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.405145428225, INFES = 135.405145428225 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 19
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.2588) defobj_Cour(1)
+      (14.7897) defobj_Cour(4)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-29.0717) defobj_Cour(2)
+      (14.7897) defobj_Cour(4)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, NA)
+     (-21.1562) defobj_Cour(3)
+      (14.7897) defobj_Cour(4)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 42.9174395669794, +INF, 0)
+        1       defobj_Cour(4)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0716875595531, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.667985921774, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.329838437567, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 42.983460993446, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 20
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   4
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 4
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 21
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               20.2353
+
+ RESOURCE USAGE, LIMIT          1.030      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 20.2352962095017  best solution found during preprocessing
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6327        +INF         
+2           .             3.9060        +INF         
+3           .             2.3934        +INF         
+4           .             0.8700        +INF         
+5           .            26.3100        +INF         
+6           .             3.9060        +INF         
+7           .             1.2060        +INF         
+8           .             5.4766        +INF         
+9           .             3.0142        +INF         
+10          .             1.5624        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           20.2353        +INF         
+---- VAR p                 -INF           42.0595        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          128.5751        +INF         
+2         -INF           76.2823        +INF         
+3         -INF           42.9042        +INF         
+5         -INF          432.1104        +INF         
+6         -INF           76.2823        +INF         
+7         -INF           24.8726        +INF         
+8         -INF           99.2553        +INF         
+9         -INF           55.7384        +INF         
+10        -INF           34.8726        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             2  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 22
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.2466006819625)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.2317236239939, INFES = 95.2317236239939 ****)
+     
+defobj_Cour(2)..  - (29.0595213725421)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.2227891200616, INFES = 42.2227891200616 ****)
+     
+defobj_Cour(3)..  - (21.1440247223933)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 14.9625274694555, INFES = 14.9625274694555 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.417311615236, INFES = 135.417311615236 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 23
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.2466) defobj_Cour(1)
+      (14.7897) defobj_Cour(5)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-29.0595) defobj_Cour(2)
+      (14.7897) defobj_Cour(5)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-21.144)  defobj_Cour(3)
+      (14.7897) defobj_Cour(5)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 20.2352962095017, +INF, 0)
+        1       defobj_Cour(5)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0595213725421, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.575106438038, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.2823104926037, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 42.9041820077166, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 24
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   5
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 5
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 25
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE              465.3324
+
+ RESOURCE USAGE, LIMIT          0.510      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 465.33242644317  best solution found during preprocessing
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             8.2773        +INF         
+2           .             4.1650        +INF         
+3           .             2.5566        +INF         
+4           .             0.9098        +INF         
+5           .            20.2945        +INF         
+6           .             4.1650        +INF         
+7           .             1.2677        +INF         
+8           .             5.8879        +INF         
+9           .             3.2195        +INF         
+10          .             1.6395        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF          465.3324        +INF         
+---- VAR p                 -INF           44.6496        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          149.1776        +INF         
+2         -INF           86.7346        +INF         
+3         -INF           49.3150        +INF         
+4         -INF           22.5456        +INF         
+6         -INF           86.7346        +INF         
+7         -INF           28.0766        +INF         
+8         -INF          113.9724        +INF         
+9         -INF           63.8115        +INF         
+10        -INF           39.0195        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             2  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 26
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (32.8367131224768)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 113.244070704701, INFES = 113.244070704701 ****)
+     
+defobj_Cour(2)..  - (31.6496338130564)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 50.0849660250282, INFES = 50.0849660250282 ****)
+     
+defobj_Cour(3)..  - (23.7341371629076)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 18.7831963503187, INFES = 18.7831963503187 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -132.827199174722, INFES = 132.827199174722 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 27
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-32.8367) defobj_Cour(1)
+      (14.7897) defobj_Cour(6)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-31.6496) defobj_Cour(2)
+      (14.7897) defobj_Cour(6)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-23.7341) defobj_Cour(3)
+      (14.7897) defobj_Cour(6)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 465.33242644317, +INF, 0)
+        1       defobj_Cour(6)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 44.6496338130564, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 149.17756595926, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 86.7345998380846, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 49.3149633290941, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 28
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   6
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 6
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 29
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               76.3448
+
+ RESOURCE USAGE, LIMIT          1.020      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 76.344835325677  found at node 1
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6409        +INF         
+2           .             3.9093        +INF         
+3           .             2.3955        +INF         
+4           .             0.8741        +INF         
+5           .            26.3418        +INF         
+6           .             3.7936        +INF         
+7           .             1.2068        +INF         
+8           .             5.4818        +INF         
+9           .             3.0168        +INF         
+10          .             1.5634        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           76.3448        +INF         
+---- VAR p                 -INF           42.0926        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          128.8280        +INF         
+2         -INF           76.4117        +INF         
+3         -INF           42.9835        +INF         
+4         -INF           20.2647        +INF         
+5         -INF          432.9820        +INF         
+7         -INF           24.9125        +INF         
+8         -INF           99.4367        +INF         
+9         -INF           55.8382        +INF         
+10        -INF           34.9243        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             2  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 30
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.279710247936)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.4514658348457, INFES = 95.4514658348457 ****)
+     
+defobj_Cour(2)..  - (29.0926309385157)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.3190587462339, INFES = 42.3190587462339 ****)
+     
+defobj_Cour(3)..  - (21.1771342883668)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 15.0086968934169, INFES = 15.0086968934169 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.384202049263, INFES = 135.384202049263 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 31
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.2797) defobj_Cour(1)
+      (14.7897) defobj_Cour(7)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-29.0926) defobj_Cour(2)
+      (14.7897) defobj_Cour(7)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-21.1771) defobj_Cour(3)
+      (14.7897) defobj_Cour(7)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 76.344835325677, +INF, 0)
+        1       defobj_Cour(7)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0926309385157, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.827958214863, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.4116896847496, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 42.9834609976515, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 32
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   7
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.047 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 7
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 33
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               24.8728
+
+ RESOURCE USAGE, LIMIT          0.660      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 24.8728313957194  best solution found during preprocessing
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6331        +INF         
+2           .             3.9061        +INF         
+3           .             2.3935        +INF         
+4           .             0.8737        +INF         
+5           .            26.3114        +INF         
+6           .             3.9061        +INF         
+7           .             1.1975        +INF         
+8           .             5.4768        +INF         
+9           .             3.0143        +INF         
+10          .             1.5625        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           24.8728        +INF         
+---- VAR p                 -INF           42.0610        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          128.5863        +INF         
+2         -INF           76.2880        +INF         
+3         -INF           42.9077        +INF         
+4         -INF           20.2370        +INF         
+5         -INF          432.1488        +INF         
+6         -INF           76.2880        +INF         
+8         -INF           99.2633        +INF         
+9         -INF           55.7428        +INF         
+10        -INF           34.8749        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             1  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 34
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.2480608714562)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.2414089267318, INFES = 95.2414089267318 ****)
+     
+defobj_Cour(2)..  - (29.0609815620358)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.2270324674491, INFES = 42.2270324674491 ****)
+     
+defobj_Cour(3)..  - (21.1454849118869)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 14.9645621600897, INFES = 14.9645621600897 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.415851425743, INFES = 135.415851425743 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 35
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.2481) defobj_Cour(1)
+      (14.7897) defobj_Cour(8)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-29.061)  defobj_Cour(2)
+      (14.7897) defobj_Cour(8)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-21.1455) defobj_Cour(3)
+      (14.7897) defobj_Cour(8)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 24.8728313957194, +INF, 0)
+        1       defobj_Cour(8)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0609815620358, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(9)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.58625193027, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.2880140294849, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 42.9076768878445, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 36
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   8
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 8
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 37
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               99.4573
+
+ RESOURCE USAGE, LIMIT          0.350      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 99.4572733223609  best solution found during preprocessing
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6512        +INF         
+2           .             3.9134        +INF         
+3           .             2.3981        +INF         
+4           .             0.8747        +INF         
+5           .            26.3820        +INF         
+6           .             3.9134        +INF         
+7           .             1.2078        +INF         
+8           .             5.2317        +INF         
+9           .             3.0201        +INF         
+10          .             1.5647        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           99.4573        +INF         
+---- VAR p                 -INF           42.1344        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          129.1472        +INF         
+2         -INF           76.5750        +INF         
+3         -INF           43.0835        +INF         
+4         -INF           20.3012        +INF         
+5         -INF          434.0826        +INF         
+6         -INF           76.5750        +INF         
+7         -INF           24.9630        +INF         
+9         -INF           55.9642        +INF         
+10        -INF           34.9896        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             1  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 38
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.321458314639)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.7289264825305, INFES = 95.7289264825305 ****)
+     
+defobj_Cour(2)..  - (29.1343790052186)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.4406020009862, INFES = 42.4406020009862 ****)
+     
+defobj_Cour(3)..  - (21.2188823550698)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 15.0670110331157, INFES = 15.0670110331157 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.34245398256, INFES = 135.34245398256 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 39
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.3215) defobj_Cour(1)
+      (14.7897) defobj_Cour(9)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-29.1344) defobj_Cour(2)
+      (14.7897) defobj_Cour(9)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-21.2189) defobj_Cour(3)
+      (14.7897) defobj_Cour(9)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 99.4572733223609, +INF, 0)
+        1       defobj_Cour(9)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.1343790052186, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(10)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 129.147166929251, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.5749810062049, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 43.0835232040533, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 40
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   9
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 9
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 41
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               55.7667
+
+ RESOURCE USAGE, LIMIT          0.510      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 55.7666739177797  found at node 1
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6376        +INF         
+2           .             3.9079        +INF         
+3           .             2.3947        +INF         
+4           .             0.8739        +INF         
+5           .            26.3291        +INF         
+6           .             3.9079        +INF         
+7           .             1.2065        +INF         
+8           .             5.4797        +INF         
+9           .             2.9449        +INF         
+10          .             1.5630        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           55.7667        +INF         
+---- VAR p                 -INF           42.0794        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+          LOWER          LEVEL          UPPER
+
+1         -INF          128.7268        +INF         
+2         -INF           76.3599        +INF         
+3         -INF           42.9517        +INF         
+4         -INF           20.2531        +INF         
+5         -INF          432.6333        +INF         
+6         -INF           76.3599        +INF         
+7         -INF           24.8966        +INF         
+8         -INF           99.3641        +INF         
+10        -INF           34.9036        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             2  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 42
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Equation Listing    SOLVE Stackelberg Using EMP From line 165
+
+
+---- defobj_Cour  =E=  
+
+defobj_Cour(1)..  - (30.2664680122052)*q(1) - (1)*p + prof(1) =E= 0 ; (LHS = 95.3635469931933, INFES = 95.3635469931933 ****)
+     
+defobj_Cour(2)..  - (29.0793887027848)*q(2) - (1)*p + prof(2) =E= 0 ; (LHS = 42.2805423663825, INFES = 42.2805423663825 ****)
+     
+defobj_Cour(3)..  - (21.163892052636)*q(3) - (1)*p + prof(3) =E= 0 ; (LHS = 14.9902230229956, INFES = 14.9902230229956 ****)
+     
+REMAINING 7 ENTRIES SKIPPED
+
+
+---- defp  =E=  
+
+defp..  (14.7897360823149)*q(1) + (14.7897360823149)*q(2) + (14.7897360823149)*q(3) + (14.7897360823149)*q(4) + (14.7897360823149)*q(5) + (14.7897360823149)*q(6) + (14.7897360823149)*q(7) + (14.7897360823149)*q(8) + (14.7897360823149)*q(9)
+     
+      + (14.7897360823149)*q(10) + p =E= 0 ; (LHS = -135.397444284994, INFES = 135.397444284994 ****)
+     
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 43
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Column Listing      SOLVE Stackelberg Using EMP From line 165
+
+
+---- q  production vector
+
+q(1)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-30.2665) defobj_Cour(1)
+      (14.7897) defobj_Cour(10)
+      (14.7897) defp
+
+q(2)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-29.0794) defobj_Cour(2)
+      (14.7897) defobj_Cour(10)
+      (14.7897) defp
+
+q(3)
+                (.LO, .L, .UP, .M = 0, 1, +INF, -2E300)
+     (-21.1639) defobj_Cour(3)
+      (14.7897) defobj_Cour(10)
+      (14.7897) defp
+
+REMAINING 7 ENTRIES SKIPPED
+
+---- z  leader profit
+
+z
+                (.LO, .L, .UP, .M = -INF, 55.7666739177797, +INF, 0)
+        1       defobj_Cour(10)
+
+
+---- p  price
+
+p
+                (.LO, .L, .UP, .M = -INF, 42.0793887027848, +INF, NA)
+      (-1)      defobj_Cour(1)
+      (-1)      defobj_Cour(2)
+      (-1)      defobj_Cour(3)
+      (-1)      defobj_Cour(4)
+      (-1)      defobj_Cour(5)
+      (-1)      defobj_Cour(6)
+      (-1)      defobj_Cour(7)
+      (-1)      defobj_Cour(8)
+      (-1)      defobj_Cour(9)
+        1       defp
+
+
+---- prof  
+
+prof(1)
+                (.LO, .L, .UP, .M = -INF, 128.72679713748, +INF, 0)
+        1       defobj_Cour(1)
+
+prof(2)
+                (.LO, .L, .UP, .M = -INF, 76.3599310691674, +INF, 0)
+        1       defobj_Cour(2)
+
+prof(3)
+                (.LO, .L, .UP, .M = -INF, 42.9517448914994, +INF, 0)
+        1       defobj_Cour(3)
+
+REMAINING 6 ENTRIES SKIPPED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 44
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Model Statistics    SOLVE Stackelberg Using EMP From line 165
+
+
+LOOPS                                    K   10
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS           11
+BLOCKS OF VARIABLES           4     SINGLE VARIABLES           21
+NON ZERO ELEMENTS            49     NON LINEAR N-Z             38
+DERIVATIVE POOL              20     CONSTANT POOL              38
+CODE LENGTH                 150
+
+
+GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+EXECUTION TIME       =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+               L O O P S                  K 10
+
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 45
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+Solution Report     SOLVE Stackelberg Using EMP From line 165
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Stackelberg         OBJECTIVE  z
+     TYPE    EMP                 DIRECTION  MAXIMIZE
+     SOLVER  JAMS                FROM LINE  165
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      7 Feasible Solution         
+**** OBJECTIVE VALUE               34.8741
+
+ RESOURCE USAGE, LIMIT          0.350      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+ EVALUATION ERRORS              0            50
+
+JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+JAMS - Solver for Extended Mathematical Programs (EMP)
+------------------------------------------------------
+--- EMP Summary
+    Logical Constraints = 0
+    Disjunctions        = 0
+    Adjusted Constraint = 0
+    Flipped Constraints = 0
+    Dual Variable Maps  = 0
+    Dual Equation Maps  = 0
+    VI Functions        = 1
+    QVI Parameters      = 0
+    Equilibrium Agent   = 0
+    Bilevel Followers   = 10
+
+--- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+---
+--- Returning from GAMS step
+
+NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+Reformulates Nonlinear Programs with Equilibrium Constraints
+Michael Ferris, University of Wisconsin
+
+* Reformulation parameters, after checking for consistency.
+* Reform Type        SINGLE      DOUBLE
+*  refType             mult        mult
+*  slack           positive    positive
+*  constraint      equality    equality
+*  aggregate           none        none
+*  NCPBounds           none        none
+
+
+--- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
+--- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+
+--- Returning from GAMS NLPEC step
+
+--- Additional Mpec Equations = 9
+--- Additional Mpec Variables = 9
+
+GAMS/BARON       31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+
+BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+Parts of the BARON software were created at the
+University of Illinois at Urbana-Champaign.
+
+
+===========================================================================
+ BARON version 20.4.14. Built: WIN-64 Tue Apr 14 21:05:00 EDT 2020
+
+ BARON is a product of The Optimization Firm.
+ For information on BARON, see https://minlp.com/about-baron
+
+ If you use this software, please cite publications from
+ https://minlp.com/baron-publications, such as: 
+
+ Khajavirad, A. and N. V. Sahinidis,
+ A hybrid LP/NLP paradigm for global optimization relaxations,
+ Mathematical Programming Computation, 10, 383-421, 2018.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP/QP: ILOG CPLEX                                      
+ For NLP: MINOS, SNOPT, GAMS external NLP, IPOPT, FILTERSD, FILTERSQP
+
+Solution      = 34.874091598955  found at node 1
+Best possible = 1E51
+Absolute gap  = 1E51  optca = 1E-9
+Relative gap  = 1  optcr = 0.1
+  (Note that BARON uses a different formula to compute the relative gap as
+   was used for the above reported value.)
+
+---
+--- Equations skipped = 9  Equations added = 9
+--- Variables skipped = 9  Variables added = 0
+---
+
+---- EQU defobj_Cour  
+
+          LOWER          LEVEL          UPPER
+
+1           .              .              .          
+2           .              .              .          
+3           .              .              .          
+4           .              .              .          
+5           .              .              .          
+6           .              .              .          
+7           .              .              .          
+8           .              .              .          
+9           .              .              .          
+10          .              .              .          
+
+                           LOWER          LEVEL          UPPER
+
+---- EQU defp                .              .              .          
+
+---- VAR q  production vector
+
+          LOWER          LEVEL          UPPER
+
+1           .             7.6335        +INF         
+2           .             3.9063        +INF         
+3           .             2.3936        +INF         
+4           .             0.8737        +INF         
+5           .            26.3129        +INF         
+6           .             3.9063        +INF         
+7           .             1.2061        +INF         
+8           .             5.4771        +INF         
+9           .             3.0144        +INF         
+10          .             1.5486        +INF         
+
+                           LOWER          LEVEL          UPPER
+
+---- VAR z                 -INF           34.8741        +INF         
+---- VAR p                 -INF           42.0625        +INF         
+
+  z  leader profit
+  p  price
+
+---- VAR prof  
+
+         LOWER          LEVEL          UPPER
+
+1        -INF          128.5982        +INF         
+2        -INF           76.2941        +INF         
+3        -INF           42.9114        +INF         
+4        -INF           20.2384        +INF         
+5        -INF          432.1899        +INF         
+6        -INF           76.2941        +INF         
+7        -INF           24.8762        +INF         
+8        -INF           99.2718        +INF         
+9        -INF           55.7475        +INF         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+                             1  PROJECTED
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/15/20 21:47:28 Page 46
+A non-cooperative Game: Nash and Stackelberg versions (NASH,SEQ=269)
+E x e c u t i o n
+
+
+----    175 PARAMETER report  
+
+                1           2           3           4           5           6           7           8           9          10        nash
+
+1         129.199     128.828     128.668     128.575     149.178     128.828     128.586     129.147     128.727     128.598     128.567
+2          76.927      76.345      76.330      76.282      86.735      76.412      76.288      76.575      76.360      76.294      76.278
+3          43.299      42.983      42.917      42.904      49.315      42.983      42.908      43.084      42.952      42.911      42.902
+4          20.380      20.265      20.246      20.235      22.546      20.265      20.237      20.301      20.253      20.238      20.235
+5         436.456     432.982     432.431     432.110     465.332     432.982     432.149     434.083     432.633     432.190     432.082
+6          76.927      76.412      76.330      76.282      86.735      76.345      76.288      76.575      76.360      76.294      76.278
+7          25.072      24.913      24.887      24.873      28.077      24.913      24.873      24.963      24.897      24.876      24.871
+8         100.159      99.437      99.322      99.255     113.972      99.437      99.263      99.457      99.364      99.272      99.249
+9          56.236      55.838      55.775      55.738      63.811      55.838      55.743      55.964      55.767      55.747      55.735
+10         35.130      34.924      34.892      34.873      39.019      34.924      34.875      34.990      34.904      34.874      34.871
+price      42.224      42.093      42.072      42.060      44.650      42.093      42.061      42.134      42.079      42.063      42.058
+
+
+----    175 PARAMETER reprel  percentage change
+
+                1           2           3           4           5           6           7           8           9          10
+
+1           0.492       0.203       0.079       0.006      16.031       0.203       0.015       0.451       0.124       0.024
+2           0.850       0.088       0.068       0.006      13.708       0.175       0.013       0.389       0.107       0.021
+3           0.927       0.191       0.037       0.006      14.949       0.191       0.014       0.424       0.117       0.023
+4           0.717       0.148       0.057       0.002      11.420       0.148       0.011       0.328       0.090       0.018
+5           1.012       0.208       0.081       0.007       7.695       0.208       0.015       0.463       0.128       0.025
+6           0.850       0.175       0.068       0.006      13.708       0.088       0.013       0.389       0.107       0.021
+7           0.805       0.166       0.064       0.005      12.888       0.166       0.006       0.369       0.102       0.020
+8           0.917       0.189       0.073       0.006      14.834       0.189       0.014       0.209       0.116       0.023
+9           0.898       0.185       0.072       0.006      14.491       0.185       0.014       0.411       0.057       0.022
+10          0.744       0.153       0.059       0.005      11.897       0.153       0.011       0.340       0.094       0.009
+price       0.394       0.081       0.031       0.003       6.161       0.081       0.006       0.181       0.050       0.010
+
+
+**** REPORT FILE SUMMARY
+
+myinfo C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\empinfo.dat
+
+
+EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+
+
+USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+      UW-Madison Computer Sciences Dept.                         DCE244
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\nashemp2.gms
+Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\nashemp2.lst
