@@ -1,19 +1,24 @@
 {
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
   "overwriteSheetOrder": {
-    "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_scalars", "offsetcr", "descenddis", "_widgets"]
+    "input": ["cloudsinfo", "crcost", "climbdis", "upcost", "downcost", "_widgets"]
   },
   "overwriteAliases": {
-    "_scalars_out": {
-      "newAlias": "Output Scalars"
-    },
-    "flowop": {
-      "newAlias": "Flow"
-    },
     "cloudsinfo": {
       "newAlias": "Information of thunderstorm"
-    },
-    "_scalars": {
-      "newAlias": "Scalars"
     },
     "crcost": {
       "newAlias": "Cost to cruise"
@@ -27,67 +32,62 @@
     "downcost": {
       "newAlias": "Cost of going down 2k feet at downheight"
     },
-    "offsetcr": {
-      "newAlias": "Decision made frequency"
+    "_scalars": {
+      "newAlias": "Scalars"
     },
-    "descenddis": {
-      "newAlias": "Nautical distance to descend 2k feet"
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    },
+    "flowop": {
+      "newAlias": "Flying Path"
     }
   },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
   "pivottable": {
     "bgColor": "transparent"
   },
-  "theme": "browser",
-  "defCompMode": "split",
-  "roundingDecimals": 2,
-  "activateModules": {
-    "logFile": true,
-    "lstFile": true,
-    "loadLocal": true,
-    "attachments": true,
-    "downloadTempFiles": true
+  "inputWidgets": {
+    "minheight": {
+      "widgetType": "slider",
+      "alias": "minheight",
+      "min": 0,
+      "max": 10,
+      "default": 2,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Minimal flying height /1000ft"
+    },
+    "offsetcr": {
+      "widgetType": "slider",
+      "alias": "Cruise distance",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Distance to cruise for each decision",
+      "default": 1
+    },
+    "descenddis": {
+      "widgetType": "slider",
+      "alias": "Nautical distance to descend 2k feet",
+      "min": 0,
+      "max": 20,
+      "default": 10,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Nautical distance to descend 2k feet"
+    }
   },
-  "autoGenInputGraphs": true,
-  "aggregateWidgets": true,
-  "storeLogFilesDuration": 7,
-  "excelIncludeMeta": true,
-  "excelIncludeEmptySheets": true,
-  "saveTraceFile": true,
   "dataRendering": {
     "flowop": {
       "outType": "fflow"
     }
   },
   "defaultScenName": "default",
-  "UILogo": "cessnapic.jpg",
-  "pageTitle": "Flow under thunder condition",
-  "datatable": {
-    "class": "display",
-    "filter": "none",
-    "rownames": false,
-    "options": {
-      "pageLength": 15
-    }
-  },
-  "readme": {
-    "tabTitle": "Readme",
-    "filename": "readme.md",
-    "enableMath": true
-  },
-  "inputGroups": [
-    {
-      "name": "Cruise",
-      "members": ["offsetcr", "crcost"]
-    },
-    {
-      "name": "Ascend",
-      "members": ["climbdis", "upcost"]
-    },
-    {
-      "name": "Descend",
-      "members": ["descenddis", "downcost"]
-    }
-  ],
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -103,5 +103,10 @@
     },
     "height": 700,
     "colWidths": 150
+  },
+  "readme": {
+    "tabTitle": "Readme",
+    "filename": "readme.md",
+    "enableMath": true
   }
 }
