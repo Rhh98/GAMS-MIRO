@@ -29,7 +29,7 @@ renderFflow <- function(input, output, session, data, options = NULL, path = NUL
   cloudz<-cloudz[-which(is.na(cloudz[,1])),]
  # output$textout<-renderText(length(cloudz[,1]))
   output$plot1<-renderPlot({
-     plot(c(datap[,1]),c(datap[,2]),type='l',col='blue',main="Flow solution",xlab='nautical miles',ylab = 'altitude /100 feet',lwd=2,
+     plot(c(datap[,1]),c(datap[,2]),type='l',col='blue',main="Flow solution",xlab='nautical miles',ylab = 'altitude /1000 feet',lwd=2,
           ylim = c(min(min(datap[,2],min(cloudz))),max(max(datap[,2],max(cloudz)))))
      lines(c(cloudx[1,]),c(cloudz[1,]),col='red',lwd=3)
      lines(c(cloudx[2,]),c(cloudz[2,]),col='red',lwd=3)
