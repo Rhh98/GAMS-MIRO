@@ -20,71 +20,83 @@ $offtext
 * CES - COURNOT & STACKELBERG MODEL - 2 or more
 
 SETS
-i                "Cournot & Stackelberg firms"    / 1*3 /
-lead(i) /1/;
+i                "Cournot & Stackelberg firms" ;
 
-set
+singleton set
 leader(i)        "Stackelberg-leader"
 ;
 set CESHeader /c ,L,beta/;
 $onExternalInput
-TABLE fData(i,CESHeader) "CES data for firms"
-   c L  beta
-1  5 5  1.3
-2  5 10 1.1
-3  5 15 1
+TABLE IData(i<,CESHeader) "CES data for firms"
+        c   L  beta
+    1   5  10  1.2
+    2   3  10  1
+    3   8  10   .9
+    4   5  10   .6
+    5   1  10  1.5
+    6   3  10  1
+    7   7  10   .7
+    8   4  10  1.1
+    9   6  10   .95
+   10   3  10   .75;
 ;
+$offexternalInput
+
+$onexternalInput
+singleton set lead(i) /1/;
+parameter CournotFirm(i) 'cournot or price taker' /set.I 0/;
+$offexternalInput
+
+set courn(I)  'cournot or price taker';
+courn(I)$CournotFirm(I)=yes;
+
 SCALARS
 * gamma > 1
 gamma   "Demand Elasticity"            / 1.3 /
 dbar    "Reference Unit Price Demand"  / 2000 / ;
-$offexternalInput
 PARAMETERS
 c(i)    "Firm's Unit Production Cost"
 L(i)    "Labor Coefficient"
 beta(i) "Supply Elasticity"
+s(I)
 ;
-c(i) = fData(i, "c") ;
-L(i) = fData(i, "L") ;
-beta(i) = fData(i, "beta") ;
+c(i) = IData(i, "c") ;
+L(i) = IData(i, "L") ;
+beta(i) = IData(i, "beta") ;
+s(I)    = (beta(I)/(1 + beta(I)))*L(I)**(1/beta(I));
 alias (i,j,k) ;
 NONNEGATIVE VARIABLES
 q(i)   "Production Vector - for all models";
 VARIABLES
-obj(i) 'objective function for firm i'
+prof(i) 'objective function for firm i'
 p      "Market Clearing Price - Cournot & Stackelberg"
 z      "Stackelberg-leader Profit" ;
 EQUATIONS
 defobj_Cour(i)     "define objective function for firm i in Cournot"
-defobj_Stac(i)     "define objective function for firm i in stackelberg"
-prod_def         "Total Production Definition"
-obj_eq           "maximised Stackleberg-leader Profit"
+defp         "Total Production Definition"
 ;
 *-------------------------------------------------------------------------------------------
 * Cournot     - MPC complementarity defintion,
 * Stackelberg - MPEC second level complementarity definition
-prod_def..
+$macro pr(q) ((dbar/sum(J, q(J)))**(1/gamma))
+
+$macro TC(i,q) (c(i)*q(i) + s(i)*q(i)**((1+beta(i))/beta(i)))
+defp..
          p =E= (dbar/sum(j, q(j)))**(1/gamma) ;
 defobj_Cour(i)..
- obj(i) =e= q(i) *p-c(i)*q(i) -((beta(i)/(1+beta(i)))*L(i)**(1/beta(i)))*q(i)**((1+beta(i))/beta(i))     ;
-
-defobj_Stac(i)$(not Leader(i))..
-obj(i) =e= q(i) *(dbar/sum(j, q(j)))**(1/gamma)-c(i)*q(i) -((beta(i)/(1+beta(i)))*L(i)**(1/beta(i)))*q(i)**((1+beta(i))/beta(i));
-*-------------------------------------------------------------------------------------------
-* Stackelberg - MPEC first level optimisation
-
-obj_eq..
-         z =E= sum(leader(i), q(i)*p - q(i)*c(i) - ((beta(i)/(1+beta(i)))*L(i)**(1/beta(i)))*q(i)**((1+beta(i))/beta(i))) ;
+  z$Leader(i) + prof(i)$(not Leader(i)) =e= q(i)*{pr(q)$courn(i) + p$(not courn(i))}-TC(i,q);
 *-------------------------------------------------------------------------------------------
 
-model Cournot      / defobj_Cour,prod_def / ;
+
+model Cournot      / defobj_Cour,defp / ;
 
 File myinfo /'%emp.info%'/;
 put myinfo 'equilibrium';
-put 'implicit p prod_def';
 loop(i,
-   put / 'max', obj(i), q(i),p, defobj_Cour(i);
+   put / 'max', prof(i), q(i), defobj_Cour(i);
 );
+put / 'vi defp p';
+putclose myinfo;
 
 putclose myinfo;
 
@@ -98,8 +110,9 @@ $ifi %gams.mcp% == nlpec option dnlp=conopt;
 * Model solve and display for Cournot Case
 p.l = 1 ;
 q.l(i) = 1 ;
-leader(i) = no ;
+leader(I)=no;
 solve Cournot using emp ;
+
 * Cournot Quantities
 display q.l, p.l ;
 set CourHeader / quantity, price ,profit, gamma, dbar,cost,beta,l/;
@@ -137,7 +150,8 @@ resultCour2(i,CourHeader)=resultCour(i,CourHeader)
 
 * 'quantity' procedure same as 'profit'
 
-model Stackelberg / defobj_Stac, obj_eq,prod_def / ;
+model Stackelberg / defobj_Cour, defp / ;
+
 sets StacHeader /CourQuantity 'quantity when not a leader firm',StacQuantity 'quantity when as a leader firm',
                 CourProfit 'profit when not a leader firm', StacProfit 'profit when as a leader firm'/;
 
@@ -145,15 +159,15 @@ $onexternalOutput
 table resultStac(i,Stacheader) 'Difference between Cournot and Stackelberg model';
 $offExternalOutput
 leader(k) = no;
-$ontext
 loop(k,
      leader(k) = yes ;
      p.l=1;
      q.l(i)=1;
 put myinfo 'bilevel', q(k);
 loop(i$(not Leader(i)),
-   put  / 'max', obj(i), q(i), defobj_Stac(i);
+   put  / 'max', prof(i), q(i), defobj_Cour(i);
 );
+ put / 'vi defp p';
 putclose myinfo;
 
 solve Stackelberg using emp maximizing z;
@@ -161,16 +175,17 @@ resultStac(k,'StacQuantity')=q.l(k);
 resultStac(k,'StacProfit')=z.l;
 leader(k) = no ;
 );
-$offtext
+
 
 resultStac(i,'CourQuantity')=resultCour(i,'quantity');
 resultStac(i,'CourProfit')=resultCour(i,'profit');
 
+variables obj(i) 'Objective for sub-Stackelberg problem';
 Equation obj_subStac(i);
 obj_subStac(i)$(not lead(i))..
-obj(i) =e= q(i) *(dbar/sum(j, q(j)))**(1/gamma)-c(i)*q(i) -((beta(i)/(1+beta(i)))*L(i)**(1/beta(i)))*q(i)**((1+beta(i))/beta(i));
+obj(i) =e= q(i)*{pr(q)$courn(i) + p$(not courn(i))}-TC(i,q);
+model subStackelberg /obj_subStac,defp/;
 
-model subStackelberg /obj_subStac/;
 set linfoHeader /lquantity,lprofit,nprofit/;
 *    ninfoHeader /lquantity,lprofit,nprofit,nquantity/;
     
@@ -187,9 +202,10 @@ p.l=1;
 q.l(i)=1;
 q.fx(lead)=resultCour(lead,'Quantity')*(0.45+grid.val/20);
 put myinfo 'equilibrium';
-loop(i$(not lead(i)),
+loop(i$(nonlead(I)),
 put /'max', obj(i),q(i),obj_subStac(i);
 );
+put / 'vi defp p';
 putclose myinfo;
 solve subStackelberg using emp;
 linfo_stac(lead,grid,'lquantity')=q.l(lead);
@@ -212,7 +228,7 @@ linfo_stac(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(l
 * realistic but we simply assign 'w' so as to not confuse the models.
 * The prediction of the LINEAR price competition model does not have a meaningful
 * comparison to the CES quantity competition models
-
+$ontext
 SETS d  "Bertrand firms"  / 1*2 / ;
 set jHeader /w 'weight',c 'cost'/;
 $onexternalInput
@@ -275,3 +291,4 @@ resultBert('1',grid,'profit')=resultBert('1',grid,'price')*resultBert('1',grid,'
 resultBert('2',grid,'profit')=p2.l*resultBert('2',grid,'quantity')-jData("2","c")*resultBert('2',grid,'quantity');
 )
 
+$offtext
