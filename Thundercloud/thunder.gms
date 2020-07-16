@@ -26,7 +26,7 @@ height /2 ,4 ,6 ,8 ,10 ,12/
 upheight(height)/2 ,4, 6, 8, 10/
 downheight(height)/4,6,8,10,12/;
 scalar  Groundheight /0/;
-set s singular set /1/;
+*set s singular set /1/;
 $onExternalInput
 table cloudsInfo(clouds,cloudInf) 'Information of thunderstorm'
     xc   low   high
@@ -40,13 +40,13 @@ climbDis(upheight) 'Nautical distance to climb 2k feet' /2 5, 4 5,6 6,8 7, 10 10
 upcost(upheight) 'Cost of going up 2k feet at upheight' /2 10.2,4 11.42, 6 13.42, 8 17.23,10 19.7/
 downcost(downheight) 'Cost of going down 2k feet at downheight' /4 12.3, 6 12.5, 8 12.4, 10 12.2, 12 11.8/;
 ;
-parameter
- minheight /200/,
 
 *this is how far about crusing decisions are made at and costs above should same distance in offsetcr
-  offsetcr(s) 'Cruise distance' /1 1/,
-
-  descendDis(s) 'Nautical distance to descend 2k feet' /1 10/;
+parameter
+minheight /200/,
+offsetcr 'Cruise distance' /1/
+descendDis 'Nautical distance to descend 2k feet' /10/
+;
 
 $offExternalInput
 *min height of the aircraft (height in thousand of feet)*length of x e.g. 2,000 feet and 100 miles is 2*100=200
@@ -63,14 +63,14 @@ parameter
 *up numbers
   
 *this is addition to node that occurs for rise of 2000 feet and forward travel of 6 nautical miles node addn = 2*100 + 6 = 206 
-  offsetup(upheight) 'How far does it take to go up 2000 feet in nautical miles insert as in 2*length(x)+ distance in nautical miles',  
+offsetup(upheight) 'How far does it take to go up 2000 feet in nautical miles insert as in 2*length(x)+ distance in nautical miles' ,  
 *down numbers
  
 *this is addition to node that occurs for drop of 2000 feet and forward travel of 10 nautical miles node addn = -2*100 + 10 = -190
   offsetdown 'How far does it takes to go down 2000 feet in nautical miles insert as 2*length(x) - distance in nautical miles' 
   ;
  offsetup(upheight)=2*100+climbDis(upheight);
-  offsetdown=-2*100+descendDis('1');
+  offsetdown=-2*100+descendDis;
 alias(Nodes,I,J);
 alias(N, N1, N2);
 
@@ -92,14 +92,14 @@ Arcs('899','finish')=yes;
 C('finish','899')=0;
 
 *Put arcs for cruise @ cost crcost
-Arcs(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) and ord(N) gt minheight) =yes;
+Arcs(N1,N) $((ord(N) = (ord(N1)+offsetcr)) and ord(N) gt minheight) =yes;
 *c(N1,N) $(ord(N) = (ord(N1)+offsetcr)) = crcost;
-c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 200) AND(ord(N) le 299)) = crcost('2');
-c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 400) AND(ord(N) le 499)) = crcost('4');
-c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 600) AND(ord(N) le 699)) = crcost('6');
-c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 800) AND(ord(N) le 899)) = crcost('8');
-c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 1000) AND(ord(N) le 1099)) = crcost('10');
-c(N1,N) $((ord(N) = (ord(N1)+offsetcr('1'))) AND (ord(N) ge 1200) AND(ord(N) le 1299)) = crcost('12');
+c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 200) AND(ord(N) le 299)) = crcost('2');
+c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 400) AND(ord(N) le 499)) = crcost('4');
+c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 600) AND(ord(N) le 699)) = crcost('6');
+c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 800) AND(ord(N) le 899)) = crcost('8');
+c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 1000) AND(ord(N) le 1099)) = crcost('10');
+c(N1,N) $((ord(N) = (ord(N1)+offsetcr)) AND (ord(N) ge 1200) AND(ord(N) le 1299)) = crcost('12');
 
 *Put arcs for climb rate climbout @ cost upcost
 *Arcs(N1,N) $(ord(N) = (ord(N1)+offsetup)) =yes;
