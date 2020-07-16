@@ -1,0 +1,134 @@
+B 3 C o m p i l a t i o n
+B 169 Equation Listing    SOLVE Cournot Using EMP From line 134
+D 172 defobj_Cour
+B 190 Column Listing      SOLVE Cournot Using EMP From line 134
+E 193 q
+E 236 prof
+B 253 Model Statistics    SOLVE Cournot Using EMP From line 134
+B 271 Solution Report     SOLVE Cournot Using EMP From line 134
+F 342 defobj_Cour
+G 357 q
+G 372 prof
+B 394 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 397 defobj_Cour
+B 415 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 418 q
+E 461 z
+E 468 prof
+B 485 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 508 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 625 defobj_Cour
+G 640 q
+G 657 z
+G 661 prof
+B 682 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 685 defobj_Cour
+B 703 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 706 q
+E 749 z
+E 756 prof
+B 773 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 796 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 913 defobj_Cour
+G 928 q
+G 945 z
+G 949 prof
+B 970 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 973 defobj_Cour
+B 991 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 994 q
+E 1037 z
+E 1044 prof
+B 1061 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 1084 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 1201 defobj_Cour
+G 1216 q
+G 1233 z
+G 1237 prof
+B 1258 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 1261 defobj_Cour
+B 1279 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 1282 q
+E 1325 z
+E 1332 prof
+B 1349 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 1372 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 1489 defobj_Cour
+G 1504 q
+G 1521 z
+G 1525 prof
+B 1546 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 1549 defobj_Cour
+B 1567 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 1570 q
+E 1613 z
+E 1620 prof
+B 1637 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 1660 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 1777 defobj_Cour
+G 1792 q
+G 1809 z
+G 1813 prof
+B 1834 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 1837 defobj_Cour
+B 1855 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 1858 q
+E 1901 z
+E 1908 prof
+B 1925 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 1948 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 2065 defobj_Cour
+G 2080 q
+G 2097 z
+G 2101 prof
+B 2122 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 2125 defobj_Cour
+B 2143 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 2146 q
+E 2189 z
+E 2196 prof
+B 2213 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 2236 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 2353 defobj_Cour
+G 2368 q
+G 2385 z
+G 2389 prof
+B 2410 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 2413 defobj_Cour
+B 2431 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 2434 q
+E 2477 z
+E 2484 prof
+B 2501 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 2524 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 2641 defobj_Cour
+G 2656 q
+G 2673 z
+G 2677 prof
+B 2698 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 2701 defobj_Cour
+B 2719 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 2722 q
+E 2765 z
+E 2772 prof
+B 2789 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 2812 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 2929 defobj_Cour
+G 2944 q
+G 2961 z
+G 2965 prof
+B 2986 Equation Listing    SOLVE Stackelberg Using EMP From line 152
+D 2989 defobj_Cour
+B 3007 Column Listing      SOLVE Stackelberg Using EMP From line 152
+E 3010 q
+E 3053 z
+E 3060 prof
+B 3077 Model Statistics    SOLVE Stackelberg Using EMP From line 152
+B 3100 Solution Report     SOLVE Stackelberg Using EMP From line 152
+F 3217 defobj_Cour
+G 3232 q
+G 3249 z
+G 3253 prof
+B 3274 E x e c u t i o n
+I 3274 report
+I 3292 reprel
