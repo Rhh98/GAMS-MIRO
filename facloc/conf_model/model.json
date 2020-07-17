@@ -24,20 +24,8 @@
     "result": {
       "newAlias": "Layout and Work Flow"
     },
-    "_scalars_out": {
-      "newAlias": "Output Scalars"
-    },
-    "poldcost": {
-      "newAlias": "Total cost of moving 3 products in old layout"
-    },
-    "pnewcost": {
-      "newAlias": "Total cost of moving 3 products in new layout"
-    },
-    "costheader": {
-      "newAlias": "costheader"
-    },
     "pcost": {
-      "newAlias": "Total cost of moving 3 products in old layout"
+      "newAlias": "Total cost of moving 3 products"
     }
   },
   "pivottable": {
@@ -71,7 +59,7 @@
   },
   "defaultScenName": "default",
   "readme": {
-    "tabTitle": "readme",
+    "tabTitle": "Readme",
     "filename": "FacLoc.md",
     "enableMath": true
   },

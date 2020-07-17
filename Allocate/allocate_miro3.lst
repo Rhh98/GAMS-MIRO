@@ -1,4 +1,4 @@
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -16,19 +16,13 @@ C o m p i l a t i o n
   14        l 'Labs'  ;
   15   
   16   
-GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
---- LOAD  prv = 1:prv_val
---- LOAD  prv_val = 1:prv_val
   18  parameter prv_val(prv<) 'Prevalence setting' /prv1 0.02 ,prv2 0.04, prv3 0.06/;
   19   
---- LOAD  effic = 2:effic
   20  parameter effic(prv) 'Efficiency for different prevalences' /prv1 0.9, prv2 0.9, prv3 0.95/;
   21   
---- LOAD  T = 8:t
   22  scalar   T 'Maximum distance for transportation' / 400 /;
   23   
   24  parameter prv_weight(prv) 'Importance of different prevalence to test'
---- LOAD  prv_weight = 3:prv_weight
   25  /prv1 1,prv2 2,prv3 4/;
   26   
   27   
@@ -39,8 +33,6 @@ GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
   34      x         y
   35  l1 46.2803    -88.198933
   36  l2 45.166269  -90.823687
---- LOAD  l = 4:lablocdata
---- LOAD  lablocdata = 4:lablocdata
   37  ;
   38   
   39  table centerlocdata(c<,coord) 'Locations of centers'
@@ -56,21 +48,12 @@ GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
   49  c9   43.172779 -89.288660
   50  c10  42.942796 -89.217877
   51  c11  43.060646 -89.391069
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 2
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
   52  c12  43.362928 -89.062184
   53  c13  43.473625 -88.835509
   54  c14  42.388094 -89.637222
---- LOAD  c = 5:centerlocdata
---- LOAD  centerlocdata = 5:centerlocdata
   55  ;
   57   
   58   
-GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
---- LOAD  centerdata = 6:centerdata
   60  parameter centerdata(c,prv) 'Collection centers' /#c.prv1 500,#c.prv2 250,#c.prv3 125/;
   62   
   63   
@@ -85,8 +68,6 @@ GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
   72  * s is batch size
   73  set s 'Batch size' / 1, 2, 4, 8, 16, 32, 64 /;
   74  set rnd 'Round time (5 hours a time)' / 5, 10, 15, 20 /;
-GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
---- LOAD  runsize = 7:runsize
   76  parameter runsize(l) 'Runsize at lab' / #l 96/;
   78   
   79  scalar offset, actrunsize;
@@ -114,11 +95,6 @@ GDXIN   /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
         simres(l,s,'15',metrics) = 3*simres(l,s,'5',metrics);
         simres(l,s,'15','percKnown') = simres(l,s,'5','percKnown');
         simres(l,s,'20',metrics) = 4*simres(l,s,'5',metrics);
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 3
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
         simres(l,s,'20','percKnown') = simres(l,s,'5','percKnown');
       );
  108  simres(l,s,'10',prv,'unknown')$(simres(l,s,'5',prv,'unknown') gt 0 and simres(l,s,'5',prv,'percKnown') < 100*effic(prv))=0;
@@ -172,11 +148,6 @@ C o m p i l a t i o n
  158      simres(l,s,'20',prv,'negs') = min((1-prv_val(prv))*simres(l,s,'20',prv,'total'),simres(l,s,'15',prv,'negs') + power(1-new_prev(prv,s),svals(s-offset))*runsize(l)*svals(s-offset));
  159      simres(l,s,'20',prv,'unknown') = simres(l,s,'20',prv,'total') - simres(l,s,'20',prv,'negs');
  160    );
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 4
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
  161    simres(l,s,'20',prv,'percKnown') = 100-simres(l,s,'20',prv,'unknown')/simres(l,s,'20',prv,'total')*100;
  162  );
  163  );
@@ -230,11 +201,6 @@ C o m p i l a t i o n
  213  balance(prv,l)..
  214    totinl(prv,l) =e= sum(okslots(l,s,rnd,prv), numBat(prv,l,s)*s.val);
  215   
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 5
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
  216  relax(l,s,prv)..
  217   numBat(prv,l,s) =l= sum(okslots(l,s,rnd,prv),numofbs(l,s,rnd,prv)*runsize(l));
  218   
@@ -288,11 +254,6 @@ C o m p i l a t i o n
  270  *numofbs.fx(l,s,rnd,prv)$(not okslots(l,s,rnd,prv))=0;
  271  extras.up(l)=runsize(l)*4;
  272  x.fx(prv,c,l)$(dist(c,l) gt T) = 0;
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 6
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-C o m p i l a t i o n
-
-
  273   
  274  * write option file (edit in Studio to see options in detail)
  278  * Turn on=1/off=0 option file for particular model
@@ -344,21 +305,10 @@ C o m p i l a t i o n
  326  operation(l,numofop,'er')$(useX.l(l) gt 0 and ord(numofop)=opt)=useX.l(l);
  327  );
  328  display unmet;
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 7
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Include File Summary
 
 
-   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
-
-     1        1 INPUT          0       0  /Users/ferris/Projects/GAMS-MIRO/Allocate/allocate_miro3.gms
-     2       17 GDXIN          1      17  /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
-     3       59 GDXIN          1      59  /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
-     4       75 GDXIN          1      75  /Users/ferris/Projects/GAMS-MIRO/Allocate/_miro_gdxin_.gdx
-
-
-COMPILATION TIME     =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 8
+COMPILATION TIME     =        0.111 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -411,12 +361,6 @@ INDEX 1 = l1  INDEX 2 = 4
 5 .prv3     384.000     299.808      78.075      84.192
 10.prv2     384.000     368.640     100.000
 10.prv3     384.000     360.960     100.000
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 9
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        167 PARAMETER simres  
 
 INDEX 1 = l1  INDEX 2 = 8
 
@@ -462,12 +406,6 @@ INDEX 1 = l1  INDEX 2 = 32
 20.prv1    3072.000    2816.488      91.683     255.512
 20.prv2    3072.000    2208.062      71.877     863.938
 20.prv3    3072.000    1548.994      50.423    1523.006
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 10
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        167 PARAMETER simres  
 
 INDEX 1 = l1  INDEX 2 = 64
 
@@ -520,17 +458,6 @@ INDEX 1 = l2  INDEX 2 = 8
 5 .prv1     768.000     653.386      85.076     114.614
 5 .prv2     768.000     554.027      72.139     213.973
 5 .prv3     768.000     468.149      60.957     299.851
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 11
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        167 PARAMETER simres  
-
-INDEX 1 = l2  INDEX 2 = 8
-
-              total        negs   percKnown     unknown
-
 10.prv1     768.000     736.521      97.576      18.614
 10.prv2     768.000     694.854      90.476      73.146
 10.prv3     768.000     605.672      78.863     162.328
@@ -578,17 +505,6 @@ INDEX 1 = l2  INDEX 2 = 64
 5 .prv3    6144.000     117.121       1.906    6026.879
 10.prv1    6144.000    2942.139      47.886    3201.861
 10.prv2    6144.000    1199.123      19.517    4944.877
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 12
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-E x e c u t i o n
-
-
-        167 PARAMETER simres  
-
-INDEX 1 = l2  INDEX 2 = 64
-
-              total        negs   percKnown     unknown
-
 10.prv3    6144.000     524.748       8.541    5619.252
 15.prv1    6144.000    3820.284      62.179    2323.716
 15.prv2    6144.000    1800.249      29.301    4343.751
@@ -630,7 +546,7 @@ INDEX 1 = l2
 16.20                     YES
 32.20         YES
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 13
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE vivak Using MIP From line 283
 
@@ -684,10 +600,6 @@ relax(l1,1,prv3)..  numBat(prv3,l1,1) - 96*numofbs(l1,1,5,prv3) =L= 0 ; (LHS = 0
      
 REMAINING 39 ENTRIES SKIPPED
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 14
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE vivak Using MIP From line 283
-
 
 ---- logEx1  =L=  
 
@@ -738,10 +650,6 @@ log4(l1)..  numofbs(l1,1,5,prv1) + numofbs(l1,1,5,prv2) + numofbs(l1,1,5,prv3) +
      
 log4(l2)..  numofbs(l2,1,5,prv1) + numofbs(l2,1,5,prv2) + numofbs(l2,1,5,prv3) + numofbs(l2,2,5,prv1) + numofbs(l2,2,5,prv2) + numofbs(l2,4,5,prv1) + useX(l2) =L= 4 ; (LHS = 0)
      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 15
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE vivak Using MIP From line 283
-
 
 ---- log5  =L=  
 
@@ -771,7 +679,7 @@ defobj..  - numBat(prv1,l1,1) - 1.9208*numBat(prv1,l1,2) - 3.68947264*numBat(prv
      
       - 8*numBat(prv3,l1,2) - 16*numBat(prv3,l1,4) - 32*numBat(prv3,l1,8) - 4*numBat(prv3,l2,1) - 8*numBat(prv3,l2,2) - 16*numBat(prv3,l2,4) - 32*numBat(prv3,l2,8) - extras(l1) - extras(l2) + obj =E= 0 ; (LHS = 0)
      
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 16
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE vivak Using MIP From line 283
 
@@ -829,13 +737,6 @@ numBat(prv1,l1,2)
        -0.0792  logEx2(l1)
        -1.9208  defobj
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 17
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE vivak Using MIP From line 283
-
-
-     numBat  Number of batches in lab l
-
 numBat(prv1,l1,4)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
        -4       balance(prv1,l1)
@@ -886,10 +787,6 @@ useX(l2)
         1       log4(l2)
         1       log6(l2)
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 18
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE vivak Using MIP From line 283
-
 
 ---- extras  Kits left over in lab l of prevalence prv
 
@@ -912,7 +809,7 @@ obj
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj
 
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 19
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE vivak Using MIP From line 283
 
@@ -924,11 +821,11 @@ BLOCKS OF VARIABLES           7     SINGLE VARIABLES          167
 NON ZERO ELEMENTS           433     DISCRETE VARIABLES         34
 
 
-GENERATION TIME      =        0.005 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
+GENERATION TIME      =        0.008 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.006 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 20
+EXECUTION TIME       =        0.010 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE vivak Using MIP From line 283
 
@@ -943,7 +840,7 @@ Solution Report     SOLVE vivak Using MIP From line 283
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE             6144.0000
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.029      1000.000
  ITERATION COUNT, LIMIT       143    2000000000
 
 IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
@@ -953,7 +850,7 @@ Cplex 12.10.0.0
 Space for names approximately 0.01 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.01sec (det. 3.41 ticks)
+Cplex Time: 0.02sec (det. 3.41 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.18 ticks)
@@ -986,15 +883,6 @@ prv1.c12        -INF             .           500.0000          .
 prv1.c13        -INF             .           500.0000          .          
 prv1.c14        -INF             .           500.0000          .          
 prv2.c1         -INF             .           250.0000          .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 21
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
-
-     EQU supply  
-
-                LOWER          LEVEL          UPPER         MARGINAL
-
 prv2.c2         -INF             .           250.0000          .          
 prv2.c3         -INF             .           250.0000          .          
 prv2.c4         -INF             .           250.0000          .          
@@ -1044,10 +932,6 @@ prv2.l1          .              .              .              .
 prv2.l2          .              .              .              .          
 prv3.l1          .              .              .             EPS         
 prv3.l2          .              .              .             EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 22
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
 
 ---- EQU relax  
 
@@ -1095,10 +979,6 @@ l2.32.prv3        -INF             .              .              .
 l2.64.prv1        -INF             .              .              .          
 l2.64.prv2        -INF             .              .              .          
 l2.64.prv3        -INF             .              .              .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 23
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
 
 ---- EQU logEx1  
 
@@ -1148,10 +1028,6 @@ l2        -INF             .             4.0000          .
 
 l1        -INF            2.0000         2.0000          .          
 l2        -INF            2.0000         2.0000          .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 24
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
 
 ---- EQU log6  
 
@@ -1206,15 +1082,6 @@ prv2.c4 .l1          .              .            +INF            EPS
 prv2.c4 .l2          .              .            +INF            EPS         
 prv2.c5 .l1          .              .            +INF            EPS         
 prv2.c5 .l2          .              .            +INF            EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 25
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
-
-     VAR x  Kits moved from c to l of prevalence prv
-
-                   LOWER          LEVEL          UPPER         MARGINAL
-
 prv2.c6 .l1          .              .            +INF            EPS         
 prv2.c6 .l2          .              .            +INF            EPS         
 prv2.c7 .l1          .              .            +INF            EPS         
@@ -1261,10 +1128,6 @@ prv3.c13.l1          .              .            +INF            EPS
 prv3.c13.l2          .           125.0000        +INF             .          
 prv3.c14.l1          .              .              .             EPS         
 prv3.c14.l2          .              .            +INF            EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 26
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
 
 ---- VAR totinl  Kits at lab l of prevalences prv
 
@@ -1319,15 +1182,6 @@ prv3.l1.64          .              .            +INF            EPS
 prv3.l2.1           .              .            +INF             .          
 prv3.l2.2           .              .            +INF             .          
 prv3.l2.4           .           192.0000        +INF             .          
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 27
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
-
-     VAR numBat  Number of batches in lab l
-
-                  LOWER          LEVEL          UPPER         MARGINAL
-
 prv3.l2.8           .              .            +INF             .          
 prv3.l2.16          .              .            +INF            EPS         
 prv3.l2.32          .              .            +INF            EPS         
@@ -1374,10 +1228,6 @@ l2.32.20.prv1          .              .             1.0000      2816.4883
 
 l1          .              .             4.0000         EPS         
 l2          .              .             4.0000         EPS         
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 28
-G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE vivak Using MIP From line 283
-
 
 ---- VAR extras  Kits left over in lab l of prevalence prv
 
@@ -1394,7 +1244,7 @@ l2          .              .           384.0000         1.0000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 11:59:02 Page 29
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/16/20 20:40:37 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1405,7 +1255,7 @@ c1  750.000,    c2  839.000,    c3  750.000,    c4  750.000,    c5  750.000,    
 
 
 
-EXECUTION TIME       =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+EXECUTION TIME       =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
 USER: Michael C. Ferris                              S200127/0001AN-GEN
