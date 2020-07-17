@@ -29,9 +29,9 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
     x<-data$x[c(1,4,7,10)]
     y<-data$y[c(1,4,7,10)]
     mach<-c('CNC','Mill','Drill','Punch')
-    from<-c('Recieve','CNC','Drill','Punch',
-            'Recieve','Mill','Drill','Punch',
-            'Recieve','CNC','Drill','Mill','Punch')
+    from<-c('Receive','CNC','Drill','Punch',
+            'Receive','Mill','Drill','Punch',
+            'Receive','CNC','Drill','Mill','Punch')
     to<-c('CNC','Drill','Punch','Ship',
           'Mill','Drill','Punch','Ship',
           'CNC','Drill','Mill','Punch','Ship')
@@ -107,17 +107,17 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
    }
      cost_new=round(cost_new)
    from_old<-from
-   from_old[from_old!='Recieve']<-paste(from_old[from_old!='Recieve'],'old')
+   from_old[from_old!='Receive']<-paste(from_old[from_old!='Receive'],'old')
    from_new<-from
-   from_new[from_new!='Recieve']<-paste(from_new[from_new!='Recieve'],'new')
+   from_new[from_new!='Receive']<-paste(from_new[from_new!='Receive'],'new')
    to_old<-to
    to_old[to_old!='Ship']<-paste(to_old[to_old!='Ship'],'old')
    to_new<-to
    to_new[to_new!='Ship']<-paste(to_new[to_new!='Ship'],'new')
-       Ver<-data.frame(c(paste(mach,'old'),'Recieve','Ship',paste(mach,'new')),c(x,data$xr[1],data$xs[1],newx),c(y,data$yr[1],data$ys[1],newy))
+       Ver<-data.frame(c(paste(mach,'old'),'Receive','Ship',paste(mach,'new')),c(x,data$xr[1],data$xs[1],newx),c(y,data$yr[1],data$ys[1],newy))
        edge_all<-data.frame(c(from_old,from_new),c(to_old,to_new))
       
- output$test<-renderText("Rusult of relocating the facilities. The cost of
+ output$test<-renderText("Result of relocating the facilities. The cost of
                          transporting products from one facility to another in original and new layouts.")
  output$fig<-renderPlotly({
     fig<-plot_ly()

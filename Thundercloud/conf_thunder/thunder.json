@@ -88,6 +88,11 @@
     }
   },
   "defaultScenName": "default",
+  "readme": {
+    "tabTitle": "Readme",
+    "filename": "readme.md",
+    "enableMath": true
+  },
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -103,10 +108,5 @@
     },
     "height": 700,
     "colWidths": 150
-  },
-  "readme": {
-    "tabTitle": "Readme",
-    "filename": "readme.md",
-    "enableMath": true
   }
 }

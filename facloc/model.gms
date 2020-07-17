@@ -77,7 +77,7 @@ cost =E= sum(Machines,CM(Machines)*sqrt(sqr(X_new(Machines)-Mcoord(Machines,'X')
        + (CH('P1')+CH('P2')+CH('P3'))*(sqrt(sqr(X_new('Punch')-RScoord('S','X'))+ sqr(Y_new('Punch')-RScoord('S','Y')))-sqrt(sqr(Mcoord('Punch','X')-RScoord('S','X'))+ sqr(Mcoord('Punch','Y')-RScoord('S','Y'))));
 
 Min_Dist(m1,m2)$(ord(m1) <> ord(m2))..
-sqrt(sqr(X_new(m1)-X_new(m2))+  sqr(Y_new(m1)-Y_new(m2))) =G= Min_Distance(m1,m2)+30;
+sqr(X_new(m1)-X_new(m2))+  sqr(Y_new(m1)-Y_new(m2)) =G= sqr(Min_Distance(m1,m2)+30);
 
 model Facility_Layout /all/;
 
