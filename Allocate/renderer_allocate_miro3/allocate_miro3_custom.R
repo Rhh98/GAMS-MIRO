@@ -142,3 +142,34 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
   
   
 }
+unmetOutput <- function(id, height = NULL, options = NULL, path = NULL){
+  ns <- NS(id)
+  
+  # set default height
+  if(is.null(height)){
+    height <- 700
+  } 
+  tagList( 
+    #define rendererOutput function here 
+    plotlyOutput(ns('unmet'),height=height)
+    ) 
+}
+
+renderUnmet <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
+  #renderer 
+  num<-length(unique(data$prv))
+  center=unique(data$c)
+  output$unmet<-renderPlotly({
+    fig<-plot_ly(type = 'bar',showlegend=FALSE)
+    for (i in 1:num) {
+      y=data$value[data$prv==paste('prv',i,sep='')]
+      y[y==0.5]=0;
+      fig<-add_trace(fig,y=y,x=center,name=paste('pre',i,sep=''),showlegend=TRUE)
+    }
+    fig<-layout(fig,yaxis=list(title='Number of kits'),xaxis=list(title='center'),barmode='stack')
+
+  }
+  )
+  }
+
+  

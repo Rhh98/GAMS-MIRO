@@ -41,6 +41,9 @@
     },
     "operation": {
       "newAlias": "Operation in lab l (batch size)"
+    },
+    "unnmet": {
+      "newAlias": "Kits left in centers"
     }
   },
   "pivottable": {
@@ -78,6 +81,10 @@
         "width": 4,
         "color": "aqua"
       }
+    },
+    "unmet": {
+      "outType": "unmet",
+      "packages": "plotly"
     }
   },
   "inputWidgets": {
@@ -110,7 +117,7 @@
   "readme": {
     "tabTitle": "Covid 19 group testing",
     "filename": "Allocate.md",
-    "enableMath": false
+    "enableMath": true
   },
   "datatable": {
     "class": "display",

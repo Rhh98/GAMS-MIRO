@@ -290,6 +290,7 @@ set opr /bs batchsize, rn round number, noto 'number of the operation', p preval
 
 
 set numofop 'Operation index' /opr1*opr4/;
+alias(prv,prvv)
 $onExternalOutput
 table allocate(c,l,prv,allocateHeader) 'Allocate strategy';
 allocate(c,l,prv,'latl')=lablocdata(l,'x');
@@ -303,8 +304,9 @@ kitinl(l,prv)=sum(okslots(l,s,rnd,prv),numBat.l(prv,l,s)*s.val);
 
 table operation(l,numofop,opr) 'Operation in lab l (batch size)';
 
-parameter unmet(c)'Kits left in centers';
-unmet(c) = sum(prv,centerdata2(c,'kts',prv) - sum(l, x.l(prv,c,l)));
+table unmet(c,prv)'Kits left in centers';
+
+unmet(c,prv)$(sum(prvv,centerdata2(c,'kts',prvv) - sum(l, x.l(prvv,c,l))) gt 0) =max( centerdata2(c,'kts',prv) - sum(l, x.l(prv,c,l)),0.5);
 
 scalar alltest 'Number of people tested',leftover'Number of samples tested with unknown result', pcplus 'Percent of leftover/alltest';
 alltest = sum((l,prv), totinl.l(prv,l));

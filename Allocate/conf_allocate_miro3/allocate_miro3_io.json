@@ -239,6 +239,10 @@
 					"type":	"string",
 					"alias":	"Centers"
 				},
+				"prv":	{
+					"type":	"string",
+					"alias":	"prevalence"
+				},
 				"value":	{
 					"type":	"numeric",
 					"alias":	"Kits left in centers"
