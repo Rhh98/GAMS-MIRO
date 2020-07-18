@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["bigs", "c", "height", "width2", "valc", "time", "sponsored", "cscore", "_widgets"]
+    "input": ["storyinfo", "cscore", "_widgets", "c"]
   },
   "overwriteAliases": {
     "bigs": {
@@ -35,6 +35,9 @@
     },
     "result": {
       "newAlias": "Feed solution"
+    },
+    "storyinfo": {
+      "newAlias": "storyinfo"
     }
   },
   "pivottable": {
@@ -148,24 +151,21 @@
       "ticks": true,
       "noHcube": false,
       "label": "Initial ratio"
+    },
+    "c": {
+      "widgetType": "table",
+      "alias": "User behavior case",
+      "readonly": true,
+      "hideIndexCol": false,
+      "heatmap": false,
+      "bigData": false
     }
   },
-  "defaultScenName": "1-D",
   "readme": {
     "tabTitle": "readme",
     "filename": "readme.md",
     "enableMath": true
   },
-  "inputGroups": [
-    {
-      "name": "Story Imfo",
-      "members": ["bigs", "height", "width2", "sponsored", "valc", "time"]
-    },
-    {
-      "name": "Scenarios Info",
-      "members": ["c", "cscore"]
-    }
-  ],
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -181,5 +181,18 @@
     },
     "height": 700,
     "colWidths": 150
+  },
+  "defaultScenName": "2D",
+  "inputGroups": [
+    {
+      "name": "Score in different scenarios",
+      "members": ["c", "cscore"],
+      "sameTab": true
+    }
+  ],
+  "datatable": {
+    "class": "display",
+    "filter": "none",
+    "rownames": false
   }
 }

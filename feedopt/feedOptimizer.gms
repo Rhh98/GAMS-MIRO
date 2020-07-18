@@ -21,22 +21,25 @@ $if not set rL $set rL 30
 
 
 * VARIABLES
+
+set
+    BIGS    All stories available ;
 $onexternalInput
 set
-    BIGS    All stories available /s1,s2/
-    C       User behavior case /c1*c3/;
+    C       User behavior case (cannot change)/c1*c3/;
 $offexternalInput
-set
-    S(BIGS) Filtered stories
-    
-;
+
+set StoryHeader /height 'Story height',width 'Story width',valc 'Story base score',time 'Time when story is available'
+,sponsored 'Sponsored story'/;
 $onexternalInput
+
+table StoryInfo(BIGS<,StoryHeader)
+   height  width  valc  time  sponsored  
+s1 20      20     3     500   1          
+s2 20      20     2     300   
+;
+
 parameter
-  height(BIGS) 'Stroy height'/s1 20,s2 20/,
-  width2(BIGS) 'Story width'/s1 20,s2 20/,
-  valc(BIGS) 'Story base score'/s1 3,s2 2/,
-  time(BIGS) 'Time when story is available'/s1 500, s2 300/,
-  sponsored(BIGS) 'Sponsored story'/s1 1,s2 2/,
   cscore(BIGS,C) 'Multiplier for story score at different scenarios'/s1*s2.c1*c3 3/;
 scalar
      totTime   Total time/  1000 /
@@ -49,6 +52,23 @@ scalar
      initRatio Initial ratio/ 0.2 /
 ;
 $offexternalInput
+set
+    S(BIGS) Filtered stories
+    
+;
+*Copy of storyinfo 
+parameter
+  height(BIGS) 'Stroy height'
+  width2(BIGS) 'Story width'
+  valc(BIGS) 'Story base score'
+  time(BIGS) 'Time when story is available'
+  sponsored(BIGS) 'Sponsored story';
+height(BIGS)=StoryInfo(BIGS,'height');
+width2(BIGS)=StoryInfo(BIGS,'width');
+valc(BIGS)=StoryInfo(BIGS,'valc');
+time(BIGS)=StoryINfo(BIGS,'time');
+sponsored(BIGS)=StoryInfo(BIGS,'sponsored');
+
 parameter
   data(BIGS,*),
   val(BIGS),

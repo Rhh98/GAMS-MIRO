@@ -1,22 +1,8 @@
 {
 	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
 	"inputSymbols":	{
-		"bigs":	{
-			"alias":	"All stories available",
-			"symtype":	"set",
-			"headers":	{
-				"uni":	{
-					"type":	"string",
-					"alias":	"Universal set"
-				},
-				"text":	{
-					"type":	"string",
-					"alias":	"Set text All stories available"
-				}
-			}
-		},
 		"c":	{
-			"alias":	"User behavior case",
+			"alias":	"User behavior case (cannot change)",
 			"symtype":	"set",
 			"headers":	{
 				"uni":	{
@@ -25,75 +11,35 @@
 				},
 				"text":	{
 					"type":	"string",
-					"alias":	"Set text User behavior case"
+					"alias":	"Set text User behavior case (cannot change)"
 				}
 			}
 		},
-		"height":	{
-			"alias":	"Stroy height",
+		"storyinfo":	{
+			"alias":	"storyinfo",
 			"symtype":	"parameter",
 			"headers":	{
 				"bigs":	{
 					"type":	"string",
 					"alias":	"All stories available"
 				},
-				"value":	{
+				"height":	{
 					"type":	"numeric",
-					"alias":	"Stroy height"
-				}
-			}
-		},
-		"width2":	{
-			"alias":	"Story width",
-			"symtype":	"parameter",
-			"headers":	{
-				"bigs":	{
-					"type":	"string",
-					"alias":	"All stories available"
+					"alias":	"Story height"
 				},
-				"value":	{
+				"width":	{
 					"type":	"numeric",
 					"alias":	"Story width"
-				}
-			}
-		},
-		"valc":	{
-			"alias":	"Story base score",
-			"symtype":	"parameter",
-			"headers":	{
-				"bigs":	{
-					"type":	"string",
-					"alias":	"All stories available"
 				},
-				"value":	{
+				"valc":	{
 					"type":	"numeric",
 					"alias":	"Story base score"
-				}
-			}
-		},
-		"time":	{
-			"alias":	"Time when story is available",
-			"symtype":	"parameter",
-			"headers":	{
-				"bigs":	{
-					"type":	"string",
-					"alias":	"All stories available"
 				},
-				"value":	{
+				"time":	{
 					"type":	"numeric",
 					"alias":	"Time when story is available"
-				}
-			}
-		},
-		"sponsored":	{
-			"alias":	"Sponsored story",
-			"symtype":	"parameter",
-			"headers":	{
-				"bigs":	{
-					"type":	"string",
-					"alias":	"All stories available"
 				},
-				"value":	{
+				"sponsored":	{
 					"type":	"numeric",
 					"alias":	"Sponsored story"
 				}
@@ -109,7 +55,7 @@
 				},
 				"c":	{
 					"type":	"string",
-					"alias":	"User behavior case"
+					"alias":	"User behavior case (cannot change)"
 				},
 				"value":	{
 					"type":	"numeric",
@@ -149,23 +95,23 @@
 				},
 				"c":	{
 					"type":	"string",
-					"alias":	"User behavior case"
+					"alias":	"User behavior case (cannot change)"
 				},
 				"height":	{
 					"type":	"numeric",
 					"alias":	"height"
 				},
-				"value":	{
+				"width":	{
 					"type":	"numeric",
-					"alias":	"value"
+					"alias":	"width"
 				},
 				"time":	{
 					"type":	"numeric",
 					"alias":	"time"
 				},
-				"width":	{
+				"value":	{
 					"type":	"numeric",
-					"alias":	"width"
+					"alias":	"value"
 				},
 				"type":	{
 					"type":	"numeric",

@@ -52,7 +52,7 @@ So, the stochastic model considers <i>all scenarios</i> to pick the stories chos
 </ul>
 <h3>Output result </h3>
 
-The output  displays the feed result, with given the layout of interface at all scenarios, information about the chosen story including its name, score, available time and story type. There are also information about the total value, area covered ratio of the interface, the time feed is retrieved , and the time windows. 
+The output  displays the feed result, with given the layout of interface at a selected scenario through a drop down menu in the top, information about the chosen story including its name, score, available time and story type. There are also information about the total value, area covered ratio of the interface, the time feed is retrieved , and the time windows. 
 
 The feed displayed is primarily comprised of <i>rectangular tiles</i> that represent the stories. It represents the feed obtained in a <i>specific scenario</i> in the <i>second stage</i>. Each tile is associated with a color according to the value the story contributes. To be more clear, see the <a href='#sample'>sample feeds</a>.
 
@@ -244,7 +244,7 @@ Figure 2c : chenge feed retrieved time  </img>
 
 
 
-<b> Two dimensional feed for 4 scenarios</b>
+<b> Two dimensional feed</b>
 An illustrative two dimensional feed is shown in Figure 2d. Note that number of scenarios could be changed, and the layout will adapt automatically.
 
 <img style="border: 2px solid black ;"  src="static_feedoptimizer/2D.jpg" width=700 alt="Feed"  />
