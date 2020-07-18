@@ -2,3 +2,10 @@
 facloc/_sys_trace_model.trc
 *.gdx
 *.gdx
+*.log
+*.log~1
+*.lst
+*.lxi
+*.gdx
+*.gdx
+Allocate/renderer_allocate_miro3/.Rhistory

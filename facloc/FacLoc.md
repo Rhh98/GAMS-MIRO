@@ -134,8 +134,9 @@ y_m &\leq& y2_m; \forall m \in M \\
 <h3><u> Output </u></h3>
 <p>
 <ul>
-    <li>Infeasiblilty information:If the problem is infeasible, infeasibility information will be displayed.</li>
-    <li>Comparison of layout: If the problem is feasible, the output will show the initial and current optimized layout, with cost information.</li>
+    
+    <li>Layout and Work flow: If the problem is infeasible, message indicating infeasibility will be displayed. If the problem is feasible , this output will show the initial and current optimized layout, work flow of each product shown on the graph. User can choose which flow to be displayed.</li>
+    <li>Total cost of moving 3 products: This output shows the initial total cost of moving 3 products and the current optimized cost of moving products plus the cost of moving machine.</li>
 </UL>
 </p>
 
