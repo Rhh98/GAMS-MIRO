@@ -1,7 +1,7 @@
 {
 	"modelTitle":	"Oligopoly : Cournot, Bertrand and Stackelberg",
 	"inputSymbols":	{
-		"fdata":	{
+		"idata":	{
 			"alias":	"CES data for firms",
 			"symtype":	"parameter",
 			"headers":	{
@@ -25,9 +25,9 @@
 		},
 		"_scalars":	{
 			"alias":	"Input Scalars",
-			"symnames":	["gamma", "dbar", "dbert"],
-			"symtext":	["Demand Elasticity", "Reference Unit Price Demand", "unit reference demand - BERTRAND"],
-			"symtypes":	["parameter", "parameter", "parameter"],
+			"symnames":	["lead"],
+			"symtext":	["lead"],
+			"symtypes":	["set"],
 			"headers":	{
 				"scalar":	{
 					"type":	"string",
@@ -43,21 +43,17 @@
 				}
 			}
 		},
-		"jdata":	{
-			"alias":	"jdata",
+		"cournotfirm":	{
+			"alias":	"cournot or price taker (1/-1)",
 			"symtype":	"parameter",
 			"headers":	{
-				"d":	{
+				"i":	{
 					"type":	"string",
-					"alias":	"Bertrand firms"
+					"alias":	"Cournot & Stackelberg firms"
 				},
-				"c":	{
+				"value":	{
 					"type":	"numeric",
-					"alias":	"cost"
-				},
-				"w":	{
-					"type":	"numeric",
-					"alias":	"weight"
+					"alias":	"cournot or price taker (1/-1)"
 				}
 			}
 		}
@@ -102,48 +98,10 @@
 				"cost":	{
 					"type":	"numeric",
 					"alias":	"cost"
-				}
-			}
-		},
-		"resultcour2":	{
-			"alias":	"resultcour2",
-			"symtype":	"parameter",
-			"headers":	{
-				"i":	{
-					"type":	"string",
-					"alias":	"Cournot & Stackelberg firms"
 				},
-				"l":	{
+				"courmember":	{
 					"type":	"numeric",
-					"alias":	"l"
-				},
-				"beta":	{
-					"type":	"numeric",
-					"alias":	"beta"
-				},
-				"quantity":	{
-					"type":	"numeric",
-					"alias":	"quantity"
-				},
-				"price":	{
-					"type":	"numeric",
-					"alias":	"price"
-				},
-				"profit":	{
-					"type":	"numeric",
-					"alias":	"profit"
-				},
-				"gamma":	{
-					"type":	"numeric",
-					"alias":	"gamma"
-				},
-				"dbar":	{
-					"type":	"numeric",
-					"alias":	"dbar"
-				},
-				"cost":	{
-					"type":	"numeric",
-					"alias":	"cost"
+					"alias":	"courmember"
 				}
 			}
 		},
@@ -173,7 +131,7 @@
 				}
 			}
 		},
-		"linfo_stac":	{
+		"leader_stac_profit":	{
 			"alias":	"lead firm info",
 			"symtype":	"parameter",
 			"headers":	{
@@ -196,32 +154,40 @@
 				"nprofit":	{
 					"type":	"numeric",
 					"alias":	"nprofit"
+				},
+				"nquantity":	{
+					"type":	"numeric",
+					"alias":	"nquantity"
 				}
 			}
 		},
-		"resultbert":	{
-			"alias":	"Quantity and profits w.r.t the price of firm 1",
+		"leader_stac_quantity":	{
+			"alias":	"leader_stac_quantity",
 			"symtype":	"parameter",
 			"headers":	{
-				"d":	{
+				"i":	{
 					"type":	"string",
-					"alias":	"Bertrand firms"
+					"alias":	"Cournot & Stackelberg firms"
 				},
 				"grid":	{
 					"type":	"string",
 					"alias":	"grid"
 				},
-				"quantity":	{
+				"lquantity":	{
 					"type":	"numeric",
-					"alias":	"quantity"
+					"alias":	"lquantity"
 				},
-				"price":	{
+				"lprofit":	{
 					"type":	"numeric",
-					"alias":	"price"
+					"alias":	"lprofit"
 				},
-				"profit":	{
+				"nprofit":	{
 					"type":	"numeric",
-					"alias":	"profit"
+					"alias":	"nprofit"
+				},
+				"nquantity":	{
+					"type":	"numeric",
+					"alias":	"nquantity"
 				}
 			}
 		}

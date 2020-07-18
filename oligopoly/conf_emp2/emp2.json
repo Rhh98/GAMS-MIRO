@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["fdata", "_scalars", "jdata", "_widgets"]
+    "input": ["_widgets", "_scalars", "idata", "cournotfirm"]
   },
   "overwriteAliases": {
     "i": {
@@ -17,9 +17,6 @@
     },
     "d": {
       "newAlias": "Bertrand firms"
-    },
-    "resultcour": {
-      "newAlias": "Nash Equilibrium result"
     },
     "resultstac": {
       "newAlias": "Difference between Cournot and Stackelberg model"
@@ -38,6 +35,24 @@
     },
     "linfo_stac": {
       "newAlias": "Stackelberg Result"
+    },
+    "idata": {
+      "newAlias": "CES data for firms"
+    },
+    "courn": {
+      "newAlias": "cournot or price taker"
+    },
+    "cournotfirm": {
+      "newAlias": "cournot or price taker"
+    },
+    "leader_stac_quantity": {
+      "newAlias": "Quantities w.r.t Quantity of leader firm"
+    },
+    "resultcour": {
+      "newAlias": "Firm quantity influence on other firms"
+    },
+    "leader_stac_profit": {
+      "newAlias": "Profits w.r.t Quantity of leader firm"
     }
   },
   "pivottable": {
@@ -60,19 +75,20 @@
   "excelIncludeEmptySheets": true,
   "saveTraceFile": true,
   "dataRendering": {
-    "resultbert": {
-      "outType": "Bert"
-    },
     "resultcour": {
       "outType": "Cournot",
       "packages": "plotly"
     },
-    "resultcour2": {
-      "outType": "cour2",
+    "resultstac": {
+      "outType": "res",
       "packages": "plotly"
     },
-    "linfo_stac": {
+    "leader_stac_profit": {
       "outType": "lead",
+      "packages": "plotly"
+    },
+    "leader_stac_quantity": {
+      "outType": "stacQuan",
       "packages": "plotly"
     }
   },
@@ -87,24 +103,6 @@
     "filter": "none",
     "rownames": true
   },
-  "inputGroups": [
-    {
-      "name": "Cournot and Stackelberg model",
-      "members": ["i", "lead", "fdata"]
-    }
-  ],
-  "outputGroups": [
-    {
-      "name": "Cournot model",
-      "members": ["resultcour", "resultcour2"],
-      "sameTab": false
-    },
-    {
-      "name": "Stackelberg model",
-      "members": ["linfo_stac", "resultstac"],
-      "sameTab": false
-    }
-  ],
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -120,5 +118,31 @@
     },
     "height": 700,
     "colWidths": 150
-  }
+  },
+  "inputWidgets": {
+    "lead": {
+      "widgetType": "dropdown",
+      "alias": "lead",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "selected": "1",
+      "label": "Select Leader firm",
+      "choices": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "aliases": ["firm 1", "firm 2", "firm 3", "firm 4", "firm 5", "firm 6", "firm 7", "firm 8", "firm 9", "firm 10"]
+    }
+  },
+  "inputGroups": [
+    {
+      "name": "Cournot and Stackelberg model",
+      "members": ["i", "lead", "fdata"]
+    }
+  ],
+  "outputGroups": [
+    {
+      "name": "Stackelberg Model",
+      "members": ["leader_stac_profit", "leader_stac_quantity"],
+      "sameTab": false
+    }
+  ]
 }

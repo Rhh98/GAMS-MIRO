@@ -20,14 +20,14 @@ $offtext
 * CES - COURNOT & STACKELBERG MODEL - 2 or more
 
 SETS
-i                "Cournot & Stackelberg firms" ;
+i                "Cournot & Stackelberg firms" /1*10/;
 
 singleton set
 leader(i)        "Stackelberg-leader"
 ;
 set CESHeader /c ,L,beta/;
 $onExternalInput
-TABLE IData(i<,CESHeader) "CES data for firms"
+TABLE IData(i,CESHeader) "CES data for firms"
         c   L  beta
     1   5  10  1.2
     2   3  10  1
@@ -44,11 +44,11 @@ $offexternalInput
 
 $onexternalInput
 singleton set lead(i) /1/;
-parameter CournotFirm(i) 'cournot or price taker' /set.I 0/;
+parameter CournotFirm(i) 'cournot or price taker (1/-1)' /set.I -1/;
 $offexternalInput
 
 set courn(I)  'cournot or price taker';
-courn(I)$CournotFirm(I)=yes;
+courn(I)$(CournotFirm(I)>0)=yes;
 
 SCALARS
 * gamma > 1
@@ -115,10 +115,10 @@ solve Cournot using emp ;
 
 * Cournot Quantities
 display q.l, p.l ;
-set CourHeader / quantity, price ,profit, gamma, dbar,cost,beta,l/;
+set CourHeader / quantity, price ,profit, gamma, dbar,cost,beta,l,courMember/;
 $onexternaloutput
 table resultCour(i,CourHeader);
-table resultCour2(i,CourHeader);
+*table resultCour2(i,CourHeader);
 $offexternaloutput
 resultCour(i,'quantity')=q.l(i);
 resultCour(i,'price')=p.l;
@@ -128,7 +128,8 @@ resultCour(i,'dbar')=dbar;
 resultCour(i,'cost')=c(i);
 resultCour(i,'beta')=beta(i);
 resultCour(i,'l')=L(i);
-resultCour2(i,CourHeader)=resultCour(i,CourHeader)
+resultCour(i,'courMember')=1$courn(i)-1$(not courn(i));
+*resultCour2(i,CourHeader)=resultCour(i,CourHeader)
 *-------------------------------------------------------------------------------------------
 * Model solve and display for Stackelberg Case
 *   NOTE
@@ -186,14 +187,15 @@ obj_subStac(i)$(not lead(i))..
 obj(i) =e= q(i)*{pr(q)$courn(i) + p$(not courn(i))}-TC(i,q);
 model subStackelberg /obj_subStac,defp/;
 
-set linfoHeader /lquantity,lprofit,nprofit/;
+set linfoHeader /lquantity,lprofit,nprofit,nquantity/;
 *    ninfoHeader /lquantity,lprofit,nprofit,nquantity/;
     
 set grid /1*21/
  nonlead(i);
  nonlead(i)$(not lead(i))=yes;
 $onexternalOutput
-table linfo_stac(i,grid,linfoheader) lead firm info;
+table leader_stac_profit(i,grid,linfoheader) lead firm info,
+leader_stac_quantity(i,grid,linfoheader);
 *table ninfo_stac(i,grid,ninfoheader) Nonleader firm info;
 $offexternalOutput
 *ninfo_stac(nonlead,grid,'nquantity')=resultCour(nonlead,'quantity');
@@ -208,15 +210,17 @@ put /'max', obj(i),q(i),obj_subStac(i);
 put / 'vi defp p';
 putclose myinfo;
 solve subStackelberg using emp;
-linfo_stac(lead,grid,'lquantity')=q.l(lead);
-linfo_stac(lead,grid,'lprofit')=q.l(lead) *(dbar/sum(j, q.l(j)))**(1/gamma) -c(lead)*q.l(lead) -
+leader_stac_profit(lead,grid,'lquantity')=q.l(lead);
+leader_stac_profit(lead,grid,'lprofit')=q.l(lead) *(dbar/sum(j, q.l(j)))**(1/gamma) -c(lead)*q.l(lead) -
 ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
-linfo_stac(lead,grid,'nprofit')=q.l(lead) *(dbar/(q.l(lead)+sum(j$(not lead(j)), resultCour(j,'quantity'))))**(1/gamma) -c(lead)*q.l(lead) -
+leader_stac_profit(lead,grid,'nprofit')=q.l(lead) *(dbar/(q.l(lead)+sum(j$(not lead(j)), resultCour(j,'quantity'))))**(1/gamma) -c(lead)*q.l(lead) -
 ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
 *ninfo_stac(nonlead,grid,'lquantity')=sum(lead,q.l(lead));
-linfo_stac(nonlead,grid,'lprofit')=obj.l(nonlead);
-linfo_stac(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(lead,q.l(lead))+sum(j$(nonlead(j)), resultCour(j,'quantity'))))**(1/gamma)  -c(nonlead)*resultCour(nonlead,'quantity') -
+leader_stac_profit(nonlead,grid,'lprofit')=obj.l(nonlead);
+leader_stac_profit(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(lead,q.l(lead))+sum(j$(nonlead(j)), resultCour(j,'quantity'))))**(1/gamma)  -c(nonlead)*resultCour(nonlead,'quantity') -
 ((beta(nonlead)/(1+beta(nonlead)))*L(nonlead)**(1/beta(nonlead)))*resultCour(nonlead,'quantity')**((1+beta(nonlead))/beta(nonlead));
+leader_stac_quantity(lead,grid,'lquantity')=q.l(lead);
+leader_stac_quantity(i,grid,'nquantity')=q.l(i);
 );
 
 
