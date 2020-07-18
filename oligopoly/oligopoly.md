@@ -81,14 +81,13 @@ This is the case depisted in our graph of a continuous case Bertrand model and i
 <h3>
     Input for Cournot and Stackelberg model
 </h3>
-
 <ul>
-    <li>Cournot & Stackelberdg firms: The index of the firms for the Cournot and Stackelberg models.</li>
     <li>leader firm: The leader firm in the Stackelberg model. There should be exactly one leader firm chosen from the "Cournot & Stackelberdg firms" parameter.</li>
     <li>CES data form firms: Give the parameter in the CES function for each firm in the "Cournot & Stackelberdg firms". The index c stands for the unit cost of the firm, L stands for the labor coefficient , beta stands for the supply elasticity.</li>
-    <li>gamma: Demand elasticity in the CES function</li>
-    <li>dbar: Reference unit price demand</li>
+    <li>Cournot or price taker: Select whether the firm acts as a cournot member, i.e., knows exactly the relationship between price and total quantity or acts as a price taker.</li>
+
 </ul>
+
 
 <h3>
     Input for Bertrand model
@@ -106,18 +105,19 @@ c-unit cost,w-production quantity</li>
     Output for Cournot model
 </h3>
 <ul>
-    <li>Cournot model result:Two profits-quantities curve that shows the variation of the profits of all firms w.r.t their quantities and w.r.t only the first firm's quantity. More details are explained in the output page. </li>
+    <li>Firm Quantity influence on other firms: A profit-quantitiy curve and a bar charts that show the variation of the profits of all firms w.r.t the quantity of a certain selected firm. When the quantity of the selected firm changes, quantities of other firms are fixed to the solution of the Nash Equilibrium. User using the app can choose which firm quantity to change and adjust the quantity of that firm.</li>
 </ul>
+
 
 <h3>
     Output for Stackelberg model
 </h3>
-
 <ul>
-    <li>Difference between Cornot and Stackelberg model: A table comparing the result between when there is a leader firm and other firms will respond based on the leader firm's decision and when there is no leader firm and each firm will give the best response.</li>
-    <li>lead firm info: The profits-quantity curves of the leader firm will make as a leader firm or not.</li>
-    <li>nonleader firm info: profits-quantity of the leader firm curves of the other firms.</li>
+    <li>Difference between Cornot and Stackelberg model: Two bar charts comparing the result of quantity and profits between when there is a leader firm and other firms will respond based on the leader firm's decision and when there is no leader firm and each firm will give the best response.</li>
+    <li>Profits w.r.t the quantity of leader firm: A barchart and a plot shows The profits of all the firms with respect to the quantity of leader firm. The pictures also shows when the leader firm are not acting as a leader firm, how the profits of other firms will change, as the orange bars and dash curves shows. User can change the quantity of the selected leader firm to see its impact.</li>
+    <li>Quantities w.r.t the leader firm quantity: A bar chart and a plot show how other firms will respond to the leader firm when the leader firm change its quantity. User can change the quantity of the selected leader firm to see its impact.</li>
 </ul>
+
 
 More explanantions about the figure will be shown on the output page.
 
