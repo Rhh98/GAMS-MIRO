@@ -59,7 +59,7 @@ number of testing a lab could do for a single round.
 
 The result shows:
 
-• allocate strategy: How should we allocate the kits from centers to labs.
+• allocate strategy: How should we allocate the kits from centers to labs.  One can click on markers to filter flow, leaving those only relevant to the clicked lab/center. An "all" check box on the right top can be selected to show all flows.
 
 • kits to test in labs l: This shows the number of kits of different prevalence
 in each lab. The kits are separated into 2 classes： the normal class and the extra class. The kits in normal classes are going to be tested with a certain batch size. The kits in the extra classes will only be tested individually.
@@ -70,8 +70,8 @@ many rounds for this batch size. An extra round means that test all
 the unknown result in previous testing in batch size equal to 1. The
 number of batches should be no more than the runsize of the lab.
 
-• Kits left in centers: The kits that are not allocated to labs in each
-center.
+• Kits left in centers: A bar charts showing the kits that are not allocated to labs in each
+center of each prevalence.
 
 • alltest/leftover/pcplus scalar: "alltest" denotes he total number of kits tested. "leftover" denotes the
 number of kits left over with unknow results, "pcplus" denotes the percentage of how many unknow kits left over is contained on the total kits tested.
