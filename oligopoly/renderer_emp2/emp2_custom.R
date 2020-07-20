@@ -24,10 +24,10 @@ CournotOutput <- function(id, height = NULL, options = NULL, path = NULL){
 
 renderCournot <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
-  output$cour2text<-renderText(paste("The picture shows when one of the firm change quantities and the other
-                               firms remain the same, how the profit of each firm will change. The below picture
-                               gives an example when the firm",input$select," change quantities and others remain the same.
-                                     The 3 points represent the profits at the solution to the Nash Equilibrium."))
+  output$cour2text<-renderText(paste("The picture shows when one of the firm changes quantities and the other
+                               firms remain the same, how the profit of each firm will change. The picture below
+                               gives an example when ",input$select," changes quantities and others remain the same.
+                                     The points represent the profits at the solution to the Nash Equilibrium."))
   ind<-data$i
   l<-length(ind)
   quantity<-data$quantity
@@ -338,9 +338,9 @@ renderBert <- function(input, output, session, data, options = NULL, path = NULL
     }
   }
   output$berttext<-renderText(paste("This output gives the result of the toy example for the Bertrand 
-                                      model, where the firm changes stragies by changing the price. The two pictures 
-                                      below show the relation ship between the price of the frim 1 and the quantity and profit of
-                                       the 2 firms. The price of the firm 2 is fixed to the solution of the Nash Equilibrium in both pictures."))
+                                      model, where the firm changes strategies by changing the price. The two pictures 
+                                      below show the relation ship between the price of firm 1 and the quantity and profit of
+                                       the 2 firms. The price of firm 2 is fixed to the solution of the Nash Equilibrium in both pictures."))
   output$bert<-renderPlot({
     par(mfrow=c(1,2))
     plot(x,y1[1,],ylim=c(min(y1),max(y1)+5),col=1,lwd=2,lty=1,xlab='price',ylab = 'quantity'

@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 1
 Oligopoly : Cournot, Bertrand and Stackelberg
 C o m p i l a t i o n
 
@@ -22,13 +22,13 @@ C o m p i l a t i o n
   20  * CES - COURNOT & STACKELBERG MODEL - 2 or more
   21   
   22  SETS
-  23  i                "Cournot & Stackelberg firms" ;
+  23  i                "Cournot & Stackelberg firms" /1*10/;
   24   
   25  singleton set
   26  leader(i)        "Stackelberg-leader"
   27  ;
   28  set CESHeader /c ,L,beta/;
-  30  TABLE IData(i<,CESHeader) "CES data for firms"
+  30  TABLE IData(i,CESHeader) "CES data for firms"
   31          c   L  beta
   32      1   5  10  1.2
   33      2   3  10  1
@@ -43,10 +43,10 @@ C o m p i l a t i o n
   42  ;
   44   
   46  singleton set lead(i) /1/;
-  47  parameter CournotFirm(i) 'cournot or price taker' /set.I 0/;
+  47  parameter CournotFirm(i) 'cournot or price taker (1/-1)' /set.I -1/;
   49   
   50  set courn(I)  'cournot or price taker';
-  51  courn(I)$CournotFirm(I)=yes;
+  51  courn(I)$(CournotFirm(I)>0)=yes;
   52   
   53  SCALARS
   54  * gamma > 1
@@ -88,7 +88,7 @@ C o m p i l a t i o n
   90   
   91  model Cournot      / defobj_Cour,defp / ;
   92   
-  93  File myinfo /'C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\empinfo.dat'/;
+  93  File myinfo /'/Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/empinfo.dat'/;
   94  put myinfo 'equilibrium';
   95  loop(i,
   96     put / 'max', prof(i), q(i), defobj_Cour(i);
@@ -112,9 +112,9 @@ C o m p i l a t i o n
  115   
  116  * Cournot Quantities
  117  display q.l, p.l ;
- 118  set CourHeader / quantity, price ,profit, gamma, dbar,cost,beta,l/;
+ 118  set CourHeader / quantity, price ,profit, gamma, dbar,cost,beta,l,courMember/;
  120  table resultCour(i,CourHeader);
- 121  table resultCour2(i,CourHeader);
+ 121  *table resultCour2(i,CourHeader);
  123  resultCour(i,'quantity')=q.l(i);
  124  resultCour(i,'price')=p.l;
  125  resultCour(i,'profit')=q.l(i) *p.l-c(i)*q.l(i) -((beta(i)/(1+beta(i)))*L(i)**(1/beta(i)))*q.l(i)**((1+beta(i))/beta(i));
@@ -123,102 +123,106 @@ C o m p i l a t i o n
  128  resultCour(i,'cost')=c(i);
  129  resultCour(i,'beta')=beta(i);
  130  resultCour(i,'l')=L(i);
- 131  resultCour2(i,CourHeader)=resultCour(i,CourHeader)
- 132  *-------------------------------------------------------------------------------------------
- 133  * Model solve and display for Stackelberg Case
- 134  *   NOTE
- 135  *   This display procedure is due entirely to the GAMS MODEL LIBRARY (NASH,SEQ=269)
- 136  *   In the course of developing this Case Study we discovered the model posting and
- 137  *   found it to be better than anything we could formulate. So we took it
- 138  *   exactly instead of changing it so we could give credit where credit is due
- 139   
- 140  * 'profit' display table
- 141  * The table has row 'i' and columns 'k'
- 142  * The "Cournot" column gives the profit of firm 'i' and the market price under Cournot
- 143  * the row indices give the firm 'i'
- 144  * The columns labeled k=[1, 2, 3] give the incidences where firm 'k' is the
- 145  * Stackelberg leader.  The rows are as before
- 146   
- 147  * 'profitX' display table
- 148  * The table gives the percentage change for each column against the Cournot case
- 149  * that is 100*data(i,j)/data(i,"Cournot")
- 150   
- 151  * 'quantity' procedure same as 'profit'
- 152   
- 153  model Stackelberg / defobj_Cour, defp / ;
- 154   
- 155  sets StacHeader /CourQuantity 'quantity when not a leader firm',StacQuantity 'quantity when as a leader firm',
- 156                  CourProfit 'profit when not a leader firm', StacProfit 'profit when as a leader firm'/;
- 157   
- 159  table resultStac(i,Stacheader) 'Difference between Cournot and Stackelberg model';
- 161  leader(k) = no;
- 162  loop(k,
- 163       leader(k) = yes ;
- 164       p.l=1;
- 165       q.l(i)=1;
- 166  put myinfo 'bilevel', q(k);
- 167  loop(i$(not Leader(i)),
- 168     put  / 'max', prof(i), q(i), defobj_Cour(i);
- 169  );
- 170   put / 'vi defp p';
- 171  putclose myinfo;
- 172   
- 173  solve Stackelberg using emp maximizing z;
- 174  resultStac(k,'StacQuantity')=q.l(k);
- 175  resultStac(k,'StacProfit')=z.l;
- 176  leader(k) = no ;
- 177  );
- 178   
+ 131  resultCour(i,'courMember')=1$courn(i)-1$(not courn(i));
+ 132  *resultCour2(i,CourHeader)=resultCour(i,CourHeader)
+ 133  *-------------------------------------------------------------------------------------------
+ 134  * Model solve and display for Stackelberg Case
+ 135  *   NOTE
+ 136  *   This display procedure is due entirely to the GAMS MODEL LIBRARY (NASH,SEQ=269)
+ 137  *   In the course of developing this Case Study we discovered the model posting and
+ 138  *   found it to be better than anything we could formulate. So we took it
+ 139  *   exactly instead of changing it so we could give credit where credit is due
+ 140   
+ 141  * 'profit' display table
+ 142  * The table has row 'i' and columns 'k'
+ 143  * The "Cournot" column gives the profit of firm 'i' and the market price under Cournot
+ 144  * the row indices give the firm 'i'
+ 145  * The columns labeled k=[1, 2, 3] give the incidences where firm 'k' is the
+ 146  * Stackelberg leader.  The rows are as before
+ 147   
+ 148  * 'profitX' display table
+ 149  * The table gives the percentage change for each column against the Cournot case
+ 150  * that is 100*data(i,j)/data(i,"Cournot")
+ 151   
+ 152  * 'quantity' procedure same as 'profit'
+ 153   
+ 154  model Stackelberg / defobj_Cour, defp / ;
+ 155   
+ 156  sets StacHeader /CourQuantity 'quantity when not a leader firm',StacQuantity 'quantity when as a leader firm',
+ 157                  CourProfit 'profit when not a leader firm', StacProfit 'profit when as a leader firm'/;
+ 158   
+ 160  table resultStac(i,Stacheader) 'Difference between Cournot and Stackelberg model';
+ 162  leader(k) = no;
+ 163  loop(k,
+ 164       leader(k) = yes ;
+ 165       p.l=1;
+ 166       q.l(i)=1;
+ 167  put myinfo 'bilevel', q(k);
+ 168  loop(i$(not Leader(i)),
+ 169     put  / 'max', prof(i), q(i), defobj_Cour(i);
+ 170  );
+ 171   put / 'vi defp p';
+ 172  putclose myinfo;
+ 173   
+ 174  solve Stackelberg using emp maximizing z;
+ 175  resultStac(k,'StacQuantity')=q.l(k);
+ 176  resultStac(k,'StacProfit')=z.l;
+ 177  leader(k) = no ;
+ 178  );
  179   
- 180  resultStac(i,'CourQuantity')=resultCour(i,'quantity');
- 181  resultStac(i,'CourProfit')=resultCour(i,'profit');
- 182   
- 183  variables obj(i) 'Objective for sub-Stackelberg problem';
- 184  Equation obj_subStac(i);
- 185  obj_subStac(i)$(not lead(i))..
- 186  obj(i) =e= q(i)*{((dbar/sum(J, q(J)))**(1/gamma))$courn(i) + p$(not courn(i))}-(c(i)*q(i) + s(i)*q(i)**((1+beta(i))/beta(i)));
- 187  model subStackelberg /obj_subStac,defp/;
- 188   
- 189  set linfoHeader /lquantity,lprofit,nprofit/;
- 190  *    ninfoHeader /lquantity,lprofit,nprofit,nquantity/;
- 191   
- 192  set grid /1*21/
- 193   nonlead(i);
- 194   nonlead(i)$(not lead(i))=yes;
- 196  table linfo_stac(i,grid,linfoheader) lead firm info;
- 197  *table ninfo_stac(i,grid,ninfoheader) Nonleader firm info;
- 199  *ninfo_stac(nonlead,grid,'nquantity')=resultCour(nonlead,'quantity');
- 200  loop(grid,
- 201  p.l=1;
- 202  q.l(i)=1;
- 203  q.fx(lead)=resultCour(lead,'Quantity')*(0.45+grid.val/20);
- 204  put myinfo 'equilibrium';
- 205  loop(i$(nonlead(I)),
- 206  put /'max', obj(i),q(i),obj_subStac(i);
- 207  );
- 208  put / 'vi defp p';
- 209  putclose myinfo;
- 210  solve subStackelberg using emp;
- 211  linfo_stac(lead,grid,'lquantity')=q.l(lead);
- 212  linfo_stac(lead,grid,'lprofit')=q.l(lead) *(dbar/sum(j, q.l(j)))**(1/gamma) -c(lead)*q.l(lead) -
- 213  ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
- 214  linfo_stac(lead,grid,'nprofit')=q.l(lead) *(dbar/(q.l(lead)+sum(j$(not lead(j)), resultCour(j,'quantity'))))**(1/gamma) -c(lead)*q.l(lead) -
+ 180   
+ 181  resultStac(i,'CourQuantity')=resultCour(i,'quantity');
+ 182  resultStac(i,'CourProfit')=resultCour(i,'profit');
+ 183   
+ 184  variables obj(i) 'Objective for sub-Stackelberg problem';
+ 185  Equation obj_subStac(i);
+ 186  obj_subStac(i)$(not lead(i))..
+ 187  obj(i) =e= q(i)*{((dbar/sum(J, q(J)))**(1/gamma))$courn(i) + p$(not courn(i))}-(c(i)*q(i) + s(i)*q(i)**((1+beta(i))/beta(i)));
+ 188  model subStackelberg /obj_subStac,defp/;
+ 189   
+ 190  set linfoHeader /lquantity,lprofit,nprofit,nquantity/;
+ 191  *    ninfoHeader /lquantity,lprofit,nprofit,nquantity/;
+ 192   
+ 193  set grid /1*21/
+ 194   nonlead(i);
+ 195   nonlead(i)$(not lead(i))=yes;
+ 197  table leader_stac_profit(i,grid,linfoheader) lead firm info,
+ 198  leader_stac_quantity(i,grid,linfoheader);
+ 199  *table ninfo_stac(i,grid,ninfoheader) Nonleader firm info;
+ 201  *ninfo_stac(nonlead,grid,'nquantity')=resultCour(nonlead,'quantity');
+ 202  loop(grid,
+ 203  p.l=1;
+ 204  q.l(i)=1;
+ 205  q.fx(lead)=resultCour(lead,'Quantity')*(0.45+grid.val/20);
+ 206  put myinfo 'equilibrium';
+ 207  loop(i$(nonlead(I)),
+ 208  put /'max', obj(i),q(i),obj_subStac(i);
+ 209  );
+ 210  put / 'vi defp p';
+ 211  putclose myinfo;
+ 212  solve subStackelberg using emp;
+ 213  leader_stac_profit(lead,grid,'lquantity')=q.l(lead);
+ 214  leader_stac_profit(lead,grid,'lprofit')=q.l(lead) *(dbar/sum(j, q.l(j)))**(1/gamma) -c(lead)*q.l(lead) -
  215  ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
- 216  *ninfo_stac(nonlead,grid,'lquantity')=sum(lead,q.l(lead));
- 217  linfo_stac(nonlead,grid,'lprofit')=obj.l(nonlead);
- 218  linfo_stac(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(lead,q.l(lead))+sum(j$(nonlead(j)), resultCour(j,'quantity'))))**(1/gamma)  -c(nonlead)*resultCour(nonlead,'quantity') -
- 219  ((beta(nonlead)/(1+beta(nonlead)))*L(nonlead)**(1/beta(nonlead)))*resultCour(nonlead,'quantity')**((1+beta(nonlead))/beta(nonlead));
- 220  );
- 221   
- 222   
- 223  *-------------------------------------------------------------------------------------------
- 224   
- 225  *-------------------------------------------------------------------------------------------
- 226  * CONTINUOUS BERTRAND MODEL - 2 or more firms
- 227  * Note, this model could use price elasticites to define the weights 'w' and be more
- 228  * realistic but we simply assign 'w' so as to not confuse the models.
- 229  * The prediction of the LINEAR price competition model does not have a meaningful
- 230  * comparison to the CES quantity competition models
+ 216  leader_stac_profit(lead,grid,'nprofit')=q.l(lead) *(dbar/(q.l(lead)+sum(j$(not lead(j)), resultCour(j,'quantity'))))**(1/gamma) -c(lead)*q.l(lead) -
+ 217  ((beta(lead)/(1+beta(lead)))*L(lead)**(1/beta(lead)))*q.l(lead)**((1+beta(lead))/beta(lead));
+ 218  *ninfo_stac(nonlead,grid,'lquantity')=sum(lead,q.l(lead));
+ 219  leader_stac_profit(nonlead,grid,'lprofit')=obj.l(nonlead);
+ 220  leader_stac_profit(nonlead,grid,'nprofit')= resultCour(nonlead,'quantity') *(dbar/(sum(lead,q.l(lead))+sum(j$(nonlead(j)), resultCour(j,'quantity'))))**(1/gamma)  -c(nonlead)*resultCour(nonlead,'quantity') -
+ 221  ((beta(nonlead)/(1+beta(nonlead)))*L(nonlead)**(1/beta(nonlead)))*resultCour(nonlead,'quantity')**((1+beta(nonlead))/beta(nonlead));
+ 222  leader_stac_quantity(lead,grid,'lquantity')=q.l(lead);
+ 223  leader_stac_quantity(i,grid,'nquantity')=q.l(i);
+ 224  );
+ 225   
+ 226   
+ 227  *-------------------------------------------------------------------------------------------
+ 228   
+ 229  *-------------------------------------------------------------------------------------------
+ 230  * CONTINUOUS BERTRAND MODEL - 2 or more firms
+ 231  * Note, this model could use price elasticites to define the weights 'w' and be more
+ 232  * realistic but we simply assign 'w' so as to not confuse the models.
+ 233  * The prediction of the LINEAR price competition model does not have a meaningful
+ 234  * comparison to the CES quantity competition models
       SETS d  "Bertrand firms"  / 1*2 / ;
       set jHeader /w 'weight',c 'cost'/;
       $onexternalInput
@@ -283,8 +287,8 @@ C o m p i l a t i o n
        
 
 
-COMPILATION TIME     =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 2
+COMPILATION TIME     =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 2
 Oligopoly : Cournot, Bertrand and Stackelberg
 Equation Listing    SOLVE Cournot Using EMP From line 114
 
@@ -306,7 +310,7 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 3
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 3
 Oligopoly : Cournot, Bertrand and Stackelberg
 Column Listing      SOLVE Cournot Using EMP From line 114
 
@@ -362,7 +366,7 @@ p
       (-1)      defobj_Cour(10)
         1       defp
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 4
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 4
 Oligopoly : Cournot, Bertrand and Stackelberg
 Model Statistics    SOLVE Cournot Using EMP From line 114
 
@@ -376,11 +380,11 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.005 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.032 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 5
+EXECUTION TIME       =        0.006 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 5
 Oligopoly : Cournot, Bertrand and Stackelberg
 Solution Report     SOLVE Cournot Using EMP From line 114
 
@@ -394,11 +398,11 @@ Solution Report     SOLVE Cournot Using EMP From line 114
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.009      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -414,12 +418,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 11
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 11 row/cols, 31 non-zeros, 25.62% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -516,7 +520,7 @@ Maximum of Grad F . . . . . . .  5.6136e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 6
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 6
 Oligopoly : Cournot, Bertrand and Stackelberg
 E x e c u t i o n
 
@@ -527,9 +531,9 @@ E x e c u t i o n
 
 
 ----    117 VARIABLE p.L                   =       25.820  Market Clearing Price - Cournot & Stackelberg
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 7
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 7
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
@@ -549,9 +553,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 8
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 8
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -612,9 +616,9 @@ z
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj_Cour(1)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 9
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 9
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   1
@@ -629,32 +633,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 1
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 10
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 10
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               36.3397
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.008      1000.000
  ITERATION COUNT, LIMIT        74    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -670,11 +674,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -688,14 +692,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -712,8 +716,8 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
  CONOPT time Total                            0.008 seconds
-   of which: Function evaluations             0.003 = 37.5%
-             1st Derivative evaluations       0.000 =  0.0%
+   of which: Function evaluations             0.001 = 12.5%
+             1st Derivative evaluations       0.001 = 12.5%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -785,9 +789,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 11
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 11
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
@@ -807,9 +811,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 12
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 12
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -870,9 +874,9 @@ z
                 (.LO, .L, .UP, .M = -INF, 36.3396721040205, +INF, 0)
         1       defobj_Cour(2)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 13
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 13
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   2
@@ -887,32 +891,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 2
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 14
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 14
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               26.0672
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
- ITERATION COUNT, LIMIT        82    2000000000
+ RESOURCE USAGE, LIMIT          0.008      1000.000
+ ITERATION COUNT, LIMIT        92    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -928,11 +932,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -946,14 +950,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -969,8 +973,8 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.009 seconds
-   of which: Function evaluations             0.005 = 55.6%
+ CONOPT time Total                            0.008 seconds
+   of which: Function evaluations             0.005 = 62.5%
              1st Derivative evaluations       0.000 =  0.0%
              Directional 2nd Derivative       0.000 =  0.0%
  
@@ -1043,18 +1047,18 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 15
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 15
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
 
-defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.974354745041, INFES = 43.974354745041 ****)
+defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.9743547450928, INFES = 43.9743547450928 ****)
      
 defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.2510590516214, INFES = 33.2510590516214 ****)
      
-defobj_Cour(3)..  (19.9154966501488)*q(3) - (1)*p + z =E= 0 ; (LHS = 39.1851088425136, INFES = 39.1851088425136 ****)
+defobj_Cour(3)..  (19.9154966501488)*q(3) - (1)*p + z =E= 0 ; (LHS = 39.1851088425445, INFES = 39.1851088425445 ****)
      
 REMAINING 7 ENTRIES SKIPPED
 
@@ -1065,9 +1069,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 16
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 16
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -1092,7 +1096,7 @@ REMAINING 7 ENTRIES SKIPPED
 ---- prof  objective function for firm i
 
 prof(1)
-                (.LO, .L, .UP, .M = -INF, 36.258216186543, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 36.2582161865948, +INF, 0)
         1       defobj_Cour(1)
 
 prof(2)
@@ -1100,7 +1104,7 @@ prof(2)
         1       defobj_Cour(2)
 
 prof(4)
-                (.LO, .L, .UP, .M = -INF, 8.05937180818779, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 8.05937180819616, +INF, 0)
         1       defobj_Cour(4)
 
 REMAINING 6 ENTRIES SKIPPED
@@ -1125,12 +1129,12 @@ p
 ---- z  Stackelberg-leader Profit
 
 z
-                (.LO, .L, .UP, .M = -INF, 26.0672420082325, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 26.0672420082635, +INF, 0)
         1       defobj_Cour(3)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 17
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 17
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   3
@@ -1145,32 +1149,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 3
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 18
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 18
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               12.5378
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.009      1000.000
  ITERATION COUNT, LIMIT        80    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -1186,11 +1190,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -1204,14 +1208,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -1227,8 +1231,8 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.012 seconds
-   of which: Function evaluations             0.007 = 58.3%
+ CONOPT time Total                            0.009 seconds
+   of which: Function evaluations             0.007 = 77.8%
              1st Derivative evaluations       0.000 =  0.0%
              Directional 2nd Derivative       0.000 =  0.0%
  
@@ -1301,9 +1305,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 19
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 19
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
@@ -1312,7 +1316,7 @@ defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.91
      
 defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.0612388989004, INFES = 33.0612388989004 ****)
      
-defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.6825923188489, INFES = 25.6825923188489 ****)
+defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.6825923188669, INFES = 25.6825923188669 ****)
      
 REMAINING 7 ENTRIES SKIPPED
 
@@ -1323,9 +1327,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 20
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 20
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -1358,7 +1362,7 @@ prof(2)
         1       defobj_Cour(2)
 
 prof(3)
-                (.LO, .L, .UP, .M = -INF, 12.5647254845678, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 12.5647254845859, +INF, 0)
         1       defobj_Cour(3)
 
 REMAINING 6 ENTRIES SKIPPED
@@ -1386,9 +1390,9 @@ z
                 (.LO, .L, .UP, .M = -INF, 12.537771108475, +INF, 0)
         1       defobj_Cour(4)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 21
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 21
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   4
@@ -1403,32 +1407,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.047 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.007 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 4
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 22
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 22
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE                8.0442
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.007      1000.000
  ITERATION COUNT, LIMIT        72    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -1444,11 +1448,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -1462,14 +1466,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -1485,9 +1489,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.011 seconds
-   of which: Function evaluations             0.006 = 54.5%
-             1st Derivative evaluations       0.000 =  0.0%
+ CONOPT time Total                            0.007 seconds
+   of which: Function evaluations             0.005 = 71.4%
+             1st Derivative evaluations       0.001 = 14.3%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -1522,9 +1526,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
 1           .             3.8214        +INF             .          
 2           .             2.2822        +INF             .          
-3           .             1.3361        +INF            EPS         
+3           .             1.3361        +INF             .          
 4           .             0.6145        +INF             .          
-5           .            12.3665        +INF             .          
+5           .            12.3665        +INF            EPS         
 6           .             2.2822        +INF             .          
 7           .             0.7803        +INF             .          
 8           .             2.9701        +INF             .          
@@ -1559,18 +1563,18 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 23
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 23
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
 
-defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.8829467309854, INFES = 43.8829467309854 ****)
+defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.8829467304443, INFES = 43.8829467304443 ****)
      
-defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.0413631149686, INFES = 33.0413631149686 ****)
+defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.0413631146454, INFES = 33.0413631146454 ****)
      
-defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.650634125303, INFES = 25.650634125303 ****)
+defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.6506341251138, INFES = 25.6506341251138 ****)
      
 REMAINING 7 ENTRIES SKIPPED
 
@@ -1581,9 +1585,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 24
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 24
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -1599,7 +1603,7 @@ q(2)
        (4.5298) defp
 
 q(3)
-                (.LO, .L, .UP, .M = 0, 1, +INF, EPS)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
       (19.9155) defobj_Cour(3)
        (4.5298) defp
 
@@ -1608,15 +1612,15 @@ REMAINING 7 ENTRIES SKIPPED
 ---- prof  objective function for firm i
 
 prof(1)
-                (.LO, .L, .UP, .M = -INF, 36.1668081724875, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 36.1668081719463, +INF, 0)
         1       defobj_Cour(1)
 
 prof(2)
-                (.LO, .L, .UP, .M = -INF, 26.0413631149686, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 26.0413631146454, +INF, 0)
         1       defobj_Cour(2)
 
 prof(3)
-                (.LO, .L, .UP, .M = -INF, 12.5327672910219, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 12.5327672908327, +INF, 0)
         1       defobj_Cour(3)
 
 REMAINING 6 ENTRIES SKIPPED
@@ -1641,12 +1645,12 @@ p
 ---- z  Stackelberg-leader Profit
 
 z
-                (.LO, .L, .UP, .M = -INF, 8.04421541754399, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 8.04421541745645, +INF, 0)
         1       defobj_Cour(5)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 25
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 25
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   5
@@ -1661,32 +1665,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 5
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 26
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 26
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE              129.6932
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT        43    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -1702,11 +1706,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -1720,14 +1724,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -1743,9 +1747,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.007 seconds
-   of which: Function evaluations             0.000 =  0.0%
-             1st Derivative evaluations       0.001 = 14.3%
+ CONOPT time Total                            0.005 seconds
+   of which: Function evaluations             0.001 = 20.0%
+             1st Derivative evaluations       0.001 = 20.0%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -1817,9 +1821,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 27
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 27
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
@@ -1839,9 +1843,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 28
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 28
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -1902,9 +1906,9 @@ z
                 (.LO, .L, .UP, .M = -INF, 129.693220578183, +INF, 0)
         1       defobj_Cour(6)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 29
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 29
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   6
@@ -1919,32 +1923,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 6
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 30
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 30
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               26.0672
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
- ITERATION COUNT, LIMIT        82    2000000000
+ RESOURCE USAGE, LIMIT          0.007      1000.000
+ ITERATION COUNT, LIMIT        92    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -1960,11 +1964,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -1978,14 +1982,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -2001,9 +2005,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.009 seconds
-   of which: Function evaluations             0.004 = 44.4%
-             1st Derivative evaluations       0.000 =  0.0%
+ CONOPT time Total                            0.007 seconds
+   of which: Function evaluations             0.003 = 42.9%
+             1st Derivative evaluations       0.001 = 14.3%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -2075,18 +2079,18 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 31
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 31
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
 
-defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.974354745041, INFES = 43.974354745041 ****)
+defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.9743547450928, INFES = 43.9743547450928 ****)
      
-defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.0959441186898, INFES = 33.0959441186898 ****)
+defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.0959441187207, INFES = 33.0959441187207 ****)
      
-defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.6825923188489, INFES = 25.6825923188489 ****)
+defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.682592318867, INFES = 25.682592318867 ****)
      
 REMAINING 7 ENTRIES SKIPPED
 
@@ -2097,9 +2101,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 32
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 32
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -2124,15 +2128,15 @@ REMAINING 7 ENTRIES SKIPPED
 ---- prof  objective function for firm i
 
 prof(1)
-                (.LO, .L, .UP, .M = -INF, 36.258216186543, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 36.2582161865948, +INF, 0)
         1       defobj_Cour(1)
 
 prof(2)
-                (.LO, .L, .UP, .M = -INF, 26.0959441186898, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 26.0959441187207, +INF, 0)
         1       defobj_Cour(2)
 
 prof(3)
-                (.LO, .L, .UP, .M = -INF, 12.5647254845678, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 12.5647254845859, +INF, 0)
         1       defobj_Cour(3)
 
 REMAINING 6 ENTRIES SKIPPED
@@ -2157,12 +2161,12 @@ p
 ---- z  Stackelberg-leader Profit
 
 z
-                (.LO, .L, .UP, .M = -INF, 26.0672420082325, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 26.0672420082635, +INF, 0)
         1       defobj_Cour(7)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 33
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 33
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   7
@@ -2177,32 +2181,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 7
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 34
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 34
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE                8.6391
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.008      1000.000
  ITERATION COUNT, LIMIT        74    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -2218,11 +2222,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -2236,14 +2240,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -2259,8 +2263,8 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.013 seconds
-   of which: Function evaluations             0.005 = 38.5%
+ CONOPT time Total                            0.007 seconds
+   of which: Function evaluations             0.005 = 71.4%
              1st Derivative evaluations       0.000 =  0.0%
              Directional 2nd Derivative       0.000 =  0.0%
  
@@ -2333,9 +2337,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 35
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 35
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
@@ -2355,9 +2359,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 36
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 36
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -2418,9 +2422,9 @@ z
                 (.LO, .L, .UP, .M = -INF, 8.6391315292128, +INF, 0)
         1       defobj_Cour(8)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 37
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 37
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   8
@@ -2435,32 +2439,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.047 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 8
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 38
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 38
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               30.9325
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.006      1000.000
  ITERATION COUNT, LIMIT        46    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -2476,11 +2480,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -2494,14 +2498,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -2517,9 +2521,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.008 seconds
-   of which: Function evaluations             0.005 = 62.5%
-             1st Derivative evaluations       0.000 =  0.0%
+ CONOPT time Total                            0.006 seconds
+   of which: Function evaluations             0.002 = 33.3%
+             1st Derivative evaluations       0.001 = 16.7%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -2591,9 +2595,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 39
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 39
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
@@ -2613,9 +2617,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 40
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 40
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -2676,9 +2680,9 @@ z
                 (.LO, .L, .UP, .M = -INF, 30.9325417787261, +INF, 0)
         1       defobj_Cour(9)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 41
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 41
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   9
@@ -2693,32 +2697,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 9
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 42
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 42
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               17.3646
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
- ITERATION COUNT, LIMIT        52    2000000000
+ RESOURCE USAGE, LIMIT          0.006      1000.000
+ ITERATION COUNT, LIMIT        77    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -2734,11 +2738,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -2752,14 +2756,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -2775,9 +2779,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.007 seconds
-   of which: Function evaluations             0.002 = 28.6%
-             1st Derivative evaluations       0.002 = 28.6%
+ CONOPT time Total                            0.006 seconds
+   of which: Function evaluations             0.004 = 66.7%
+             1st Derivative evaluations       0.000 =  0.0%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -2812,9 +2816,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
 1           .             3.8245        +INF             .          
 2           .             2.2836        +INF             .          
-3           .             1.3371        +INF            EPS         
+3           .             1.3371        +INF             .          
 4           .             0.6184        +INF             .          
-5           .            12.3771        +INF             .          
+5           .            12.3771        +INF            EPS         
 6           .             2.2836        +INF             .          
 7           .             0.7807        +INF             .          
 8           .             2.9723        +INF             .          
@@ -2849,18 +2853,18 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 43
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 43
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE Stackelberg Using EMP From line 173
+Equation Listing    SOLVE Stackelberg Using EMP From line 174
 
 
 ---- defobj_Cour  =E=  define objective function for firm i in Cournot
 
-defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.9370677357541, INFES = 43.9370677357541 ****)
+defobj_Cour(1)..  (10.8129206905796)*q(1) + prof(1) - (1)*p =E= 0 ; (LHS = 43.9370677355622, INFES = 43.9370677355622 ****)
      
-defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.073681698619, INFES = 33.073681698619 ****)
+defobj_Cour(2)..  (12)*q(2) + prof(2) - (1)*p =E= 0 ; (LHS = 33.0736816985044, INFES = 33.0736816985044 ****)
      
-defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.6695566421932, INFES = 25.6695566421932 ****)
+defobj_Cour(3)..  (19.9154966501488)*q(3) + prof(3) - (1)*p =E= 0 ; (LHS = 25.6695566421261, INFES = 25.6695566421261 ****)
      
 REMAINING 7 ENTRIES SKIPPED
 
@@ -2871,9 +2875,9 @@ defp..  (4.5298072369367)*q(1) + (4.5298072369367)*q(2) + (4.5298072369367)*q(3)
      
       + (4.5298072369367)*q(10) + p =E= 0 ; (LHS = -57.8874940801771, INFES = 57.8874940801771 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 44
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 44
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE Stackelberg Using EMP From line 173
+Column Listing      SOLVE Stackelberg Using EMP From line 174
 
 
 ---- q  Production Vector - for all models
@@ -2889,7 +2893,7 @@ q(2)
        (4.5298) defp
 
 q(3)
-                (.LO, .L, .UP, .M = 0, 1, +INF, EPS)
+                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
       (19.9155) defobj_Cour(3)
        (4.5298) defp
 
@@ -2898,15 +2902,15 @@ REMAINING 7 ENTRIES SKIPPED
 ---- prof  objective function for firm i
 
 prof(1)
-                (.LO, .L, .UP, .M = -INF, 36.2209291772561, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 36.2209291770642, +INF, 0)
         1       defobj_Cour(1)
 
 prof(2)
-                (.LO, .L, .UP, .M = -INF, 26.073681698619, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 26.0736816985044, +INF, 0)
         1       defobj_Cour(2)
 
 prof(3)
-                (.LO, .L, .UP, .M = -INF, 12.5516898079122, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 12.5516898078451, +INF, 0)
         1       defobj_Cour(3)
 
 REMAINING 6 ENTRIES SKIPPED
@@ -2931,12 +2935,12 @@ p
 ---- z  Stackelberg-leader Profit
 
 z
-                (.LO, .L, .UP, .M = -INF, 17.3645632125926, +INF, 0)
+                (.LO, .L, .UP, .M = -INF, 17.3645632125068, +INF, 0)
         1       defobj_Cour(10)
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 45
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 45
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE Stackelberg Using EMP From line 173
+Model Statistics    SOLVE Stackelberg Using EMP From line 174
 
 
 LOOPS                                    k   10
@@ -2951,32 +2955,32 @@ DERIVATIVE POOL              20     CONSTANT POOL              38
 CODE LENGTH                 137
 
 
-GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S                  k 10
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 46
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 46
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE Stackelberg Using EMP From line 173
+Solution Report     SOLVE Stackelberg Using EMP From line 174
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Stackelberg         OBJECTIVE  z
      TYPE    EMP                 DIRECTION  MAXIMIZE
-     SOLVER  JAMS                FROM LINE  173
+     SOLVER  JAMS                FROM LINE  174
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               13.6174
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
- ITERATION COUNT, LIMIT        70    2000000000
+ RESOURCE USAGE, LIMIT          0.007      1000.000
+ ITERATION COUNT, LIMIT        59    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -2992,11 +2996,11 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 0
     Bilevel Followers   = 10
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 
-NLPEC 1.6        31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+NLPEC 1.6        31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 Reformulates Nonlinear Programs with Equilibrium Constraints
 Michael Ferris, University of Wisconsin
@@ -3010,14 +3014,14 @@ Michael Ferris, University of Wisconsin
 *  NCPBounds           none        none
 
 
---- The reformulated model C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat will be solved by GAMS
---- gams "C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\gms.dat" pf="C:\Users\hasee\DOCUME~1\GitHub\GAMS-M~1\OLIGOP~1\225d\pf.dat"
+--- The reformulated model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat will be solved by GAMS
+--- gams "/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/gms.dat" pf="/Users/ferris/Projects/GAMS-MIRO/oligopoly/225b/pf.dat"
 
 --- Returning from GAMS NLPEC step
 
 --- Additional Mpec Equations = 9
 --- Additional Mpec Variables = 9
-CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+CONOPT 3         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
  
  
     C O N O P T 3   version 3.17L
@@ -3033,9 +3037,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.010 seconds
-   of which: Function evaluations             0.001 = 10.0%
-             1st Derivative evaluations       0.003 = 30.0%
+ CONOPT time Total                            0.007 seconds
+   of which: Function evaluations             0.001 = 14.3%
+             1st Derivative evaluations       0.002 = 28.6%
              Directional 2nd Derivative       0.000 =  0.0%
  
 ---
@@ -3070,9 +3074,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 
 1           .             3.8220        +INF             .          
 2           .             2.2824        +INF             .          
-3           .             1.3363        +INF             .          
+3           .             1.3363        +INF            EPS         
 4           .             0.6182        +INF             .          
-5           .            12.3685        +INF            EPS         
+5           .            12.3685        +INF             .          
 6           .             2.2824        +INF             .          
 7           .             0.7804        +INF             .          
 8           .             2.9705        +INF             .          
@@ -3107,9 +3111,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0  UNBOUNDED
                              0     ERRORS
                              1  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 47
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 47
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -3129,9 +3133,9 @@ defp..  (3.88258096710723)*q(1) + (3.88258096710723)*q(2) + (3.88258096710723)*q
      
       + (3.88258096710723)*q(10) + p =E= 0 ; (LHS = -54.0694042098903, INFES = 54.0694042098903 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 48
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 48
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -3146,7 +3150,7 @@ q(2)
        (3.8826) defp
 
 q(3)
-                (.LO, .L, .UP, .M = 0, 1, +INF, 0)
+                (.LO, .L, .UP, .M = 0, 1, +INF, EPS)
       (19.9155) obj_subStac(3)
        (3.8826) defp
 
@@ -3183,9 +3187,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 49
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 49
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   1
@@ -3200,31 +3204,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 1
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 50
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 50
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -3240,12 +3244,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -3340,9 +3344,9 @@ Maximum of Grad F . . . . . . .  5.6876e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 51
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 51
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -3362,9 +3366,9 @@ defp..  (3.76514829256001)*q(1) + (3.76514829256001)*q(2) + (3.76514829256001)*q
      
       + (3.76514829256001)*q(10) + p =E= 0 ; (LHS = -53.3389269709956, INFES = 53.3389269709956 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 52
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 52
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -3416,9 +3420,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 53
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 53
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   2
@@ -3433,31 +3437,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 2
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 54
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 54
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -3473,12 +3477,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -3573,9 +3577,9 @@ Maximum of Grad F . . . . . . .  5.6802e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 55
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 55
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -3595,9 +3599,9 @@ defp..  (3.65318152726081)*q(1) + (3.65318152726081)*q(2) + (3.65318152726081)*q
      
       + (3.65318152726081)*q(10) + p =E= 0 ; (LHS = -52.6303580013299, INFES = 52.6303580013299 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 56
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 56
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -3649,9 +3653,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 57
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 57
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   3
@@ -3666,31 +3670,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 3
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 58
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 58
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -3706,12 +3710,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -3806,9 +3810,9 @@ Maximum of Grad F . . . . . . .  5.6728e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 59
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 59
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -3828,9 +3832,9 @@ defp..  (3.54634011960453)*q(1) + (3.54634011960453)*q(2) + (3.54634011960453)*q
      
       + (3.54634011960453)*q(10) + p =E= 0 ; (LHS = -51.9426859868265, INFES = 51.9426859868265 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 60
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 60
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -3882,9 +3886,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 61
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 61
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   4
@@ -3899,31 +3903,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 4
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 62
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 62
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -3939,12 +3943,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -4039,9 +4043,9 @@ Maximum of Grad F . . . . . . .  5.6653e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 63
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 63
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -4061,9 +4065,9 @@ defp..  (3.44430992817952)*q(1) + (3.44430992817952)*q(2) + (3.44430992817952)*q
      
       + (3.44430992817952)*q(10) + p =E= 0 ; (LHS = -51.2749621134332, INFES = 51.2749621134332 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 64
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 64
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -4115,9 +4119,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 65
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 65
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   5
@@ -4132,31 +4136,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 5
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 66
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 66
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -4172,12 +4176,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -4272,9 +4276,9 @@ Maximum of Grad F . . . . . . .  5.6579e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 67
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 67
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -4294,9 +4298,9 @@ defp..  (3.34680078385827)*q(1) + (3.34680078385827)*q(2) + (3.34680078385827)*q
      
       + (3.34680078385827)*q(10) + p =E= 0 ; (LHS = -50.6262952586193, INFES = 50.6262952586193 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 68
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 68
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -4348,9 +4352,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 69
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 69
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   6
@@ -4365,31 +4369,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 6
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 70
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 70
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -4405,12 +4409,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -4505,9 +4509,9 @@ Maximum of Grad F . . . . . . .  5.6505e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 71
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 71
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -4527,9 +4531,9 @@ defp..  (3.25354431177496)*q(1) + (3.25354431177496)*q(2) + (3.25354431177496)*q
      
       + (3.25354431177496)*q(10) + p =E= 0 ; (LHS = -49.9958476232953, INFES = 49.9958476232953 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 72
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 72
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -4581,9 +4585,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 73
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 73
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   7
@@ -4598,31 +4602,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 7
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 74
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 74
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.003      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -4638,12 +4642,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -4738,9 +4742,9 @@ Maximum of Grad F . . . . . . .  5.6431e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 75
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 75
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -4760,9 +4764,9 @@ defp..  (3.16429198188593)*q(1) + (3.16429198188593)*q(2) + (3.16429198188593)*q
      
       + (3.16429198188593)*q(10) + p =E= 0 ; (LHS = -49.3828307575547, INFES = 49.3828307575547 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 76
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 76
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -4814,9 +4818,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 77
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 77
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   8
@@ -4831,31 +4835,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 8
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 78
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 78
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -4871,12 +4875,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -4971,9 +4975,9 @@ Maximum of Grad F . . . . . . .  5.6358e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 79
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 79
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -4993,9 +4997,9 @@ defp..  (3.07881336100026)*q(1) + (3.07881336100026)*q(2) + (3.07881336100026)*q
      
       + (3.07881336100026)*q(10) + p =E= 0 ; (LHS = -48.7865019392182, INFES = 48.7865019392182 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 80
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 80
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -5047,9 +5051,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 81
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 81
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   9
@@ -5064,31 +5068,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.047 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 9
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 82
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 82
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -5104,12 +5108,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -5130,7 +5134,7 @@ Inf-Norm of Normal Map. . . . .  1.2243e-11 eqn: (e10)
 Inf-Norm of Minimum Map . . . .  1.2243e-11 eqn: (e10)
 Inf-Norm of Fischer Function. .  1.2243e-11 eqn: (e10)
 Inf-Norm of Grad Fischer Fcn. .  3.7763e-11 eqn: (dL_dx4)
-Two-Norm of Grad Fischer Fcn. .  4.8698e-11
+Two-Norm of Grad Fischer Fcn. .  4.8739e-11
 
 FINAL POINT STATISTICS
 Maximum of X. . . . . . . . . .  2.5957e+01 var: (x11)
@@ -5204,9 +5208,9 @@ Maximum of Grad F . . . . . . .  5.6284e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 83
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 83
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -5226,9 +5230,9 @@ defp..  (2.99689454274277)*q(1) + (2.99689454274277)*q(2) + (2.99689454274277)*q
      
       + (2.99689454274277)*q(10) + p =E= 0 ; (LHS = -48.2061608689887, INFES = 48.2061608689887 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 84
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 84
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -5280,9 +5284,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 85
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 85
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   10
@@ -5297,31 +5301,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 10
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 86
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 86
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -5337,12 +5341,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -5437,9 +5441,9 @@ Maximum of Grad F . . . . . . .  5.6210e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 87
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 87
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -5459,9 +5463,9 @@ defp..  (2.91833673496961)*q(1) + (2.91833673496961)*q(2) + (2.91833673496961)*q
      
       + (2.91833673496961)*q(10) + p =E= 0 ; (LHS = -47.6411466502243, INFES = 47.6411466502243 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 88
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 88
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -5513,9 +5517,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 89
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 89
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   11
@@ -5530,31 +5534,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 11
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 90
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 90
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -5570,12 +5574,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -5670,9 +5674,9 @@ Maximum of Grad F . . . . . . .  5.6136e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 91
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 91
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -5692,9 +5696,9 @@ defp..  (2.84295498677819)*q(1) + (2.84295498677819)*q(2) + (2.84295498677819)*q
      
       + (2.84295498677819)*q(10) + p =E= 0 ; (LHS = -47.0908350249917, INFES = 47.0908350249917 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 92
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 92
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -5746,9 +5750,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 93
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 93
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   12
@@ -5763,31 +5767,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 12
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 94
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 94
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -5803,12 +5807,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -5903,9 +5907,9 @@ Maximum of Grad F . . . . . . .  5.6063e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 95
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 95
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -5925,9 +5929,9 @@ defp..  (2.77057703950687)*q(1) + (2.77057703950687)*q(2) + (2.77057703950687)*q
      
       + (2.77057703950687)*q(10) + p =E= 0 ; (LHS = -46.554635841254, INFES = 46.554635841254 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 96
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 96
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -5979,9 +5983,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 97
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 97
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   13
@@ -5996,31 +6000,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 13
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 98
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 98
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -6036,12 +6040,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -6136,9 +6140,9 @@ Maximum of Grad F . . . . . . .  5.5989e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 99
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 99
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -6158,9 +6162,9 @@ defp..  (2.70104228806016)*q(1) + (2.70104228806016)*q(2) + (2.70104228806016)*q
      
       + (2.70104228806016)*q(10) + p =E= 0 ; (LHS = -46.0319907288367, INFES = 46.0319907288367 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 100
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 100
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -6212,9 +6216,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 101
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 101
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   14
@@ -6229,31 +6233,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 14
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 102
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 102
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -6269,12 +6273,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -6369,9 +6373,9 @@ Maximum of Grad F . . . . . . .  5.5916e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 103
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 103
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -6391,9 +6395,9 @@ defp..  (2.63420084057168)*q(1) + (2.63420084057168)*q(2) + (2.63420084057168)*q
      
       + (2.63420084057168)*q(10) + p =E= 0 ; (LHS = -45.5223709642662, INFES = 45.5223709642662 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 104
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 104
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -6445,9 +6449,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 105
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 105
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   15
@@ -6462,31 +6466,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 15
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 106
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 106
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -6502,12 +6506,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -6528,7 +6532,7 @@ Inf-Norm of Normal Map. . . . .  1.8794e-12 eqn: (e10)
 Inf-Norm of Minimum Map . . . .  1.8794e-12 eqn: (e10)
 Inf-Norm of Fischer Function. .  1.8794e-12 eqn: (e10)
 Inf-Norm of Grad Fischer Fcn. .  5.8947e-12 eqn: (dL_dx4)
-Two-Norm of Grad Fischer Fcn. .  7.5378e-12
+Two-Norm of Grad Fischer Fcn. .  7.5368e-12
 
 FINAL POINT STATISTICS
 Maximum of X. . . . . . . . . .  2.5549e+01 var: (x11)
@@ -6602,9 +6606,9 @@ Maximum of Grad F . . . . . . .  5.5842e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 107
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 107
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -6624,9 +6628,9 @@ defp..  (2.56991266586654)*q(1) + (2.56991266586654)*q(2) + (2.56991266586654)*q
      
       + (2.56991266586654)*q(10) + p =E= 0 ; (LHS = -45.0252755067181, INFES = 45.0252755067181 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 108
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 108
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -6678,9 +6682,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 109
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 109
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   16
@@ -6695,31 +6699,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 16
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 110
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 110
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.015      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -6735,12 +6739,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -6835,9 +6839,9 @@ Maximum of Grad F . . . . . . .  5.5769e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 111
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 111
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -6857,9 +6861,9 @@ defp..  (2.50804681944259)*q(1) + (2.50804681944259)*q(2) + (2.50804681944259)*q
      
       + (2.50804681944259)*q(10) + p =E= 0 ; (LHS = -44.540229189209, INFES = 44.540229189209 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 112
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 112
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -6911,9 +6915,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 113
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 113
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   17
@@ -6928,31 +6932,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 17
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 114
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 114
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -6968,12 +6972,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -7068,9 +7072,9 @@ Maximum of Grad F . . . . . . .  5.5696e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 115
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 115
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -7090,9 +7094,9 @@ defp..  (2.44848073978197)*q(1) + (2.44848073978197)*q(2) + (2.44848073978197)*q
      
       + (2.44848073978197)*q(10) + p =E= 0 ; (LHS = -44.0667810508253, INFES = 44.0667810508253 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 116
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 116
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -7144,9 +7148,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 117
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 117
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   18
@@ -7161,31 +7165,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 18
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 118
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 118
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.005      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -7201,12 +7205,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -7301,9 +7305,9 @@ Maximum of Grad F . . . . . . .  5.5623e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 119
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 119
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -7323,9 +7327,9 @@ defp..  (2.39109960775575)*q(1) + (2.39109960775575)*q(2) + (2.39109960775575)*q
      
       + (2.39109960775575)*q(10) + p =E= 0 ; (LHS = -43.6045027972617, INFES = 43.6045027972617 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 120
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 120
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -7377,9 +7381,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 121
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 121
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   19
@@ -7394,31 +7398,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 19
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 122
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 122
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -7434,12 +7438,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -7534,9 +7538,9 @@ Maximum of Grad F . . . . . . .  5.5549e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 123
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 123
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -7556,9 +7560,9 @@ defp..  (2.3357957627139)*q(1) + (2.3357957627139)*q(2) + (2.3357957627139)*q(3)
      
       + (2.3357957627139)*q(10) + p =E= 0 ; (LHS = -43.1529873782361, INFES = 43.1529873782361 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 124
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 124
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -7610,9 +7614,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 125
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 125
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   20
@@ -7627,31 +7631,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.015 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.006 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 20
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 126
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 126
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -7667,12 +7671,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -7693,7 +7697,7 @@ Inf-Norm of Normal Map. . . . .  4.4409e-13 eqn: (e10)
 Inf-Norm of Minimum Map . . . .  4.4409e-13 eqn: (e10)
 Inf-Norm of Fischer Function. .  4.4409e-13 eqn: (e10)
 Inf-Norm of Grad Fischer Fcn. .  1.2908e-12 eqn: (dL_dx4)
-Two-Norm of Grad Fischer Fcn. .  1.6341e-12
+Two-Norm of Grad Fischer Fcn. .  1.6715e-12
 
 FINAL POINT STATISTICS
 Maximum of X. . . . . . . . . .  2.5214e+01 var: (x11)
@@ -7767,9 +7771,9 @@ Maximum of Grad F . . . . . . .  5.5476e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 127
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 127
 Oligopoly : Cournot, Bertrand and Stackelberg
-Equation Listing    SOLVE subStackelberg Using EMP From line 210
+Equation Listing    SOLVE subStackelberg Using EMP From line 212
 
 
 ---- obj_subStac  =E=  
@@ -7789,9 +7793,9 @@ defp..  (2.28246816957801)*q(1) + (2.28246816957801)*q(2) + (2.28246816957801)*q
      
       + (2.28246816957801)*q(10) + p =E= 0 ; (LHS = -42.7118476715058, INFES = 42.7118476715058 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 128
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 128
 Oligopoly : Cournot, Bertrand and Stackelberg
-Column Listing      SOLVE subStackelberg Using EMP From line 210
+Column Listing      SOLVE subStackelberg Using EMP From line 212
 
 
 ---- q  Production Vector - for all models
@@ -7843,9 +7847,9 @@ obj(4)
         1       obj_subStac(4)
 
 REMAINING 6 ENTRIES SKIPPED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 129
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 129
 Oligopoly : Cournot, Bertrand and Stackelberg
-Model Statistics    SOLVE subStackelberg Using EMP From line 210
+Model Statistics    SOLVE subStackelberg Using EMP From line 212
 
 
 LOOPS                                 grid   21
@@ -7860,31 +7864,31 @@ DERIVATIVE POOL              20     CONSTANT POOL              36
 CODE LENGTH                 125
 
 
-GENERATION TIME      =        0.032 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.004 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.047 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.005 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
                L O O P S               grid 21
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 130
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 130
 Oligopoly : Cournot, Bertrand and Stackelberg
-Solution Report     SOLVE subStackelberg Using EMP From line 210
+Solution Report     SOLVE subStackelberg Using EMP From line 212
 
 
                S O L V E      S U M M A R Y
 
      MODEL   subStackelberg      
      TYPE    EMP                 
-     SOLVER  JAMS                FROM LINE  210
+     SOLVER  JAMS                FROM LINE  212
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      2 Locally Optimal           
 
- RESOURCE USAGE, LIMIT          0.016      1000.000
+ RESOURCE USAGE, LIMIT          0.004      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0            50
 
-JAMS 1.0         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+JAMS 1.0         31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 
 JAMS - Solver for Extended Mathematical Programs (EMP)
 ------------------------------------------------------
@@ -7900,12 +7904,12 @@ JAMS - Solver for Extended Mathematical Programs (EMP)
     Equilibrium Agent   = 10
     Bilevel Followers   = 0
 
---- The model C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\emp.dat will be solved by GAMS
+--- The model /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/emp.dat will be solved by GAMS
 ---
 --- Returning from GAMS step
 10 row/cols, 28 non-zeros, 28.00% dense.
 
-Path 5.0.02 (Fri May  1 19:28:16 2020)
+Path 5.0.02 (Fri Jun 19 10:54:19 2020)
 Written by Todd Munson, Steven Dirkse, Youngdae Kim, and Michael Ferris
 
 INITIAL POINT STATISTICS
@@ -8000,25 +8004,25 @@ Maximum of Grad F . . . . . . .  5.5403e+01 eqn: (dL_dx4)
                              0  UNBOUNDED
                              0     ERRORS
                              2  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/16/20 00:51:27 Page 131
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 17:36:08 Page 131
 Oligopoly : Cournot, Bertrand and Stackelberg
 E x e c u t i o n
 
 
 **** REPORT FILE SUMMARY
 
-myinfo C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\225c\empinfo.dat
+myinfo /Users/ferris/Projects/GAMS-MIRO/oligopoly/225a/empinfo.dat
 
 
-EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.000 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
-      UW-Madison Computer Sciences Dept.                         DCE244
+USER: Michael C. Ferris                              S200127/0001AN-GEN
+      University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
       License for teaching and research at degree granting institutions
 
 
 **** FILE SUMMARY
 
-Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\emp2.gms
-Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\oligopoly\emp2.lst
+Input      /Users/ferris/Projects/GAMS-MIRO/oligopoly/emp2.gms
+Output     /Users/ferris/Projects/GAMS-MIRO/oligopoly/emp2.lst
