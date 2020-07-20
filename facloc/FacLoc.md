@@ -1,16 +1,18 @@
+<a id="top"></a>
+
 <h2>Contents</h2>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#problem">Problem Statement</a></li>
 <li><a href="#math">Mathematical Model</a></li>
 <li><a href="#applet">MIRO Applet</a></li>
-<li><a href="#result">Output</a></li>
 <li><a href="#references">References</a></li>
 </ul>
 
 
 
 <a id="introduction"></a>
+
 <h2> Introduction </h2> 
 <p>In the manufacturing field material handling is a necessary but costly activity. Increased material handling will create extra costs due to labor, machine and time requirements while possibly causing quality defects and increasing shop floor lead time. That is why often in practice the shop floor layouts are redesigned to minimize material handling related costs. Though making layout changes on the shop floor and moving machines also have associated costs. These costs are incurred since the production needs to be paused and labor hours are required to make the necessary changes to the layout. </p>
 
@@ -20,8 +22,10 @@
 Figure 1 :Layout  </img>
 
 <p><a href="#top">Back to the top</a></p>
-<hr>
+
 <a id="problem"></a>
+
+<hr>
 <h2> Problem Statement </h2> 
 <p> A facility layout optimization model is presented that consists of four machines: CNC, Mill, Drill, and Punch. These machines are the most common machines in any manufacturing facility.</p>
 The pictures of the 4 machines are shown below:
@@ -36,6 +40,7 @@ Punch </img>
 <li>P2: Receiving -> Mill -> Drill -> Punch -> Shipping</li>
 <li>P3: Receiving -> CNC -> Drill -> Mill -> Punch -> Shipping</li>
 </UL>
+
 
 
 <p> The Objetive function, decision variables and constraints are presented below: </p>
@@ -105,7 +110,6 @@ $$\begin{aligned}
 \sqrt{(x_{m_1}-x_{m_2})^2+(y_{m_1}-y_{m_2})^2} \geq MD_{m_1,m_2} +c; \forall m_1,m_2 \in M, m_1 \neq m_2
 \end{aligned}$$
 </p>
-
 <h3><i><b> Location Constraint:</b></i></h3>
 <p>
 $$\begin{aligned}
@@ -116,8 +120,11 @@ y_m &\leq& y2_m; \forall m \in M \\
 \end{aligned}$$
 </p>
 <p><a href="#top">Back to the top</a></p>
-<hr>
+
 <a id="applet"></a>
+<hr>
+
+
 <h2> MIRO Applet </h2>
 <p> The applet takes the inputs from the user and solves the mixed integer non-linear programing model (MINLP) using baron solver.<p>
 <h3><u> User Inputs </u> </h3>
@@ -131,10 +138,13 @@ y_m &\leq& y2_m; \forall m \in M \\
 </UL>
 </p>
 
+
+
+
 <h3><u> Output </u></h3>
 <p>
 <ul>
-    
+
     <li>Layout and Work flow: If the problem is infeasible, message indicating infeasibility will be displayed. If the problem is feasible , this output will show the initial and current optimized layout, work flow of each product shown on the graph. User can choose which flow to be displayed.</li>
     <li>Total cost of moving 3 products: This output shows the initial total cost of moving 3 products and the current optimized cost of moving products plus the cost of moving machine.</li>
 </UL>
