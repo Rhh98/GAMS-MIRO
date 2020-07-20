@@ -12,9 +12,6 @@
     "kitinl": {
       "newAlias": "Kits to test in labs l"
     },
-    "unmet": {
-      "newAlias": "Kits left in centers"
-    },
     "_scalars_out": {
       "newAlias": "Output Scalars"
     },
@@ -42,7 +39,7 @@
     "operation": {
       "newAlias": "Operation in lab l (batch size)"
     },
-    "unnmet": {
+    "unmet": {
       "newAlias": "Kits left in centers"
     }
   },
