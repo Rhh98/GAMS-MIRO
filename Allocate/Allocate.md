@@ -6,36 +6,35 @@
 
 ## Problem Introduction
 
-Now there are serious situation caused by the covid-19. Since several sources
+Covid-19 has created a serious testing situation. Since existing laboratory resources
 are not sufficient for testing each individual, group testing is necessary.
-Group testing is a much more economic way for testing. Multiple people
-can be tested using source usually for a single person. However, the accuracy
+Group testing is a much more economic and efficient way for testing. Multiple people
+can be tested using resources usually needed for a single person. However, the accuracy
 will decrease using group test. The test procedure could be split into 3 main
-steps: collection of the samples, allocation from centers to labs and analysis
-at labs. Once samples are collected at centers, this model will help to determine
-what group testing strategy should each labs use and how should we
-allocate these samples(kits) from centers to labs, obtaining as much correct
-result as possible.
+steps: collection of the samples, allocation from collection centers to processing labs and analysis
+at labs. Once samples are collected at the centers, this model will help to determine
+what group testing strategy each lab should use and how the samples(kits) should be allocated from centers to labs, obtaining as many correctly processed kits
+as possible.
 
 ## Input Data Specification
 
 To use this model, several input parameters are required:
 
-• prevalence: A current prevalence rate of covid-19 is needed. Note multiple
-prevalence rate is also allowed. People in different environment
-may have different potential to be infected.
+• prevalence: A current prevalence rate of covid-19 in the underlying sampled population is needed. Note multiple
+prevalence rates are also allowed. People in different environments (hospitals, etc)
+may have different potential of being infected.
 
 • efficiency for different prevalence: Setting a tolerance of efficiency with
-respect to the prevalence rate. Only group sizing has efficiency higher
-than the setting value will be adopted. The efficiency here is defined
-as the ratio of the expected number of known testing result and the
+respect to the prevalence rate. Only group sizing strategies that have efficiency higher
+than the set value will be adopted. The efficiency here is defined
+as the ratio of the expected number of known testing results and the
 total testing number.
 
 • Maximal distance for transportation: a maximal distance should be
 set. A kit will not be transported from a center to a lab if the distance
-between the 2 places is bigger than the maximal distance.
+between the 2 places is larger than the maximal distance.
 
-• Importance of different prevalence t test: For different prevalence, the
+• Importance of different prevalence test: For different prevalence, the
 priority for testing may vary. This parameter set a relative favor for
 each prevalence by giving certain numbers.
 (Maybe ordering is a better choice instead of giving specific number)

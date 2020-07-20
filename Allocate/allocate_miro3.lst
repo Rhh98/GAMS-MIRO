@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 1
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -309,8 +309,8 @@ C o m p i l a t i o n
  330  display unmet;
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 2
+COMPILATION TIME     =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -548,7 +548,7 @@ INDEX 1 = l2
 16.20                     YES
 32.20         YES
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 3
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE vivak Using MIP From line 283
 
@@ -681,7 +681,7 @@ defobj..  - numBat(prv1,l1,1) - 1.9208*numBat(prv1,l1,2) - 3.68947264*numBat(prv
      
       - 8*numBat(prv3,l1,2) - 16*numBat(prv3,l1,4) - 32*numBat(prv3,l1,8) - 4*numBat(prv3,l2,1) - 8*numBat(prv3,l2,2) - 16*numBat(prv3,l2,4) - 32*numBat(prv3,l2,8) - extras(l1) - extras(l2) + obj =E= 0 ; (LHS = 0)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 4
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE vivak Using MIP From line 283
 
@@ -811,7 +811,7 @@ obj
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 5
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE vivak Using MIP From line 283
 
@@ -823,11 +823,11 @@ BLOCKS OF VARIABLES           7     SINGLE VARIABLES          167
 NON ZERO ELEMENTS           433     DISCRETE VARIABLES         34
 
 
-GENERATION TIME      =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.005 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-EXECUTION TIME       =        0.031 SECONDS      4 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 6
+EXECUTION TIME       =        0.007 SECONDS      4 MB  31.2.0 r8ba6aed DEX-DEG
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE vivak Using MIP From line 283
 
@@ -842,17 +842,17 @@ Solution Report     SOLVE vivak Using MIP From line 283
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE             6144.0000
 
- RESOURCE USAGE, LIMIT          0.281      1000.000
+ RESOURCE USAGE, LIMIT          0.015      1000.000
  ITERATION COUNT, LIMIT       143    2000000000
 
-IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   31.2.0 r8ba6aed Released Jun 19, 2020 DEG x86 64bit/Mac OS X 
 --- GAMS/Cplex licensed for continuous and discrete problems.
 Cplex 12.10.0.0
 
 Space for names approximately 0.01 Mb
 Use option 'names no' to turn use of names off
 MIP status(101): integer optimal solution
-Cplex Time: 0.25sec (det. 3.41 ticks)
+Cplex Time: 0.01sec (det. 3.41 ticks)
 Fixing integer variables, and solving final LP...
 Fixed MIP status(1): optimal
 Cplex Time: 0.00sec (det. 0.18 ticks)
@@ -1246,7 +1246,7 @@ l2          .              .           384.0000         1.0000
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/18/20 17:12:53 Page 7
+GAMS 31.2.0  r8ba6aed Released Jun 19, 2020 DEX-DEG x86 64bit/Mac OS X - 07/20/20 18:08:02 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1272,15 +1272,15 @@ c14     500.000     250.000     125.000
 
 
 
-EXECUTION TIME       =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.003 SECONDS      3 MB  31.2.0 r8ba6aed DEX-DEG
 
 
-USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
-      UW-Madison Computer Sciences Dept.                         DCE244
+USER: Michael C. Ferris                              S200127/0001AN-GEN
+      University of Wisconsin-Madison, Computer Sciences Dept.DCE000472
       License for teaching and research at degree granting institutions
 
 
 **** FILE SUMMARY
 
-Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.gms
-Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.lst
+Input      /Users/ferris/Projects/GAMS-MIRO/Allocate/allocate_miro3.gms
+Output     /Users/ferris/Projects/GAMS-MIRO/Allocate/allocate_miro3.lst
