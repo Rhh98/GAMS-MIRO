@@ -1,15 +1,15 @@
 <a name="Top"> </a>
 
 <h1>Oligopolistic Markets</h1>
-<center><a href="#Game Theory">Game Theory</a>&nbsp;|&nbsp;<a href="#Linear Model & Complementarity">Linear Model & Complementarity</a>&nbsp;|&nbsp;<a href="#GAMS Model Definition">GAMS Model Definition</a></center><center><a href="#Input and Output Specification">Input and Output specification</a>&nbsp;|&nbsp;<a href="#GAMS Model">GAMS Model</a>&nbsp;|<a href="#References">References</a>&nbsp;</center>
+<center><a href="#GAMS Model Definition">GAMS Model Definition</a>&nbsp;|<a href="#Input and Output Specification">Input and Output specification</a></center><center><a href="#GAMS Model">GAMS Model</a>&nbsp;|<a href="#References">References</a></center>
 
 <p>An oligopoly is a market form in which a market or industry is dominated by a small number of firms, known as oligopolists. In microeconomics, there are several canonical models to describe the outcomes of olgopolistic markets.  Here we describe mathematical formulations and an associated computable model for the <b>Cournot</b> model, <b>Bertrand</b> model and the <b>Stackelberg</b> model.</p>
-<hr>
 <p>The <b>Cournot</b> model was proposed by Antoine Cournot in 1838 to describe an oligopolistic market where firms strategically compete over quantities.  The model assumes that firms produce imperfect substitutes, firms have market power, there is no market entry and quantities are chosen simulataneously.  The simulataneous choice assumption does not refer to time but is meant to signify that no firm has knowledge of other firms' choice before they make their own.  In the canonical model all firms have full knowledge of the function that sets the common market price, their competitor's individual cost functions and the level demand.</p>
 <hr>
-<p>The <b>Bertrand</b> model was proposed by Joseph Bertrand in 1883 as a criticism to the Cournot Model.  The model describes an oligopoly where firms strategically compete over prices.  The model makes the same assumptions as the Cournot model.  Bertrand noted that firms do not generally change their production quantities to compete but change their product's price level.  While it is agreed that this more closely approximates the mechanism by which a firm would compete given the presented situation, the objective function is dis-continuous, the predictions are sensitive to tie breaking rules and other non-strategic assumptions and the model does not coincide with observation.</p>
+
 <hr>
 <p>The <b>Stackelberg</b> model was proposed by Heinrich Stackelberg in 1934 to describe an oligopoly where the market has a strategic (Stackelberg) leader.  This case is identical to the Cournot model, except that the Stackelberg leader sets their quantity first and the Stackelberg follower incorporates this information into their optimisation problem.  There is an additional assumption that the Stackelberg leader has commitment power.</p>
+
 
 
 
@@ -52,24 +52,6 @@ Different from before, for other firms, the quantity of firm $l$,  $q_l$, now is
 $$\begin{array} {ll} max_{q_l}  \quad &\pi_{l}(\mathbf{Q})=q_{l}(\overline{\mathrm{d}} / \mathbf{Q})^{1 / y}-c_{l} q_{l}+\beta_{l} /\left(1+\beta_{l}\right) L_{l}^{1 / \beta_{l}}  q_{l}^{1+\beta_{l} / \beta_{l}} \\ s.t.  &q_l \ge 0\\ \\  & min_{q_i} \quad \pi_{i}(\mathbf{Q})=q_{i}(\overline{\mathrm{d}} / \mathbf{Q})^{1 / y}-c_{i} q_{i}+\beta_{i} /\left(1+\beta_{i}\right) L_{i}^{1 / \beta_{i}}  q_{i}^{1+\beta_{i} / \beta_{i}}\\ & s.t. \qquad q_i \ge0\end{array} $$ 
 This is a bilevel programming and can also be conveniently solved using solver emp in GAMS.
 
-
-
-
-
-
-<h3>Bertrand Model</h3>
-
-<p>Here we define our model for the Bertrand problem that we solve. The total quantity produced by the firms is defined by a perturbed version of our previous linear model,
-<center><b>Q</b> = &#x2211;<sub>i</sub><sup>N</sup> w<sub>i</sub>  q<sub>i</sub></center>
-<center> w<sub>i</sub> &ne; w<sub>-i</sub></center>
-We have the following demand function for each firm in the case of duopoly (for ease of exposition),
-<center>q<sub>i</sub> = &alpha; - &delta;<sub>1</sub>p<sub>1</sub> + &delta;<sub>2</sub> p<sub>2</sub></center>
-<center>&alpha; = ( w<sub>1</sub>d&#773; +  w<sub>2</sub>d&#773;  )/ ( w<sub>1</sub><sup>2</sup> - w<sub>2</sub><sup>2</sup> )</center>
-<center>&delta;<sub>i</sub> = w<sub>i</sub> / ( w<sub>1</sub><sup>2</sup> - w<sub>2</sub><sup>2</sup> )</center>
-And we have the following profits for firm i, <br>
-<center>&pi;<sub>i</sub> = ( p<sub>i</sub> - c<sub>i</sub>) q<sub>i</sub></center>
-This is the case depisted in our graph of a continuous case Bertrand model and in our GAMS model.
-</p>
 
 
 <a href="Input and Output specification"></a>
@@ -117,21 +99,7 @@ c-unit cost,w-production quantity</li>
     <li>Profits w.r.t the quantity of leader firm: A barchart and a plot shows The profits of all the firms with respect to the quantity of leader firm. The pictures also shows when the leader firm are not acting as a leader firm, how the profits of other firms will change, as the orange bars and dash curves shows. User can change the quantity of the selected leader firm to see its impact.</li>
     <li>Quantities w.r.t the leader firm quantity: A bar chart and a plot show how other firms will respond to the leader firm when the leader firm change its quantity. User can change the quantity of the selected leader firm to see its impact.</li>
 </ul>
-
-
 More explanantions about the figure will be shown on the output page.
-
-
-
-<h3>
-    Output for Bertrand model
-</h3>
-
-<ul>
-    <li>Bertrand result: Two pictures. The first shows the quantities-price curves of the two firms as the price of the firm 1 varies. The second shows the profit-price curves of the two firms as the price of the firm 1 varies.</li>
-    More explanations about the pictures will be shown on the output page.
-</ul>
-
 
 <a name="GAMS model" ></a>
 
