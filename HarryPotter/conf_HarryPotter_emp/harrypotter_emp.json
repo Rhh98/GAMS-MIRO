@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["trust_info", "_widgets"]
+    "input": ["trust_info", "_widgets", "_scalars"]
   },
   "overwriteAliases": {
     "output1": {
@@ -39,7 +39,19 @@
     }
   },
   "defaultScenName": "default",
-  "inputWidgets": {},
+  "inputWidgets": {
+    "gamma": {
+      "widgetType": "numericinput",
+      "alias": "debug parameter",
+      "value": 2000,
+      "min": 0,
+      "max": 6000,
+      "decimal": 0,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "label": "debug parameter"
+    }
+  },
   "readme": {
     "tabTitle": "Readme",
     "filename": "HarryPotter.md",

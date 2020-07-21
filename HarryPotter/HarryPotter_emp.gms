@@ -90,7 +90,7 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
-scalar gamma  debug parameter /6000/;
+scalar gamma  debug parameter /200/;
 
 $offexternalInput
 
@@ -179,7 +179,7 @@ threshold /0.5/;
 ranking(n)=card(g)+1;
 ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=w.l(n);
 num=sum(n$(ranking(n) ne card(g)+1) ,1);
-
+$ontext
 loop(g$(num < budget),
 gamma2=gamma2/2;
 if(ord(g)eq card(g),gamma2=0;);
@@ -188,7 +188,7 @@ ranking(n)$(ranking(n) eq card(g)+1 and w.l(n)>threshold)=ord(g)+1-w.l(n);
 num=sum(n$(ranking(n) ne card(g)+1) ,1);
 );
 
-
+$offtext
 
 *boundary and debug output
 set output1Header /heritage,education,val label of training data,Zval,newz,heritage_T,education_T,label label of trust data,ranking/;
