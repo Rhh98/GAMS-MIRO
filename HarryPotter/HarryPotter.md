@@ -32,7 +32,9 @@ For the machine learning example, we will use a simple but typical one, namely "
 </h3>
 
 <ul>
-    <li>Information of Trusted Item: "Magical heritage","Education" and label of trusted data<li>
+    <li>Information of Trusted Item: "Magical heritage","Education" and label of trusted data</li>
+    <li>Label changing panelty: This parameter is used to limit the number of flagged bugs. The bigger this parameter is, the less bugs will be identified.</li>
+</ul>
 
 <h3>
     Output
@@ -87,7 +89,7 @@ $\gamma$: coefficient of weight parameter limiting change of label when debuggin
 
 The problem could be formulated as a bilevel optimation as:
 
-​ $$
+ $$
 \begin{aligned}min \quad&Distance \left(Y^{\prime}, Y\right) \\\ 
    s.t.  \quad   &Predictor =\mathcal{A}\left(X, Y^{\prime}\right)\\\ 
  &Predictor (\tilde{X})=\tilde{Y} \wedge \operatorname{Predictor}(X)=Y^{\prime}\end{aligned}

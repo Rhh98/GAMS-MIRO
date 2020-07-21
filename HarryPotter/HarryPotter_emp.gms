@@ -90,7 +90,7 @@ table Trust_info(Header<,T_column) Information of Trusted Item
 1     0.3        0.4        -1
 2     0.2        0.6        1
 ;
-scalar gamma  debug parameter /200/;
+scalar gamma  Label changing panelty /200/;
 
 $offexternalInput
 

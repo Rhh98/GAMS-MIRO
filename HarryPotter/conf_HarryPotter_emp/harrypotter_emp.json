@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["trust_info", "_widgets", "_scalars"]
+    "input": ["trust_info", "_widgets"]
   },
   "overwriteAliases": {
     "output1": {
