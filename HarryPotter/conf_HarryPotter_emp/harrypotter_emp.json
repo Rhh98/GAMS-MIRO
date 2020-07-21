@@ -42,14 +42,14 @@
   "inputWidgets": {
     "gamma": {
       "widgetType": "numericinput",
-      "alias": "debug parameter",
-      "value": 2000,
+      "alias": "Label changing panelty",
+      "value": 200,
       "min": 0,
       "max": 6000,
       "decimal": 0,
       "decimalCharacter": ".",
       "digitGroupSeparator": ",",
-      "label": "debug parameter"
+      "label": "Label changing penalty"
     }
   },
   "readme": {
