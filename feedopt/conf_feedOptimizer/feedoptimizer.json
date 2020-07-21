@@ -3,32 +3,11 @@
     "input": ["storyinfo", "cscore", "_widgets", "c"]
   },
   "overwriteAliases": {
-    "bigs": {
-      "newAlias": "All stories available"
-    },
     "c": {
       "newAlias": "User behavior case"
     },
-    "height": {
-      "newAlias": "Story height"
-    },
-    "width2": {
-      "newAlias": "Story width"
-    },
-    "sponsored": {
-      "newAlias": "sponsored stories"
-    },
     "_scalars": {
       "newAlias": "Scalars"
-    },
-    "_scalars_out": {
-      "newAlias": "Output Scalars"
-    },
-    "valc": {
-      "newAlias": "General score for each story"
-    },
-    "time": {
-      "newAlias": "Available time for each story"
     },
     "cscore": {
       "newAlias": "Story score at different scenarios"
@@ -37,7 +16,7 @@
       "newAlias": "Feed solution"
     },
     "storyinfo": {
-      "newAlias": "storyinfo"
+      "newAlias": "Storyinfo"
     }
   },
   "pivottable": {
@@ -107,7 +86,7 @@
       "step": 10,
       "ticks": true,
       "noHcube": false,
-      "label": "Feed retrieced time"
+      "label": "Feed retrieved time"
     },
     "window": {
       "widgetType": "slider",
@@ -162,10 +141,23 @@
     }
   },
   "readme": {
-    "tabTitle": "readme",
+    "tabTitle": "Readme",
     "filename": "readme.md",
     "enableMath": true
   },
+  "defaultScenName": "2D",
+  "datatable": {
+    "class": "display",
+    "filter": "none",
+    "rownames": false
+  },
+  "inputGroups": [
+    {
+      "name": "Score in different scenarios",
+      "members": ["c", "cscore"],
+      "sameTab": true
+    }
+  ],
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
@@ -181,18 +173,5 @@
     },
     "height": 700,
     "colWidths": 150
-  },
-  "defaultScenName": "2D",
-  "inputGroups": [
-    {
-      "name": "Score in different scenarios",
-      "members": ["c", "cscore"],
-      "sameTab": true
-    }
-  ],
-  "datatable": {
-    "class": "display",
-    "filter": "none",
-    "rownames": false
   }
 }
