@@ -94,8 +94,8 @@ scalar gamma  Label changing panelty /200/;
 
 $offexternalInput
 
-scalar gamma2;
-gamma2=gamma;
+*scalar gamma2;
+*gamma2=gamma;
 parameter Trust_data(Header,aspect),Trust_label(Header);
 Trust_data(Header,'heritage')=Trust_info(Header,'heritage');
 Trust_data(Header,'education')=Trust_info(Header,'education');
@@ -130,7 +130,7 @@ equations defobj,deflog_l2(Header);
 deflog_l2(Header)..
 log_l2(Header) =e= -Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'));
 defobj..
-obj =e= gamma2/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
+obj =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
     
 model Kernel_duti /submodel,deflog_l2,defobj/;
 File myinfo / '%emp.info%' /;

@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -93,8 +93,8 @@ C o m p i l a t i o n
   93  scalar gamma  Label changing panelty /200/;
   94   
   96   
-  97  scalar gamma2;
-  98  gamma2=gamma;
+  97  *scalar gamma2;
+  98  *gamma2=gamma;
   99  parameter Trust_data(Header,aspect),Trust_label(Header);
  100  Trust_data(Header,'heritage')=Trust_info(Header,'heritage');
  101  Trust_data(Header,'education')=Trust_info(Header,'education');
@@ -129,7 +129,7 @@ C o m p i l a t i o n
  130  deflog_l2(Header)..
  131  log_l2(Header) =e= -Trust_label(Header)*(sum(n1,K_tilde(Header,n1)*alpha(n1))+alpha('0'));
  132  defobj..
- 133  obj =e= gamma2/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
+ 133  obj =e= gamma/card(n)*sum(n,w(n)) +1/card(Header)*sum(Header,c(Header)*log(1+exp(log_l2(Header))))+1/card(n)*sum(n,(1-w(n))*log(1+exp(log_l(n))+w(n)*log(1+exp(-log_l(n)))));
  134   
  135  model Kernel_duti /submodel,deflog_l2,defobj/;
  136  File myinfo / 'C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat' /;
@@ -195,8 +195,8 @@ C o m p i l a t i o n
  209  newZ(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 2
+COMPILATION TIME     =        0.000 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -306,7 +306,7 @@ E x e c u t i o n
 99        0.950       0.850
 100       0.950       0.950
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 3
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE submodel Using NLP From line 81
 
@@ -438,7 +438,7 @@ deflog_l(3)..  - alpha(0) - 0.949166589243878*alpha(1) - 0.966380576640694*alpha
      
 REMAINING 97 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 4
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE submodel Using NLP From line 81
 
@@ -799,7 +799,7 @@ obj_In
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj_In
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 5
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE submodel Using NLP From line 81
 
@@ -816,8 +816,8 @@ CODE LENGTH              41,303
 GENERATION TIME      =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.047 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 6
+EXECUTION TIME       =        0.063 SECONDS      5 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE submodel Using NLP From line 81
 
@@ -857,10 +857,10 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  
  
  CONOPT time Total                            0.031 seconds
-   of which: Function evaluations             0.003 =  9.7%
-             1st Derivative evaluations       0.002 =  6.5%
-             2nd Derivative evaluations       0.006 = 19.4%
-             Directional 2nd Derivative       0.009 = 29.0%
+   of which: Function evaluations             0.006 = 19.4%
+             1st Derivative evaluations       0.003 =  9.7%
+             2nd Derivative evaluations       0.005 = 16.1%
+             Directional 2nd Derivative       0.008 = 25.8%
  
 
                            LOWER          LEVEL          UPPER         MARGINAL
@@ -1297,7 +1297,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 7
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -1819,7 +1819,7 @@ E x e c u t i o n
 99        5.213       5.158       5.100       5.040       4.977       4.912       4.845       4.775       4.703       4.629       4.553       4.475       4.395       4.314       4.231       4.147
 100       5.211       5.156       5.099       5.038       4.975       4.910       4.842       4.773       4.701       4.626       4.550       4.473       4.393       4.312       4.229       4.145
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 8
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 8
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE submodel Using NLP From line 168
 
@@ -1993,7 +1993,7 @@ deflog_l(3)..  - alpha(0) - 0.949166589243878*alpha(1) - 0.966380576640694*alpha
      
 REMAINING 97 ENTRIES SKIPPED
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 9
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 9
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE submodel Using NLP From line 168
 
@@ -2354,7 +2354,7 @@ obj_In
                 (.LO, .L, .UP, .M = -INF, 0.161538516910455, +INF, 0)
         1       defobj_In
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 10
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 10
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE submodel Using NLP From line 168
 
@@ -2368,11 +2368,11 @@ DERIVATIVE POOL              20     CONSTANT POOL           4,968
 CODE LENGTH              41,303
 
 
-GENERATION TIME      =        0.062 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.047 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        1.047 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 11
+EXECUTION TIME       =        1.078 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 11
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE submodel Using NLP From line 168
 
@@ -2387,7 +2387,7 @@ Solution Report     SOLVE submodel Using NLP From line 168
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE                0.1615
 
- RESOURCE USAGE, LIMIT          0.000      1000.000
+ RESOURCE USAGE, LIMIT          0.015      1000.000
  ITERATION COUNT, LIMIT         4    2000000000
  EVALUATION ERRORS              0             0
 CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
@@ -2411,9 +2411,9 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
  ** Optimal solution. Reduced gradient less than tolerance.
  
  
- CONOPT time Total                            0.007 seconds
-   of which: Function evaluations             0.004 = 57.1%
-             1st Derivative evaluations       0.001 = 14.3%
+ CONOPT time Total                            0.008 seconds
+   of which: Function evaluations             0.003 = 37.5%
+             1st Derivative evaluations       0.002 = 25.0%
  
 
                            LOWER          LEVEL          UPPER         MARGINAL
@@ -2850,7 +2850,7 @@ CONOPT 3         31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
                              0 INFEASIBLE
                              0  UNBOUNDED
                              0     ERRORS
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 12
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 12
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE Kernel_duti Using EMP From line 173
 
@@ -3134,7 +3134,7 @@ defobj..  - (2.05843738445083)*w(1) - (2.05932672760779)*w(2) - (2.0593443045949
      
       - (0.000330083100262357)*log_l(98) - (0.000172971383102613)*log_l(99) - (0.000148743866760353)*log_l(100) - (25)*log_l2(1) - (25)*log_l2(2) + obj =E= 0 ; (LHS = -69.4193191085511, INFES = 69.4193191085511 ****)
      
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 13
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 13
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE Kernel_duti Using EMP From line 173
 
@@ -3527,7 +3527,7 @@ obj
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
         1       defobj
 
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 14
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 14
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE Kernel_duti Using EMP From line 173
 
@@ -3541,11 +3541,11 @@ DERIVATIVE POOL              20     CONSTANT POOL           4,969
 CODE LENGTH              42,918
 
 
-GENERATION TIME      =        0.046 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
+GENERATION TIME      =        0.094 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
-EXECUTION TIME       =        0.062 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 15
+EXECUTION TIME       =        0.110 SECONDS     37 MB  31.1.0 r55b6ce3 WEX-WEI
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 15
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE Kernel_duti Using EMP From line 173
 
@@ -3560,7 +3560,7 @@ Solution Report     SOLVE Kernel_duti Using EMP From line 173
 **** MODEL STATUS      2 Locally Optimal           
 **** OBJECTIVE VALUE               41.1602
 
- RESOURCE USAGE, LIMIT          0.359      1000.000
+ RESOURCE USAGE, LIMIT          0.469      1000.000
  ITERATION COUNT, LIMIT         0    2000000000
  EVALUATION ERRORS              0             0
 
@@ -3654,8 +3654,8 @@ Final optimality error  (abs / rel) =   7.45e-06 / 7.55e-07
 # of function evaluations           =         20
 # of gradient evaluations           =         20
 # of Hessian evaluations            =         18
-Total program time (secs)           =       0.360 (     0.359 CPU time)
-Time spent in evaluations (secs)    =       0.030
+Total program time (secs)           =       0.366 (     0.359 CPU time)
+Time spent in evaluations (secs)    =       0.040
 
 ===============================================================================
 
@@ -4122,7 +4122,7 @@ Solve finished: status = optimal
                              0  UNBOUNDED
                              0     ERRORS
                            190  PROJECTED
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:13:39 Page 16
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 07/21/20 17:24:44 Page 16
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
@@ -4142,7 +4142,7 @@ E x e c u t i o n
 myinfo C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\225a\empinfo.dat
 
 
-EXECUTION TIME       =        0.375 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
+EXECUTION TIME       =        0.406 SECONDS     38 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
