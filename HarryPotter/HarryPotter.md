@@ -45,6 +45,12 @@ For the machine learning example, we will use a simple but typical one, namely "
     A plot shows the training data and the trusted item with thier original label together with the boundary showing the learned classifier.</li>
     <li>New classfier using DUTI: A plot with boundary of the new classfier. Whether the training data may potentially have bugs are shown in the figure.</li>
 </ul>
+<h3>
+    User Guide
+</h3>
+
+User can change the "Information of Trusted Item" to notably affect the result of debugging when the "Label changing panelty" is not set to a very large value such as 1000 or more.  Since in such case the new learner will almost always correctly classfy our trusted item. Hence the correctness of our used trusted item is crusial to debugging. If there are trusted label which is not correctly classfied by the current learner, then the new learner will be quite different after debugging. The "Label changing panelty" basicaly meassured how many bugs we may want to flag, or how much confidence we have about the cleaness of the training data. To be specifically, with larger value of "Label changing panelty", less bugs will we identify. However, how much influence will the change of this parameter bring has uncertainty. Basically, when this paramter is small, changing it will affect the result much. While when it is set to a very large value, changing its value may lead to the same result.
+
 
 
 
@@ -89,7 +95,7 @@ $\gamma$: coefficient of weight parameter limiting change of label when debuggin
 
 The problem could be formulated as a bilevel optimation as:
 
- $$
+$$
 \begin{aligned}min \quad&Distance \left(Y^{\prime}, Y\right) \\\ 
    s.t.  \quad   &Predictor =\mathcal{A}\left(X, Y^{\prime}\right)\\\ 
  &Predictor (\tilde{X})=\tilde{Y} \wedge \operatorname{Predictor}(X)=Y^{\prime}\end{aligned}

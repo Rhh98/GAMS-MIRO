@@ -75,6 +75,16 @@ center of each prevalence.
 • alltest/leftover/pcplus scalar: "alltest" denotes he total number of kits tested. "leftover" denotes the
 number of kits left over with unknow results, "pcplus" denotes the percentage of how many unknow kits left over is contained on the total kits tested.
 
+
+
+<h3>
+    User Guide
+</h3>
+
+User using this model gives the center, lab information as well as  the collection information of  kits. Usually these data are taken from the real world and are possibly not changed. User can change the "maximal distance for transportation" to limit allocation distance. The default setting is 390 km, which almost allows allocation between any lab and center in Wisconsin. User can set this to smaller value and will see allocation only involved in a relatively small area. However, this will also result in less tested kits. User can  also increase the "runsize of labs" to increase the testing ability of labs. 
+
+
+
 ### Details about operation in lab:
 
 In each lab, there are 4 rounds of operation in total in each lab. Each operation could take up either 1, 2, 3 or 4 rounds. In the output data "operation in lab l". There will be 7 indices for each operation as the following picture shows. 

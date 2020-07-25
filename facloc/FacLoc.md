@@ -135,20 +135,27 @@ y_m &\leq& y2_m; \forall m \in M \\
     <li>Costs of transporting products per unit of distance</li>
 <li>Minimum distance between machines</li>
 <li>Location constraint for a machine (based on the rectangular region)</li>
-</UL>
+</ul>
 </p>
-
-
 
 
 <h3><u> Output </u></h3>
 <p>
 <ul>
-
     <li>Layout and Work flow: If the problem is infeasible, message indicating infeasibility will be displayed. If the problem is feasible , this output will show the initial and current optimized layout, work flow of each product shown on the graph. User can choose which flow to be displayed.</li>
     <li>Total cost of moving 3 products: This output shows the initial total cost of moving 3 products and the current optimized cost of moving products plus the cost of moving machine.</li>
 </UL>
 </p>
+
+
+<h3>
+    User Guide
+</h3>
+
+Inspite of those cost and location information, user can mainly change the "Minimum distance between machines" to get different results. With bigger value of this parameter, the layout would possibly be changed and the cost would possibly be higher. The Location constraint allows you to decide inside which area you may want to put those machines. So to some extent user can design the facility layout while minimizing the cost.
+
+
+
 
 The GAMS model can be downloaded <a href='static_model/model.gms' target="_blank">here</a>
 

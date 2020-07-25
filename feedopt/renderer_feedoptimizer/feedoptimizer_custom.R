@@ -28,7 +28,7 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
       areacover<-areacover[1]
       type<-data$type[z]
       type[type==1]='1st'
-      type[type==2]='2st'
+      type[type==2]='2nd'
       type[type==3]='sponsored'
       S<-data$bigs[z]
       Time<-data$time[z]

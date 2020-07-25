@@ -40,6 +40,12 @@ To understand how to use this model to solve the problem, several inputs are req
     <li>helicopter reassignment: A digraph shows the reassignment of helicopters among all the sites. The helicopters will be reassigned from the head of arcs to the tail of the arcs. The number of reassigned helicopter in this arc is the weight shown on the arc. One can also see the data table by clicking the "switch view" button on the top right corner. </li>
     <li> number of helicopters in L: A datatable and a barplot is displayed to show the distribution of the helicopters among all the sites. There are three numbers for each site, the first one is for the previous number of helicopters before the reassignment, the second one is for the demand of helicopters in that site, the third one is for the current number of the helicopters after the reassignment.</li>
 </ul>
+<h3>
+    User Guide
+</h3>
+
+User can modify the location, assignment and demand information to see different reassignment strategy. User can also  set surplus helicopters or  excess demand. When there is more helicopters than demand, demand in each location will be satisfied with least reassignment cost. When there is a excess demand, every helicopter will be assigned to work, with least reassignment cost.
+
 
 
 

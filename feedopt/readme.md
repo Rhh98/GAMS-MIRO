@@ -56,6 +56,12 @@ The output  displays the feed result, with given the layout of interface at a se
 
 The feed displayed is primarily comprised of <i>rectangular tiles</i> that represent the stories. It represents the feed obtained in a <i>specific scenario</i> in the <i>second stage</i>. Each tile is associated with a color according to the value the story contributes. To be more clear, see the <a href='#sample'>sample feeds</a>.
 
+<h3>
+    User Guide
+</h3>
+
+Surely user can modify the story information to affect the story selected result. A more straight and convenient way is changing the "time at which the feed is retrieved" and "time window". These 2 parameters will affect the result notably. User can observe the different impact of these 2 parameters both in a 1 dimensional interface and 2 dimensional interface by changing the "Feed dimension" parameter. Another good way to compare different situations is changing the "sponsor ratio" and the "initial ratio" parameter which limits number of sponsored story and story chosen at first stage.
+
 
 
 
