@@ -1,1 +1,7 @@
+static_allocate_miro3/allocate_miro3.gms
+renderer_allocate_miro3/allocate_miro3_custom.R
+conf_allocate_miro3/allocate_miro3.json
+conf_allocate_miro3/allocate_miro3_io.json
+renderer_allocate_miro3/.Rhistory
+data_allocate_miro3/default.gdx
 allocate_miro3.gms

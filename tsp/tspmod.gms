@@ -68,7 +68,7 @@ option optcr=0, limrow=0, limcol=0, solprint=off;
 
 * Solve without subtour elimination constraints
 if( sameAs(constraint,'Positional Constraints'),
-option optcr=0.05;
+option optcr=0;
 solve tspPC min obj using mip;
 else
 solve tspSEC min obj using mip);

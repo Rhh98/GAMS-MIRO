@@ -41,7 +41,7 @@
       "packages": ["leaflet", "leaflet.minicharts"]
     }
   },
-  "defaultScenName": "Best Tour",
+  "defaultScenName": "default",
   "readme": {
     "tabTitle": "Readme",
     "filename": "README.md",
