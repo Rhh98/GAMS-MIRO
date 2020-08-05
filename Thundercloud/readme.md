@@ -1,6 +1,6 @@
 <h2>Introduction:</h2>
 
-<p>This case study is focused on routing a Cessna 182 aircraft through given thunderstorms ina given formation at minimum cost using a minimum cost network flow model.  Many aircraft crash every year due to flying into thunderstorms, creating a need for pilots to know the best way to navigate thunderstorms hazards. There are different limitations imposed by the limits of the airplane and FAA rules and regulations for flying safety.   </p>
+<p>This case study is focused on routing a Cessna 182 aircraft through given thunderstorms in a given formation at minimum cost using a minimum cost network flow model.  Many aircraft crash every year due to flying into thunderstorms, creating a need for pilots to know the best way to navigate thunderstorms hazards. There are different limitations imposed by the limits of the airplane and FAA rules and regulations for flying safety.   </p>
 <p>
 <img src="https://i.ibb.co/Z6wqBNM/cessnapic.jpg" width="488" height="699" alt=""  />
 </p>
@@ -80,8 +80,11 @@ The Output gives the solution of the model:
 <h3>
     User Guide
 </h3>
+Inspite of the flight rules and cost which are  usually not supposed to change, user can change the information of thunder clouds to fit different situations and compare different results. There are in total 3 thunder clouds user can set. Note that user can set any clouds with a 0 height of both minimal and maximal height to eliminate that cloud. Or user can actually solve several time for more number of clouds by cutting the whole travel into several pieces. User can also use multiple clouds to imitate one cloud with a horizontal length by setting two clouds with same information except their nautical miles.  
 
-Inspite of the flight rules and cost which are  usually not supposed to change, user can change the information of thunder clouds to fit different situations and compare different results. There are in total 3 thunder clouds user can set. Note that user can set any clouds with a 0 height of both minimal and maximal height to eliminate that cloud. Or user can actually solve several time for more number of clouds by cutting the whole travel into several pieces. User can also use multiple clouds to imitate one cloud with a horizontal length by setting two clouds with same information except their nauticle miles.  
+The default setting of the scond and third cloud's lower height is at 6km. User can change it to 6.1, for example and see the effect of that change.
+
+User can also change the cost to cruise and to nautical distance. 
 
 
 

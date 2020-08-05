@@ -1,7 +1,10 @@
 # Traveling Salesman Problem
 
 ## Problem Description
-The TSP can be defined as follows: for a given list of cities and the distances between each pair of them, we want to find the shortest possible route that goes to each city once and returns to the origin city.
+The TSP can be defined as follows: for a given list of cities and the distances between each pair of them, we want to find the shortest possible route that goes to each city once and returns to the origin city. Look at the below picture to see an simple example:
+
+<img style="border: 2px solid black ;"  src="static_tspmod/example.jpg" width=700  alt="Feed"  />
+Figure 2b : decreasing time window  </img>
 
 There is a class of Traveling Salesman Problems that assumes that the distance of going from city $i$ to city $j$  is the same as going form city $j$ to city $i$, this type of Traveling Salesman Problem  is also known as the symmetric Traveling Salesman Problem. In this example, we use Spherical distance, but the TSP model formulation is valid independent of the way in which the individual distances are determined.
 
