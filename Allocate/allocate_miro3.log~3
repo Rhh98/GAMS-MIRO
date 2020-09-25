@@ -1,33 +1,39 @@
---- Job allocate_miro3.gms Start 07/04/20 23:27:12 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Job allocate_miro3.gms Start 08/05/20 16:43:54 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     E:\31.1\gmsprmNT.txt
 --- GAMS Parameters defined
     Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.gms
-    PageSize 0
     ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\
     SysDir E:\31.1\
+    CurDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\
     LogOption 3
-    ErrMsg 1
-    ErrorLog 99
-    IDE 1
+    Trace C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\_sys_trace_allocate_miro3.trc
+    InputDir1 C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\
+    TraceOpt 3
+    ExecMode 0
     LstTitleLeftAligned 1
-    IDCGenerateJSON conf_allocate_miro3/allocate_miro3_io.json
-    IDCGenerateGDX data_allocate_miro3/default.gdx
+    IDCGDXInput _miro_gdxin_.gdx
+    IDCGDXOutput _miro_gdxout_.gdx
 GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
-*** License has expired 25 days ago
-Licensee: CS526 Advanced Linear Programming              G200210/0001AS-GEN
-          Course License UW-Madison, Prof Ferris, Spring 2020        DCE515
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
           E:\31.1\gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- allocate_miro3.gms(328) 3 Mb
+--- allocate_miro3.gms(17) 3 Mb
+--- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\_miro_gdxin_.gdx
+--- allocate_miro3.gms(59) 3 Mb
+--- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\_miro_gdxin_.gdx
+--- allocate_miro3.gms(75) 3 Mb
+--- GDXin=C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\_miro_gdxin_.gdx
+--- allocate_miro3.gms(330) 3 Mb
 --- Starting execution: elapsed 0:00:00.012
 --- allocate_miro3.gms(282) 4 Mb
 --- Generating MIP model vivak
 --- allocate_miro3.gms(283) 4 Mb
----   113 rows  167 columns  433 non-zeroes
----   34 discrete-columns
---- Executing CPLEX: elapsed 0:00:00.038
+---   206 rows  356 columns  961 non-zeroes
+---   85 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.054
 
 IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
 --- GAMS/Cplex licensed for continuous and discrete problems.
@@ -50,64 +56,98 @@ CPXPARAM_MIP_Tolerances_MIPGap                   0.001
 CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\"
 Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
 Tried aggregator 2 times.
-MIP Presolve eliminated 22 rows and 16 columns.
-MIP Presolve modified 2 coefficients.
-Aggregator did 6 substitutions.
-Reduced MIP has 85 rows, 145 columns, and 335 nonzeros.
-Reduced MIP has 6 binaries, 28 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.30 ticks)
-Probing time = 0.00 sec. (0.03 ticks)
+MIP Presolve eliminated 55 rows and 103 columns.
+MIP Presolve modified 14 coefficients.
+Aggregator did 15 substitutions.
+Reduced MIP has 136 rows, 238 columns, and 590 nonzeros.
+Reduced MIP has 15 binaries, 70 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.09 sec. (0.57 ticks)
+Probing time = 0.02 sec. (0.06 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
-MIP Presolve added 78 rows and 0 columns.
-Reduced MIP has 163 rows, 145 columns, and 491 nonzeros.
-Reduced MIP has 6 binaries, 28 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.54 ticks)
-Probing time = 0.00 sec. (0.04 ticks)
-Clique table members: 2.
+MIP Presolve eliminated 9 rows and 30 columns.
+Reduced MIP has 127 rows, 208 columns, and 530 nonzeros.
+Reduced MIP has 15 binaries, 70 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (0.38 ticks)
+Probing time = 0.00 sec. (0.05 ticks)
+Clique table members: 5.
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: none, using 1 thread.
 Tried aggregator 1 time.
-Aggregator did 32 substitutions.
-Reduced LP has 131 rows, 113 columns, and 427 nonzeros.
-Presolve time = 0.00 sec. (0.11 ticks)
+Aggregator did 80 substitutions.
+Reduced LP has 47 rows, 128 columns, and 370 nonzeros.
+Presolve time = 0.00 sec. (0.12 ticks)
 Initializing dual steep norms . . .
 
 Iteration log . . .
-Iteration:     1   Dual objective     =         49521.376279
-Iteration:    62   Dual objective     =          8085.023113
+Iteration:     1   Dual objective     =        103230.699471
+Iteration:    62   Dual objective     =         14291.719289
 Initializing dual steep norms . . .
-Root relaxation solution time = 0.00 sec. (0.81 ticks)
+Root relaxation solution time = 0.11 sec. (0.68 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                            0.0000    56565.1164              --- 
-Found incumbent of value 0.000000 after 0.00 sec. (1.89 ticks)
-      0     0     7627.2103     4        0.0000     7627.2103      112     --- 
-*     0+    0                         4548.3787     7627.2103            67.69%
-Found incumbent of value 4548.378747 after 0.00 sec. (2.15 ticks)
-      0     0     6784.2442     4     4548.3787       Cuts: 9      138   49.16%
-*     0+    0                         5376.0000     6784.2442            26.20%
-Found incumbent of value 5376.000000 after 0.02 sec. (3.00 ticks)
-*     0     0      integral     0     6144.0000       Cuts: 9      143    0.00%
-Found incumbent of value 6144.000000 after 0.02 sec. (3.40 ticks)
-      0     0        cutoff           6144.0000     6144.0000      143    0.00%
-Elapsed time = 0.02 sec. (3.40 ticks, tree = 0.01 MB, solutions = 4)
+*     0+    0                            0.0000   111953.4630              --- 
+Found incumbent of value 0.000000 after 0.31 sec. (2.00 ticks)
+      0     0    14256.5460    14        0.0000    14256.5460       92     --- 
+*     0+    0                         8953.0496    14256.5460            59.24%
+Found incumbent of value 8953.049600 after 0.33 sec. (2.56 ticks)
+      0     0    13721.7045    14     8953.0496      Cuts: 61      126   53.26%
+*     0+    0                         9995.8100    13721.7045            37.27%
+Found incumbent of value 9995.809968 after 0.38 sec. (4.71 ticks)
+      0     0    13578.0988    14     9995.8100      Cuts: 38      166   35.84%
+      0     0    12975.9279    14     9995.8100      Cuts: 38      203   29.81%
+      0     0    12957.7341    14     9995.8100      Cuts: 20      220   29.63%
+*     0+    0                        11164.8483    12957.7341            16.06%
+Found incumbent of value 11164.848256 after 0.39 sec. (9.72 ticks)
+      0     0    12954.8352    14    11164.8483      Cuts: 13      232   16.03%
+*     0+    0                        11167.0280    12954.8352            16.01%
+Found incumbent of value 11167.028022 after 0.39 sec. (11.16 ticks)
+      0     0    12952.6423    14    11167.0280      Cuts: 12      241   15.99%
+      0     0    12952.0852    14    11167.0280   MIRcuts: 10      248   15.99%
+      0     0    12947.2882    14    11167.0280    MIRcuts: 7      262   15.94%
+      0     0    12947.2882    14    11167.0280       Cuts: 3      265   15.94%
+Detecting symmetries...
+      0     2    12947.2882    22    11167.0280    12947.1164      265   15.94%
+Elapsed time = 0.42 sec. (20.78 ticks, tree = 0.01 MB, solutions = 5)
+*    10+   10                        11392.0329    12931.4220            13.51%
+Found incumbent of value 11392.032895 after 0.44 sec. (24.01 ticks)
+*    10+   10                        11742.9273    12931.4220            10.12%
+Found incumbent of value 11742.927295 after 0.44 sec. (25.36 ticks)
+*    20+   18                        11857.0504    12931.4220             9.06%
+Found incumbent of value 11857.050373 after 0.44 sec. (28.28 ticks)
+*    30+   28                        11889.0119    12931.4220             8.77%
+Found incumbent of value 11889.011941 after 0.45 sec. (30.15 ticks)
+*    40    34      integral     0    11934.5869    12931.4220      688    8.35%
+Found incumbent of value 11934.586881 after 0.45 sec. (31.87 ticks)
+*    60+   43                        12109.1273    12796.7757             5.68%
+                                                  Impl Bds: 2                  
+Found incumbent of value 12109.127343 after 0.47 sec. (39.19 ticks)
+*    70+   38                        12316.9876    12796.7757             3.90%
+Found incumbent of value 12316.987607 after 0.47 sec. (42.23 ticks)
+*   200+   93                        12329.5063    12739.1125             3.32%
+                                                     Cuts: 11                  
+Found incumbent of value 12329.506252 after 0.53 sec. (77.37 ticks)
+*   450+   94                        12332.2264    12462.5337             1.06%
+                                                      Cuts: 6                  
+Found incumbent of value 12332.226357 after 0.63 sec. (125.67 ticks)
 
-Implied bound cuts applied:  6
-Mixed integer rounding cuts applied:  3
+Implied bound cuts applied:  28
+Flow cuts applied:  3
+Mixed integer rounding cuts applied:  32
 Lift and project cuts applied:  2
+Gomory fractional cuts applied:  3
 
 Root node processing (before b&c):
-  Real time             =    0.02 sec. (3.41 ticks)
+  Real time             =    0.42 sec. (20.81 ticks)
 Sequential b&c:
-  Real time             =    0.00 sec. (0.00 ticks)
+  Real time             =    0.25 sec. (133.31 ticks)
                           ------------
-Total (root+branch&cut) =    0.02 sec. (3.41 ticks)
-MIP status(101): integer optimal solution
-Cplex Time: 0.02sec (det. 3.41 ticks)
+Total (root+branch&cut) =    0.67 sec. (154.13 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.67sec (det. 154.13 ticks)
 Fixing integer variables, and solving final LP...
 Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
 CPXPARAM_Advance                                 2
@@ -121,105 +161,30 @@ CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0.001
 CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\"
 Tried aggregator 1 time.
-LP Presolve eliminated 96 rows and 136 columns.
-Aggregator did 2 substitutions.
-Reduced LP has 15 rows, 29 columns, and 55 nonzeros.
-Presolve time = 0.00 sec. (0.10 ticks)
-Symmetry aggregator did 36 additional substitutions.
+LP Presolve eliminated 171 rows and 294 columns.
+Aggregator did 10 substitutions.
+Reduced LP has 25 rows, 52 columns, and 90 nonzeros.
+Presolve time = 0.00 sec. (0.20 ticks)
 Initializing dual steep norms . . .
 
-Dual crossover.
-  Dual:  Fixed no variables.
-  Primal:  Fixing 24 variables.
-       23 PMoves:  Infeasibility  0.00000000e+00  Objective  6.14400000e+03
-        0 PMoves:  Infeasibility  0.00000000e+00  Objective  6.14400000e+03
-  Primal:  Pushed 6, exchanged 18.
+Iteration log . . .
+Iteration:     1   Dual objective     =         13038.385309
 Fixed MIP status(1): optimal
-Cplex Time: 0.00sec (det. 0.18 ticks)
+Cplex Time: 0.00sec (det. 0.34 ticks)
 
-Proven optimal solution.
+Solution satisfies tolerances.
 
-MIP Solution:         6144.000000    (143 iterations, 0 nodes)
-Final Solve:          6144.000000    (0 iterations)
+MIP Solution:        12332.226357    (5458 iterations, 683 nodes)
+Final Solve:         12332.226357    (27 iterations)
 
-Best possible:        6144.000000
-Absolute gap:            0.000000
-Relative gap:            0.000000
+Best possible:       12342.945091
+Absolute gap:           10.718734
+Relative gap:            0.000868
 
 --- Restarting execution
 --- allocate_miro3.gms(283) 2 Mb
 --- Reading solution for model vivak
---- Executing after solve: elapsed 0:00:00.191
---- allocate_miro3.gms(328) 3 Mb
---- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\data_allocate_miro3/default.gdx
+--- allocate_miro3.gms(330) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\_miro_gdxout_.gdx
 *** Status: Normal completion
---- Job allocate_miro3.gms Stop 07/04/20 23:27:12 elapsed 0:00:00.207
-
-Warning in eval(ei, envir) :
-  The alias of symbol: 'c' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'l' was selected to be overwritten. However, this symbol could not be found.
-Warning in eval(ei, envir) :
-  The alias of symbol: 'locdata' was selected to be overwritten. However, this symbol could not be found.
-TRACE [2020-07-04 23:27:18] Logging facility initialised.
-DEBUG [2020-07-04 23:27:18] Database connection established.
-DEBUG [2020-07-04 23:27:18] Access Control initialised.
-WARN [2020-07-04 23:27:18] There are orphaned tables in your database: 'allocatemiro3_c', 'allocatemiro3_l', 'allocatemiro3_locdata', 'allocatemiro3_prv'.
-
-This could be caused because you used a different database schema in the past (e.g. due to different inputs and/or outputs). 
-Note that you can remove orphaned database tables using the configuration mode ('Database management' section).
-INFO [2020-07-04 23:27:19] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
-DEBUG [2020-07-04 23:27:20] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:27:20] Db: 176 rows in table: '_sys_metadata_allocate_miro3' were deleted. (Db.deleteRows)
-DEBUG [2020-07-04 23:27:20] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
-DEBUG [2020-07-04 23:27:20] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'default' (Scenario.writeMetadata).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_operation' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:20] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
-DEBUG [2020-07-04 23:27:21] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:27:21] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
-INFO [2020-07-04 23:27:34] Session started (model: 'allocate_miro3', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate').
-DEBUG [2020-07-04 23:27:34] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate'.
-DEBUG [2020-07-04 23:27:34] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Sidebar menu item: 'inputData' selected.
-DEBUG [2020-07-04 23:27:36] Loading and rendering scenarios: '2'.
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_allocate' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_kitinl' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_operation' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_unmet' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3__scalars_out' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_prv_val' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_effic' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_prv_weight' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Scenario: '1' unlocked.
-DEBUG [2020-07-04 23:27:36] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_lablocdata' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_centerlocdata' (Db.importDataset).
-DEBUG [2020-07-04 23:27:36] Db: Data was imported from table: 'allocatemiro3_centerdata' (Db.importDataset).
-DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: 'allocatemiro3_runsize' (Db.importDataset).
-DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: 'allocatemiro3__scalars' (Db.importDataset).
-DEBUG [2020-07-04 23:27:37] Db: A table named: '_sys_scripts_allocate_miro3' does not exist in the database (Db.importDataset).
-DEBUG [2020-07-04 23:27:37] Scenario: 'New Scenario' closed.
-DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:27:37] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
-DEBUG [2020-07-04 23:27:37] Db: hasee: Lock was added for scenario: '2' (Scenario.lock).
-DEBUG [2020-07-04 23:27:37] Dataset: prv_val loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:38] Dataset: effic loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:38] Dataset: prv_weight loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:38] Dataset: lablocdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:38] Dataset: centerlocdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:38] Dataset: centerdata loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:38] Dataset: runsize loaded successfully (mode: scen, overwrite: FALSE)
-DEBUG [2020-07-04 23:27:39] Scenario: '2' was loaded into UI
-DEBUG [2020-07-04 23:27:40] Sidebar menu item: 'outputData' selected.
-INFO [2020-07-05 12:57:47] Session ended (model: 'allocate_miro3', user: 'hasee').
+--- Job allocate_miro3.gms Stop 08/05/20 16:43:55 elapsed 0:00:00.872

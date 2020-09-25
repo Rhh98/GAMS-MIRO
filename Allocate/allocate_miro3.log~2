@@ -1,0 +1,300 @@
+--- Job allocate_miro3.gms Start 08/05/20 16:37:10 31.1.0 r55b6ce3 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    E:\31.1\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\allocate_miro3.gms
+    PageSize 0
+    ScrDir C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\
+    SysDir E:\31.1\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCGenerateJSON conf_allocate_miro3/allocate_miro3_io.json
+    IDCGenerateGDX data_allocate_miro3/default.gdx
+GAMS 31.1.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
+          UW-Madison Computer Sciences Dept.                         DCE244
+          E:\31.1\gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- allocate_miro3.gms(330) 3 Mb
+--- Resetting Table request for unmet due to implicit domain definition of prv in prv_val.
+--- Starting execution: elapsed 0:00:00.253
+--- allocate_miro3.gms(282) 4 Mb
+--- Generating MIP model vivak
+--- allocate_miro3.gms(283) 4 Mb
+---   113 rows  167 columns  433 non-zeroes
+---   34 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.428
+
+IBM ILOG CPLEX   31.1.0 r55b6ce3 Released May 01, 2020 WEI x86 64bit/MS Window
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.01 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.001
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\"
+Found incumbent of value 0.000000 after 0.11 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 113 rows and 167 columns.
+All rows and columns eliminated.
+Presolve time = 0.13 sec. (0.09 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.27 sec. (0.10 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.27 sec. (0.10 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.28sec (det. 0.10 ticks)
+Fixing integer variables, and solving final LP...
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.001
+CPXPARAM_WorkDir                                 "C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\225a\"
+Tried aggregator 1 time.
+LP Presolve eliminated 113 rows and 167 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.06 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.09sec (det. 0.11 ticks)
+
+Proven optimal solution.
+
+MIP Solution:            0.000000    (0 iterations, 0 nodes)
+Final Solve:             0.000000    (0 iterations)
+
+Best possible:           0.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- allocate_miro3.gms(283) 2 Mb
+--- Reading solution for model vivak
+--- Executing after solve: elapsed 0:00:02.112
+--- allocate_miro3.gms(330) 3 Mb
+--- GDX File C:\Users\hasee\Documents\GitHub\GAMS-MIRO\Allocate\data_allocate_miro3/default.gdx
+*** Status: Normal completion
+--- Job allocate_miro3.gms Stop 08/05/20 16:37:12 elapsed 0:00:02.132
+
+TRACE [2020-08-05 16:37:19] Logging facility initialised.
+DEBUG [2020-08-05 16:37:19] Database connection established.
+DEBUG [2020-08-05 16:37:19] Access Control initialised.
+INFO [2020-08-05 16:37:19] New data: 'default.gdx' is being stored in the database. Please wait a until the import is finished.
+DEBUG [2020-08-05 16:37:20] Db: A table named: '_sys_metadata_allocate_miro3' does not exist in the database (Db.importDataset).
+DEBUG [2020-08-05 16:37:20] Db: A table named: '_sys_metadata_allocate_miro3' did not yet exist (Db.writeMetadata). Therefore it was created.
+DEBUG [2020-08-05 16:37:20] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
+DEBUG [2020-08-05 16:37:20] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'default' (Scenario.writeMetadata).
+DEBUG [2020-08-05 16:37:21] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, TEXT, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_allocate' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_unmet' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, TEXT, TEXT'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3__scalars_out' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_prv_val' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_effic' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_effic' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_prv_weight' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_lablocdata' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:21] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:21] Db: A database table named: 'allocatemiro3_centerlocdata' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:21] Db: First data was written to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:22] Db: Returned database field types: 'int, TEXT, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:22] Db: A database table named: 'allocatemiro3_centerdata' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:22] Db: First data was written to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:22] Db: Returned database field types: 'int, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:37:22] Db: A database table named: 'allocatemiro3_runsize' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:22] Db: First data was written to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
+TRACE [2020-08-05 16:37:22] Db: Returned database field types: 'int, TEXT, TEXT, TEXT'.
+DEBUG [2020-08-05 16:37:22] Db: A database table named: 'allocatemiro3__scalars' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:37:22] Db: First data was written to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:37:22] Db: hasee: Table with locks ('_sys_scenlocks_allocate_miro3') was created as it did not yet exist. (Scenario.lock)
+DEBUG [2020-08-05 16:37:22] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:37:22] Db: hasee: Lock was added for scenario: '1' (Scenario.lock).
+DEBUG [2020-08-05 16:37:24] Scenario: '1' unlocked.
+DEBUG [2020-08-05 16:37:24] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
+INFO [2020-08-05 16:37:32] Session started (model: 'allocate_miro3', user: 'hasee', workdir: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate').
+DEBUG [2020-08-05 16:37:32] Working directory was created: 'C:/Users/hasee/Documents/GitHub/GAMS-MIRO/Allocate'.
+DEBUG [2020-08-05 16:37:32] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:37:34] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-08-05 16:38:53] Solve button clicked (model: 'allocate_miro3').
+TRACE [2020-08-05 16:38:53] Dataset: Prevalence setting saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Efficiency for different prevalences saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Importance of different prevalence to test saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Locations of labs saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Locations of centers saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Collection centers saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Runsize at lab saved in dataTmp.
+TRACE [2020-08-05 16:38:54] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-08-05 16:38:55] hasee: Import input data button clicked.
+DEBUG [2020-08-05 16:38:55] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:38:55] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-08-05 16:38:57] Sidebar menu item: 'outputData' selected.
+DEBUG [2020-08-05 16:39:02] Load local data button clicked.
+DEBUG [2020-08-05 16:39:02] Dataset: lablocdata loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:03] Dataset: centerlocdata loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:03] Dataset: prv_val loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:03] Dataset: effic loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:03] Dataset: prv_weight loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:03] Dataset: centerdata loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:03] Dataset: runsize loaded successfully (mode: xls, overwrite: FALSE)
+DEBUG [2020-08-05 16:39:07] Sidebar menu item: 'inputData' selected.
+DEBUG [2020-08-05 16:39:10] hasee: Import input data button clicked.
+DEBUG [2020-08-05 16:39:10] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:42:51] Load local data button clicked.
+DEBUG [2020-08-05 16:42:54] Dataset: lablocdata loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:42:54] Dataset: centerlocdata loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:42:54] Dataset: prv_val loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:42:54] Dataset: effic loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:42:54] Dataset: prv_weight loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:42:54] Dataset: centerdata loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:42:54] Dataset: runsize loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:24] hasee: Import input data button clicked.
+DEBUG [2020-08-05 16:43:24] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:43:48] Load local data button clicked.
+DEBUG [2020-08-05 16:43:50] Dataset: lablocdata loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:50] Dataset: centerlocdata loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:50] Dataset: prv_val loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:50] Dataset: effic loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:50] Dataset: prv_weight loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:50] Dataset: centerdata loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:50] Dataset: runsize loaded successfully (mode: xls, overwrite: TRUE)
+DEBUG [2020-08-05 16:43:53] Solve button clicked (model: 'allocate_miro3').
+TRACE [2020-08-05 16:43:54] Dataset: Prevalence setting saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Efficiency for different prevalences saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Importance of different prevalence to test saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Locations of labs saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Locations of centers saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Collection centers saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Runsize at lab saved in dataTmp.
+TRACE [2020-08-05 16:43:54] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-08-05 16:43:54] Sidebar menu item: 'gamsinter' selected.
+DEBUG [2020-08-05 16:43:58] Sidebar menu item: 'outputData' selected.
+Warning: Can't display both discrete & non-discrete data on same axis
+Warning: Can't display both discrete & non-discrete data on same axis
+DEBUG [2020-08-05 16:44:03] hasee: Save As button clicked.
+DEBUG [2020-08-05 16:44:07] Name for new scenario entered: Wxample.
+DEBUG [2020-08-05 16:44:07] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+TRACE [2020-08-05 16:44:07] Db: Scenario with name: 'Wxample' does not yet exist for user: 'hasee' (Db.checkScenExists returns TRUE).
+TRACE [2020-08-05 16:44:07] Dataset: Prevalence setting saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Efficiency for different prevalences saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Importance of different prevalence to test saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Locations of labs saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Locations of centers saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Collection centers saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Runsize at lab saved in dataTmp.
+TRACE [2020-08-05 16:44:07] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-08-05 16:44:07] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:44:07] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
+DEBUG [2020-08-05 16:44:07] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'Wxample' (Scenario.writeMetadata).
+DEBUG [2020-08-05 16:44:07] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+TRACE [2020-08-05 16:44:07] Db: Returned database field types: 'int, TEXT, TEXT, INTEGER, BLOB, TEXT'.
+DEBUG [2020-08-05 16:44:07] Db: A database table named: '_sys_attach_allocate_miro3' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:44:07] Db: First data was written to table: '_sys_attach_allocate_miro3' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
+TRACE [2020-08-05 16:44:08] Db: Returned database field types: 'int, TEXT, TEXT, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:44:08] Db: A database table named: 'allocatemiro3_kitinl' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:44:08] Db: First data was written to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
+TRACE [2020-08-05 16:44:08] Db: Returned database field types: 'int, TEXT, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION'.
+DEBUG [2020-08-05 16:44:08] Db: A database table named: 'allocatemiro3_operation' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:44:08] Db: First data was written to table: 'allocatemiro3_operation' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:44:08] Db: hasee: Lock was added for scenario: '2' (Scenario.lock).
+TRACE [2020-08-05 16:44:08] Db: Returned database field types: 'int, TEXT, TEXT, TEXT, TEXT, TEXT, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, DOUBLE PRECISION, TEXT'.
+DEBUG [2020-08-05 16:44:08] Db: A database table named: '_sys_trace_allocate_miro3' did not yet exist. 
+        Therefore it was created (Db.exportScenDataset).
+INFO [2020-08-05 16:44:08] Db: First data was written to table: '_sys_trace_allocate_miro3' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:08] hasee: Scenario saved to database (Scenario: Wxample).
+DEBUG [2020-08-05 16:44:10] hasee: Save As button clicked.
+DEBUG [2020-08-05 16:44:14] Name for new scenario entered: Example.
+DEBUG [2020-08-05 16:44:14] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+TRACE [2020-08-05 16:44:14] Db: Scenario with name: 'Example' does not yet exist for user: 'hasee' (Db.checkScenExists returns TRUE).
+TRACE [2020-08-05 16:44:14] Dataset: Prevalence setting saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Efficiency for different prevalences saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Importance of different prevalence to test saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Locations of labs saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Locations of centers saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Collection centers saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Runsize at lab saved in dataTmp.
+TRACE [2020-08-05 16:44:14] Dataset: Maximal distance for transportation saved in dataTmp.
+DEBUG [2020-08-05 16:44:15] Scenario: '2' unlocked.
+DEBUG [2020-08-05 16:44:15] Db: 1 rows in table: '_sys_scenlocks_allocate_miro3' were deleted. (Db.deleteRows)
+DEBUG [2020-08-05 16:44:15] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:44:15] Db: Metadata (table: '_sys_metadata_allocate_miro3') was written to database. (Db.writeMetadata).
+DEBUG [2020-08-05 16:44:15] Db: Metadata (table: '_sys_metadata_allocate_miro3') was added for scenario: 'Example' (Scenario.writeMetadata).
+DEBUG [2020-08-05 16:44:15] Db: Data was imported from table: '_sys_metadata_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_allocate' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_kitinl' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_operation' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_unmet' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3__scalars_out' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_prv_val' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_effic' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_prv_weight' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_lablocdata' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_centerlocdata' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_centerdata' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3_runsize' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:15] Db: Data was added to table: 'allocatemiro3__scalars' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:16] Db: Data was imported from table: '_sys_scenlocks_allocate_miro3' (Db.importDataset).
+DEBUG [2020-08-05 16:44:16] Db: hasee: Lock was added for scenario: '3' (Scenario.lock).
+DEBUG [2020-08-05 16:44:16] Db: Data was added to table: '_sys_trace_allocate_miro3' (Db.exportScenDataset).
+DEBUG [2020-08-05 16:44:16] hasee: Scenario saved to database (Scenario: Example).
+INFO [2020-08-05 16:44:23] Session ended (model: 'allocate_miro3', user: 'hasee').

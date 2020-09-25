@@ -128,7 +128,10 @@ putclose myinfo;
 
 * allow some domain violations in DNLP subsolvers
 
-option mpec=knitro;
+*option mpec=knitro;
+option dnlp=baron;
+$echo subsolver nlpec>jams.opt
+*Cournot.optfile=1;
 option domLim = 50;
 $ifi %gams.mcp% == nlpec option dnlp = conopt;
 
@@ -137,6 +140,8 @@ Parameter report;
 q.l(I)    =  1;
 leader(I) = no;
 courn(I) = no;
+*courn(I)=yes;
+*courn('1')=no;
 solve Cournot using emp;
 
 * compute player profits in the Nash case,

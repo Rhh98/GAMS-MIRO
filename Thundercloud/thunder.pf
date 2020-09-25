@@ -1,9 +1,0 @@
-curdir="/Users/ferris/Projects/GAMS-MIRO/Thundercloud"
-lo=3
-execMode=0
-IDCGDXOutput="_miro_gdxout_.gdx"
-idir1="/Users/ferris/Projects/GAMS-MIRO/Thundercloud"
-IDCGDXInput="_miro_gdxin_.gdx"
-LstTitleLeftAligned=1
-trace="_sys_trace_thunder.trc"
-traceopt=3

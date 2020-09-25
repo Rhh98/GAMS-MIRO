@@ -19,7 +19,7 @@ parameter prv_val(prv<) 'Prevalence setting' %prev%;
 
 parameter effic(prv) 'Efficiency for different prevalences' /prv1 0.9, prv2 0.9, prv3 0.95/;
 
-scalar   T 'Maximum distance for transportation' / 400 /;
+scalar   T 'Maximum distance for transportation' / 200 /;
 
 parameter prv_weight(prv) 'Importance of different prevalence to test'
 /prv1 1,prv2 2,prv3 4/;
