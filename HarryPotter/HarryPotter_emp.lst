@@ -1,4 +1,4 @@
-GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 08/04/20 15:30:40 Page 1
+GAMS 31.1.0  r55b6ce3 Released May  1, 2020 WEX-WEI x86 64bit/MS Windows - 09/25/20 16:51:49 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -195,7 +195,7 @@ C o m p i l a t i o n
  209  newZ(n,n1)=sum(n2,temp(n,n1,n2)*alpha.l(n2))+alpha.l('0');
 
 
-COMPILATION TIME     =        0.297 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
+COMPILATION TIME     =        0.031 SECONDS      3 MB  31.1.0 r55b6ce3 WEX-WEI
 
 
 USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
@@ -205,5 +205,5 @@ USER: Michael Ferris Research Group - Eval           G191008/0001AS-GEN
 
 **** FILE SUMMARY
 
-Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter_emp.gms
-Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\HarryPotter_emp.lst
+Input      C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\harrypotter_emp.gms
+Output     C:\Users\hasee\Documents\GitHub\GAMS-MIRO\HarryPotter\harrypotter_emp.lst

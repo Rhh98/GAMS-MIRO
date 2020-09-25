@@ -1,4 +1,1 @@
-data_feedOptimizer/feedoptimizer_2D_feed.gdx
-feedOptimizer.gms
-data_feedOptimizer/default.gdx
-data_feedOptimizer/feedoptimizer_1D_feed.gdx
+feedoptimizer.gms
