@@ -6,7 +6,7 @@ assignOutput <- function(id, height = NULL, options = NULL, path = NULL){
     height <- 700
   } 
   tagList( 
-    leafletOutput(ns('net'),height=height)
+    leaflet::leafletOutput(ns('net'),height=height)
     )
     #define rendererOutput function here 
    
@@ -15,7 +15,7 @@ assignOutput <- function(id, height = NULL, options = NULL, path = NULL){
 renderAssign <- function(input, output, session, data, options = NULL, path = NULL, ...){ 
   #renderer 
   
-   output$net<-renderLeaflet({
+   output$net<-leaflet::renderLeaflet({
      ind<-which(is.na(data$value))
      weight<-data$value[-ind]
      fromlng<-data$x[-ind]
@@ -31,9 +31,9 @@ renderAssign <- function(input, output, session, data, options = NULL, path = NU
      tolat=(tolat-min(y))/(max(y)-min(y))
      x=(x-min(x))/(max(x)-min(x))
      y=(y-min(y))/(max(y)-min(y))
-     map<-leaflet()
-     map<-addMarkers(map,lng=x,lat=y,label = node)
-     map<-addFlows(map,fromlng,fromlat,tolng,tolat,flow = weight,maxThickness = 5)
+     map<-leaflet::leaflet()
+     map<-leaflet::addMarkers(map,lng=x,lat=y,label = node)
+     map<-leaflet.minicharts::addFlows(map,fromlng,fromlat,tolng,tolat,flow = weight,maxThickness = 5)
      # Ver<-data.frame(node,x,y)
      # edges<-data.frame(from,to)
      #  network<-graph_from_data_frame(d=edges,vertices=Ver,)
