@@ -7,8 +7,8 @@ outputOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here
-    fluidRow(column(6,plotlyOutput(ns('plot1'),height=height)),
-              column(6,plotlyOutput(ns('plot2'),height=height)))
+    fluidRow(column(6,plotly::plotlyOutput(ns('plot1'),height=height)),
+              column(6,plotly::plotlyOutput(ns('plot2'),height=height)))
     #dataTableOutput(ns('tabletest'),height=height)
   ) 
 }
@@ -28,32 +28,32 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   newZ<-t(newZ)
   rank<-data$ranking[-which(is.na(data$ranking))]
   
-  fig1<- plot_ly()
-  fig1<-add_trace(fig1,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "Train Pos"
+  fig1<- plotly::plot_ly()
+  fig1<-plotly::add_trace(fig1,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "Train Pos"
   ,mode = "markers",marker=list(size=10,symbol='cross',color='blue'))
   
   X_temp<-X_heri[-Posind]
   X_temp2<-X_edu[-Posind]
   
   
-  fig1<-add_trace(fig1,type='scatter',x=X_temp,y=X_temp2,name="Train Neg",mode="markers"
+  fig1<-plotly::add_trace(fig1,type='scatter',x=X_temp,y=X_temp2,name="Train Neg",mode="markers"
                   ,marker=list(size=10,symbol='o',color='blue'))
   
   Posind<-which(T_label>0)
   
-  fig1<-add_trace(fig1,type='scatter',x=T_heri[Posind],y=T_edu[Posind],mode='markers'
+  fig1<-plotly::add_trace(fig1,type='scatter',x=T_heri[Posind],y=T_edu[Posind],mode='markers'
                   ,marker=list(size=10,symbol='cross',color='orange'),name="Trust Pos")
   
   T_temp<-T_heri[-Posind]
   T_temp2<-T_edu[-Posind]
-  fig1<-add_trace(fig1,type='scatter',x=T_temp,y=T_temp2,name="Trust Neg",mode="markers"
+  fig1<-plotly::add_trace(fig1,type='scatter',x=T_temp,y=T_temp2,name="Trust Neg",mode="markers"
                   ,marker=list(size=10,symbol='o',color='orange'))
   
   Contour1<-contourLines(x=1:100/100,y=1:100/100,z=t(Z),levels = c(0))
   conx<-Contour1[[1]]$x
   cony<-Contour1[[1]]$y
-  fig1<-add_trace(fig1,x=conx,y=cony,type='scatter',mode='lines',name="Classfier")
-  fig1<-layout(fig1,title='Learning without Trusted item',xaxis=list(title='Magical Heritage')
+  fig1<-plotly::add_trace(fig1,x=conx,y=cony,type='scatter',mode='lines',name="Classfier")
+  fig1<-plotly::layout(fig1,title='Learning without Trusted item',xaxis=list(title='Magical Heritage')
                ,yaxis=list(title='Education'))
   
   #debug output
@@ -64,8 +64,8 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   
     if(length(Posind)){
     
-    fig2<- plot_ly()
-    fig2<-add_trace(fig2,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "True Pos"
+    fig2<- plotly::plot_ly()
+    fig2<-plotly::add_trace(fig2,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "True Pos"
                    ,mode = "markers",marker=list(size=10,symbol='cross',color='blue'))
     
   }
@@ -73,24 +73,24 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   X_temp2<-X_edu[-c(Posind,Newind)]
   if(length(X_temp))
   {
-    fig2<-add_trace(fig2,type='scatter',x=X_temp,y=X_temp2,name="True Neg",mode="markers"
+    fig2<-plotly::add_trace(fig2,type='scatter',x=X_temp,y=X_temp2,name="True Neg",mode="markers"
                     ,marker=list(size=10,symbol='o',color='blue'))
   }
   if(length(NewPos))
   {
-    fig2<-add_trace(fig2,type='scatter',x=X_heri[NewPos],y=X_edu[NewPos],name="False Neg",mode="markers"
+    fig2<-plotly::add_trace(fig2,type='scatter',x=X_heri[NewPos],y=X_edu[NewPos],name="False Neg",mode="markers"
                     ,marker=list(size=10,symbol='cross',color='black'))
   }
   X_temp<-X_heri[setdiff(Newind,NewPos)]
   X_temp2<-X_edu[setdiff(Newind,NewPos)]
   if(length(X_temp))
   {
-    fig2<-add_trace(fig2,type='scatter',x=X_temp,y=X_temp2,name="False Pos",mode="markers"
+    fig2<-plotly::add_trace(fig2,type='scatter',x=X_temp,y=X_temp2,name="False Pos",mode="markers"
                     ,marker=list(size=10,symbol='o',color='black'))
 
   }
   
-  fig2<-layout(fig2,title='Debug using DUTI',xaxis=list(title='Magical Heritage')
+  fig2<-plotly::layout(fig2,title='Debug using DUTI',xaxis=list(title='Magical Heritage')
                ,yaxis=list(title='Education'))
   
   x <- c(1:100)
@@ -99,9 +99,9 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   Contour2<-contourLines(x=1:100/100,y=1:100/100,z=t(newZ),levels = c(0))
   conx<-Contour2[[1]]$x
   cony<-Contour2[[1]]$y
-  fig2<-add_trace(fig2,x=conx,y=cony,type='scatter',mode='lines',name="Classfier" )
+  fig2<-plotly::add_trace(fig2,x=conx,y=cony,type='scatter',mode='lines',name="Classfier" )
   
-  output$plot1<-renderPlotly(fig1)
-  output$plot2<-renderPlotly(fig2)
+  output$plot1<-plotly::renderPlotly(fig1)
+  output$plot2<-plotly::renderPlotly(fig2)
   #output$tabletest<-DT::renderDataTable(datatable(cbind(newZ)))
 }
