@@ -7,7 +7,7 @@ tourOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here 
-    leafletOutput(ns('T'),height=height)
+    leaflet::leafletOutput(ns('T'),height=height)
   ) 
 }
 
@@ -28,13 +28,13 @@ renderTour <- function(input, output, session, data, options = NULL, path = NULL
       count=count+1
       nind[count]=temp[1]}
     }
-    output$T<-renderLeaflet({
-      map<-leaflet(data)
-      map<-addTiles(map)
-      map<-addMarkers(map,~long1[ind],~lat1[ind],label = ~i[ind],group = 'Selected Cities')
-      map<-addCircleMarkers(map,~long1[nind],~lat1[nind],label=~i[nind],color='grey',group = 'Non-Selected Cities')
-      map<-addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)     
-      map<-addLayersControl(map,
+    output$T<-leaflet::renderLeaflet({
+      map<-leaflet::leaflet(data)
+      map<-leaflet::addTiles(map)
+      map<-leaflet::addMarkers(map,~long1[ind],~lat1[ind],label = ~i[ind],group = 'Selected Cities')
+      map<-leaflet::addCircleMarkers(map,~long1[nind],~lat1[nind],label=~i[nind],color='grey',group = 'Non-Selected Cities')
+      map<-leaflet::addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)     
+      map<-leaflet::addLayersControl(map,
                             overlayGroups ='Non-Selected Cities',
                             options = layersControlOptions(collapsed = FALSE)
       )
@@ -43,11 +43,11 @@ renderTour <- function(input, output, session, data, options = NULL, path = NULL
   }
  else
   {
-    output$T<-renderLeaflet({
-    map<-leaflet(data)
-    map<-addTiles(map)
-    map<-addMarkers(map,~long1[ind],~lat1[ind],label = ~i[ind])
-    map<-addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)
+    output$T<-leaflet::renderLeaflet({
+    map<-leaflet::leaflet(data)
+    map<-leaflet::addTiles(map)
+    map<-leaflet::addMarkers(map,~long1[ind],~lat1[ind],label = ~i[ind])
+    map<-leaflet::addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)
     })
   }
 }
