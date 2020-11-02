@@ -8,7 +8,7 @@ kitsinlOutput <- function(id, height = NULL, options = NULL, path = NULL){
   tagList( 
     #define rendererOutput function here 
     sidebarLayout(
-      sidebarPanel(
+      tags$div(class = "col-sm-4",
     
     dataTableOutput(ns('dataT'),height=height)
     ),
@@ -45,7 +45,7 @@ allocateOutput <- function(id,height=NULL,options = NULL, path=NULL){
   tagList( 
     #define rendererOutput function here 
     sidebarLayout(
-      sidebarPanel(
+      tags$div(class = "col-sm-4",
         
         dataTableOutput(ns('dataT'),height=height)
       ),
