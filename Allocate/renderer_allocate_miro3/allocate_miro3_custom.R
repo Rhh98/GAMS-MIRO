@@ -51,7 +51,7 @@ allocateOutput <- function(id,height=NULL,options = NULL, path=NULL){
         dataTableOutput(ns('dataT'),height=height)
       ),
       mainPanel(
-        leafletOutput(ns('map'),height=height),
+        leaflet::leafletOutput(ns('map'),height=height),
         verbatimTextOutput(ns('text'))
       ) 
     )
@@ -80,10 +80,10 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
      temp<-which(data$c==c[i])
      cind[i]<-temp[1]
    }
-  output$map<-renderLeaflet({map<-leaflet(data) 
-                            map<-addTiles(map) 
-                            map<-addMarkers(map,~lonl[lind],~latl[lind] , label = l,layerId = paste('lab:',l))
-                            map<-addCircleMarkers(map,~lonc[cind], ~latc[cind], label = c,layerId =paste('center:',c) )
+  output$map<-leaflet::renderLeaflet({map<-leaflet::leaflet(data) 
+                            map<-leaflet::addTiles(map) 
+                            map<-leaflet::addMarkers(map,~lonl[lind],~latl[lind] , label = l,layerId = paste('lab:',l))
+                            map<-leaflet::addCircleMarkers(map,~lonc[cind], ~latc[cind], label = c,layerId =paste('center:',c) )
                             for (i in 1:length(l))
                             {
                               ind<-data$l==l[i] & !is.na(data$val)
@@ -95,7 +95,7 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                               for (j in 1:length(data$lonc[ind]))
                               {
                                 
-                                map<-addPolylines(map,lon[j,],lat[j,],weight=val[j]/max(data$val[-Nan])*6,
+                                map<-leaflet::addPolylines(map,lon[j,],lat[j,],weight=val[j]/max(data$val[-Nan])*6,
                                                   color='purple',group = paste('lab:',l[i]),label = val[j] )
                               }
                               }
@@ -105,7 +105,7 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                             {
                               if(!is.na(data$val[i]))
                                 
-                            map<-addPolylines(map,c(data$lonc[i],data$lonl[i]),c(data$latc[i],data$latl[i]),weight=data$val[i]/max(data$val[-Nan])*6,
+                            map<-leaflet::addPolylines(map,c(data$lonc[i],data$lonl[i]),c(data$latc[i],data$latl[i]),weight=data$val[i]/max(data$val[-Nan])*6,
                                            color='red',group='all',label=data$val[i])
                             }
                             for (i in 1:length(c))
@@ -117,24 +117,24 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                               if (length(val)){
                               for (j in 1:length(data$lonc[ind]))
                               {
-                                map<-addPolylines(map,lon[j,],lat[j,],weight=val[j]/max(data$val[-Nan])*6,
+                                map<-leaflet::addPolylines(map,lon[j,],lat[j,],weight=val[j]/max(data$val[-Nan])*6,
                                                   color='green',group = paste('center:',c[i]),label=val[j])
                               }
                               }
                               
                             }
-                            map<-addLayersControl(map,
+                            map<-leaflet::addLayersControl(map,
                               overlayGroups = 'all',
-                              options = layersControlOptions(collapsed = FALSE)
+                              options = leaflet::layersControlOptions(collapsed = FALSE)
                             )
                             })
   
   idlayer<-c(paste('center:',c),paste('lab:',l),'all')
-  observeEvent(input$map_marker_click,{
+  leaflet::observeEvent(input$map_marker_click,{
     click<-input$map_marker_click
-    map<-leafletProxy("map")
-   hideGroup(map,idlayer)
-   showGroup(map,idlayer[idlayer==click$id])
+    map<-leaflet::leafletProxy("map")
+   leaflet::hideGroup(map,idlayer)
+   leaflet::showGroup(map,idlayer[idlayer==click$id])
    output$text<-renderText(paste("You select",click$id))
   })
   
@@ -151,7 +151,7 @@ unmetOutput <- function(id, height = NULL, options = NULL, path = NULL){
   } 
   tagList( 
     #define rendererOutput function here 
-    plotlyOutput(ns('unmet'),height=height)
+    plotly::plotlyOutput(ns('unmet'),height=height)
     ) 
 }
 
@@ -159,14 +159,14 @@ renderUnmet <- function(input, output, session, data, options = NULL, path = NUL
   #renderer 
   num<-length(unique(data$prv))
   center=unique(data$c)
-  output$unmet<-renderPlotly({
-    fig<-plot_ly(type = 'bar',showlegend=FALSE)
+  output$unmet<-plotly::renderPlotly({
+    fig<-plotly::plot_ly(type = 'bar',showlegend=FALSE)
     for (i in 1:num) {
       y=data$value[data$prv==paste('prv',i,sep='')]
       y[y==0.5]=0;
-      fig<-add_trace(fig,y=y,x=center,name=paste('pre',i,sep=''),showlegend=TRUE)
+      fig<-plotly::add_trace(fig,y=y,x=center,name=paste('pre',i,sep=''),showlegend=TRUE)
     }
-    fig<-layout(fig,yaxis=list(title='Number of kits'),xaxis=list(title='center'),barmode='stack')
+    fig<-plotly::layout(fig,yaxis=list(title='Number of kits'),xaxis=list(title='center'),barmode='stack')
 
   }
   )
