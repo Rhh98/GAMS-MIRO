@@ -33,10 +33,10 @@ renderTour <- function(input, output, session, data, options = NULL, path = NULL
       map<-leaflet::addTiles(map)
       map<-leaflet::addMarkers(map,~long1[ind],~lat1[ind],label = ~i[ind],group = 'Selected Cities')
       map<-leaflet::addCircleMarkers(map,~long1[nind],~lat1[nind],label=~i[nind],color='grey',group = 'Non-Selected Cities')
-      map<-leaflet::addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)     
+      map<-leaflet.minicharts::addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)     
       map<-leaflet::addLayersControl(map,
                             overlayGroups ='Non-Selected Cities',
-                            options = layersControlOptions(collapsed = FALSE)
+                            options = leaflet::layersControlOptions(collapsed = FALSE)
       )
     })
 
@@ -47,7 +47,7 @@ renderTour <- function(input, output, session, data, options = NULL, path = NULL
     map<-leaflet::leaflet(data)
     map<-leaflet::addTiles(map)
     map<-leaflet::addMarkers(map,~long1[ind],~lat1[ind],label = ~i[ind])
-    map<-leaflet::addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)
+    map<-leaflet.minicharts::addFlows(map,data$long1[ind],data$lat1[ind],data$long2[ind],data$lat2[ind],flow= data$dist[ind],minThickness = 5,maxThickness = 5)
     })
   }
 }
