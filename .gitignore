@@ -10,4 +10,4 @@ facloc/_sys_trace_model.trc
 *.gdx
 Allocate/renderer_allocate_miro3/.Rhistory
 *.log
-*.log
+*.log~*
