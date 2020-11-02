@@ -86,10 +86,14 @@
       "aliases": ["firm 1", "firm 2", "firm 3", "firm 4", "firm 5", "firm 6", "firm 7", "firm 8", "firm 9", "firm 10"]
     }
   },
+  "inputWidgetGroups":[{
+    "name": "lead",
+    "members": "lead"
+  }],
   "inputGroups": [
     {
       "name": "Cournot and Stackelberg model",
-      "members": ["i", "lead", "fdata"]
+      "members": ["idata", "lead", "cournotfirm"]
     }
   ],
   "outputGroups": [

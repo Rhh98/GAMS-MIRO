@@ -17,8 +17,8 @@ CournotOutput <- function(id, height = NULL, options = NULL, path = NULL){
                max= 1.5,
                value = 1,
                step=0.1))),
-    fluidRow(column(6, plotlyOutput(ns('cour2'),height=height)),
-             column(6,plotlyOutput(ns('cour22'),height=height)))
+    fluidRow(column(6, plotly::plotlyOutput(ns('cour2'),height=height)),
+             column(6,plotly::plotlyOutput(ns('cour22'),height=height)))
   )
 }
 
@@ -39,7 +39,7 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
   dbar<-unique(data$dbar)
   L<-data$l
   CourMember<-data$courmember==1
-  output$cour2<-renderPlotly({
+  output$cour2<-plotly::renderPlotly({
     ii<-which(paste('firm',1:10)==input$select)
     xx<-rep(quantity[ii]*input$Selectfirm,l)
     yy<-xx
@@ -54,17 +54,17 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
     }
     yy2=rep(0,l)
     yy2[CourMember]=yy[CourMember]
-    fig2<-plot_ly(type = 'bar',x=paste('firm',1:l)
+    fig2<-plotly::plot_ly(type = 'bar',x=paste('firm',1:l)
                   ,y=yy2,name = "Cournot Member")
     yy2=rep(0,l)
     yy2[!CourMember]=yy[!CourMember]
-    fig2<-add_trace(fig2,y=yy2,name = "Price Taking")
-    fig2<-layout(fig2,title = paste("Profits with respect to quantities of firm",ii),
+    fig2<-plotly::add_trace(fig2,y=yy2,name = "Price Taking")
+    fig2<-plotly::layout(fig2,title = paste("Profits with respect to quantities of firm",ii),
                  xaxis=list(title='Firm'),yaxis=list(title="Profits",range=c(0,1.3*max(profit))))
     
     
   })
-    output$cour22<-renderPlotly({
+    output$cour22<-plotly::renderPlotly({
         ii<-which(paste('firm',1:10)==input$select)
     xx<-rep(1,l)
     xx<-t(t(xx)) %*% rep(1,100)
@@ -88,13 +88,13 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
       }
     }
     cols=1:l
-    fig2<-plot_ly()
+    fig2<-plotly::plot_ly()
     for (i in 1:l)
    {  if(CourMember[i])
-     { fig2<-add_trace(fig2,type='scatter',mode='lines',x=xx[i,],y=yy[i,],
+     { fig2<-plotly::add_trace(fig2,type='scatter',mode='lines',x=xx[i,],y=yy[i,],
                     line=list(width=2,color=cols[i],dash='dash'),name=paste('firm',i,'Cournot Member'))}
       
-    if(!CourMember[i]){ fig2<-add_trace(fig2,type='scatter',mode='lines',x=xx[i,],y=yy[i,],
+    if(!CourMember[i]){ fig2<-plotly::add_trace(fig2,type='scatter',mode='lines',x=xx[i,],y=yy[i,],
                      line=list(width=2,color=cols[i]),name=paste('firm',i,'Price Taking'))}
       }
    
@@ -112,12 +112,12 @@ renderCournot <- function(input, output, session, data, options = NULL, path = N
     }
     for (i in 1:l)
     {
-      fig2<-add_trace(fig2,type='scatter',mode='markers',x=xx[i],y=yy[i],
+      fig2<-plotly::add_trace(fig2,type='scatter',mode='markers',x=xx[i],y=yy[i],
                       marker=list(size=15,symbol='o',color=cols[i]),showlegend=FALSE,name=i)
     }
 
 
-    fig2<-layout(fig2,title = paste("Profits with respect to quantities of firm",ii),
+    fig2<-plotly::layout(fig2,title = paste("Profits with respect to quantities of firm",ii),
                  xaxis=list(title='Firm'),yaxis=list(title="Profits"))
 
 
@@ -142,8 +142,8 @@ leadOutput <- function(id, height = NULL, options = NULL, path = NULL){
                           step = 0.05),)
    ), 
 
-    fluidRow(column(6,plotlyOutput(ns('bar'),height=height)),
-             column(6,plotlyOutput(ns('plot'),height=height)))
+    fluidRow(column(6,plotly::plotlyOutput(ns('bar'),height=height)),
+             column(6,plotly::plotlyOutput(ns('plot'),height=height)))
   )
 }
 
@@ -155,37 +155,37 @@ renderLead <- function(input, output, session, data, options = NULL, path = NULL
   lead<-which(1:l==unique(data$i[-ind]))
   output$leadtext<-renderText(paste('The picture below shows the profits of the',l,' firms when firm',lead,' is a leader firm or not a leader firm.'))
   
-  output$plot<-renderPlotly({
+  output$plot<-plotly::renderPlotly({
     x<-data$lquantity[-ind]
     yl<-data$lprofit[-ind]
     yn<-data$nprofit[-ind]
     xind<-(input$lquantity-0.45)/0.05
-    fig<-plot_ly()
-    fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yl,
+    fig<-plotly::plot_ly()
+    fig<-plotly::add_trace(fig,type='scatter',mode='lines',x=x,y=yl,
                    line=list(width=2,color=cols[lead]),name=paste('Firm',lead,' L'))
-    fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
+    fig<-plotly::add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
                    line=list(width=2,dash='dash',color=cols[lead]),name=paste('Firm',lead,' N'))
-    fig<-add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yl[xind],
+    fig<-plotly::add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yl[xind],
                    marker=list(size=15,color=cols[lead]),showlegend=FALSE)
-    fig<-add_trace(fig,type='scatter',symbol='x',mode='markers',x=x[xind],y=yn[xind],
+    fig<-plotly::add_trace(fig,type='scatter',symbol='x',mode='markers',x=x[xind],y=yn[xind],
                    marker=list(size=15,color=cols[lead]),showlegend=FALSE)
     for(i in setdiff(1:l,lead))
     {
       ind<-data$i == i
       yl<-data$lprofit[ind]
       yn<-data$nprofit[ind]
-      fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yl,
+      fig<-plotly::add_trace(fig,type='scatter',mode='lines',x=x,y=yl,
                      line=list(width=2,color=cols[i]),name=paste('Firm',i,'L'))
-      fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
+      fig<-plotly::add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
                      line=list(width=2,dash='dash',color=cols[i]),name=paste('Firm',i,'N'))
-      fig<-add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yl[xind],
+      fig<-plotly::add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yl[xind],
                      marker=list(size=15,color=cols[i]),showlegend=FALSE)
-      fig<-add_trace(fig,type='scatter',symbol='x',mode='markers',x=x[xind],y=yn[xind],
+      fig<-plotly::add_trace(fig,type='scatter',symbol='x',mode='markers',x=x[xind],y=yn[xind],
                      marker=list(size=15,color=cols[i]),showlegend=FALSE)
     }
-    fig<-layout(fig,xaxis=list(title='quantity of lead firm'),yaxis=list(title='profits'))
+    fig<-plotly::layout(fig,xaxis=list(title='quantity of lead firm'),yaxis=list(title='profits'))
   })
-  output$bar<-renderPlotly({
+  output$bar<-plotly::renderPlotly({
     x<-data$lquantity[-ind]
     yl<-data$lprofit[-ind]
     yn<-data$nprofit[-ind]
@@ -202,9 +202,9 @@ renderLead <- function(input, output, session, data, options = NULL, path = NULL
       y1[i]=yl[xind]
       y2[i]=yn[xind]
     }
-    fig<-plot_ly(type='bar',x=paste('firm',1:l),y=y1,name=paste("Firm",lead,'as leader firm'))
-    fig<-add_trace(fig,y=y2,name=paste('Firm',lead,'as Cournot member'))
-    fig<-layout(fig,xaxis=list(title='firm'),yaxis=list(title='profit',range=c(0,1.3*max(max(data$lprofit),max(data$nprofit)))))
+    fig<-plotly::plot_ly(type='bar',x=paste('firm',1:l),y=y1,name=paste("Firm",lead,'as leader firm'))
+    fig<-plotly::add_trace(fig,y=y2,name=paste('Firm',lead,'as Cournot member'))
+    fig<-plotly::layout(fig,xaxis=list(title='firm'),yaxis=list(title='profit',range=c(0,1.3*max(max(data$lprofit),max(data$nprofit)))))
   })
 }
 stacQuanOutput <- function(id, height = NULL, options = NULL, path = NULL){
@@ -225,8 +225,8 @@ stacQuanOutput <- function(id, height = NULL, options = NULL, path = NULL){
                            max = 1.5,
                            step = 0.05),)
     ), 
-    fluidRow(column(6,plotlyOutput(ns('bar'),height=height)),
-             column(6,plotlyOutput(ns('plot'),height=height)))
+    fluidRow(column(6,plotly::plotlyOutput(ns('bar'),height=height)),
+             column(6,plotly::plotlyOutput(ns('plot'),height=height)))
   ) 
 }
 
@@ -239,34 +239,34 @@ renderStacQuan <- function(input, output, session, data, options = NULL, path = 
   x<-data$lquantity[-ind]
   y<-data$nquantity[ind]
   output$text<-renderText(paste('The picture below shows the Quantity of each firm will decide to produce with repect to the quantity of the leader firm: firm.',lead))
-  output$bar<-renderPlotly({
+  output$bar<-plotly::renderPlotly({
     xind<-(input$lquantity-0.45)/0.05
     yy<-rep(0,l)
     yy[lead]=0;
     yy[setdiff(1:l,lead)]<-y[(1:(l-1))*21-21+xind]
-    fig<-plot_ly(type='bar',x=paste('firm',1:l),y=yy,name = 'Cournot Member')
+    fig<-plotly::plot_ly(type='bar',x=paste('firm',1:l),y=yy,name = 'Cournot Member')
     yy[1:l]=0
     yy[lead]=x[xind]
-    fig<-add_trace(fig,y=yy,name="Leader Firm")
-    fig<-layout(fig,axis=list(title='firm'),yaxis=list(title='quantity',range=c(0,1.3*max(data$nquantity))),barmode='stack')
+    fig<-plotly::add_trace(fig,y=yy,name="Leader Firm")
+    fig<-plotly::layout(fig,xaxis=list(title='firm'),yaxis=list(title='quantity',range=c(0,1.3*max(data$nquantity))),barmode='stack')
   })
-  output$plot<-renderPlotly({
+  output$plot<-plotly::renderPlotly({
     xind<-(input$lquantity-0.45)/0.05
-    fig<-plot_ly()
-    fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=x,
+    fig<-plotly::plot_ly()
+    fig<-plotly::add_trace(fig,type='scatter',mode='lines',x=x,y=x,
                    line=list(width=2,color=cols[lead]),name=paste('Leader Firm'))
-    fig<-add_trace(fig,type='scatter',mode='markers',x=x[xind],y=x[xind],
+    fig<-plotly::add_trace(fig,type='scatter',mode='markers',x=x[xind],y=x[xind],
                    marker=list(size=15,color=cols[lead]),showlegend=FALSE)
     for(i in setdiff(1:l,lead))
     {
       ind<-data$i == i
       yn<-data$nquantity[ind]
-      fig<-add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
+      fig<-plotly::add_trace(fig,type='scatter',mode='lines',x=x,y=yn,
                      line=list(width=2,color=cols[i]),name=paste('Firm',i))
-      fig<-add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yn[xind],
+      fig<-plotly::add_trace(fig,type='scatter',mode='markers',x=x[xind],y=yn[xind],
                      marker=list(size=15,color=cols[i]),showlegend=FALSE)
     }
-    fig<-layout(fig,xaxis=list(title='quantity of lead firm'),yaxis=list(title='quantity'))
+    fig<-plotly::layout(fig,xaxis=list(title='quantity of lead firm'),yaxis=list(title='quantity'))
   })
 }
 resOutput <- function(id, height = NULL, options = NULL, path = NULL){
@@ -280,8 +280,8 @@ resOutput <- function(id, height = NULL, options = NULL, path = NULL){
     #define rendererOutput function here 
     textOutput(ns('text')),
     fluidRow(
-      column(6,plotlyOutput(ns('quantity'),height=height)),
-      column(6,plotlyOutput(ns('profit'),height = height))
+      column(6,plotly::plotlyOutput(ns('quantity'),height=height)),
+      column(6,plotly::plotlyOutput(ns('profit'),height = height))
     )
     
   ) 
@@ -292,15 +292,15 @@ renderRes <- function(input, output, session, data, options = NULL, path = NULL,
   output$text<-renderText('This output shows the different quantities and profits a firm will produce and gain when it acts as a leader firm or not.')
   
   
-  output$quantity<-renderPlotly({
-    fig<-plot_ly(type = 'bar',x=paste('firm',data$i),name = 'Cournot Member',y=data$courquantity)
-    fig<-add_trace(fig,y=data$stacquantity,name = 'Stackelberg Leader Firm')
-    fig<-layout(fig,title="Quantity Comparison",xaxis=list(title='firm'),yaxis=list(title='quantity'),barmode='group')
+  output$quantity<-plotly::renderPlotly({
+    fig<-plotly::plot_ly(type = 'bar',x=paste('firm',data$i),name = 'Cournot Member',y=data$courquantity)
+    fig<-plotly::add_trace(fig,y=data$stacquantity,name = 'Stackelberg Leader Firm')
+    fig<-plotly::layout(fig,title="Quantity Comparison",xaxis=list(title='firm'),yaxis=list(title='quantity'),barmode='group')
   })
-  output$profit<-renderPlotly({
-    fig<-plot_ly(type = 'bar',x=paste('firm',data$i),name = 'Cournot Member',y=data$courprofit)
-    fig<-add_trace(fig,y=data$stacprofit,name = 'Stackelberg Leader Firm')
-    fig<-layout(fig,title="Profit Comparison",xaxis=list(title='firm'),yaxis=list(title='profit'),barmode='group')
+  output$profit<-plotly::renderPlotly({
+    fig<-plotly::plot_ly(type = 'bar',x=paste('firm',data$i),name = 'Cournot Member',y=data$courprofit)
+    fig<-plotly::add_trace(fig,y=data$stacprofit,name = 'Stackelberg Leader Firm')
+    fig<-plotly::layout(fig,title="Profit Comparison",xaxis=list(title='firm'),yaxis=list(title='profit'),barmode='group')
   })
 }
 
