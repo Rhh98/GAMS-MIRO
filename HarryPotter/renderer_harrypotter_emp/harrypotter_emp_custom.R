@@ -28,7 +28,7 @@ renderOutput <- function(input, output, session, data, options = NULL, path = NU
   newZ<-t(newZ)
   rank<-data$ranking[-which(is.na(data$ranking))]
   
-  fig1<- plotly::plot_ly()
+  fig1<-plotly::plot_ly()
   fig1<-plotly::add_trace(fig1,type='scatter',x=X_heri[Posind],y=X_edu[Posind],name = "Train Pos"
   ,mode = "markers",marker=list(size=10,symbol='cross',color='blue'))
   

@@ -10,7 +10,7 @@ kitsinlOutput <- function(id, height = NULL, options = NULL, path = NULL){
     sidebarLayout(
       tags$div(class = "col-sm-4",
     
-    dataTableOutput(ns('dataT'),height=height)
+    DT::dataTableOutput(ns('dataT'),height=height)
     ),
     mainPanel(plotOutput(ns('plot'),height=height)
     ) 
@@ -47,7 +47,7 @@ allocateOutput <- function(id,height=NULL,options = NULL, path=NULL){
     sidebarLayout(
       tags$div(class = "col-sm-4",
         
-        dataTableOutput(ns('dataT'),height=height)
+        DT::dataTableOutput(ns('dataT'),height=height)
       ),
       mainPanel(
         leaflet::leafletOutput(ns('map'),height=height),
@@ -129,11 +129,11 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                             })
   
   idlayer<-c(paste('center:',c),paste('lab:',l),'all')
-  observeEvent(input$map_marker_click,{
+  leaflet::observeEvent(input$map_marker_click,{
     click<-input$map_marker_click
     map<-leaflet::leafletProxy("map")
-   hideGroup(map,idlayer)
-   showGroup(map,idlayer[idlayer==click$id])
+   leaflet::hideGroup(map,idlayer)
+   leaflet::showGroup(map,idlayer[idlayer==click$id])
    output$text<-renderText(paste("You select",click$id))
   })
   
