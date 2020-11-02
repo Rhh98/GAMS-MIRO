@@ -129,7 +129,7 @@ renderAllocate <- function(input, output, session, data, options = NULL, path = 
                             })
   
   idlayer<-c(paste('center:',c),paste('lab:',l),'all')
-  leaflet::observeEvent(input$map_marker_click,{
+  observeEvent(input$map_marker_click,{
     click<-input$map_marker_click
     map<-leaflet::leafletProxy("map")
    leaflet::hideGroup(map,idlayer)
