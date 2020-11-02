@@ -1,6 +1,6 @@
 {
   "overwriteSheetOrder": {
-    "input": ["prv_val", "effic", "prv_weight", "lablocdata", "centerlocdata", "centerdata", "runsize", "_widgets"]
+    "input": ["prv_val", "effic", "prv_weight", "lablocdata", "centerlocdata", "centerdata", "runsize", "_widgets", "_widgets1"]
   },
   "overwriteAliases": {
     "_scalars": {
@@ -79,6 +79,16 @@
         "color": "aqua"
       }
     },
+    "operation": {
+      "class": "display",
+      "filter": "bottom",
+      "options": {
+        "pageLength": 15,
+        "decimals": 3
+      },
+      "rownames": false,
+      "outType": "datatable"
+    },
     "unmet": {
       "outType": "unmet",
       "packages": "plotly"
@@ -127,23 +137,21 @@
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
-    "highlightCol": true,
-    "highlightRow": true,
-    "columnSorting": true,
     "manualColumnResize": true,
     "contextMenu": {
       "enabled": true,
       "allowRowEdit": true,
-      "allowColEdit": true,
-      "allowReadOnly": false
+      "allowColEdit": true
     },
     "height": 700,
     "colWidths": 150
   },
-  "inputWidgetGroups":[{
-    "name": "Maximal distance for transportation",
-    "members": "t"
-  }],
+  "inputWidgetGroups": [
+    {
+      "name": "Maximal distance for transportation",
+      "members": "t"
+    }
+  ],
   "inputGroups": [
     {
       "name": "Prevalence",
@@ -163,5 +171,16 @@
       "name": "Information for labs",
       "members": ["kitinl", "operation"]
     }
-  ]
+  ],
+  "outputTables": {
+    "operation": {
+      "class": "display",
+      "filter": "bottom",
+      "options": {
+        "pageLength": 15,
+        "decimals": 3
+      },
+      "rownames": false
+    }
+  }
 }
