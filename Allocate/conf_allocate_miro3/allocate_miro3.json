@@ -140,6 +140,10 @@
     "height": 700,
     "colWidths": 150
   },
+  "inputWidgetGroups":[{
+    "name": "Maximal distance for transportation",
+    "members": "t"
+  }],
   "inputGroups": [
     {
       "name": "Prevalence",
