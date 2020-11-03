@@ -69,17 +69,57 @@
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
-    "highlightCol": true,
-    "highlightRow": true,
-    "columnSorting": true,
     "manualColumnResize": true,
     "contextMenu": {
       "enabled": true,
       "allowRowEdit": true,
-      "allowColEdit": true,
-      "allowReadOnly": false
+      "allowColEdit": true
     },
     "height": 700,
     "colWidths": 150
+  },
+  "inputWidgets": {
+    "mcoord": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "rscoord": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "min_distance": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "cm": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "ch": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "lowupcoord": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    }
   }
 }

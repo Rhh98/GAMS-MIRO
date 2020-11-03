@@ -1,2 +1,0 @@
-HarryPotter_emp.gms
-harrypotter_emp.gms
