@@ -1,0 +1,173 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["r", "ptype", "_widgets"]
+  },
+  "overwriteAliases": {
+    "r": {
+      "newAlias": "resource"
+    },
+    "ptype": {
+      "newAlias": "patient type"
+    },
+    "patientsinhosp": {
+      "newAlias": "patientsinhosp"
+    },
+    "patientsinicu": {
+      "newAlias": "patientsinicu"
+    },
+    "bedsadded": {
+      "newAlias": "bedsadded"
+    },
+    "patientsmoved": {
+      "newAlias": "patientsmoved"
+    },
+    "bedsalloc": {
+      "newAlias": "bedsalloc"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "icubedsadded": {
+      "newAlias": "icubedsadded"
+    },
+    "patients": {
+      "newAlias": "patients"
+    },
+    "icubedsalloc": {
+      "newAlias": "icubedsalloc"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "inputWidgets": {
+    "r": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "ptype": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": true,
+      "heatmap": false
+    },
+    "allowmoves": {
+      "widgetType": "checkbox",
+      "alias": "allowmoves",
+      "value": 1,
+      "noHcube": false,
+      "class": "checkbox-material",
+      "label": "Allow moves"
+    },
+    "sinfr": {
+      "widgetType": "slider",
+      "alias": "sinfr",
+      "min": 0,
+      "max": 1,
+      "step": 0.01,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Staff infection rate",
+      "default": 0.01
+    }
+  },
+  "dataRendering": {
+    "patientsinhosp": {
+      "outType": "bar2D",
+      "packages": "plotly",
+      "options": {
+        "title": "Covid hospitalized in region by time"
+      }
+    },
+    "bedsadded": {
+      "outType": "bar2D",
+      "packages": "plotly",
+      "options": {
+        "title": "Beds reassigned in region by time"
+      }
+    },
+    "patientsinicu": {
+      "outType": "bar2D",
+      "packages": "plotly",
+      "options": {
+        "title": "Covid in ICU in region by time"
+      }
+    },
+    "icubedsadded": {
+      "outType": "bar2D",
+      "packages": "plotly",
+      "options": {
+        "title": "ICU beds reassigned in region by time"
+      }
+    },
+    "icubedsalloc": {
+      "outType": "bar2D",
+      "packages": "plotly",
+      "options": {
+        "title": "ICU beds allocated in region by time"
+      }
+    },
+    "bedsalloc": {
+      "outType": "bar2D",
+      "packages": "plotly",
+      "options": {
+        "title": "Beds allocated in region by time"
+      }
+    },
+    "patients": {
+      "outType": "miroPivot",
+      "height": 700,
+      "options": {
+        "aggregationFunction": "sum",
+        "pivotRenderer": "stackedbar",
+        "rows": "d",
+        "cols": {
+          "i": null,
+          "ptype": ["cov", "icu"]
+        }
+      }
+    },
+    "patientsmoved": {
+      "outType": "stacked2Dbar",
+      "packages": "plotly"
+    }
+  },
+  "defaultScenName": "default",
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}

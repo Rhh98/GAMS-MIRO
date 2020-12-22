@@ -1,0 +1,225 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["allowmoves", "sinfr", "toacf"],
+			"symtext":	["allowmoves", "Staff infection rate", "ACF transferral rate"],
+			"symtypes":	["parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"r":	{
+			"alias":	"Resource",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text Resource"
+				}
+			}
+		},
+		"ptype":	{
+			"alias":	"Patient type",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text Patient type"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"patients":	{
+			"alias":	"patients",
+			"symtype":	"parameter",
+			"headers":	{
+				"ptype":	{
+					"type":	"string",
+					"alias":	"Patient type"
+				},
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"patients"
+				}
+			}
+		},
+		"bedsalloc":	{
+			"alias":	"bedsalloc",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"bedsalloc"
+				}
+			}
+		},
+		"icubedsalloc":	{
+			"alias":	"icubedsalloc",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"icubedsalloc"
+				}
+			}
+		},
+		"patientsinhosp":	{
+			"alias":	"patientsinhosp",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"patientsinhosp"
+				}
+			}
+		},
+		"patientsinicu":	{
+			"alias":	"patientsinicu",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"patientsinicu"
+				}
+			}
+		},
+		"bedsadded":	{
+			"alias":	"bedsadded",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"bedsadded"
+				}
+			}
+		},
+		"icubedsadded":	{
+			"alias":	"icubedsadded",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"icubedsadded"
+				}
+			}
+		},
+		"patientsmoved":	{
+			"alias":	"patientsmoved",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"patientsmoved"
+				}
+			}
+		},
+		"staffalloc":	{
+			"alias":	"staffalloc",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"herc regions"
+				},
+				"day":	{
+					"type":	"string",
+					"alias":	"dates"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"staffalloc"
+				}
+			}
+		}
+	}
+}

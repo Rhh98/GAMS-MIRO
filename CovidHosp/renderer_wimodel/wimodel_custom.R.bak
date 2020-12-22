@@ -1,0 +1,43 @@
+stacked1DbarOutput <- function(id, height = NULL, options = NULL, path = NULL){
+    ns <- NS(id)
+    if(is.null(height)){
+        height <- 700
+    } 
+    tagList(plotly::plotlyOutput(ns("patients"),height=height))
+}
+
+renderStacked1Dbar <- function(input, output, session, data, options = NULL, path = NULL, ...){
+    output$patients <-
+      plotly::renderPlotly(
+                plotly::plot_ly(data,
+                                x = ~d,
+                                y = ~value, color=~paste0(i, ".", list("cov","icu")),
+                                type = 'bar') %>%
+                plotly::layout(barmode = "stack",                   
+                               xaxis = list(title = "Date",tickangle = 45,autotick=F,dtick=2),
+                               yaxis = list(title = "Patients"),
+                               title = "Patients in regions over time")
+              )
+}
+
+stacked2DbarOutput <- function(id, height = NULL, options = NULL, path = NULL){
+    ns <- NS(id)
+    if(is.null(height)){
+        height <- 700
+    } 
+    tagList(plotly::plotlyOutput(ns("patmoved"),height=height))
+}
+
+renderStacked2Dbar <- function(input, output, session, data, options = NULL, path = NULL, ...){
+    output$patmoved <-
+      plotly::renderPlotly(
+                plotly::plot_ly(data,
+                                x = ~paste0(i, ".", d),
+                                y = ~value, color=~j,
+                                type = 'bar') %>%
+                plotly::layout(barmode = "stack",                   
+                               xaxis = list(title = "From region on date",tickangle = 45,autotick=F,dtick=4),
+                               yaxis = list(title = "Patients moved"),
+                               title = "Movement of patients over time")
+              )
+}
