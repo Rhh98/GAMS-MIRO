@@ -1,0 +1,99 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["nodes", "foo", "num", "_widgets"]
+  },
+  "overwriteAliases": {
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "nodes": {
+      "newAlias": "Fips Code"
+    },
+    "foo": {
+      "newAlias": "Adjacency Data"
+    },
+    "num": {
+      "newAlias": "Votes"
+    },
+    "assign_result": {
+      "newAlias": "assign_result"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "inputWidgets": {
+    "district_num": {
+      "widgetType": "slider",
+      "alias": "District Number",
+      "min": 0,
+      "max": 10,
+      "default": 2,
+      "step": 1,
+      "ticks": false,
+      "noHcube": false,
+      "label": "District Number"
+    },
+    "forrepub": {
+      "widgetType": "dropdown",
+      "alias": "Party to Win",
+      "choices": ["1", "-1"],
+      "selected": "1",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Party to Win",
+      "aliases": ["Redistrict for Republicans", "Redistrict for Democrats"]
+    }
+  },
+  "overwriteHeaderAliases": {
+    "nodes": {
+      "newHeaders": ["Fips Code", "None"]
+    },
+    "foo": {
+      "newHeaders": ["Fips Code", "Fips Code", "Whether They Are Adjacent"]
+    },
+    "num": {
+      "newHeaders": ["Fips Code", "Parties", "Number of Votes"]
+    }
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "dataRendering": {
+    "assign_result": {
+      "outType": "gerry",
+      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+    }
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}
