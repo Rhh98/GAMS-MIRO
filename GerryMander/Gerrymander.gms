@@ -156,9 +156,21 @@ model spanning_tree /all/;
 
 solve spanning_tree using minlp maximizing obj;
 set gerryHeader /result1,result2/;
+set new_votes_header /num_votes,forRep/;
 $onExternalOutput
 table assign_result(nodes,district,gerryHeader) 'assigned';
+parameter original_votes(nodes,P);
+parameter new_votes(P);
+parameter original_win_loss(nodes);
 $offExternalOutput
 assign_result(nodes,d,'result1') = assign.l(nodes,d);
+original_votes(nodes,P) = num(nodes,P);
+new_votes('republicans')$(forRepub = 1) = obj.l;
+new_votes('democrats')$(forRepub = 1) = 100 - obj.l;
+new_votes('republicans')$(forRepub = -1) = -obj.l;
+new_votes('democrats')$(forRepub = -1) = 100 + obj.l;
+original_win_loss(nodes)$(num(nodes,'republicans')>num(nodes,'democrats')) = 1;
+original_win_loss(nodes)$(num(nodes,'republicans')<num(nodes,'democrats')) = -1;
+
 display assign_result;
 

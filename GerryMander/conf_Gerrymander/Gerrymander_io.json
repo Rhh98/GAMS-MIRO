@@ -94,6 +94,52 @@
 					"alias":	"result2"
 				}
 			}
+		},
+		"original_votes":	{
+			"alias":	"original_votes",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"p":	{
+					"type":	"string",
+					"alias":	"parties"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"original_votes"
+				}
+			}
+		},
+		"new_votes":	{
+			"alias":	"new_votes",
+			"symtype":	"parameter",
+			"headers":	{
+				"p":	{
+					"type":	"string",
+					"alias":	"parties"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"new_votes"
+				}
+			}
+		},
+		"original_win_loss":	{
+			"alias":	"original_win_loss",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"original_win_loss"
+				}
+			}
 		}
 	}
 }

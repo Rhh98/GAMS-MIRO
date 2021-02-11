@@ -30,7 +30,16 @@
       "newAlias": "Votes"
     },
     "assign_result": {
-      "newAlias": "assign_result"
+      "newAlias": "Redistricted Map"
+    },
+    "original_votes": {
+      "newAlias": "Original Vote Ratio"
+    },
+    "new_votes": {
+      "newAlias": "Redistricted Vote Ratio"
+    },
+    "original_win_loss": {
+      "newAlias": "original_win_loss"
     }
   },
   "saveTraceFile": true,
@@ -70,6 +79,60 @@
       "newHeaders": ["Fips Code", "Parties", "Number of Votes"]
     }
   },
+  "dataRendering": {
+    "assign_result": {
+      "outType": "gerry",
+      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+    },
+    "original_votes": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "pie",
+        "traces": {
+          "1": {
+            "labels": "p",
+            "values": "value",
+            "hole": 0,
+            "name": "Original Voting Ratio"
+          }
+        },
+        "title": "Original Voting Ratio",
+        "showlegend": true,
+        "staticPlot": false
+      },
+      "height": 700
+    },
+    "new_votes": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "pie",
+        "traces": {
+          "1": {
+            "labels": "p",
+            "values": "value",
+            "hole": 0,
+            "name": "new_votes"
+          }
+        },
+        "title": "Redistricted Vote Ratio",
+        "showlegend": true,
+        "staticPlot": false
+      },
+      "height": 700
+    },
+    "original_win_loss": {
+      "outType": "oldWinLoss",
+      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+    }
+  },
+  "readme": {
+    "tabTitle": "Introduction",
+    "filename": "readme.md",
+    "enableMath": true
+  },
+  "defaultScenName": "Arizona State",
   "datatable": {
     "class": "display",
     "filter": "bottom",
@@ -78,12 +141,7 @@
       "pageLength": 15
     }
   },
-  "dataRendering": {
-    "assign_result": {
-      "outType": "gerry",
-      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
-    }
-  },
+  "pageTitle": "Gerrymandering Redistricting APP",
   "handsontable": {
     "stretchH": "none",
     "readonly": false,
