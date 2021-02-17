@@ -7,9 +7,9 @@ set P  parties  / republicans, democrats/;
 
 
 $onExternalInput
-scalar DISTRICT_NUM 'district number'/3/;
+scalar DISTRICT_NUM 'district number'/5/;
 
-scalar forRepub /1/;
+scalar forRepub /-1/;
 
 set nodes 'fips code';
 
@@ -48,11 +48,13 @@ scalar node_num;
 node_num = card(nodes);
 
 
+
 free variable
     obj;
 nonnegative variable
     x(district,i,j) flow from i to j in district d
     pop(district)
+    y(district) the product of total population of and whether it wins in district d
 ;
     
 binary variable 
@@ -83,6 +85,9 @@ equation
     total_population(district)
     decide_win_rep(district) See if in District J republicans are the winner
     decide_win_rep2(district) See if in District J republicans are the winner
+    y_d_const1(district)
+    y_d_const2(district)
+    y_d_const3(district)
 ;
 
 $ontext
@@ -140,21 +145,47 @@ $offtext
 *ppl_constr_lo(d)..
 *    sum(i, assign(i,d)*sum(P,num(i,P))) =g= Lower;
 
+*total_population(d)..
+*    sum(i, assign(i,d)*sum(P,num(i,P))) =e= pop(d);
+
 total_population(d)..
-    sum(i, assign(i,d)*sum(P,num(i,P))) =e= pop(d);
+    sum(i, assign(i,d)*sum(P,num(i,P)))/totalPeople =e= pop(d);
+    
 decide_win_rep(d)..
     sum(i, assign(i,d)*(num(i,'republicans') - num(i,'democrats'))) - (totalPeople)*z(d) =l= 0;
     
 decide_win_rep2(d)..
     sum(i, assign(i,d)*(num(i,'republicans') - num(i,'democrats'))) + (-totalPeople-1)*z(d) =g= -totalPeople ;
 
+    
+*objective..
+*    forRepub * obj =e= 100 * sum(d,pop(d)*z(d))/totalPeople;
+
+y_d_const1(d)..
+    y(d) =l= z(d);
+y_d_const2(d)..
+    y(d) =l= pop(d);
+y_d_const3(d)..
+    pop(d) - y(d) =l= 1-z(d);
+
 objective..
-    forRepub * obj =e= 100 * sum(d,pop(d)*z(d))/totalPeople;
+    forRepub * obj =e= 100 * sum(d,y(d));
 
 
 model spanning_tree /all/;
 
-solve spanning_tree using minlp maximizing obj;
+solve spanning_tree using mip maximizing obj;
+
+parameter afterWinLoss(nodes);
+
+parameter tempWinLoss(nodes,district);
+
+tempWinLoss(i,d)$(assign.l(i,d) + z.l(d) = 2) = 1;
+
+afterWinLoss(i)$(sum(d,tempWinLoss(i,d)) = 1) = 1;
+
+display afterWinLoss;
+
 set gerryHeader /result1,result2/;
 set new_votes_header /num_votes,forRep/;
 $onExternalOutput
@@ -173,4 +204,5 @@ original_win_loss(nodes)$(num(nodes,'republicans')>num(nodes,'democrats')) = 1;
 original_win_loss(nodes)$(num(nodes,'republicans')<num(nodes,'democrats')) = -1;
 
 display assign_result;
+display afterWinLoss;
 
