@@ -7,9 +7,9 @@ set P  parties  / republicans, democrats/;
 
 
 $onExternalInput
-scalar DISTRICT_NUM 'district number'/5/;
+scalar DISTRICT_NUM 'district number'/3/;
 
-scalar forRepub /-1/;
+scalar forRepub /1/;
 
 set nodes 'fips code';
 
@@ -187,22 +187,31 @@ afterWinLoss(i)$(sum(d,tempWinLoss(i,d)) = 1) = 1;
 display afterWinLoss;
 
 set gerryHeader /result1,result2/;
+set gerryHeader2 /result1,RorD/;
 set new_votes_header /num_votes,forRep/;
 $onExternalOutput
 table assign_result(nodes,district,gerryHeader) 'assigned';
-parameter original_votes(nodes,P);
-parameter new_votes(P);
-parameter original_win_loss(nodes);
+table assign_result2(nodes,district,gerryHeader2) 'assigned';
+table assign_result3(nodes,district,gerryHeader2) 'assigned';
+*parameter original_votes(nodes,P);
+*parameter new_votes(P);
+*parameter original_win_loss(nodes);
 $offExternalOutput
 assign_result(nodes,d,'result1') = assign.l(nodes,d);
-original_votes(nodes,P) = num(nodes,P);
-new_votes('republicans')$(forRepub = 1) = obj.l;
-new_votes('democrats')$(forRepub = 1) = 100 - obj.l;
-new_votes('republicans')$(forRepub = -1) = -obj.l;
-new_votes('democrats')$(forRepub = -1) = 100 + obj.l;
-original_win_loss(nodes)$(num(nodes,'republicans')>num(nodes,'democrats')) = 1;
-original_win_loss(nodes)$(num(nodes,'republicans')<num(nodes,'democrats')) = -1;
+assign_result2(nodes,d,'result1') = assign.l(nodes,d);
+assign_result2(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinLoss(nodes)=1) = 1;
+assign_result2(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinLoss(nodes)=0) = -1;
+assign_result3(nodes,d,'result1') = assign.l(nodes,d);
+assign_result3(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinLoss(nodes)=1) = 1;
+assign_result3(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinLoss(nodes)=0) = -1;
+*original_votes(nodes,P) = num(nodes,P);
+*new_votes('republicans')$(forRepub = 1) = obj.l;
+*new_votes('democrats')$(forRepub = 1) = 100 - obj.l;
+*new_votes('republicans')$(forRepub = -1) = -obj.l;
+*new_votes('democrats')$(forRepub = -1) = 100 + obj.l;
+*original_win_loss(nodes)$(num(nodes,'republicans')>num(nodes,'democrats')) = 1;
+*original_win_loss(nodes)$(num(nodes,'republicans')<num(nodes,'democrats')) = -1;
 
 display assign_result;
-display afterWinLoss;
+*display afterWinLoss;
 

@@ -95,49 +95,47 @@
 				}
 			}
 		},
-		"original_votes":	{
-			"alias":	"original_votes",
+		"assign_result2":	{
+			"alias":	"assigned",
 			"symtype":	"parameter",
 			"headers":	{
 				"nodes":	{
 					"type":	"string",
 					"alias":	"fips code"
 				},
-				"p":	{
+				"district":	{
 					"type":	"string",
-					"alias":	"parties"
+					"alias":	"district"
 				},
-				"value":	{
+				"result1":	{
 					"type":	"numeric",
-					"alias":	"original_votes"
+					"alias":	"result1"
+				},
+				"rord":	{
+					"type":	"numeric",
+					"alias":	"rord"
 				}
 			}
 		},
-		"new_votes":	{
-			"alias":	"new_votes",
-			"symtype":	"parameter",
-			"headers":	{
-				"p":	{
-					"type":	"string",
-					"alias":	"parties"
-				},
-				"value":	{
-					"type":	"numeric",
-					"alias":	"new_votes"
-				}
-			}
-		},
-		"original_win_loss":	{
-			"alias":	"original_win_loss",
+		"assign_result3":	{
+			"alias":	"assigned",
 			"symtype":	"parameter",
 			"headers":	{
 				"nodes":	{
 					"type":	"string",
 					"alias":	"fips code"
 				},
-				"value":	{
+				"district":	{
+					"type":	"string",
+					"alias":	"district"
+				},
+				"result1":	{
 					"type":	"numeric",
-					"alias":	"original_win_loss"
+					"alias":	"result1"
+				},
+				"rord":	{
+					"type":	"numeric",
+					"alias":	"rord"
 				}
 			}
 		}
