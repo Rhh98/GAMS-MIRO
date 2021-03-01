@@ -4,29 +4,33 @@ $title gerrymandering model
 set P  parties  / republicans, democrats/;
 
 
-
+set nodes 'fips code';
 
 $onExternalInput
 scalar DISTRICT_NUM 'district number'/3/;
 
 scalar forRepub /1/;
 
-set nodes 'fips code';
-
-
-$gdxIn adjaceny_AZ.gdx
-$load nodes = Dim1
 alias(nodes,i,j);
 
-table foo(nodes,nodes);
-alias(nodes,i,j);
-$load foo = adj
+parameter num(nodes<,P)/
+$ondelim
+$include vote_AZ.csv
+$offdelim
+/;
 
-parameter num(nodes,P);
-$gdxIn county_vote_AZ.gdx
-$load num = vote
+
+parameter foo(nodes,nodes)/
+$ondelim
+$include adjacency_AZ.csv
+$offdelim
+/;
+
 
 $offExternalInput
+
+
+
 set district/d1*d10/;
 set sDistrict(district);
 set arcs(nodes,nodes);
@@ -213,5 +217,6 @@ assign_result3(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinL
 *original_win_loss(nodes)$(num(nodes,'republicans')<num(nodes,'democrats')) = -1;
 
 display assign_result;
+display foo;
 *display afterWinLoss;
 

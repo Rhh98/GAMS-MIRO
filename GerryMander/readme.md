@@ -22,7 +22,7 @@ I use the Arizona state data from [2016 US election](https://public.opendatasoft
 4. Assignment for Demoncrats or Republicans : a dropdown that allows users to choose to redistrict for Democrats or Republicans.
 
 ## Output Format
-The output will be a suggested redistricted map.
+The output will be a suggested redistricted map. <br>
 <img src="https://i.ibb.co/sKLrDvn/redistricted-map.png" alt="redistricted-map" border="0" />
 ## Mathematical Formulation
 We formulate this problem as a mixed integer programming problem.
@@ -60,9 +60,7 @@ $
 v_d : \text{total votes in a district d divided by overall votes, } d \in D
 $
 
-$
-Q : \text{total votes from all } i \in I. \text{It is actually equivalent to } \sum_{i \in I}\sum_{ p\in P}N_{ip}, \text{which is a paramter.}
-$
+$Q : \text{total votes from all } i \in I. \text{It is actually equivalent to } \sum_{i \in I}\sum_{ p\in P}N_{ip}, \text{which is a paramter.}$
 
 $
 M : \text{big M for logical constraints}

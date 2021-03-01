@@ -21,17 +21,21 @@
 				}
 			}
 		},
-		"nodes":	{
-			"alias":	"fips code",
-			"symtype":	"set",
+		"num":	{
+			"alias":	"num",
+			"symtype":	"parameter",
 			"headers":	{
-				"uni":	{
+				"nodes":	{
 					"type":	"string",
-					"alias":	"Universal set"
+					"alias":	"fips code"
 				},
-				"text":	{
+				"p":	{
 					"type":	"string",
-					"alias":	"Set text fips code"
+					"alias":	"parties"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"num"
 				}
 			}
 		},
@@ -50,24 +54,6 @@
 				"value":	{
 					"type":	"numeric",
 					"alias":	"foo"
-				}
-			}
-		},
-		"num":	{
-			"alias":	"num",
-			"symtype":	"parameter",
-			"headers":	{
-				"nodes":	{
-					"type":	"string",
-					"alias":	"fips code"
-				},
-				"p":	{
-					"type":	"string",
-					"alias":	"parties"
-				},
-				"value":	{
-					"type":	"numeric",
-					"alias":	"num"
 				}
 			}
 		}
