@@ -42,10 +42,10 @@
       "newAlias": "original_win_loss"
     },
     "assign_result2": {
-      "newAlias": "assigned"
+      "newAlias": "Parties Visualization"
     },
     "assign_result3": {
-      "newAlias": "assigned"
+      "newAlias": "Fips Code Visualization"
     }
   },
   "saveTraceFile": true,

@@ -26,16 +26,23 @@ renderGerry <- function(input, output, session, data, options = NULL, path = NUL
   output$dataT<-DT::renderDataTable(datatable(df_assign,colnames=c('County','District Assigned')))
 
 #-----------------------------------ggplot ---------------------------------  
-  #st_df <- ggplot2::map_data('state','arizona')
-  st_df <- read.csv(paste(path,"/states.csv",sep=""))
-  st_df <- subset(st_df, region == "arizona")
-  st_county <- read.csv(paste(path,"/counties.csv",sep=""))
-  st_county <- subset(st_county , region == "arizona")
-  county_fips <- read.csv(paste(path,"/fips.csv",sep=""))
-  
   #test_data <- tibble(nodes = c('04001','04009','04011','04017','04003','04019','04023','04005','04007','04015','04025','04013','04021','04012','04027'),
   #                    district = c('d1','d2','d1','d1','d1','d1','d1','d2','d2','d1','d1','d1','d2','d3','d3'))
   test_data <- data
+
+  #st_df <- ggplot2::map_data('state','arizona')
+  st_mapping <- read.csv(paste(path,"/st_mapping.csv",sep=""))
+
+  state_code <- as.integer(substr(test_data[1,1],start = 1,stop = 2))
+  state_chosen <- st_mapping[st_mapping$fips == state_code,]$state
+
+  st_df <- read.csv(paste(path,"/states.csv",sep=""))
+  st_df <- subset(st_df, region == state_chosen)
+  st_county <- read.csv(paste(path,"/counties.csv",sep=""))
+  st_county <- subset(st_county , region == state_chosen)
+  county_fips <- read.csv(paste(path,"/fips.csv",sep=""))
+  
+  
   fips_coverted = as.integer(test_data$nodes)
   test_data$fips_code = fips_coverted
   st_fips = county_fips[county_fips$fips %in% fips_coverted,]$fips
@@ -98,16 +105,22 @@ renderGerryPlusWord <- function(input, output, session, data, options = NULL, pa
   output$dataT<-DT::renderDataTable(datatable(df_assign,colnames=c('County','District Assigned')))
 
 #-----------------------------------ggplot ---------------------------------  
-  #st_df <- ggplot2::map_data('state','arizona')
-  st_df <- read.csv(paste(path,"/states.csv",sep=""))
-  st_df <- subset(st_df, region == "arizona")
-  st_county <- read.csv(paste(path,"/counties.csv",sep=""))
-  st_county <- subset(st_county , region == "arizona")
-  county_fips <- read.csv(paste(path,"/fips.csv",sep=""))
-  
   #test_data <- tibble(nodes = c('04001','04009','04011','04017','04003','04019','04023','04005','04007','04015','04025','04013','04021','04012','04027'),
   #                    district = c('d1','d2','d1','d1','d1','d1','d1','d2','d2','d1','d1','d1','d2','d3','d3'))
   test_data <- data
+
+  #st_df <- ggplot2::map_data('state','arizona')
+  st_mapping <- read.csv(paste(path,"/st_mapping.csv",sep=""))
+
+  state_code <- as.integer(substr(test_data[1,1],start = 1,stop = 2))
+  state_chosen <- st_mapping[st_mapping$fips == state_code,]$state
+
+  st_df <- read.csv(paste(path,"/states.csv",sep=""))
+  st_df <- subset(st_df, region == state_chosen)
+  st_county <- read.csv(paste(path,"/counties.csv",sep=""))
+  st_county <- subset(st_county , region == state_chosen)
+  county_fips <- read.csv(paste(path,"/fips.csv",sep=""))
+
   fips_coverted = as.integer(test_data$nodes)
   test_data$fips_code = fips_coverted
   st_fips = county_fips[county_fips$fips %in% fips_coverted,]$fips
@@ -187,16 +200,22 @@ renderGerryPlusFips <- function(input, output, session, data, options = NULL, pa
   #output$dataT<-DT::renderDataTable(datatable(df_assign,colnames=c('County','District Assigned')))
 
 #-----------------------------------ggplot ---------------------------------  
-  #st_df <- ggplot2::map_data('state','arizona')
-  st_df <- read.csv(paste(path,"/states.csv",sep=""))
-  st_df <- subset(st_df, region == "arizona")
-  st_county <- read.csv(paste(path,"/counties.csv",sep=""))
-  st_county <- subset(st_county , region == "arizona")
-  county_fips <- read.csv(paste(path,"/fips.csv",sep=""))
-  
   #test_data <- tibble(nodes = c('04001','04009','04011','04017','04003','04019','04023','04005','04007','04015','04025','04013','04021','04012','04027'),
   #                    district = c('d1','d2','d1','d1','d1','d1','d1','d2','d2','d1','d1','d1','d2','d3','d3'))
   test_data <- data
+
+  #st_df <- ggplot2::map_data('state','arizona')
+  st_mapping <- read.csv(paste(path,"/st_mapping.csv",sep=""))
+
+  state_code <- as.integer(substr(test_data[1,1],start = 1,stop = 2))
+  state_chosen <- st_mapping[st_mapping$fips == state_code,]$state
+
+  st_df <- read.csv(paste(path,"/states.csv",sep=""))
+  st_df <- subset(st_df, region == state_chosen)
+  st_county <- read.csv(paste(path,"/counties.csv",sep=""))
+  st_county <- subset(st_county , region == state_chosen)
+  county_fips <- read.csv(paste(path,"/fips.csv",sep=""))
+  
   fips_coverted = as.integer(test_data$nodes)
   test_data$fips_code = fips_coverted
   st_fips = county_fips[county_fips$fips %in% fips_coverted,]$fips
