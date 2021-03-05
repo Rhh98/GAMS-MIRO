@@ -1,0 +1,417 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_widgets", "gen_mix", "m", "_widgets1", "_widgets2"],
+    "output": ["xval", "sum_x", "tot_gen", "compare", "co2_em", "cap_power", "over_gen", "_scalars_out"]
+  },
+  "overwriteAliases": {
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "xval": {
+      "newAlias": "Schedule"
+    },
+    "hourly": {
+      "newAlias": "hourly"
+    },
+    "jan": {
+      "newAlias": "jan"
+    },
+    "over": {
+      "newAlias": "over"
+    },
+    "gen_mix": {
+      "newAlias": "Fleet mix"
+    },
+    "aggx": {
+      "newAlias": "Aggregated generation"
+    },
+    "chosen_season": {
+      "newAlias": "Season to model"
+    },
+    "m": {
+      "newAlias": "Month"
+    },
+    "over_gen": {
+      "newAlias": "Hourly overgeneration"
+    },
+    "sum_x": {
+      "newAlias": "Totals"
+    },
+    "co2_em": {
+      "newAlias": "CO2"
+    },
+    "cap_power": {
+      "newAlias": "Available"
+    },
+    "tot_gen": {
+      "newAlias": "Source"
+    },
+    "compare": {
+      "newAlias": "Resource Utilization"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 3,
+  "defaultScenName": "Chicago - July",
+  "inputWidgets": {
+    "gen_mix": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "readonlyCols": "g",
+      "hideIndexCol": true,
+      "heatmap": false,
+      "label": "Percent of fleet for each generator type (values must sum to 1)"
+    },
+    "m": {
+      "widgetType": "dropdown",
+      "alias": "Month",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Month",
+      "selected": "January",
+      "choices": ["January", "April", "July", "October"]
+    },
+    "carbon_price": {
+      "widgetType": "numericinput",
+      "alias": "Carbon cost",
+      "value": 0,
+      "min": 0,
+      "decimal": 0,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "label": "Cost of CO2 emissions (dollars per Ton)"
+    },
+    "reserve_margin": {
+      "widgetType": "numericinput",
+      "alias": "Reserve Margin",
+      "value": 15,
+      "decimal": 1,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "sign": null,
+      "label": "Reserve Margin (Percent that non-solar & non-wind generators exceed peak demand)",
+      "min": -15,
+      "max": 100
+    },
+    "cost_gas": {
+      "widgetType": "slider",
+      "alias": "Gas cost",
+      "min": 0,
+      "max": 20,
+      "default": 2,
+      "step": 0.01,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Cost of gas (dollars per MBtu)"
+    },
+    "coal_level": {
+      "widgetType": "slider",
+      "alias": "Coal minimum",
+      "min": 0,
+      "max": 100,
+      "default": 50,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Coal Minimum Operating Percent (% of capacity)"
+    },
+    "cost_coal": {
+      "widgetType": "slider",
+      "alias": "Coal cost",
+      "min": 0,
+      "max": 20,
+      "default": 2,
+      "step": 0.01,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Cost of coal (dollars per MBtu)"
+    },
+    "hydro_hours": {
+      "widgetType": "slider",
+      "alias": "Hydro",
+      "min": 0,
+      "max": 24,
+      "default": 2,
+      "step": 1,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Hours per day hydro can run at nameplate capacity"
+    }
+  },
+  "dataRendering": {
+    "gen_mix": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "pie",
+        "traces": {
+          "1": {
+            "labels": "g",
+            "values": "value",
+            "hole": 0,
+            "name": "Total generation by source"
+          }
+        },
+        "title": "Total Generation Capacity by source",
+        "showlegend": true,
+        "staticPlot": false
+      },
+      "height": 700
+    },
+    "co2_em": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "bar",
+        "barmode": "stack",
+        "ydata": {
+          "value": {
+            "mode": "lines",
+            "marker": {
+              "line": {
+                "width": 0
+              }
+            }
+          }
+        },
+        "xdata": "h",
+        "xaxis": {
+          "title": "Hour",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "yaxis": {
+          "title": "Amount of CO2 (tons)",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "title": "Hourly CO2 Emissions",
+        "showlegend": true,
+        "staticPlot": false,
+        "color": "t"
+      },
+      "height": 700
+    },
+    "tot_gen": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "pie",
+        "traces": {
+          "1": {
+            "labels": "g",
+            "values": "value",
+            "hole": 0,
+            "name": "Total generation by source"
+          }
+        },
+        "title": "Percent of Total Energy Generation (kWh) by Source",
+        "showlegend": true,
+        "staticPlot": false
+      },
+      "height": 700
+    },
+    "sum_x": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "scatter",
+        "ydata": {
+          "value": {
+            "mode": "lines",
+            "line": {
+              "width": 2,
+              "shape": "linear",
+              "dash": "solid"
+            },
+            "showlegend": true,
+            "yaxis": "y",
+            "fill": "none"
+          }
+        },
+        "xdata": "h",
+        "xaxis": {
+          "title": "Hour",
+          "showgrid": true,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "yaxis": {
+          "title": "Power (kW)",
+          "showgrid": true,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "y2axis": {
+          "title": "Sum of all demand and all load",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "color": "f",
+        "title": "Total Generation, Load, and Curtailment (if > 0)",
+        "showlegend": true,
+        "staticPlot": false
+      },
+      "height": 700
+    },
+    "xval": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "bar",
+        "barmode": "stack",
+        "ydata": {
+          "value": {
+            "mode": "lines",
+            "marker": {
+              "line": {
+                "width": 0
+              }
+            }
+          }
+        },
+        "xdata": "h",
+        "xaxis": {
+          "title": "Hour",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "yaxis": {
+          "title": "Output (kW)",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "category ascending"
+        },
+        "title": "Hourly Output by Generator",
+        "showlegend": true,
+        "staticPlot": false,
+        "color": "g",
+        "filter": {
+          "col": "g",
+          "label": "",
+          "multiple": true,
+          "date": false
+        }
+      },
+      "height": 700
+    },
+    "compare": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "bar",
+        "barmode": "stack",
+        "ydata": {
+          "value": {
+            "mode": "lines",
+            "marker": {
+              "line": {
+                "width": 0
+              }
+            }
+          }
+        },
+        "xdata": "c",
+        "xaxis": {
+          "title": "Generators",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "yaxis": {
+          "title": "Output (kW)",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "title": "Available power vs average power",
+        "showlegend": true,
+        "staticPlot": false,
+        "color": "g"
+      },
+      "height": 700
+    }
+  },
+  "overwriteHeaderAliases": {
+    "gen_mix": {
+      "newHeaders": ["Generators", "Percentage of each generator"]
+    },
+    "m": {
+      "newHeaders": ["Months", "Set text Month to model"]
+    },
+    "xval": {
+      "newHeaders": ["Hour", "Generator", "Hourly generation level"]
+    }
+  },
+  "pageTitle": "Modeling Grid Operation",
+  "hiddenOutputSymbols": ["over_gen", "cap_power"],
+  "readme": {
+    "tabTitle": "Background",
+    "filename": "README.pdf",
+    "enableMath": true
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  },
+  "inputWidgetGroups": [
+    {
+      "name": "Costs",
+      "members": ["carbon_price", "cost_gas", "cost_coal"],
+      "sameTab": true
+    },
+    {
+      "name": "Operation",
+      "members": ["m", "reserve_margin", "coal_level", "hydro_hours"],
+      "sameTab": true
+    }
+  ]
+}
