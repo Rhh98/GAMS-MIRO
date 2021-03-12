@@ -76,7 +76,6 @@ equation
     flow_district_constr_1(district,i,j)
     flow_district_constr_2(district,i,j)
     min_node_district(district)
-*    max_node_district(d)
     assign_1_root_0_constr_1(i,district)
     assign_1_root_0_constr_2(i,district)
     root_balance_1(district,i)
@@ -84,8 +83,6 @@ equation
     non_root_balance_1(district,i)
     non_root_balance_2(district,i)
 *------------------------------vote calculation constraint------------------------------
-*    ppl_constr_up(d) Number of PPL should be in the interval for every district
-*    ppl_constr_lo(d) Number of PPL should be in the interval for every district
     total_population(district)
     decide_win_rep(district) See if in District J republicans are the winner
     decide_win_rep2(district) See if in District J republicans are the winner
@@ -115,10 +112,6 @@ flow_district_constr_2(d,i,j)$(arcs(i,j) or arcs(j,i))..
 min_node_district(d)..
     sum(i,assign(i,d)) =g= 2;
 
-*max_node_district(d)..
-*    sum(i,assign(i,d)) =l= 4;
-
-
 assign_1_root_0_constr_1(i,d)..
     assign(i,d) + (1-root(d,i)) - assign_1_root_0(i,d) =l= 1;
     
@@ -144,14 +137,6 @@ $ontext
 ------------------------------vote calculattion constraint------------------------------
 $offtext
 
-*ppl_constr_up(d)..
-*    sum(i, assign(i,d)*sum(P,num(i,P))) =l= Upper;
-*ppl_constr_lo(d)..
-*    sum(i, assign(i,d)*sum(P,num(i,P))) =g= Lower;
-
-*total_population(d)..
-*    sum(i, assign(i,d)*sum(P,num(i,P))) =e= pop(d);
-
 total_population(d)..
     sum(i, assign(i,d)*sum(P,num(i,P)))/totalPeople =e= pop(d);
     
@@ -160,10 +145,6 @@ decide_win_rep(d)..
     
 decide_win_rep2(d)..
     sum(i, assign(i,d)*(num(i,'republicans') - num(i,'democrats'))) + (-totalPeople-1)*z(d) =g= -totalPeople ;
-
-    
-*objective..
-*    forRepub * obj =e= 100 * sum(d,pop(d)*z(d))/totalPeople;
 
 y_d_const1(d)..
     y(d) =l= z(d);
@@ -197,9 +178,7 @@ $onExternalOutput
 table assign_result(nodes,district,gerryHeader) 'assigned';
 table assign_result2(nodes,district,gerryHeader2) 'assigned';
 table assign_result3(nodes,district,gerryHeader2) 'assigned';
-*parameter original_votes(nodes,P);
-*parameter new_votes(P);
-*parameter original_win_loss(nodes);
+
 $offExternalOutput
 assign_result(nodes,d,'result1') = assign.l(nodes,d);
 assign_result2(nodes,d,'result1') = assign.l(nodes,d);
@@ -208,15 +187,5 @@ assign_result2(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinL
 assign_result3(nodes,d,'result1') = assign.l(nodes,d);
 assign_result3(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinLoss(nodes)=1) = 1;
 assign_result3(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinLoss(nodes)=0) = -1;
-*original_votes(nodes,P) = num(nodes,P);
-*new_votes('republicans')$(forRepub = 1) = obj.l;
-*new_votes('democrats')$(forRepub = 1) = 100 - obj.l;
-*new_votes('republicans')$(forRepub = -1) = -obj.l;
-*new_votes('democrats')$(forRepub = -1) = 100 + obj.l;
-*original_win_loss(nodes)$(num(nodes,'republicans')>num(nodes,'democrats')) = 1;
-*original_win_loss(nodes)$(num(nodes,'republicans')<num(nodes,'democrats')) = -1;
 
-display assign_result;
-display foo;
-*display afterWinLoss;
 

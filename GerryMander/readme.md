@@ -16,23 +16,27 @@ This document would be presented in the following order. In section 2 and 3, I w
 
 I use the Arizona state data from [2016 US election](https://public.opendatasoft.com/explore/dataset/usa-2016-presidential-election-by-county/table/?disjunctive.state) and the [county adjacency data](https://www.census.gov/geographies/reference-files/2010/geo/county-adjacency.html) as the default data for my model. The detailed inputs for this model are as follows:
 
-1. Adjacency gdx file: the adjacecny matrix of counties in a specific state in America. The row and column indices are the fips code of each county. If two counties are adjacent, then the corresponding element will be 1.
-2. County vote gdx file: the file should contain the votes that Demoncrats and Republicans get in a given state.
+1. Adjacency csv file: the adjacecny matrix of counties in a specific state in America. The first two columns are the fips code of a pair of counties. If two counties are adjacent, then the corresponding value will be 1. If not, then it will be -1.
+<img src="https://i.ibb.co/kBjXCGk/Screen-Shot-2021-03-12-at-9-00-19-PM.png" alt="Screen-Shot-2021-03-12-at-9-00-19-PM" border="0" />
+2. County vote csv file: the file should contain the votes that Demoncrats and Republicans get in a given state. The first column will be the fips code of a county and the second column will be the party. The last column will be the votes corresponding party and county in that row.<br>
+<img src="https://i.ibb.co/zRQRzCY/Screen-Shot-2021-03-12-at-9-21-11-PM.png" alt="Screen-Shot-2021-03-12-at-9-21-11-PM" border="0" />
 3. Number of districts to be assigned : an integer value that allows users to determined the number of districts tha will exist after the reassignment.
 4. Assignment for Demoncrats or Republicans : a dropdown that allows users to choose to redistrict for Democrats or Republicans.
 
 ## Output Format
-The output will be a suggested redistricted map. <br>
-<img src="https://i.ibb.co/sKLrDvn/redistricted-map.png" alt="redistricted-map" border="0" />
+The output will be suggested redistricted maps with fips code and the winning party of each district. <br>
+
+## Scenario Comparison
+We demonstrate our connectivity constraints by comparining two different scenario in the application. In the Compare Scenarios option, you can load the Normal Case Scenario and the scenario named Separate 04011 and 04001. The difference between the two scenarios is that we change the adjacency value between 04011 and 04001 from 1 to -1, which means we make them unadjacent. The result shows that the counties 04001 and 04011 are no longer assigned to the same district as they are in the Normal Case scenario, and demonstrates our connectivity constraint. (There can still be cases where two counties are in the same district but they are unadjacent, because we only required that there is a path between them when they are in the same district.)
 ## Mathematical Formulation
 We formulate this problem as a mixed integer programming problem.
 
-Ensuring connectivity in a district is essentially a network flow problem. For example, given a graph $G = (V,E)$. To see if $G$ is a connected graph, we can randomly pick a vertice $v \in V$ and give it an inital supply with value of $|V|-1$. For each point in $V - \{v\}$, we can give it a demand value of 1(equivalent to supply value of -1). After we do that, we can ensure the total demand is equal to the total supply in $G$.<br><br>
+Ensuring connectivity in a district is essentially a network flow problem. For example, given a graph $G = (V,E)$, to see if $G$ is a connected graph, we can randomly pick a vertice $v \in V$ and give it an inital supply with value of $|V|-1$. For each point in $V - \{v\}$, we can give it a demand value of 1(equivalent to supply value of -1). After we do that, we can ensure the total demand is equal to the total supply in $G$.<br><br>
 $1 \times (|V|-1) + |V - \{v\}| \times (-1) = 0$ <br><br>
 Then the search for connectivity in graph $G$ is equivalent to the search for feasible solutions for the network flow problem, where a single supply node needs to pass its supply to the all other nodes in the same graph with demand 1. That is, the connectivity exists in $G$ if and only if there is a feasible solution for the corresponding network flow problem. <br><br>
 Therefore, to ensure connectivity exists in every district, we have to formulate **network flow constraints** for each of them. In the following mathematical formulation, I will divide my model into two parts - the gerrymandering related equations and connectivity constraints.
 
-One very important implicit constraint in gerrymandering problem is that we have to maintain the fairness for each district, which means the number of total votes in each district should not vary too much. For example, if the total votes in  𝑑1  is 2000 and the total votes in  𝑑2  is 100, it is more reasonable for  𝑑1  to have more "congressional votes."  I therefore assume that there will be 100 congressional votes in total, and the votes gained by a party in a district is proportional to the total votes in that district. Also, the congressional votes for a district can be floats. Since the votes for a district is proportional to the total votes in that district, **fairness** is conserved. 
+Another very important implicit constraint in gerrymandering problem is that we have to maintain the fairness for each district, which means the number of total votes in each district should not vary too much. For example, if the total votes in  𝑑1  is 2000 and the total votes in  𝑑2  is 100, it is more reasonable for  𝑑1  to have more "congressional votes."  I therefore assume that there will be 100 congressional votes in total, and the votes gained by a party in a district is proportional to the total votes in that district. Also, the congressional votes for a district can be floats. Since the votes for a district is proportional to the total votes in that district, **fairness** is conserved. 
 
 Considering the details stated above, the problem is formulated as follows:
 
