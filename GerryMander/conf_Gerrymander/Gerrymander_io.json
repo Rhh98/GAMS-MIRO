@@ -3,9 +3,9 @@
 	"inputSymbols":	{
 		"_scalars":	{
 			"alias":	"Input Scalars",
-			"symnames":	["district_num", "forrepub"],
-			"symtext":	["district number", "forrepub"],
-			"symtypes":	["parameter", "parameter"],
+			"symnames":	["district_num", "forrepub", "low_county_num"],
+			"symtext":	["district number", "forrepub", "low_county_num"],
+			"symtypes":	["parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{
 					"type":	"string",

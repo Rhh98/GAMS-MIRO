@@ -31,11 +31,18 @@ renderGerry <- function(input, output, session, data, options = NULL, path = NUL
   test_data <- data
 
   #st_df <- ggplot2::map_data('state','arizona')
+  ## get the state name we want 
   st_mapping <- read.csv(paste(path,"/st_mapping.csv",sep=""))
 
   state_code <- as.integer(substr(test_data[1,1],start = 1,stop = 2))
   state_chosen <- st_mapping[st_mapping$fips == state_code,]$state
-
+  state_chosen <- as.character(state_chosen)
+  if(length(state_chosen) > 1){
+    state_chosen <- state_chosen[1]
+  }
+  state_chosen <- strsplit(state_chosen,':')[[1]][1]
+  
+  ## get the state name we want  get the state, counties and fips data we want
   st_df <- read.csv(paste(path,"/states.csv",sep=""))
   st_df <- subset(st_df, region == state_chosen)
   st_county <- read.csv(paste(path,"/counties.csv",sep=""))
@@ -49,7 +56,10 @@ renderGerry <- function(input, output, session, data, options = NULL, path = NUL
   st_subregion = strsplit(county_fips[county_fips$fips %in% fips_coverted,]$polyname, ',')
   sub_vector <- c()
   for(sub in st_subregion){
-    sub_vector <- c(sub_vector,sub[2])
+    second_split <- sub[2]
+    #deal with colon
+    third_split <- strsplit(second_split,':')[[1]][1]  
+    sub_vector <- c(sub_vector,third_split)
   }
   fip_subregion_map = tibble(fips_code=st_fips,subregion = sub_vector)
   data_ready <- inner_join(fip_subregion_map, test_data, by = "fips_code")
@@ -114,6 +124,11 @@ renderGerryPlusWord <- function(input, output, session, data, options = NULL, pa
 
   state_code <- as.integer(substr(test_data[1,1],start = 1,stop = 2))
   state_chosen <- st_mapping[st_mapping$fips == state_code,]$state
+  state_chosen <- as.character(state_chosen)
+  if(length(state_chosen) > 1){
+    state_chosen <- state_chosen[1]
+  }
+  state_chosen <- strsplit(state_chosen,':')[[1]][1]
 
   st_df <- read.csv(paste(path,"/states.csv",sep=""))
   st_df <- subset(st_df, region == state_chosen)
@@ -127,7 +142,10 @@ renderGerryPlusWord <- function(input, output, session, data, options = NULL, pa
   st_subregion = strsplit(county_fips[county_fips$fips %in% fips_coverted,]$polyname, ',')
   sub_vector <- c()
   for(sub in st_subregion){
-    sub_vector <- c(sub_vector,sub[2])
+    second_split <- sub[2]
+    #deal with colon
+    third_split <- strsplit(second_split,':')[[1]][1]  
+    sub_vector <- c(sub_vector,third_split)
   }
   fip_subregion_map = tibble(fips_code=st_fips,subregion = sub_vector)
   data_ready <- inner_join(fip_subregion_map, test_data, by = "fips_code")
@@ -209,6 +227,11 @@ renderGerryPlusFips <- function(input, output, session, data, options = NULL, pa
 
   state_code <- as.integer(substr(test_data[1,1],start = 1,stop = 2))
   state_chosen <- st_mapping[st_mapping$fips == state_code,]$state
+  state_chosen <- as.character(state_chosen)
+  if(length(state_chosen) > 1){
+    state_chosen <- state_chosen[1]
+  }
+  state_chosen <- strsplit(state_chosen,':')[[1]][1]
 
   st_df <- read.csv(paste(path,"/states.csv",sep=""))
   st_df <- subset(st_df, region == state_chosen)
@@ -222,7 +245,10 @@ renderGerryPlusFips <- function(input, output, session, data, options = NULL, pa
   st_subregion = strsplit(county_fips[county_fips$fips %in% fips_coverted,]$polyname, ',')
   sub_vector <- c()
   for(sub in st_subregion){
-    sub_vector <- c(sub_vector,sub[2])
+    second_split <- sub[2]
+    #deal with colon
+    third_split <- strsplit(second_split,':')[[1]][1]  
+    sub_vector <- c(sub_vector,third_split)
   }
   fip_subregion_map = tibble(fips_code=st_fips,subregion = sub_vector)
   data_ready <- inner_join(fip_subregion_map, test_data, by = "fips_code")

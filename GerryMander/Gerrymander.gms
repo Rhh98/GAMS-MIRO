@@ -11,6 +11,8 @@ scalar DISTRICT_NUM 'district number'/3/;
 
 scalar forRepub /1/;
 
+scalar low_county_num /2/;
+
 alias(nodes,i,j);
 
 parameter num(nodes<,P)/
@@ -66,6 +68,7 @@ binary variable
     root(district,i) 1 if i s the root in d
     assign_1_root_0(i,district) if i is assigned to d and is not a root return 1
     z(district) 1 if republican win in district d
+    both_assign(i,j,district) if both i and j are assigned to a district return 1aaa2á1q    s3
 ;
 equation
 *------------------------------connectiviy constraint------------------------------
@@ -73,6 +76,9 @@ equation
     each_assign_one(i) each county is assigned to one district
     one_root_constr(district)
     root_constr(i,district)
+    root_order_const1(i,j,district) avoid unncessary search for root
+*    root_order_const2(i,j,district) avoid unncessary search for root
+    avoid_root_search(i,j,district) avoid unncessary search for root
     flow_district_constr_1(district,i,j)
     flow_district_constr_2(district,i,j)
     min_node_district(district)
@@ -103,6 +109,15 @@ one_root_constr(d)..
 root_constr(i,d)..
     root(d,i) =l= assign(i,d);
     
+root_order_const1(i,j,d)..
+    assign(i,d) + assign(j,d) - 2*both_assign(i,j,d) =l= 1;
+
+*root_order_const2(i,j,d)..
+*    assign(i,d) + assign(j,d) - both_assign(i,j,d) =g= 1;
+    
+avoid_root_search(i,j,d)$(ord(i) < ord(j))..
+    root(d,i) - root(d,j) + 2*both_assign(i,j,d) =l=3;
+    
 flow_district_constr_1(d,i,j)$(arcs(i,j) or arcs(j,i))..
     x(d,i,j) =l= (node_num)*(assign(i,d));
     
@@ -110,7 +125,7 @@ flow_district_constr_2(d,i,j)$(arcs(i,j) or arcs(j,i))..
     x(d,i,j) =l= (node_num)*(assign(j,d));
     
 min_node_district(d)..
-    sum(i,assign(i,d)) =g= 2;
+    sum(i,assign(i,d)) =g= low_county_num;
 
 assign_1_root_0_constr_1(i,d)..
     assign(i,d) + (1-root(d,i)) - assign_1_root_0(i,d) =l= 1;
