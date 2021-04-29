@@ -157,7 +157,7 @@ Inspite of those cost and location information, user can mainly change the "Mini
 
 
 
-The GAMS model can be downloaded <a href='static_model/model.gms' target="_blank">here</a>
+The GAMS model can be downloaded <a href='static_model/FacLoc.gms' target="_blank">here</a>
 
 
 <applet archive="http://neos-dev-1.neos-server.org/guide/sites/default/files/SignedLayout_0.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Commons-logging-1.1.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Ws-commons-util-1.0.2.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-client-3.1.3.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-common-3.1.3.jar" code="mainGame.Starting" height="610" width="800"></applet>
