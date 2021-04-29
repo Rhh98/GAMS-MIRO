@@ -1,0 +1,201 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"m":	{
+			"alias":	"Month to model",
+			"symtype":	"set",
+			"headers":	{
+				"s":	{
+					"type":	"string",
+					"alias":	"Season"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text Month to model"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["carbon_price", "reserve_margin", "cost_gas", "coal_level", "cost_coal", "hydro_hours"],
+			"symtext":	["Carbon Cost (dollars per Ton)", "Percentage that non-solar non-wind generators exceed peak", "CC cost (dollars per MBtu)", "Coal Minimum Operating Percent", "Coal cost (dollars per MBtu)", "hours per day hydro can run at capacity"],
+			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"gen_mix":	{
+			"alias":	"percentage of each generator",
+			"symtype":	"parameter",
+			"headers":	{
+				"g":	{
+					"type":	"string",
+					"alias":	"Generators"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"percentage of each generator"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"xval":	{
+			"alias":	"Hourly generation level",
+			"symtype":	"parameter",
+			"headers":	{
+				"h":	{
+					"type":	"string",
+					"alias":	"Hours"
+				},
+				"g":	{
+					"type":	"string",
+					"alias":	"Generators"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Hourly generation level"
+				}
+			}
+		},
+		"tot_gen":	{
+			"alias":	"Total generation by source",
+			"symtype":	"parameter",
+			"headers":	{
+				"g":	{
+					"type":	"string",
+					"alias":	"Generators"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Total generation by source"
+				}
+			}
+		},
+		"sum_x":	{
+			"alias":	"Sum of all demand and all load",
+			"symtype":	"parameter",
+			"headers":	{
+				"h":	{
+					"type":	"string",
+					"alias":	"Hours"
+				},
+				"s":	{
+					"type":	"string",
+					"alias":	"Season"
+				},
+				"f":	{
+					"type":	"string",
+					"alias":	"flow"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Sum of all demand and all load"
+				}
+			}
+		},
+		"over_gen":	{
+			"alias":	"Hourly overgeneration",
+			"symtype":	"parameter",
+			"headers":	{
+				"h":	{
+					"type":	"string",
+					"alias":	"Hours"
+				},
+				"s":	{
+					"type":	"string",
+					"alias":	"Season"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Hourly overgeneration"
+				}
+			}
+		},
+		"co2_em":	{
+			"alias":	"hourly CO2 emissions (tons)",
+			"symtype":	"parameter",
+			"headers":	{
+				"h":	{
+					"type":	"string",
+					"alias":	"Hours"
+				},
+				"t":	{
+					"type":	"string",
+					"alias":	"Thermal generators"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"hourly CO2 emissions (tons)"
+				}
+			}
+		},
+		"cap_power":	{
+			"alias":	"Total generator capacity (power)",
+			"symtype":	"parameter",
+			"headers":	{
+				"g":	{
+					"type":	"string",
+					"alias":	"Generators"
+				},
+				"m":	{
+					"type":	"string",
+					"alias":	"Month to model"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Total generator capacity (power)"
+				}
+			}
+		},
+		"compare":	{
+			"alias":	"Capacity and average power by generator",
+			"symtype":	"parameter",
+			"headers":	{
+				"g":	{
+					"type":	"string",
+					"alias":	"Generators"
+				},
+				"c":	{
+					"type":	"string",
+					"alias":	"comparison set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"Capacity and average power by generator"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["totalco2"],
+			"symtext":	["Total CO2 emissions for the day"],
+			"symtypes":	["parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	}
+}
