@@ -18,7 +18,7 @@
 
 <p> This real life layout redesign decision can be modeled and solved as an optimization problem. The objective would be to minimize all costs including cost of making layout changes and cost of material handling. Figure 1 shows the general layout of any manufacturing facility  </p>
 
-<img style="border: 2px solid black ;"  src="static_model/layout.jpg" width=700    />
+<img style="border: 2px solid black ;"  src="static_facloc/layout.jpg" width=700    />
 Figure 1 :Layout  </img>
 
 <p><a href="#top">Back to the top</a></p>
@@ -29,10 +29,10 @@ Figure 1 :Layout  </img>
 <h2> Problem Statement </h2> 
 <p> A facility layout optimization model is presented that consists of four machines: CNC, Mill, Drill, and Punch. These machines are the most common machines in any manufacturing facility.</p>
 The pictures of the 4 machines are shown below:
-<br><img style="border: 2px solid black ;" src="static_model/CNC.png" width=200"  />
-CNC </img> <img style="border: 2px solid black ;" src="static_model/Mill.png" width=200"  />
-Mill </img> <img style="border: 2px solid black ;" src="static_model/Drill.png" width=100"  />
-Drill </img> <img style="border: 2px solid black ;" src="static_model/Punch.png" width=200"  />
+<br><img style="border: 2px solid black ;" src="static_facloc/CNC.png" width=200"  />
+CNC </img> <img style="border: 2px solid black ;" src="static_facloc/Mill.png" width=200"  />
+Mill </img> <img style="border: 2px solid black ;" src="static_facloc/Drill.png" width=100"  />
+Drill </img> <img style="border: 2px solid black ;" src="static_facloc/Punch.png" width=200"  />
 Punch </img>
 <p>There are also a set of three products with pre-specified routings as shown below:</p>
 <ul>
@@ -157,7 +157,7 @@ Inspite of those cost and location information, user can mainly change the "Mini
 
 
 
-The GAMS model can be downloaded <a href='static_model/FacLoc.gms' target="_blank">here</a>
+The GAMS model can be downloaded <a href='static_facloc/FacLoc.gms' target="_blank">here</a>
 
 
 <applet archive="http://neos-dev-1.neos-server.org/guide/sites/default/files/SignedLayout_0.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Commons-logging-1.1.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Ws-commons-util-1.0.2.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-client-3.1.3.jar,http://neos-dev-1.neos-server.org/guide/sites/default/files/casestudies/Xmlrpc-common-3.1.3.jar" code="mainGame.Starting" height="610" width="800"></applet>
