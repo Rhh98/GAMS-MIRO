@@ -13,7 +13,7 @@
 </h2>
 
 <p>
-    This is a Machine learning case study. When doing machine learning for training datas, training set bugs could adversely affect machine learning. Unfortunately, the whole training set is usually too large for manual inspection. But one may have the resources to verify a few trusted items. The trusted items themdelves may not be adequate for learning, so we propose an algorithm that uses these items to identify bugs in the training set and thus improves learning.Specifically, our approach seeks the smallest
+    This is a Machine learning case study. When doing machine learning with training data, training set bugs could adversely affect the result. Unfortunately, the whole training set is usually too large for manual inspection. But one may have the resources to verify a few trusted items. The trusted items themselves may not be adequate for learning, so we propose an algorithm that uses these items to identify bugs in the training set and thus improve learning. Specifically, our approach seeks the smallest
 set of changes to the training set labels such that the model
 learned from this corrected training set predicts labels of the
 trusted items correctly.

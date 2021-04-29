@@ -2,8 +2,6 @@
 
 <center>Michael C. Ferris and Yuhao Wang </center> 
 
-<center> May 21, 2020 </center>
-
 ## Problem Introduction
 
 Covid-19 has created a serious testing situation. Since existing laboratory resources

@@ -4,9 +4,9 @@
 The TSP can be defined as follows: for a given list of cities and the distances between each pair of them, we want to find the shortest possible route that goes to each city once and returns to the origin city. Look at the below picture to see an simple example:
 
 <img style="border: 2px solid black ;"  src="static_tspmod/example.jpg" width=700  alt="Feed"  />
-Figure 2b : decreasing time window  </img>
+Figure 2b : example route through labeled cities </img>
 
-There is a class of Traveling Salesman Problems that assumes that the distance of going from city $i$ to city $j$  is the same as going form city $j$ to city $i$, this type of Traveling Salesman Problem  is also known as the symmetric Traveling Salesman Problem. In this example, we use Spherical distance, but the TSP model formulation is valid independent of the way in which the individual distances are determined.
+There is a class of Traveling Salesman Problems that assumes that the distance of going from city $i$ to city $j$  is the same as going from city $j$ to city $i$: this type of Traveling Salesman Problem  is also known as the symmetric Traveling Salesman Problem. In this example, we use Spherical distances, but the TSP model formulation is valid independent of the way in which the individual distances are determined.
 
 <h3>
     Input and Output illustration
@@ -16,13 +16,15 @@ There is a class of Traveling Salesman Problems that assumes that the distance o
     Input:
 </h4>
 
-User can select the cities he/she may want to tour among the 50 capital cities in the U.S. The location information could also be modified if he/she want(Although not recommended since they're the real locations.) 
+There are two ways to solve the problem, one uses positional constraints and the other uses dynamic subtour elimination constraints.   This can be changed in the input widgets data (default is Dynamic SEC).
+
+The user can also select the cities he/she may want to tour among the 50 capital cities in the U.S. The location information could also be modified (although the data is the real location coordinates.) 
 
 <h4>
     Output:
 </h4>
 
-This gives the tour route(The Hamilton cycles) among the selected cities. The user can choose whether to display those cities not selected.
+This gives the tour route (a Hamilton cycle) among the selected cities. The user can choose whether or not to display those cities not selected.
 
 
 ## Solution Approach
@@ -77,8 +79,8 @@ $$\sum_{(i,j) \in \text{Pairings}}x_{i,j} = 1 \quad \forall  i \in Capitals$$
 $$u_i+u_j+1\leq (n-1)(1-x_{ij}) \quad \forall  (i,j) \subset  S \quad and \quad i,j\neq 1$$
 Here $u_i$ represent the position of city $i\ge 2$ in the Hamilton cycle.
 
-- **Remark**. Another constraints have the same function is the subtour elimination constraint. Although more intuitive, 
-since there are an exponential number of constraints ($2^{n} - 2$) to eliminate cycles,  which is difficult to deal with. However, by using the position constraints which generally has $O(n^2)$ constraints, we can avoid eliminating cycles.
+- **Remark**. Subtour elimination constraints do precisely that - take out subtours.  The above constraints have the same function as subtour elimination constraints. Although more intuitive, 
+since there are an exponential number of constraints ($2^{n} - 2$) to eliminate cycles,  it is difficult to deal with computationally, hence the dynamic approach that is coded. However, the position constraints which generally have $O(n^2)$ constraints, avoids generating subtours, but for larger instances can take much longer to solve.
 
 
 

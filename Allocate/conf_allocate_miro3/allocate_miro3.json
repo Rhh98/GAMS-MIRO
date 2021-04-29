@@ -134,24 +134,17 @@
     }
   },
   "defaultScenName": "Example",
-  "handsontable": {
-    "stretchH": "none",
-    "readonly": false,
-    "manualColumnResize": true,
-    "contextMenu": {
-      "enabled": true,
-      "allowRowEdit": true,
-      "allowColEdit": true
-    },
-    "height": 700,
-    "colWidths": 150
-  },
-  "inputWidgetGroups": [
-    {
-      "name": "Maximal distance for transportation",
-      "members": "t"
+  "outputTables": {
+    "operation": {
+      "class": "display",
+      "filter": "bottom",
+      "options": {
+        "pageLength": 15,
+        "decimals": 3
+      },
+      "rownames": false
     }
-  ],
+  },
   "inputGroups": [
     {
       "name": "Prevalence",
@@ -166,21 +159,28 @@
       "members": ["centerlocdata", "centerdata"]
     }
   ],
+  "inputWidgetGroups": [
+    {
+      "name": "Maximal distance for transportation",
+      "members": "t"
+    }
+  ],
   "outputGroups": [
     {
       "name": "Information for labs",
       "members": ["kitinl", "operation"]
     }
   ],
-  "outputTables": {
-    "operation": {
-      "class": "display",
-      "filter": "bottom",
-      "options": {
-        "pageLength": 15,
-        "decimals": 3
-      },
-      "rownames": false
-    }
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 150
   }
 }
