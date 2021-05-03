@@ -14,7 +14,7 @@
   },
   "aggregateWidgets": true,
   "overwriteSheetOrder": {
-    "input": ["foo", "num", "_widgets"]
+    "input": ["foo", "num", "_widgets", "_scalars"]
   },
   "overwriteAliases": {
     "_scalars": {
@@ -46,6 +46,12 @@
     },
     "assign_result3": {
       "newAlias": "Fips Code Visualization"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    },
+    "pop_each_d": {
+      "newAlias": "population for each district"
     }
   },
   "saveTraceFile": true,
@@ -55,34 +61,12 @@
       "widgetType": "slider",
       "alias": "District Number",
       "min": 0,
-      "max": 10,
+      "max": 20,
       "default": 2,
       "step": 1,
       "ticks": false,
       "noHcube": false,
       "label": "District Number"
-    },
-    "forrepub": {
-      "widgetType": "dropdown",
-      "alias": "Party to Win",
-      "choices": ["1", "-1"],
-      "selected": "1",
-      "noHcube": false,
-      "clearValue": false,
-      "multiple": false,
-      "label": "Party to Win",
-      "aliases": ["Redistrict for Republicans", "Redistrict for Democrats"]
-    }
-  },
-  "overwriteHeaderAliases": {
-    "nodes": {
-      "newHeaders": ["Fips Code", "None"]
-    },
-    "foo": {
-      "newHeaders": ["Fips Code", "Fips Code", "Whether They Are Adjacent"]
-    },
-    "num": {
-      "newHeaders": ["Fips Code", "Parties", "Number of Votes"]
     }
   },
   "dataRendering": {
@@ -97,6 +81,10 @@
     "assign_result3": {
       "outType": "gerryPlusFips",
       "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
+    },
+    "pop_each_d": {
+      "outType": "avgPop",
+      "packages": "plotly"
     }
   },
   "readme": {
@@ -114,6 +102,14 @@
     }
   },
   "pageTitle": "Gerrymandering Redistricting APP",
+  "overwriteHeaderAliases": {
+    "num": {
+      "newHeaders": ["Fips Code", "Parties", "Number of Votes"]
+    },
+    "foo": {
+      "newHeaders": ["Fips Code", "Fips Code", "Whether They Are Adjacent"]
+    }
+  },
   "handsontable": {
     "stretchH": "none",
     "readonly": false,

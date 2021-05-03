@@ -291,3 +291,64 @@ renderGerryPlusFips <- function(input, output, session, data, options = NULL, pa
   #
   output$plot1 <- renderPlot({elbow_room1})
 }
+
+avgPopOutput <- function(id, height = NULL, options = NULL, path = NULL){
+  ns <- NS(id)
+  
+  # set default height
+  if(is.null(height)){
+    height <- 700
+  } 
+  tagList( 
+    #define rendererOutput function here 
+    textOutput(ns('status')),
+    fluidRow(
+      column(12, plotly::plotlyOutput(ns('plot1'),height=height))
+    )
+    
+  )
+}
+                            
+renderAvgPop <- function(input, output, session, data, options = NULL, path = NULL, views = NULL, ...){ 
+    test_data <- data
+    #test_data <- data.frame(value = c(10,20,30,25),
+    #                  district = c('d12','d1','d3','d4'))
+    #output$status<-renderText(names(test_data))
+
+    # reordering the rows by district
+    test_data$sort_col = as.numeric(substring(test_data$district,2,4))
+    test_data <- arrange(test_data,sort_col)
+
+    fig <- plotly::plot_ly(
+    x = test_data$district,
+    y = test_data$value,
+    name = "Population Distribution",
+    type = "bar",
+    text = test_data$value,
+    textposition = 'auto') 
+
+    # horizontal line function
+    hline <- function(y = 0, color = "black") {
+        list(
+            type = "line", 
+            x0 = 0, 
+            x1 = 1, 
+            xref = "paper",
+            y0 = y, 
+            y1 = y, 
+            line = list(color = color)
+            )
+    }
+
+    fig<-plotly::layout(fig,title = "Population Distribution",
+        xaxis = list(title = "District",
+                     zeroline = FALSE,
+                     color = 'Black',
+                     categoryorder='trace'),
+        yaxis = list(title = "Population",
+                     zeroline = FALSE,
+                     color = 'Black'),shapes = hline(sum(test_data$value)/length(test_data$value)))
+
+    output$plot1 <- plotly::renderPlotly(fig)
+
+}

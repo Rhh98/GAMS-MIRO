@@ -1,0 +1,59 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_scalars", "num", "foo", "_widgets"]
+  },
+  "overwriteAliases": {
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "num": {
+      "newAlias": "num"
+    },
+    "foo": {
+      "newAlias": "foo"
+    },
+    "assign_result": {
+      "newAlias": "assigned"
+    },
+    "assign_result2": {
+      "newAlias": "assigned"
+    },
+    "assign_result3": {
+      "newAlias": "assigned"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    },
+    "pop_each_d": {
+      "newAlias": "population"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}

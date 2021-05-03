@@ -3,9 +3,9 @@
 	"inputSymbols":	{
 		"_scalars":	{
 			"alias":	"Input Scalars",
-			"symnames":	["district_num", "forrepub", "low_county_num"],
-			"symtext":	["district number", "forrepub", "low_county_num"],
-			"symtypes":	["parameter", "parameter", "parameter"],
+			"symnames":	["district_num", "lower_fraction", "upper_fraction", "lambda"],
+			"symtext":	["district number", "population lowerbound fraction", "population upperbound fraction", "the penalty of the population difference between max district and min district"],
+			"symtypes":	["parameter", "parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{
 					"type":	"string",
@@ -122,6 +122,40 @@
 				"rord":	{
 					"type":	"numeric",
 					"alias":	"rord"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["rep_district_num", "dem_district_num", "runtime_used"],
+			"symtext":	["Number of Republicans Districts", "Number of Democrats Districts", "Total Runtime"],
+			"symtypes":	["parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"pop_each_d":	{
+			"alias":	"population",
+			"symtype":	"parameter",
+			"headers":	{
+				"district":	{
+					"type":	"string",
+					"alias":	"district"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"population"
 				}
 			}
 		}
