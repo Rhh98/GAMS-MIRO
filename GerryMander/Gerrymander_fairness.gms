@@ -1,11 +1,15 @@
 $title gerrymandering model
 
 *solver choice
-option mip = osigurobi;
+option mip = gurobi;
 *allow mipstart for osigurobi
-option integer4 = 1;
-*time limit
-option resLim = 120;
+$onecho > cplex.opt
+mipstart 1
+$offecho
+$onecho > gurobi.opt
+mipstart 1
+$offecho
+* option integer4 = 1;
 
 set P  parties  / republicans, democrats/;
 set nodes 'fips code';
@@ -23,7 +27,8 @@ scalar DISTRICT_NUM 'district number'/10/;
 * Wisconsin  0.5 / 1.6
 scalar lower_fraction 'population lowerbound fraction' /0.5/;
 scalar upper_fraction 'population upperbound fraction' /1.6/;
-scalar lambda 'the penalty of the population difference between max district and min district' /0/;
+scalar lambda 'the penalty of the population difference between max district and min district' /1/;
+scalar timelim 'time limit in secs' / 30 /;
 
 alias (nodes,i,j);
 
@@ -152,7 +157,7 @@ equation
 
 *------------------------------objective function------------------------------
 objective..
-    obj =e= abs_t + lambda * (max_pop-min_pop);
+    obj =e= abs_t + lambda * (max_pop-min_pop)/smax(i, sum(P, num(i,P)));
 *------------------------------connectiviy constraint------------------------------
 
 each_assign_one(i)..
@@ -220,6 +225,9 @@ dif_pop2(d)..
 
 
 model spanning_tree /all/;
+spanning_tree.optfile = 1;
+*time limit
+spanning_tree.resLim = timelim;
 
 *keep track of solving time - start time
 scalar starttime;

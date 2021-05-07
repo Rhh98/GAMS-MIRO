@@ -20,9 +20,6 @@
     "_scalars": {
       "newAlias": "Scalars"
     },
-    "nodes": {
-      "newAlias": "Fips Code"
-    },
     "foo": {
       "newAlias": "Adjacency Data"
     },
@@ -31,15 +28,6 @@
     },
     "assign_result": {
       "newAlias": "Redistricted Map"
-    },
-    "original_votes": {
-      "newAlias": "Original Vote Ratio"
-    },
-    "new_votes": {
-      "newAlias": "Redistricted Vote Ratio"
-    },
-    "original_win_loss": {
-      "newAlias": "original_win_loss"
     },
     "assign_result2": {
       "newAlias": "Parties Visualization"
@@ -67,6 +55,17 @@
       "ticks": false,
       "noHcube": false,
       "label": "District Number"
+    },
+    "timelim": {
+      "widgetType": "slider",
+      "alias": "time limit in secs",
+      "min": 0,
+      "max": 1200,
+      "step": 10,
+      "ticks": true,
+      "noHcube": false,
+      "label": "time limit in secs",
+      "default": 120
     }
   },
   "dataRendering": {
