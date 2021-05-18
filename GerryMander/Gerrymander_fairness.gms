@@ -15,7 +15,7 @@ set P  parties  / republicans, democrats/;
 set nodes 'fips code';
 
 *this will forever be set at 1, since we are now trying to maintain the fairness
-scalar forRepub /1/;
+
 
 $onExternalInput
 
@@ -27,10 +27,12 @@ scalar DISTRICT_NUM 'district number'/10/;
 * Wisconsin  0.5 / 1.6
 scalar lower_fraction 'population lowerbound fraction' /0.5/;
 scalar upper_fraction 'population upperbound fraction' /1.6/;
-scalar lambda 'the penalty of the population difference between max district and min district' /1/;
-scalar timelim 'time limit in secs' / 30 /;
+scalar lambda 'the penalty of the population difference between max district and min district' /0/;
+scalar timelim 'time limit in secs' / 120 /;
+scalar mode_choice 'choice of objective mode 0: fairness 1 unfairness' /0/;
+scalar for_Repub 'party to optimize for 1: republicans -1: democrats'/1/;
 
-alias (nodes,i,j);
+alias (nodes,i,j,k);
 
 *read in the voting data
 parameter num(nodes<,P)/
@@ -79,10 +81,18 @@ pop_each_N(nodes) = sum(P,num(nodes,P));
 scalar node_num;
 node_num = card(nodes);
 
+scalar forRepub need to create a new variable because cannot change external input;
+
+if (for_Repub = 1,
+    forRepub = 1;
+elseif (for_Repub = -1),
+    forRepub = -1;
+);
 
 
 free variable
-    obj;
+    obj
+    surplus(district);
 nonnegative variable
     x(district,i,j) flow from i to j in district d
     pop(district) total population in a given district
@@ -123,13 +133,15 @@ root.l(district,i)$root_init(district,i) = 1;
 assign_1_root_0.l(i,district)$assign_1_root_0_init(i,district) = 1;
 z.l(district)$z_init(district) = 1;
 both_assign.l(i,j,district)$both_assign_init(i,j,district) = 1;
+
 scalar original_win;
 original_win = sum(district,z.l(district));
 
 
 * constraint declaration
 equation
-    objective objective function
+    objective_fairness objective function fpr fairness
+    objective_unfairness objective function fpr umfairness
 *------------------------------connectiviy constraint------------------------------
     each_assign_one(i) each county is assigned to one district
     one_root_constr(district) there can only be one root for a district
@@ -156,8 +168,11 @@ equation
 ;
 
 *------------------------------objective function------------------------------
-objective..
+objective_fairness..
     obj =e= abs_t + lambda * (max_pop-min_pop)/smax(i, sum(P, num(i,P)));
+    
+objective_unfairness..
+    obj =e= forRepub * sum(d,z(d)) - lambda * (max_pop-min_pop)/smax(i, sum(P, num(i,P)));
 *------------------------------connectiviy constraint------------------------------
 
 each_assign_one(i)..
@@ -200,12 +215,13 @@ non_root_balance_2(d,i)..
     sum(j$(arcs(i,j) or arcs(j,i)), x(d,i,j) ) - sum(j$(arcs(i,j) or arcs(j,i)), x(d,j,i)) - (-1)=g= 0;
 
 *------------------------------vote calculattion constraint------------------------------
+
 ppl_constr_lo(d)..
     sum(i, assign(i,d)*sum(P,num(i,P))) =g= Lower;
     
 ppl_constr_up(d)..
     sum(i, assign(i,d)*sum(P,num(i,P))) =l= Upper;
-    
+
 decide_win_rep(d)..
     sum(i, assign(i,d)*(num(i,'republicans') - num(i,'democrats'))) - (totalPeople)*z(d) =l= 0;
     
@@ -223,17 +239,39 @@ dif_pop2(d)..
     min_pop =l= sum(i, assign(i,d)*sum(P,num(i,P)));
     
 
-
-model spanning_tree /all/;
-spanning_tree.optfile = 1;
+* separate two different models
+model fairness_model /all - objective_unfairness/;
+fairness_model.optfile = 1;
 *time limit
-spanning_tree.resLim = timelim;
+fairness_model.resLim = timelim;
+
+model unfairness_model /all - objective_fairness - abs_obj1 - abs_obj2 /;
+unfairness_model.optfile = 1;
+*time limit
+unfairness_model.resLim = timelim;
+
+
+* choose which model to run based on user input
 
 *keep track of solving time - start time
-scalar starttime;
+scalar
+    starttime
+    total_run_time;
 starttime = jnow;
 
-solve spanning_tree using mip minimizing obj;
+
+
+*solve fairness model
+if (mode_choice = 0,
+    forRepub = 1;
+    solve fairness_model using mip minimizing obj;
+    total_run_time = fairness_model.resusd;
+*solve unfairness model
+elseif (mode_choice = 1),
+    solve unfairness_model using mip maximizing obj;
+    total_run_time = unfairness_model.resusd;
+);
+
 
 *keep track of solving time - end time
 scalar elapsed;
@@ -244,11 +282,12 @@ elapsed = (jnow - starttime)*24*3600;
 parameter
     afterWinLoss(nodes)
     tempWinLoss(nodes,district)
+    dif
 ;
 
 tempWinLoss(i,d)$(assign.l(i,d) + z.l(d) = 2) = 1;
 afterWinLoss(i)$(sum(d,tempWinLoss(i,d)) = 1) = 1;
-
+dif = max_pop.l-min_pop.l;
 
 set gerryHeader /result1,result2/;
 set gerryHeader2 /result1,RorD/; 
@@ -274,7 +313,7 @@ assign_result3(nodes,d,'RorD')$(assign_result(nodes,d,'result1')=1 and afterWinL
 rep_district_num = sum(d,z.l(d));
 dem_district_num = DISTRICT_NUM-sum(d,z.l(d));
 
-runtime_used = spanning_tree.resusd;
+runtime_used = total_run_time;
 
 pop_each_D(d) = sum((i,P),num(i,P)*assign.l(i,d));
 
@@ -286,7 +325,11 @@ put da;
 put /'initial_point%num% -------------'/;
 put /'original votes:',original_win/;
 put /'final votes:',total_district_won/;
-put /'best possible solution:',spanning_tree.objest/;
+*put /'best possible solution:',spanning_tree.objest/;
 put /'solving time:',elapsed/;
 putclose da;
 $offtext
+
+display dif;
+display rep_district_num;
+display dem_district_num;
