@@ -8,9 +8,9 @@ Gerrymandering refers to a strategy where politicians try to maximize the votes 
 
 The challenge of such problem comes from two sources. First, if we formulate such problem with upper and lower bound on the total population of a distict, then this problem is acutally a knapsack problem. Second, in the real world scenario, usually all the units in a district should be **connected**, which means that given a pair of units assigned to the same district, there must be a path between them. My main focus and the main contribution on this project is to solve the latter problem, where I formulated connectivity constraints that allow redistricting with connectivity. Different gerrymandering strategy can be combined with the connectivity constraints.
 
-In this application, our objective is to perform redistricting so that the redistricting can produce result that best maintain the fairness. That is, the number of winning districts for a party best represents the ratio of total votes it gets within a given state. We use the original votes for each party in a county (unit) and the adjancey matrix among all the counties(units) to achieve such goal and at the same time maintaining the connectivity within every district that is assigned to.
+In this application, there are 2 kinds of objective functions users can choose basen on their goals. The first objective is to optimize for fairness, which means the number of winning districts for a party best represents the ratio of total votes it gets within a given state. The second objective is to optimize for a given party so that the chosen party gain as many electoral votes as it can. We use the original votes for each party in a county (unit) and the adjancey matrix among all the counties(units) to achieve such goal and at the same time maintaining the connectivity within every district that is assigned to.
 
-This document would be presented in the following order. In section 2 and 3, I will illustrate the input and  output format for this application respectively. In section 4, I will introduce the output visualizations and the information such visualizations could provide us. Lastly, I will provide the mathematical formulation and reasoning for this model.
+This document would be presented in the following order. In section 2 and 3, I will illustrate the input and  output format for this application respectively. In section 4, I will introduce the output visualizations and the information such visualizations could provide us. Lastly, I will provide the mathematical formulation (for the Optimize for Fairness case) for this model.
 
 ## Input Format
 
@@ -31,6 +31,8 @@ I use the Wisconsin state data from [2016 US election](https://public.opendataso
 3. Number of districts to be assigned : an integer value that allows users to determined the number of districts tha will exist after the reassignment (Changing this will lead to a failure to use initial point).
 4. Population upper and lower bound (ratio compared with average population for a district): two fraction values to impose bound on population in each district to maintain fairness
 5. Lambda : a parameter to add weight to the penalty to make the population difference between max district and min district smaller.
+6. Choice of Objective : Users can choose to optimize for fairness (assign units to districts fairly) or optimize for a given party.
+7. Choice of Party to Optimize for : This input parameter will matter only if the Choice of Objective is to optimize for a given party.
 ## Output Format
 The output will be suggested redistricted maps with fips code and the winning party of each district. We also provide population visualization of each district via bar chart. <br>
 
