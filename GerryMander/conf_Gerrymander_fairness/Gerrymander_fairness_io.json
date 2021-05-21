@@ -3,9 +3,9 @@
 	"inputSymbols":	{
 		"_scalars":	{
 			"alias":	"Input Scalars",
-			"symnames":	["district_num", "lower_fraction", "upper_fraction", "lambda", "timelim"],
-			"symtext":	["district number", "population lowerbound fraction", "population upperbound fraction", "the penalty of the population difference between max district and min district", "time limit in secs"],
-			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter"],
+			"symnames":	["district_num", "lower_fraction", "upper_fraction", "lambda", "timelim", "mode_choice", "for_repub"],
+			"symtext":	["district number", "population lowerbound fraction", "population upperbound fraction", "the penalty of the population difference between max district and min district", "time limit in secs", "choice of objective mode 0: fairness 1 unfairness", "party to optimize for 1: republicans -1: democrats"],
+			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{
 					"type":	"string",

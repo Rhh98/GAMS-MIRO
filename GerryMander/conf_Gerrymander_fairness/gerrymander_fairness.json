@@ -66,6 +66,28 @@
       "noHcube": false,
       "label": "time limit in secs",
       "default": 120
+    },
+    "for_repub": {
+      "widgetType": "dropdown",
+      "alias": "Party to Optimize for ",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Party to Optimize for ",
+      "selected": "1",
+      "choices": ["1", "-1"],
+      "aliases": ["Optimizing for Republicans", "Optimizing for Democrats"]
+    },
+    "mode_choice": {
+      "widgetType": "dropdown",
+      "alias": "Objective Function",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Objective Function",
+      "selected": "0",
+      "choices": ["0", "1"],
+      "aliases": ["Pursuing Fairness as Objective", "Optimizing for a Given Party"]
     }
   },
   "dataRendering": {
