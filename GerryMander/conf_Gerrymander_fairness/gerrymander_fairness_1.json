@@ -14,36 +14,101 @@
   },
   "aggregateWidgets": true,
   "overwriteSheetOrder": {
-    "input": ["_scalars", "num", "foo", "_widgets"]
+    "input": ["foo", "num", "_widgets", "_scalars"]
   },
   "overwriteAliases": {
     "_scalars": {
       "newAlias": "Scalars"
     },
-    "num": {
-      "newAlias": "num"
-    },
     "foo": {
-      "newAlias": "foo"
+      "newAlias": "Adjacency Data"
+    },
+    "num": {
+      "newAlias": "Votes"
     },
     "assign_result": {
-      "newAlias": "assigned"
+      "newAlias": "Redistricted Map"
     },
     "assign_result2": {
-      "newAlias": "assigned"
+      "newAlias": "Parties Visualization"
     },
     "assign_result3": {
-      "newAlias": "assigned"
+      "newAlias": "Fips Code Visualization"
     },
     "_scalars_out": {
       "newAlias": "Output Scalars"
     },
     "pop_each_d": {
-      "newAlias": "population"
+      "newAlias": "population for each district"
     }
   },
   "saveTraceFile": true,
   "roundingDecimals": 2,
+  "inputWidgets": {
+    "district_num": {
+      "widgetType": "slider",
+      "alias": "District Number",
+      "min": 0,
+      "max": 20,
+      "default": 2,
+      "step": 1,
+      "ticks": false,
+      "noHcube": false,
+      "label": "District Number"
+    },
+    "timelim": {
+      "widgetType": "slider",
+      "alias": "time limit in secs",
+      "min": 0,
+      "max": 1200,
+      "step": 10,
+      "ticks": true,
+      "noHcube": false,
+      "label": "time limit in secs",
+      "default": 120
+    }
+  },
+  "dataRendering": {
+    "assign_result": {
+      "outType": "gerry",
+      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+    },
+    "assign_result2": {
+      "outType": "gerryPlusWord",
+      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+    },
+    "assign_result3": {
+      "outType": "gerryPlusFips",
+      "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
+    },
+    "pop_each_d": {
+      "outType": "avgPop",
+      "packages": "plotly"
+    }
+  },
+  "readme": {
+    "tabTitle": "Introduction",
+    "filename": "readme.md",
+    "enableMath": true
+  },
+  "defaultScenName": "Arizona State",
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "pageTitle": "Gerrymandering Redistricting APP",
+  "overwriteHeaderAliases": {
+    "num": {
+      "newHeaders": ["Fips Code", "Parties", "Number of Votes"]
+    },
+    "foo": {
+      "newHeaders": ["Fips Code", "Fips Code", "Whether They Are Adjacent"]
+    }
+  },
   "handsontable": {
     "stretchH": "none",
     "readonly": false,

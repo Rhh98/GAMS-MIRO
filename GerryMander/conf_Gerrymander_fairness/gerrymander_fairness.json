@@ -71,15 +71,15 @@
   "dataRendering": {
     "assign_result": {
       "outType": "gerry",
-      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+      "packages": ["stringr", "ggplot2"]
     },
     "assign_result2": {
       "outType": "gerryPlusWord",
-      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+      "packages": ["stringr", "ggplot2"]
     },
     "assign_result3": {
       "outType": "gerryPlusFips",
-      "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
+      "packages": ["ggplot2", "stringr"]
     },
     "pop_each_d": {
       "outType": "avgPop",
