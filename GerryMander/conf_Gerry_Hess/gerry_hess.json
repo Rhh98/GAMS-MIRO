@@ -1,0 +1,88 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_widgets", "_scalars", "num", "distance", "foo"]
+  },
+  "overwriteAliases": {
+    "assign_result": {
+      "newAlias": "assigned"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "num": {
+      "newAlias": "num"
+    },
+    "distance": {
+      "newAlias": "distance"
+    },
+    "foo": {
+      "newAlias": "foo"
+    },
+    "assign_result2": {
+      "newAlias": "assigned"
+    },
+    "assign_result3": {
+      "newAlias": "assigned"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    },
+    "pop_each_d": {
+      "newAlias": "population"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "dataRendering": {
+    "assign_result": {
+      "outType": "Gerry",
+      "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
+    },
+    "assign_result2": {
+      "outType": "gerryPlusWord",
+      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
+    },
+    "assign_result3": {
+      "outType": "gerryPlusFips",
+      "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
+    },
+    "pop_each_d": {
+      "outType": "avgPop",
+      "packages": "plotly"
+    }
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}

@@ -1,0 +1,181 @@
+{
+	"modelTitle":	"gerrymandering (based on HESS)",
+	"inputSymbols":	{
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["fordem", "district_num", "pop_upper", "pop_lower", "lambda_compactness", "lambda_pop"],
+			"symtext":	["fordem", "district_num", "pop_upper", "pop_lower", "lambda_compactness", "lambda_pop"],
+			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"num":	{
+			"alias":	"num",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"p":	{
+					"type":	"string",
+					"alias":	"parties"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"num"
+				}
+			}
+		},
+		"distance":	{
+			"alias":	"distance",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"nodes#1":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"distance"
+				}
+			}
+		},
+		"foo":	{
+			"alias":	"foo",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"nodes#1":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"foo"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"assign_result":	{
+			"alias":	"assigned",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"district":	{
+					"type":	"string",
+					"alias":	"Aliased with nodes"
+				},
+				"result1":	{
+					"type":	"numeric",
+					"alias":	"result1"
+				},
+				"result2":	{
+					"type":	"numeric",
+					"alias":	"result2"
+				}
+			}
+		},
+		"assign_result2":	{
+			"alias":	"assigned",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"district":	{
+					"type":	"string",
+					"alias":	"Aliased with nodes"
+				},
+				"result1":	{
+					"type":	"numeric",
+					"alias":	"result1"
+				},
+				"rord":	{
+					"type":	"numeric",
+					"alias":	"rord"
+				}
+			}
+		},
+		"assign_result3":	{
+			"alias":	"assigned",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"district":	{
+					"type":	"string",
+					"alias":	"Aliased with nodes"
+				},
+				"result1":	{
+					"type":	"numeric",
+					"alias":	"result1"
+				},
+				"rord":	{
+					"type":	"numeric",
+					"alias":	"rord"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["rep_district_num", "dem_district_num"],
+			"symtext":	["Number of Republicans Districts", "Number of Democrats Districts"],
+			"symtypes":	["parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"pop_each_d":	{
+			"alias":	"population",
+			"symtype":	"parameter",
+			"headers":	{
+				"district":	{
+					"type":	"string",
+					"alias":	"Aliased with nodes"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"population"
+				}
+			}
+		}
+	}
+}
