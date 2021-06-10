@@ -14,7 +14,7 @@
   },
   "aggregateWidgets": true,
   "overwriteSheetOrder": {
-    "input": ["foo", "num", "_widgets", "_scalars"]
+    "input": ["foo", "num", "_widgets", "_scalars", "distance"]
   },
   "overwriteAliases": {
     "_scalars": {
@@ -40,6 +40,9 @@
     },
     "pop_each_d": {
       "newAlias": "population for each district"
+    },
+    "distance": {
+      "newAlias": "distance"
     }
   },
   "saveTraceFile": true,
@@ -67,17 +70,6 @@
       "label": "time limit in secs",
       "default": 120
     },
-    "for_repub": {
-      "widgetType": "dropdown",
-      "alias": "Party to Optimize for ",
-      "noHcube": false,
-      "clearValue": false,
-      "multiple": false,
-      "label": "Party to Optimize for ",
-      "selected": "1",
-      "choices": ["1", "-1"],
-      "aliases": ["Optimizing for Republicans", "Optimizing for Democrats"]
-    },
     "mode_choice": {
       "widgetType": "dropdown",
       "alias": "Objective Function",
@@ -88,6 +80,17 @@
       "selected": "0",
       "choices": ["0", "1"],
       "aliases": ["Pursuing Fairness as Objective", "Optimizing for a Given Party"]
+    },
+    "for_repub": {
+      "widgetType": "dropdown",
+      "alias": "Party to Optimize for ",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Party to Optimize for ",
+      "selected": "1",
+      "aliases": ["Optimize for Democarts", "Optimize for Republicans"],
+      "choices": ["-1", "1"]
     }
   },
   "dataRendering": {
@@ -113,7 +116,7 @@
     "filename": "readme.md",
     "enableMath": true
   },
-  "defaultScenName": "Arizona State",
+  "pageTitle": "Gerrymandering Redistricting APP",
   "datatable": {
     "class": "display",
     "filter": "bottom",
@@ -122,7 +125,6 @@
       "pageLength": 15
     }
   },
-  "pageTitle": "Gerrymandering Redistricting APP",
   "overwriteHeaderAliases": {
     "num": {
       "newHeaders": ["Fips Code", "Parties", "Number of Votes"]

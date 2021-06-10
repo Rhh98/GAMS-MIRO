@@ -8,6 +8,9 @@ mipstart 1
 $offecho
 $onecho > gurobi.opt
 mipstart 1
+*lazyconstraints 1
+*ppl_constr_lo.lazy 1
+*ppl_constr_up.lazy 1
 $offecho
 * option integer4 = 1;
 
@@ -25,11 +28,13 @@ scalar DISTRICT_NUM 'district number'/10/;
 *fraction of population upper and lower bound for a district
 * washington 0.2 / 3.8
 * Wisconsin  0.5 / 1.6
-scalar lower_fraction 'population lowerbound fraction' /0.5/;
 scalar upper_fraction 'population upperbound fraction' /1.6/;
-scalar lambda 'the penalty of the population difference between max district and min district' /0/;
+scalar lower_fraction 'population lowerbound fraction' /0.5/;
+scalar lambda 'the penalty of the population difference between max district and min district' /9/;
 scalar timelim 'time limit in secs' / 120 /;
 scalar mode_choice 'choice of objective mode 0: fairness 1 unfairness' /0/;
+*scalar distance_parameter /5/;
+
 scalar for_Repub 'party to optimize for 1: republicans -1: democrats'/1/;
 
 alias (nodes,i,j,k);
@@ -48,8 +53,20 @@ $include adj_Wisconsin.csv
 $offdelim
 /;
 
+* read in the distance data
+parameter distance(nodes,nodes)/
+$ondelim
+$include distance_Wisconsin.csv
+$offdelim
+/;
+
 
 $offExternalInput
+
+*construct the distance parameter
+parameter dist(nodes,nodes);
+dist(i,j)$(ord(i)<ord(j)) = distance(i,j);
+dist(i,j)$(ord(i)>ord(j)) = distance(j,i);
 
 * construct adjacency arc according to adjacency csv
 set arcs(nodes,nodes);
@@ -100,6 +117,7 @@ nonnegative variable
     abs_t absolute value for the objective function
     max_pop the population of the biggest district
     min_pop the population of the smallest district
+    largest_distance the largest distance within a district
 ;
     
 binary variable 
@@ -120,6 +138,7 @@ set
     assign_1_root_0_init(i,district) if i is assigned to d and is not a root return 1 otherwise 0(set)
     z_init(district) 1 if republican win in district d otherwise 0
     both_assign_init(i,j,district) if both i and j are assigned to a district return 1 otherwise 0
+    i_assign_to_d(i,j)
 ;
 $GDXIN initial_point_Wisconsin_3.gdx
 $load assign_init
@@ -134,6 +153,8 @@ assign_1_root_0.l(i,district)$assign_1_root_0_init(i,district) = 1;
 z.l(district)$z_init(district) = 1;
 both_assign.l(i,j,district)$both_assign_init(i,j,district) = 1;
 
+*both_assign.lo(i,j,d) = 0;
+*both_assign.up(i,j,d) = 1;
 scalar original_win;
 original_win = sum(district,z.l(district));
 
@@ -143,10 +164,14 @@ equation
     objective_fairness objective function fpr fairness
     objective_unfairness objective function fpr umfairness
 *------------------------------connectiviy constraint------------------------------
+*   compactness_constr(i,j,district)
     each_assign_one(i) each county is assigned to one district
     one_root_constr(district) there can only be one root for a district
     root_constr(i,district) county i can be the root of a distirct iff it is inside district d
-    avoid_root_search(i,j,district) avoid unncessary search for root
+*    avoid_root_search(i,j,district) avoid unncessary search for root
+
+*    both_assign_constr1(i,j,district)
+*    both_assign_constr2(i,j,district)
     flow_district_constr_1(district,i,j) only if a county is assigned to a district can it have flow > 0
     flow_district_constr_2(district,i,j) only if a county is assigned to a district can it have flow > 0
     assign_1_root_0_constr_1(i,district) logical construction for assign_1_root_0(id)
@@ -170,10 +195,13 @@ equation
 *------------------------------objective function------------------------------
 objective_fairness..
     obj =e= abs_t + lambda * (max_pop-min_pop)/smax(i, sum(P, num(i,P)));
+*+ distance_parameter*largest_distance;
     
 objective_unfairness..
     obj =e= forRepub * sum(d,z(d)) - lambda * (max_pop-min_pop)/smax(i, sum(P, num(i,P)));
 *------------------------------connectiviy constraint------------------------------
+*compactness_constr(i,j,d)$(ord(i) < ord(j))..
+*    largest_distance =g= both_assign(i,j,d)*dist(i,j);
 
 each_assign_one(i)..
     sum(d, assign(i,d)) =e= 1;
@@ -183,10 +211,16 @@ one_root_constr(d)..
     
 root_constr(i,d)..
     root(d,i) =l= assign(i,d);
+
+*avoid_root_search(i,j,d)$(ord(i) < ord(j))..
+*    root(d,i) - root(d,j) - both_assign(i,j,d) =g= -1;
     
-avoid_root_search(i,j,d)$(ord(i) < ord(j))..
-    root(d,i) - root(d,j) + 2*both_assign(i,j,d) =l=3;
-    
+*both_assign_constr1(i,j,d)$(ord(i) < ord(j))..
+*    assign(i,d) + assign(j,d) - both_assign(i,j,d) =l= 1;
+
+*both_assign_constr2(i,j,d)$(ord(i) < ord(j))..
+*    assign(i,d) + assign(j,d) - 2*both_assign(i,j,d) =g= 0;
+
 flow_district_constr_1(d,i,j)$(arcs(i,j) or arcs(j,i))..
     x(d,i,j) =l= (node_num)*(assign(i,d));
     
@@ -239,6 +273,7 @@ dif_pop2(d)..
     min_pop =l= sum(i, assign(i,d)*sum(P,num(i,P)));
     
 
+
 * separate two different models
 model fairness_model /all - objective_unfairness/;
 fairness_model.optfile = 1;
@@ -249,6 +284,8 @@ model unfairness_model /all - objective_fairness - abs_obj1 - abs_obj2 /;
 unfairness_model.optfile = 1;
 *time limit
 unfairness_model.resLim = timelim;
+
+
 
 
 * choose which model to run based on user input

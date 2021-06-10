@@ -3,8 +3,8 @@
 	"inputSymbols":	{
 		"_scalars":	{
 			"alias":	"Input Scalars",
-			"symnames":	["district_num", "lower_fraction", "upper_fraction", "lambda", "timelim", "mode_choice", "for_repub"],
-			"symtext":	["district number", "population lowerbound fraction", "population upperbound fraction", "the penalty of the population difference between max district and min district", "time limit in secs", "choice of objective mode 0: fairness 1 unfairness", "party to optimize for 1: republicans -1: democrats"],
+			"symnames":	["district_num", "upper_fraction", "lower_fraction", "lambda", "timelim", "mode_choice", "for_repub"],
+			"symtext":	["district number", "population upperbound fraction", "population lowerbound fraction", "the penalty of the population difference between max district and min district", "time limit in secs", "choice of objective mode 0: fairness 1 unfairness", "party to optimize for 1: republicans -1: democrats"],
 			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{
@@ -54,6 +54,24 @@
 				"value":	{
 					"type":	"numeric",
 					"alias":	"foo"
+				}
+			}
+		},
+		"distance":	{
+			"alias":	"distance",
+			"symtype":	"parameter",
+			"headers":	{
+				"nodes":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"nodes#1":	{
+					"type":	"string",
+					"alias":	"fips code"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"distance"
 				}
 			}
 		}
