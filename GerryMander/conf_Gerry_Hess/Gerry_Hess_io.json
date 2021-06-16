@@ -3,9 +3,9 @@
 	"inputSymbols":	{
 		"_scalars":	{
 			"alias":	"Input Scalars",
-			"symnames":	["fordem", "district_num", "pop_upper", "pop_lower", "lambda_compactness", "lambda_pop"],
-			"symtext":	["fordem", "district_num", "pop_upper", "pop_lower", "lambda_compactness", "lambda_pop"],
-			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
+			"symnames":	["fordem", "district_num", "pop_upper", "pop_lower", "lambda_compactness", "solve_time", "mode_choice"],
+			"symtext":	["fordem", "district_num", "pop_upper", "pop_lower", "lambda_compactness", "solve_time", "0 fairness 1 unfairness"],
+			"symtypes":	["parameter", "parameter", "parameter", "parameter", "parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{
 					"type":	"string",

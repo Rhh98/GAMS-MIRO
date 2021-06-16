@@ -18,31 +18,31 @@
   },
   "overwriteAliases": {
     "assign_result": {
-      "newAlias": "assigned"
+      "newAlias": "Redistricted Map"
     },
     "_scalars": {
       "newAlias": "Scalars"
     },
     "num": {
-      "newAlias": "num"
+      "newAlias": "Party Data"
     },
     "distance": {
       "newAlias": "distance"
     },
     "foo": {
-      "newAlias": "foo"
+      "newAlias": "Adjacecny Data"
     },
     "assign_result2": {
-      "newAlias": "assigned"
+      "newAlias": "Party Visualization"
     },
     "assign_result3": {
-      "newAlias": "assigned"
+      "newAlias": "FIPS Code Visualization"
     },
     "_scalars_out": {
-      "newAlias": "Output Scalars"
+      "newAlias": "Output Values"
     },
     "pop_each_d": {
-      "newAlias": "population"
+      "newAlias": "Population Distribution"
     }
   },
   "saveTraceFile": true,
@@ -71,6 +71,84 @@
     "rownames": false,
     "options": {
       "pageLength": 15
+    }
+  },
+  "inputWidgets": {
+    "pop_upper": {
+      "widgetType": "numericinput",
+      "alias": "Population Upper Bound",
+      "value": 3.7,
+      "min": 0,
+      "max": 100,
+      "decimal": 1,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "label": "Population Upper Bound"
+    },
+    "pop_lower": {
+      "widgetType": "numericinput",
+      "alias": "Population Lower Bound",
+      "value": 0.4,
+      "min": 0,
+      "max": 100,
+      "decimal": 1,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "sign": null,
+      "label": "Population Lower Bound"
+    },
+    "lambda_compactness": {
+      "widgetType": "numericinput",
+      "alias": "Compactness Parameter",
+      "value": 1,
+      "min": 0,
+      "max": 100,
+      "decimal": 1,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "sign": null,
+      "label": "Compactness Parameter"
+    },
+    "solve_time": {
+      "widgetType": "slider",
+      "alias": "Time Limit",
+      "min": 0,
+      "max": 1200,
+      "default": 150,
+      "step": 10,
+      "ticks": false,
+      "noHcube": false,
+      "label": "Time Limit"
+    },
+    "mode_choice": {
+      "widgetType": "dropdown",
+      "alias": "Objective",
+      "choices": ["0", "1"],
+      "selected": "0",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Objective",
+      "aliases": ["Optimize for Fairness", "Optimize for A Given Party"]
+    },
+    "district_num": {
+      "widgetType": "slider",
+      "alias": "District Number",
+      "min": 0,
+      "max": 20,
+      "default": 10,
+      "step": 1,
+      "ticks": false,
+      "noHcube": false,
+      "label": "District Number"
+    }
+  },
+  "overwriteHeaderAliases": {
+    "num": {
+      "newHeaders": ["fips code", "parties", "number of votes"]
+    },
+    "foo": {
+      "newHeaders": ["fips code", "fips code", "Adjacent or Not"]
     }
   },
   "handsontable": {

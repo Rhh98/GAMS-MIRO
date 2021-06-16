@@ -19,7 +19,9 @@ scalar DISTRICT_NUM /10/;
 scalar pop_Upper /1.7/;
 scalar pop_Lower /0.4/;
 scalar lambda_compactness /1/;
-scalar lambda_pop /0/;
+*scalar lambda_pop /0/;
+scalar solve_time /150/;
+scalar mode_choice 0 fairness 1 unfairness /0/; 
 *read in the voting data
 parameter num(nodes<,P)/
 $ondelim
@@ -57,9 +59,17 @@ alias(nodes,i,j,k,district);
 set arcs(nodes,nodes);
 arcs(i,j)$(foo(i,j) = 1) = yes;
 
-parameter dist(nodes,nodes);
+parameter
+    dist(nodes,nodes)
+    totalRep total Republican votes
+    totalDem total Democrats votes
+    ratio_D2R D divided by R
+;
 dist(i,j)$(ord(i)<ord(j)) = distance(i,j);
 dist(i,j)$(ord(i)>ord(j)) = distance(j,i);
+totalRep = sum(I,num(I,'Republicans'));
+totalDem = sum(I,num(I,'Democrats'));
+ratio_D2R = totalDem/totalRep;
 
 binary variable 
     assigned(i,j) 1 if i is assigned to j otherwise 0
@@ -75,8 +85,9 @@ free variable
 
 positive variable
     flow(nodes,nodes)
-    popL
-    popU
+    popL population Lower bound
+    popU population upper bound
+    fairness fairness value
 ;
 
 parameter
@@ -99,7 +110,8 @@ win_rep.L(j) = win_rep_init(j);
 both_assign.L(i,k,j) = both_assign_init(i,k,j);
 
 equation
-    obj_Hess
+    obj_Hess_unfairness optimize for a party
+    obj_Hess_fairness optimize for fairness
     population_bound_U(j) population upper bound
     population_bound_L(j) population lower bound
     assigned_to_one(i) each unit is assigned to one county
@@ -111,19 +123,22 @@ equation
     flow_existence_constr1(i,k) flow can exist only if two units are in the same district
     flow_existence_constr2(i,k) flow can exist only if two units are in the same district
     root_inflow_constr(j) center unit cannot have inflow
-    
+*decide_win_repx helps define the logic of win_rep
     decide_win_rep1(j)
     decide_win_rep2(j)
     decide_win_rep3(j)
     decide_win_rep4(j)
+    
+    abs_fair1 construct the absolute value for the fairness objective function
+    abs_fair2 construct the absolute value for the fairness objective function
 
 ;
-obj_Hess..
-*obj =e= sum((i,j),dist(i,j)*assigned(i,j));
-*obj =e= lambda_pop*(popU-popL)/smax(i, sum(P, num(i,P)));
-*obj =e= lambda_pop*(popU-popL)/smax(i, sum(P, num(i,P))) + lambda_compactness * sum((i,j),dist(i,j)*assigned(i,j));
-*obj =e= forDem * sum(j,win_rep(j)) + lambda_pop*(popU-popL)/smax(i, sum(P, num(i,P))) ;
-    obj =e= forDem * sum(j,win_rep(j));
+obj_Hess_unfairness..
+    obj =e= forDem * sum(j,win_rep(j)) + lambda_compactness * sum((i,j),dist(i,j)*assigned(i,j))/50;
+*generate parametric curve/ try out forDem parameter
+obj_Hess_fairness..
+    obj =e= fairness + lambda_compactness * sum((i,j),dist(i,j)*assigned(i,j))/50;
+    
 population_bound_U(j)..
     sum((P,i),num(i,P)*assigned(i,j)) =l= pop_Upper*avgPop + totPop*(1-assigned(j,j));
     
@@ -152,7 +167,8 @@ flow_not_root_assign_constr_2(i)..
    
 flow_existence_constr1(i,k)$(arcs(i,k) or arcs(k,i))..
     flow(i,k) =l= (county_num-1)*(sum(j,both_assign(i,k,j)));
-    
+
+* fix it instead of writing it as a constraint   
 flow_existence_constr2(i,k)$(not(arcs(i,k) or arcs(k,i)))..
     flow(i,k) =e= 0;
     
@@ -172,15 +188,38 @@ decide_win_rep3(j)..
     
 decide_win_rep4(j)..
     z(j) + assigned(j,j) - 2*win_rep(j) =g= 0;
+    
+abs_fair1..
+    fairness =g= (DISTRICT_NUM-sum(j,win_rep(j))) - ratio_D2R*sum(j,win_rep(j));
+abs_fair2..
+    fairness =g= -((DISTRICT_NUM-sum(j,win_rep(j))) - ratio_D2R*sum(j,win_rep(j)));
 
-model hess_model /all/;
+model fairness_hess_model /all - obj_Hess_unfairness/;
+fairness_hess_model.optfile=1;
+fairness_hess_model.reslim = solve_time;
 
-solve hess_model using mip minimizing obj;
-hess_model.optfile=1;
+model unfairness_hess_model /all - obj_Hess_fairness - abs_fair1 - abs_fair2/;
+unfairness_hess_model.optfile=1;
+unfairness_hess_model.reslim = solve_time;
 
-set result(j);
 
-result(j)$(assigned.l(j,j) = 1 and win_rep.l(j) = 1) = yes;
+*solve fairness model
+if (mode_choice = 0,
+    solve fairness_hess_model using mip minimizing obj;
+*solve unfairness model
+elseif (mode_choice = 1),
+    solve unfairness_hess_model using mip minimizing obj;
+);
+
+
+*parameter result(j);
+
+*result(j)=assigned.l(j,j);
+assigned.l(i,j)$(assigned.l(i,j)<0.5) = 0;
+assigned.l(i,j)$(assigned.l(i,j)>0.5) = 1;
+*display result;
+*$offtext
+
 set gerryHeader /result1,result2/;
 set gerryHeader2 /result1,RorD/; 
 
@@ -194,11 +233,11 @@ parameter pop_each_D(district) population;
 $offExternalOutput
 assign_result(i,j,'result1') = assigned.l(i,j);
 assign_result2(nodes,district,'result1') = assigned.l(nodes,district);
-assign_result2(nodes,district,'RorD')$(win_rep.l(district)=1 and assigned.l(nodes,district)=1) = 1;
-assign_result2(nodes,district,'RorD')$(win_rep.l(district)=0 and assigned.l(nodes,district)=1) = -1;
+assign_result2(nodes,district,'RorD')$(win_rep.l(district)>0.5 and assigned.l(nodes,district)>0.5) = 1;
+assign_result2(nodes,district,'RorD')$(win_rep.l(district)<0.5 and assigned.l(nodes,district)>0.5) = -1;
 assign_result3(nodes,district,'result1') = assigned.l(nodes,district);
-assign_result3(nodes,district,'RorD')$(win_rep.l(district)=1 and assigned.l(nodes,district)=1) = 1;
-assign_result3(nodes,district,'RorD')$(win_rep.l(district)=0 and assigned.l(nodes,district)=1) = -1;
+assign_result3(nodes,district,'RorD')$(win_rep.l(district)>0.5 and assigned.l(nodes,district)>0.5) = 1;
+assign_result3(nodes,district,'RorD')$(win_rep.l(district)<0.5 and assigned.l(nodes,district)>0.5) = -1;
 
 rep_district_num = sum(district,win_rep.l(district));
 dem_district_num = DISTRICT_NUM-sum(district,win_rep.l(district));
@@ -220,10 +259,9 @@ both_assign_init(i,k,j) = both_assign.l(i,k,j);
 $offtext
 
 *execute_unload 'initial_point_Hess.gdx', assigned_init, z_init, win_rep_init,both_assign_init ;
-display result;
 
-    
 
+*display result;
 
 
 
