@@ -52,10 +52,6 @@
       "outType": "Gerry",
       "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
     },
-    "assign_result2": {
-      "outType": "gerryPlusWord",
-      "packages": ["devtools", "tidyverse", "stringr", "ggplot2"]
-    },
     "assign_result3": {
       "outType": "gerryPlusFips",
       "packages": ["devtools", "ggplot2", "tidyverse", "stringr"]
@@ -63,6 +59,10 @@
     "pop_each_d": {
       "outType": "avgPop",
       "packages": "plotly"
+    },
+    "assign_result2": {
+      "outType": "gerryPlusWord",
+      "packages": "gtable"
     }
   },
   "datatable": {
@@ -143,6 +143,7 @@
       "label": "District Number"
     }
   },
+  "defaultRendererOutput": "miroPivot",
   "overwriteHeaderAliases": {
     "num": {
       "newHeaders": ["fips code", "parties", "number of votes"]

@@ -21,7 +21,7 @@ scalar pop_Lower /0.4/;
 scalar lambda_compactness /1/;
 *scalar lambda_pop /0/;
 scalar solve_time /150/;
-scalar mode_choice 0 fairness 1 unfairness /0/; 
+scalar mode_choice 0 fairness 1 unfairness /0/;
 *read in the voting data
 parameter num(nodes<,P)/
 $ondelim
@@ -193,6 +193,7 @@ abs_fair1..
     fairness =g= (DISTRICT_NUM-sum(j,win_rep(j))) - ratio_D2R*sum(j,win_rep(j));
 abs_fair2..
     fairness =g= -((DISTRICT_NUM-sum(j,win_rep(j))) - ratio_D2R*sum(j,win_rep(j)));
+    
 
 model fairness_hess_model /all - obj_Hess_unfairness/;
 fairness_hess_model.optfile=1;
