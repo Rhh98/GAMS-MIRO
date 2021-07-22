@@ -41,7 +41,8 @@ scalar PopLow population lower bound /0.95/;
 $offExternalInput
 
 centroid_hess(i) = no;
-centroid_hess(i)$(userInputCentroid(i)>0.5) = yes
+centroid_hess(i)$(userInputCentroid(i)>0.5) = yes;
+
 
 *district number is defined by the number of predefined centroid
 scalar district_num; 
@@ -62,6 +63,8 @@ free variable
     
 binary variable
     assign(i,j) 1 if ward i is assigned to ward j;
+    
+assign.fx(i,j)$(not centroid_hess(j)) = 0;
 $ontext 
 parameter assign_init(i,id);
 
@@ -84,7 +87,7 @@ OBJ..
     objectiveVal =e= sum((i,id)$centroid_hess(id), n(i)*distance(i,id)*assign(i,id));
 
 assgin_constr(i)..
-    sum(centroid_hess(id),assign(i,id)) =e= 1;
+    sum(id,assign(i,id)) =e= 1;
 
 centroid_constr(i)$centroid_hess(i)..
     assign(i,i) =e= 1;
@@ -175,6 +178,7 @@ NV.LO(id)$centroid_hess(id) = PopLow*sum(i,n(i))/district_num;
 
 
 model wardHessContig /all/;
+
 
 solve wardHessContig using mip minimizing objectiveVal ;
 set header /value/;
