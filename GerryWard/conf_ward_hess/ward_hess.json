@@ -1,0 +1,95 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "defaultRendererOutput": "miroPivot",
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_widgets", "userinputcentroid"]
+  },
+  "overwriteAliases": {
+    "assign_result": {
+      "newAlias": "Districting Result"
+    },
+    "userinputcentroid": {
+      "newAlias": "Input Centroids"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "population_result": {
+      "newAlias": "Population Result"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "dataRendering": {
+    "assign_result": {
+      "outType": "mirorenderer_assign_result",
+      "packages": "ggplot2"
+    },
+    "population_result": {
+      "outType": "mirorenderer_population_result",
+      "packages": "plotly"
+    }
+  },
+  "inputWidgets": {
+    "popup": {
+      "widgetType": "numericinput",
+      "alias": "Population Upper Bound",
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "label": "Population Upper Bound",
+      "value": 1.05,
+      "decimal": 2
+    },
+    "poplow": {
+      "widgetType": "numericinput",
+      "alias": "Population Lower Bound",
+      "min": null,
+      "max": null,
+      "decimalCharacter": ".",
+      "digitGroupSeparator": ",",
+      "sign": null,
+      "label": "Population Lower Bound",
+      "value": 0.95,
+      "decimal": 2
+    }
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "overwriteHeaderAliases": {
+    "userinputcentroid": {
+      "newHeaders": ["Ward ID", "Choice"]
+    }
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  },
+  "defaultScenName": "benchmark"
+}

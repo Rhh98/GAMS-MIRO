@@ -1,0 +1,85 @@
+{
+	"modelTitle":	"Read Data",
+	"inputSymbols":	{
+		"userinputcentroid":	{
+			"alias":	"userinputcentroid",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Aliased with id"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"userinputcentroid"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["popup", "poplow"],
+			"symtext":	["population upper bound", "population lower bound"],
+			"symtypes":	["parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"assign_result":	{
+			"alias":	"assign_result",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Aliased with id"
+				},
+				"s":	{
+					"type":	"string",
+					"alias":	"Shape identifiers"
+				},
+				"id":	{
+					"type":	"string",
+					"alias":	"Ward identifiers"
+				},
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"assign_result"
+				}
+			}
+		},
+		"population_result":	{
+			"alias":	"population_result",
+			"symtype":	"parameter",
+			"headers":	{
+				"id":	{
+					"type":	"string",
+					"alias":	"Ward identifiers"
+				},
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"population_result"
+				}
+			}
+		}
+	}
+}
