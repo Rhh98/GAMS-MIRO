@@ -1,0 +1,85 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "defaultRendererOutput": "miroPivot",
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_widgets", "initsoln", "black"]
+  },
+  "overwriteAliases": {
+    "output": {
+      "newAlias": "output"
+    },
+    "initsoln": {
+      "newAlias": "Initial Lines"
+    },
+    "black": {
+      "newAlias": "Block"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "dataRendering": {
+    "output": {
+      "outType": "mirorenderer_output"
+    }
+  },
+  "overwriteHeaderAliases": {
+    "initsoln": {
+      "newHeaders": ["Row P1", "Column P1", "Row P2", "Column P2", "Buffer"]
+    },
+    "black": {
+      "newHeaders": ["Row", "Column", "Buffer"]
+    }
+  },
+  "defaultScenName": "Scenario 1",
+  "inputWidgets": {
+    "black": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "readonlyCols": "text",
+      "hideIndexCol": false,
+      "heatmap": false
+    },
+    "initsoln": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "hideIndexCol": false,
+      "heatmap": false,
+      "readonlyCols": "text"
+    }
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 100
+  }
+}

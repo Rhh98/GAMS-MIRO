@@ -1,0 +1,81 @@
+{
+	"modelTitle":	"circuitboad.gms",
+	"inputSymbols":	{
+		"initsoln":	{
+			"alias":	"initsoln",
+			"symtype":	"set",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"i"
+				},
+				"i#1":	{
+					"type":	"string",
+					"alias":	"i#1"
+				},
+				"i#2":	{
+					"type":	"string",
+					"alias":	"i#2"
+				},
+				"i#3":	{
+					"type":	"string",
+					"alias":	"i#3"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text "
+				}
+			}
+		},
+		"black":	{
+			"alias":	"black",
+			"symtype":	"set",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"i"
+				},
+				"i#1":	{
+					"type":	"string",
+					"alias":	"i#1"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text "
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"output":	{
+			"alias":	"output",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"i"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"k":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"l":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"output"
+				}
+			}
+		}
+	}
+}
