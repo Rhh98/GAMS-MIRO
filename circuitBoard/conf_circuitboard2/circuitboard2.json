@@ -1,0 +1,100 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "defaultRendererOutput": "miroPivot",
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_widgets", "initsoln", "black"]
+  },
+  "overwriteAliases": {
+    "output": {
+      "newAlias": "output"
+    },
+    "initsoln": {
+      "newAlias": "Initial Lines"
+    },
+    "black": {
+      "newAlias": "Blocked Grid"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "dataRendering": {
+    "output": {
+      "outType": "mirorenderer_output"
+    }
+  },
+  "inputWidgets": {
+    "_gmspar_n": {
+      "widgetType": "slider",
+      "alias": "Board Size",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "ticks": false,
+      "noHcube": false,
+      "label": "Board Size",
+      "default": 6
+    },
+    "initsoln": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "readonlyCols": "text",
+      "hideIndexCol": false,
+      "heatmap": false
+    },
+    "black": {
+      "widgetType": "table",
+      "tableType": "default",
+      "readonly": false,
+      "readonlyCols": "text",
+      "hideIndexCol": false,
+      "heatmap": false
+    }
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "overwriteHeaderAliases": {
+    "initsoln": {
+      "newHeaders": ["row1", "col1", "row2", "col2", "None"]
+    },
+    "black": {
+      "newHeaders": ["row", "col", "Set text "]
+    }
+  },
+  "readme": {
+    "tabTitle": "Introduction",
+    "filename": "README.md",
+    "enableMath": true
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}
