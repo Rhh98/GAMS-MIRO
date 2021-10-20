@@ -2,12 +2,20 @@ The following description is adapted from New York Times. The circuit board game
 
 
 <h2>Problem Statement</h2>
-Given an initial circuit board like the following, you want to connect the points on the circuit board so that every point is connected to either one or three (never two) other points, and so that no areas are enclosed. When you're done, all the points must be interconnected (i.e. There is a connected graph formed by all edges without cycle).
-<img src="" alt="Test Image"  align='right' style="width:300px;display:inline">
+Given an initial circuit board like the following, 
+
+<img src="https://i.ibb.co/TYw9J92/initial-only-red.jpg" alt="Test Image"  style="width:200px;display:inline" >
+
+you want to connect the points on the circuit board so that every point is connected to either one or three (never two) other points, and so that no areas are enclosed. When you're done, all the points must be interconnected (i.e. There is a connected graph formed by all edges without cycle).
+
+<img src="https://i.ibb.co/J2YgDqq/initial.jpg" alt="Test Image"  
+style="width:200px;display:inline" >
+
+
+
 <h2> 
     Input and Output Data Illustration
 </h2>
-
 The model requires several inputs,
 
 <h3>
