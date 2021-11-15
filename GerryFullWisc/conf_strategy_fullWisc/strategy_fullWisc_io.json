@@ -1,0 +1,99 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["objectivechoice", "popboundchoice", "compactnessweight"],
+			"symtext":	["1 republicans -1 democrats fairness 2", "1 low 2 mid 3 high", "0 is original objective 1 is compactness"],
+			"symtypes":	["parameter", "parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"assignment":	{
+			"alias":	"assignment",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Aliased with wards"
+				},
+				"d":	{
+					"type":	"string",
+					"alias":	"Aliased with district"
+				},
+				"header":	{
+					"type":	"string",
+					"alias":	"header"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"assignment"
+				}
+			}
+		},
+		"assignment_population":	{
+			"alias":	"assignment_population",
+			"symtype":	"parameter",
+			"headers":	{
+				"d":	{
+					"type":	"string",
+					"alias":	"Aliased with district"
+				},
+				"party":	{
+					"type":	"string",
+					"alias":	"party"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"assignment_population"
+				}
+			}
+		},
+		"assignment_population2":	{
+			"alias":	"assignment_population2",
+			"symtype":	"parameter",
+			"headers":	{
+				"d":	{
+					"type":	"string",
+					"alias":	"Aliased with district"
+				},
+				"party":	{
+					"type":	"string",
+					"alias":	"party"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"assignment_population2"
+				}
+			}
+		},
+		"interactive":	{
+			"alias":	"store objective choice",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"Aliased with wards"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"store objective choice"
+				}
+			}
+		}
+	}
+}

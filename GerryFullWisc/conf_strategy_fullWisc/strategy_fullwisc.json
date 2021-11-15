@@ -1,0 +1,146 @@
+{
+  "theme": "browser",
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "defaultRendererOutput": "miroPivot",
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["_scalars", "_widgets"]
+  },
+  "overwriteAliases": {
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "assignment": {
+      "newAlias": "District Assignment"
+    },
+    "assignment_population": {
+      "newAlias": "District Population"
+    },
+    "assignment_population2": {
+      "newAlias": "Customized Population"
+    },
+    "interactive": {
+      "newAlias": "Interactive Visualization"
+    }
+  },
+  "saveTraceFile": true,
+  "roundingDecimals": 2,
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
+  },
+  "dataRendering": {
+    "assignment": {
+      "outType": "mirorenderer_assignment",
+      "packages": "ggplot2"
+    },
+    "assignment_population": {
+      "outType": "graph",
+      "graph": {
+        "tool": "plotly",
+        "type": "bar",
+        "barmode": "group",
+        "ydata": {
+          "value": {
+            "label": "Population",
+            "mode": "lines",
+            "marker": {
+              "line": {
+                "width": 0
+              }
+            }
+          }
+        },
+        "xdata": "d",
+        "xaxis": {
+          "title": "District",
+          "showgrid": false,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "category ascending"
+        },
+        "yaxis": {
+          "title": "Population",
+          "showgrid": true,
+          "zeroline": false,
+          "showticklabels": true,
+          "categoryorder": "trace"
+        },
+        "title": "Population Per District",
+        "showlegend": true,
+        "staticPlot": false
+      },
+      "height": 700
+    },
+    "interactive": {
+      "outType": "mirorenderer_interactive"
+    }
+  },
+  "inputWidgets": {
+    "objectivechoice": {
+      "widgetType": "dropdown",
+      "alias": "Objective Choice",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Objective Choice",
+      "selected": "1",
+      "choices": ["1", "-1", "2"],
+      "aliases": ["Republicans", "Democrats", "Fairness"]
+    },
+    "popboundchoice": {
+      "widgetType": "dropdown",
+      "alias": "Population Bound Choice",
+      "noHcube": false,
+      "clearValue": false,
+      "multiple": false,
+      "label": "Population Bound Choice",
+      "selected": "3",
+      "choices": ["1", "2", "3"],
+      "aliases": ["Large", "Medium", "Small"]
+    },
+    "compactnessweight": {
+      "widgetType": "slider",
+      "alias": "Compactness Weight",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "step": 0.01,
+      "ticks": true,
+      "noHcube": false,
+      "label": "Compactness Weight"
+    }
+  },
+  "overwriteHeaderAliases": {
+    "assignment_population": {
+      "newHeaders": ["District", "party", "assignment_population"]
+    }
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "manualColumnResize": true,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}
