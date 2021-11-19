@@ -3,8 +3,9 @@ mirorenderer_interactiveOutput <- function(id, height = NULL, options = NULL, pa
     if (is.null(height)) {
         height <- 500
     }
-    fluidRow(   
-    column(6,
+
+    fluidRow(     
+    column(7,
           plotOutput(ns("plot1"), click = ns("plot1_click"),height=height)
     	),
     column(5,
@@ -38,7 +39,10 @@ renderMirorenderer_interactive <- function(input, output, session, data, options
   winLossNew <- merge(x = winLossNew, y = compactness, by = "s", all.x = TRUE) # join compactness data
   names(winLossNew)[names(winLossNew) == "Val"] <- 'compactness' # change column name
 
-  winLossNew <- winLossNew[order(winLossNew$R,-winLossNew$compactness,decreasing = TRUE),] #order using votes and compactness
+  winLossNew$compactness <- 6 - winLossNew$compactness/100000000000 # define compactness score
+
+  winLossNew <- winLossNew[order(winLossNew$R,winLossNew$compactness,decreasing = TRUE),] #order using votes and compactness
+
 #winLossNew <- winLossNew[order(winLossNew$R,decreasing = TRUE),] # align the number of votes
   
   space <- c(0.5) #deal with bar chart position
@@ -48,8 +52,11 @@ renderMirorenderer_interactive <- function(input, output, session, data, options
   }
 
   output$plot1 <- renderPlot({
-    barplot(rbind(winLossNew$R,winLossNew$D),names=winLossNew$s, col = c("#FFCCCC","#99CCFF") ,legend = c('Republicans','Democrats'),beside = F,space=space,las=2)#(0.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)) #create bar plot, some how it is required to manually specify space or 
-    #lines(1:20, winLossNew$D, pch = 18, col = "blue", type = "b", lty = 2)
+    par(mar=c(5.1,4.1,4.1,4)) # change margin so that y axis can fit in 
+    barplot(rbind(winLossNew$R,winLossNew$D),names=winLossNew$s, col = c("#FFCCCC","#99CCFF") ,legend = c('Republicans','Democrats'),beside = F,space=space,las=2, ylab ="# of district votes")#(0.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)) #create bar plot, some how it is required to manually specify space or 
+    lines(1:20, winLossNew$compactness, pch = 18, col = "blue", type = "b", lty = 2)
+    axis(side = 4)
+    mtext(side = 4, line = 3, 'Compactness')
   })
   
 
@@ -80,6 +87,5 @@ renderMirorenderer_interactive <- function(input, output, session, data, options
     
      }
        , deleteFile = FALSE)
-
 
 }

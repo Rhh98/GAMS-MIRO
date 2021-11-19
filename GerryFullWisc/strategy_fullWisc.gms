@@ -11,6 +11,7 @@ scalar
     objectiveChoice 1 republicans -1 democrats fairness 2 /1/  
     popBoundChoice 1 low 2 mid 3 high /3/
     compactnessWeight 0 is original objective 1 is compactness /0.9/
+    chooseScenario "0 if no scenario is chosen, otherwise choose the scenario whose order is specified"/0/
 ;
 $offexternalinput
 
@@ -134,6 +135,12 @@ free variable
 binary variable
     choice(s)    
 ;
+
+*see if there is a user chosen scenario
+if( chooseScenario <> 0,
+    choice.fx(s)$(ord(s)=chooseScenario)  = 1;
+);
+
 
 equations
     objective
