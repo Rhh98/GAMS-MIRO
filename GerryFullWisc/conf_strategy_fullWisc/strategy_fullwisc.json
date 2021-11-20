@@ -15,7 +15,7 @@
   },
   "aggregateWidgets": true,
   "overwriteSheetOrder": {
-    "input": ["_scalars", "_widgets"]
+    "input": "_widgets"
   },
   "overwriteAliases": {
     "_scalars": {
@@ -32,6 +32,9 @@
     },
     "interactive": {
       "newAlias": "Interactive Visualization"
+    },
+    "assignment_race": {
+      "newAlias": "Population with Race"
     }
   },
   "saveTraceFile": true,
@@ -89,6 +92,36 @@
     },
     "interactive": {
       "outType": "mirorenderer_interactive"
+    },
+    "assignment_race": {
+      "outType": "miroPivot",
+      "height": 700,
+      "options": {
+        "aggregationFunction": "sum",
+        "pivotRenderer": "stackedbar",
+        "enableHideEmptyCols": false,
+        "hideEmptyCols": false,
+        "emptyUEL": "-",
+        "rows": "d",
+        "cols": {
+          "race": null
+        }
+      }
+    },
+    "assignment_population2": {
+      "outType": "miroPivot",
+      "height": 700,
+      "options": {
+        "aggregationFunction": "sum",
+        "pivotRenderer": "bar",
+        "enableHideEmptyCols": false,
+        "hideEmptyCols": false,
+        "emptyUEL": "-",
+        "rows": "d",
+        "cols": {
+          "party": null
+        }
+      }
     }
   },
   "inputWidgets": {
@@ -136,6 +169,11 @@
       "choices": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
       "aliases": ["None", "Scenario 1", "Scenario 2", "Scenario 3", "Scenario 4", "Scenario 5", "Scenario 6", "Scenario 7", "Scenario 8", "Scenario 9", "Scenario 10", "Scenario 11", "Scenario 12", "Scenario 13", "Scenario 14", "Scenario 15", "Scenario 16", "Scenario 17", "Scenario 18", "Scenario 19", "Scenario 20"]
     }
+  },
+  "readme": {
+    "tabTitle": "Introduction",
+    "filename": "introduction.md",
+    "enableMath": true
   },
   "overwriteHeaderAliases": {
     "assignment_population": {

@@ -3,13 +3,14 @@ set scenario twenty scenarios in our demo/scen1*scen20/
     wards
     district
     party
-    popBound /high,mid,low/;
+    popBound /high,mid,low/
+    race /white, hispanic, black, asian, other/
 ;
 
 $onexternalinput
 scalar
-    objectiveChoice 1 republicans -1 democrats fairness 2 /1/  
-    popBoundChoice 1 low 2 mid 3 high /3/
+    objectiveChoice 1 republicans -1 democrats 2 fairness  /1/  
+    popBoundChoice 1 Large 2 Medium 3 Small /3/
     compactnessWeight 0 is original objective 1 is compactness /0.9/
     chooseScenario "0 if no scenario is chosen, otherwise choose the scenario whose order is specified"/0/
 ;
@@ -82,6 +83,11 @@ alias (district,d,dc);
 alias (party,p);
 
 
+*load race data
+parameter race_data(wards,race);
+$gdxIn race_data.gdx
+$load race_data=race
+$gdxIn
 
 
 
@@ -95,6 +101,8 @@ $gdxin
 parameter real_vote(party);
 
 real_vote(party) = card(district) * sum(wards,vote(wards,party))/sum((i,p),vote(i,p));
+
+
 
 parameter ifRepWin(s,d);
 
@@ -204,6 +212,22 @@ assigned(i,d)$(sum(s, choice.l(s)*strategies(s,i,d)) > 0.5) = 1;
 
 districtCenter(i,d) = sum(s,choice.l(s) * assigned_dc(s,i,d));
 
+*extract race data
+parameter
+    race_distribution(d,race)
+    race_ratio(d,race)
+;
+
+alias(race,r);
+
+race_distribution(d,race) = sum(i$(assigned(i,d) > 0.5), race_data(i,race));
+
+race_ratio(d,race) = sum((i)$(assigned(i,d) > 0.5), race_data(i,race))/sum((i,r)$(assigned(i,d) > 0.5), race_data(i,r));
+
+
+race_distribution(d,race) = ceil(sum((wards,party),assigned(wards,d)*vote(wards,party)) *race_ratio(d,race));
+
+
 scalar chosenScenario;
 
 chosenScenario = sum(s,choice.l(s)*ord(s));
@@ -215,6 +239,7 @@ $onexternaloutput
 parameter assignment(i,d,header);
 parameter assignment_population(d,party);
 parameter assignment_population2(d,party);
+parameter assignment_race(d,race);
 parameter interactive(i) store objective choice;
 $offexternaloutput
 
@@ -228,6 +253,8 @@ assignment(i,d,'choice') = chosenScenario;
 assignment_population(d,party) = sum((wards),assigned(wards,d)*vote(wards,party));
 
 assignment_population2(d,party) = sum((wards),assigned(wards,d)*vote(wards,party));
+
+assignment_race(d,race) = race_distribution(d,race);
 
 interactive(i) = popBoundChoice;
 

@@ -81,6 +81,24 @@
 				}
 			}
 		},
+		"assignment_race":	{
+			"alias":	"assignment_race",
+			"symtype":	"parameter",
+			"headers":	{
+				"d":	{
+					"type":	"string",
+					"alias":	"Aliased with district"
+				},
+				"race":	{
+					"type":	"string",
+					"alias":	"race"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"assignment_race"
+				}
+			}
+		},
 		"interactive":	{
 			"alias":	"store objective choice",
 			"symtype":	"parameter",
