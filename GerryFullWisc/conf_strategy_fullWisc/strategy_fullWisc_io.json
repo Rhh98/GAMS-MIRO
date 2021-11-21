@@ -4,7 +4,7 @@
 		"_scalars":	{
 			"alias":	"Input Scalars",
 			"symnames":	["objectivechoice", "popboundchoice", "compactnessweight", "choosescenario"],
-			"symtext":	["1 republicans -1 democrats fairness 2", "1 low 2 mid 3 high", "0 is original objective 1 is compactness", "0 if no scenario is chosen, otherwise choose the scenario whose order is specified"],
+			"symtext":	["1 republicans -1 democrats 2 fairness", "1 Large 2 Medium 3 Small", "0 is original objective 1 is compactness", "0 if no scenario is chosen, otherwise choose the scenario whose order is specified"],
 			"symtypes":	["parameter", "parameter", "parameter", "parameter"],
 			"headers":	{
 				"scalar":	{

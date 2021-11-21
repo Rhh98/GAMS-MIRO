@@ -39,14 +39,6 @@
   },
   "saveTraceFile": true,
   "roundingDecimals": 2,
-  "datatable": {
-    "class": "display",
-    "filter": "bottom",
-    "rownames": false,
-    "options": {
-      "pageLength": 15
-    }
-  },
   "dataRendering": {
     "assignment": {
       "outType": "mirorenderer_assignment",
@@ -128,12 +120,12 @@
     "objectivechoice": {
       "widgetType": "dropdown",
       "alias": "Objective Choice",
+      "choices": ["1", "-1", "2"],
+      "selected": "-1",
       "noHcube": false,
       "clearValue": false,
       "multiple": false,
       "label": "Objective Choice",
-      "selected": "1",
-      "choices": ["1", "-1", "2"],
       "aliases": ["Republicans", "Democrats", "Fairness"]
     },
     "popboundchoice": {
@@ -191,5 +183,13 @@
     },
     "height": 700,
     "colWidths": 200
+  },
+  "datatable": {
+    "class": "display",
+    "filter": "bottom",
+    "rownames": false,
+    "options": {
+      "pageLength": 15
+    }
   }
 }

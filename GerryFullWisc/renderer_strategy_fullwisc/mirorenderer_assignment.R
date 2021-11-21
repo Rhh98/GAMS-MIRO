@@ -72,7 +72,7 @@ mirorenderer_assignmentOutput <- function(id, height = NULL, options = NULL, pat
                   axis.ticks.y=ggplot2::element_blank())
     output$plot1 <- renderPlot({
          p
-    })
+    },width = 600, height=600)
 
 }
 

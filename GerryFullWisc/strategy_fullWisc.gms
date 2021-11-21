@@ -9,7 +9,7 @@ set scenario twenty scenarios in our demo/scen1*scen20/
 
 $onexternalinput
 scalar
-    objectiveChoice 1 republicans -1 democrats 2 fairness  /1/  
+    objectiveChoice 1 republicans -1 democrats 2 fairness  /-1/  
     popBoundChoice 1 Large 2 Medium 3 Small /3/
     compactnessWeight 0 is original objective 1 is compactness /0.9/
     chooseScenario "0 if no scenario is chosen, otherwise choose the scenario whose order is specified"/0/
