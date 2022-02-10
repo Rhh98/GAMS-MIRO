@@ -37,9 +37,13 @@ mirorenderer_assignmentOutput <- function(id, height = NULL, options = NULL, pat
     winLoss_dataframe["FID"] <- gsub("F", "", as.character(winLoss_dataframe$i))
     winLoss_dataframe["FID"] <- as.numeric(winLoss_dataframe$FID)
     
-    polygon_dataframe <- read.csv(paste0(path, "/wisconsin_df"))
-    polygon_dataframe <- merge(x = polygon_dataframe, y = assign_dataframe, 
-        by = "FID", all.x = TRUE)
+    #polygon_dataframe <- read.csv(paste0(path, "/wisconsin_df"))
+    #polygon_dataframe <- merge(x = polygon_dataframe, y = assign_dataframe, 
+    #    by = "FID", all.x = TRUE)
+    if (is.null(rendererEnv$polygon_dataframe)) {
+        rendererEnv$polygon_dataframe <- readRDS(paste0(path, "/wisconsin_df_r"))
+    }
+    polygon_dataframe <- dplyr::left_join(rendererEnv$polygon_dataframe, assign_dataframe, by = "FID")
 
     polygon_centroid <- polygon_dataframe[is.element(polygon_dataframe$FID,centroids),]
 
