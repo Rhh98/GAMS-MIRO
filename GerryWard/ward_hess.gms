@@ -128,7 +128,6 @@ set header /value/;
 
 * the following are for miro output, do not run under these line
 
-$exit
 
 $onexternaloutput
 table assign_result(i,s,id,header);
